@@ -1,5 +1,5 @@
 "X4Pro - universal, fully relational EXFOR database"
-by V.Zerkin, IAEA-NRDC, 2020-2026, version 2026-08-14
+by V.Zerkin, IAEA-NRDC, 2020-2026, version 2026-08-21
 ====================================================================================
 1. EXFOR relational database
  * Copyright (C) 2000-2023 International Atomic Energy Agency (IAEA)
