@@ -1,0 +1,37 @@
+Program: data-err.py, ver. 2024-12-16
+Author:  V.Zerkin, v.zerkin@gmail.com, Vienna, 2024
+Purpose: execute SQL command on SQLite
+         to find EXFOR datasets with DATA-ERR<0
+
+Running: 2026-08-21 12:10:33
+
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+SQL:
+
+SELECT distinct substr(x4.DatasetID,1,5) as Entry
+ ,x4.DatasetID,idat
+ ,json_extract(x4.xdat,'$.DATA') as DATA
+ ,json_extract(x4.xdat,'$.DATA-ERR') as `DATA-ERR`
+-- ,printf("%.3f",100*json_extract(x4.xdat,'$.DATA')/json_extract(x4.xdat,'$.DATA-ERR')) as `errPercent`
+ ,h4.units,x4.xdat
+FROM x4pro_x4data as x4
+ inner join x4pro_hdr as h4 on h4.DatasetID=x4.DatasetID
+where json_extract(x4.xdat,'$.DATA-ERR') is not null
+ and json_extract(x4.xdat,'$.DATA-ERR') <0
+ and h4.hdr='DATA-ERR'
+
+
+EXFOR SQL executed: 0.102sec
+rows: 5
+cols: 7 ['Entry', 'DatasetID', 'idat', 'DATA', 'DATA-ERR', 'units', 'xdat']
+  0)	row: ('C0683', 'C0683003', 71, -0.02, -0.021, 'NO-DIM', '{"DATA":-0.02,"DATA-ERR":-0.021,"EN":650,"ANG-CM":23.27}')
+  1)	row: ('C0683', 'C0683003', 72, -0.044, -0.038, 'NO-DIM', '{"DATA":-0.044,"DATA-ERR":-0.038,"EN":650,"ANG-CM":23.34}')
+  2)	row: ('C0683', 'C0683003', 73, -0.112, -0.025, 'NO-DIM', '{"DATA":-0.112,"DATA-ERR":-0.025,"EN":650,"ANG-CM":23.64}')
+  3)	row: ('C0683', 'C0683003', 74, -0.149, -0.03, 'NO-DIM', '{"DATA":-0.149,"DATA-ERR":-0.03,"EN":650,"ANG-CM":24.02}')
+  4)	row: ('C0683', 'C0683003', 75, -0.076, -0.035, 'NO-DIM', '{"DATA":-0.076,"DATA-ERR":-0.035,"EN":650,"ANG-CM":24.4}')
+
+---Save datasets to JSON file: data-err.json
+
+---Save datasets to CSV file: data-err.csv
+
+Program successfully completed

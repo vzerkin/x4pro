@@ -1,0 +1,578 @@
+Program: sig1r.py, ver. 2025-03-26
+Author:  V.Zerkin, Vienna, 2024-2025
+Purpose: Retrieve EXFOR cross sections, ratios
+         and monitor data from SQL database,
+         convert ratios to cross sections,
+         renormalize cross sections to new monitors,
+         search and download ENDF data from Web,
+         plot evaluated and experimental data.
+Running: 2026-08-21 12:10:40
+
+---arg[0]:sig1r.py
+---arg[1]:Al-27
+---arg[2]:n,a
+---arg[3]:-x:log
+---Reading blackList myBlackList.json with datasets to be ignored
+---blackList: 8 records
+---blackList: 5 datasets
+
+===Parameters:
+  target: "Al-27"
+   react: "n,a"
+   quant: ",sig"
+   sProd: ""
+   xaxis: "log"
+   ytype: "linear"
+   groupByMT: False
+   sortDatasets: True
+   markRejected: False
+   myBlackListFile: "myBlackList.json"
+   myBlackList: 5 datasets
+   outhtml: "Al27na"
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---Read x4evalscores from X4Pro database...
+
+---SQL:[
+select x4evalscore.fileID,x4evalscore.DatasetID
+	 ,x4evalscore.author
+	 ,x4evalscore_file.myComment
+	 ,x4evalscore.itype
+	 ,x4evalscore.accepted
+	 ,x4evalscore.evalflag
+	 ,x4evalscore.comment2
+	from x4evalscore
+	 left join x4evalscore_file on x4evalscore_file.fileID=x4evalscore.fileID
+	order by x4evalscore.itype,x4evalscore.DatasetID
+	
+]
+===SQL executed. Rows:21804
+---x4evalflags:19514 datasets
+
+___getX4SqlSearchCS: target:[Al-27] react:[n,a] sProd:[]
+SQL:
+	select x4pro_c5dat.DatasetID
+	 ,x4pro_ds.x4status,x4pro_ds.MF,x4pro_ds.MT
+	 ,REACSTR.code as Reacode
+	 ,REACODE.fullCode
+	 ,x4pro_c5dat.idat as iPoint
+	 ,REACODE.Pointer,ENTRY.Entry,REACODE.SubAcc as Subent   
+	 ,ENTRY.YearRef1,ENTRY.nAuthors,ENTRY.Author1Ini,ENTRY.Author1 
+	 ,REACSTR.Target, REACSTR.Reaction
+	 ,lower(REACSTR.Projectile) as Projectile
+	 ,REACSTR.sProd,REACSTR.sTarg
+	 ,REACODE.zaTarget1,REACODE.zaIncident1
+	 ,REACODE.outParticles,REACODE.MF,REACODE.MT
+	 ,REACSTR.code as reacode1
+	 ,x4pro_c5dat.x1   as En
+	 ,x4pro_c5dat.dx1  as dEn
+	 ,x4pro_c5dat.y    as Sig
+	 ,x4pro_c5dat.dy   as dSig
+	 ,x4pro_c5dat.m0   as m0
+	 ,x4pro_c5dat.dm0  as dm0
+	 ,x4pro_c5dat.m1   as m1
+	 ,x4pro_c5dat.dm1  as dm1
+	 ,x4pro_c5dat.Fcm0 as Fc
+	 ,x4pro_autocorr.FcDecayData
+	 ,x4pro_autocorr.FcDecayMon
+	 ,x4pro_autocorr.autoCorr
+	from x4pro_c5dat
+	 inner join REACODE        on REACODE.ReacodeID=x4pro_c5dat.DatasetID
+	 inner join REACSTR        on REACSTR.ReacodeID=REACODE.ReacodeID
+	 inner join SUBENT         on REACODE.SubentID=SUBENT.SubentID
+	 inner join ENTRY          on ENTRY.EntryID=SUBENT.EntryID
+	 inner join x4pro_ds       on REACODE.ReacodeID=x4pro_ds.DatasetID
+	 left  join x4pro_autocorr on x4pro_autocorr.DatasetID=x4pro_ds.DatasetID
+	where
+	 (x4pro_ds.MF=3 or (x4pro_ds.MF=203 and x4pro_c5dat.m1 is not Null))
+	 and (REACSTR.iReacstr=1)
+	 and (x4pro_ds.x4status<>'S' and x4pro_ds.x4status<>'P')
+	 and (REACSTR.SF8='')
+	 and ((REACSTR.SF9='') or (REACSTR.SF9='EXP'))
+	 and (Target like 'Al-27') 
+	 and ((Reaction like 'n,a' and REACSTR.SF58 like ',SIG') 
+	 )
+	 and (sProd like '') 
+	order by
+	--  Reacode desc,
+	  ENTRY.YearRef1 desc,x4pro_c5dat.DatasetID
+	  ,En,x4pro_c5dat.idat
+
+EXFOR SQL executed: 0.01sec
+---All entries: 77
+10031*;10116*;10186*;10417*;11274*;11421*;11457*;11462*;11464*;11474*;11481*;11484*;11494*;11504*;11512*;11526*;11530*;12912*;12969*;12977*;13171*;14818*;20111*;20280*;20283*;20378*;20387*;20798*;20837*;20842*;20843*;20867*;20887*;20888*;20890*;20903*;20904*;20921*;20922*;20930*;20986*;21049*;21250*;21345*;21372*;21419*;21756*;21923*;21941*;22012*;22209*;22312*;22497*;22703*;22976*;23279*;30008*;30118*;30403*;30523*;30590*;30640*;30645*;30755*;30813*;30821*;30933*;30993*;31459*;31528*;31834*;31842*;33025*;40135*;40686*;41048*;41051*;
+
+___getDatasets from datapoints: 688
+-DS:  1) #31842017  2022,J.Jarosik                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  2) #31834002  2020,D.Kral                   MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  3) #33025010  2009,B.Lalremruata            MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  4) #22976004  2007,W.Mannhart               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  5) #22497003  2000,R.Coszach                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  6) #31528009  1997,Hongyu Zhou              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  7) #23279006  1996,Y.Uno                    MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  8) #22312002  1993,Y.Ikeda                  MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  9) #30993002  1993,Bao Zongyu               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 10) #22703002  1992,Y.Uwamino                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 11) #31459008  1992,I.Garlea                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 12) #22209009  1991,Y.Ikeda                  MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 13) #131710032 1989,L.P.Geraldo              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 14) #30523002  1989,Lu Han-Lin               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 15) #30523003  1989,Lu Han-Lin               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 16) #410480022 1989,N.V.Kornilov             MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 17) #410480032 1989,N.V.Kornilov             MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 18) #410480042 1989,N.V.Kornilov             MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 19) #41051002  1989,N.N.Moiseev              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 20) #41051003  1989,N.N.Moiseev              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 21) #41051004  1989,N.N.Moiseev              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 22) #12969003  1987,J.W.Meadows              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 23) #12977002  1987,L.R.Greenwood            MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 24) #30755002  1987,Zhou Muyao               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 25) #30821002  1986,T.Chimoye                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 26) #30933002  1986,J.Csikai                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 27) #22012003  1985,W.Enz                    MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 28) #21923002  1984,K.Kudo                   MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 29) #30813002  1984,I.Garlea                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 30) #21941006  1983,S.Firkin                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 31) #30640002  1982,J.Csikai                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 32) #12912003  1981,P.Welch                  MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 33) #21756003  1981,H.Friedmann              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 34) #21756004  1981,H.Friedmann              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 35) #20986003  1979,M.T.Swinhoe              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 36) #20986009  1979,M.T.Swinhoe              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 37) #20842003  1978,P.Andersson              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 38) #20843009  1978,C.Nordborg               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 39) #20867006  1978,T.B.Ryves                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 40) #21049003  1976,A.B.M.G.Mostafa          MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 41) #40135002  1974,Yu.A.Nemilov             MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 42) #20798002  1973,J.C.Robertson            MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 43) #10186005  1971,G.N.Salaita              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 44) #10116002  1970,J.Lebowitz               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 45) #20111002  1970,H.Vonach                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 46) #10031002  1969,R.C.Barrall              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 47) #20930005  1969,D.Crumpton               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 48) #21250002  1969,P.Boschung               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 49) #20890003  1968,P.Cuzzocrea              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 50) #10417008  1967,J.A.Grundl               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 51) #11421004  1967,H.O.Menlove              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 52) #11512003  1967,J.M.Ferguson             MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 53) #21345002  1967,B.Minetti                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 54) #20387003  1966,H.Liskien                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 55) #21372002  1966,J.D.Hemingway            MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 56) #20378003  1965,A.Paulsen                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 57) #20837006  1965,U.Seebeck                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 58) #20887014  1965,M.Bormann                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 59) #11526003  1964,W.L.Imhof                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 60) #14818005  1964,W.W.Wadman               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 61) #20888002  1964,C.G.Bonazzola            MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 62) #40686002  1964,P.M.Aron                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 63) #11457005  1963,J.P.Butler               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 64) #11457006  1963,J.P.Butler               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 65) #11457007  1963,J.P.Butler               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 66) #20922002  1963,J.M.F.Jeronymo           MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 67) #30118007  1963,J.Csikai                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 68) #11494003  1962,F.Gabbard                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 69) #20903002  1962,Langmann                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 70) #30008029  1962,P.Strohal                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 71) #11462002  1961,B.P.Bayhurst             MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 72) #11530002  1961,H.W.Schmitt              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 73) #115300032 1961,H.W.Schmitt              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 74) #20904002  1961,M.Bormann                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 75) #11504003  1960,H.A.Tewes                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 76) #20921003  1960,G.S.Mani                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 77) #21419004  1960,M.J.Depraz               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 78) #11464003  1959,B.D.Kern                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 79) #11484002  1959,A.Poularikas             MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 80) #30403002  1959,C.S.Khurana              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 81) #11481002  1958,J.A.Grundl               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 82) #20283002  1958,I.Kumabe                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 83) #20280003  1957,S.Yasumi                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 84) #11274009  1953,E.B.Paul                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 85) #11474002  1952,S.G.Forbes               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+---Extracted original datasets: 85
+
+___getDatasets from datapoints: 185
+-DS:  1) #31459008  1992,I.Garlea                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  2) #22209009  1991,Y.Ikeda                  MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  3) #131710032 1989,L.P.Geraldo              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  4) #30523003  1989,Lu Han-Lin               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  5) #12977002  1987,L.R.Greenwood            MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  6) #30933002  1986,J.Csikai                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  7) #30813002  1984,I.Garlea                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  8) #30640002  1982,J.Csikai                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  9) #21756003  1981,H.Friedmann              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 10) #20867006  1978,T.B.Ryves                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 11) #20798002  1973,J.C.Robertson            MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 12) #20890003  1968,P.Cuzzocrea              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 13) #11421004  1967,H.O.Menlove              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 14) #21345002  1967,B.Minetti                MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 15) #11457005  1963,J.P.Butler               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 16) #11457006  1963,J.P.Butler               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 17) #11457007  1963,J.P.Butler               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 18) #115300032 1961,H.W.Schmitt              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 19) #20921003  1960,G.S.Mani                 MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 20) #21419004  1960,M.J.Depraz               MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 21) #11484002  1959,A.Poularikas             MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS: 22) #30403002  1959,C.S.Khurana              MF:3   MT:107 13-AL-27(N,A)11-NA-24,,SIG ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+---Extracted automatically renormalized datasets: 22
+
+___getDatasets from datapoints: 86
+-DS:  1) #131710031 1989,L.P.Geraldo              MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(92-U-238(N,F),,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  2) #410480021 1989,N.V.Kornilov             MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(92-U-238(N,F),,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  3) #410480031 1989,N.V.Kornilov             MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(92-U-238(N,F),,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  4) #410480041 1989,N.V.Kornilov             MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(92-U-238(N,F),,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  5) #306450041 1982,A.Chiadli                MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(13-AL-27(N,P)12-MG-27,,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  6) #306450042 1982,A.Chiadli                MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(13-AL-27(N,P)12-MG-27,,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  7) #30590003  1980,P.Raics                  MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(92-U-238(N,F),,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  8) #30118004  1963,J.Csikai                 MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(13-AL-27(N,P)12-MG-27,,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+-DS:  9) #115300031 1961,H.W.Schmitt              MF:203 MT:107 (13-AL-27(N,A)11-NA-24,,SIG)/(92-U-238(N,F),,SIG) ds.reac:13-AL-27(N,A)11-NA-24,,SIG
+---Extract datasets converted from ratios: 9
+datasets:116 original:85X auto-corrected:22A* ratio2cs:9R#
+
+---getReacodes---Datasets: 116
+   Dataset:1/116) 13-AL-27(N,A)11-NA-24,,SIG 31842017 L.group:1
+   Dataset:2/116) 13-AL-27(N,A)11-NA-24,,SIG 31834002 L.group:2
+   Dataset:3/116) 13-AL-27(N,A)11-NA-24,,SIG 33025010 L.group:3
+   Dataset:4/116) 13-AL-27(N,A)11-NA-24,,SIG 22976004 L.group:4
+   Dataset:5/116) 13-AL-27(N,A)11-NA-24,,SIG 22497003 L.group:5
+   Dataset:6/116) 13-AL-27(N,A)11-NA-24,,SIG 31528009 L.group:6
+   Dataset:7/116) 13-AL-27(N,A)11-NA-24,,SIG 23279006 L.group:7
+   Dataset:8/116) 13-AL-27(N,A)11-NA-24,,SIG 22312002 L.group:8
+   Dataset:9/116) 13-AL-27(N,A)11-NA-24,,SIG 30993002 L.group:9
+   Dataset:10/116) 13-AL-27(N,A)11-NA-24,,SIG 22703002 L.group:10
+   Dataset:11/116) 13-AL-27(N,A)11-NA-24,,SIG 31459008 L.group:11
+   Dataset:12/116) 13-AL-27(N,A)11-NA-24,,SIG 31459008 L.group:12
+   Dataset:13/116) 13-AL-27(N,A)11-NA-24,,SIG 22209009 L.group:13
+   Dataset:14/116) 13-AL-27(N,A)11-NA-24,,SIG 22209009 L.group:14
+   Dataset:15/116) 13-AL-27(N,A)11-NA-24,,SIG 131710031 L.group:15
+   Dataset:16/116) 13-AL-27(N,A)11-NA-24,,SIG 131710032 L.group:16
+   Dataset:17/116) 13-AL-27(N,A)11-NA-24,,SIG 131710032 L.group:17
+   Dataset:18/116) 13-AL-27(N,A)11-NA-24,,SIG 30523002 L.group:18
+   Dataset:19/116) 13-AL-27(N,A)11-NA-24,,SIG 30523003 L.group:19
+   Dataset:20/116) 13-AL-27(N,A)11-NA-24,,SIG 30523003 L.group:20
+   Dataset:21/116) 13-AL-27(N,A)11-NA-24,,SIG 410480021 L.group:21
+   Dataset:22/116) 13-AL-27(N,A)11-NA-24,,SIG 410480022 L.group:22
+   Dataset:23/116) 13-AL-27(N,A)11-NA-24,,SIG 410480031 L.group:23
+   Dataset:24/116) 13-AL-27(N,A)11-NA-24,,SIG 410480032 L.group:24
+   Dataset:25/116) 13-AL-27(N,A)11-NA-24,,SIG 410480041 L.group:25
+   Dataset:26/116) 13-AL-27(N,A)11-NA-24,,SIG 410480042 L.group:26
+   Dataset:27/116) 13-AL-27(N,A)11-NA-24,,SIG 41051002 L.group:27
+   Dataset:28/116) 13-AL-27(N,A)11-NA-24,,SIG 41051003 L.group:28
+   Dataset:29/116) 13-AL-27(N,A)11-NA-24,,SIG 41051004 L.group:29
+   Dataset:30/116) 13-AL-27(N,A)11-NA-24,,SIG 12969003 L.group:30
+   Dataset:31/116) 13-AL-27(N,A)11-NA-24,,SIG 12977002 L.group:31
+   Dataset:32/116) 13-AL-27(N,A)11-NA-24,,SIG 12977002 L.group:32
+   Dataset:33/116) 13-AL-27(N,A)11-NA-24,,SIG 30755002 L.group:33
+   Dataset:34/116) 13-AL-27(N,A)11-NA-24,,SIG 30821002 L.group:34
+   Dataset:35/116) 13-AL-27(N,A)11-NA-24,,SIG 30933002 L.group:35
+   Dataset:36/116) 13-AL-27(N,A)11-NA-24,,SIG 30933002 L.group:36
+   Dataset:37/116) 13-AL-27(N,A)11-NA-24,,SIG 22012003 L.group:37
+   Dataset:38/116) 13-AL-27(N,A)11-NA-24,,SIG 21923002 L.group:38
+   Dataset:39/116) 13-AL-27(N,A)11-NA-24,,SIG 30813002 L.group:39
+   Dataset:40/116) 13-AL-27(N,A)11-NA-24,,SIG 30813002 L.group:40
+   Dataset:41/116) 13-AL-27(N,A)11-NA-24,,SIG 21941006 L.group:41
+   Dataset:42/116) 13-AL-27(N,A)11-NA-24,,SIG 30640002 L.group:42
+   Dataset:43/116) 13-AL-27(N,A)11-NA-24,,SIG 30640002 L.group:43
+   Dataset:44/116) 13-AL-27(N,A)11-NA-24,,SIG 306450041 L.group:44
+   Dataset:45/116) 13-AL-27(N,A)11-NA-24,,SIG 306450042 L.group:45
+   Dataset:46/116) 13-AL-27(N,A)11-NA-24,,SIG 12912003 L.group:46
+   Dataset:47/116) 13-AL-27(N,A)11-NA-24,,SIG 21756003 L.group:47
+   Dataset:48/116) 13-AL-27(N,A)11-NA-24,,SIG 21756003 L.group:48
+   Dataset:49/116) 13-AL-27(N,A)11-NA-24,,SIG 21756004 L.group:49
+   Dataset:50/116) 13-AL-27(N,A)11-NA-24,,SIG 30590003 L.group:50
+   Dataset:51/116) 13-AL-27(N,A)11-NA-24,,SIG 20986003 L.group:51
+   Dataset:52/116) 13-AL-27(N,A)11-NA-24,,SIG 20986009 L.group:52
+   Dataset:53/116) 13-AL-27(N,A)11-NA-24,,SIG 20842003 L.group:53
+   Dataset:54/116) 13-AL-27(N,A)11-NA-24,,SIG 20843009 L.group:54
+   Dataset:55/116) 13-AL-27(N,A)11-NA-24,,SIG 20867006 L.group:55
+   Dataset:56/116) 13-AL-27(N,A)11-NA-24,,SIG 20867006 L.group:56
+   Dataset:57/116) 13-AL-27(N,A)11-NA-24,,SIG 21049003 L.group:57
+   Dataset:58/116) 13-AL-27(N,A)11-NA-24,,SIG 40135002 L.group:58
+   Dataset:59/116) 13-AL-27(N,A)11-NA-24,,SIG 20798002 L.group:59
+   Dataset:60/116) 13-AL-27(N,A)11-NA-24,,SIG 20798002 L.group:60
+   Dataset:61/116) 13-AL-27(N,A)11-NA-24,,SIG 10186005 L.group:61
+   Dataset:62/116) 13-AL-27(N,A)11-NA-24,,SIG 10116002 L.group:62
+   Dataset:63/116) 13-AL-27(N,A)11-NA-24,,SIG 20111002 L.group:63
+   Dataset:64/116) 13-AL-27(N,A)11-NA-24,,SIG 10031002 L.group:64
+   Dataset:65/116) 13-AL-27(N,A)11-NA-24,,SIG 20930005 L.group:65
+   Dataset:66/116) 13-AL-27(N,A)11-NA-24,,SIG 21250002 L.group:66
+   Dataset:67/116) 13-AL-27(N,A)11-NA-24,,SIG 20890003 L.group:67
+   Dataset:68/116) 13-AL-27(N,A)11-NA-24,,SIG 20890003 L.group:68
+   Dataset:69/116) 13-AL-27(N,A)11-NA-24,,SIG 10417008 L.group:69
+   Dataset:70/116) 13-AL-27(N,A)11-NA-24,,SIG 11421004 L.group:70
+   Dataset:71/116) 13-AL-27(N,A)11-NA-24,,SIG 11421004 L.group:71
+   Dataset:72/116) 13-AL-27(N,A)11-NA-24,,SIG 11512003 L.group:72
+   Dataset:73/116) 13-AL-27(N,A)11-NA-24,,SIG 21345002 L.group:73
+   Dataset:74/116) 13-AL-27(N,A)11-NA-24,,SIG 21345002 L.group:74
+   Dataset:75/116) 13-AL-27(N,A)11-NA-24,,SIG 20387003 L.group:75
+   Dataset:76/116) 13-AL-27(N,A)11-NA-24,,SIG 21372002 L.group:76
+   Dataset:77/116) 13-AL-27(N,A)11-NA-24,,SIG 20378003 L.group:77
+   Dataset:78/116) 13-AL-27(N,A)11-NA-24,,SIG 20837006 L.group:78
+   Dataset:79/116) 13-AL-27(N,A)11-NA-24,,SIG 20887014 L.group:79
+   Dataset:80/116) 13-AL-27(N,A)11-NA-24,,SIG 11526003 L.group:80
+   Dataset:81/116) 13-AL-27(N,A)11-NA-24,,SIG 14818005 L.group:81
+   Dataset:82/116) 13-AL-27(N,A)11-NA-24,,SIG 20888002 L.group:82
+   Dataset:83/116) 13-AL-27(N,A)11-NA-24,,SIG 40686002 L.group:83
+   Dataset:84/116) 13-AL-27(N,A)11-NA-24,,SIG 11457005 L.group:84
+   Dataset:85/116) 13-AL-27(N,A)11-NA-24,,SIG 11457005 L.group:85
+   Dataset:86/116) 13-AL-27(N,A)11-NA-24,,SIG 11457006 L.group:86
+   Dataset:87/116) 13-AL-27(N,A)11-NA-24,,SIG 11457006 L.group:87
+   Dataset:88/116) 13-AL-27(N,A)11-NA-24,,SIG 11457007 L.group:88
+   Dataset:89/116) 13-AL-27(N,A)11-NA-24,,SIG 11457007 L.group:89
+   Dataset:90/116) 13-AL-27(N,A)11-NA-24,,SIG 20922002 L.group:90
+   Dataset:91/116) 13-AL-27(N,A)11-NA-24,,SIG 30118004 L.group:91
+   Dataset:92/116) 13-AL-27(N,A)11-NA-24,,SIG 30118007 L.group:92
+   Dataset:93/116) 13-AL-27(N,A)11-NA-24,,SIG 11494003 L.group:93
+   Dataset:94/116) 13-AL-27(N,A)11-NA-24,,SIG 20903002 L.group:94
+   Dataset:95/116) 13-AL-27(N,A)11-NA-24,,SIG 30008029 L.group:95
+   Dataset:96/116) 13-AL-27(N,A)11-NA-24,,SIG 11462002 L.group:96
+   Dataset:97/116) 13-AL-27(N,A)11-NA-24,,SIG 11530002 L.group:97
+   Dataset:98/116) 13-AL-27(N,A)11-NA-24,,SIG 115300031 L.group:98
+   Dataset:99/116) 13-AL-27(N,A)11-NA-24,,SIG 115300032 L.group:99
+   Dataset:100/116) 13-AL-27(N,A)11-NA-24,,SIG 115300032 L.group:100
+   Dataset:101/116) 13-AL-27(N,A)11-NA-24,,SIG 20904002 L.group:101
+   Dataset:102/116) 13-AL-27(N,A)11-NA-24,,SIG 11504003 L.group:102
+   Dataset:103/116) 13-AL-27(N,A)11-NA-24,,SIG 20921003 L.group:103
+   Dataset:104/116) 13-AL-27(N,A)11-NA-24,,SIG 20921003 L.group:104
+   Dataset:105/116) 13-AL-27(N,A)11-NA-24,,SIG 21419004 L.group:105
+   Dataset:106/116) 13-AL-27(N,A)11-NA-24,,SIG 21419004 L.group:106
+   Dataset:107/116) 13-AL-27(N,A)11-NA-24,,SIG 11464003 L.group:107
+   Dataset:108/116) 13-AL-27(N,A)11-NA-24,,SIG 11484002 L.group:108
+   Dataset:109/116) 13-AL-27(N,A)11-NA-24,,SIG 11484002 L.group:109
+   Dataset:110/116) 13-AL-27(N,A)11-NA-24,,SIG 30403002 L.group:110
+   Dataset:111/116) 13-AL-27(N,A)11-NA-24,,SIG 30403002 L.group:111
+   Dataset:112/116) 13-AL-27(N,A)11-NA-24,,SIG 11481002 L.group:112
+   Dataset:113/116) 13-AL-27(N,A)11-NA-24,,SIG 20283002 L.group:113
+   Dataset:114/116) 13-AL-27(N,A)11-NA-24,,SIG 20280003 L.group:114
+   Dataset:115/116) 13-AL-27(N,A)11-NA-24,,SIG 11274009 L.group:115
+   Dataset:116/116) 13-AL-27(N,A)11-NA-24,,SIG 11474002 L.group:116
+Reaction codes: 1 
+
+Plot:1/116) #31842017 2022, J.Jarosik pt:3
+Plot:2/116) #31834002 2020, D.Kral pt:1
+Plot:3/116) #33025010 2009, B.Lalremruata pt:1
+Plot:4/116) #22976004 2007, W.Mannhart pt:28
+Plot:5/116) #22497003 2000, R.Coszach pt:4
+Plot:6/116) #31528009 1997, Hongyu Zhou pt:1
+Plot:7/116) #23279006 1996, Y.Uno pt:6
+Plot:8/116) #22312002 1993, Y.Ikeda pt:8
+Plot:9/116) #30993002 1993, Bao Zongyu pt:1
+Plot:10/116) #22703002 1992, Y.Uwamino pt:36
+Plot:11/116) #31459008 1992, I.Garlea pt:1
+Plot:12/116) #31459008 1992, I.Garlea* pt:1
+Plot:13/116) #22209009 1991, Y.Ikeda pt:4
+Plot:14/116) #22209009 1991, Y.Ikeda* pt:4
+Plot:15/116) #131710031 1989, L.P.Geraldo# pt:10
+Plot:16/116) #131710032 1989, L.P.Geraldo pt:10
+Plot:17/116) #131710032 1989, L.P.Geraldo* pt:10
+Plot:18/116) #30523002 1989, Lu Han-Lin pt:1
+Plot:19/116) #30523003 1989, Lu Han-Lin pt:10
+Plot:20/116) #30523003 1989, Lu Han-Lin* pt:10
+Plot:21/116) #410480021 1989, N.V.Kornilov# pt:23
+Plot:22/116) #410480022 1989, N.V.Kornilov pt:23
+Plot:23/116) #410480031 1989, N.V.Kornilov# pt:19
+Plot:24/116) #410480032 1989, N.V.Kornilov pt:19
+Plot:25/116) #410480041 1989, N.V.Kornilov# pt:19
+Plot:26/116) #410480042 1989, N.V.Kornilov pt:19
+Plot:27/116) #41051002 1989, N.N.Moiseev pt:1
+Plot:28/116) #41051003 1989, N.N.Moiseev pt:1
+Plot:29/116) #41051004 1989, N.N.Moiseev pt:1
+Plot:30/116) #12969003 1987, J.W.Meadows pt:1
+Plot:31/116) #12977002 1987, L.R.Greenwood pt:5
+Plot:32/116) #12977002 1987, L.R.Greenwood* pt:5
+Plot:33/116) #30755002 1987, Zhou Muyao pt:1
+Plot:34/116) #30821002 1986, T.Chimoye pt:5
+Plot:35/116) #30933002 1986, J.Csikai pt:12
+Plot:36/116) #30933002 1986, J.Csikai* pt:12
+Plot:37/116) #22012003 1985, W.Enz pt:9
+Plot:38/116) #21923002 1984, K.Kudo pt:8
+Plot:39/116) #30813002 1984, I.Garlea pt:1
+Plot:40/116) #30813002 1984, I.Garlea* pt:1
+Plot:41/116) #21941006 1983, S.Firkin pt:5
+Plot:42/116) #30640002 1982, J.Csikai pt:5
+Plot:43/116) #30640002 1982, J.Csikai* pt:5
+Plot:44/116) #306450041 1982, A.Chiadli# pt:1
+Plot:45/116) #306450042 1982, A.Chiadli# pt:1
+Plot:46/116) #12912003 1981, P.Welch pt:2
+Plot:47/116) #21756003 1981, H.Friedmann pt:20
+Plot:48/116) #21756003 1981, H.Friedmann* pt:20
+Plot:49/116) #21756004 1981, H.Friedmann pt:20
+Plot:50/116) #30590003 1980, P.Raics# pt:11
+Plot:51/116) #20986003 1979, M.T.Swinhoe pt:3
+Plot:52/116) #20986009 1979, M.T.Swinhoe pt:1
+Plot:53/116) #20842003 1978, P.Andersson pt:1
+Plot:54/116) #20843009 1978, C.Nordborg pt:1
+Plot:55/116) #20867006 1978, T.B.Ryves pt:4
+Plot:56/116) #20867006 1978, T.B.Ryves* pt:4
+Plot:57/116) #21049003 1976, A.B.M.G.Mostafa pt:8
+Plot:58/116) #40135002 1974, Yu.A.Nemilov pt:4
+Plot:59/116) #20798002 1973, J.C.Robertson pt:1
+Plot:60/116) #20798002 1973, J.C.Robertson* pt:1
+Plot:61/116) #10186005 1971, G.N.Salaita pt:1
+Plot:62/116) #10116002 1970, J.Lebowitz pt:1
+Plot:63/116) #20111002 1970, H.Vonach pt:1
+Plot:64/116) #10031002 1969, R.C.Barrall pt:1
+Plot:65/116) #20930005 1969, D.Crumpton pt:1
+Plot:66/116) #21250002 1969, P.Boschung pt:1
+Plot:67/116) #20890003 1968, P.Cuzzocrea pt:27
+Plot:68/116) #20890003 1968, P.Cuzzocrea* pt:27
+Plot:69/116) #10417008 1967, J.A.Grundl pt:6
+Plot:70/116) #11421004 1967, H.O.Menlove pt:10
+Plot:71/116) #11421004 1967, H.O.Menlove* pt:10
+Plot:72/116) #11512003 1967, J.M.Ferguson pt:54
+Plot:73/116) #21345002 1967, B.Minetti pt:1
+Plot:74/116) #21345002 1967, B.Minetti* pt:1
+Plot:75/116) #20387003 1966, H.Liskien pt:17
+Plot:76/116) #21372002 1966, J.D.Hemingway pt:2
+Plot:77/116) #20378003 1965, A.Paulsen pt:23
+Plot:78/116) #20837006 1965, U.Seebeck pt:1
+Plot:79/116) #20887014 1965, M.Bormann pt:1
+Plot:80/116) #11526003 1964, W.L.Imhof pt:4
+Plot:81/116) #14818005 1964, W.W.Wadman pt:38
+Plot:82/116) #20888002 1964, C.G.Bonazzola pt:1
+Plot:83/116) #40686002 1964, P.M.Aron pt:1
+Plot:84/116) #11457005 1963, J.P.Butler pt:1
+Plot:85/116) #11457005 1963, J.P.Butler* pt:1
+Plot:86/116) #11457006 1963, J.P.Butler pt:32
+Plot:87/116) #11457006 1963, J.P.Butler* pt:32
+Plot:88/116) #11457007 1963, J.P.Butler pt:13
+Plot:89/116) #11457007 1963, J.P.Butler* pt:13
+Plot:90/116) #20922002 1963, J.M.F.Jeronymo pt:8
+Plot:91/116) #30118004 1963, J.Csikai# pt:1
+Plot:92/116) #30118007 1963, J.Csikai pt:1
+Plot:93/116) #11494003 1962, F.Gabbard pt:19
+Plot:94/116) #20903002 1962, Langmann pt:1
+Plot:95/116) #30008029 1962, P.Strohal pt:1
+Plot:96/116) #11462002 1961, B.P.Bayhurst pt:15
+Plot:97/116) #11530002 1961, H.W.Schmitt pt:38
+Plot:98/116) #115300031 1961, H.W.Schmitt# pt:1
+Plot:99/116) #115300032 1961, H.W.Schmitt pt:1
+Plot:100/116) #115300032 1961, H.W.Schmitt* pt:1
+Plot:101/116) #20904002 1961, M.Bormann pt:5
+Plot:102/116) #11504003 1960, H.A.Tewes pt:15
+Plot:103/116) #20921003 1960, G.S.Mani pt:24
+Plot:104/116) #20921003 1960, G.S.Mani* pt:24
+Plot:105/116) #21419004 1960, M.J.Depraz pt:1
+Plot:106/116) #21419004 1960, M.J.Depraz* pt:1
+Plot:107/116) #11464003 1959, B.D.Kern pt:12
+Plot:108/116) #11484002 1959, A.Poularikas pt:1
+Plot:109/116) #11484002 1959, A.Poularikas* pt:1
+Plot:110/116) #30403002 1959, C.S.Khurana pt:1
+Plot:111/116) #30403002 1959, C.S.Khurana* pt:1
+Plot:112/116) #11481002 1958, J.A.Grundl pt:7
+Plot:113/116) #20283002 1958, I.Kumabe pt:1
+Plot:114/116) #20280003 1957, S.Yasumi pt:1
+Plot:115/116) #11274009 1953, E.B.Paul pt:1
+Plot:116/116) #11474002 1952, S.G.Forbes pt:1
+
+___getEndfDataForPlot: [Al-27] [n,a]
+---wgetdb_get:/servlet/E4sSearch2?Target=Al-27&Reaction=n,a&Quantity=SIG&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Al-27&Reaction=n,a&Quantity=SIG&json'
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-08-21T12:04:28.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1382
+,"sections":[
+ { "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":301095,"SectID":21383122,"PenSectID":26217720,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"M.B.Chadwick+,Derrien+"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":149470,"SectID":8945716,"PenSectID":13670440,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"M.B.Chadwick+,Derrien+"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":57319,"SectID":2249190,"PenSectID":7621849,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"M.B.Chadwick+,Derrien+"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":15265,"SectID":206824,"PenSectID":7579855,"LibID":70,"LibName":"ENDF/B-VII.0","DATE":"DEC06","AUTH":"M.B.Chadwick+,Derrien+"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":306592,"SectID":21524880,"PenSectID":26479763,"LibID":3400,"LibName":"JEFF-4.0","DATE":"DEC23","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":150453,"SectID":9041090,"PenSectID":13681520,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":96348,"SectID":3698537,"PenSectID":6690156,"LibID":3200,"LibName":"JEFF-3.2","DATE":"090105","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":57961,"SectID":2302012,"PenSectID":6660695,"LibID":3120,"LibName":"JEFF-3.1.2","DATE":"090105","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":22900,"SectID":537226,"PenSectID":7553040,"LibID":3100,"LibName":"JEFF-3.1","DATE":"090105","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":276797,"SectID":19186300,"PenSectID":24021365,"LibID":51,"LibName":"JENDL-5","DATE":"20090828","AUTH":"Y.Harima,H.Kitazawa,T.Fukahori"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":38737,"SectID":1262424,"PenSectID":6833179,"LibID":40,"LibName":"JENDL-4.0","DATE":"20090828","AUTH":"Y.Harima,H.Kitazawa,T.Fukahori"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":9208,"SectID":107520,"PenSectID":6612800,"LibID":30,"LibName":"JENDL-3.3","DATE":"20010713","AUTH":"Y.Harima,H.Kitazawa,T.Fukahori"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":9885,"SectID":147929,"PenSectID":6569987,"LibID":31,"LibName":"JENDL-3.3","DATE":"20010713","AUTH":"Y.Harima,H.Kitazawa,T.Fukahori"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":9113,"SectID":101983,"PenSectID":7398216,"LibID":60,"LibName":"ENDF/B-VI","DATE":"20011108","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":9570,"SectID":132652,"PenSectID":6554710,"LibID":61,"LibName":"ENDF/B-VI","DATE":"20010926","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":118524,"SectID":6050917,"PenSectID":10712405,"LibID":41031,"LibName":"BROND-3.1","DATE":"DEC06","AUTH":"M.B.Chadwick+,Derrien+"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":37927,"SectID":1214207,"PenSectID":6911524,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC07","AUTH":"Ignatyuk A.V."}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":27203,"SectID":571118,"PenSectID":6870905,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"DEC07","AUTH":"Ignatyuk A.V."}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":199067,"SectID":14174292,"PenSectID":18847510,"LibID":5040,"LibName":"CENDL-3.2","DATE":"20150815","AUTH":"Y.L.Han"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":37660,"SectID":1193697,"PenSectID":6507999,"LibID":5030,"LibName":"CENDL-3.1","DATE":"DEC09","AUTH":"B.S.Yu, S.Chiba, Y.Harima"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":202921,"SectID":14260947,"PenSectID":18940814,"LibID":34026,"LibName":"IRDFF-II","DATE":"Dec15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":202831,"SectID":14260207,"PenSectID":18940068,"LibID":34027,"LibName":"IRDFF-II-aux","DATE":"Dec15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":96813,"SectID":3762776,"PenSectID":15692785,"LibID":34025,"LibName":"IRDFF-1.05","DATE":"8.2006","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":15946,"SectID":249546,"PenSectID":15693613,"LibID":34021,"LibName":"IRDF-2002","DATE":"4","AUTH":"K.I.Zolotarev, M.Wagner et al."}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":15996,"SectID":249837,"PenSectID":15693908,"LibID":34022,"LibName":"IRDF-2002G","DATE":"4","AUTH":"K.I.Zolotarev, M.Wagner et al."}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":7387,"SectID":64679,"PenSectID":6594186,"LibID":2300,"LibName":"JEFF-3.0","DATE":"APR02","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":6982,"SectID":48770,"PenSectID":7538929,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"Ec Blanket Technology, Task B2"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":116189,"SectID":5870935,"PenSectID":6527034,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"Nov20","AUTH":"K. Kosako"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":154980,"SectID":9151429,"PenSectID":13783761,"LibID":6135,"LibName":"JENDL/AD-2017","DATE":"20090828","AUTH":"Y.Harima,H.Kitazawa,T.Fukahori"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":19957,"SectID":427326,"PenSectID":6494850,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"JUL 7","AUTH":"K. Kosako"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":18678,"SectID":266864,"PenSectID":6487039,"LibID":6036,"LibName":"JENDL/HE-2004","DATE":"JUN 3","AUTH":"Y. Lee"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":116459,"SectID":5886050,"PenSectID":6637126,"LibID":32,"LibName":"JENDL-3.2","DATE":"DEC93","AUTH":"Y.Harima,H.Kitazawa,T.Fukahori"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":288307,"SectID":20253679,"PenSectID":24250051,"LibID":61023,"LibName":"TENDL-2023","DATE":"DEC23","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":244470,"SectID":15842160,"PenSectID":19583225,"LibID":61022,"LibName":"TENDL-2021","DATE":"JAN22","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":196329,"SectID":13291298,"PenSectID":17932694,"LibID":61020,"LibName":"TENDL-2019.s60","DATE":"NOV19","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":78322,"SectID":3085204,"PenSectID":6542894,"LibID":50,"LibName":"ENDF/B-V","DATE":"0","AUTH":"P.G. Young, D.G. Foster, Jr."}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":199883,"SectID":14226115,"PenSectID":19347543,"LibID":39032,"LibName":"ADS-2.0","DATE":"DEC06","AUTH":"M.B.Chadwick+,Derrien+"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":302542,"SectID":21488007,"PenSectID":26318588,"LibID":33036,"LibName":"FENDL-3.2c","DATE":"090105","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":227829,"SectID":14622234,"PenSectID":19398037,"LibID":33035,"LibName":"FENDL-3.2b","DATE":"090105","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":141995,"SectID":8893074,"PenSectID":13480545,"LibID":33032,"LibName":"FENDL-3.1c","DATE":"090105","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":22808,"SectID":528696,"PenSectID":6467238,"LibID":33021,"LibName":"FENDL/E-2.1","DATE":"FEB97","AUTH":"Fabbri,Masetti,Orsi,Reffo,Trkov"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":7741,"SectID":83810,"PenSectID":6461581,"LibID":5020,"LibName":"CENDL-2","DATE":"950817","AUTH":"B.Yu, S.Chiba, Y.Harima et al"}
+
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":800,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24-L0,SIG","EvalID":9113,"SectID":102042,"PenSectID":7398275,"LibID":60,"LibName":"ENDF/B-VI","DATE":"20011108","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":800,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24-L0,SIG","EvalID":9570,"SectID":132711,"PenSectID":6554769,"LibID":61,"LibName":"ENDF/B-VI","DATE":"20010926","AUTH":"M.B.Chadwick & P.G.Young"}
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":800,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24-L0,SIG","EvalID":7387,"SectID":64738,"PenSectID":6594245,"LibID":2300,"LibName":"JEFF-3.0","DATE":"APR02","AUTH":"M.B.Chadwick & P.G.Young"}
+
+,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":19,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":78615,"SectID":3095613,"PenSectID":6553315,"LibID":50,"LibName":"ENDF/B-V","DATE":"0","AUTH":"P.G. Young, D.G. Foster, Jr."}
+]
+}
+
+format=WebEndfSectionsList-0.1
+___Retrieved sections:46
+SelectedLib-Sect:1) {'Targ': 'AL-27', 'ZT': 13, 'AT': 27, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'AL-27(N,A)NA-24,SIG', 'EvalID': 301095, 'SectID': 21383122, 'PenSectID': 26217720, 'LibID': 810, 'LibName': 'ENDF/B-VIII.1', 'DATE': '20240830', 'AUTH': 'M.B.Chadwick+,Derrien+'}
+SelectedLib-Sect:6) {'Targ': 'AL-27', 'ZT': 13, 'AT': 27, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'AL-27(N,A)NA-24,SIG', 'EvalID': 150453, 'SectID': 9041090, 'PenSectID': 13681520, 'LibID': 3300, 'LibName': 'JEFF-3.3', 'DATE': '20171231', 'AUTH': 'M.B.Chadwick & P.G.Young'}
+SelectedLib-Sect:16) {'Targ': 'AL-27', 'ZT': 13, 'AT': 27, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'AL-27(N,A)NA-24,SIG', 'EvalID': 118524, 'SectID': 6050917, 'PenSectID': 10712405, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'DEC06', 'AUTH': 'M.B.Chadwick+,Derrien+'}
+SelectedLib-Sect:19) {'Targ': 'AL-27', 'ZT': 13, 'AT': 27, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'AL-27(N,A)NA-24,SIG', 'EvalID': 199067, 'SectID': 14174292, 'PenSectID': 18847510, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': '20150815', 'AUTH': 'Y.L.Han'}
+Required sections:4
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26217720&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26217720&json'
+Downloaded:1)	AL-27(N,A)NA-24,SIG	ENDF/B-VIII.1	PenSectID:26217720	pts:185	idy=0
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13681520&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13681520&json'
+Downloaded:2)	AL-27(N,A)NA-24,SIG	JEFF-3.3	PenSectID:13681520	pts:55	idy=52
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10712405&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10712405&json'
+Downloaded:3)	AL-27(N,A)NA-24,SIG	BROND-3.1	PenSectID:10712405	pts:55	idy=0
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18847510&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18847510&json'
+Downloaded:4)	AL-27(N,A)NA-24,SIG	CENDL-3.2	PenSectID:18847510	pts:109	idy=0
+
+EXFOR SQL executed:  0.01sec
+ENDF Web downloaded: 0.006sec
+Plot:1/4) 26217720	ENDF/B-VIII.1	pt:183	color:0,0,255
+Plot:2/4) 13681520	JEFF-3.3	pt:53	color:0,127,63
+Plot:3/4) 10712405	BROND-3.1	pt:53	color:255,0,255
+Plot:4/4) 18847510	CENDL-3.2	pt:109	color:255,0,0
+Will try---write_image: Al27na.html.png
+
+Program successfully completed

@@ -1,0 +1,217 @@
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-08-14       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-08-21 12:04:08
+
+---Arguments from command-line---
+   1  arg: -o:cst1
+   2  arg: -x:x1
+   3  arg: -lines
+   4  arg: -sym
+   5  arg: -ylog
+   6  arg: -xlog
+   7  arg: -fx:1e-3
+   8  arg: -annot:0.5,7.5,<b>SIG/Temp</b>
+   ---str2annot:[0.5,7.5,<b>SIG/Temp</b>] --> ('<b>SIG/Temp</b>', 0.5, 7.5)
+   9  arg: 82-PB-0(N,TOT),,SIG/TMP
+
+---Input:
+   Reaction:  ['82-PB-0(N,TOT),,SIG/TMP']
+   xn:        x1
+   xrange:    None - None
+   x1range:   None - None
+   x2range:   None - None
+   x3range:   None - None
+   fx:        0.001
+   fy:        1
+   Output:    cst1
+   x4ei:      
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 1
+----1.
+    fullCode       82-PB-0(N,TOT),,SIG/TMP
+    ReactionType   CST        Temperature or thickness dependent cross sect.
+    WebQuantity1   CST        Temperature dependent cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    TMS      K          Other variable: sample temperature   ///Kelvin
+/Summary of Reaction-Codes
+Summary of Units 3
+---basicUnits:B           category:B
+   B    1/7   FB          1e-15           femtobarns
+   B    2/7   PB          1e-12           picobarns
+   B    3/7   NB          1e-09           nanobarns
+   B    4/7   MICRO-B     1e-06           microbarns
+   B    5/7   MB          0.001           millibarns
+   B    6/7   B           1.0             barns
+   B    7/7   KB          1000.0          kilobarns
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+---basicUnits:K           category:TEM
+   TEM  1/2   K           1.0             Kelvin
+   TEM  2/2   K9          1000000000.0    10**9 Kelvin
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x1  reacodes: ['82-PB-0(N,TOT),,SIG/TMP']
+SQL:
+select *                                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x1 as XX, dx1 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x1'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+      fullCode like '82-PB-0(N,TOT),,SIG/TMP'
+ ) 
+  order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 78
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:78 xn=x1  fx=1.0e+03 fy=1.0e+00
+
+-new-1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev y=DATA(EN,TMS)
+1/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:2.26 y:1.4 dy:0.1 dx:None
+2/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:2.69 y:1.4 dy:0.1 dx:None
+3/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:3.53 y:1.4 dy:0.1 dx:None
+4/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:4.0 y:1.5 dy:0.1 dx:None
+5/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:4.92 y:1.9 dy:0.1 dx:None
+6/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:5.54 y:1.9 dy:0.1 dx:None
+7/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:6.87 y:2.2 dy:0.1 dx:None
+8/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:7.93 y:2.5 dy:0.1 dx:None
+9/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:8.73 y:2.5 dy:0.1 dx:None
+10/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:9.92 y:2.9 dy:0.1 dx:None
+11/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:12.8 y:3.4 dy:0.1 dx:None
+12/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:15.7 y:3.8 dy:0.1 dx:None
+13/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:19.8 y:5.6 dy:0.1 dx:None
+14/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:24.4 y:5.0 dy:0.1 dx:None
+15/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:33.2 y:5.2 dy:0.1 dx:None
+16/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:37.0 y:5.6 dy:0.1 dx:None
+17/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:52.4 y:6.6 dy:0.1 dx:None
+18/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:83.5 y:7.9 dy:0.1 dx:None
+
+-new-2) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky y=DATA(EN,TMS)
+19/78:2) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.182 y:1.98 dy:None dx:None
+20/78:2) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.221 y:1.72 dy:None dx:None
+
+-new-3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky y=DATA(EN,TMS)
+21/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.222 y:2.29 dy:None dx:None
+22/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.244 y:2.05 dy:None dx:None
+23/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.245 y:3.44 dy:None dx:None
+24/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.271 y:2.17 dy:None dx:None
+25/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.272 y:2.04 dy:None dx:None
+26/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.301 y:1.95 dy:None dx:None
+27/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.303 y:2.59 dy:None dx:None
+28/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.339 y:1.88 dy:None dx:None
+29/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.34 y:2.35 dy:None dx:None
+30/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.383 y:1.82 dy:None dx:None
+31/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.384 y:2.27 dy:None dx:None
+32/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.437 y:1.77 dy:None dx:None
+33/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.437 y:2.22 dy:None dx:None
+34/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.501 y:2.1 dy:None dx:None
+35/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.503 y:1.7 dy:None dx:None
+36/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.567 y:1.58 dy:None dx:None
+37/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.584 y:2.09 dy:None dx:None
+
+-new-4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky y=DATA(EN,TMS)
+38/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.685 y:1.14 dy:None dx:None
+39/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.688 y:1.52 dy:None dx:None
+40/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.7 y:2.04 dy:None dx:None
+41/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.757 y:1.15 dy:None dx:None
+42/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.789 y:1.95 dy:None dx:None
+43/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.795 y:1.46 dy:None dx:None
+44/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.818 y:1.98 dy:None dx:None
+45/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.851 y:1.14 dy:None dx:None
+46/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.9 y:1.42 dy:None dx:None
+47/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.9 y:1.97 dy:None dx:None
+48/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.932 y:1.04 dy:None dx:None
+49/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.01 y:1.4 dy:None dx:None
+50/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.02 y:2.02 dy:None dx:None
+51/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.06 y:1.02 dy:None dx:None
+52/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.16 y:1.41 dy:None dx:None
+53/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.19 y:0.99 dy:None dx:None
+54/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.19 y:2.03 dy:None dx:None
+55/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.36 y:1.38 dy:None dx:None
+56/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.38 y:0.95 dy:None dx:None
+57/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.38 y:2.08 dy:None dx:None
+58/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.6 y:0.91 dy:None dx:None
+59/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.6 y:1.4 dy:None dx:None
+60/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.63 y:2.18 dy:None dx:None
+61/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.87 y:0.92 dy:None dx:None
+62/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.87 y:1.42 dy:None dx:None
+63/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.96 y:2.33 dy:None dx:None
+64/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.18 y:1.45 dy:None dx:None
+65/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:2.22 y:0.89 dy:None dx:None
+66/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:2.42 y:2.52 dy:None dx:None
+67/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.62 y:1.54 dy:None dx:None
+68/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:2.68 y:0.96 dy:None dx:None
+69/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.86 y:1.59 dy:None dx:None
+70/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:3.02 y:2.95 dy:None dx:None
+71/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.14 y:1.68 dy:None dx:None
+72/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:3.3 y:1.22 dy:None dx:None
+73/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.37 y:1.88 dy:None dx:None
+74/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.78 y:1.96 dy:None dx:None
+75/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:4.18 y:1.97 dy:None dx:None
+76/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:4.71 y:1.96 dy:None dx:None
+77/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:5.19 y:2.05 dy:None dx:None
+78/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:5.87 y:2.17 dy:None dx:None
+---outDatasets:4 datasets:4
+---ENTRY: 30528;11782
+datasets: 4
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 4
+1) 82-PB-0(N,TOT),,SIG/TMP
+	Dataset:1/4) 82-PB-0(N,TOT),,SIG/TMP 30528007 1979, B.Grabcev Tms=297K
+	Dataset:2/4) 82-PB-0(N,TOT),,SIG/TMP 11782007 1955, H.Palevsky Tms=109K
+	Dataset:3/4) 82-PB-0(N,TOT),,SIG/TMP 11782007 1955, H.Palevsky Tms=296K
+	Dataset:4/4) 82-PB-0(N,TOT),,SIG/TMP 11782007 1955, H.Palevsky Tms=573K
+---reacodes: 1 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/4) #30528007 1979, B.Grabcev Tms=297K pt:18
+Plot:2/4) #11782007 1955, H.Palevsky Tms=109K pt:12
+Plot:3/4) #11782007 1955, H.Palevsky Tms=296K pt:28
+Plot:4/4) #11782007 1955, H.Palevsky Tms=573K pt:20
+--0--getUnits--- EV 0.001
+--A--getUnits--- EV 0.001
+--1--getUnits--- EV 0.001  Category: E
+--0--getUnits--- B 1
+Will try---write_image: cst1.html.png
+
+Program successfully completed

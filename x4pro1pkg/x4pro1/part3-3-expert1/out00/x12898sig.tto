@@ -1,0 +1,374 @@
+Program: x13597002.py, ver. 2022-11-09
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Apply experts corrections from database to EXFOR data
+
+Running: 2026-08-21 12:09:24
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+___getX4SqlSearchCS: [Zn-64] [n,p]
+SQL:
+select x4.DatasetID                                                   
+ ,x4.idat as iPoint,x4.xdat,c5.y,c5.dy                                
+ ,REACODE.fullCode                                                    
+ ,REACODE.Pointer,ENTRY.EntryID,REACODE.SubentID                      
+ ,ENTRY.YearRef1,ENTRY.Author1Ini,ENTRY.Author1                       
+ ,REACSTR.Target, REACSTR.Reaction                                    
+ ,REACODE.outParticles                                                
+ ,c5.x1 as En,c5.dx1 as dEn                                           
+ ,round(c5.y*c5.Fcm0,10) as ynew0                                     
+ ,c5.dyerr,c5.dysys,c5.dystat                                         
+ ,c5.Fcm0,corr.FcDecayData,corr.FcDecayMon                            
+ ,c5.m0,c5.dm0,c5.m1,c5.dm1                                           
+ ,case                                                                
+  when c5.Fcm0>0 and corr.FcDecayData>0 and corr.FcDecayMon>0         
+   then c5.Fcm0*corr.FcDecayData*corr.FcDecayMon                      
+  when c5.Fcm0>0 and corr.FcDecayData>0 then c5.Fcm0*corr.FcDecayData 
+  when c5.Fcm0>0 and corr.FcDecayMon>0  then c5.Fcm0*corr.FcDecayMon  
+  when corr.FcDecayData>0 and corr.FcDecayMon>0                       
+   then corr.FcDecayData*corr.FcDecayMon                              
+  when c5.Fcm0>0 then c5.Fcm0                                         
+  when corr.FcDecayData>0 then corr.FcDecayData                       
+  when corr.FcDecayMon>0  then corr.FcDecayMon                        
+  else null                                                           
+ end as FcNew                                                         
+from x4pro_x4data x4                                                  
+ inner join x4pro_c5dat c5 on                                         
+ x4.DatasetID=c5.DatasetID and x4.idat=c5.idat                        
+ inner join x4pro_ds ds on x4.DatasetID=ds.DatasetID                  
+ left  join x4pro_autocorr corr on corr.DatasetID=ds.DatasetID        
+ inner join REACODE on REACODE.ReacodeID=c5.DatasetID                 
+ inner join REACSTR ON REACSTR.ReacodeID=REACODE.ReacodeID            
+ inner join SUBENT on REACODE.SubentID=SUBENT.SubentID                
+ inner join ENTRY on ENTRY.EntryID=SUBENT.EntryID                     
+where                                                                 
+      (REACSTR.SF58 like ',SIG')                                      
+  and (REACSTR.SF8='')                                                
+  and ((REACSTR.SF9='') or (REACSTR.SF9='EXP'))                       
+  and (REACODE.nReacstr=1)                                            
+  and (REACSTR.Target like 'Zn-64')                              
+  and (REACSTR.Reaction like 'n,p')                             
+--  and ENTRY.YearRef1>=1991                                          
+--  and ds.ndat>=2                                                    
+-- and x4.DatasetID='13597002'                                        
+   and (x4.DatasetID='13597002'                      
+     or x4.DatasetID='22209012'                      
+     or x4.DatasetID='10224002'                      
+     or (x4.DatasetID='40485003' and En<9e6)         
+     )  
+order by                                                              
+  REACODE.fullCode,ENTRY.YearRef1 desc,c5.DatasetID                   
+  ,En,c5.idat                                                         
+
+
+___getDatasets from datapoints: 31
+DS:1) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai
+ pt:1/31) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai x:14.2 y:180.0 dy:10.0 dx:0.2
+ pt:2/31) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai x:15.2 y:152.0 dy:9.0 dx:0.2
+ pt:3/31) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai x:16.2 y:116.0 dy:6.0 dx:0.2
+ pt:4/31) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai x:17.2 y:122.0 dy:8.0 dx:0.2
+DS:2) 30-ZN-64(N,P)29-CU-64,,SIG 22209012 1991 Y.Ikeda
+ pt:5/31) 30-ZN-64(N,P)29-CU-64,,SIG 22209012 1991 Y.Ikeda x:9.5 y:266.0 dy:38.0 dx:0.5
+ pt:6/31) 30-ZN-64(N,P)29-CU-64,,SIG 22209012 1991 Y.Ikeda x:11.0 y:275.0 dy:17.0 dx:0.5
+DS:3) 30-ZN-64(N,P)29-CU-64,,SIG 40485003 1978 Yu.A.Nemilov
+ pt:7/31) 30-ZN-64(N,P)29-CU-64,,SIG 40485003 1978 Yu.A.Nemilov x:7.6 y:249.0 dy:30.0 dx:0.3
+ pt:8/31) 30-ZN-64(N,P)29-CU-64,,SIG 40485003 1978 Yu.A.Nemilov x:8.3 y:250.0 dy:30.0 dx:0.3
+ pt:9/31) 30-ZN-64(N,P)29-CU-64,,SIG 40485003 1978 Yu.A.Nemilov x:8.8 y:252.0 dy:30.0 dx:0.3
+DS:4) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry
+ pt:10/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:1.5 y:0.5 dy:None dx:0.08
+ pt:11/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:1.83 y:4.4 dy:1.0 dx:0.04
+ pt:12/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.01 y:8.2 dy:1.7 dx:0.04
+ pt:13/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.2 y:17.4 dy:1.4 dx:0.03
+ pt:14/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.36 y:26.2 dy:2.5 dx:0.04
+ pt:15/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.5 y:38.9 dy:3.1 dx:0.03
+ pt:16/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.81 y:67.6 dy:2.8 dx:0.03
+ pt:17/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.01 y:92.0 dy:4.1 dx:0.03
+ pt:18/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.1 y:100.0 dy:4.0 dx:0.06
+ pt:19/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.18 y:113.0 dy:4.0 dx:0.06
+ pt:20/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.21 y:119.0 dy:7.0 dx:0.03
+ pt:21/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.33 y:123.0 dy:5.0 dx:0.03
+ pt:22/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.46 y:119.0 dy:7.0 dx:0.03
+ pt:23/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.51 y:138.0 dy:6.0 dx:0.03
+ pt:24/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.07 y:148.0 dy:10.0 dx:0.08
+ pt:25/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.55 y:183.0 dy:8.0 dx:0.04
+ pt:26/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.6 y:180.0 dy:11.0 dx:0.03
+ pt:27/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.86 y:188.0 dy:8.0 dx:0.02
+ pt:28/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.88 y:192.0 dy:7.0 dx:0.04
+ pt:29/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:5.03 y:191.0 dy:7.0 dx:0.1
+ pt:30/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:5.13 y:191.0 dy:9.0 dx:0.1
+ pt:31/31) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:5.33 y:187.0 dy:11.0 dx:0.1
+Retrieved datasets: 4
+
+Datasets: 4
+1) 30-ZN-64(N,P)29-CU-64,,SIG
+Reaction codes:  1 
+
+Plot:1/4) #13597002 1995, S.K.Ghorai pt:4
+Plot:2/4) #22209012 1991, Y.Ikeda pt:2
+Plot:3/4) #40485003 1978, Yu.A.Nemilov pt:3
+Plot:4/4) #10224002 1972, D.C.Santry pt:22
+
+datapoints: 31
+1) ___________
+2) ___________
+3) ___________
+4) ___________
+_____________Experts Correction datasets: 4
+___________corr_dataset:::13597002 ldat:4
+________load_corr_subr:::13597002
+
+def corr_point(row):
+    y  =row["y"]
+    dy =row["dy"]
+    m0 =row["m0"]
+    dm0=row["dm0"]
+    m1 =row["m1"]
+    dm1=row["dm1"]
+    #13597002		#1994 S.K.Ghorai+ 
+    a0=0.386/0.348;	#correction to new  511 keV gamma-yield per decay Cu-64
+    a1=0.999936/1.0;	#correction to new 1368 keV gamma-yield per decay Na24 
+    a2=0.84351;		#renorm. factor to the preliminary evaluated integral of cs 
+			#in the neutron energy interval 14.2-16.2 MeV. 
+    a3=a0*a1*a2;	#total energy independent correction factor  
+    c2=0.0115		#added error in 511 keV gamma-yield per decay Cu-64 - 1.15%  
+    c3=0.02		#added error in remorm. factor - 2% 
+    c0=dm0/m0;		#rel. error in old cs for Al27(n,a) monitor reaction
+    c1=dm1/m1;          #relative error in new cs for Al27(n,a) monitor reaction 
+    dy=dy/y;            #relative error in original cs for Zn64(n,p)Cu64 reaction 
+    fc=m1/m0*a3;        #total correction factor                   
+    y=y*fc;             #correction exp. cs
+    dy=dy**2+c1**2+c2**2+c3**2; #determination the quadrature of new total error
+    dy=dy**0.5*y;	#determination the absolute value of new total error
+    row["y"]=y
+    row["dy"]=dy
+    return 1
+
+___________corr_data:::13597002 En=14200000.0	y0=0.18	y1=0.16512	dy1=0.00996
+___________corr_data:::13597002 En=15200000.0	y0=0.152	y1=0.13827	dy1=0.00881
+___________corr_data:::13597002 En=16200000.0	y0=0.116	y1=0.10763	dy1=0.00615
+___________corr_data:::13597002 En=17200000.0	y0=0.122	y1=0.11601	dy1=0.00812
+Corr:1) 4  pt:4
+___________corr_dataset:::22209012 ldat:2
+________load_corr_subr:::22209012
+
+def corr_point(row):
+    y  =row["y"]
+    dy =row["dy"]
+    m0 =row["m0"]
+    dm0=row["dm0"]
+    m1 =row["m1"]
+    dm1=row["dm1"]
+    #22209012		#1992 Y.Ikeda+       
+    a0=0.358/0.348;     #correction to new 511 keV gamma-yield per decay Cu-64 
+    a1=0.870/0.877;     #correction to new 355 keV gamma-yield per decay Au196 
+    a3=a0*a1;           #total gamma-yield correction factor 
+    fc=m1/m0*a3;	#total correction factor                   
+    y=y*fc;		#correction exp. cs
+    dy=dy*fc		#determination the absolute value of new total errorainty
+    row["y"]=y
+    row["dy"]=dy
+    return 1
+
+___________corr_data:::22209012 En=9500000.0	y0=0.266	y1=0.26283	dy1=0.03755
+___________corr_data:::22209012 En=11000000.0	y0=0.275	y1=0.26317	dy1=0.01627
+Corr:2) 6  pt:2
+___________corr_dataset:::40485003 ldat:3
+________load_corr_subr:::40485003
+def corr_point(row):
+    return 0 #unchanged
+
+Corr:3) 6  pt:0
+___________corr_dataset:::10224002 ldat:22
+________load_corr_subr:::10224002
+
+def corr_point(row):
+    y  =row["y"]
+    dy =row["dy"]
+    if dy is None: dy=0
+                #[K.Zolotarev 2011]
+    #10224002   #1972 D.C.Santry+ 
+                #measurements with T(p,n)He3 neutron source
+                #monitor BF3 long counter
+    a0=0.91582; #experimental data were renormalized to the integral of
+                #cross-section calculated from experimental data of Mannhart
+                #and Schmidt 2007 in the overlapping energy
+                #range 1.500 - 3.958 MeV, a0=0.91582
+    a1=0.0115;  #error in b+ mode in Cu64 decay - 1.15%
+    a2=0.03;    #error in normalization value       - 3%
+    a3=0.03;    #error in angular neutron intensity - 3%
+                #error in the cs data due to the error in En center pozition
+                #of 0.17 - 20.09% are not taken into accout 
+    dy=dy/y;    #relative uncertainty in original cs for Zn64(n,p)Cu64 reaction 
+    fc=a0;      #total correction factor                      
+    y=y*fc;     #correction exp. cs
+    dy=dy**2+a1**2+a2**2+a3**2; #determination the quadrature of new total error
+    dy=dy**0.5*y; #determination the absolute error in new Zn64(n,p) cs
+    row["y"]=y
+    row["dy"]=dy
+    return 1
+
+___________corr_data:::10224002 En=1500000.0	y0=0.0005	y1=0.00046	dy1=2e-05
+___________corr_data:::10224002 En=1830000.0	y0=0.0044	y1=0.00403	dy1=0.00093
+___________corr_data:::10224002 En=2010000.0	y0=0.0082	y1=0.00751	dy1=0.00159
+___________corr_data:::10224002 En=2200000.0	y0=0.0174	y1=0.01594	dy1=0.00146
+___________corr_data:::10224002 En=2360000.0	y0=0.0262	y1=0.02399	dy1=0.00252
+___________corr_data:::10224002 En=2500000.0	y0=0.0389	y1=0.03563	dy1=0.00324
+___________corr_data:::10224002 En=2810000.0	y0=0.0676	y1=0.06191	dy1=0.00374
+___________corr_data:::10224002 En=3010000.0	y0=0.092	y1=0.08426	dy1=0.00527
+___________corr_data:::10224002 En=3100000.0	y0=0.1	y1=0.09158	dy1=0.00544
+___________corr_data:::10224002 En=3180000.0	y0=0.113	y1=0.10349	dy1=0.00584
+___________corr_data:::10224002 En=3210000.0	y0=0.119	y1=0.10898	dy1=0.008
+___________corr_data:::10224002 En=3330000.0	y0=0.123	y1=0.11265	dy1=0.00674
+___________corr_data:::10224002 En=3460000.0	y0=0.119	y1=0.10898	dy1=0.008
+___________corr_data:::10224002 En=3510000.0	y0=0.138	y1=0.12638	dy1=0.00781
+___________corr_data:::10224002 En=4070000.0	y0=0.148	y1=0.13554	dy1=0.01093
+___________corr_data:::10224002 En=4550000.0	y0=0.183	y1=0.1676	dy1=0.01039
+___________corr_data:::10224002 En=4600000.0	y0=0.18	y1=0.16485	dy1=0.01241
+___________corr_data:::10224002 En=4860000.0	y0=0.188	y1=0.17217	dy1=0.01053
+___________corr_data:::10224002 En=4880000.0	y0=0.192	y1=0.17584	dy1=0.01004
+___________corr_data:::10224002 En=5030000.0	y0=0.191	y1=0.17492	dy1=0.01001
+___________corr_data:::10224002 En=5130000.0	y0=0.191	y1=0.17492	dy1=0.01127
+___________corr_data:::10224002 En=5330000.0	y0=0.187	y1=0.17126	dy1=0.01258
+Corr:4) 28  pt:22
+
+___getDatasets from datapoints: 28
+DS:1) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai
+ pt:1/28) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai x:14.2 y:165.115 dy:9.95925 dx:0.2
+ pt:2/28) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai x:15.2 y:138.269 dy:8.81429 dx:0.2
+ pt:3/28) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai x:16.2 y:107.625 dy:6.1459 dx:0.2
+ pt:4/28) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 1995 S.K.Ghorai x:17.2 y:116.011 dy:8.12301 dx:0.2
+DS:2) 30-ZN-64(N,P)29-CU-64,,SIG 22209012 1991 Y.Ikeda
+ pt:5/28) 30-ZN-64(N,P)29-CU-64,,SIG 22209012 1991 Y.Ikeda x:9.5 y:262.835 dy:37.5478 dx:0.5
+ pt:6/28) 30-ZN-64(N,P)29-CU-64,,SIG 22209012 1991 Y.Ikeda x:11.0 y:263.173 dy:16.2689 dx:0.5
+DS:3) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry
+ pt:7/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:1.5 y:0.45791 dy:0.0201285 dx:0.08
+ pt:8/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:1.83 y:4.02961 dy:0.932792 dx:0.04
+ pt:9/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.01 y:7.50972 dy:1.59151 dx:0.04
+ pt:10/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.2 y:15.9353 dy:1.46102 dx:0.03
+ pt:11/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.36 y:23.9945 dy:2.52081 dx:0.04
+ pt:12/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.5 y:35.6254 dy:3.2423 dx:0.03
+ pt:13/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:2.81 y:61.9094 dy:3.73918 dx:0.03
+ pt:14/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.01 y:84.2554 dy:5.27409 dx:0.03
+ pt:15/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.1 y:91.582 dy:5.44297 dx:0.06
+ pt:16/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.18 y:103.488 dy:5.84067 dx:0.06
+ pt:17/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.21 y:108.983 dy:8.00296 dx:0.03
+ pt:18/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.33 y:112.646 dy:6.74438 dx:0.03
+ pt:19/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.46 y:108.983 dy:8.00296 dx:0.03
+ pt:20/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:3.51 y:126.383 dy:7.81392 dx:0.03
+ pt:21/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.07 y:135.541 dy:10.9257 dx:0.08
+ pt:22/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.55 y:167.595 dy:10.39 dx:0.04
+ pt:23/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.6 y:164.848 dy:12.4094 dx:0.03
+ pt:24/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.86 y:172.174 dy:10.5337 dx:0.02
+ pt:25/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:4.88 y:175.837 dy:10.0419 dx:0.04
+ pt:26/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:5.03 y:174.922 dy:10.011 dx:0.1
+ pt:27/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:5.13 y:174.922 dy:11.272 dx:0.1
+ pt:28/28) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 1972 D.C.Santry x:5.33 y:171.258 dy:12.5761 dx:0.1
+Corrected datasets: 3
+
+Datasets: 3
+1) 30-ZN-64(N,P)29-CU-64,,SIG
+Corrected reacodes: 1 
+
+Plot:1/3) #13597002 1995, S.K.Ghorai* pt:4
+Plot:2/3) #22209012 1991, Y.Ikeda* pt:2
+Plot:3/3) #10224002 1972, D.C.Santry* pt:22
+
+___getEndfDataForPlot: [Zn-64] [n,p]
+---wgetdb_get:/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-08-21T12:09:23.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1394
+,"sections":[
+ { "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":301162,"SectID":21398231,"PenSectID":26232896,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":149537,"SectID":8958164,"PenSectID":13602409,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":57370,"SectID":2255236,"PenSectID":7627895,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":306681,"SectID":21545243,"PenSectID":26371718,"LibID":3400,"LibName":"JEFF-4.0","DATE":"AUG24","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":150545,"SectID":9059377,"PenSectID":13699807,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":96419,"SectID":3710621,"PenSectID":6702240,"LibID":3200,"LibName":"JEFF-3.2","DATE":"DEC12","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":276847,"SectID":19207236,"PenSectID":24042301,"LibID":51,"LibName":"JENDL-5","DATE":"20210228","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":39370,"SectID":1303935,"PenSectID":6865185,"LibID":40,"LibName":"JENDL-4.0","DATE":"20100119","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":118572,"SectID":6057550,"PenSectID":10719038,"LibID":41031,"LibName":"BROND-3.1","DATE":"20100119","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":38012,"SectID":1219731,"PenSectID":6917053,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC06","AUTH":"Nikolaev M.N."}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":27288,"SectID":576759,"PenSectID":6876551,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"DEC06","AUTH":"Nikolaev M.N."}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":199104,"SectID":14178672,"PenSectID":18851927,"LibID":5040,"LibName":"CENDL-3.2","DATE":"20180815","AUTH":"Y.L.Han, J.Q.Hu, Y.L.Xu"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":10339,"SectID":174785,"PenSectID":6953779,"LibID":9000,"LibName":"JEFF-3.1/A","DATE":"JUL03","AUTH":"Forrest, Kopecky, Sublet, Koning"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":202948,"SectID":14261112,"PenSectID":18940979,"LibID":34026,"LibName":"IRDFF-II","DATE":"15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":202871,"SectID":14260583,"PenSectID":18940439,"LibID":34027,"LibName":"IRDFF-II-aux","DATE":"15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":96834,"SectID":3762899,"PenSectID":15692908,"LibID":34025,"LibName":"IRDFF-1.05","DATE":"15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":15965,"SectID":249658,"PenSectID":15693725,"LibID":34021,"LibName":"IRDF-2002","DATE":"4","AUTH":""}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":16015,"SectID":249937,"PenSectID":15694008,"LibID":34022,"LibName":"IRDF-2002G","DATE":"4","AUTH":""}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":7016,"SectID":50967,"PenSectID":7541126,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"Scientific Co-Ordination Group"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":116310,"SectID":5884019,"PenSectID":6540118,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"20150325","AUTH":"Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":199694,"SectID":14222146,"PenSectID":19380160,"LibID":6136,"LibName":"JENDL/ImPACT-18","DATE":"20100119","AUTH":"S.Kunieda+"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":155282,"SectID":9159855,"PenSectID":13792011,"LibID":6135,"LibName":"JENDL/AD-2017","DATE":"20140414","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":20053,"SectID":437018,"PenSectID":6504542,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"AUG 7","AUTH":"K. Kosako"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":53086,"SectID":2231082,"PenSectID":7228451,"LibID":33010,"LibName":"EAF-2010","DATE":"SEP11","AUTH":""}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":18894,"SectID":281939,"PenSectID":7248029,"LibID":49020,"LibName":"MENDL-2","DATE":"SEP94","AUTH":"Yu.N.Shubin et.al."}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":20370,"SectID":443582,"PenSectID":19523192,"LibID":55040,"LibName":"IAEA-Therapeutic","DATE":"15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":291043,"SectID":20752444,"PenSectID":24748789,"LibID":61023,"LibName":"TENDL-2023","DATE":"DEC23","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":247168,"SectID":16347590,"PenSectID":21308973,"LibID":61022,"LibName":"TENDL-2021","DATE":"JAN22","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":199002,"SectID":14156899,"PenSectID":18800968,"LibID":61020,"LibName":"TENDL-2019.s60","DATE":"NOV19","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":302590,"SectID":21497786,"PenSectID":26328415,"LibID":33036,"LibName":"FENDL-3.2c","DATE":"AUG 7","AUTH":"K. Kosako"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":227877,"SectID":14632013,"PenSectID":19407864,"LibID":33035,"LibName":"FENDL-3.2b","DATE":"AUG 7","AUTH":"K. Kosako"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":142044,"SectID":8901004,"PenSectID":13488151,"LibID":33032,"LibName":"FENDL-3.1c","DATE":"AUG 7","AUTH":"K. Kosako"}
+]
+}
+
+format=WebEndfSectionsList-0.1
+___Retrieved sections:32
+SelectedLib-Sect:2) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 149537, 'SectID': 8958164, 'PenSectID': 13602409, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20111222', 'AUTH': 'N.Iwamoto'}
+SelectedLib-Sect:7) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 276847, 'SectID': 19207236, 'PenSectID': 24042301, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20210228', 'AUTH': 'N.Iwamoto'}
+SelectedLib-Sect:26) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 20370, 'SectID': 443582, 'PenSectID': 19523192, 'LibID': 55040, 'LibName': 'IAEA-Therapeutic', 'DATE': '15', 'AUTH': 'K.I.Zolotarev'}
+Required sections:3
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13602409&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13602409&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=13602409&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Downloaded:1)	ZN-64(N,P)CU-64,SIG	ENDF/B-VIII.0	PenSectID:13602409	pts:181	idy=0
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=24042301&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=24042301&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=24042301&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Downloaded:2)	ZN-64(N,P)CU-64,SIG	JENDL-5	PenSectID:24042301	pts:1582	idy=0
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=19523192&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=19523192&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=19523192&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Downloaded:3)	ZN-64(N,P)CU-64,SIG	IAEA-Therapeutic	PenSectID:19523192	pts:69	idy=68
+Plot:1/3) 13602409	ENDF/B-VIII.0	pt:181	color:0,0,255
+Plot:2/3) 24042301	JENDL-5	pt:1580	color:0,255,0
+Plot:3/3) 19523192	IAEA-Therapeutic	pt:69	color:255,0,0
+Will try---write_image: expert1.html.png
+
+Program successfully completed

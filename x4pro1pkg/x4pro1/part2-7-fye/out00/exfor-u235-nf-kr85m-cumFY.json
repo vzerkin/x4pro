@@ -1,0 +1,91 @@
+[
+  {
+    "DatasetID": "32762002",
+    "Reacode": "92-U-235(N,F)36-KR-85-M1,CUM,FY",
+    "DatasetSplit": "",
+    "prod": "36-Kr-85-m1",
+    "x4lbl": "2000, Yang Yi",
+    "x": [
+      2.53e-08
+    ],
+    "y": [
+      1.32
+    ],
+    "dy": [
+      0.0462
+    ],
+    "dx": [
+      null
+    ]
+  },
+  {
+    "DatasetID": "12729002",
+    "Reacode": "92-U-235(N,F)36-KR-85-M1,CUM,FY",
+    "DatasetSplit": "",
+    "prod": "36-Kr-85-m1",
+    "x4lbl": "1981, L.E.Glendenin",
+    "x": [
+      0.17,
+      0.55,
+      1.0,
+      2.0,
+      4.0,
+      5.5,
+      6.3,
+      7.1,
+      8.1
+    ],
+    "y": [
+      1.35,
+      1.74,
+      1.49,
+      1.76,
+      1.7,
+      1.81,
+      1.84,
+      2.37,
+      2.07
+    ],
+    "dy": [
+      0.09,
+      0.13,
+      0.06,
+      0.11,
+      0.07,
+      0.1,
+      0.12,
+      0.14,
+      0.13
+    ],
+    "dx": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "DatasetID": "13274003",
+    "Reacode": "92-U-235(N,F)36-KR-85-M1,CUM,FY",
+    "DatasetSplit": "",
+    "prod": "36-Kr-85-m1",
+    "x4lbl": "1973, N.E.Ballou",
+    "x": [
+      15.0
+    ],
+    "y": [
+      1.84
+    ],
+    "dy": [
+      null
+    ],
+    "dx": [
+      null
+    ]
+  }
+]

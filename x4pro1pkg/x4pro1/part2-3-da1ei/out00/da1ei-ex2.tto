@@ -1,0 +1,83 @@
+Program: da1ei.py, ver. 2025-07-10
+Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2025
+Purpose: Retrieve and plot EXFOR/ENDF angular distributions
+
+Running: 2026-08-21 12:06:26
+
+___sys___nexample:[ex2]['da1ei.py', 'ex2']
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+___getX4SqlSearchDA_a: Fe-56 n,el
+SQL:
+select *                           
+ ,round(An) as Anint               
+from da1                           
+where (Target like 'Fe-56')   
+  and (Reaction like 'n,el')  
+ and (An>=39 and An<=39) and (En<=9e6)
+order by fullCode,                 
+  YearRef1 desc,DatasetID          
+  ,Anint,En,iPoint                 
+
+
+datapoints: 6227
+1) 26-FE-56(N,EL)26-FE-56,,DA 13511004 1991 C.M.Perey
+datasets: 1
+
+Datasets: 1
+1) 26-FE-56(N,EL)26-FE-56,,DA
+	Dataset:1/1) 26-FE-56(N,EL)26-FE-56,,DA 13511004 npt:6227
+reacodes: 1 
+
+Plot:1/1) #13511004 1991, C.M.Perey pt:6227
+
+___webEndfDataForPlot_DADE: [Fe-56] [n,*] [&an= 39&mf=4&mt=40002&zap=0001]
+---wgetdb_get:/servlet/E4sSearch2?Target=Fe-56&Reaction=n,*&Quantity=DA*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Fe-56&Reaction=n,*&Quantity=DA*&json&mats'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=Fe-56&Reaction=n,*&Quantity=DA*&json&mats
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+format=WebEndfSectionsList-0.1
+___Retrieved sections:40
+SelectedLib-Sect:4) {'Targ': 'FE-56', 'ZT': 26, 'AT': 56, 'NSUB': 10, 'MT': 2, 'MF': 4, 'R': 'N,EL', 'RC': 'FE-56(N,EL)FE-56-L0,DA', 'EvalID': 149521, 'SectID': 8954356, 'PenSectID': 13599599, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'Cielo Collaboration'}
+SelectedLib-Sect:12) {'Targ': 'FE-56', 'ZT': 26, 'AT': 56, 'NSUB': 10, 'MT': 2, 'MF': 4, 'R': 'N,EL', 'RC': 'FE-56(N,EL)FE-56-L0,DA', 'EvalID': 276820, 'SectID': 19195807, 'PenSectID': 24030872, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20210630', 'AUTH': 'N.Iwamoto'}
+___Required sections:2
+WebReq:1) EvalID:149521 PenSectID:13599599 Lib:ENDF/B-VIII.0 Color:0,127,127
+/servlet/E4sGetSectData?EvalID=149521&PenSectID=13599599&json&an= 39&mf=4&mt=40002&zap=0001
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149521&PenSectID=13599599&json&an= 39&mf=4&mt=40002&zap=0001
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149521&PenSectID=13599599&json&an= 39&mf=4&mt=40002&zap=0001'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149521&PenSectID=13599599&json&an= 39&mf=4&mt=40002&zap=0001
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:1/1)	26-Fe-56(N,EL),DA	ENDF/B-VIII.0	EID:149521	SID:13599599	f(x):DA(Ei)	pts:49654
+Downloaded:DS:1/1)	26-Fe-56(N,EL),DA	ENDF/B-VIII.0	EID:149521	SID:13599599	f(x):DA(Ei)	pts:49654	idy=0
+WebReq:2) EvalID:276820 PenSectID:24030872 Lib:JENDL-5 Color:255,127,0
+/servlet/E4sGetSectData?EvalID=276820&PenSectID=24030872&json&an= 39&mf=4&mt=40002&zap=0001
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=276820&PenSectID=24030872&json&an= 39&mf=4&mt=40002&zap=0001
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=276820&PenSectID=24030872&json&an= 39&mf=4&mt=40002&zap=0001'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=276820&PenSectID=24030872&json&an= 39&mf=4&mt=40002&zap=0001
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:2/1)	26-Fe-56(N,EL),DA	JENDL-5	EID:276820	SID:24030872	f(x):DA(Ei)	pts:50673
+Downloaded:DS:2/1)	26-Fe-56(N,EL),DA	JENDL-5	EID:276820	SID:24030872	f(x):DA(Ei)	pts:50673	idy=0
+Plot:1/2) 13599599	ENDF/B-VIII.0 El0.00E+0 An 39	pt:49654	color:0,127,127
+Plot:2/2) 24030872	JENDL-5 El0.00E+0 An 39	pt:50673	color:255,127,0
+Will try---write_image: da1ei-ex2.html.png
+
+Program successfully completed

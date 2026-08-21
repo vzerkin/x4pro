@@ -1,0 +1,57 @@
+# X4Pro - universal, fully relational EXFOR database.<br>Professional edition.
+by V.Zerkin, 2026-08-19
+
+## Content
+
+- X4Pro/SQLite database: mini-version
+- Fortran/C/SQL EXFOR data retrieval demo programs
+  - execute SQL and retrieve from local X4Pro: F1, SIG, DAE, SIG&rarr;C4
+  - retrieve and recalculate EXFOR data [DA,LEG/RS]&[SIG]&rarr;[DA]&rarr;[C4]
+- Python demo codes
+    - retrieve and plot local EXFOR data: SIG, DA, DAP, DE, DAE, FY,
+	[CSP](x4pro1pkg/x4pro1/part1-8-reac/out00/sig1p.html.png),
+	[CST](x4pro1pkg/x4pro1/part1-8-reac/out00/cst1.html.png),
+	[TKE](x4pro1pkg/x4pro1/part1-8-reac/out00/tke1.html.png),
+	[ETA](x4pro1pkg/x4pro1/part1-8-reac/out00/eta1.html.png),
+	[NUBAR](x4pro1pkg/x4pro1/part1-8-reac/out00/nu1.html.png)
+    - retrieve and plot remote ENDF data together with local EXROR data, e.g.
+	[DA:MF4+34](x4pro1pkg/x4pro1/part2-2-da1an/out00/da1an.html.png),
+	[FY(E)](x4pro1pkg/x4pro1/part2-7-fye/out00/u235-nf-cd115g-cumFY.html.png),
+	[CSP:MT51](x4pro1pkg/x4pro1/part2-8-sig1par/out00/Li7ninl.html.png)
+    - renormalize and correct EXFOR data: automatically, by own user's code, by expert's codes  
+    - recalculate EXFOR data: [Ratio]&rarr;[SIG], [DA,LEG]&rarr;[SIG]
+    - recalculate EXFOR data: [DA,LEG/RS]&[SIG]&rarr;[DA]; [DA,LEG]&rarr;[DA]&rarr;[R33]
+    - retrieve and plot covariance data coded in EXFOR:
+	[En&times;En](x4pro1pkg/x4pro1/part1-7-covar/out00/covar1.png),
+	[Reac&times;Reac](x4pro1pkg/x4pro1/part1-7-covar/out00/covar2.png)
+    - export X5json from X4Pro to CouchDB (NoSQL database)
+    - retrieve CS, ratios, monit-data; renormalize to new standards and decay data; convert ratios to CS:
+	[Zn64np](x4pro1pkg/x4pro1/part6-1-eval2sig/out00/Zn64np.html.png)
+- SQL demo commands
+    - find zero values of PARITY, ERR-T and DATA-ERR (for EXFOR compilers)
+    - generate summary tables with evaluators' flags and scores (for evaluators)
+- Documentation
+    - general description [index.html](x4pro1pkg/x4pro1/doc/index.html.pdf)
+    - examples of plots using [plotly](x4pro1pkg/x4pro1/doc/out2plotly.html.pdf) and
+	[matplotlib](x4pro1pkg/x4pro1/doc/out2matplotlib.pdf)
+    - News-2026: [description and plots](x4pro1pkg/x4pro1/doc/news2026.html.pdf)
+- Bash scripts to observe database and run demo-codes
+    - CLI - Command Line Interface for running demo-codes:
+	[x4pro.sh](x4pro1pkg/x4pro1/x4pro.sh)
+    - TUI - Text-based User Interface: 
+	[simple](x4pro1pkg/x4pro1/doc/x4pro-tui.pdf) and
+	[menu-type](x4pro1pkg/x4pro1/doc/x4pro-dia.pdf)
+- System environment (see [readme.txt](x4pro1pkg/readme.txt))
+    - Operating Systems: Linux/MacOS/Windows:MinGW
+    - Python3 with packages: plotly, matplotlib, requests, etc.
+    - gfortran, gcc
+    - sqlite3, dialog
+
+## Links
+
+* [NRDC](https://nds.iaea.org/nrdc/) International Network of Nuclear Reaction Data Centres 
+* [IAEA-NDS](https://nds.iaea.org/) International Atomic Energy Agency, Nuclear Data Service 
+* [EXFOR](https://nds.iaea.org/exfor/) IAEA-NDS Web-Retrieval System 
+* [X4Pro](https://nds.iaea.org/cdroms/#x4pro1) Download previous versions of the package from IAEA-NDS site
+* ND2022 - Nuclear-Data Conference: X4Pro [reference paper](https://doi.org/10.1051/epjconf/202328414015),
+[presentation](https://indico.frib.msu.edu/event/52/contributions/875/attachments/487/2289/nd2022-zerkin1.pdf)

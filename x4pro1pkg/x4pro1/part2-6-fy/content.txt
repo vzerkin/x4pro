@@ -1,0 +1,1 @@
+EXFOR/ENDF fission yeild (mass distribution)

@@ -1,0 +1,49 @@
+Program: export2couchdb1.py, ver. 2022-08-29
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Export EXFOR Entries from x4pro to CouchDB
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+SQL command:
+select distinct substr(Subent,1,5) as Entry from x4pro_x4z order by Entry
+Exporting Entries: 14370
+---Store EXFOR data in NoSQL database CouchDB---
+---Listing databases
+------1) dbname: zv-exfor-001
+Database already exists: zv-exfor-001
+Database deleted: zv-exfor-001
+Database successfully created: zv-exfor-001
+---List of documents in zv-exfor-001
+export------1) Entry:10001
+	---------Entry:10001 retrieved: OK. Compiled:1998-09-14, Subent:16
+	Document successfully created: doc_id=10001 doc_rev=1-821b04f37ca9bb9dfbea4d0f489d7b9b
+export------2) Entry:10004
+	---------Entry:10004 retrieved: OK. Compiled:1999-06-17, Subent:2
+	Document successfully created: doc_id=10004 doc_rev=1-e3d3f34c37a0b7cf8204656b32c1c8be
+export------3) Entry:10005
+	---------Entry:10005 retrieved: OK. Compiled:1999-06-17, Subent:2
+	Document successfully created: doc_id=10005 doc_rev=1-5e94ba55684d694babf9a9f64f71987b
+export------4) Entry:10006
+	---------Entry:10006 retrieved: OK. Compiled:1999-06-17, Subent:2
+	Document successfully created: doc_id=10006 doc_rev=1-c0ebe78aa39b79da3786d7d45566a914
+export------5) Entry:10008
+	---------Entry:10008 retrieved: OK. Compiled:1999-06-17, Subent:6
+	Document successfully created: doc_id=10008 doc_rev=1-de06a35fd6c91a83014199ed4c827b1a
+export------6) Entry:10009
+	---------Entry:10009 retrieved: OK. Compiled:1999-06-17, Subent:3
+	Document successfully created: doc_id=10009 doc_rev=1-58b0ad2fdfef63466b01c9f0234c85b4
+export------7) Entry:10011
+	---------Entry:10011 retrieved: OK. Compiled:1999-06-17, Subent:2
+	Document successfully created: doc_id=10011 doc_rev=1-e2eef90bf7cd5213c7a6ee1a4c64dc76
+export------8) Entry:10013
+	---------Entry:10013 retrieved: OK. Compiled:2017-03-30, Subent:9
+	Document successfully created: doc_id=10013 doc_rev=1-9383fa4720468b7c87b167484e74c433
+export------9) Entry:10016
+	---------Entry:10016 retrieved: OK. Compiled:1999-06-17, Subent:3
+	Document successfully created: doc_id=10016 doc_rev=1-bd8bc5ea3ffca739c69b6d3a276a18e7
+export------10) Entry:10019
+	---------Entry:10019 retrieved: OK. Compiled:1999-06-17, Subent:3
+	Document successfully created: doc_id=10019 doc_rev=1-593e36573a7807e41926ee5eac689809
+
+Program successfully completed

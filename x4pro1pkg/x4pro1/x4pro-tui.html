@@ -1,0 +1,74 @@
+<html>
+<head>
+<style type="text/css" media="print">
+@page {
+  @bottom-right {
+    content: counter(page) " of " counter(pages);
+  }
+}
+</style>
+<script language=javascript>
+var num=0;
+    function out1(filename,w0,txt) {
+	var str=filename.replace(/ /g,'');
+	var ww=880;
+//	document.write('['+filename+']['+txt+']'+'<br>');
+
+	if (w0!=0) ww=w0;
+//	if (filename.indexOf('couchdb')>=0) hh=760;
+	num++;
+    document.write('<div style="page-break-inside: avoid;">');
+        document.write('<div style="font-size:20pt;font-family:calibry;color:#a0a;'
+	+'border:1px solid #aaa;border-bottom:none;border-radius:6px 6px 0 0;margin-bottom:-1px;margin-left:10px;display:table;position:relative;'
+	+'padding-left:9px;padding-right:9px;background-color:#fff;">'
+	+num+') '+txt+'</div>');
+        document.write('<div style="border:1px solid #aaa;display:table;">');
+        document.write('<img src="'+str+'" width='+ww+'>');
+        document.write('</div><br>');
+    document.write('</div>');
+    }
+</script>
+</head>
+<body bgcolor="#ddddff">
+<h1>Basic interactive script <font color=red>x4pro.sh</font> for running demo-codes.
+<br>TUI - Text-based User Interface.
+</h1>
+
+<pre style="margin-top:0;">
+# Script:  x4pro.sh
+# Author:  Viktor Zerkin <v.zerkin@gmail.com>
+# Created: 2026-02-13
+# Version: 2026-02-23
+# License: MIT
+# Run:     $ [bash] x4pro.sh [{options|files}]
+#	   --help  display this text
+# Example: $ bash x4pro.sh
+#          $ ./x4pro.sh
+#          $ bash x4pro.sh --help
+# Commands:
+#          A   - run all tests and exit
+#          C   - clean log file, remove generated output files
+#          #   - run example number #, where #:[0..26]
+#          #-# - run examples by range of numbers, e.g. 1-5
+#          L   - list examples
+#          S   - statistics of the local EXFOR-database
+#          V   - versions of system components
+#          Q   - exit
+</pre>
+
+<script language="javascript">
+    out1("img/tui-screen1.png",540,"Start: welcome, versions");
+    out1("img/tui-screen2.png",540,"[S] - EXFOR database statistics");
+    out1("img/tui-screen3.png",0,"[L] - List of demo-folders");
+    out1("img/tui-screen4.png",680,"[1-5] - Run scripts runme.sh from demo-folders #1 to #5");
+    out1("img/tui-screen5.png",480,"[C] - Clean temporary files. [Q] - Quit");
+</script>
+
+<hr>
+<font face="helvetica" size="1">
+  Created by <a HREF="mailto:zerkin@iaeand.iaea.org">V.Zerkin</a>, Vienna, 19-Feb-2026<br>
+  <script language="javascript">  document.write(" Last updated: "+document.lastModified) </script>
+</font>
+
+</body>
+</html>

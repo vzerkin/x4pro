@@ -1,0 +1,34 @@
+Program: exec1sql.py, ver. 2024-12-16
+Author:  V.Zerkin, v.zerkin@gmail.com, Vienna, 2024
+Purpose: execute one SQL command on SQLite database.
+Operations:
+         - connect to SQLite data file;
+         - execute SQL command;
+         - read retrieved data rows to list of dicts
+           extracting data (incl.JSON) from row to dict;
+         - save result in JSON file and CSV file for EXCEL.
+
+Running: 2026-08-21 12:10:34
+
+---getConnSQLite: file:../../x4sqlite1.db?mode=ro
+
+---SQL:SELECT distinct x4pro_c5dat.DatasetID,REACODE.FullCode
+FROM x4pro_c5dat 
+inner join REACODE on REACODE.ReacodeID=x4pro_c5dat.DatasetID
+where fullCode like '%,PTY' and y=0
+
+---SQL executed: 0.052sec
+
+---Retrieved from the database
+rows: 0
+---No data found---
+---colinfo--- ('DatasetID', None, None, None, None, None, None)
+---colinfo--- ('fullCode', None, None, None, None, None, None)
+
+---Collected datasets: 0
+
+---Save datasets to JSON file: PTY-eq0.json
+
+---Save datasets to CSV file: PTY-eq0.csv
+
+Program successfully completed

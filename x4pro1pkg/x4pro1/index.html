@@ -1,0 +1,1207 @@
+<html>
+<head>
+<style type="text/css">
+body {font-family:verdana,geneva,helvetica,sans-serif; font-size:10pt;}
+.welcome {font-family:verdana,geneva,helvetica,sans-serif;font-size:16pt;color:#00d;/*font-weight:bold;*/}
+.author {font-family:verdana,geneva,helvetica,sans-serif; font-size:9pt;}
+.note {font-family:verdana,geneva,helvetica,sans-serif; font-size:8pt;}
+.conditions {  padding-left:0;  margin-top:5pt;  margin-bottom:5pt;}
+.components {  padding-left:10pt; margin-bottom:2pt;}
+.sect {padding-left:15pt; background-color:#def;}
+.logo {color:white;background-color:blue;}
+.newdev00 {color:#c0a;font-size:12pt;font-weight:bold;font-family:sans-serif;display:block;background-color:#ff0;text-align:center;}
+.newdev0 {color:#c0a;font-size:12pt;font-weight:bold;font-family:sans-serif;display:block;background-color:transparent;text-align:left;padding-left:6px;margin-right:44px;}
+.newdev {color:#c0a;font-size:12pt;font-weight:bold;font-family:sans-serif;display:block;background-color:#ff0;text-align:left;padding-left:6px;margin-right:44px;}
+.part {font-family:sans-serif,helvetica;font-size:14pt;color:blue;text-shadow:-1px -1px 0px #fff;/*font-weight:bold;*/
+/*text-align:center;*/
+}
+.topic {font-family:sans-serif,helvetica;font-size:12pt;color:#c0c;text-shadow:-1px -1px 0px #fff;/*font-weight:bold;*/
+/*text-align:center;*/
+}
+a {text-decoration:none;}
+.ierr0 {padding-left:1px;padding-right:1px;margin-right:2px;color:white;background-color:green;}
+.ierr1 {padding-left:1px;padding-right:1px;margin-right:2px;color:white;background-color:red;}
+.msg1 {font-family:arial;font-size:9pt;}
+.sigma {font-family:New Times Roman;font-size:9pt;}
+table,td {/*font-family:Arial;*/font-size:8pt;
+margin:2px;padding:3pt;padding-left:2pt;padding-right:3pt;border-collapse:collapse;vertical-align:top;}
+</style>
+<script language="javascript">
+    function outLink(url,nam,titl,after,before) {
+	var lxh=800,lyh=600;
+	if ((nam.indexOf('.htm')>0)||(nam.indexOf('pdf')>=0)||(url.toLowerCase().indexOf('.c4.txt')>=0)) {lxh=1200;lyh=800;}
+	if (url.indexOf('.html')>0) {lxh=1500;lyh=950;}
+	if(typeof before!='undefined') document.write(''+before);
+	document.write('<a href="'+nam+'"');
+	document.write('   onClick="javascript:createWindow(\''+url+'\',\'helpWin\','+lxh+','+lyh+',event.screenX,event.screenY); ');
+	document.write('   return(false);"');
+	document.write('   title="'+titl+'"');
+	document.write('>');
+	document.write(nam);
+	document.write('</a>');
+	if(typeof after!='undefined') document.write(''+after);
+    }
+    function createWindow(cUrl,cName,lxh,lyh,xMouse,yMouse) {
+	var cFeatures;
+	var helpDir, cUrl;
+	var lx=300, ly=400, x0=10, y0=10, lxtv, lytv, dy=60;
+	if (lxh>10) lx=lxh;
+	if (lyh>10) ly=lyh;
+	lxtv=screen.width;
+	lytv=screen.height;
+	cName=cUrl;
+//	alert(cUrl);
+//	alert("X="+xMouse+" Y="+yMouse);
+//	alert("LX="+screen.width+" LY="+screen.height);
+	x0=xMouse+10;
+	y0=yMouse-100;
+	if (y0<0) y0=10;
+	if (y0+ly>lytv-dy) y0=lytv-ly-dy;
+	if (y0<0) y0=10;
+//	cFeatures='width=300,height=400,status,menubar,resizable,scrollbars,screenX=10,screenY=10'
+	cFeatures='status,width='+lx+',height='+ly+',resizable,scrollbars'+
+	',screenX='+x0+',screenY='+y0;
+//	alert(cFeatures);
+	var xWin=window.open(cUrl,cName,cFeatures);
+	xWin.focus();
+    }
+
+var x4pro='\
+##  ##   ####  #####  ## ###   #### \n\
+ ####   ## ##  ##  ##  ##  ## ##  ##\n\
+  ##   ##  ##  ##  ##  ##     ##  ##\n\
+ ####  ######  #####   ##     ##  ##\n\
+##  ##     ##  ##      ##      #### \n\
+';
+    function outTxtLogo() {
+	var str=x4pro;
+	str=str.replace(/#/g,'<span class=logo> </span>');
+//	document.write('<div>');
+	document.write('<div style="display:table;background-color:#eef;margin:5pt;'
+//	+'padding:5pt;padding-left:30px;padding-right:30px;margin-left:85pt;'
+	+'padding:5pt;padding-left:30px;padding-right:30px;margin-left:75pt;'
+//	+'font-size:8pt;'
+	+'box-shadow:6px 6px 4px #88d;border-radius:60px;'
+	+'border:solid 1px #44a;'
+	+'">');
+//	document.write('<pre style="padding:0;margin:0;padding-left:100pt;font-size:7px;line-height:10px;">');
+//	document.write('<pre style="padding:0;margin:0;padding-left:8px;padding-right:8px;font-size:7px;line-height:10px;">');
+	document.write('<pre style="padding:0;margin:0;padding-left:8px;padding-right:8px;font-size:6px;line-height:8px;">');
+	document.write(str);
+	document.write('</pre>');
+	document.write('</div>');
+    }
+</script>
+</head>
+
+<body bgcolor=white>
+<script language="javascript">
+    outTxtLogo();
+</script>
+<span class=welcome>
+X4Pro - universal, fully relational EXFOR database<br>
+</span>
+<span class=author>
+by V.Zerkin, IAEA:2021-2023, version 2026-08-21<br>
+</span>
+<br>
+This page presents progress in development X4Pro database and tools
+(<a href="https://nds.iaea.org/cdroms/#x4pro1" target="_blank">download</a>).
+<p>
+Concept.<br>
+X4Pro extends EXFOR-Relational database with <u>experimental data points</u> in original and computational form
+and additional information for <u>data renormalization</u>.<br>
+The X4Pro database provides:<br>
+- access to all EXFOR meta-data and numerical data using only SQL commands,
+  i.e. no need in original EXFOR, EXFOR parser and converter<br>
+- data for renormalization: old and new monitor cross sections, old and new decay data
+  (gamma lines intensity of measured reaction and monitor product)<br>
+- experts' instructions for EXFOR data modifications<br>
+- EXFOR Subentries and Datasets in X5-json format (since 2023-03-30)<br>
+- evaluators' flags and scores (since 2025-01-10)
+</p>
+<p>
+Tasks of the project:<br>
+1. Desing of database schema<br>
+2. Work out data and programming needs on typical examples<br>
+3. Develop new concept of EXFOR data corrections and define workflow<br>
+4. Envent/find out possible technical solutions for existing tasks, study problems, implement solutions<br>
+5. Prepare for test/demo examples for end-user, confirm working tools on platfroms/enviromnent:<br>
+ &nbsp;&nbsp; a) X4Pro: local SQLite database and remote MariaDB database<br>
+ &nbsp;&nbsp; b) python on Windows, Linux, MacOS (plot with Plotly and Mathplotlib)<br>
+ &nbsp;&nbsp; c) gfortran, gcc on Windows, Linux, MacOS<br>
+ &nbsp;&nbsp; d) retrieve ENDF data from Web server and plot together with EXFOR data<br>
+ &nbsp;&nbsp; e) populate NoSQL database (CouchDB) using X5-json from X4Pro as data source<br>
+</p>
+
+Distribution (see
+ <a href="readme.txt" target="_blank">readme</a>,
+ <a href="LICENSE.TXT" target="_blank">license</a>,
+ <a href="COPYRIGHT.TXT" target="_blank">copyright</a>), ver.2026-08-21:<br> 
+- X4Pro/SQLite database, ver.2026-08-16<br>
+- Python and Fortran demo-programs, ver.2026-08-18<br>
+- Bash-scripts running demo-programs (CLI 
+  <script language="javascript">
+    outLink('x4pro-cli.html','[1]','Command Line Interface for running demo-codes','');
+  </script>
+and TUI
+  <script language="javascript">
+    outLink('x4pro-tui.html','[2]','Basic interactive script','');
+    outLink('x4pro-dia.html','[3]','Menu-type interactive script','');
+  </script>), database statistics, ver.2026-08-16<br>
+- consists of 6 parts:<br>
+
+<table border=1>
+<tr>
+<td style="vertical-align:middle;"><i>#</i></td>
+<td style="vertical-align:middle;"><i>Dir</i></td>
+<td style="vertical-align:middle;"><i>Description</i></td>
+<td style="vertical-align:middle;"><i>SF:MF</i></td>
+<td style="vertical-align:middle;"><i>Notes</i></td>
+<td style="vertical-align:middle;"><i>Demo plot/output [code][modules]</i></td>
+<td style="vertical-align:middle;"><i>Comment</i></td>
+</tr>
+
+<tr>
+<td colspan=7 class=sect>
+<div class=part><b><big>Part-1.</big></b> Retrieve data from local EXFOR database</div>
+<span class=topic>Python. </span>Retrieve experimental data from X4Pro database and plot data using Plotly amd Matplotlib
+</td>
+</tr>
+
+<tr>
+<td>0.</td>
+<td>part1-0-sig</td>
+<td> Cross sections<br>
+</td>
+<td><span class=sigma>SIG</span></td>
+<td> Al-27(n,a):CS(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part1-0-sig/out00/Al27na-1.html','Al27na-1.html','Interactive plot','/')
+    outLink('part1-0-sig/out00/Al27na-1.json','json','Output',' &nbsp;')
+    outLink('part1-0-sig/sig0x.py','[code]','Main code','<br>');
+    outLink('part1-0-sig/out00/Al27na-2.html','Al27na-2.html','Plot','/');
+    outLink('part1-0-sig/out00/Al27na-2.json','json','Output',' &nbsp;');
+    outLink('part1-0-sig/sig0x2.py','[code]','Main code','');
+  </script>
+</td>
+<td>
+ Code: single .py file for copy/paste
+ <br>2) data groupped Reaction-codes
+</td>
+</tr>
+
+<tr>
+<td>1.</td>
+<td>part1-1-sig</td>
+<td> Cross sections<br>
+</td>
+<td><span class=sigma>SIG</span></td>
+<td> Al-27(n,a):CS(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part1-1-sig/out00/Al27na-1.html','Al27na-1.html','Interactive plot','/')
+    outLink('part1-1-sig/out00/Al27na-1.json','json','Output',' &nbsp;')
+    outLink('part1-1-sig/sig0x.py','[code]','Main code','');
+    outLink('part1-1-sig/rx4db.py','[rx4db]','Reading rows to Datasets','<br>');
+    outLink('part1-1-sig/out00/Al27na-2.html','Al27na-2.html','Plot','/');
+    outLink('part1-1-sig/out00/Al27na-2.json','json','Output',' &nbsp;');
+    outLink('part1-1-sig/sig0x2.py','[code]','Main code','');
+  </script>
+</td>
+<td>
+ Coding: modular (several .py files)
+ <br>2) data groupped Reaction-codes
+</td>
+</tr>
+
+<tr>
+<td>2.</td>
+<td>part1-2-da</td>
+<td> Angular distributions<br>
+</td>
+<td><span class=sigma>DA</span></td>
+<td> O-16(a,el):DA(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part1-2-da/out00/da0an.html','da0an.html','Interactive plot','/')
+    outLink('part1-2-da/out00/da0an.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part1-2-da/out00/da0an.json','json','Output','&nbsp;');
+    outLink('part1-2-da/da0an.py','[code]','Main code','');
+    outLink('part1-2-da/rx5da.py','[rx5da]','Module','');
+  </script>
+</td>
+<td>Plotly/matplotlib</td>
+</tr>
+
+<tr>
+<td>3.</td>
+<td>part1-3-dap</td>
+<td> Angular distributions (partial)<br>
+</td>
+<td><span class=sigma>PAR,DA</span></td>
+<td> Li-6(he3,p):DA(&theta;)</td>
+<td>
+  <script language="javascript">
+    outLink('part1-3-dap/out00/dap0ei.html','dap0ei.html','Interactive plot','/')
+    outLink('part1-3-dap/out00/dap0ei.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part1-3-dap/out00/dap0ei.json','json','Output','&nbsp;');
+    outLink('part1-3-dap/dap0ei.py','[code]','Main code','');
+    outLink('part1-3-dap/rx4dap_ei.py','[rx4dap_ei]','Module','');
+  </script>
+</td>
+<td>Plotly/matplotlib</td>
+</tr>
+
+<tr>
+<td>4.</td>
+<td>part1-4-de</td>
+<td>Emission spectra<br>
+</td>
+<td><span class=sigma>DE</span></td>
+<td>Th-232(n,xn):DE(Eo)</td>
+<td>
+  <script language="javascript">
+    outLink('part1-4-de/out00/de0eo.html','de0eo.html','Interactive plot','/')
+    outLink('part1-4-de/out00/de0eo.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part1-4-de/out00/de0eo.json','json','Output','&nbsp;');
+    outLink('part1-4-de/de0eo.py','[code]','Main code','');
+    outLink('part1-4-de/rx5de.py','[rx5de]','Module','');
+  </script>
+</td>
+<td>Plotly/matplotlib</td>
+</tr>
+
+<tr>
+<td>5.</td>
+<td>part1-5-dae</td>
+<td>Double differntial cross sections</td>
+<td><span class=sigma>DA/DE</span></td>
+<td>F-19(n,xn):DAE(Eo)</td>
+<td>
+  <script language="javascript">
+    outLink('part1-5-dae/out00/dae0eo.html','dae0eo.html','Interactive plot','/')
+    outLink('part1-5-dae/out00/dae0eo.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part1-5-dae/out00/dae0eo.json','json','Output','&nbsp;');
+    outLink('part1-5-dae/dae0eo.py','[code]','Main code','');
+    outLink('part1-5-dae/rx4dae_e2.py','[rx4dae_e2]','Module','');
+  </script>
+</td>
+<td>Plotly/matplotlib</td>
+</tr>
+
+<tr>
+<td>6.</td>
+<td>part1-6-fy</td>
+<td>Fission yeild (mass distribution)</td>
+<td><span class=sigma>FY</span></td>
+<td>U-238(n,f):FY(A)|Ei14MeV
+<br><br>
+U-235(n,f):hist2(A,TKE)
+</td>
+<td>
+  <script language="javascript">
+    outLink('part1-6-fy/out00/U238nf-fy.html','U238nf-fy.html','Interactive plot','/')
+    outLink('part1-6-fy/out00/U238nf-fy.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part1-6-fy/out00/U238nf-fy.json','json','Output','&nbsp;');
+    outLink('part1-6-fy/fy0x.py','[code]','Main code','');
+    outLink('part1-6-fy/rx4fya.py','[rx4fya]','Module','<br>');
+    outLink('part1-6-fy/out00/me0x.html','me0x.html','Interactive plot','&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;')
+    outLink('part1-6-fy/me0plt2d.py','[code]','Main code','<br>');
+    outLink('part1-6-fy/out00/me0mpl3d.pdf','me0mpl3d.pdf','Matplotlib:PDF','&nbsp; &nbsp;')
+    outLink('part1-6-fy/me0mpl3d.py','[code]','Main code','<br>');
+    outLink('part1-6-fy/out00/me0mpl2d2.pdf','me0mpl2d2.pdf','Matplotlib:PDF','&nbsp;')
+    outLink('part1-6-fy/me0mpl2d2.py','[code]','Main code','');
+  </script>
+</td>
+<td>
+ 1) Plotly/matplotlib
+<br>2) Plotly: Contour-2D <br> 3) Matplotlib: plot_surface-3D
+<br>4) Matplotlib-2d, 2 subplots<!---: pcolormesh, contourf--->
+</td>
+</tr>
+
+<tr>
+<td>7.</td>
+<td>part1-7-covar</td>
+<td>Covariance data stored in EXFOR</td>
+<td><span class=sigma>SIG</span></td>
+<td>1) <sup>241</sup>Am(n,2n) correlations
+<br> &nbsp; &nbsp; ERR-T,MONIT-ERR,ERR-5
+<br>2) Reaction-reaction <br> &nbsp; &nbsp; correlations
+</td>
+<td>
+  <script language="javascript">
+    outLink('part1-7-covar/out00/covar1.tto.html','covar1.tto.html','plot','/')
+    outLink('part1-7-covar/out00/covar1.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part1-7-covar/out00/covar1-jFreeData.json','json','Output','&nbsp;');
+    outLink('part1-7-covar/covar1.py','[code]','Main code','<br><br>');
+
+    outLink('part1-7-covar/out00/covar2.tto.html','covar2.tto.html','plot','/')
+    outLink('part1-7-covar/out00/covar2.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part1-7-covar/out00/covar2-jFreeData.json','json','Output','&nbsp;');
+    outLink('part1-7-covar/covar2.py','[code]','Main code','');
+
+  </script>
+</td>
+<td>
+ 1) Matplotlib-2d, 3 subplots<br><br>
+ 2) Matplotlib-2d, 1 subplot
+</td>
+</tr>
+
+<tr>
+<td>8.</td>
+<td bgcolor=#ddffff>part1-8-reac
+<span class=newdev>2026</span>
+</td>
+<td>Any type of EXFOR data</td>
+<td><span class=sigma>SIG, DA<br>
+DE, DAE<br>
+CSP, DAP<br>
+TKE, ETA<br>
+NUDAT<br>
+FY<br>
+</span></td>
+<td>1) Partial cross section CSP
+<br>2) Temperatire dependent CST
+<br>3) Total kinetic energy TKE
+<br>4) Neutron yield ETA
+<br>5) Neutron yield NUBAR
+<br> &nbsp; &nbsp; etc.
+</td>
+<td>
+  <script language="javascript">
+
+    outLink('part1-8-reac/out00/sig1p.html','sig1p.html','Partial cross section: interactive plot','/','1) CSP: ')
+    outLink('part1-8-reac/out00/sig1p.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/sig1p.json','json','Output',', ');
+    outLink('part1-8-reac/out00/sig1p.tto','tt-out','terminal-output','<br>');
+
+    outLink('part1-8-reac/out00/cst.html','cst.html','Temperature dependent cross section: interactive plot','/','2) CST: ')
+    outLink('part1-8-reac/out00/cst.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/cst.json','json','Output',', ');
+    outLink('part1-8-reac/out00/cst.tto','tt-out','terminal-output','<br>');
+
+
+    outLink('part1-8-reac/out00/tke1.html','tke1.html','Total Kinetic Energy: interactive plot','/','3) TKE: ')
+    outLink('part1-8-reac/out00/tke1.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/tke1.json','json','Output',', ');
+    outLink('part1-8-reac/out00/tke1.tto','tt-out','terminal-output','<br>');
+
+    outLink('part1-8-reac/out00/eta1.html','eta1.html','Neutron yield (Eta): interactive plot','/','4) ETA: ')
+    outLink('part1-8-reac/out00/eta1.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/eta1.json','json','Output',', ');
+    outLink('part1-8-reac/out00/eta1.tto','tt-out','terminal-output','<br>');
+
+    outLink('part1-8-reac/out00/nu1.html','nu1.html','Neutron yield (nu-bar): interactive plot','/','5) NUBAR: ')
+    outLink('part1-8-reac/out00/nu1.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/nu1.json','json','Output',', ');
+    outLink('part1-8-reac/out00/nu1.tto','tt-out','terminal-output','<br>');
+
+    outLink('part1-8-reac/reac1.py','[reac1.py]','Main',' &nbsp; &nbsp; &nbsp; &nbsp; main code<br>','&nbsp;- ');
+    outLink('part1-8-reac/reac1help.py','[reac1help.py]','Module',' &nbsp; display help-text<br>','&nbsp;- ');
+    outLink('part1-8-reac/reac1subr.py','[reac1subr.py]','Module',' &nbsp; retrieval subroutines<br>','&nbsp;- ');
+
+  </script>
+</td>
+<td>
+ 1) parameters: reaction-code, <br>
+ &nbsp; &nbsp;  x-variable, filters<br>
+ 2) descriptions, x-variables<br>
+ &nbsp; &nbsp; for groupping are taken<br>
+ &nbsp; &nbsp; from the database<br>
+<br>---under develpment---
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td>./</td>
+<td colspan=3 align=right>
+Common modules:
+</td>
+<td colspan=2>
+  <script language="javascript">
+    outLink('dbConn-sqlite.py','[dbConn.py]','Module',' &nbsp; &nbsp;database connectivity with SQLite<br>','1) ');
+    outLink('sqlsubr.py','[sqlsubr.py]','Module',' &nbsp; &nbsp; implementation of SQL operations<br>','2) ');
+    outLink('x4out.py','[x4out.py]','Module',' &nbsp; &nbsp; &nbsp; output datasets prepared for plotting (now: to JSON)<br>','3) ');
+    outLink('exfor2plot-plotly.py','[exfor2plot-plotly.py]','Module',' EXFOR plotting with Plotly<br>','4) ');
+    outLink('exfor2plot-matpl.py','[exfor2plot-matpl.py]','Module',' EXFOR plotting with Matplotlib<br>','5) ');
+  </script>
+</td>
+</tr>
+
+
+
+<tr>
+<td colspan=7 class=sect>
+<span class=topic>Fortran.</span>
+Retrieve X4Pro data from Fortan program via C subroutines</td>
+</tr>
+
+<tr>
+<td>8.</td>
+<td>part1-fortran/</td>
+<td>
+0) Simple example Fortran executing SQL
+<br>1) Double differntial cross sections
+<br>2) Cross sections
+<br>3) Cross sections
+</td>
+<td><span class=sigma>--<br>DA/DE<br>SIG<br>SIG</span></td>
+<td>First 8 Entries from F-Area<br>F-19(n,xn):DAE(Eo)<br>Mn-55(n,a):CS(Ei)<br>Mn-55(n,a):CS(Ei) &rarr;C4</td>
+<td>
+  <script language="javascript">
+    outLink('part1-fortran/out00/f1.tto.html','f1.tto.html','Text output',' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ')
+    outLink('part1-fortran/f1.f','[code]','Main code','<br>');
+    outLink('part1-fortran/out00/dae1e2.tto.html','dae1e2.tto.html','Text output',' &nbsp; ')
+    outLink('part1-fortran/dae1e2.f','[code]','Main code','<br>');
+    outLink('part1-fortran/out00/sig1.tto.html','sig1.tto.html','Text output','&nbsp; &nbsp; &nbsp; &nbsp; ')
+    outLink('part1-fortran/sig1.f','[code]','Main code','<br>');
+    outLink('part1-fortran/out00/sig1toc4.tto','sig1toc4.tto','Terminal output',', ')
+    outLink('part1-fortran/out00/sig1toc4.c4','C4','C4 file',' &nbsp; ')
+    outLink('part1-fortran/sig1toc4.f','[code]','Main code','<br>');
+  </script>
+</td>
+<td>
+ No plots, output text only
+</td>
+</tr>
+
+<tr>
+<td>9.</td>
+<td>part1-fortran/
+<span class=sigma>
+<br>See also implemen-<br>tation in Python:
+<br><a href="#part3-7-legrs2da">part3-7-legrs2da</a>
+</span>
+</td>
+<td>4) Retrieve LEG/RS and SIG from
+<br>the same Entry; calculate missing 
+<br>Legendre coefficient L[0];
+<br>calculate angular distributions
+</td>
+<td><span class=sigma>LEG/RS<br>SIG</span></td>
+<td>Cu-0(n,el):DA,,LEG/RS(Ei)
+<br><span class=sigma>SIG&rarr;L[0]<br>L[0..n],&theta;&rarr;DA(&theta;)</span>
+</td>
+<td>
+  <script language="javascript">
+    outLink('part1-fortran/out00/legrs2da.tto.html','legrs2da.tto.html','All output',', ')
+    outLink('part1-fortran/out00/legrs2da.c4','C4','C4 file',', ')
+    outLink('part1-fortran/out00/legrs2da.c4.zvd','ZVD','ZVD file','<br>')
+    outLink('part1-fortran/legrs2da.f','[code]','Main code','<br>');
+    outLink('part1-fortran/out00/legrs2da.tto','output','Terminal output','','terminal:');
+  </script>
+</td>
+<td>
+<span class=sigma>FIND: &nbsp;SIG from &lt;Entry, Reaction, Ei&gt;
+<br>CALC: <span class=sigma>SIG/4&pi; &rarr; L[0];
+<br>CALC(Ei): L[0..n],&theta; &rarr; DA(Ei,&theta;)
+</span>
+</td>
+</tr>
+
+
+<tr>
+<td></td>
+<td>part1-fortran/</td>
+<td colspan=3 align=right>
+Common subroutines:
+</td>
+<td colspan=2>
+  <script language="javascript">
+    outLink('part1-fortran/sql1sub.c','[sql1sub.c]','Module',': fortran-to-sqlite3 adapter (by V.Zerkin)<br>','c1) ');
+    outLink('part1-fortran/sqlite3.c','[sqlite3.c]','Module','','c2) ');
+    outLink('part1-fortran/sqlite3.h','[sqlite3.h]','Module',' sqlite3 amalgamation (by SQLite team)<br>');
+  </script>
+
+</td>
+</tr>
+
+
+<tr>
+<td colspan=7 class=sect>
+<div class=part><b><big>Part-2.</big></b> Retrieve local EXFOR and remote ENDF data</div>
+<span class=topic>Python. </span>Retrieve and plot experimental (local EXFOR) and evaluated data (Web ENDF-API)
+</td>
+</tr>
+
+<tr>
+<td>1.</td>
+<td>part2-1-sig1</td>
+<td>Cross sections</td>
+<td><span class=sigma>SIG</span></td>
+<td> Al-27(n,a):CS(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part2-1-sig1/out00/Al27na.html','Al27na.html','Interactive plot','/')
+    outLink('part2-1-sig1/out00/Al27na.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part2-1-sig1/out00/Al27na.json','json','Output','&nbsp;');
+    outLink('part2-1-sig1/sig1x.py','[code]','Main code','');
+    outLink('part2-1-sig1/rx4db.py','[rx4db]','Module','<br>');
+    outLink('part2-1-sig1/out00/Al27na2.html','Al27na2.html','Interactive plot','/')
+//  outLink('part2-1-sig1/out00/Al27na2.pdf','pdf','Matplotlib:PDF','&nbsp;');
+    outLink('part2-1-sig1/out00/Al27na2.json','json','Interactive plot',' &nbsp; ')
+  </script>
+
+</td>
+<td>
+ 1) using Plotly and Matrplotlib
+ <br>2) data groupped Reaction-codes
+</td>
+</tr>
+
+
+<tr>
+<td>2.</td>
+<td>part2-2-da1an</td>
+<td>Angular distributions (Ei:fixed)</td>
+<td><span class=sigma>DA</span></td>
+<td> Mn-55(a,el):DA(&theta;)</td>
+<td>
+  <script language="javascript">
+    outLink('part2-2-da1an/out00/da1an.html','da1an.html','Interactive plot','/')
+    outLink('part2-2-da1an/out00/da1an.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part2-2-da1an/out00/da1an.json','json','Output','&nbsp; ');
+    outLink('part2-2-da1an/da1an.py','[code]','Main code','');
+    outLink('part2-2-da1an/rx5da.py','[rx5da]','Module','');
+  </script>
+</td>
+<td>
+ DA + MF4/MF34<span style="color:red;"><i>#new</i></span>
+</td>
+</tr>
+
+<tr>
+<td>3.</td>
+<td>part2-3-da1ei</td>
+<td>Angular distributions (Angle:fixed)</td>
+<td><span class=sigma>DA</span></td>
+<td>C-12(a,el):DA(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part2-3-da1ei/out00/da1ei.html','da1ei.html','Interactive plot','/')
+    outLink('part2-3-da1ei/out00/da1ei.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part2-3-da1ei/out00/da1ei.json','json','Output','&nbsp; ');
+    outLink('part2-3-da1ei/da1ei.py','[code]','Main code','');
+    outLink('part2-3-da1ei/rx4da_ei.py','[rx4da_ei]','Module','');
+  </script>
+</td>
+<td>
+ Plotly/matrplotlib
+</td>
+</tr>
+
+<tr>
+<td>4.</td>
+<td>part2-4-de1eo</td>
+<td>Emission spectra<br>
+</td>
+<td><span class=sigma>DE</span></td>
+<td>Th-232(n,xn):DE(Eo)</td>
+<td>
+  <script language="javascript">
+    outLink('part2-4-de1eo/out00/de1eo.html','de1eo.html','Interactive plot','/')
+    outLink('part2-4-de1eo/out00/de1eo.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part2-4-de1eo/out00/de1eo.json','json','Output','&nbsp; ');
+    outLink('part2-4-de1eo/de1eo.py','[code]','Main code','');
+    outLink('part2-4-de1eo/rx5de.py','[rx5de]','Module','');
+  </script>
+</td>
+<td>Plotly/matplotlib</td>
+</tr>
+
+<tr>
+<td>5.</td>
+<td>part2-5-dae1eo</td>
+<td>Double differntial cross sections</td>
+<td><span class=sigma>DA/DE</span></td>
+<td>F-19(n,xn):DAE(Eo)</td>
+<td>
+  <script language="javascript">
+    outLink('part2-5-dae1eo/out00/dae1eo.html','dae1eo.html','Interactive plot','/')
+    outLink('part2-5-dae1eo/out00/dae1eo.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part2-5-dae1eo/out00/dae1eo.json','json','Output','&nbsp;<br>');
+    outLink('part2-5-dae1eo/dae1eo.py','[code]','Main code','');
+    outLink('part2-5-dae1eo/rx4dae_e2.py','[rx4dae_e2]','Module','');
+  </script>
+</td>
+<td>Plotly/matplotlib</td>
+</tr>
+
+<tr>
+<td>6.</td>
+<td>part2-6-fy</td>
+<td>Fission yeild (mass distribution)</td>
+<td><span class=sigma>FY</span></td>
+<td>	U-238(n,f):FY(A)|Ei14MeV</td>
+<td>
+  <script language="javascript">
+    outLink('part2-6-fy/out00/U238nf-fy.html','U238nf-fy.html','Interactive plot','/')
+    outLink('part2-6-fy/out00/U238nf-fy.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part2-6-fy/out00/U238nf-fy.json','json','Output','&nbsp;<br>');
+    outLink('part2-6-fy/fy1x.py','[code]','Main code','');
+    outLink('part2-6-fy/rx4fya.py','[rx4fya]','Module: retrieve data from EXFOR','');
+    outLink('part2-6-fy/rweb1fy.py','[rweb1fy]','Module: retrieve data from ENDF','');
+  </script>
+</td>
+<td>Plotly/matplotlib</td>
+</tr>
+
+<tr>
+<td>7.</td>
+<td bgcolor=#ffffff>part2-7-fye
+<span class=newdev0>2024</span>
+</td>
+<td>Fission yeild (energy distribution)</td>
+<td><span class=sigma>FY</span></td>
+<td>	U-238(n,f):FY(E)</td>
+<td>
+  <script language="javascript">
+    outLink('part2-7-fye/out00/u235-nf-cd115g-cumFY.html','u235-nf-cd115g-cumFY.htm','Interactive plot','/')
+    outLink('part2-7-fye/out00/u235-nf-cd115g-cumFY.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part2-7-fye/out00/exfor-u235-nf-cd115g-cumFY.json','json','Output from EXFOR','&nbsp;<br>');
+    outLink('part2-7-fye/fy1e.py','[code]','Main code','');
+    outLink('part2-7-fye/rx4fye.py','[rx4fye]','Module: retrieve data from EXFOR','');
+    outLink('part2-7-fye/e4subr.py','[e4subr]','Module: retrieve data from ENDF','');
+//  outLink('part2-7-fye/websubr.py','[websubr]','Module: calling Web_API','');
+  </script>
+</td>
+<td>Plotly/matplotlib</td>
+</tr>
+
+
+<tr>
+<td>8.</td>
+<td bgcolor=#ddffff>part2-8-sig1par
+<span class=newdev>2026</span>
+</td>
+<td>Partial cross section</td>
+<td><span class=sigma>CSP</span></td>
+<td>	Li-7(n,inl)Li-7,par,sig<br>Li-7(n,n'):MF3.MT51</td>
+<td>
+  <script language="javascript">
+
+    outLink('part2-8-sig1par/out00/Li7ninl.html','Li7ninl.html','Neutron yield (nu-bar): interactive plot','/','data:')
+    outLink('part2-8-sig1par/out00/Li7ninl.html.png','png','Plotly:png','/');
+    outLink('part2-8-sig1par/out00/Li7ninl.json','json','Output',', ');
+    outLink('part2-8-sig1par/out00/sig1par.tto','tt-out','terminal-output','<br>');
+
+    outLink('part2-8-sig1par/sig1par.py','[sig1par.py]','Main',' &nbsp; &nbsp; &nbsp; main code<br>','&nbsp;- ');
+    outLink('part2-8-sig1par/rx4sig1par.py','[rx4sig1par.py]','Module',' &nbsp;retrieval subroutines<br>','&nbsp;- ');
+
+  </script>
+</td>
+<td><br>---in progress---</td>
+</tr>
+
+
+<tr>
+<td></td>
+<td colspan=4 align=right>
+Additional common modules:
+</td>
+<td colspan=2>
+  <script language="javascript">
+    outLink('websubr.py','[websubr.py]','Module',' &nbsp; &nbsp;GET: download text from NDS web-site<br>','6) ');
+    outLink('rweb11.py','[rweb11.py]','Module',' &nbsp; &nbsp; ENDF Web retrieval (SIG)<br>','7) ');
+    outLink('rweb12.py','[rweb12.py]','Module',' &nbsp; &nbsp; ENDF Web retrieval (DA, DE, DAE)<br>','8) ');
+    outLink('endf2plot-plotly.py','[endf2plot-plotly.py]','Module',' ENDF plotting with Plotly<br>','9) ');
+    outLink('endf2plot-matpl.py','[endf2plot-matpl.py]','Module',' ENDF plotting with Matplotlib<br>','10) ');
+  </script>
+</td>
+</tr>
+
+
+<tr>
+<td colspan=7 class=sect>
+<div class=part><b><big>Part-3.</big></b> EXFOR data corrections and recalculations
+<span style="color:red;">(for experts)</span>
+</div>
+<span class=topic>Python.</span>
+EXFOR data corrections (automatic*, users, experts*) and calculations + plot with ENDF data
+<br>
+&nbsp; &nbsp; &nbsp; 
+<span class=note>
+<i>*Note. All input for corrections (monitor CS data, decay data, experts' operations) are stored in the database.</i>
+</span>
+</td>
+</tr>
+
+<tr>
+<td>1.</td>
+<td>part3-1-auto1</td>
+<td>Automatically renormalize CS using<br>old monitor CS and new standards</td>
+<td><span class=sigma>SIG</span></td>
+<td>Mn-55(n,a):CS(Ei)<br>mon/std from database</td>
+<td>
+  <script language="javascript">
+    outLink('part3-1-auto1/out00/auto1.html','auto1.html','Interactive plot','/')
+    outLink('part3-1-auto1/out00/auto1.pdf','pdf','Matplotlib:PDF',' ');
+    outLink('part3-1-auto1/mn55na.py','[code]','Main code','');
+    outLink('part3-1-auto1/mn55na_sub.py','[mn55na_sub]','Module','<br>');
+    outLink('part3-1-auto1/out00/mn55na-0pt.json','mn55na-0pt.json','Output','<br>','orig.-retrieved: ');
+    outLink('part3-1-auto1/out00/mn55na-1pt.json','mn55na-1pt.json','Output','<br>','auto-corrected: ');
+  </script>
+</td>
+<td>AUTO[0]
+<br>[0]: MONITOR, MONIT-REF, MONIT,..
+</td>
+</tr>
+
+<tr>
+<td>2.</td>
+<td>part3-2-user1</td>
+<td>Correct data by user's program</td>
+<td><span class=sigma>Ratio</span></td>
+<td>pu239/u235(n,f):(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part3-2-user1/out00/user1.html','user1.html','Interactive plot','/')
+    outLink('part3-2-user1/out00/user1.pdf','pdf','Matplotlib:PDF','&nbsp;');
+    outLink('part3-2-user1/pu239nf203.py','[code]','Main code','');
+    outLink('part3-2-user1/myCorr1.py','[myCorr1]','Module','<br>');
+    outLink('part3-2-user1/pu239nf203sql.py','[pu239nf203sql]','Module','');
+    outLink('part3-2-user1/pu239nf203corr.py','[pu239nf203corr]','Module','');
+  </script>
+</td>
+<td>USER</td>
+</tr>
+
+<tr>
+<td>3.</td>
+<td>part3-3-expert1</td>
+<td>Apply experts corrections stored in <br>X4Pro database</td>
+<td><span class=sigma>SIG</span></td>
+<td>Zn-64(n,p):CS(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part3-3-expert1/out00/expert1.html','expert1.html','Interactive plot','/')
+    outLink('part3-3-expert1/out00/expert1.pdf','pdf','Matplotlib:PDF','&nbsp;');
+    outLink('part3-3-expert1/x13597002.py','[code]','Main code','');
+    outLink('part3-3-expert1/corr_subr.py0','[corr_subr]','Module','<br>');
+    outLink('part3-3-expert1/x13597002sub.py','[x13597002sub]','Module',';');
+    outLink('part3-3-expert1/out00/x12898sig.tto','output','Output','<br>','terminal:');
+    outLink('part3-3-expert1/out00/expert1-orig.json','orig.json','Output','<br>','orig.-retrieved: ');
+    outLink('part3-3-expert1/out00/expert1-corr.json','corr.json','Output','<br>','corrected-by-expert-db: ');
+  </script>
+</td>
+<td>EXPERT</td>
+</tr>
+
+<tr>
+<td>4.</td>
+<td>part3-4-auto2</td>
+<td>Automatically renormalize CS using
+<br>old monitor CS and new standards,
+<br>old and new decay data
+</td>
+<td><span class=sigma>SIG</span></td>
+<td>V-51(n,p):CS(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part3-4-auto2/out00/auto2.html','auto2.html','Interactive plot','/')
+    outLink('part3-4-auto2/out00/auto2.pdf','pdf','Matplotlib:PDF','&nbsp;');
+    outLink('part3-4-auto2/x12898sig.py','[code]','Main code','');
+    outLink('part3-4-auto2/x12898sig_sub.py','[x12898sig_sub]','Module','<br>');
+    outLink('part3-4-auto2/out00/auto2-orig.json','orig.json','Output','<br>','orig.-retrieved: ');
+    outLink('part3-4-auto2/out00/auto2-auto.json','auto.json','Output','<br>','auto-corrected: ');
+  </script>
+</td>
+<td>AUTO[0][1][2]
+<br>[1]: DECAY-DATA
+<br>[2]: DECAY-MON
+</td>
+</tr>
+
+<tr>
+<td>5.</td>
+<td>part3-5-ratio2sig</td>
+<td>Retrieve ratios, calculate CS and 
+<br>uncertainties using latest standards
+</td>
+<td><span class=sigma>Ratio</span></td>
+<td>V-51(n,p)/U-238(n,f):(Ei)
+<br><span class=sigma>Ratio&rarr;SIG</span>
+</td>
+<td>
+  <script language="javascript">
+    outLink('part3-5-ratio2sig/out00/ratio2cs.html','ratio2cs.html','Interactive plot','/')
+    outLink('part3-5-ratio2sig/out00/ratio2cs.pdf','pdf','Matplotlib:PDF','&nbsp;');
+    outLink('part3-5-ratio2sig/x12898ratio2sig.py','[code]','Main code','');
+    outLink('part3-5-ratio2sig/x12898sig_sub.py','[x12898sig_sub]','Module','<br>');
+    outLink('part3-5-ratio2sig/out00/x12898ratio.json','ratio.json','Output','<br>','orig.-retrieved: ');
+    outLink('part3-5-ratio2sig/out00/x12898ratio2sig.json','sig.json','Output','<br>','auto-corrected: ');
+  </script>
+</td>
+<td>CALC: <span class=sigma>Ratio&times;U-238(n,f) &rarr; SIG</span></td>
+</tr>
+
+<tr>
+<td>6.</td>
+<td>part3-6-daleg2sig</td>
+<td>Retrieve Legendre coefficient L[0],
+<br>calculate cross sections and errors
+</td>
+<td><span class=sigma>LEG</span></td>
+<td>B-11(n,el):DA,,LEG(Ei)
+<br><span class=sigma>L[0]&rarr;SIG</span>
+</td>
+<td>
+  <script language="javascript">
+    outLink('part3-6-daleg2sig/out00/B11nel.html','B11nel.html','Interactive plot','/')
+    outLink('part3-6-daleg2sig/out00/B11nel.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part3-6-daleg2sig/out00/B11nel.json','json','Output','&nbsp;');
+    outLink('part3-6-daleg2sig/daleg2sig.py','[code]','Main code','');
+    outLink('part3-6-daleg2sig/rx4db2.py','[rx4db2]','Module','<br>');
+    outLink('part3-6-daleg2sig/out00/daleg2sig.tto','output','Module','','terminal:');
+  </script>
+</td>
+<td>CALC: <span class=sigma>L[0]&times;4&pi; &rarr; SIG</span></td>
+</tr>
+
+<tr>
+<td>7.</td>
+<td>
+<a name="part3-7-legrs2da"></a>
+part3-7-legrs2da</td>
+<td>Retrieve LEG/RS and SIG from
+<br>the same Entry; calculate missing 
+<br>Legendre coefficient L[0];
+<br>calculate angular distributions
+</td>
+<td><span class=sigma>LEG/RS<br>SIG</span></td>
+<td>Cu-0(n,el):DA,,LEG/RS(Ei)
+<br><span class=sigma>SIG&rarr;L[0]<br>L[0..n],&theta;&rarr;DA(&theta;)</span>
+</td>
+<td>
+  <script language="javascript">
+    outLink('part3-7-legrs2da/out00/Cu0nel_da.html','Cu0nel_da.html','Interactive plot','/')
+    outLink('part3-7-legrs2da/out00/Cu0nel_da.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part3-7-legrs2da/out00/Cu0nel_da_x4da.json','json0','DA downloaded from x4pro','/');
+    outLink('part3-7-legrs2da/out00/Cu0nel_da_legda.json','json1','DA calculated from LEG/RS and SIG','<br>');
+    outLink('part3-7-legrs2da/legrs2da.py','[code]','Main code','');
+    outLink('part3-7-legrs2da/rx5da.py','[rx5da]','Module','');
+    outLink('part3-7-legrs2da/rx5legrs.py','[rx5legrs]','Module','<br>');
+    outLink('part3-7-legrs2da/out00/legrs2da.tto','output','Module','','terminal:');
+  </script>
+</td>
+<td>
+<span class=sigma>FIND: &nbsp;SIG from &lt;Entry, Reaction, Ei&gt;
+<br>CALC: <span class=sigma>SIG/4&pi; &rarr; L[0];
+<br>CALC(Ei): L[0..n],&theta; &rarr; DA(Ei,&theta;)
+</span>
+</td>
+</tr>
+
+<tr>
+<td>8.</td>
+<td>part3-8-leg2r33</td>
+<td>Retrieve Legendre coefficient
+<br>calculate angular distributions
+<br>store R33dat (draft of R33)
+</td>
+<td><span class=sigma>LEG</span></td>
+<td>Li-6(p,he3):LEG(Ei)</td>
+<td>
+  <script language="javascript">
+    outLink('part3-8-leg2r33/out00/da1ei_leg2da.html','leg2da.html','Interactive plot','/')
+    outLink('part3-8-leg2r33/out00/da1ei_leg2da.pdf','pdf','Matplotlib:PDF','/');
+    outLink('part3-8-leg2r33/out00/da1ei_leg2da.r33dat','r33dat','Output','&nbsp; <br>');
+    outLink('part3-8-leg2r33/da1ei_leg.py','[code]','Main code','');
+    outLink('part3-8-leg2r33/rx4leg_ei.py','[rx4leg_ei]','Module','');
+    outLink('part3-8-leg2r33/r33out.py','[r33out]','Module','');
+  </script>
+</td>
+<td>
+CALC(Ei): L[0..n],&theta; &rarr; DA(Ei,&theta;)
+</td>
+</tr>
+
+
+
+
+<tr>
+<td></td>
+<td colspan=4 align=right>
+Additional common modules:
+</td>
+<td colspan=2>
+  <script language="javascript">
+    outLink('auto_corr.py','[auto_corr.py]','Module',' automatic correction of EXFOR data<br>','11) ');
+    outLink('expert_corr.py','[expert_corr.py]','Module',' expert\'s correction from X4Pro<br>','12) ');
+  </script>
+</td>
+</tr>
+
+
+<tr>
+<td colspan=7 class=sect>
+<div class=part><b><big>Part-4.</big></b> Export contents of X4Pro to NoSQL databases
+<span style="color:red;">(for NoSQL databases developers)</span>
+</div>
+<span class=topic>Python.</span>
+Retrieve data from X4Pro and store them as JSON in NoSQL-Document database
+<br>
+&nbsp; &nbsp;
+<span class=note>
+<i>*Note. Since 2022-08-30 X4Pro includes two tables presenting Subentries and Datasets in X5-json format.</i>
+<br><i>&nbsp; **Note. Since 2024-09-04 these two tables are included from X4Pro distribution on request only.</i>
+<br><i>***Note. X5-json is available on GitHub: <a href="https://github.com/vzerkin/EXFOR-X5json" target="_blank"
+>https://github.com/vzerkin/EXFOR-X5json</a>
+</i>
+</span>
+</td>
+</tr>
+
+<tr>
+<td>1.</td>
+<td>part4-0-couchdb</td>
+<td>Retrieve JSON presentation of 
+<br>Subent in X5-json format from Table 
+<br>x4pro_x4z, created a Dictionary 
+<br>"Entry" and store it as Document
+<br>in CouchDB database</td>
+<td><span class=sigma>-NA-</span></td>
+<td>JSON files for each Subent 
+<br>are retrieved row-by-row 
+<br>and collected into Python<br>List</td>
+<td>
+  <script language="javascript">
+    outLink('part4-0-couchdb/export2couchdb3.py','[code]','Main code','<br>','program: ');
+//    outLink('part4-0-couchdb/in1/10010.json.txt','10010.json','Input',' from X4Pro<br>','retrieved: ');
+    outLink('','','',' from X4Pro:<br>','Retrieved ');
+//    outLink('part4-0-couchdb/in1/10010001.png','10010001.json.png','Table x4pro_x4z in SQLite DB Browser','<br>','--subent.001 ');
+//    outLink('part4-0-couchdb/in1/10010002.png','10010002.json.png','Table x4pro_x4z in SQLite DB Browser','<br>','--subent.002 ');
+    outLink('part4-0-couchdb/in0/10010001.json.txt','10010001.json.txt','Table x4pro_x4z in SQLite DB Browser','<br>','--subent.001 ');
+    outLink('part4-0-couchdb/in0/10010002.json.txt','10010002.json.txt','Table x4pro_x4z in SQLite DB Browser','<br>','--subent.002 ');
+    outLink('part4-0-couchdb/out1/10010.json.txt','10010.json','json.dump of Entry in Python before db.save()',' in CouchDB<br>','stored: ');
+    outLink('part4-0-couchdb/out1/_all_docs.png','list','List of Documents of the database zv-exfor-001 in CouchDB-Fauxton',' of documents in CouchDB<br>','--entries: ');
+    outLink('part4-0-couchdb/out1/10010.png','10010.json','Entry 10010 in CouchDB-Fauxton',' in CouchDB<br>','--entry: ');
+  </script>
+</td>
+<td>
+  <script language="javascript">
+    outLink('part4-0-couchdb/howto.txt','[howto]','How to install, configure CouchDB','<br>');
+  </script>
+</td>
+</tr>
+
+
+
+
+
+<tr>
+<td colspan=7 class=sect>
+<div class=part><b><big>Part-5.</big></b> Search for mistakes in EXFOR library using X4Pro
+<span style="color:red;">(for NRDC-EXFOR compilers)</span>
+</div>
+<span class=topic>python</span>
+Retrieve data from X4Pro and store them as plain text, CSV and JSON files
+<br>
+<span class=topic>sqlite3</span>
+Simple command-line program (shell) for SQLite
+<br>
+<span class=topic>SQL</span>
+Structured Query Language used as instuctions for programs above.
+</td>
+</tr>
+
+<tr>
+<td>1.</td>
+<td>part5-0-sql
+<span class=newdev0>2024</span>
+</td>
+<td>
+1) NRDC-2024/A47: Analyse the zero
+<br>values coded under the headings
+<br>PARITY, ERR-T and DATA-ERR.
+<br>
+2) Text plotting DATA from a Dataset
+
+</td>
+<td><span class=sigma>-NA-</span></td>
+<td>
+Find non-physical values
+<br>of parity (==0)
+<br>and uncertainties (&lt;=0)
+</td>
+<td>
+  <script language="javascript">
+    outLink('part5-0-sql/err-t.py','[err-t.py]','ERR-T','','program:');
+    outLink('part5-0-sql/out00full/err-t.csv','[csv]','ERR-T<=0','',' found:');
+    outLink('part5-0-sql/out00full/err-t.json','[json]','ERR-T<=0','<br>',' ');
+    outLink('part5-0-sql/data-err.py','[data-err.py]','DATA-ERR','','program:');
+    outLink('part5-0-sql/out00full/data-err.csv','[csv]','DATA-ERR<=0','',' found:');
+    outLink('part5-0-sql/out00full/data-err.json','[json]','DATA-ERR<=0','<br>',' ');
+
+    outLink('part5-0-sql/exec1sql.py','[exec1sql.py]','Execute one SQL command','<br>','program:');
+    outLink('part5-0-sql/EN-le0.sql','[SQL]','SQL:EN<=0','',' &nbsp &bull; inc.Energy&lt;=0: ');
+    outLink('part5-0-sql/out00full/EN-le0py.csv','[CSV]','CSV/Excel:EN<=0','',' ');
+    outLink('part5-0-sql/out00full/EN-le0py.json','[JSON]','JSON:EN<=0','<br>',' ');
+
+    outLink('part5-0-sql/PTY-eq0.sql','[SQL]','SQL:EN<=0','',' &nbsp &bull; Parity==0: ');
+    outLink('part5-0-sql/out00full/PTY-eq0.csv','[CSV]','CSV/Excel:Parity==0','',' ');
+    outLink('part5-0-sql/out00full/PTY-eq0.json','[JSON]','JSON:Parity==0','<br>',' ');
+
+    outLink('https://www.sqlite.org/download.html','[sqlite3]','Execute SQL commands','','utility code:');
+    outLink('part5-0-sql/runme.sh','[runme.sh]','Execute SQL commands','<br>',' script:');
+    outLink('part5-0-sql/EN-le0.sql','[SQL]','SQL:EN<=0','',' &nbsp &bull; inc.Energy&lt;=0: ');
+    outLink('part5-0-sql/out00full/EN-le0.csv','[-csv]','-csv/Excel:EN<=0','',' ');
+    outLink('part5-0-sql/out00full/EN-le0.txt','[-box]','-box:EN<=0','<br>',' ');
+    outLink('part5-0-sql/sql3.sql','[SQL]','SQL:Histogram','',' &nbsp &bull; histogram: ');
+    outLink('part5-0-sql/out00full/sql3.txt','[-header -box]','-box:EN<=0','<br>',' result:');
+  </script>
+</td>
+<td>
+  <script language="javascript">
+    outLink('part5-0-sql/howto.txt','[howto]','How to install, configure CouchDB','<br>');
+  </script>
+</td>
+</tr>
+
+
+
+
+
+<tr>
+<td colspan=7 class=sect>
+<div class=part><b><big>Part-6.</big></b> X4Pro for <span style="color:red;">evaluators</span>:
+ratios to cross sections + automatic renormalization + evaluators flags and scores
+</div>
+<!---
+<span class=topic>python</span>
+Retrieve data from X4Pro and store them as plain text, CSV and JSON files
+<br>
+<span class=topic>sqlite3</span>
+Simple command-line program (shell) for SQLite
+<br>
+<span class=topic>SQL</span>
+Structured Query Language used as instuctions for programs above.
+--->
+</td>
+</tr>
+
+<tr>
+<td>1.</td>
+<td>part6-0-eval1flags
+<a name="part6"></a>
+<span class=newdev0>2025</span>
+</td>
+<td>
+Summary of tables with evaluators'
+<br>flags and scores
+</td>
+<td><span class=sigma>-NA-</span></td>
+<td>
+Flags: accepted/rejected
+<br>Scores:good/doubtful/outlier
+</td>
+<td>
+  <script language="javascript">
+    outLink('part6-0-eval1flags/eval_scores0.sql','[sql]','SQL','','Overview: ');
+    outLink('part6-0-eval1flags/out00/eval_scores0.txt.html','[txt]','text','<br>',' ');
+
+    outLink('part6-0-eval1flags/eval_scores1.sql','[sql]','SQL','','Experts: ');
+    outLink('part6-0-eval1flags/out00/eval_scores1.txt.html','[txt]','text','<br>',' ');
+
+    outLink('part6-0-eval1flags/eval_scores2.sql','[sql]','SQL','','IAEA-CRP review: ');
+    outLink('part6-0-eval1flags/out00/eval_scores2.txt.html','[txt]','text','<br>',' ');
+
+    outLink('part6-0-eval1flags/eval_scores3.sql','[sql]','SQL','','Stastical test: ');
+    outLink('part6-0-eval1flags/out00/eval_scores3.txt.html','[txt]','text','<br>',' ');
+
+    outLink('part6-0-eval1flags/exec2sql1.py','[exec2sql1.py]','execute sql, save csv and json','<br>'
+	,'---Save eval-score tables to CSV/JSON:<br> &nbsp; &nbsp; program:');
+    outLink('part6-0-eval1flags/eval_save0.sql','[sql]','Table: x4evalscore_file','',' &nbsp; &nbsp; select:');
+    outLink('part6-0-eval1flags/out00/eval_save0.csv'  ,'[csv]','x4evalscore_file','',' result:');
+    outLink('part6-0-eval1flags/out00/eval_save0.json' ,'[json]','x4evalscore_file','<br>',',');
+
+    outLink('part6-0-eval1flags/eval_save1.sql','[sql]','Table: x4evalscore','',' &nbsp; &nbsp; select:');
+    outLink('part6-0-eval1flags/out00/eval_save1.csv'  ,'[csv]','x4evalscore','',' result:');
+    outLink('part6-0-eval1flags/out00/eval_save1.json' ,'[json]','x4evalscore','<br>',',');
+  </script>
+</td>
+<td>
+  <script language="javascript">
+    outLink('part6-0-eval1flags/howto.txt','[howto]','How to install, configure CouchDB','<br>');
+  </script>
+  EXFOR-online 
+  <a href="https://nds.iaea.org/exfor/x4guide/e4flags/Evaluators_flags.pdf"
+	target="_blank"
+	>[evaluators_flags]</a>
+</td>
+</tr>
+
+
+<tr>
+<td>9.</td>
+<td bgcolor=#ddffff>part6-1-eval2sig
+<span class=newdev0>2025</span>
+</td>
+<td>
+Retrieve CS, ratios, monitor data;<br>
+convert ratios to cross sections,<br>
+renormalize CS to new standards<br>
+and new decay data.
+<div style="padding-top:4px;"></div>
+MyPlot: advanced interactive graphics.
+</td>
+<td><span class=sigma>SIG</span></td>
+<td>
+(N,ABS),,ALF &rarr; SIG<br>
+<span class=sigma>Ratio&times;std &rarr; SIG</span><br>
+Zn-64(N,P):SIG &rarr; renorm.
+</td>
+<td>
+  <script language="javascript">
+    outLink('part6-1-eval2sig/sig1r.py','[code]','Main code','','Python:');
+    outLink('part6-1-eval2sig/x4evalscore.py','[x4evalscore]','Module','');
+    outLink('part6-1-eval2sig/rx4dbr.py','[rx4dbr]','Module','<br>');
+    outLink('part6-1-eval2sig/out00/U235ng.html','U235ng.html','Interactive plot','/','&bull; ')
+    outLink('part6-1-eval2sig/out00/U235ng.pdf','pdf','Matplotlib:PDF','&nbsp;');
+    outLink('part6-1-eval2sig/out00/Pu240nf.html','Pu240nf.html','Interactive plot','/','&bull; ')
+    outLink('part6-1-eval2sig/out00/Pu240nf.pdf','pdf','Matplotlib:PDF','<br>');
+    outLink('part6-1-eval2sig/out00/Al27na.html','Al27na.html','Interactive plot','/','&bull; ')
+    outLink('part6-1-eval2sig/out00/Al27na.pdf','pdf','Matplotlib:PDF','&nbsp;');
+    outLink('part6-1-eval2sig/out00/Al27na2.html','Al27na2.html','Interactive plot','/','&bull; ')
+    outLink('part6-1-eval2sig/out00/Al27na2.pdf','pdf','Matplotlib:PDF','<br>');
+    outLink('part6-1-eval2sig/out00/zn64np.html','zn64np.html','Interactive plot','/','&bull; ')
+    outLink('part6-1-eval2sig/out00/zn64np.pdf','pdf','Matplotlib:PDF','<br>');
+
+    outLink('part6-1-eval2sig/myplot.py','[code]','Main code','','MyPlot:');
+    outLink('endf2plot_js.py','[endf2plot_js.py]','Module',',<br>',', ');
+    outLink('exfor2plot_js.py','[exfor2plot_js.py]','Module','<br>',' &nbsp; ');
+    outLink('part6-1-eval2sig/out00/Pu240nf-n-myplot.html','Pu240nf-myplot','Interactive plot','',' &bull; ')
+    outLink('part6-1-eval2sig/out00/Mn-55-myplot.html','Mn-55-myplot','Interactive plot','',' &bull; ')
+  </script>
+</td>
+<td>
+CALC: <span class=sigma>ALF&times;SIG:(n,f) &rarr; SIG(n,g)</span><br>
+CALC: <span class=sigma>(R1)/(R2)&times;std(R2) &rarr; SIG(R1)</span><br>
+CALC: SIG/mon&times;std &rarr; SIG
+<br><br>
+<span class=sigma>
+MyPlot: plotting stored JSON files
+<br>with more interactions (JavaScript)
+</span>
+</td>
+</tr>
+
+
+
+</table>
+
+<br>
+
+<font face="helvetica" size="1">
+<hr>
+  Created by <a HREF="mailto:zerkin@iaeand.iaea.org">V.Zerkin</a>, IAEA, 09-Dec-2021<br>
+  <script language="javascript">  document.write(" Last updated: "+document.lastModified) </script>
+</font>
+
+</body>
+</html>

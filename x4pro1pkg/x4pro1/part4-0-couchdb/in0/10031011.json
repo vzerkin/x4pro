@@ -1,0 +1,53 @@
+{"SUBENT":"10031011", "isub":11, "compiled":19990719, "TransID":"0000", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"49-IN-115(N,2N)49-IN-114-M,,SIG"
+	    ,"c4reac":"(N,2N),SIG"
+	    ,"combi":"a"
+	    ,"MF":3
+	    ,"MT":16
+	    ,"Units":"B"
+	    ,"reacs": [
+	    {"code":"49-IN-115(N,2N)49-IN-114-M,,SIG"
+		,"Reac":"N,2N"
+		,"SF1":"49-IN-115","Targ":{"code":"49-IN-115","nam":"In-115","ZA":49115}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"2N"
+		,"SF4":"49-IN-114-M","Prod":{"code":"49-IN-114-M","nam":"In-114-m","ZAProd":49114,"ProdM":"M"}
+		,"SF6":"SIG"
+		,"SF58":",SIG","Quant":"CS","BasicUnits":"B","QuantHlp":"Cross section"
+	    }]}
+	}
+      ]
+     ,"SAMPLE":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Metal foil, 7.6 x 7.6 cm, with thickness 0.1 cm or"
+		," less."]
+	}
+      ]
+     ,"DECAY-DATA":[
+	{"x4pointer":" "
+	,"x4codes":[{"Nucl":"49-IN-114-M1"
+	, "Radiations":[ {"Type":"DG", "Energy":[192.0], "Intensity":0.17}]}]
+	,"x4freetext":["Saturation activity (10**(-18) dps/nuclei) = 20.60.   1"]
+	}
+      ]
+    }
+    ,"DATA":{"ncols":2, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"DATA", "units":"MB", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ,{"icol":1, "header":"DATA-ERR", "units":"MB", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ]
+      ,"datacols":[
+	 ["DATA"      ,"DATA-ERR"  ]
+	,["MB"        ,"MB"        ]
+	,[" "         ," "         ]]
+      ,"data":[
+	 [1390.0      ,110.0       ]]}
+}

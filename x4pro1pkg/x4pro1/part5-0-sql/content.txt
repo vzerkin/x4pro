@@ -1,0 +1,1 @@
+SQL to find zero values of PARITY, ERR-T and DATA-ERR

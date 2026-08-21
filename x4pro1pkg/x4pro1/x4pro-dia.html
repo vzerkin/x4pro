@@ -1,0 +1,73 @@
+<html>
+<head>
+<style type="text/css" media="print">
+@page {
+  @bottom-right {
+    content: counter(page) " of " counter(pages);
+  }
+}
+</style>
+<script language=javascript>
+var num=0;
+    function out1(filename,w0,txt) {
+	var str=filename.replace(/ /g,'');
+	var ww=860;
+//	document.write('['+filename+']['+txt+']'+'<br>');
+
+	if (w0!=0) ww=w0;
+//	if (filename.indexOf('couchdb')>=0) hh=760;
+	num++;
+    document.write('<div style="page-break-inside:avoid;padding-bottom:10pt;">');
+        document.write('<div style="font-size:20pt;font-family:calibry;color:#a0a;'
+	+'border:1px solid #aaa;border-bottom:none;border-radius:6px 6px 0 0;margin-bottom:-1px;margin-left:10px;display:table;position:relative;'
+	+'padding-left:9px;padding-right:9px;background-color:#fff;">'
+	+num+') '+txt+'</div>');
+        document.write('<div style="border:1px solid #aaa;display:table;">');
+        document.write('<img src="'+str+'" width='+ww+'>');
+        document.write('</div><br>');
+    document.write('</div>');
+    }
+</script>
+</head>
+<body bgcolor="#ddddff">
+<h1>Menu-type interactive script <font color=red>x4pro2.sh</font> using 'dialog' utility</h1>
+
+<pre style="margin-top:0;">
+# Script:  x4pro2.sh
+# Author:  Viktor Zerkin <v.zerkin@gmail.com>
+# Created: 2026-02-19
+# Version: 2026-02-23
+# License: MIT
+# Run:     $ [bash] x4pro2.sh
+# Example: $ bash x4pro2.sh
+#          $ ./x4pro2.sh
+# Main menu:
+#          A  Run all examples
+#          L  List, select and run examples
+#          P  Select category/part and run examples
+#          C  Clean: remove generated output files
+#          S  Statistics of the local EXFOR-database
+#          V  Versions of system components
+#          Q  Exit
+</pre>
+
+
+<script language="javascript">
+//  out1("img/dia-screen0.png",0,"Start. Welcome.");
+    out1("img/dia-screen1.png",500,"Main menu");
+    out1("img/dia-screen2.png",720,"[P] - Select Category of demo-codes");
+    out1("img/dia-screen3.png",720,"[P.2] - List of demo-folders of selected Category");
+    out1("img/dia-screen5.png",720,"[P.2.OK] - Run runme.sh from selected demo-folders");
+    out1("img/dia-screen6.png",0,"[L] - List of demo-folders");
+    out1("img/dia-screen7.png",640,"[S] - EXFOR database statistics");
+    out1("img/dia-screen8.png",640,"[V] - Versions of platform and system components");
+</script>
+
+<hr>
+<font face="helvetica" size="1">
+  Created by <a HREF="mailto:zerkin@iaeand.iaea.org">V.Zerkin</a>, Vienna, 19-Feb-2026<br>
+  <script language="javascript">  document.write(" Last updated: "+document.lastModified) </script>
+</font>
+
+</body>
+</html>

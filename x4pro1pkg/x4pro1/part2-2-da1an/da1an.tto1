@@ -1,0 +1,822 @@
+Program: da1an.py, ver. 2025-01-24
+Author:  V.Zerkin, Vienna, 2021-2024
+Purpose: Retrieve and plot EXFOR/ENDF angular distributions
+
+Running: 2026-02-12 16:20:19
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+___getX4SqlSearch_DA_e: O-16 n,el  and (En>13900000.0 and En<14300000.0)
+SQL:
+select *                          
+from da1                          
+where (Target like 'O-16')  
+  and (Reaction like 'n,el') 
+--  and ((Author1 like 'Korzh') or (Author1 like 'Mellema'))
+ and (En>13900000.0 and En<14300000.0)
+
+datapoints: 162
+DS:1) 8-O-16(N,EL)8-O-16,,DA 1992 A.Takahashi #22766011 Ei:14100000.0
+ pt:1/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:15.0 y:637.0 dy:25.0 dx:None
+ pt:2/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:25.0 y:307.0 dy:12.0 dx:None
+ pt:3/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:35.0 y:96.9 dy:3.8 dx:None
+ pt:4/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:45.0 y:37.7 dy:1.5 dx:None
+ pt:5/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:50.0 y:38.4 dy:1.5 dx:None
+ pt:6/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:60.0 y:47.6 dy:1.9 dx:None
+ pt:7/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:70.0 y:44.7 dy:1.7 dx:None
+ pt:8/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:80.0 y:41.3 dy:1.7 dx:None
+ pt:9/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:90.0 y:36.3 dy:1.5 dx:None
+ pt:10/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:100.0 y:25.1 dy:1.0 dx:None
+ pt:11/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:110.0 y:13.8 dy:0.55 dx:None
+ pt:12/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:120.0 y:6.54 dy:0.26 dx:None
+ pt:13/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:130.0 y:6.02 dy:0.24 dx:None
+ pt:14/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:140.0 y:8.83 dy:0.35 dx:None
+ pt:15/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:150.0 y:13.4 dy:0.53 dx:None
+ pt:16/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:160.0 y:18.1 dy:0.72 dx:None
+DS:2) 8-O-16(N,EL)8-O-16,,DA 1989 L.Anli #13979002 Ei:14000000.0
+ pt:17/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:19.7 y:415.16027 dy:None dx:None
+ pt:18/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:25.9 y:245.5802 dy:None dx:None
+ pt:19/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:30.8 y:149.95898 dy:None dx:None
+ pt:20/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:35.8 y:90.438046 dy:None dx:None
+ pt:21/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:40.9 y:47.596876 dy:None dx:None
+ pt:22/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:47.6 y:28.445844 dy:None dx:None
+ pt:23/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:53.9 y:38.142342 dy:None dx:None
+ pt:24/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:60.0 y:43.88638 dy:None dx:None
+ pt:25/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:63.8 y:50.6374 dy:None dx:None
+ pt:26/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:67.7 y:56.318954 dy:None dx:None
+ pt:27/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:73.1 y:56.930076 dy:None dx:None
+ pt:28/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:78.4 y:53.232513 dy:None dx:None
+ pt:29/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:82.3 y:47.297988 dy:None dx:None
+ pt:30/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:87.6 y:44.246804 dy:None dx:None
+ pt:31/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:93.2 y:37.658364 dy:None dx:None
+ pt:32/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:96.4 y:28.831488 dy:None dx:None
+ pt:33/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:101.5 y:21.118315 dy:None dx:None
+ pt:34/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:107.6 y:15.752463 dy:None dx:None
+ pt:35/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:112.7 y:9.788074 dy:None dx:None
+ pt:36/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:117.8 y:6.094329 dy:None dx:None
+ pt:37/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:124.0 y:4.470148 dy:None dx:None
+ pt:38/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:129.2 y:6.453994 dy:None dx:None
+ pt:39/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:133.4 y:8.666732 dy:None dx:None
+ pt:40/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:139.7 y:13.3991055 dy:None dx:None
+ pt:41/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:143.9 y:17.100727 dy:None dx:None
+ pt:42/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:150.2 y:16.968047 dy:None dx:None
+ pt:43/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:158.7 y:21.965172 dy:None dx:None
+DS:3) 8-O-16(N,EL)8-O-16,,DA 1988 M.Baba #22157033 Ei:14100000.0
+ pt:44/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:25.0 y:392.42753 dy:34.587253 dx:None
+ pt:45/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:30.0 y:238.8331 dy:13.8366 dx:None
+ pt:46/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:37.5 y:98.11803 dy:6.9188816 dx:None
+ pt:47/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:45.0 y:40.348835 dy:3.3203568 dx:None
+ pt:48/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:52.5 y:36.060646 dy:2.9177228 dx:None
+ pt:49/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:60.0 y:46.270654 dy:3.6612516 dx:None
+ pt:50/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:80.0 y:52.58005 dy:3.2641029 dx:None
+ pt:51/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:90.0 y:41.314576 dy:2.6913262 dx:None
+ pt:52/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:105.0 y:22.47884 dy:1.3835584 dx:None
+ pt:53/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:120.0 y:10.276205 dy:0.7345899 dx:None
+ pt:54/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:135.0 y:7.7995285 dy:0.6079319 dx:None
+ pt:55/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:150.0 y:17.092893 dy:1.0800636 dx:None
+DS:4) 8-O-16(N,EL)8-O-16,,DA 1986 M.Baba #21984089 Ei:14200000.0
+ pt:56/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:25.0 y:387.0136 dy:27.931122 dx:None
+ pt:57/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:30.0 y:266.14588 dy:30.34997 dx:None
+ pt:58/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:44.9 y:54.84042 dy:4.2302352 dx:None
+ pt:59/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:60.0 y:51.643535 dy:3.8679522 dx:None
+ pt:60/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:75.0 y:59.284594 dy:4.4128355 dx:None
+ pt:61/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:79.9 y:52.439455 dy:3.9074537 dx:None
+ pt:62/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:105.0 y:28.199915 dy:2.1922537 dx:None
+ pt:63/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:120.0 y:12.549088 dy:1.0769741 dx:None
+ pt:64/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:134.9 y:7.6508233 dy:0.7477563 dx:None
+ pt:65/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:150.0 y:21.259787 dy:1.8401328 dx:None
+DS:5) 8-O-16(N,EL)8-O-16,,DA 1983 J.H.Dave #14189051 Ei:14000000.0
+ pt:66/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:6.2 y:1062.6466 dy:None dx:None
+ pt:67/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:9.6 y:941.78104 dy:None dx:None
+ pt:68/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:13.5 y:817.65443 dy:None dx:None
+ pt:69/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:23.8 y:420.9185 dy:None dx:None
+ pt:70/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:28.6 y:249.86073 dy:None dx:None
+ pt:71/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:33.5 y:160.44958 dy:None dx:None
+ pt:72/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:38.1 y:86.14222 dy:None dx:None
+ pt:73/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:43.4 y:46.16075 dy:None dx:None
+ pt:74/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:49.0 y:26.748454 dy:None dx:None
+ pt:75/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:54.6 y:35.647947 dy:None dx:None
+ pt:76/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:59.8 y:41.35187 dy:None dx:None
+ pt:77/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:64.5 y:47.993835 dy:None dx:None
+ pt:78/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:68.8 y:55.73259 dy:None dx:None
+ pt:79/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:73.8 y:57.339817 dy:None dx:None
+ pt:80/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:78.6 y:54.498103 dy:None dx:None
+ pt:81/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:83.4 y:50.77338 dy:None dx:None
+ pt:82/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:88.5 y:45.424085 dy:None dx:None
+ pt:83/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:93.8 y:38.269766 dy:None dx:None
+ pt:84/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:98.7 y:30.39968 dy:None dx:None
+ pt:85/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:103.6 y:21.881789 dy:None dx:None
+ pt:86/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:107.8 y:15.772406 dy:None dx:None
+ pt:87/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:113.3 y:9.8708235 dy:None dx:None
+ pt:88/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:117.8 y:6.0666096 dy:None dx:None
+ pt:89/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:124.3 y:4.43996 dy:None dx:None
+ pt:90/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:129.3 y:6.2866756 dy:None dx:None
+ pt:91/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:134.7 y:7.900205 dy:None dx:None
+ pt:92/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:138.8 y:13.153641 dy:None dx:None
+ pt:93/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:144.2 y:15.90667 dy:None dx:None
+ pt:94/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:149.5 y:16.42658 dy:None dx:None
+ pt:95/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:157.5 y:21.05559 dy:None dx:None
+DS:6) 8-O-16(N,EL)8-O-16,,DA 1982 S.G.Glendinning #10859002 Ei:13938000.0
+ pt:96/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:26.0 y:383.5 dy:18.236307 dx:None
+ pt:97/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:31.0 y:225.59 dy:10.55204 dx:None
+ pt:98/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:36.02 y:145.37 dy:8.354041 dx:None
+ pt:99/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:41.15 y:79.61 dy:5.3057536 dx:None
+ pt:100/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:46.63 y:42.18 dy:3.444809 dx:None
+ pt:101/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:52.58 y:25.18 dy:2.034374 dx:None
+ pt:102/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:58.23 y:33.58 dy:2.3902135 dx:None
+ pt:103/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:63.39 y:40.2 dy:2.304374 dx:None
+ pt:104/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:68.37 y:46.08 dy:2.6633798 dx:None
+ pt:105/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:73.32 y:52.67 dy:2.7451178 dx:None
+ pt:106/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:78.28 y:55.68 dy:2.6849008 dx:None
+ pt:107/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:83.24 y:52.62 dy:3.3012743 dx:None
+ pt:108/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:88.18 y:49.81 dy:2.8336216 dx:None
+ pt:109/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:93.09 y:46.51 dy:2.8638223 dx:None
+ pt:110/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:97.97 y:38.36 dy:2.8929673 dx:None
+ pt:111/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:102.82 y:31.01 dy:2.1794708 dx:None
+ pt:112/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:107.63 y:21.73 dy:1.5786913 dx:None
+ pt:113/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:112.42 y:16.32 dy:1.1692733 dx:None
+ pt:114/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:117.27 y:10.19 dy:0.7468736 dx:None
+ pt:115/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:122.31 y:6.22 dy:0.5572424 dx:None
+ pt:116/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:127.62 y:4.65 dy:0.4616044 dx:None
+ pt:117/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:132.84 y:6.62 dy:1.0476222 dx:None
+ pt:118/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:137.74 y:8.84 dy:0.6358775 dx:None
+ pt:119/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:142.44 y:14.02 dy:2.1309762 dx:None
+ pt:120/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:147.08 y:17.08 dy:2.3329554 dx:None
+ pt:121/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:151.7 y:17.81 dy:1.7801609 dx:None
+ pt:122/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:159.97 y:22.98 dy:1.7934045 dx:None
+DS:7) 8-O-16(N,EL)8-O-16,,DA 1972 G.C.Bonazzola #20496002 Ei:14100000.0
+ pt:123/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:149.3 y:18.7 dy:1.0 dx:1.0
+ pt:124/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:155.1 y:24.3 dy:1.0 dx:1.0
+ pt:125/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:161.1 y:30.1 dy:1.1 dx:1.0
+ pt:126/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:163.5 y:31.9 dy:1.4 dx:1.0
+ pt:127/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:166.9 y:31.5 dy:1.5 dx:1.0
+ pt:128/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:171.0 y:29.3 dy:1.5 dx:1.0
+ pt:129/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:178.0 y:24.8 dy:1.6 dx:1.0
+DS:8) 8-O-16(N,EL)8-O-16,,DA 1969 D.Meier #20907009 Ei:14140000.0
+ pt:130/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:7.5196652 y:879.0 dy:80.71179 dx:None
+ pt:131/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:10.002564 y:820.0 dy:74.474424 dx:None
+ pt:132/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:15.005715 y:667.0 dy:60.56072 dx:None
+ pt:133/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:19.998762 y:520.0 dy:47.066335 dx:None
+ pt:134/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:25.001055 y:384.0 dy:35.261787 dx:None
+ pt:135/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:25.99922 y:358.0 dy:32.86911 dx:None
+ pt:136/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:30.00291 y:241.0 dy:21.782013 dx:None
+ pt:137/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:37.505024 y:106.0 dy:9.74739 dx:None
+ pt:138/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:45.000553 y:43.0 dy:4.023295 dx:None
+ pt:139/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:49.999077 y:36.3 dy:3.5543337 dx:None
+ pt:140/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:60.0 y:49.1 dy:4.5097186 dx:None
+ pt:141/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:70.00123 y:55.7 dy:5.435087 dx:None
+ pt:142/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:75.00113 y:59.0 dy:5.4033417 dx:None
+ pt:143/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:80.0028 y:55.2 dy:5.250812 dx:None
+ pt:144/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:90.0 y:43.2 dy:4.327418 dx:None
+ pt:145/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:99.9972 y:30.8 dy:3.1054763 dx:None
+ pt:146/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:109.99877 y:19.2 dy:2.2882272 dx:None
+ pt:147/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:120.0 y:9.5 dy:1.3932067 dx:None
+ pt:148/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:130.00093 y:6.6 dy:1.3389683 dx:None
+ pt:149/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:139.99603 y:9.4 dy:1.4682357 dx:None
+ pt:150/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:147.50092 y:14.6 dy:2.1486266 dx:None
+ pt:151/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:154.99895 y:18.6 dy:2.4581042 dx:None
+DS:9) 8-O-16(N,EL)8-O-16,,DA 1966 W.J.Mcdonald #11383002 Ei:14100000.0
+ pt:152/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:22.0 y:476.01965 dy:23.800982 dx:None
+ pt:153/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:31.7 y:205.28235 dy:10.264117 dx:None
+ pt:154/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:41.1 y:71.266636 dy:3.5633317 dx:None
+ pt:155/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:52.3 y:34.473557 dy:1.7236777 dx:None
+ pt:156/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:64.5 y:44.24006 dy:2.212003 dx:None
+ pt:157/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:76.0 y:43.213136 dy:2.1606567 dx:None
+ pt:158/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:90.9 y:35.85809 dy:1.7929046 dx:None
+ pt:159/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:106.7 y:20.686924 dy:1.0343463 dx:None
+ pt:160/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:118.3 y:9.583169 dy:0.4791585 dx:None
+ pt:161/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:137.9 y:6.5357997 dy:0.32679 dx:None
+ pt:162/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:152.9 y:14.248108 dy:0.7124054 dx:None
+datasets: 9
+
+Datasets: 9
+1) 8-O-16(N,EL)8-O-16,,DA
+reacodes: 1 
+
+Plot:1/9) #22766011 1992, A.Takahashi pt:16
+Plot:2/9) #13979002 1989, L.Anli pt:27
+Plot:3/9) #22157033 1988, M.Baba pt:12
+Plot:4/9) #21984089 1986, M.Baba pt:10
+Plot:5/9) #14189051 1983, J.H.Dave pt:30
+Plot:6/9) #10859002 1982, S.G.Glendinning pt:27
+Plot:7/9) #20496002 1972, G.C.Bonazzola pt:7
+Plot:8/9) #20907009 1969, D.Meier pt:22
+Plot:9/9) #11383002 1966, W.J.Mcdonald pt:11
+
+___webEndfDataForPlot_DADE: [O-16] [n,el] [&ei=14100000.0&dy]
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=O-16&Reaction=n,el&Quantity=DA*&json&mats
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-02-12T16:20:19.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1052
+,"sections":[
+ { "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":272547,"SectID":19165533,"PenSectID":24013073,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"FEB18","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":301082,"SectID":21381198,"PenSectID":26215784,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":149457,"SectID":8943799,"PenSectID":13591104,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"FEB18","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":57311,"SectID":2248411,"PenSectID":7621070,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":15257,"SectID":206121,"PenSectID":7579152,"LibID":70,"LibName":"ENDF/B-VII.0","DATE":"DEC06","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":306577,"SectID":21522233,"PenSectID":26348605,"LibID":3400,"LibName":"JEFF-4.0","DATE":"APR21","AUTH":"Irsn Evaluation"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":150904,"SectID":9131237,"PenSectID":13783126,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":96715,"SectID":3753662,"PenSectID":6745281,"LibID":3200,"LibName":"JEFF-3.2","DATE":"090105","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":57953,"SectID":2301263,"PenSectID":6659946,"LibID":3120,"LibName":"JEFF-3.1.2","DATE":"090105","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":22892,"SectID":536477,"PenSectID":7552291,"LibID":3100,"LibName":"JEFF-3.1","DATE":"090105","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":226193,"SectID":14386180,"PenSectID":19009723,"LibID":51,"LibName":"JENDL-5","DATE":"20200323","AUTH":"S.Kunieda"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":39087,"SectID":1286400,"PenSectID":6852197,"LibID":40,"LibName":"JENDL-4.0","DATE":"20090629","AUTH":"Y.Kanda(Kyu) T.Murata(Naig)+"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":9389,"SectID":121394,"PenSectID":6626674,"LibID":30,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"Y.Kanda(Kyu) T.Murata(Naig)+"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":10066,"SectID":161803,"PenSectID":6583861,"LibID":31,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"Y.Kanda(Kyu) T.Murata(Naig)+"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":9171,"SectID":106194,"PenSectID":7402428,"LibID":60,"LibName":"ENDF/B-VI","DATE":"20011108","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":9564,"SectID":132135,"PenSectID":6554193,"LibID":61,"LibName":"ENDF/B-VI","DATE":"20011018","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":118518,"SectID":6050267,"PenSectID":10711755,"LibID":41031,"LibName":"BROND-3.1","DATE":"SEP14","AUTH":"Pronyaev V.G. et al."}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":78702,"SectID":3098527,"PenSectID":6479646,"LibID":41020,"LibName":"BROND-2.2","DATE":"MAY90","AUTH":"M.N.Nikolaev et al."}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":37910,"SectID":1213384,"PenSectID":6910700,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC06","AUTH":"Nikolaev M.N."}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":27189,"SectID":570319,"PenSectID":6870105,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"DEC06","AUTH":"Nikolaev M.N."}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":199061,"SectID":14173441,"PenSectID":18846654,"LibID":5040,"LibName":"CENDL-3.2","DATE":"JUN20","AUTH":"J.S.Zhang,J.F.Duan"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":37850,"SectID":1209336,"PenSectID":6523638,"LibID":5030,"LibName":"CENDL-3.1","DATE":"DEC09","AUTH":"J.S.Zhang,J.F.Duan"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":7663,"SectID":79408,"PenSectID":6608914,"LibID":2300,"LibName":"JEFF-3.0","DATE":"APR02","AUTH":"Jef Scg"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":6976,"SectID":48285,"PenSectID":7538444,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"Jef Scg"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":116264,"SectID":5879657,"PenSectID":6535756,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"Nov20","AUTH":"T.Murata, K.Kosako and T.Fukahori"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":20026,"SectID":434059,"PenSectID":6501583,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"MAY05","AUTH":"T.Murata, K.Kosako and T.Fukahori"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":18719,"SectID":271309,"PenSectID":6491484,"LibID":6036,"LibName":"JENDL/HE-2004","DATE":"MAY03","AUTH":"T.Murata"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":116641,"SectID":5898232,"PenSectID":6649301,"LibID":32,"LibName":"JENDL-3.2","DATE":"DEC93","AUTH":"Y.Kanda(Kyu) T.Murata(Naig)+"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":289826,"SectID":20528743,"PenSectID":24524834,"LibID":61023,"LibName":"TENDL-2023","DATE":"20111222","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":245962,"SectID":16119023,"PenSectID":20735021,"LibID":61022,"LibName":"TENDL-2021","DATE":"20111222","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":207130,"SectID":14301094,"PenSectID":18971658,"LibID":61021,"LibName":"TENDL-2015.s60","DATE":"DEC15","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":78317,"SectID":3084756,"PenSectID":6542446,"LibID":50,"LibName":"ENDF/B-V","DATE":"0","AUTH":"P.Young, D.Foster, Jr., G.Hale"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":199994,"SectID":14236597,"PenSectID":19358127,"LibID":39032,"LibName":"ADS-2.0","DATE":"DEC06","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":302531,"SectID":21486310,"PenSectID":26316881,"LibID":33036,"LibName":"FENDL-3.2c","DATE":"FEB18","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":227818,"SectID":14620537,"PenSectID":19396330,"LibID":33035,"LibName":"FENDL-3.2b","DATE":"FEB18","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":141987,"SectID":8891822,"PenSectID":13479293,"LibID":33032,"LibName":"FENDL-3.1c","DATE":"DEC06","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":22857,"SectID":533060,"PenSectID":6471602,"LibID":33021,"LibName":"FENDL/E-2.1","DATE":"20011108","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":7737,"SectID":83413,"PenSectID":6461184,"LibID":5020,"LibName":"CENDL-2","DATE":"940713","AUTH":"Liu Tingjin,Liu Janfeng"}
+]
+}
+
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+
+
+---SQL---
+insert into wget_cache(url,cmd,datim,txt) values (
+'http://localhost:5557/exfor2'
+,'/servlet/E4sSearch2?Target=O-16&Reaction=n,el&Quantity=DA*&json&mats'
+,'2026-02-12 16:20:22'
+,'{
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-02-12T16:20:19.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1052
+,"sections":[
+ { "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":272547,"SectID":19165533,"PenSectID":24013073,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"FEB18","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":301082,"SectID":21381198,"PenSectID":26215784,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":149457,"SectID":8943799,"PenSectID":13591104,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"FEB18","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":57311,"SectID":2248411,"PenSectID":7621070,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":15257,"SectID":206121,"PenSectID":7579152,"LibID":70,"LibName":"ENDF/B-VII.0","DATE":"DEC06","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":306577,"SectID":21522233,"PenSectID":26348605,"LibID":3400,"LibName":"JEFF-4.0","DATE":"APR21","AUTH":"Irsn Evaluation"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":150904,"SectID":9131237,"PenSectID":13783126,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":96715,"SectID":3753662,"PenSectID":6745281,"LibID":3200,"LibName":"JEFF-3.2","DATE":"090105","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":57953,"SectID":2301263,"PenSectID":6659946,"LibID":3120,"LibName":"JEFF-3.1.2","DATE":"090105","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":22892,"SectID":536477,"PenSectID":7552291,"LibID":3100,"LibName":"JEFF-3.1","DATE":"090105","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":226193,"SectID":14386180,"PenSectID":19009723,"LibID":51,"LibName":"JENDL-5","DATE":"20200323","AUTH":"S.Kunieda"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":39087,"SectID":1286400,"PenSectID":6852197,"LibID":40,"LibName":"JENDL-4.0","DATE":"20090629","AUTH":"Y.Kanda(Kyu) T.Murata(Naig)+"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":9389,"SectID":121394,"PenSectID":6626674,"LibID":30,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"Y.Kanda(Kyu) T.Murata(Naig)+"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":10066,"SectID":161803,"PenSectID":6583861,"LibID":31,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"Y.Kanda(Kyu) T.Murata(Naig)+"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":9171,"SectID":106194,"PenSectID":7402428,"LibID":60,"LibName":"ENDF/B-VI","DATE":"20011108","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":9564,"SectID":132135,"PenSectID":6554193,"LibID":61,"LibName":"ENDF/B-VI","DATE":"20011018","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":118518,"SectID":6050267,"PenSectID":10711755,"LibID":41031,"LibName":"BROND-3.1","DATE":"SEP14","AUTH":"Pronyaev V.G. et al."}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":78702,"SectID":3098527,"PenSectID":6479646,"LibID":41020,"LibName":"BROND-2.2","DATE":"MAY90","AUTH":"M.N.Nikolaev et al."}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":37910,"SectID":1213384,"PenSectID":6910700,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC06","AUTH":"Nikolaev M.N."}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":27189,"SectID":570319,"PenSectID":6870105,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"DEC06","AUTH":"Nikolaev M.N."}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":199061,"SectID":14173441,"PenSectID":18846654,"LibID":5040,"LibName":"CENDL-3.2","DATE":"JUN20","AUTH":"J.S.Zhang,J.F.Duan"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":37850,"SectID":1209336,"PenSectID":6523638,"LibID":5030,"LibName":"CENDL-3.1","DATE":"DEC09","AUTH":"J.S.Zhang,J.F.Duan"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":7663,"SectID":79408,"PenSectID":6608914,"LibID":2300,"LibName":"JEFF-3.0","DATE":"APR02","AUTH":"Jef Scg"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":6976,"SectID":48285,"PenSectID":7538444,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"Jef Scg"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":116264,"SectID":5879657,"PenSectID":6535756,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"Nov20","AUTH":"T.Murata, K.Kosako and T.Fukahori"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":20026,"SectID":434059,"PenSectID":6501583,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"MAY05","AUTH":"T.Murata, K.Kosako and T.Fukahori"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":18719,"SectID":271309,"PenSectID":6491484,"LibID":6036,"LibName":"JENDL/HE-2004","DATE":"MAY03","AUTH":"T.Murata"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":116641,"SectID":5898232,"PenSectID":6649301,"LibID":32,"LibName":"JENDL-3.2","DATE":"DEC93","AUTH":"Y.Kanda(Kyu) T.Murata(Naig)+"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":289826,"SectID":20528743,"PenSectID":24524834,"LibID":61023,"LibName":"TENDL-2023","DATE":"20111222","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":245962,"SectID":16119023,"PenSectID":20735021,"LibID":61022,"LibName":"TENDL-2021","DATE":"20111222","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":207130,"SectID":14301094,"PenSectID":18971658,"LibID":61021,"LibName":"TENDL-2015.s60","DATE":"DEC15","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":78317,"SectID":3084756,"PenSectID":6542446,"LibID":50,"LibName":"ENDF/B-V","DATE":"0","AUTH":"P.Young, D.Foster, Jr., G.Hale"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":199994,"SectID":14236597,"PenSectID":19358127,"LibID":39032,"LibName":"ADS-2.0","DATE":"DEC06","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":302531,"SectID":21486310,"PenSectID":26316881,"LibID":33036,"LibName":"FENDL-3.2c","DATE":"FEB18","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":227818,"SectID":14620537,"PenSectID":19396330,"LibID":33035,"LibName":"FENDL-3.2b","DATE":"FEB18","AUTH":"Hale,Paris,Young,Chadwick"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":141987,"SectID":8891822,"PenSectID":13479293,"LibID":33032,"LibName":"FENDL-3.1c","DATE":"DEC06","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":22857,"SectID":533060,"PenSectID":6471602,"LibID":33021,"LibName":"FENDL/E-2.1","DATE":"20011108","AUTH":"Hale,Young,Chadwick,Caro,Lubitz"}
+,{ "Targ":"O-16","ZT":8,"AT":16,"NSUB":10,"MT":2,"MF":4,"R":"N,EL","RC":"O-16(N,EL)O-16-L0,DA","EvalID":7737,"SectID":83413,"PenSectID":6461184,"LibID":5020,"LibName":"CENDL-2","DATE":"940713","AUTH":"Liu Tingjin,Liu Janfeng"}
+]
+}
+')
+format=WebEndfSectionsList-0.1
+___Retrieved sections:38
+SelectedLib-Sect:1) {'Targ': 'O-16', 'ZT': 8, 'AT': 16, 'NSUB': 10, 'MT': 2, 'MF': 4, 'R': 'N,EL', 'RC': 'O-16(N,EL)O-16-L0,DA', 'EvalID': 272547, 'SectID': 19165533, 'PenSectID': 24013073, 'LibID': 30002, 'LibName': 'INDEN-Oct2022', 'DATE': 'FEB18', 'AUTH': 'Hale,Paris,Young,Chadwick'}
+SelectedLib-Sect:11) {'Targ': 'O-16', 'ZT': 8, 'AT': 16, 'NSUB': 10, 'MT': 2, 'MF': 4, 'R': 'N,EL', 'RC': 'O-16(N,EL)O-16-L0,DA', 'EvalID': 226193, 'SectID': 14386180, 'PenSectID': 19009723, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20200323', 'AUTH': 'S.Kunieda'}
+___Required sections:2
+WebReq:1) EvalID:272547 PenSectID:24013073 Lib:INDEN-Oct2022 Color:0,0,255
+/servlet/E4sGetSectData?EvalID=272547&PenSectID=24013073&json&ei=14100000.0&dy
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272547&PenSectID=24013073&json&ei=14100000.0&dy
+txt={
+ "format":"WebEndfTabSectDAA-0.1" 
+ ,"now":"2026-02-12T16:20:27.000Z" 
+ ,"program":"E4sGetTabSect, by V.Zerkin, IAEA-NDS, ver.2022-11-18" 
+ ,"SectMF":4 ,"SectMT":2
+ ,"EvalID":272547 ,"PenSectID":24013073 ,"Target":"O-16" ,"LibName":"INDEN-Oct2022"
+ ,"lstEi":[1.0E-5, 1.0E-4, 0.001, 0.01, 0.0253, 0.1, 1.0, 10.0, 100.0, 1000.0, 5000.0, 10000.0, 20000.0, 30000.0, 40000.0, 50000.0, 60000.0, 70000.0, 80000.0, 90000.0, 100000.0, 120000.0, 140000.0, 160000.0, 180000.0, 200000.0, 220000.0, 240000.0, 260000.0, 280000.0, 300000.0, 320000.0, 340000.0, 360000.0, 380000.0, 390000.0, 395000.0, 400000.0, 405000.0, 410000.0, 415000.0, 420000.0, 425000.0, 430000.0, 434000.0, 435000.0, 440000.0, 445000.0, 450000.0, 455000.0, 460000.0, 465000.0, 470000.0, 475000.0, 480000.0, 500000.0, 520000.0, 540000.0, 560000.0, 580000.0, 600000.0, 620000.0, 640000.0, 660000.0, 680000.0, 700000.0, 720000.0, 740000.0, 760000.0, 780000.0, 800000.0, 810000.0, 820000.0, 830000.0, 840000.0, 850000.0, 860000.0, 870000.0, 880000.0, 890000.0, 900000.0, 910000.0, 920000.0, 930000.0, 940000.0, 950000.0, 960000.0, 970000.0, 980000.0, 990000.0, 1000000.0, 1010000.0, 1020000.0, 1030000.0, 1040000.0, 1050000.0, 1060000.0, 1070000.0, 1080000.0, 1090000.0, 1100000.0, 1110000.0, 1120000.0, 1130000.0, 1140000.0, 1150000.0, 1160000.0, 1170000.0, 1180000.0, 1190000.0, 1200000.0, 1210000.0, 1220000.0, 1230000.0, 1240000.0, 1250000.0, 1255000.0, 1260000.0, 1265000.0, 1270000.0, 1275000.0, 1280000.0, 1285000.0, 1290000.0, 1295000.0, 1300000.0, 1305000.0, 1307000.0, 1309000.0, 1311000.0, 1313000.0, 1315000.0, 1317000.0, 1319000.0, 1321000.0, 1325000.0, 1330000.0, 1335000.0, 1340000.0, 1345000.0, 1350000.0, 1360000.0, 1370000.0, 1380000.0, 1390000.0, 1400000.0, 1410000.0, 1420000.0, 1430000.0, 1440000.0, 1450000.0, 1460000.0, 1470000.0, 1480000.0, 1490000.0, 1500000.0, 1510000.0, 1520000.0, 1530000.0, 1540000.0, 1550000.0, 1560000.0, 1570000.0, 1580000.0, 1590000.0, 1600000.0, 1602000.0, 1604000.0, 1606000.0, 1608000.0, 1610000.0, 1612000.0, 1614000.0, 1616000.0, 1618000.0, 1620000.0, 1622000.0, 1624000.0, 1626000.0, 1628000.0, 1630000.0, 1632000.0, 1634000.0, 1636000.0, 1638000.0, 1640000.0, 1641000.0, 1642000.0, 1643000.0, 1644000.0, 1645000.0, 1646000.0, 1646000.0, 1647000.0, 1648000.0, 1648000.0, 1648000.0, 1649000.0, 1650000.0, 1650000.0, 1650000.0, 1651000.0, 1652000.0, 1652000.0, 1652000.0, 1653000.0, 1654000.0, 1654000.0, 1655000.0, 1656000.0, 1657000.0, 1658000.0, 1659000.0, 1660000.0, 1661000.0, 1662000.0, 1663000.0, 1664000.0, 1665000.0, 1666000.0, 1667000.0, 1668000.0, 1669000.0, 1670000.0, 1671000.0, 1672000.0, 1673000.0, 1674000.0, 1675000.0, 1676000.0, 1677000.0, 1678000.0, 1679000.0, 1680000.0, 1681000.0, 1682000.0, 1683000.0, 1684000.0, 1685000.0, 1686000.0, 1687000.0, 1688000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1690000.0, 1690000.0, 1690000.0, 1690000.0, 1690000.0, 1690000.0, 1690000.0, 1692000.0, 1694000.0, 1696000.0, 1698000.0, 1700000.0, 1702000.0, 1704000.0, 1706000.0, 1708000.0, 1710000.0, 1712000.0, 1714000.0, 1716000.0, 1718000.0, 1720000.0, 1722000.0, 1724000.0, 1726000.0, 1728000.0, 1730000.0, 1732000.0, 1734000.0, 1736000.0, 1738000.0, 1740000.0, 1742000.0, 1744000.0, 1746000.0, 1748000.0, 1750000.0, 1752000.0, 1754000.0, 1756000.0, 1758000.0, 1760000.0, 1762000.0, 1764000.0, 1766000.0, 1768000.0, 1770000.0, 1772000.0, 1774000.0, 1776000.0, 1778000.0, 1780000.0, 1782000.0, 1784000.0, 1786000.0, 1788000.0, 1790000.0, 1792000.0, 1794000.0, 1796000.0, 1798000.0, 1800000.0, 1802000.0, 1804000.0, 1806000.0, 1808000.0, 1810000.0, 1812000.0, 1814000.0, 1816000.0, 1818000.0, 1820000.0, 1822000.0, 1823000.0, 1824000.0, 1825000.0, 1826000.0, 1827000.0, 1828000.0, 1829000.0, 1830000.0, 1831000.0, 1832000.0, 1833000.0, 1833000.0, 1834000.0, 1835000.0, 1836000.0, 1837000.0, 1838000.0, 1839000.0, 1840000.0, 1841000.0, 1842000.0, 1843000.0, 1844000.0, 1845000.0, 1846000.0, 1847000.0, 1848000.0, 1849000.0, 1850000.0, 1851000.0, 1852000.0, 1853000.0, 1854000.0, 1855000.0, 1856000.0, 1857000.0, 1858000.0, 1859000.0, 1860000.0, 1861000.0, 1862000.0, 1863000.0, 1864000.0, 1866000.0, 1868000.0, 1870000.0, 1872000.0, 1874000.0, 1876000.0, 1878000.0, 1880000.0, 1882000.0, 1884000.0, 1886000.0, 1888000.0, 1890000.0, 1892000.0, 1894000.0, 1896000.0, 1898000.0, 1900000.0, 1902000.0, 1904000.0, 1906000.0, 1908000.0, 1910000.0, 1912000.0, 1914000.0, 1916000.0, 1918000.0, 1920000.0, 1922000.0, 1924000.0, 1926000.0, 1928000.0, 1930000.0, 1932000.0, 1934000.0, 1936000.0, 1938000.0, 1940000.0, 1942000.0, 1944000.0, 1946000.0, 1950000.0, 1955000.0, 1960000.0, 1965000.0, 1970000.0, 1975000.0, 1980000.0, 1985000.0, 1990000.0, 1995000.0, 2000000.0, 2020000.0, 2040000.0, 2060000.0, 2080000.0, 2100000.0, 2120000.0, 2140000.0, 2160000.0, 2180000.0, 2200000.0, 2210000.0, 2220000.0, 2230000.0, 2240000.0, 2250000.0, 2260000.0, 2270000.0, 2280000.0, 2290000.0, 2300000.0, 2310000.0, 2320000.0, 2330000.0, 2335000.0, 2340000.0, 2345000.0, 2350000.0, 2355000.0, 2360000.0, 2365000.0, 2370000.0, 2380000.0, 2390000.0, 2400000.0, 2410000.0, 2420000.0, 2430000.0, 2440000.0, 2450000.0, 2460000.0, 2470000.0, 2480000.0, 2490000.0, 2500000.0, 2510000.0, 2520000.0, 2530000.0, 2540000.0, 2550000.0, 2560000.0, 2570000.0, 2580000.0, 2590000.0, 2600000.0, 2620000.0, 2640000.0, 2660000.0, 2680000.0, 2700000.0, 2720000.0, 2740000.0, 2760000.0, 2780000.0, 2800000.0, 2820000.0, 2840000.0, 2860000.0, 2880000.0, 2881000.0, 2882000.0, 2883000.0, 2884000.0, 2885000.0, 2886000.0, 2887000.0, 2888000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2890000.0, 2890000.0, 2890000.0, 2890000.0, 2892000.0, 2894000.0, 2896000.0, 2898000.0, 2900000.0, 2905000.0, 2910000.0, 2915000.0, 2920000.0, 2925000.0, 2930000.0, 2935000.0, 2940000.0, 2945000.0, 2950000.0, 2955000.0, 2960000.0, 2965000.0, 2970000.0, 2975000.0, 2980000.0, 2985000.0, 2990000.0, 2995000.0, 3000000.0, 3001000.0, 3002000.0, 3003000.0, 3004000.0, 3005000.0, 3006000.0, 3006000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3008000.0, 3008000.0, 3010000.0, 3020000.0, 3030000.0, 3040000.0, 3050000.0, 3060000.0, 3070000.0, 3080000.0, 3090000.0, 3100000.0, 3110000.0, 3120000.0, 3130000.0, 3140000.0, 3150000.0, 3160000.0, 3170000.0, 3180000.0, 3190000.0, 3200000.0, 3201000.0, 3202000.0, 3203000.0, 3204000.0, 3205000.0, 3206000.0, 3207000.0, 3208000.0, 3209000.0, 3210000.0, 3210000.0, 3210000.0, 3211000.0, 3212000.0, 3212000.0, 3212000.0, 3213000.0, 3214000.0, 3214000.0, 3215000.0, 3216000.0, 3218000.0, 3220000.0, 3230000.0, 3240000.0, 3250000.0, 3260000.0, 3270000.0, 3280000.0, 3290000.0, 3300000.0, 3310000.0, 3320000.0, 3330000.0, 3340000.0, 3350000.0, 3360000.0, 3370000.0, 3380000.0, 3390000.0, 3400000.0, 3410000.0, 3420000.0, 3430000.0, 3432000.0, 3434000.0, 3436000.0, 3438000.0, 3438000.0, 3438000.0, 3439000.0, 3439000.0, 3439000.0, 3439000.0, 3439000.0, 3440000.0, 3440000.0, 3440000.0, 3440000.0, 3441000.0, 3442000.0, 3442000.0, 3442000.0, 3443000.0, 3444000.0, 3444000.0, 3444000.0, 3445000.0, 3446000.0, 3447000.0, 3448000.0, 3449000.0, 3450000.0, 3460000.0, 3480000.0, 3500000.0, 3520000.0, 3540000.0, 3560000.0, 3580000.0, 3600000.0, 3620000.0, 3630000.0, 3632000.0, 3634000.0, 3636000.0, 3638000.0, 3640000.0, 3640000.0, 3641000.0, 3642000.0, 3642000.0, 3642000.0, 3643000.0, 3644000.0, 3646000.0, 3648000.0, 3650000.0, 3660000.0, 3680000.0, 3700000.0, 3710000.0, 3720000.0, 3730000.0, 3740000.0, 3749000.0, 3751000.0, 3753000.0, 3755000.0, 3757000.0, 3759000.0, 3761000.0, 3763000.0, 3765000.0, 3767000.0, 3769000.0, 3771000.0, 3773000.0, 3775000.0, 3777000.0, 3779000.0, 3781000.0, 3783000.0, 3785000.0, 3787000.0, 3789000.0, 3791000.0, 3793000.0, 3795000.0, 3797000.0, 3799000.0, 3810000.0, 3820000.0, 3830000.0, 3840000.0, 3850000.0, 3860000.0, 3870000.0, 3880000.0, 3890000.0, 3900000.0, 3910000.0, 3920000.0, 3930000.0, 3940000.0, 3950000.0, 3960000.0, 3970000.0, 3980000.0, 3990000.0, 4000000.0, 4010000.0, 4020000.0, 4030000.0, 4040000.0, 4050000.0, 4060000.0, 4070000.0, 4080000.0, 4090000.0, 4100000.0, 4110000.0, 4120000.0, 4130000.0, 4140000.0, 4150000.0, 4160000.0, 4170000.0, 4180000.0, 4190000.0, 4200000.0, 4210000.0, 4220000.0, 4230000.0, 4240000.0, 4250000.0, 4260000.0, 4270000.0, 4275000.0, 4280000.0, 4285000.0, 4290000.0, 4295000.0, 4300000.0, 4305000.0, 4310000.0, 4315000.0, 4320000.0, 4325000.0, 4330000.0, 4335000.0, 4340000.0, 4345000.0, 4350000.0, 4360000.0, 4370000.0, 4380000.0, 4390000.0, 4400000.0, 4405000.0, 4410000.0, 4415000.0, 4420000.0, 4425000.0, 4430000.0, 4435000.0, 4440000.0, 4445000.0, 4450000.0, 4451000.0, 4452000.0, 4453000.0, 4454000.0, 4455000.0, 4456000.0, 4457000.0, 4458000.0, 4459000.0, 4460000.0, 4461000.0, 4462000.0, 4463000.0, 4464000.0, 4465000.0, 4466000.0, 4467000.0, 4468000.0, 4469000.0, 4470000.0, 4471000.0, 4472000.0, 4473000.0, 4474000.0, 4475000.0, 4476000.0, 4477000.0, 4478000.0, 4479000.0, 4480000.0, 4481000.0, 4482000.0, 4483000.0, 4484000.0, 4485000.0, 4486000.0, 4487000.0, 4488000.0, 4489000.0, 4490000.0, 4495000.0, 4500000.0, 4505000.0, 4510000.0, 4515000.0, 4516000.0, 4517000.0, 4518000.0, 4519000.0, 4520000.0, 4521000.0, 4522000.0, 4523000.0, 4524000.0, 4525000.0, 4526000.0, 4527000.0, 4528000.0, 4529000.0, 4530000.0, 4531000.0, 4532000.0, 4533000.0, 4534000.0, 4535000.0, 4536000.0, 4537000.0, 4538000.0, 4539000.0, 4540000.0, 4541000.0, 4542000.0, 4543000.0, 4544000.0, 4545000.0, 4546000.0, 4547000.0, 4548000.0, 4549000.0, 4550000.0, 4555000.0, 4560000.0, 4565000.0, 4570000.0, 4575000.0, 4580000.0, 4585000.0, 4586000.0, 4587000.0, 4588000.0, 4589000.0, 4590000.0, 4591000.0, 4592000.0, 4593000.0, 4593000.0, 4593000.0, 4593000.0, 4593000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4597000.0, 4597000.0, 4597000.0, 4597000.0, 4597000.0, 4598000.0, 4600000.0, 4602000.0, 4604000.0, 4606000.0, 4608000.0, 4610000.0, 4612000.0, 4614000.0, 4616000.0, 4618000.0, 4620000.0, 4622000.0, 4624000.0, 4626000.0, 4626000.0, 4627000.0, 4628000.0, 4628000.0, 4628000.0, 4629000.0, 4630000.0, 4630000.0, 4630000.0, 4631000.0, 4632000.0, 4632000.0, 4632000.0, 4633000.0, 4634000.0, 4634000.0, 4634000.0, 4635000.0, 4636000.0, 4636000.0, 4636000.0, 4637000.0, 4638000.0, 4638000.0, 4640000.0, 4645000.0, 4650000.0, 4655000.0, 4660000.0, 4670000.0, 4680000.0, 4690000.0, 4700000.0, 4710000.0, 4720000.0, 4730000.0, 4740000.0, 4750000.0, 4760000.0, 4770000.0, 4775000.0, 4780000.0, 4785000.0, 4790000.0, 4795000.0, 4800000.0, 4805000.0, 4810000.0, 4815000.0, 4820000.0, 4825000.0, 4830000.0, 4835000.0, 4840000.0, 4845000.0, 4850000.0, 4855000.0, 4860000.0, 4865000.0, 4870000.0, 4875000.0, 4880000.0, 4885000.0, 4890000.0, 4895000.0, 4900000.0, 4905000.0, 4910000.0, 4915000.0, 4920000.0, 4925000.0, 4930000.0, 4935000.0, 4940000.0, 4945000.0, 4950000.0, 4960000.0, 4970000.0, 4980000.0, 4990000.0, 5000000.0, 5010000.0, 5020000.0, 5030000.0, 5040000.0, 5050000.0, 5060000.0, 5070000.0, 5080000.0, 5090000.0, 5100000.0, 5103000.0, 5105000.0, 5107000.0, 5109000.0, 5111000.0, 5113000.0, 5115000.0, 5117000.0, 5119000.0, 5121000.0, 5123000.0, 5125000.0, 5127000.0, 5129000.0, 5131000.0, 5133000.0, 5135000.0, 5137000.0, 5139000.0, 5141000.0, 5143000.0, 5145000.0, 5147000.0, 5150000.0, 5160000.0, 5170000.0, 5180000.0, 5190000.0, 5200000.0, 5210000.0, 5220000.0, 5230000.0, 5240000.0, 5250000.0, 5260000.0, 5270000.0, 5280000.0, 5290000.0, 5300000.0, 5301000.0, 5302000.0, 5303000.0, 5304000.0, 5305000.0, 5306000.0, 5307000.0, 5308000.0, 5309000.0, 5310000.0, 5311000.0, 5312000.0, 5313000.0, 5314000.0, 5315000.0, 5316000.0, 5320000.0, 5330000.0, 5340000.0, 5350000.0, 5355000.0, 5360000.0, 5361000.0, 5362000.0, 5363000.0, 5364000.0, 5364000.0, 5365000.0, 5366000.0, 5366000.0, 5366000.0, 5367000.0, 5368000.0, 5368000.0, 5368000.0, 5369000.0, 5370000.0, 5370000.0, 5370000.0, 5371000.0, 5372000.0, 5372000.0, 5372000.0, 5373000.0, 5374000.0, 5374000.0, 5374000.0, 5375000.0, 5380000.0, 5385000.0, 5390000.0, 5395000.0, 5400000.0, 5410000.0, 5420000.0, 5430000.0, 5440000.0, 5450000.0, 5460000.0, 5470000.0, 5480000.0, 5490000.0, 5500000.0, 5510000.0, 5520000.0, 5530000.0, 5540000.0, 5550000.0, 5560000.0, 5570000.0, 5580000.0, 5590000.0, 5600000.0, 5602000.0, 5604000.0, 5606000.0, 5608000.0, 5610000.0, 5612000.0, 5614000.0, 5616000.0, 5618000.0, 5620000.0, 5622000.0, 5624000.0, 5626000.0, 5628000.0, 5630000.0, 5632000.0, 5634000.0, 5636000.0, 5638000.0, 5640000.0, 5642000.0, 5644000.0, 5646000.0, 5648000.0, 5650000.0, 5652000.0, 5654000.0, 5656000.0, 5658000.0, 5660000.0, 5662000.0, 5664000.0, 5666000.0, 5668000.0, 5670000.0, 5672000.0, 5674000.0, 5676000.0, 5678000.0, 5680000.0, 5682000.0, 5684000.0, 5686000.0, 5688000.0, 5690000.0, 5692000.0, 5694000.0, 5696000.0, 5698000.0, 5700000.0, 5710000.0, 5720000.0, 5730000.0, 5740000.0, 5750000.0, 5760000.0, 5770000.0, 5780000.0, 5790000.0, 5800000.0, 5810000.0, 5820000.0, 5830000.0, 5840000.0, 5850000.0, 5855000.0, 5860000.0, 5865000.0, 5870000.0, 5875000.0, 5880000.0, 5885000.0, 5890000.0, 5895000.0, 5900000.0, 5905000.0, 5910000.0, 5915000.0, 5917000.0, 5919000.0, 5921000.0, 5925000.0, 5930000.0, 5935000.0, 5940000.0, 5945000.0, 5950000.0, 5955000.0, 5960000.0, 5962000.0, 5964000.0, 5966000.0, 5968000.0, 5970000.0, 5972000.0, 5974000.0, 5976000.0, 5978000.0, 5980000.0, 5982000.0, 5984000.0, 5986000.0, 5988000.0, 5990000.0, 5992000.0, 5994000.0, 5996000.0, 5998000.0, 6000000.0, 6002000.0, 6004000.0, 6006000.0, 6008000.0, 6010000.0, 6012000.0, 6014000.0, 6016000.0, 6018000.0, 6020000.0, 6022000.0, 6024000.0, 6026000.0, 6028000.0, 6030000.0, 6032000.0, 6034000.0, 6036000.0, 6038000.0, 6040000.0, 6042000.0, 6044000.0, 6046000.0, 6048000.0, 6050000.0, 6052000.0, 6054000.0, 6056000.0, 6058000.0, 6060000.0, 6062000.0, 6064000.0, 6066000.0, 6068000.0, 6070000.0, 6070000.0, 6071000.0, 6072000.0, 6072000.0, 6072000.0, 6073000.0, 6074000.0, 6074000.0, 6074000.0, 6075000.0, 6076000.0, 6076000.0, 6076000.0, 6077000.0, 6078000.0, 6078000.0, 6078000.0, 6079000.0, 6080000.0, 6080000.0, 6080000.0, 6081000.0, 6082000.0, 6082000.0, 6084000.0, 6086000.0, 6088000.0, 6090000.0, 6092000.0, 6094000.0, 6096000.0, 6098000.0, 6100000.0, 6102000.0, 6104000.0, 6106000.0, 6108000.0, 6110000.0, 6112000.0, 6114000.0, 6116000.0, 6118000.0, 6120000.0, 6122000.0, 6124000.0, 6126000.0, 6128000.0, 6130000.0, 6135000.0, 6140000.0, 6145000.0, 6150000.0, 6155000.0, 6160000.0, 6165000.0, 6170000.0, 6175000.0, 6180000.0, 6185000.0, 6190000.0, 6195000.0, 6200000.0, 6205000.0, 6210000.0, 6215000.0, 6220000.0, 6225000.0, 6230000.0, 6235000.0, 6240000.0, 6245000.0, 6250000.0, 6255000.0, 6260000.0, 6265000.0, 6270000.0, 6275000.0, 6280000.0, 6285000.0, 6290000.0, 6295000.0, 6300000.0, 6305000.0, 6310000.0, 6315000.0, 6320000.0, 6325000.0, 6330000.0, 6335000.0, 6340000.0, 6345000.0, 6350000.0, 6355000.0, 6360000.0, 6362000.0, 6364000.0, 6366000.0, 6368000.0, 6370000.0, 6372000.0, 6374000.0, 6376000.0, 6378000.0, 6380000.0, 6382000.0, 6384000.0, 6386000.0, 6387000.0, 6388000.0, 6389000.0, 6390000.0, 6391000.0, 6392000.0, 6393000.0, 6394000.0, 6395000.0, 6396000.0, 6397000.0, 6398000.0, 6399000.0, 6400000.0, 6401000.0, 6402000.0, 6403000.0, 6404000.0, 6405000.0, 6406000.0, 6407000.0, 6408000.0, 6409000.0, 6410000.0, 6415000.0, 6420000.0, 6425000.0, 6430000.0, 6435000.0, 6440000.0, 6445000.0, 6450000.0, 6455000.0, 6460000.0, 6465000.0, 6470000.0, 6475000.0, 6480000.0, 6485000.0, 6490000.0, 6495000.0, 6500000.0, 6510000.0, 6520000.0, 6530000.0, 6540000.0, 6550000.0, 6560000.0, 6570000.0, 6580000.0, 6590000.0, 6600000.0, 6610000.0, 6620000.0, 6630000.0, 6640000.0, 6650000.0, 6651000.0, 6652000.0, 6653000.0, 6654000.0, 6655000.0, 6656000.0, 6657000.0, 6658000.0, 6659000.0, 6660000.0, 6661000.0, 6662000.0, 6663000.0, 6664000.0, 6665000.0, 6666000.0, 6667000.0, 6668000.0, 6669000.0, 6670000.0, 6671000.0, 6672000.0, 6673000.0, 6674000.0, 6675000.0, 6676000.0, 6677000.0, 6678000.0, 6679000.0, 6680000.0, 6681000.0, 6682000.0, 6683000.0, 6684000.0, 6685000.0, 6686000.0, 6687000.0, 6688000.0, 6689000.0, 6690000.0, 6691000.0, 6692000.0, 6693000.0, 6694000.0, 6695000.0, 6696000.0, 6697000.0, 6698000.0, 6699000.0, 6700000.0, 6710000.0, 6720000.0, 6730000.0, 6740000.0, 6750000.0, 6760000.0, 6770000.0, 6780000.0, 6790000.0, 6800000.0, 6802000.0, 6804000.0, 6806000.0, 6808000.0, 6810000.0, 6812000.0, 6814000.0, 6816000.0, 6818000.0, 6820000.0, 6830000.0, 6840000.0, 6850000.0, 6860000.0, 6870000.0, 6880000.0, 6890000.0, 6900000.0, 6910000.0, 6920000.0, 6930000.0, 6940000.0, 6950000.0, 6960000.0, 6970000.0, 6980000.0, 6990000.0, 7000000.0, 7030000.0, 7100000.0, 7200000.0, 7400000.0, 7500000.0, 7512000.0, 7540000.0, 7600000.0, 7700000.0, 7800000.0, 7900000.0, 7933000.0, 8000000.0, 8040000.0, 8100000.0, 8300000.0, 8400000.0, 8500000.0, 8560000.0, 8600000.0, 8700000.0, 8800000.0, 8900000.0, 9000000.0, 9011000.0, 9211000.0, 9250000.0, 9500000.0, 9708000.0, 9750000.0, 1.0E7, 1.013E7, 1.016E7, 1.016E7, 1.021E7, 1.05E7, 1.07E7, 1.095E7, 1.1E7, 1.115E7, 1.135E7, 1.15E7, 1.195E7, 1.2E7, 1.245E7, 1.249E7, 1.25E7, 1.294E7, 1.3E7, 1.35E7, 1.361E7, 1.394E7, 1.4E7, 1.45E7, 1.489E7, 1.493E7, 1.5E7, 1.6E7, 1.7E7, 1.8E7, 1.9E7, 2.0E7, 2.1E7, 2.2E7, 2.3E7, 2.4E7, 2.5E7, 2.6E7, 2.7E7, 2.8E7, 2.9E7, 3.0E7, 3.0E7, 3.5E7, 4.0E7, 5.0E7, 6.0E7, 7.0E7, 8.0E7, 9.0E7, 1.0E8, 1.1E8, 1.2E8, 1.3E8, 1.4E8, 1.5E8]
+ ,"EiMin":1.0E-5 ,"EiMax":1.5E8
+ ,"datasets": [
+  {"id":"24013073"
+    ,"dataType":"Angular distr."
+    ,"LIBRARY":"INDEN-Oct2022"
+    ,"TARGET":"O-16" ,"MF":4 ,"MT":2
+    ,"REACTION": "8-O-16(N,EL),DA"
+    ,"f(x)": "DA(A)"
+    ,"param": "Ei1.41E+7"
+    ,"xunits": "deg"
+    ,"yunits": "b/sr"
+    ,"pts": [
+	 {"x":180.0	,"y":0.028106	,"dy":0.0036256742}
+	,{"x":164.684	,"y":0.024398	,"dy":0.0031473422}
+	,{"x":158.3	,"y":0.020967	,"dy":0.002704743}
+	,{"x":153.373	,"y":0.018079	,"dy":0.002332191}
+	,{"x":149.194	,"y":0.015351	,"dy":0.001980279}
+	,{"x":145.491	,"y":0.013039	,"dy":0.0016820311}
+	,{"x":142.122	,"y":0.01082	,"dy":0.0013957801}
+	,{"x":139.004	,"y":0.0089807	,"dy":0.0011585103}
+	,{"x":136.083	,"y":0.0074663	,"dy":9.6315274E-4}
+	,{"x":133.322	,"y":0.006314	,"dy":8.14506E-4}
+	,{"x":131.992	,"y":0.0058857	,"dy":7.592554E-4}
+	,{"x":131.664	,"y":0.0058013	,"dy":7.4836775E-4}
+	,{"x":130.692	,"y":0.0055567	,"dy":7.168143E-4}
+	,{"x":129.42	,"y":0.0053403	,"dy":6.888987E-4}
+	,{"x":128.173	,"y":0.0052451	,"dy":6.766179E-4}
+	,{"x":127.558	,"y":0.005208	,"dy":6.71832E-4}
+	,{"x":126.874	,"y":0.0052237	,"dy":6.738573E-4}
+	,{"x":125.749	,"y":0.0053205	,"dy":6.863445E-4}
+	,{"x":124.568	,"y":0.0055403	,"dy":7.1469875E-4}
+	,{"x":123.406	,"y":0.005885	,"dy":7.5916504E-4}
+	,{"x":122.832	,"y":0.0060667	,"dy":7.8260433E-4}
+	,{"x":121.135	,"y":0.0068318	,"dy":8.813022E-4}
+	,{"x":118.926	,"y":0.0082281	,"dy":0.001061425}
+	,{"x":116.772	,"y":0.0099736	,"dy":0.0012865944}
+	,{"x":114.668	,"y":0.012083	,"dy":0.001558707}
+	,{"x":112.607	,"y":0.014456	,"dy":0.0018648241}
+	,{"x":108.598	,"y":0.019866	,"dy":0.0025627143}
+	,{"x":104.713	,"y":0.025738	,"dy":0.0033202022}
+	,{"x":100.928	,"y":0.031615	,"dy":0.004078335}
+	,{"x":97.2201	,"y":0.037111	,"dy":0.004787319}
+	,{"x":93.5722	,"y":0.041934	,"dy":0.005409486}
+	,{"x":89.9678	,"y":0.045905	,"dy":0.005921745}
+	,{"x":86.3916	,"y":0.048933	,"dy":0.0063123573}
+	,{"x":82.8294	,"y":0.050983	,"dy":0.0065768072}
+	,{"x":79.267	,"y":0.052023	,"dy":0.0067109675}
+	,{"x":75.6898	,"y":0.051977	,"dy":0.0067050336}
+	,{"x":72.0825	,"y":0.050705	,"dy":0.0065409453}
+	,{"x":68.428	,"y":0.048029	,"dy":0.0061957412}
+	,{"x":64.7071	,"y":0.043836	,"dy":0.0056548445}
+	,{"x":60.8969	,"y":0.03831	,"dy":0.00494199}
+	,{"x":56.9694	,"y":0.032321	,"dy":0.004169409}
+	,{"x":54.9508	,"y":0.029817	,"dy":0.0038463932}
+	,{"x":52.8885	,"y":0.028041	,"dy":0.003617289}
+	,{"x":51.8391	,"y":0.027727	,"dy":0.0035767832}
+	,{"x":50.7763	,"y":0.027786	,"dy":0.003584394}
+	,{"x":49.699	,"y":0.028458	,"dy":0.003671082}
+	,{"x":49.3592	,"y":0.028868	,"dy":0.003723972}
+	,{"x":48.6063	,"y":0.029825	,"dy":0.003847425}
+	,{"x":47.4968	,"y":0.032033	,"dy":0.0041322573}
+	,{"x":46.653	,"y":0.034588	,"dy":0.0044618524}
+	,{"x":45.7984	,"y":0.037323	,"dy":0.0048146676}
+	,{"x":45.3669	,"y":0.039258	,"dy":0.005064282}
+	,{"x":44.0543	,"y":0.045448	,"dy":0.0058627925}
+	,{"x":42.8631	,"y":0.052882	,"dy":0.006821778}
+	,{"x":41.9534	,"y":0.060143	,"dy":0.0077584474}
+	,{"x":41.0285	,"y":0.067747	,"dy":0.0087393625}
+	,{"x":40.5601	,"y":0.072572	,"dy":0.009361789}
+	,{"x":39.1289	,"y":0.087759	,"dy":0.011320911}
+	,{"x":37.8212	,"y":0.10466	,"dy":0.01350114}
+	,{"x":35.7886	,"y":0.1363	,"dy":0.0175827}
+	,{"x":33.6562	,"y":0.17683	,"dy":0.02281107}
+	,{"x":32.1693	,"y":0.20967	,"dy":0.027047431}
+	,{"x":29.8209	,"y":0.26909	,"dy":0.034712613}
+	,{"x":27.2977	,"y":0.34273	,"dy":0.04421217}
+	,{"x":25.4928	,"y":0.4041	,"dy":0.052128904}
+	,{"x":23.5633	,"y":0.46791	,"dy":0.06036039}
+	,{"x":22.5418	,"y":0.50691	,"dy":0.0653914}
+	,{"x":19.1772	,"y":0.62892	,"dy":0.08113068}
+	,{"x":13.517	,"y":0.83543	,"dy":0.10777048}
+	,{"x":0.0	,"y":1.0966	,"dy":0.14146142}
+    ]
+  }
+ ]
+}
+
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+
+
+---SQL---
+insert into wget_cache(url,cmd,datim,txt) values (
+'http://localhost:5557/exfor2'
+,'/servlet/E4sGetSectData?EvalID=272547&PenSectID=24013073&json&ei=14100000.0&dy'
+,'2026-02-12 16:21:58'
+,'{
+ "format":"WebEndfTabSectDAA-0.1" 
+ ,"now":"2026-02-12T16:20:27.000Z" 
+ ,"program":"E4sGetTabSect, by V.Zerkin, IAEA-NDS, ver.2022-11-18" 
+ ,"SectMF":4 ,"SectMT":2
+ ,"EvalID":272547 ,"PenSectID":24013073 ,"Target":"O-16" ,"LibName":"INDEN-Oct2022"
+ ,"lstEi":[1.0E-5, 1.0E-4, 0.001, 0.01, 0.0253, 0.1, 1.0, 10.0, 100.0, 1000.0, 5000.0, 10000.0, 20000.0, 30000.0, 40000.0, 50000.0, 60000.0, 70000.0, 80000.0, 90000.0, 100000.0, 120000.0, 140000.0, 160000.0, 180000.0, 200000.0, 220000.0, 240000.0, 260000.0, 280000.0, 300000.0, 320000.0, 340000.0, 360000.0, 380000.0, 390000.0, 395000.0, 400000.0, 405000.0, 410000.0, 415000.0, 420000.0, 425000.0, 430000.0, 434000.0, 435000.0, 440000.0, 445000.0, 450000.0, 455000.0, 460000.0, 465000.0, 470000.0, 475000.0, 480000.0, 500000.0, 520000.0, 540000.0, 560000.0, 580000.0, 600000.0, 620000.0, 640000.0, 660000.0, 680000.0, 700000.0, 720000.0, 740000.0, 760000.0, 780000.0, 800000.0, 810000.0, 820000.0, 830000.0, 840000.0, 850000.0, 860000.0, 870000.0, 880000.0, 890000.0, 900000.0, 910000.0, 920000.0, 930000.0, 940000.0, 950000.0, 960000.0, 970000.0, 980000.0, 990000.0, 1000000.0, 1010000.0, 1020000.0, 1030000.0, 1040000.0, 1050000.0, 1060000.0, 1070000.0, 1080000.0, 1090000.0, 1100000.0, 1110000.0, 1120000.0, 1130000.0, 1140000.0, 1150000.0, 1160000.0, 1170000.0, 1180000.0, 1190000.0, 1200000.0, 1210000.0, 1220000.0, 1230000.0, 1240000.0, 1250000.0, 1255000.0, 1260000.0, 1265000.0, 1270000.0, 1275000.0, 1280000.0, 1285000.0, 1290000.0, 1295000.0, 1300000.0, 1305000.0, 1307000.0, 1309000.0, 1311000.0, 1313000.0, 1315000.0, 1317000.0, 1319000.0, 1321000.0, 1325000.0, 1330000.0, 1335000.0, 1340000.0, 1345000.0, 1350000.0, 1360000.0, 1370000.0, 1380000.0, 1390000.0, 1400000.0, 1410000.0, 1420000.0, 1430000.0, 1440000.0, 1450000.0, 1460000.0, 1470000.0, 1480000.0, 1490000.0, 1500000.0, 1510000.0, 1520000.0, 1530000.0, 1540000.0, 1550000.0, 1560000.0, 1570000.0, 1580000.0, 1590000.0, 1600000.0, 1602000.0, 1604000.0, 1606000.0, 1608000.0, 1610000.0, 1612000.0, 1614000.0, 1616000.0, 1618000.0, 1620000.0, 1622000.0, 1624000.0, 1626000.0, 1628000.0, 1630000.0, 1632000.0, 1634000.0, 1636000.0, 1638000.0, 1640000.0, 1641000.0, 1642000.0, 1643000.0, 1644000.0, 1645000.0, 1646000.0, 1646000.0, 1647000.0, 1648000.0, 1648000.0, 1648000.0, 1649000.0, 1650000.0, 1650000.0, 1650000.0, 1651000.0, 1652000.0, 1652000.0, 1652000.0, 1653000.0, 1654000.0, 1654000.0, 1655000.0, 1656000.0, 1657000.0, 1658000.0, 1659000.0, 1660000.0, 1661000.0, 1662000.0, 1663000.0, 1664000.0, 1665000.0, 1666000.0, 1667000.0, 1668000.0, 1669000.0, 1670000.0, 1671000.0, 1672000.0, 1673000.0, 1674000.0, 1675000.0, 1676000.0, 1677000.0, 1678000.0, 1679000.0, 1680000.0, 1681000.0, 1682000.0, 1683000.0, 1684000.0, 1685000.0, 1686000.0, 1687000.0, 1688000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1689000.0, 1690000.0, 1690000.0, 1690000.0, 1690000.0, 1690000.0, 1690000.0, 1690000.0, 1692000.0, 1694000.0, 1696000.0, 1698000.0, 1700000.0, 1702000.0, 1704000.0, 1706000.0, 1708000.0, 1710000.0, 1712000.0, 1714000.0, 1716000.0, 1718000.0, 1720000.0, 1722000.0, 1724000.0, 1726000.0, 1728000.0, 1730000.0, 1732000.0, 1734000.0, 1736000.0, 1738000.0, 1740000.0, 1742000.0, 1744000.0, 1746000.0, 1748000.0, 1750000.0, 1752000.0, 1754000.0, 1756000.0, 1758000.0, 1760000.0, 1762000.0, 1764000.0, 1766000.0, 1768000.0, 1770000.0, 1772000.0, 1774000.0, 1776000.0, 1778000.0, 1780000.0, 1782000.0, 1784000.0, 1786000.0, 1788000.0, 1790000.0, 1792000.0, 1794000.0, 1796000.0, 1798000.0, 1800000.0, 1802000.0, 1804000.0, 1806000.0, 1808000.0, 1810000.0, 1812000.0, 1814000.0, 1816000.0, 1818000.0, 1820000.0, 1822000.0, 1823000.0, 1824000.0, 1825000.0, 1826000.0, 1827000.0, 1828000.0, 1829000.0, 1830000.0, 1831000.0, 1832000.0, 1833000.0, 1833000.0, 1834000.0, 1835000.0, 1836000.0, 1837000.0, 1838000.0, 1839000.0, 1840000.0, 1841000.0, 1842000.0, 1843000.0, 1844000.0, 1845000.0, 1846000.0, 1847000.0, 1848000.0, 1849000.0, 1850000.0, 1851000.0, 1852000.0, 1853000.0, 1854000.0, 1855000.0, 1856000.0, 1857000.0, 1858000.0, 1859000.0, 1860000.0, 1861000.0, 1862000.0, 1863000.0, 1864000.0, 1866000.0, 1868000.0, 1870000.0, 1872000.0, 1874000.0, 1876000.0, 1878000.0, 1880000.0, 1882000.0, 1884000.0, 1886000.0, 1888000.0, 1890000.0, 1892000.0, 1894000.0, 1896000.0, 1898000.0, 1900000.0, 1902000.0, 1904000.0, 1906000.0, 1908000.0, 1910000.0, 1912000.0, 1914000.0, 1916000.0, 1918000.0, 1920000.0, 1922000.0, 1924000.0, 1926000.0, 1928000.0, 1930000.0, 1932000.0, 1934000.0, 1936000.0, 1938000.0, 1940000.0, 1942000.0, 1944000.0, 1946000.0, 1950000.0, 1955000.0, 1960000.0, 1965000.0, 1970000.0, 1975000.0, 1980000.0, 1985000.0, 1990000.0, 1995000.0, 2000000.0, 2020000.0, 2040000.0, 2060000.0, 2080000.0, 2100000.0, 2120000.0, 2140000.0, 2160000.0, 2180000.0, 2200000.0, 2210000.0, 2220000.0, 2230000.0, 2240000.0, 2250000.0, 2260000.0, 2270000.0, 2280000.0, 2290000.0, 2300000.0, 2310000.0, 2320000.0, 2330000.0, 2335000.0, 2340000.0, 2345000.0, 2350000.0, 2355000.0, 2360000.0, 2365000.0, 2370000.0, 2380000.0, 2390000.0, 2400000.0, 2410000.0, 2420000.0, 2430000.0, 2440000.0, 2450000.0, 2460000.0, 2470000.0, 2480000.0, 2490000.0, 2500000.0, 2510000.0, 2520000.0, 2530000.0, 2540000.0, 2550000.0, 2560000.0, 2570000.0, 2580000.0, 2590000.0, 2600000.0, 2620000.0, 2640000.0, 2660000.0, 2680000.0, 2700000.0, 2720000.0, 2740000.0, 2760000.0, 2780000.0, 2800000.0, 2820000.0, 2840000.0, 2860000.0, 2880000.0, 2881000.0, 2882000.0, 2883000.0, 2884000.0, 2885000.0, 2886000.0, 2887000.0, 2888000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2889000.0, 2890000.0, 2890000.0, 2890000.0, 2890000.0, 2892000.0, 2894000.0, 2896000.0, 2898000.0, 2900000.0, 2905000.0, 2910000.0, 2915000.0, 2920000.0, 2925000.0, 2930000.0, 2935000.0, 2940000.0, 2945000.0, 2950000.0, 2955000.0, 2960000.0, 2965000.0, 2970000.0, 2975000.0, 2980000.0, 2985000.0, 2990000.0, 2995000.0, 3000000.0, 3001000.0, 3002000.0, 3003000.0, 3004000.0, 3005000.0, 3006000.0, 3006000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3007000.0, 3008000.0, 3008000.0, 3010000.0, 3020000.0, 3030000.0, 3040000.0, 3050000.0, 3060000.0, 3070000.0, 3080000.0, 3090000.0, 3100000.0, 3110000.0, 3120000.0, 3130000.0, 3140000.0, 3150000.0, 3160000.0, 3170000.0, 3180000.0, 3190000.0, 3200000.0, 3201000.0, 3202000.0, 3203000.0, 3204000.0, 3205000.0, 3206000.0, 3207000.0, 3208000.0, 3209000.0, 3210000.0, 3210000.0, 3210000.0, 3211000.0, 3212000.0, 3212000.0, 3212000.0, 3213000.0, 3214000.0, 3214000.0, 3215000.0, 3216000.0, 3218000.0, 3220000.0, 3230000.0, 3240000.0, 3250000.0, 3260000.0, 3270000.0, 3280000.0, 3290000.0, 3300000.0, 3310000.0, 3320000.0, 3330000.0, 3340000.0, 3350000.0, 3360000.0, 3370000.0, 3380000.0, 3390000.0, 3400000.0, 3410000.0, 3420000.0, 3430000.0, 3432000.0, 3434000.0, 3436000.0, 3438000.0, 3438000.0, 3438000.0, 3439000.0, 3439000.0, 3439000.0, 3439000.0, 3439000.0, 3440000.0, 3440000.0, 3440000.0, 3440000.0, 3441000.0, 3442000.0, 3442000.0, 3442000.0, 3443000.0, 3444000.0, 3444000.0, 3444000.0, 3445000.0, 3446000.0, 3447000.0, 3448000.0, 3449000.0, 3450000.0, 3460000.0, 3480000.0, 3500000.0, 3520000.0, 3540000.0, 3560000.0, 3580000.0, 3600000.0, 3620000.0, 3630000.0, 3632000.0, 3634000.0, 3636000.0, 3638000.0, 3640000.0, 3640000.0, 3641000.0, 3642000.0, 3642000.0, 3642000.0, 3643000.0, 3644000.0, 3646000.0, 3648000.0, 3650000.0, 3660000.0, 3680000.0, 3700000.0, 3710000.0, 3720000.0, 3730000.0, 3740000.0, 3749000.0, 3751000.0, 3753000.0, 3755000.0, 3757000.0, 3759000.0, 3761000.0, 3763000.0, 3765000.0, 3767000.0, 3769000.0, 3771000.0, 3773000.0, 3775000.0, 3777000.0, 3779000.0, 3781000.0, 3783000.0, 3785000.0, 3787000.0, 3789000.0, 3791000.0, 3793000.0, 3795000.0, 3797000.0, 3799000.0, 3810000.0, 3820000.0, 3830000.0, 3840000.0, 3850000.0, 3860000.0, 3870000.0, 3880000.0, 3890000.0, 3900000.0, 3910000.0, 3920000.0, 3930000.0, 3940000.0, 3950000.0, 3960000.0, 3970000.0, 3980000.0, 3990000.0, 4000000.0, 4010000.0, 4020000.0, 4030000.0, 4040000.0, 4050000.0, 4060000.0, 4070000.0, 4080000.0, 4090000.0, 4100000.0, 4110000.0, 4120000.0, 4130000.0, 4140000.0, 4150000.0, 4160000.0, 4170000.0, 4180000.0, 4190000.0, 4200000.0, 4210000.0, 4220000.0, 4230000.0, 4240000.0, 4250000.0, 4260000.0, 4270000.0, 4275000.0, 4280000.0, 4285000.0, 4290000.0, 4295000.0, 4300000.0, 4305000.0, 4310000.0, 4315000.0, 4320000.0, 4325000.0, 4330000.0, 4335000.0, 4340000.0, 4345000.0, 4350000.0, 4360000.0, 4370000.0, 4380000.0, 4390000.0, 4400000.0, 4405000.0, 4410000.0, 4415000.0, 4420000.0, 4425000.0, 4430000.0, 4435000.0, 4440000.0, 4445000.0, 4450000.0, 4451000.0, 4452000.0, 4453000.0, 4454000.0, 4455000.0, 4456000.0, 4457000.0, 4458000.0, 4459000.0, 4460000.0, 4461000.0, 4462000.0, 4463000.0, 4464000.0, 4465000.0, 4466000.0, 4467000.0, 4468000.0, 4469000.0, 4470000.0, 4471000.0, 4472000.0, 4473000.0, 4474000.0, 4475000.0, 4476000.0, 4477000.0, 4478000.0, 4479000.0, 4480000.0, 4481000.0, 4482000.0, 4483000.0, 4484000.0, 4485000.0, 4486000.0, 4487000.0, 4488000.0, 4489000.0, 4490000.0, 4495000.0, 4500000.0, 4505000.0, 4510000.0, 4515000.0, 4516000.0, 4517000.0, 4518000.0, 4519000.0, 4520000.0, 4521000.0, 4522000.0, 4523000.0, 4524000.0, 4525000.0, 4526000.0, 4527000.0, 4528000.0, 4529000.0, 4530000.0, 4531000.0, 4532000.0, 4533000.0, 4534000.0, 4535000.0, 4536000.0, 4537000.0, 4538000.0, 4539000.0, 4540000.0, 4541000.0, 4542000.0, 4543000.0, 4544000.0, 4545000.0, 4546000.0, 4547000.0, 4548000.0, 4549000.0, 4550000.0, 4555000.0, 4560000.0, 4565000.0, 4570000.0, 4575000.0, 4580000.0, 4585000.0, 4586000.0, 4587000.0, 4588000.0, 4589000.0, 4590000.0, 4591000.0, 4592000.0, 4593000.0, 4593000.0, 4593000.0, 4593000.0, 4593000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4594000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4595000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4596000.0, 4597000.0, 4597000.0, 4597000.0, 4597000.0, 4597000.0, 4598000.0, 4600000.0, 4602000.0, 4604000.0, 4606000.0, 4608000.0, 4610000.0, 4612000.0, 4614000.0, 4616000.0, 4618000.0, 4620000.0, 4622000.0, 4624000.0, 4626000.0, 4626000.0, 4627000.0, 4628000.0, 4628000.0, 4628000.0, 4629000.0, 4630000.0, 4630000.0, 4630000.0, 4631000.0, 4632000.0, 4632000.0, 4632000.0, 4633000.0, 4634000.0, 4634000.0, 4634000.0, 4635000.0, 4636000.0, 4636000.0, 4636000.0, 4637000.0, 4638000.0, 4638000.0, 4640000.0, 4645000.0, 4650000.0, 4655000.0, 4660000.0, 4670000.0, 4680000.0, 4690000.0, 4700000.0, 4710000.0, 4720000.0, 4730000.0, 4740000.0, 4750000.0, 4760000.0, 4770000.0, 4775000.0, 4780000.0, 4785000.0, 4790000.0, 4795000.0, 4800000.0, 4805000.0, 4810000.0, 4815000.0, 4820000.0, 4825000.0, 4830000.0, 4835000.0, 4840000.0, 4845000.0, 4850000.0, 4855000.0, 4860000.0, 4865000.0, 4870000.0, 4875000.0, 4880000.0, 4885000.0, 4890000.0, 4895000.0, 4900000.0, 4905000.0, 4910000.0, 4915000.0, 4920000.0, 4925000.0, 4930000.0, 4935000.0, 4940000.0, 4945000.0, 4950000.0, 4960000.0, 4970000.0, 4980000.0, 4990000.0, 5000000.0, 5010000.0, 5020000.0, 5030000.0, 5040000.0, 5050000.0, 5060000.0, 5070000.0, 5080000.0, 5090000.0, 5100000.0, 5103000.0, 5105000.0, 5107000.0, 5109000.0, 5111000.0, 5113000.0, 5115000.0, 5117000.0, 5119000.0, 5121000.0, 5123000.0, 5125000.0, 5127000.0, 5129000.0, 5131000.0, 5133000.0, 5135000.0, 5137000.0, 5139000.0, 5141000.0, 5143000.0, 5145000.0, 5147000.0, 5150000.0, 5160000.0, 5170000.0, 5180000.0, 5190000.0, 5200000.0, 5210000.0, 5220000.0, 5230000.0, 5240000.0, 5250000.0, 5260000.0, 5270000.0, 5280000.0, 5290000.0, 5300000.0, 5301000.0, 5302000.0, 5303000.0, 5304000.0, 5305000.0, 5306000.0, 5307000.0, 5308000.0, 5309000.0, 5310000.0, 5311000.0, 5312000.0, 5313000.0, 5314000.0, 5315000.0, 5316000.0, 5320000.0, 5330000.0, 5340000.0, 5350000.0, 5355000.0, 5360000.0, 5361000.0, 5362000.0, 5363000.0, 5364000.0, 5364000.0, 5365000.0, 5366000.0, 5366000.0, 5366000.0, 5367000.0, 5368000.0, 5368000.0, 5368000.0, 5369000.0, 5370000.0, 5370000.0, 5370000.0, 5371000.0, 5372000.0, 5372000.0, 5372000.0, 5373000.0, 5374000.0, 5374000.0, 5374000.0, 5375000.0, 5380000.0, 5385000.0, 5390000.0, 5395000.0, 5400000.0, 5410000.0, 5420000.0, 5430000.0, 5440000.0, 5450000.0, 5460000.0, 5470000.0, 5480000.0, 5490000.0, 5500000.0, 5510000.0, 5520000.0, 5530000.0, 5540000.0, 5550000.0, 5560000.0, 5570000.0, 5580000.0, 5590000.0, 5600000.0, 5602000.0, 5604000.0, 5606000.0, 5608000.0, 5610000.0, 5612000.0, 5614000.0, 5616000.0, 5618000.0, 5620000.0, 5622000.0, 5624000.0, 5626000.0, 5628000.0, 5630000.0, 5632000.0, 5634000.0, 5636000.0, 5638000.0, 5640000.0, 5642000.0, 5644000.0, 5646000.0, 5648000.0, 5650000.0, 5652000.0, 5654000.0, 5656000.0, 5658000.0, 5660000.0, 5662000.0, 5664000.0, 5666000.0, 5668000.0, 5670000.0, 5672000.0, 5674000.0, 5676000.0, 5678000.0, 5680000.0, 5682000.0, 5684000.0, 5686000.0, 5688000.0, 5690000.0, 5692000.0, 5694000.0, 5696000.0, 5698000.0, 5700000.0, 5710000.0, 5720000.0, 5730000.0, 5740000.0, 5750000.0, 5760000.0, 5770000.0, 5780000.0, 5790000.0, 5800000.0, 5810000.0, 5820000.0, 5830000.0, 5840000.0, 5850000.0, 5855000.0, 5860000.0, 5865000.0, 5870000.0, 5875000.0, 5880000.0, 5885000.0, 5890000.0, 5895000.0, 5900000.0, 5905000.0, 5910000.0, 5915000.0, 5917000.0, 5919000.0, 5921000.0, 5925000.0, 5930000.0, 5935000.0, 5940000.0, 5945000.0, 5950000.0, 5955000.0, 5960000.0, 5962000.0, 5964000.0, 5966000.0, 5968000.0, 5970000.0, 5972000.0, 5974000.0, 5976000.0, 5978000.0, 5980000.0, 5982000.0, 5984000.0, 5986000.0, 5988000.0, 5990000.0, 5992000.0, 5994000.0, 5996000.0, 5998000.0, 6000000.0, 6002000.0, 6004000.0, 6006000.0, 6008000.0, 6010000.0, 6012000.0, 6014000.0, 6016000.0, 6018000.0, 6020000.0, 6022000.0, 6024000.0, 6026000.0, 6028000.0, 6030000.0, 6032000.0, 6034000.0, 6036000.0, 6038000.0, 6040000.0, 6042000.0, 6044000.0, 6046000.0, 6048000.0, 6050000.0, 6052000.0, 6054000.0, 6056000.0, 6058000.0, 6060000.0, 6062000.0, 6064000.0, 6066000.0, 6068000.0, 6070000.0, 6070000.0, 6071000.0, 6072000.0, 6072000.0, 6072000.0, 6073000.0, 6074000.0, 6074000.0, 6074000.0, 6075000.0, 6076000.0, 6076000.0, 6076000.0, 6077000.0, 6078000.0, 6078000.0, 6078000.0, 6079000.0, 6080000.0, 6080000.0, 6080000.0, 6081000.0, 6082000.0, 6082000.0, 6084000.0, 6086000.0, 6088000.0, 6090000.0, 6092000.0, 6094000.0, 6096000.0, 6098000.0, 6100000.0, 6102000.0, 6104000.0, 6106000.0, 6108000.0, 6110000.0, 6112000.0, 6114000.0, 6116000.0, 6118000.0, 6120000.0, 6122000.0, 6124000.0, 6126000.0, 6128000.0, 6130000.0, 6135000.0, 6140000.0, 6145000.0, 6150000.0, 6155000.0, 6160000.0, 6165000.0, 6170000.0, 6175000.0, 6180000.0, 6185000.0, 6190000.0, 6195000.0, 6200000.0, 6205000.0, 6210000.0, 6215000.0, 6220000.0, 6225000.0, 6230000.0, 6235000.0, 6240000.0, 6245000.0, 6250000.0, 6255000.0, 6260000.0, 6265000.0, 6270000.0, 6275000.0, 6280000.0, 6285000.0, 6290000.0, 6295000.0, 6300000.0, 6305000.0, 6310000.0, 6315000.0, 6320000.0, 6325000.0, 6330000.0, 6335000.0, 6340000.0, 6345000.0, 6350000.0, 6355000.0, 6360000.0, 6362000.0, 6364000.0, 6366000.0, 6368000.0, 6370000.0, 6372000.0, 6374000.0, 6376000.0, 6378000.0, 6380000.0, 6382000.0, 6384000.0, 6386000.0, 6387000.0, 6388000.0, 6389000.0, 6390000.0, 6391000.0, 6392000.0, 6393000.0, 6394000.0, 6395000.0, 6396000.0, 6397000.0, 6398000.0, 6399000.0, 6400000.0, 6401000.0, 6402000.0, 6403000.0, 6404000.0, 6405000.0, 6406000.0, 6407000.0, 6408000.0, 6409000.0, 6410000.0, 6415000.0, 6420000.0, 6425000.0, 6430000.0, 6435000.0, 6440000.0, 6445000.0, 6450000.0, 6455000.0, 6460000.0, 6465000.0, 6470000.0, 6475000.0, 6480000.0, 6485000.0, 6490000.0, 6495000.0, 6500000.0, 6510000.0, 6520000.0, 6530000.0, 6540000.0, 6550000.0, 6560000.0, 6570000.0, 6580000.0, 6590000.0, 6600000.0, 6610000.0, 6620000.0, 6630000.0, 6640000.0, 6650000.0, 6651000.0, 6652000.0, 6653000.0, 6654000.0, 6655000.0, 6656000.0, 6657000.0, 6658000.0, 6659000.0, 6660000.0, 6661000.0, 6662000.0, 6663000.0, 6664000.0, 6665000.0, 6666000.0, 6667000.0, 6668000.0, 6669000.0, 6670000.0, 6671000.0, 6672000.0, 6673000.0, 6674000.0, 6675000.0, 6676000.0, 6677000.0, 6678000.0, 6679000.0, 6680000.0, 6681000.0, 6682000.0, 6683000.0, 6684000.0, 6685000.0, 6686000.0, 6687000.0, 6688000.0, 6689000.0, 6690000.0, 6691000.0, 6692000.0, 6693000.0, 6694000.0, 6695000.0, 6696000.0, 6697000.0, 6698000.0, 6699000.0, 6700000.0, 6710000.0, 6720000.0, 6730000.0, 6740000.0, 6750000.0, 6760000.0, 6770000.0, 6780000.0, 6790000.0, 6800000.0, 6802000.0, 6804000.0, 6806000.0, 6808000.0, 6810000.0, 6812000.0, 6814000.0, 6816000.0, 6818000.0, 6820000.0, 6830000.0, 6840000.0, 6850000.0, 6860000.0, 6870000.0, 6880000.0, 6890000.0, 6900000.0, 6910000.0, 6920000.0, 6930000.0, 6940000.0, 6950000.0, 6960000.0, 6970000.0, 6980000.0, 6990000.0, 7000000.0, 7030000.0, 7100000.0, 7200000.0, 7400000.0, 7500000.0, 7512000.0, 7540000.0, 7600000.0, 7700000.0, 7800000.0, 7900000.0, 7933000.0, 8000000.0, 8040000.0, 8100000.0, 8300000.0, 8400000.0, 8500000.0, 8560000.0, 8600000.0, 8700000.0, 8800000.0, 8900000.0, 9000000.0, 9011000.0, 9211000.0, 9250000.0, 9500000.0, 9708000.0, 9750000.0, 1.0E7, 1.013E7, 1.016E7, 1.016E7, 1.021E7, 1.05E7, 1.07E7, 1.095E7, 1.1E7, 1.115E7, 1.135E7, 1.15E7, 1.195E7, 1.2E7, 1.245E7, 1.249E7, 1.25E7, 1.294E7, 1.3E7, 1.35E7, 1.361E7, 1.394E7, 1.4E7, 1.45E7, 1.489E7, 1.493E7, 1.5E7, 1.6E7, 1.7E7, 1.8E7, 1.9E7, 2.0E7, 2.1E7, 2.2E7, 2.3E7, 2.4E7, 2.5E7, 2.6E7, 2.7E7, 2.8E7, 2.9E7, 3.0E7, 3.0E7, 3.5E7, 4.0E7, 5.0E7, 6.0E7, 7.0E7, 8.0E7, 9.0E7, 1.0E8, 1.1E8, 1.2E8, 1.3E8, 1.4E8, 1.5E8]
+ ,"EiMin":1.0E-5 ,"EiMax":1.5E8
+ ,"datasets": [
+  {"id":"24013073"
+    ,"dataType":"Angular distr."
+    ,"LIBRARY":"INDEN-Oct2022"
+    ,"TARGET":"O-16" ,"MF":4 ,"MT":2
+    ,"REACTION": "8-O-16(N,EL),DA"
+    ,"f(x)": "DA(A)"
+    ,"param": "Ei1.41E+7"
+    ,"xunits": "deg"
+    ,"yunits": "b/sr"
+    ,"pts": [
+	 {"x":180.0	,"y":0.028106	,"dy":0.0036256742}
+	,{"x":164.684	,"y":0.024398	,"dy":0.0031473422}
+	,{"x":158.3	,"y":0.020967	,"dy":0.002704743}
+	,{"x":153.373	,"y":0.018079	,"dy":0.002332191}
+	,{"x":149.194	,"y":0.015351	,"dy":0.001980279}
+	,{"x":145.491	,"y":0.013039	,"dy":0.0016820311}
+	,{"x":142.122	,"y":0.01082	,"dy":0.0013957801}
+	,{"x":139.004	,"y":0.0089807	,"dy":0.0011585103}
+	,{"x":136.083	,"y":0.0074663	,"dy":9.6315274E-4}
+	,{"x":133.322	,"y":0.006314	,"dy":8.14506E-4}
+	,{"x":131.992	,"y":0.0058857	,"dy":7.592554E-4}
+	,{"x":131.664	,"y":0.0058013	,"dy":7.4836775E-4}
+	,{"x":130.692	,"y":0.0055567	,"dy":7.168143E-4}
+	,{"x":129.42	,"y":0.0053403	,"dy":6.888987E-4}
+	,{"x":128.173	,"y":0.0052451	,"dy":6.766179E-4}
+	,{"x":127.558	,"y":0.005208	,"dy":6.71832E-4}
+	,{"x":126.874	,"y":0.0052237	,"dy":6.738573E-4}
+	,{"x":125.749	,"y":0.0053205	,"dy":6.863445E-4}
+	,{"x":124.568	,"y":0.0055403	,"dy":7.1469875E-4}
+	,{"x":123.406	,"y":0.005885	,"dy":7.5916504E-4}
+	,{"x":122.832	,"y":0.0060667	,"dy":7.8260433E-4}
+	,{"x":121.135	,"y":0.0068318	,"dy":8.813022E-4}
+	,{"x":118.926	,"y":0.0082281	,"dy":0.001061425}
+	,{"x":116.772	,"y":0.0099736	,"dy":0.0012865944}
+	,{"x":114.668	,"y":0.012083	,"dy":0.001558707}
+	,{"x":112.607	,"y":0.014456	,"dy":0.0018648241}
+	,{"x":108.598	,"y":0.019866	,"dy":0.0025627143}
+	,{"x":104.713	,"y":0.025738	,"dy":0.0033202022}
+	,{"x":100.928	,"y":0.031615	,"dy":0.004078335}
+	,{"x":97.2201	,"y":0.037111	,"dy":0.004787319}
+	,{"x":93.5722	,"y":0.041934	,"dy":0.005409486}
+	,{"x":89.9678	,"y":0.045905	,"dy":0.005921745}
+	,{"x":86.3916	,"y":0.048933	,"dy":0.0063123573}
+	,{"x":82.8294	,"y":0.050983	,"dy":0.0065768072}
+	,{"x":79.267	,"y":0.052023	,"dy":0.0067109675}
+	,{"x":75.6898	,"y":0.051977	,"dy":0.0067050336}
+	,{"x":72.0825	,"y":0.050705	,"dy":0.0065409453}
+	,{"x":68.428	,"y":0.048029	,"dy":0.0061957412}
+	,{"x":64.7071	,"y":0.043836	,"dy":0.0056548445}
+	,{"x":60.8969	,"y":0.03831	,"dy":0.00494199}
+	,{"x":56.9694	,"y":0.032321	,"dy":0.004169409}
+	,{"x":54.9508	,"y":0.029817	,"dy":0.0038463932}
+	,{"x":52.8885	,"y":0.028041	,"dy":0.003617289}
+	,{"x":51.8391	,"y":0.027727	,"dy":0.0035767832}
+	,{"x":50.7763	,"y":0.027786	,"dy":0.003584394}
+	,{"x":49.699	,"y":0.028458	,"dy":0.003671082}
+	,{"x":49.3592	,"y":0.028868	,"dy":0.003723972}
+	,{"x":48.6063	,"y":0.029825	,"dy":0.003847425}
+	,{"x":47.4968	,"y":0.032033	,"dy":0.0041322573}
+	,{"x":46.653	,"y":0.034588	,"dy":0.0044618524}
+	,{"x":45.7984	,"y":0.037323	,"dy":0.0048146676}
+	,{"x":45.3669	,"y":0.039258	,"dy":0.005064282}
+	,{"x":44.0543	,"y":0.045448	,"dy":0.0058627925}
+	,{"x":42.8631	,"y":0.052882	,"dy":0.006821778}
+	,{"x":41.9534	,"y":0.060143	,"dy":0.0077584474}
+	,{"x":41.0285	,"y":0.067747	,"dy":0.0087393625}
+	,{"x":40.5601	,"y":0.072572	,"dy":0.009361789}
+	,{"x":39.1289	,"y":0.087759	,"dy":0.011320911}
+	,{"x":37.8212	,"y":0.10466	,"dy":0.01350114}
+	,{"x":35.7886	,"y":0.1363	,"dy":0.0175827}
+	,{"x":33.6562	,"y":0.17683	,"dy":0.02281107}
+	,{"x":32.1693	,"y":0.20967	,"dy":0.027047431}
+	,{"x":29.8209	,"y":0.26909	,"dy":0.034712613}
+	,{"x":27.2977	,"y":0.34273	,"dy":0.04421217}
+	,{"x":25.4928	,"y":0.4041	,"dy":0.052128904}
+	,{"x":23.5633	,"y":0.46791	,"dy":0.06036039}
+	,{"x":22.5418	,"y":0.50691	,"dy":0.0653914}
+	,{"x":19.1772	,"y":0.62892	,"dy":0.08113068}
+	,{"x":13.517	,"y":0.83543	,"dy":0.10777048}
+	,{"x":0.0	,"y":1.0966	,"dy":0.14146142}
+    ]
+  }
+ ]
+}
+')
+Download...DS:1/1)	8-O-16(N,EL),DA	INDEN-Oct2022	EID:272547	SID:24013073	f(x):DA(A)	pts:70
+Downloaded:DS:1/1)	8-O-16(N,EL),DA	INDEN-Oct2022	EID:272547	SID:24013073	f(x):DA(A)	pts:70	idy=70
+WebReq:2) EvalID:226193 PenSectID:19009723 Lib:JENDL-5 Color:255,0,0
+/servlet/E4sGetSectData?EvalID=226193&PenSectID=19009723&json&ei=14100000.0&dy
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226193&PenSectID=19009723&json&ei=14100000.0&dy
+txt={
+ "format":"WebEndfTabSectDAA-0.1" 
+ ,"now":"2026-02-12T16:22:00.000Z" 
+ ,"program":"E4sGetTabSect, by V.Zerkin, IAEA-NDS, ver.2022-11-18" 
+ ,"SectMF":4 ,"SectMT":2
+ ,"EvalID":226193 ,"PenSectID":19009723 ,"Target":"O-16" ,"LibName":"JENDL-5"
+ ,"lstEi":[1.0E-5, 0.0253, 2.5, 130.0, 1970.0, 3000.0, 5000.0, 7000.0, 9000.0, 10000.0, 222500.0, 275600.0, 302200.0, 328800.0, 342000.0, 355300.0, 368600.0, 375200.0, 381900.0, 388500.0, 395200.0, 401800.0, 408400.0, 415100.0, 421700.0, 428400.0, 431700.0, 435000.0, 439100.0, 443300.0, 451600.0, 455700.0, 459800.0, 464000.0, 468100.0, 476400.0, 484700.0, 493000.0, 501200.0, 517800.0, 534400.0, 567500.0, 600600.0, 633800.0, 700000.0, 775000.0, 812500.0, 850000.0, 868800.0, 887500.0, 906200.0, 925000.0, 1000000.0, 1008000.0, 1015000.0, 1030000.0, 1045000.0, 1060000.0, 1075000.0, 1090000.0, 1105000.0, 1120000.0, 1153000.0, 1186000.0, 1219000.0, 1236000.0, 1252000.0, 1261000.0, 1269000.0, 1277000.0, 1286000.0, 1290000.0, 1294000.0, 1302000.0, 1306000.0, 1310000.0, 1315000.0, 1319000.0, 1335000.0, 1344000.0, 1352000.0, 1360000.0, 1368000.0, 1385000.0, 1402000.0, 1418000.0, 1451000.0, 1518000.0, 1584000.0, 1617000.0, 1633000.0, 1638000.0, 1642000.0, 1644000.0, 1645000.0, 1646000.0, 1647000.0, 1647000.0, 1648000.0, 1648000.0, 1649000.0, 1649000.0, 1649000.0, 1649000.0, 1650000.0, 1650000.0, 1651000.0, 1651000.0, 1651000.0, 1651000.0, 1651000.0, 1652000.0, 1652000.0, 1653000.0, 1653000.0, 1653000.0, 1654000.0, 1654000.0, 1655000.0, 1656000.0, 1657000.0, 1659000.0, 1662000.0, 1668000.0, 1674000.0, 1698000.0, 1745000.0, 1792000.0, 1816000.0, 1822000.0, 1825000.0, 1827000.0, 1828000.0, 1829000.0, 1830000.0, 1830000.0, 1831000.0, 1833000.0, 1833000.0, 1834000.0, 1835000.0, 1836000.0, 1837000.0, 1839000.0, 1840000.0, 1842000.0, 1844000.0, 1849000.0, 1853000.0, 1858000.0, 1866000.0, 1875000.0, 1879000.0, 1884000.0, 1888000.0, 1892000.0, 1897000.0, 1901000.0, 1906000.0, 1910000.0, 1917000.0, 1924000.0, 1930000.0, 1937000.0, 1951000.0, 1964000.0, 1992000.0, 2019000.0, 2128000.0, 2182000.0, 2209000.0, 2236000.0, 2263000.0, 2277000.0, 2291000.0, 2318000.0, 2325000.0, 2331000.0, 2335000.0, 2338000.0, 2342000.0, 2345000.0, 2347000.0, 2350000.0, 2355000.0, 2360000.0, 2364000.0, 2369000.0, 2374000.0, 2384000.0, 2403000.0, 2422000.0, 2442000.0, 2461000.0, 2500000.0, 2562000.0, 2625000.0, 2750000.0, 2875000.0, 2938000.0, 3000000.0, 3031000.0, 3062000.0, 3094000.0, 3125000.0, 3250000.0, 3288000.0, 3325000.0, 3400000.0, 3500000.0, 3600000.0, 3685000.0, 3728000.0, 3738000.0, 3743000.0, 3749000.0, 3770000.0, 3774000.0, 3775000.0, 3777000.0, 3781000.0, 3784000.0, 3792000.0, 3799000.0, 3828000.0, 3885000.0, 4000000.0, 4012000.0, 4025000.0, 4038000.0, 4050000.0, 4056000.0, 4062000.0, 4075000.0, 4100000.0, 4121000.0, 4132000.0, 4137000.0, 4142000.0, 4148000.0, 4153000.0, 4164000.0, 4169000.0, 4174000.0, 4185000.0, 4250000.0, 4262000.0, 4269000.0, 4275000.0, 4281000.0, 4288000.0, 4294000.0, 4300000.0, 4306000.0, 4312000.0, 4319000.0, 4325000.0, 4334000.0, 4344000.0, 4362000.0, 4381000.0, 4400000.0, 4425000.0, 4450000.0, 4456000.0, 4459000.0, 4461000.0, 4462000.0, 4466000.0, 4467000.0, 4469000.0, 4475000.0, 4481000.0, 4488000.0, 4500000.0, 4515000.0, 4519000.0, 4521000.0, 4522000.0, 4523000.0, 4524000.0, 4525000.0, 4526000.0, 4526000.0, 4527000.0, 4528000.0, 4528000.0, 4529000.0, 4529000.0, 4530000.0, 4531000.0, 4532000.0, 4534000.0, 4535000.0, 4538000.0, 4540000.0, 4550000.0, 4575000.0, 4600000.0, 4612000.0, 4616000.0, 4616000.0, 4616000.0, 4616000.0, 4616000.0, 4616000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4618000.0, 4618000.0, 4619000.0, 4622000.0, 4625000.0, 4627000.0, 4628000.0, 4631000.0, 4632000.0, 4633000.0, 4634000.0, 4636000.0, 4638000.0, 4641000.0, 4644000.0, 4650000.0, 4725000.0, 4762000.0, 4781000.0, 4791000.0, 4800000.0, 4805000.0, 4810000.0, 4820000.0, 4825000.0, 4830000.0, 4835000.0, 4840000.0, 4868000.0, 4881000.0, 4895000.0, 4922000.0, 4950000.0, 4972000.0, 4994000.0, 5005000.0, 5016000.0, 5027000.0, 5038000.0, 5059000.0, 5081000.0, 5092000.0, 5098000.0, 5103000.0, 5125000.0, 5127000.0, 5130000.0, 5134000.0, 5139000.0, 5144000.0, 5148000.0, 5153000.0, 5162000.0, 5172000.0, 5181000.0, 5200000.0, 5244000.0, 5288000.0, 5331000.0, 5353000.0, 5364000.0, 5367000.0, 5368000.0, 5369000.0, 5370000.0, 5370000.0, 5370000.0, 5371000.0, 5371000.0, 5371000.0, 5371000.0, 5372000.0, 5372000.0, 5372000.0, 5372000.0, 5372000.0, 5373000.0, 5373000.0, 5373000.0, 5374000.0, 5374000.0, 5374000.0, 5375000.0, 5376000.0, 5377000.0, 5379000.0, 5383000.0, 5392000.0, 5408000.0, 5441000.0, 5474000.0, 5508000.0, 5640000.0, 5720000.0, 5760000.0, 5800000.0, 5830000.0, 5860000.0, 5875000.0, 5882000.0, 5890000.0, 5894000.0, 5898000.0, 5901000.0, 5905000.0, 5912000.0, 5914000.0, 5916000.0, 5918000.0, 5920000.0, 5925000.0, 5930000.0, 5935000.0, 5940000.0, 5945000.0, 5950000.0, 5960000.0, 5982000.0, 5985000.0, 5987000.0, 5988000.0, 5990000.0, 5991000.0, 5992000.0, 5994000.0, 5995000.0, 5997000.0, 5998000.0, 5999000.0, 6063000.0, 6075000.0, 6083000.0, 6320000.0, 6404000.0, 6508000.0, 6599000.0, 6784000.0, 6814000.0, 6911000.0, 7006000.0, 7145000.0, 7198000.0, 7275000.0, 7373000.0, 7700000.0, 7850000.0, 8016000.0, 8236000.0, 8727000.0, 8894000.0, 9048000.0, 9210000.0, 9710000.0, 1.021E7, 1.07E7, 1.095E7, 1.115E7, 1.195E7, 1.245E7, 1.294E7, 1.394E7, 1.493E7, 1.5E7, 1.52E7, 1.531E7, 1.6E7, 1.648E7, 1.7E7, 1.8E7, 1.9E7, 2.0E7, 2.2E7, 2.4E7, 2.6E7, 2.8E7, 3.0E7, 3.2E7, 3.4E7, 3.6E7, 3.8E7, 4.0E7, 4.2E7, 4.4E7, 4.6E7, 4.8E7, 5.0E7, 5.5E7, 6.0E7, 6.5E7, 7.0E7, 8.0E7, 9.0E7, 1.0E8, 1.1E8, 1.2E8, 1.3E8, 1.4E8, 1.5E8, 1.5E8, 1.6E8, 1.7E8, 1.8E8, 1.9E8, 2.0E8]
+ ,"EiMin":1.0E-5 ,"EiMax":2.0E8
+ ,"datasets": [
+  {"id":"19009723"
+    ,"dataType":"Angular distr."
+    ,"LIBRARY":"JENDL-5"
+    ,"TARGET":"O-16" ,"MF":4 ,"MT":2
+    ,"REACTION": "8-O-16(N,EL),DA"
+    ,"f(x)": "DA(A)"
+    ,"param": "Ei1.41E+7"
+    ,"xunits": "deg"
+    ,"yunits": "b/sr"
+    ,"pts": [
+	 {"x":180.0	,"y":0.019677	,"dy":0.0049381345}
+	,{"x":169.8	,"y":0.01987	,"dy":0.00486009}
+	,{"x":169.18	,"y":0.019833	,"dy":0.004850343}
+	,{"x":165.677	,"y":0.019697	,"dy":0.00478464}
+	,{"x":163.852	,"y":0.019676	,"dy":0.004743308}
+	,{"x":161.622	,"y":0.019308	,"dy":0.004686275}
+	,{"x":159.549	,"y":0.019021	,"dy":0.00462689}
+	,{"x":158.3	,"y":0.018637	,"dy":0.0045881816}
+	,{"x":155.716	,"y":0.01789	,"dy":0.0045011993}
+	,{"x":154.911	,"y":0.017668	,"dy":0.004472222}
+	,{"x":153.939	,"y":0.01725	,"dy":0.0044360585}
+	,{"x":151.473	,"y":0.016206	,"dy":0.0043386063}
+	,{"x":150.981	,"y":0.016005	,"dy":0.0043181954}
+	,{"x":149.194	,"y":0.015035	,"dy":0.0042413943}
+	,{"x":147.294	,"y":0.014006	,"dy":0.004155214}
+	,{"x":145.933	,"y":0.013265	,"dy":0.004090667}
+	,{"x":144.336	,"y":0.012395	,"dy":0.0040119872}
+	,{"x":143.982	,"y":0.012191	,"dy":0.003994122}
+	,{"x":142.122	,"y":0.011138	,"dy":0.0038977673}
+	,{"x":140.536	,"y":0.010229	,"dy":0.0038123585}
+	,{"x":138.671	,"y":0.0091485	,"dy":0.0037081933}
+	,{"x":138.257	,"y":0.0089359	,"dy":0.0036845335}
+	,{"x":136.083	,"y":0.0078222	,"dy":0.0035571617}
+	,{"x":133.622	,"y":0.0067475	,"dy":0.0034068064}
+	,{"x":133.322	,"y":0.0066441	,"dy":0.0033880433}
+	,{"x":131.266	,"y":0.0059354	,"dy":0.0032569752}
+	,{"x":130.692	,"y":0.0058	,"dy":0.0032196268}
+	,{"x":129.001	,"y":0.0053938	,"dy":0.0031077361}
+	,{"x":126.815	,"y":0.0051296	,"dy":0.0029590942}
+	,{"x":125.748	,"y":0.0051374	,"dy":0.0028849635}
+	,{"x":124.698	,"y":0.0051343	,"dy":0.0028110368}
+	,{"x":122.641	,"y":0.0054044	,"dy":0.0026634987}
+	,{"x":121.135	,"y":0.0058082	,"dy":0.0025532935}
+	,{"x":120.639	,"y":0.0059358	,"dy":0.0025166075}
+	,{"x":118.684	,"y":0.0067023	,"dy":0.0023701983}
+	,{"x":116.772	,"y":0.0077122	,"dy":0.0022243399}
+	,{"x":114.9	,"y":0.0089279	,"dy":0.0020791315}
+	,{"x":113.062	,"y":0.010353	,"dy":0.0019344002}
+	,{"x":112.607	,"y":0.010775	,"dy":0.001898259}
+	,{"x":109.477	,"y":0.013745	,"dy":0.0016465142}
+	,{"x":108.598	,"y":0.014735	,"dy":0.0015749005}
+	,{"x":105.996	,"y":0.017752	,"dy":0.001360803}
+	,{"x":104.713	,"y":0.0194	,"dy":0.0012541743}
+	,{"x":102.599	,"y":0.02222	,"dy":0.0010771364}
+	,{"x":100.928	,"y":0.024562	,"dy":9.361484E-4}
+	,{"x":99.2713	,"y":0.026985	,"dy":7.9558033E-4}
+	,{"x":97.2201	,"y":0.029995	,"dy":6.2063104E-4}
+	,{"x":95.9983	,"y":0.031875	,"dy":5.160298E-4}
+	,{"x":93.5722	,"y":0.035465	,"dy":3.0767647E-4}
+	,{"x":92.768	,"y":0.036715	,"dy":2.3847181E-4}
+	,{"x":89.9678	,"y":0.040734	,"dy":2.7755284E-6}
+	,{"x":89.5693	,"y":0.041332	,"dy":3.7120455E-5}
+	,{"x":86.3916	,"y":0.04556	,"dy":3.1079043E-4}
+	,{"x":83.225	,"y":0.049239	,"dy":5.8255525E-4}
+	,{"x":82.8294	,"y":0.049599	,"dy":6.163984E-4}
+	,{"x":80.0594	,"y":0.052167	,"dy":8.524556E-4}
+	,{"x":79.267	,"y":0.052678	,"dy":9.196414E-4}
+	,{"x":76.8848	,"y":0.054153	,"dy":0.0011205102}
+	,{"x":75.6898	,"y":0.054526	,"dy":0.0012205665}
+	,{"x":73.6905	,"y":0.054994	,"dy":0.0013867558}
+	,{"x":72.0825	,"y":0.054847	,"dy":0.0015192038}
+	,{"x":70.4652	,"y":0.054483	,"dy":0.0016512099}
+	,{"x":68.428	,"y":0.053345	,"dy":0.0018156044}
+	,{"x":67.1962	,"y":0.052435	,"dy":0.0019139061}
+	,{"x":64.7071	,"y":0.049804	,"dy":0.0021097972}
+	,{"x":63.869	,"y":0.04875	,"dy":0.0021748778}
+	,{"x":60.8969	,"y":0.04426	,"dy":0.002401823}
+	,{"x":60.4669	,"y":0.043536	,"dy":0.002434136}
+	,{"x":56.9694	,"y":0.037315	,"dy":0.0026917122}
+	,{"x":53.3509	,"y":0.031408	,"dy":0.0029476348}
+	,{"x":52.8885	,"y":0.030878	,"dy":0.0029795126}
+	,{"x":51.4864	,"y":0.029358	,"dy":0.003074978}
+	,{"x":50.7763	,"y":0.028915	,"dy":0.0031226284}
+	,{"x":50.1796	,"y":0.028597	,"dy":0.0031622984}
+	,{"x":49.699	,"y":0.028508	,"dy":0.0031940003}
+	,{"x":49.5784	,"y":0.028496	,"dy":0.0032019205}
+	,{"x":48.6063	,"y":0.02896	,"dy":0.0032652395}
+	,{"x":47.621	,"y":0.029537	,"dy":0.003328459}
+	,{"x":47.4968	,"y":0.029708	,"dy":0.0033363586}
+	,{"x":46.653	,"y":0.030966	,"dy":0.00338961}
+	,{"x":46.6215	,"y":0.031018	,"dy":0.003391584}
+	,{"x":45.607	,"y":0.033329	,"dy":0.0034546005}
+	,{"x":45.3669	,"y":0.034051	,"dy":0.0034693566}
+	,{"x":44.7141	,"y":0.036112	,"dy":0.0035091683}
+	,{"x":44.5762	,"y":0.036562	,"dy":0.0035175204}
+	,{"x":44.0543	,"y":0.038831	,"dy":0.0035489441}
+	,{"x":42.9967	,"y":0.043583	,"dy":0.0036117167}
+	,{"x":42.8631	,"y":0.044387	,"dy":0.0036195593}
+	,{"x":41.9534	,"y":0.050041	,"dy":0.0036724352}
+	,{"x":41.3729	,"y":0.053726	,"dy":0.0037056934}
+	,{"x":41.2612	,"y":0.054601	,"dy":0.0037120495}
+	,{"x":40.263	,"y":0.062593	,"dy":0.0037682203}
+	,{"x":40.206	,"y":0.063148	,"dy":0.0037713936}
+	,{"x":39.1289	,"y":0.073859	,"dy":0.0038306501}
+	,{"x":38.552	,"y":0.079734	,"dy":0.0038618327}
+	,{"x":37.8212	,"y":0.08888	,"dy":0.0039007713}
+	,{"x":36.8163	,"y":0.10165	,"dy":0.0039532776}
+	,{"x":36.7786	,"y":0.10214	,"dy":0.0039552236}
+	,{"x":35.5569	,"y":0.12072	,"dy":0.004017362}
+	,{"x":35.2655	,"y":0.12586	,"dy":0.0040319148}
+	,{"x":33.6562	,"y":0.15466	,"dy":0.0041103945}
+	,{"x":32.1693	,"y":0.18656	,"dy":0.004180025}
+	,{"x":31.6605	,"y":0.19764	,"dy":0.0042032073}
+	,{"x":30.2677	,"y":0.23179	,"dy":0.004264967}
+	,{"x":29.8209	,"y":0.24413	,"dy":0.004284247}
+	,{"x":28.0663	,"y":0.293	,"dy":0.0043574283}
+	,{"x":27.2977	,"y":0.31728	,"dy":0.004388202}
+	,{"x":25.699	,"y":0.36749	,"dy":0.0044496767}
+	,{"x":25.4928	,"y":0.37505	,"dy":0.0044573545}
+	,{"x":22.5418	,"y":0.48033	,"dy":0.0045608613}
+	,{"x":22.1916	,"y":0.49252	,"dy":0.004572347}
+	,{"x":19.1772	,"y":0.61136	,"dy":0.004664103}
+	,{"x":18.0675	,"y":0.65279	,"dy":0.004694644}
+	,{"x":13.5169	,"y":0.82824	,"dy":0.004801353}
+	,{"x":12.7394	,"y":0.85453	,"dy":0.004816573}
+	,{"x":0.0	,"y":1.1071	,"dy":0.0049381345}
+    ]
+  }
+ ]
+}
+
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+
+
+---SQL---
+insert into wget_cache(url,cmd,datim,txt) values (
+'http://localhost:5557/exfor2'
+,'/servlet/E4sGetSectData?EvalID=226193&PenSectID=19009723&json&ei=14100000.0&dy'
+,'2026-02-12 16:22:03'
+,'{
+ "format":"WebEndfTabSectDAA-0.1" 
+ ,"now":"2026-02-12T16:22:00.000Z" 
+ ,"program":"E4sGetTabSect, by V.Zerkin, IAEA-NDS, ver.2022-11-18" 
+ ,"SectMF":4 ,"SectMT":2
+ ,"EvalID":226193 ,"PenSectID":19009723 ,"Target":"O-16" ,"LibName":"JENDL-5"
+ ,"lstEi":[1.0E-5, 0.0253, 2.5, 130.0, 1970.0, 3000.0, 5000.0, 7000.0, 9000.0, 10000.0, 222500.0, 275600.0, 302200.0, 328800.0, 342000.0, 355300.0, 368600.0, 375200.0, 381900.0, 388500.0, 395200.0, 401800.0, 408400.0, 415100.0, 421700.0, 428400.0, 431700.0, 435000.0, 439100.0, 443300.0, 451600.0, 455700.0, 459800.0, 464000.0, 468100.0, 476400.0, 484700.0, 493000.0, 501200.0, 517800.0, 534400.0, 567500.0, 600600.0, 633800.0, 700000.0, 775000.0, 812500.0, 850000.0, 868800.0, 887500.0, 906200.0, 925000.0, 1000000.0, 1008000.0, 1015000.0, 1030000.0, 1045000.0, 1060000.0, 1075000.0, 1090000.0, 1105000.0, 1120000.0, 1153000.0, 1186000.0, 1219000.0, 1236000.0, 1252000.0, 1261000.0, 1269000.0, 1277000.0, 1286000.0, 1290000.0, 1294000.0, 1302000.0, 1306000.0, 1310000.0, 1315000.0, 1319000.0, 1335000.0, 1344000.0, 1352000.0, 1360000.0, 1368000.0, 1385000.0, 1402000.0, 1418000.0, 1451000.0, 1518000.0, 1584000.0, 1617000.0, 1633000.0, 1638000.0, 1642000.0, 1644000.0, 1645000.0, 1646000.0, 1647000.0, 1647000.0, 1648000.0, 1648000.0, 1649000.0, 1649000.0, 1649000.0, 1649000.0, 1650000.0, 1650000.0, 1651000.0, 1651000.0, 1651000.0, 1651000.0, 1651000.0, 1652000.0, 1652000.0, 1653000.0, 1653000.0, 1653000.0, 1654000.0, 1654000.0, 1655000.0, 1656000.0, 1657000.0, 1659000.0, 1662000.0, 1668000.0, 1674000.0, 1698000.0, 1745000.0, 1792000.0, 1816000.0, 1822000.0, 1825000.0, 1827000.0, 1828000.0, 1829000.0, 1830000.0, 1830000.0, 1831000.0, 1833000.0, 1833000.0, 1834000.0, 1835000.0, 1836000.0, 1837000.0, 1839000.0, 1840000.0, 1842000.0, 1844000.0, 1849000.0, 1853000.0, 1858000.0, 1866000.0, 1875000.0, 1879000.0, 1884000.0, 1888000.0, 1892000.0, 1897000.0, 1901000.0, 1906000.0, 1910000.0, 1917000.0, 1924000.0, 1930000.0, 1937000.0, 1951000.0, 1964000.0, 1992000.0, 2019000.0, 2128000.0, 2182000.0, 2209000.0, 2236000.0, 2263000.0, 2277000.0, 2291000.0, 2318000.0, 2325000.0, 2331000.0, 2335000.0, 2338000.0, 2342000.0, 2345000.0, 2347000.0, 2350000.0, 2355000.0, 2360000.0, 2364000.0, 2369000.0, 2374000.0, 2384000.0, 2403000.0, 2422000.0, 2442000.0, 2461000.0, 2500000.0, 2562000.0, 2625000.0, 2750000.0, 2875000.0, 2938000.0, 3000000.0, 3031000.0, 3062000.0, 3094000.0, 3125000.0, 3250000.0, 3288000.0, 3325000.0, 3400000.0, 3500000.0, 3600000.0, 3685000.0, 3728000.0, 3738000.0, 3743000.0, 3749000.0, 3770000.0, 3774000.0, 3775000.0, 3777000.0, 3781000.0, 3784000.0, 3792000.0, 3799000.0, 3828000.0, 3885000.0, 4000000.0, 4012000.0, 4025000.0, 4038000.0, 4050000.0, 4056000.0, 4062000.0, 4075000.0, 4100000.0, 4121000.0, 4132000.0, 4137000.0, 4142000.0, 4148000.0, 4153000.0, 4164000.0, 4169000.0, 4174000.0, 4185000.0, 4250000.0, 4262000.0, 4269000.0, 4275000.0, 4281000.0, 4288000.0, 4294000.0, 4300000.0, 4306000.0, 4312000.0, 4319000.0, 4325000.0, 4334000.0, 4344000.0, 4362000.0, 4381000.0, 4400000.0, 4425000.0, 4450000.0, 4456000.0, 4459000.0, 4461000.0, 4462000.0, 4466000.0, 4467000.0, 4469000.0, 4475000.0, 4481000.0, 4488000.0, 4500000.0, 4515000.0, 4519000.0, 4521000.0, 4522000.0, 4523000.0, 4524000.0, 4525000.0, 4526000.0, 4526000.0, 4527000.0, 4528000.0, 4528000.0, 4529000.0, 4529000.0, 4530000.0, 4531000.0, 4532000.0, 4534000.0, 4535000.0, 4538000.0, 4540000.0, 4550000.0, 4575000.0, 4600000.0, 4612000.0, 4616000.0, 4616000.0, 4616000.0, 4616000.0, 4616000.0, 4616000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4617000.0, 4618000.0, 4618000.0, 4619000.0, 4622000.0, 4625000.0, 4627000.0, 4628000.0, 4631000.0, 4632000.0, 4633000.0, 4634000.0, 4636000.0, 4638000.0, 4641000.0, 4644000.0, 4650000.0, 4725000.0, 4762000.0, 4781000.0, 4791000.0, 4800000.0, 4805000.0, 4810000.0, 4820000.0, 4825000.0, 4830000.0, 4835000.0, 4840000.0, 4868000.0, 4881000.0, 4895000.0, 4922000.0, 4950000.0, 4972000.0, 4994000.0, 5005000.0, 5016000.0, 5027000.0, 5038000.0, 5059000.0, 5081000.0, 5092000.0, 5098000.0, 5103000.0, 5125000.0, 5127000.0, 5130000.0, 5134000.0, 5139000.0, 5144000.0, 5148000.0, 5153000.0, 5162000.0, 5172000.0, 5181000.0, 5200000.0, 5244000.0, 5288000.0, 5331000.0, 5353000.0, 5364000.0, 5367000.0, 5368000.0, 5369000.0, 5370000.0, 5370000.0, 5370000.0, 5371000.0, 5371000.0, 5371000.0, 5371000.0, 5372000.0, 5372000.0, 5372000.0, 5372000.0, 5372000.0, 5373000.0, 5373000.0, 5373000.0, 5374000.0, 5374000.0, 5374000.0, 5375000.0, 5376000.0, 5377000.0, 5379000.0, 5383000.0, 5392000.0, 5408000.0, 5441000.0, 5474000.0, 5508000.0, 5640000.0, 5720000.0, 5760000.0, 5800000.0, 5830000.0, 5860000.0, 5875000.0, 5882000.0, 5890000.0, 5894000.0, 5898000.0, 5901000.0, 5905000.0, 5912000.0, 5914000.0, 5916000.0, 5918000.0, 5920000.0, 5925000.0, 5930000.0, 5935000.0, 5940000.0, 5945000.0, 5950000.0, 5960000.0, 5982000.0, 5985000.0, 5987000.0, 5988000.0, 5990000.0, 5991000.0, 5992000.0, 5994000.0, 5995000.0, 5997000.0, 5998000.0, 5999000.0, 6063000.0, 6075000.0, 6083000.0, 6320000.0, 6404000.0, 6508000.0, 6599000.0, 6784000.0, 6814000.0, 6911000.0, 7006000.0, 7145000.0, 7198000.0, 7275000.0, 7373000.0, 7700000.0, 7850000.0, 8016000.0, 8236000.0, 8727000.0, 8894000.0, 9048000.0, 9210000.0, 9710000.0, 1.021E7, 1.07E7, 1.095E7, 1.115E7, 1.195E7, 1.245E7, 1.294E7, 1.394E7, 1.493E7, 1.5E7, 1.52E7, 1.531E7, 1.6E7, 1.648E7, 1.7E7, 1.8E7, 1.9E7, 2.0E7, 2.2E7, 2.4E7, 2.6E7, 2.8E7, 3.0E7, 3.2E7, 3.4E7, 3.6E7, 3.8E7, 4.0E7, 4.2E7, 4.4E7, 4.6E7, 4.8E7, 5.0E7, 5.5E7, 6.0E7, 6.5E7, 7.0E7, 8.0E7, 9.0E7, 1.0E8, 1.1E8, 1.2E8, 1.3E8, 1.4E8, 1.5E8, 1.5E8, 1.6E8, 1.7E8, 1.8E8, 1.9E8, 2.0E8]
+ ,"EiMin":1.0E-5 ,"EiMax":2.0E8
+ ,"datasets": [
+  {"id":"19009723"
+    ,"dataType":"Angular distr."
+    ,"LIBRARY":"JENDL-5"
+    ,"TARGET":"O-16" ,"MF":4 ,"MT":2
+    ,"REACTION": "8-O-16(N,EL),DA"
+    ,"f(x)": "DA(A)"
+    ,"param": "Ei1.41E+7"
+    ,"xunits": "deg"
+    ,"yunits": "b/sr"
+    ,"pts": [
+	 {"x":180.0	,"y":0.019677	,"dy":0.0049381345}
+	,{"x":169.8	,"y":0.01987	,"dy":0.00486009}
+	,{"x":169.18	,"y":0.019833	,"dy":0.004850343}
+	,{"x":165.677	,"y":0.019697	,"dy":0.00478464}
+	,{"x":163.852	,"y":0.019676	,"dy":0.004743308}
+	,{"x":161.622	,"y":0.019308	,"dy":0.004686275}
+	,{"x":159.549	,"y":0.019021	,"dy":0.00462689}
+	,{"x":158.3	,"y":0.018637	,"dy":0.0045881816}
+	,{"x":155.716	,"y":0.01789	,"dy":0.0045011993}
+	,{"x":154.911	,"y":0.017668	,"dy":0.004472222}
+	,{"x":153.939	,"y":0.01725	,"dy":0.0044360585}
+	,{"x":151.473	,"y":0.016206	,"dy":0.0043386063}
+	,{"x":150.981	,"y":0.016005	,"dy":0.0043181954}
+	,{"x":149.194	,"y":0.015035	,"dy":0.0042413943}
+	,{"x":147.294	,"y":0.014006	,"dy":0.004155214}
+	,{"x":145.933	,"y":0.013265	,"dy":0.004090667}
+	,{"x":144.336	,"y":0.012395	,"dy":0.0040119872}
+	,{"x":143.982	,"y":0.012191	,"dy":0.003994122}
+	,{"x":142.122	,"y":0.011138	,"dy":0.0038977673}
+	,{"x":140.536	,"y":0.010229	,"dy":0.0038123585}
+	,{"x":138.671	,"y":0.0091485	,"dy":0.0037081933}
+	,{"x":138.257	,"y":0.0089359	,"dy":0.0036845335}
+	,{"x":136.083	,"y":0.0078222	,"dy":0.0035571617}
+	,{"x":133.622	,"y":0.0067475	,"dy":0.0034068064}
+	,{"x":133.322	,"y":0.0066441	,"dy":0.0033880433}
+	,{"x":131.266	,"y":0.0059354	,"dy":0.0032569752}
+	,{"x":130.692	,"y":0.0058	,"dy":0.0032196268}
+	,{"x":129.001	,"y":0.0053938	,"dy":0.0031077361}
+	,{"x":126.815	,"y":0.0051296	,"dy":0.0029590942}
+	,{"x":125.748	,"y":0.0051374	,"dy":0.0028849635}
+	,{"x":124.698	,"y":0.0051343	,"dy":0.0028110368}
+	,{"x":122.641	,"y":0.0054044	,"dy":0.0026634987}
+	,{"x":121.135	,"y":0.0058082	,"dy":0.0025532935}
+	,{"x":120.639	,"y":0.0059358	,"dy":0.0025166075}
+	,{"x":118.684	,"y":0.0067023	,"dy":0.0023701983}
+	,{"x":116.772	,"y":0.0077122	,"dy":0.0022243399}
+	,{"x":114.9	,"y":0.0089279	,"dy":0.0020791315}
+	,{"x":113.062	,"y":0.010353	,"dy":0.0019344002}
+	,{"x":112.607	,"y":0.010775	,"dy":0.001898259}
+	,{"x":109.477	,"y":0.013745	,"dy":0.0016465142}
+	,{"x":108.598	,"y":0.014735	,"dy":0.0015749005}
+	,{"x":105.996	,"y":0.017752	,"dy":0.001360803}
+	,{"x":104.713	,"y":0.0194	,"dy":0.0012541743}
+	,{"x":102.599	,"y":0.02222	,"dy":0.0010771364}
+	,{"x":100.928	,"y":0.024562	,"dy":9.361484E-4}
+	,{"x":99.2713	,"y":0.026985	,"dy":7.9558033E-4}
+	,{"x":97.2201	,"y":0.029995	,"dy":6.2063104E-4}
+	,{"x":95.9983	,"y":0.031875	,"dy":5.160298E-4}
+	,{"x":93.5722	,"y":0.035465	,"dy":3.0767647E-4}
+	,{"x":92.768	,"y":0.036715	,"dy":2.3847181E-4}
+	,{"x":89.9678	,"y":0.040734	,"dy":2.7755284E-6}
+	,{"x":89.5693	,"y":0.041332	,"dy":3.7120455E-5}
+	,{"x":86.3916	,"y":0.04556	,"dy":3.1079043E-4}
+	,{"x":83.225	,"y":0.049239	,"dy":5.8255525E-4}
+	,{"x":82.8294	,"y":0.049599	,"dy":6.163984E-4}
+	,{"x":80.0594	,"y":0.052167	,"dy":8.524556E-4}
+	,{"x":79.267	,"y":0.052678	,"dy":9.196414E-4}
+	,{"x":76.8848	,"y":0.054153	,"dy":0.0011205102}
+	,{"x":75.6898	,"y":0.054526	,"dy":0.0012205665}
+	,{"x":73.6905	,"y":0.054994	,"dy":0.0013867558}
+	,{"x":72.0825	,"y":0.054847	,"dy":0.0015192038}
+	,{"x":70.4652	,"y":0.054483	,"dy":0.0016512099}
+	,{"x":68.428	,"y":0.053345	,"dy":0.0018156044}
+	,{"x":67.1962	,"y":0.052435	,"dy":0.0019139061}
+	,{"x":64.7071	,"y":0.049804	,"dy":0.0021097972}
+	,{"x":63.869	,"y":0.04875	,"dy":0.0021748778}
+	,{"x":60.8969	,"y":0.04426	,"dy":0.002401823}
+	,{"x":60.4669	,"y":0.043536	,"dy":0.002434136}
+	,{"x":56.9694	,"y":0.037315	,"dy":0.0026917122}
+	,{"x":53.3509	,"y":0.031408	,"dy":0.0029476348}
+	,{"x":52.8885	,"y":0.030878	,"dy":0.0029795126}
+	,{"x":51.4864	,"y":0.029358	,"dy":0.003074978}
+	,{"x":50.7763	,"y":0.028915	,"dy":0.0031226284}
+	,{"x":50.1796	,"y":0.028597	,"dy":0.0031622984}
+	,{"x":49.699	,"y":0.028508	,"dy":0.0031940003}
+	,{"x":49.5784	,"y":0.028496	,"dy":0.0032019205}
+	,{"x":48.6063	,"y":0.02896	,"dy":0.0032652395}
+	,{"x":47.621	,"y":0.029537	,"dy":0.003328459}
+	,{"x":47.4968	,"y":0.029708	,"dy":0.0033363586}
+	,{"x":46.653	,"y":0.030966	,"dy":0.00338961}
+	,{"x":46.6215	,"y":0.031018	,"dy":0.003391584}
+	,{"x":45.607	,"y":0.033329	,"dy":0.0034546005}
+	,{"x":45.3669	,"y":0.034051	,"dy":0.0034693566}
+	,{"x":44.7141	,"y":0.036112	,"dy":0.0035091683}
+	,{"x":44.5762	,"y":0.036562	,"dy":0.0035175204}
+	,{"x":44.0543	,"y":0.038831	,"dy":0.0035489441}
+	,{"x":42.9967	,"y":0.043583	,"dy":0.0036117167}
+	,{"x":42.8631	,"y":0.044387	,"dy":0.0036195593}
+	,{"x":41.9534	,"y":0.050041	,"dy":0.0036724352}
+	,{"x":41.3729	,"y":0.053726	,"dy":0.0037056934}
+	,{"x":41.2612	,"y":0.054601	,"dy":0.0037120495}
+	,{"x":40.263	,"y":0.062593	,"dy":0.0037682203}
+	,{"x":40.206	,"y":0.063148	,"dy":0.0037713936}
+	,{"x":39.1289	,"y":0.073859	,"dy":0.0038306501}
+	,{"x":38.552	,"y":0.079734	,"dy":0.0038618327}
+	,{"x":37.8212	,"y":0.08888	,"dy":0.0039007713}
+	,{"x":36.8163	,"y":0.10165	,"dy":0.0039532776}
+	,{"x":36.7786	,"y":0.10214	,"dy":0.0039552236}
+	,{"x":35.5569	,"y":0.12072	,"dy":0.004017362}
+	,{"x":35.2655	,"y":0.12586	,"dy":0.0040319148}
+	,{"x":33.6562	,"y":0.15466	,"dy":0.0041103945}
+	,{"x":32.1693	,"y":0.18656	,"dy":0.004180025}
+	,{"x":31.6605	,"y":0.19764	,"dy":0.0042032073}
+	,{"x":30.2677	,"y":0.23179	,"dy":0.004264967}
+	,{"x":29.8209	,"y":0.24413	,"dy":0.004284247}
+	,{"x":28.0663	,"y":0.293	,"dy":0.0043574283}
+	,{"x":27.2977	,"y":0.31728	,"dy":0.004388202}
+	,{"x":25.699	,"y":0.36749	,"dy":0.0044496767}
+	,{"x":25.4928	,"y":0.37505	,"dy":0.0044573545}
+	,{"x":22.5418	,"y":0.48033	,"dy":0.0045608613}
+	,{"x":22.1916	,"y":0.49252	,"dy":0.004572347}
+	,{"x":19.1772	,"y":0.61136	,"dy":0.004664103}
+	,{"x":18.0675	,"y":0.65279	,"dy":0.004694644}
+	,{"x":13.5169	,"y":0.82824	,"dy":0.004801353}
+	,{"x":12.7394	,"y":0.85453	,"dy":0.004816573}
+	,{"x":0.0	,"y":1.1071	,"dy":0.0049381345}
+    ]
+  }
+ ]
+}
+')
+Download...DS:2/1)	8-O-16(N,EL),DA	JENDL-5	EID:226193	SID:19009723	f(x):DA(A)	pts:116
+Downloaded:DS:2/1)	8-O-16(N,EL),DA	JENDL-5	EID:226193	SID:19009723	f(x):DA(A)	pts:116	idy=116
+Plot:1/2) 24013073	INDEN-Oct2022 Ei1.41E+7	pt:70	color:0,0,255
+Plot:2/2) 19009723	JENDL-5 Ei1.41E+7	pt:116	color:255,0,0
+
+Program successfully completed

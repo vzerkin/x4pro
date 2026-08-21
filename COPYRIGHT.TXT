@@ -1,0 +1,19 @@
+"X4Pro - universal, fully relational EXFOR database"
+by V.Zerkin, IAEA-NRDC, 2020-2026, version 2026-08-14
+---------------------------------------------------------------------------------------------
+1. Data source EXFOR:         The data and resources available on this database are provided
+                              to the IAEA by the NRDC Network, which is a network under the
+                              auspices of the IAEA. As agreed by the NRDC Network, the IAEA
+                              has the role of publication and dissemination for all the data
+                              and resources provided to it by the NRDC Network.
+
+2. EXFOR relational database: (c) 2000-2023, International Atomic Energy Agency (IAEA)
+
+3. Demo-software package:     (c) 2021-2023, International Atomic Energy Agency (IAEA)
+                              (c) 2024-2026, Viktor Zerkin (NRDC), v.zerkin@gmail.com
+---------------------------------------------------------------------------------------------
+Web links:
+NRDC:  International Network of Nuclear Reaction Data Centres, https://nds.iaea.org/nrdc/
+IAEA:  International Atomic Energy Agency, https://www.iaea.org/
+EXFOR: Experimental Nuclear Reaction Database, https://nds.iaea.org/exfor/
+X4Pro: Download from https://nds.iaea.org/cdroms/#x4pro1

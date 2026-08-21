@@ -1,0 +1,335 @@
+Program: da1ei_leg.py, ver. 2023-06-08
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2023
+Purpose: Retrieve and plot EXFOR/ENDF angular distributions
+
+Running: 2026-08-21:12:10:22
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+___getX4SqlSearchDA_a: Li-6 p,he3
+SQL:
+select *                           
+ ,round(An) as Anint               
+from da1                           
+where (Target like 'Li-6')   
+  and (Reaction like 'p,he3')  
+ and (An>=164 and An<=166)
+order by fullCode,                 
+  YearRef1 desc,DatasetID          
+  ,Anint,En,iPoint                 
+
+
+datapoints: 110
+1) 3-LI-6(P,HE3)2-HE-4,,DA A1468002 1956 J.G.Likely
+2) 3-LI-6(P,HE3)2-HE-4,,DA A1454003 1951 S.Bashkin
+datasets: 2
+
+Datasets: 2
+1) 3-LI-6(P,HE3)2-HE-4,,DA
+	Dataset:0/2) 3-LI-6(P,HE3)2-HE-4,,DA A1468002 npt:1
+	Dataset:1/2) 3-LI-6(P,HE3)2-HE-4,,DA A1454003 npt:109
+reacodes: 1 
+
+Plot:1/1) #A1454003 1951, S.Bashkin pt:109
+---Retrieve [,DA,,LEG] from EXFOR SQL database---
+___getX4SqlSearch_DA_LEG: Li-6 p,he3
+SQL:
+select t1.Entry                        
+ ,t1.DatasetID                         
+ ,t1.Target,t1.Reaction                
+ ,t1.YearRef1,t1.nAuthors              
+ ,t1.Author1Ini,t1.Author1             
+ ,t1.fullCode,t1.iPoint                
+ ,t1.zaTarget1,t1.zaIncident1          
+ ,t1.Projectile,t1.sProd,t1.sTarg      
+ ,t1.MF as MF ,t1.MT as MT             
+ ,t1.y as LEG,t1.dy as dLEG            
+ ,h0.cm as LEG_CM                      
+ ,t1.x1 as En,t1.dx1 as dEn            
+ ,t1.x2 as number                      
+ from uni1 as t1                       
+ inner join x4pro_hdr as h0            
+ on h0.DatasetID=t1.DatasetID and h0.typ='c' and h0.ihdr=0
+ where 1=1                             
+ and (t1.Target like 'Li-6')     
+ and (t1.Reaction like 'p,he3')    
+ and (t1.SF58 like ',DA,,LEG') and (t1.SF8 like 'LEG')
+ and (t1.DatasetID='F0012004') 
+
+
+ order by t1.fullCode,t1.YearRef1 desc 
+ ,t1.DatasetID,En,number               
+
+
+EXFOR SQL executed. Rows:181
+
+__rows2leg::datapoints: 181
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.136MeV
+ pt:1/181) L:0   LEG:0.000683	dLEG:3.4514094e-05	arrEn:1
+ pt:2/181) L:1   LEG:5e-06	dLEG:1.100284e-05	arrEn:1
+ pt:3/181) L:2   LEG:-4e-05	dLEG:1.0198039e-05	arrEn:1
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.186MeV
+ pt:4/181) L:0   LEG:0.00145	dLEG:7.3186406e-05	arrEn:2
+ pt:5/181) L:1   LEG:0.00028	dLEG:3.310589e-05	arrEn:2
+ pt:6/181) L:2   LEG:-0.00011	dLEG:3.05e-05	arrEn:2
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.257MeV
+ pt:7/181) L:0   LEG:0.0028	dLEG:0.0001431782	arrEn:3
+ pt:8/181) L:1   LEG:0.00066	dLEG:5.9908263e-05	arrEn:3
+ pt:9/181) L:2   LEG:-0.00016	dLEG:5.0635954e-05	arrEn:3
+ pt:10/181) L:3   LEG:-6e-05	dLEG:8.005623e-05	arrEn:3
+ pt:11/181) L:4   LEG:0.00016	dLEG:8.0399004e-05	arrEn:3
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.324MeV
+ pt:12/181) L:0   LEG:0.00398	dLEG:0.00020518528	arrEn:4
+ pt:13/181) L:1   LEG:0.00118	dLEG:0.00011610771	arrEn:4
+ pt:14/181) L:2   LEG:-0.00051	dLEG:9.3542774e-05	arrEn:4
+ pt:15/181) L:3   LEG:-0.00026	dLEG:0.0001505623	arrEn:4
+ pt:16/181) L:4   LEG:-0.00029	dLEG:0.00015069921	arrEn:4
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.49MeV
+ pt:17/181) L:0   LEG:0.00585	dLEG:0.00029859043	arrEn:5
+ pt:18/181) L:1   LEG:0.00234	dLEG:0.00016058954	arrEn:5
+ pt:19/181) L:2   LEG:-0.00085	dLEG:0.00011792476	arrEn:5
+ pt:20/181) L:3   LEG:-7e-05	dLEG:0.00019003224	arrEn:5
+ pt:21/181) L:4   LEG:0.00034	dLEG:0.000180801	arrEn:5
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.589MeV
+ pt:22/181) L:0   LEG:0.00679	dLEG:0.0003466414	arrEn:6
+ pt:23/181) L:1   LEG:0.00309	dLEG:0.00019562783	arrEn:6
+ pt:24/181) L:2   LEG:-0.00072	dLEG:0.00013489254	arrEn:6
+ pt:25/181) L:3   LEG:-0.00036	dLEG:0.00021077001	arrEn:6
+ pt:26/181) L:4   LEG:0.00011	dLEG:0.0002000756	arrEn:6
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.688MeV
+ pt:27/181) L:0   LEG:0.00727	dLEG:0.0003721992	arrEn:7
+ pt:28/181) L:1   LEG:0.00355	dLEG:0.00022606693	arrEn:7
+ pt:29/181) L:2   LEG:-0.00078	dLEG:0.00014533066	arrEn:7
+ pt:30/181) L:3   LEG:-0.00031	dLEG:0.00023052169	arrEn:7
+ pt:31/181) L:4   LEG:0.000325	dLEG:0.00022059932	arrEn:7
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.787MeV
+ pt:32/181) L:0   LEG:0.00794	dLEG:0.00040498027	arrEn:8
+ pt:33/181) L:1   LEG:0.00398	dLEG:0.00024331256	arrEn:8
+ pt:34/181) L:2   LEG:-0.000735	dLEG:0.0001447431	arrEn:8
+ pt:35/181) L:3   LEG:-0.0004	dLEG:0.00023086794	arrEn:8
+ pt:36/181) L:4   LEG:-0.0002	dLEG:0.0002302173	arrEn:8
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.887MeV
+ pt:37/181) L:0   LEG:0.00818	dLEG:0.00041337757	arrEn:9
+ pt:38/181) L:1   LEG:0.00421	dLEG:0.00023304559	arrEn:9
+ pt:39/181) L:2   LEG:-0.0009	dLEG:0.000109658555	arrEn:9
+ pt:40/181) L:3   LEG:-0.00021	dLEG:0.00016034416	arrEn:9
+ pt:41/181) L:4   LEG:-0.00032	dLEG:0.0001906725	arrEn:9
+ pt:42/181) L:5   LEG:0.00018	dLEG:0.00019021305	arrEn:9
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:0.986MeV
+ pt:43/181) L:0   LEG:0.00818	dLEG:0.00041675052	arrEn:10
+ pt:44/181) L:1   LEG:0.0043	dLEG:0.00025656383	arrEn:10
+ pt:45/181) L:2   LEG:-0.00114	dLEG:0.00015115886	arrEn:10
+ pt:46/181) L:3   LEG:-0.0001	dLEG:0.00023005434	arrEn:10
+ pt:47/181) L:4   LEG:0.00013	dLEG:0.00027007822	arrEn:10
+ pt:48/181) L:5   LEG:-0.00036	dLEG:0.00028057798	arrEn:10
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.082MeV
+ pt:49/181) L:0   LEG:0.00787	dLEG:0.0003996777	arrEn:11
+ pt:50/181) L:1   LEG:0.00421	dLEG:0.00025280475	arrEn:11
+ pt:51/181) L:2   LEG:-0.00167	dLEG:0.00018939971	arrEn:11
+ pt:52/181) L:3   LEG:-0.00012	dLEG:0.00027006664	arrEn:11
+ pt:53/181) L:4   LEG:0.00013	dLEG:0.00028007544	arrEn:11
+ pt:54/181) L:5   LEG:-0.0001	dLEG:0.00033003787	arrEn:11
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.182MeV
+ pt:55/181) L:0   LEG:0.00899	dLEG:0.00045227233	arrEn:12
+ pt:56/181) L:1   LEG:0.00492	dLEG:0.0002655485	arrEn:12
+ pt:57/181) L:2   LEG:-0.00153	dLEG:0.0001423104	arrEn:12
+ pt:58/181) L:3   LEG:0.000155	dLEG:0.000190158	arrEn:12
+ pt:59/181) L:4   LEG:2e-05	dLEG:0.00019000264	arrEn:12
+ pt:60/181) L:5   LEG:-0.00044	dLEG:0.00023104978	arrEn:12
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.282MeV
+ pt:61/181) L:0   LEG:0.00973	dLEG:0.00048906263	arrEn:13
+ pt:62/181) L:1   LEG:0.00576	dLEG:0.00030829204	arrEn:13
+ pt:63/181) L:2   LEG:0.00177	dLEG:0.0001572649	arrEn:13
+ pt:64/181) L:3   LEG:0.00086	dLEG:0.00020457027	arrEn:13
+ pt:65/181) L:4   LEG:0.0	dLEG:0.0002	arrEn:13
+ pt:66/181) L:5   LEG:5.5e-05	dLEG:0.00025001515	arrEn:13
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.382MeV
+ pt:67/181) L:0   LEG:0.01021	dLEG:0.00051401387	arrEn:14
+ pt:68/181) L:1   LEG:0.00618	dLEG:0.00032799543	arrEn:14
+ pt:69/181) L:2   LEG:-0.00139	dLEG:0.00015630179	arrEn:14
+ pt:70/181) L:3   LEG:0.00054	dLEG:0.00021172859	arrEn:14
+ pt:71/181) L:4   LEG:-0.00052	dLEG:0.00022153104	arrEn:14
+ pt:72/181) L:5   LEG:-0.00037	dLEG:0.0002806105	arrEn:14
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.481MeV
+ pt:73/181) L:0   LEG:0.01168	dLEG:0.0006005464	arrEn:15
+ pt:74/181) L:1   LEG:0.0069	dLEG:0.0004260575	arrEn:15
+ pt:75/181) L:2   LEG:-0.00041	dLEG:0.00033063613	arrEn:15
+ pt:76/181) L:3   LEG:0.00088	dLEG:0.00044219452	arrEn:15
+ pt:77/181) L:4   LEG:0.00145	dLEG:0.0006639701	arrEn:15
+ pt:78/181) L:5   LEG:0.00041	dLEG:0.0007802693	arrEn:15
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.581MeV
+ pt:79/181) L:0   LEG:0.01452	dLEG:0.00073155726	arrEn:16
+ pt:80/181) L:1   LEG:0.00793	dLEG:0.00042756548	arrEn:16
+ pt:81/181) L:2   LEG:0.00057	dLEG:0.0002119251	arrEn:16
+ pt:82/181) L:3   LEG:0.00027	dLEG:0.00027033727	arrEn:16
+ pt:83/181) L:4   LEG:0.00015	dLEG:0.00030009376	arrEn:16
+ pt:84/181) L:5   LEG:0.00046	dLEG:0.00035075488	arrEn:16
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.681MeV
+ pt:85/181) L:0   LEG:0.0165	dLEG:0.0008385254	arrEn:17
+ pt:86/181) L:1   LEG:0.00766	dLEG:0.00048040503	arrEn:17
+ pt:87/181) L:2   LEG:0.00327	dLEG:0.00041368135	arrEn:17
+ pt:88/181) L:3   LEG:-6e-05	dLEG:0.00051000883	arrEn:17
+ pt:89/181) L:4   LEG:-0.00013	dLEG:0.0005500384	arrEn:17
+ pt:90/181) L:5   LEG:-0.00021	dLEG:0.0006200889	arrEn:17
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.78MeV
+ pt:91/181) L:0   LEG:0.01724	dLEG:0.00086292764	arrEn:18
+ pt:92/181) L:1   LEG:0.00632	dLEG:0.00032596933	arrEn:18
+ pt:93/181) L:2   LEG:0.00478	dLEG:0.0002674341	arrEn:18
+ pt:94/181) L:3   LEG:-0.00055	dLEG:0.00013287683	arrEn:18
+ pt:95/181) L:4   LEG:0.00019	dLEG:0.00018025053	arrEn:18
+ pt:96/181) L:5   LEG:0.00037	dLEG:0.00019089854	arrEn:18
+ pt:97/181) L:6   LEG:0.00028	dLEG:0.00020048939	arrEn:18
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.88MeV
+ pt:98/181) L:0   LEG:0.01595	dLEG:0.00079906586	arrEn:19
+ pt:99/181) L:1   LEG:0.00438	dLEG:0.00024075089	arrEn:19
+ pt:100/181) L:2   LEG:0.00511	dLEG:0.0002962773	arrEn:19
+ pt:101/181) L:3   LEG:-0.00112	dLEG:0.00017898604	arrEn:19
+ pt:102/181) L:4   LEG:0.00113	dLEG:0.00023683802	arrEn:19
+ pt:103/181) L:5   LEG:8e-05	dLEG:0.0002100381	arrEn:19
+ pt:104/181) L:6   LEG:0.00039	dLEG:0.00023082516	arrEn:19
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:1.98MeV
+ pt:105/181) L:0   LEG:0.01485	dLEG:0.0007449202	arrEn:20
+ pt:106/181) L:1   LEG:0.00352	dLEG:0.0002075476	arrEn:20
+ pt:107/181) L:2   LEG:0.00439	dLEG:0.00027763328	arrEn:20
+ pt:108/181) L:3   LEG:-0.00081	dLEG:0.00020405943	arrEn:20
+ pt:109/181) L:4   LEG:0.00082	dLEG:0.00026321283	arrEn:20
+ pt:110/181) L:5   LEG:0.00041	dLEG:0.0002508391	arrEn:20
+ pt:111/181) L:6   LEG:2e-05	dLEG:0.0002900017	arrEn:20
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.078MeV
+ pt:112/181) L:0   LEG:0.0135	dLEG:0.0006809736	arrEn:21
+ pt:113/181) L:1   LEG:0.00234	dLEG:0.00020637103	arrEn:21
+ pt:114/181) L:2   LEG:0.00373	dLEG:0.00031997226	arrEn:21
+ pt:115/181) L:3   LEG:-0.00093	dLEG:0.0003134681	arrEn:21
+ pt:116/181) L:4   LEG:0.00061	dLEG:0.00040116112	arrEn:21
+ pt:117/181) L:5   LEG:5e-05	dLEG:0.000390008	arrEn:21
+ pt:118/181) L:6   LEG:0.00055	dLEG:0.0004608213	arrEn:21
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.177MeV
+ pt:119/181) L:0   LEG:0.01284	dLEG:0.0006550298	arrEn:22
+ pt:120/181) L:1   LEG:0.00213	dLEG:0.00025346054	arrEn:22
+ pt:121/181) L:2   LEG:0.00269	dLEG:0.0005371129	arrEn:22
+ pt:122/181) L:3   LEG:-0.00065	dLEG:0.00046114667	arrEn:22
+ pt:123/181) L:4   LEG:0.00024	dLEG:0.00073009863	arrEn:22
+ pt:124/181) L:5   LEG:0.00083	dLEG:0.0005116857	arrEn:22
+ pt:125/181) L:6   LEG:-0.00062	dLEG:0.00067071675	arrEn:22
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.277MeV
+ pt:126/181) L:0   LEG:0.01238	dLEG:0.0006446402	arrEn:23
+ pt:127/181) L:1   LEG:0.00169	dLEG:0.00033096864	arrEn:23
+ pt:128/181) L:2   LEG:0.00228	dLEG:0.0007289692	arrEn:23
+ pt:129/181) L:3   LEG:-0.00068	dLEG:0.0006009626	arrEn:23
+ pt:130/181) L:4   LEG:0.00057	dLEG:0.0010503867	arrEn:23
+ pt:131/181) L:5   LEG:0.0003	dLEG:0.0006801654	arrEn:23
+ pt:132/181) L:6   LEG:-0.00013	dLEG:0.0010700198	arrEn:23
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.377MeV
+ pt:133/181) L:0   LEG:0.01133	dLEG:0.0005721208	arrEn:24
+ pt:134/181) L:1   LEG:0.00151	dLEG:0.0001503338	arrEn:24
+ pt:135/181) L:2   LEG:0.00132	dLEG:0.00030717422	arrEn:24
+ pt:136/181) L:3   LEG:-0.00093	dLEG:0.00026412544	arrEn:24
+ pt:137/181) L:4   LEG:0.00069	dLEG:0.00041144897	arrEn:24
+ pt:138/181) L:5   LEG:0.00051	dLEG:0.00029111895	arrEn:24
+ pt:139/181) L:6   LEG:0.00046	dLEG:0.00039067763	arrEn:24
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.476MeV
+ pt:140/181) L:0   LEG:0.01146	dLEG:0.0005898551	arrEn:25
+ pt:141/181) L:1   LEG:0.00106	dLEG:0.00023602754	arrEn:25
+ pt:142/181) L:2   LEG:0.00158	dLEG:0.00051608233	arrEn:25
+ pt:143/181) L:3   LEG:-0.00126	dLEG:0.0004543886	arrEn:25
+ pt:144/181) L:4   LEG:0.00174	dLEG:0.0007153104	arrEn:25
+ pt:145/181) L:5   LEG:-3e-05	dLEG:0.00052000216	arrEn:25
+ pt:146/181) L:6   LEG:0.00124	dLEG:0.0006728625	arrEn:25
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.575MeV
+ pt:147/181) L:0   LEG:0.01121	dLEG:0.0005693507	arrEn:26
+ pt:148/181) L:1   LEG:0.00109	dLEG:0.0001785224	arrEn:26
+ pt:149/181) L:2   LEG:0.00103	dLEG:0.00036366502	arrEn:26
+ pt:150/181) L:3   LEG:-0.00071	dLEG:0.00031202604	arrEn:26
+ pt:151/181) L:4   LEG:0.0013	dLEG:0.00050420733	arrEn:26
+ pt:152/181) L:5   LEG:0.00096	dLEG:0.00039294275	arrEn:26
+ pt:153/181) L:6   LEG:0.00098	dLEG:0.00048249454	arrEn:26
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.674MeV
+ pt:154/181) L:0   LEG:0.01016	dLEG:0.0005296829	arrEn:27
+ pt:155/181) L:1   LEG:0.00085	dLEG:0.00025358677	arrEn:27
+ pt:156/181) L:2   LEG:0.00076	dLEG:0.0005213866	arrEn:27
+ pt:157/181) L:3   LEG:-0.00127	dLEG:0.00045445818	arrEn:27
+ pt:158/181) L:4   LEG:0.00122	dLEG:0.0007325442	arrEn:27
+ pt:159/181) L:5   LEG:0.00043	dLEG:0.0005604126	arrEn:27
+ pt:160/181) L:6   LEG:8e-05	dLEG:0.0007100113	arrEn:27
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.775MeV
+ pt:161/181) L:0   LEG:0.01051	dLEG:0.00053014176	arrEn:28
+ pt:162/181) L:1   LEG:0.00085	dLEG:0.00011792476	arrEn:28
+ pt:163/181) L:2   LEG:-2e-06	dLEG:0.00024000001	arrEn:28
+ pt:164/181) L:3   LEG:-0.00153	dLEG:0.0002235	arrEn:28
+ pt:165/181) L:4   LEG:0.00076	dLEG:0.00033218067	arrEn:28
+ pt:166/181) L:5   LEG:0.0005	dLEG:0.00026119917	arrEn:28
+ pt:167/181) L:6   LEG:0.0002	dLEG:0.0003201562	arrEn:28
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.874MeV
+ pt:168/181) L:0   LEG:0.01029	dLEG:0.0005223124	arrEn:29
+ pt:169/181) L:1   LEG:0.00061	dLEG:0.00034136526	arrEn:29
+ pt:170/181) L:2   LEG:4e-05	dLEG:0.00034000588	arrEn:29
+ pt:171/181) L:3   LEG:-0.00145	dLEG:0.0006341579	arrEn:29
+ pt:172/181) L:4   LEG:0.00089	dLEG:0.00046214744	arrEn:29
+ pt:173/181) L:5   LEG:0.00079	dLEG:0.0006811463	arrEn:29
+ pt:174/181) L:6   LEG:0.00099	dLEG:0.00044277564	arrEn:29
+DS:1) 3-LI-6(P,HE3)2-HE-4,,DA,,LEG 1979 A.J.Elwyn #F0012004 Ei:2.973MeV
+ pt:175/181) L:0   LEG:0.01041	dLEG:0.00052661204	arrEn:30
+ pt:176/181) L:1   LEG:0.00068	dLEG:0.00013437262	arrEn:30
+ pt:177/181) L:2   LEG:-0.00045	dLEG:0.00031081546	arrEn:30
+ pt:178/181) L:3   LEG:-0.00149	dLEG:0.00027046303	arrEn:30
+ pt:179/181) L:4   LEG:0.00057	dLEG:0.00042096584	arrEn:30
+ pt:180/181) L:5   LEG:0.00081	dLEG:0.00031263437	arrEn:30
+ pt:181/181) L:6   LEG:0.00012	dLEG:0.0004100439	arrEn:30
+
+___calcLegrsDatasets2da4plot::Datasets: 1
+	Dataset:1/1) F0012004 Ei:30 CM:1
+___1___SQL:
+select json_extract(jx4z,'$.BIB.REFERENCE[0].x4codes[0].shortRef') as shortRef  from x4pro_x4z where Subent like 'F0012001'
+Plot:1/1) #F0012004 A.J.Elwyn(1979) pt:30
+
+___webEndfDataForPlot_DADE: [Li-6] [p,*] [&an=165&mf=4&mt=40002&zap=1001]
+---wgetdb_get:/servlet/E4sSearch2?Target=Li-6&Reaction=p,*&Quantity=DA*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Li-6&Reaction=p,*&Quantity=DA*&json&mats'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=Li-6&Reaction=p,*&Quantity=DA*&json&mats
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+format=WebEndfSectionsList-0.1
+___Retrieved sections:12
+SelectedLib-Sect:2) {'Targ': 'LI-6', 'ZT': 3, 'AT': 6, 'NSUB': 10010, 'MT': 2, 'MF': 6, 'R': 'P,EL', 'RC': 'LI-6(P,EL)LI-6-L0,DA/DE', 'EvalID': 150134, 'SectID': 9033415, 'PenSectID': 13669291, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20111222', 'AUTH': 'G.M.Hale'}
+SelectedLib-Sect:6) {'Targ': 'LI-6', 'ZT': 3, 'AT': 6, 'NSUB': 10010, 'MT': 2, 'MF': 6, 'R': 'P,EL', 'RC': 'LI-6(P,EL)LI-6-L0,DA/DE', 'EvalID': 226972, 'SectID': 14611171, 'PenSectID': 19247043, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': 'Dec21', 'AUTH': 'S.Kunieda'}
+___Required sections:2
+WebReq:1) EvalID:150134 PenSectID:13669291 Lib:ENDF/B-VIII.0 Color:0,0,190
+/servlet/E4sGetSectData?EvalID=150134&PenSectID=13669291&json&an=165&mf=4&mt=40002&zap=1001
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=150134&PenSectID=13669291&json&an=165&mf=4&mt=40002&zap=1001
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=150134&PenSectID=13669291&json&an=165&mf=4&mt=40002&zap=1001'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=150134&PenSectID=13669291&json&an=165&mf=4&mt=40002&zap=1001
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:1/1)	3-Li-6(P,EL),DA	ENDF/B-VIII.0	EID:150134	SID:13669291	f(x):DA(Ei)	pts:133
+Downloaded:DS:1/1)	3-Li-6(P,EL),DA	ENDF/B-VIII.0	EID:150134	SID:13669291	f(x):DA(Ei)	pts:133	idy=0
+WebReq:2) EvalID:226972 PenSectID:19247043 Lib:JENDL-5 Color:0,190,0
+/servlet/E4sGetSectData?EvalID=226972&PenSectID=19247043&json&an=165&mf=4&mt=40002&zap=1001
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=226972&PenSectID=19247043&json&an=165&mf=4&mt=40002&zap=1001
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226972&PenSectID=19247043&json&an=165&mf=4&mt=40002&zap=1001'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226972&PenSectID=19247043&json&an=165&mf=4&mt=40002&zap=1001
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:2/1)	3-Li-6(P,EL),DA	JENDL-5	EID:226972	SID:19247043	f(x):DA(Ei)	pts:103
+Downloaded:DS:2/1)	3-Li-6(P,EL),DA	JENDL-5	EID:226972	SID:19247043	f(x):DA(Ei)	pts:103	idy=0
+Plot:1/2) 13669291	ENDF/B-VIII.0 El0.00E+0 An165	pt:133	color:0,0,190
+Plot:2/2) 19247043	JENDL-5 El0.00E+0 An165	pt:103	color:0,190,0
+Will try---write_image: da1ei_leg2da.html.png
+
+Program successfully completed

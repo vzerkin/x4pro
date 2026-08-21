@@ -1,0 +1,132 @@
+&nbsp; X4Pro by V.Zerkin, ver.2022-12-21. Running: 2026-08-21 12:04:25
+<table><tr><td style="vertical-align:top;padding:3pt;border-right:1px solid #777">
+<div style="padding-left:8px;color:#00f;background-color:#ff0;font-style:italic;border-bottom:1px solid #00f;">Program source file: f1.f</div>
+<pre style="margin:0;padding:0;padding-top:3px">
+	program f1
+	character*512  dbname
+	character*512  outfile/'sql1tmp.dat'/
+	character*4096 sql
+        write (*,*) 'Program: f1.f (ver.2022-12-22)'
+        write (*,*) 'by V.Zerkin, IAEA-NDS, 2021-2022'
+
+	dbname='../../x4sqlite1.db'
+	ierr=ix4lite_open(trim(dbname)//char(0)) !add 0 for C-subr.
+	if (ierr.ne.0) then
+	    write(*,*) 'Can''t open database ',trim(dbname),' err=',ierr
+	    stop
+	endif
+	write (*,'(a,a/)') ' Open database: ',trim(dbname)
+
+	sql='select Entry,YearRef1,Author1 '//char(10)
+     1  //' from ENTRY where Entry like ''F%'' '//char(10)
+     1  //' limit 8'
+	write(*,'(a/1x,a/)') ' SQL command:',trim(sql)
+
+	sql=trim(sql)//char(0)
+	outfile=trim(outfile)//char(0)
+	ipnt=ix4lite_exec(sql,outfile)
+	if (ierr.lt.0) then
+	    write (*,*) 'SQL error ierr=',ipnt
+	else
+	    write (*,*) 'SQL executed OK: ',ipnt,'rows'
+	endif
+
+	call read_data(outfile,ipnt)
+	call ix4lite_close()
+
+	write(*,'(/a)') 'Program completed successfully'
+	stop
+	end
+
+	subroutine read_data(infile,ipnt)
+	character(len=*) infile
+	character*132 nam,line
+	character*5   Entry
+	character*4   sYear
+	character*12  Author1
+	write (*,*) 'Read data points:',ipnt
+	nin=100
+	open(unit=nin,file=infile,status='old',err=9999)
+	iipnt=0
+	do
+	    read(nin,'(a12,a)',end=8888) nam,line
+	    if (nam.eq.'//EOF')      exit
+	    if (nam.eq.'$Entry')     Entry=line
+	    if (nam.eq.'$YearRef1')  read(line,'(i11)') iYear
+	    if (nam.eq.'$YearRef1')  sYear=line
+	    if (nam.eq.'$Author1')   Author1=line
+	    if (nam(1:4).eq.'####') then !--- Begin of new Row
+		iipnt=iipnt+1
+		Entry=''
+		iYear=0
+		sYear='----'
+		Author1=''
+		cycle
+	    endif
+	    if (nam.eq.'//') then !--- End of Row
+		write(*,*) iipnt,Entry,' ',sYear,',',Author1
+	    endif
+	enddo
+8888	close(nin)
+9999	return
+	end
+</pre>
+</td><td style="vertical-align:top;padding:3pt">
+<div style="padding-left:8px;color:#00f;background-color:#ff0;font-style:italic;border-bottom:1px solid #00f;">Terminal output: f1.tto</div>
+<pre style="margin:0;padding:0;padding-top:3px">
+ Program: f1.f (ver.2022-12-22)
+ by V.Zerkin, IAEA-NDS, 2021-2022
+ Open database: ../../x4sqlite1.db
+
+ SQL command:
+ select Entry,YearRef1,Author1 
+ from ENTRY where Entry like 'F%' 
+ limit 8
+
+ SQL executed OK:            6 rows
+ Read data points:           6
+           1 F0001 1976,Gould       
+           2 F0012 1979,Elwyn       
+           3 F0198 1967,Brady       
+           4 F1013 1962,Harris      
+           5 F1041 1968,Morris      
+           6 F1217 1986,Buttsev     
+
+Program completed successfully
+</pre>
+<br><br>
+<div style="padding-left:8px;color:#00f;background-color:#ff0;font-style:italic;border-bottom:1px solid #00f;">Temporary file: sql1tmp.dat</div>
+<pre style="margin:0;padding:0;padding-top:3px">
+#### 1
+$Entry      F0001
+$YearRef1   1976
+$Author1    Gould
+//
+#### 2
+$Entry      F0012
+$YearRef1   1979
+$Author1    Elwyn
+//
+#### 3
+$Entry      F0198
+$YearRef1   1967
+$Author1    Brady
+//
+#### 4
+$Entry      F1013
+$YearRef1   1962
+$Author1    Harris
+//
+#### 5
+$Entry      F1041
+$YearRef1   1968
+$Author1    Morris
+//
+#### 6
+$Entry      F1217
+$YearRef1   1986
+$Author1    Buttsev
+//
+//EOF
+</pre>
+</td></tr></table>

@@ -1,0 +1,144 @@
+Program: exec1sql.py, ver. 2024-12-16
+Author:  V.Zerkin, v.zerkin@gmail.com, Vienna, 2024
+Purpose: execute one SQL command on SQLite database.
+Operations:
+         - connect to SQLite data file;
+         - execute SQL command;
+         - read retrieved data rows to list of dicts
+           extracting data (incl.JSON) from row to dict;
+         - save result in JSON file and CSV file for EXCEL.
+
+Running: 2024-12-17 13:22:43
+
+---getConnSQLite: file:../../x4sqlite1.db?mode=ro
+
+---SQL:SELECT substr(DatasetID,1,5) as Entry
+  ,DatasetID,idat
+  ,CAST(json_extract(x4.xdat,'$.EN') AS FLOAT) as EN
+  ,REACODE.FullCode
+--  ,xdat
+FROM x4pro_x4data as x4
+  inner join REACODE on REACODE.ReacodeID=x4.DatasetID
+where json_extract(x4.xdat,'$.EN') is not null
+ and json_extract(x4.xdat,'$.EN') <=0
+
+---SQL executed: 24.673sec
+
+---Retrieved from the database
+rows: 103
+---colinfo--- ('Entry', None, None, None, None, None, None)
+---colinfo--- ('DatasetID', None, None, None, None, None, None)
+---colinfo--- ('idat', None, None, None, None, None, None)
+---colinfo--- ('EN', None, None, None, None, None, None)
+---colinfo--- ('fullCode', None, None, None, None, None, None)
+  0)	row: ('11557', '11557003', 0, -7.5e-05, '17-CL-35(N,EL)17-CL-35,POT,SIG')
+  1)	row: ('12629', '12629002', 0, -1.0, '24-CR-53(N,0),,J')
+  2)	row: ('14239', '14239022', 7232, 0.0, '72-HF-0(N,G),,RYL,,RAW')
+  3)	row: ('14239', '14239022', 7233, 0.0, '72-HF-0(N,G),,RYL,,RAW')
+  4)	row: ('14239', '14239022', 7234, 0.0, '72-HF-0(N,G),,RYL,,RAW')
+  5)	row: ('14239', '14239035', 4611, 0.0, '72-HF-0(N,TOT),,TRN,,RAW')
+  6)	row: ('14239', '14239035', 4612, 0.0, '72-HF-0(N,TOT),,TRN,,RAW')
+  7)	row: ('14239', '14239035', 4613, 0.0, '72-HF-0(N,TOT),,TRN,,RAW')
+  8)	row: ('14239', '14239044', 4643, 0.0, '72-HF-178(N,G)72-HF-179,,RYL,,RAW')
+  9)	row: ('14239', '14239044', 4644, 0.0, '72-HF-178(N,G)72-HF-179,,RYL,,RAW')
+  10)	row: ('14239', '14239044', 4645, 0.0, '72-HF-178(N,G)72-HF-179,,RYL,,RAW')
+  11)	row: ('14239', '14239044', 4646, 0.0, '72-HF-178(N,G)72-HF-179,,RYL,,RAW')
+  12)	row: ('14239', '14239044', 4647, 0.0, '72-HF-178(N,G)72-HF-179,,RYL,,RAW')
+  13)	row: ('14239', '14239044', 4648, 0.0, '72-HF-178(N,G)72-HF-179,,RYL,,RAW')
+  14)	row: ('14239', '14239044', 4649, 0.0, '72-HF-178(N,G)72-HF-179,,RYL,,RAW')
+  15)	row: ('14316', '14316004', 0, 0.0, '(92-U-235(N,F),,SIG,,,DERIV)/(92-U-233(N,F),,SIG,,,DERIV)')
+  16)	row: ('14316', '14316005', 0, 0.0, '92-U-235(N,F),,SIG,,,DERIV')
+  17)	row: ('14570', '14570002', 0, 0.0, '94-PU-241(N,F),,NU')
+  18)	row: ('14687', '14687003', 0, -0.022, '48-CD-0(N,TOT),,SIG')
+  19)	row: ('14688', '14688002', 0, -0.11, '79-AU-197(N,TOT),,SIG')
+  20)	row: ('14688', '14688002', 1, -0.047, '79-AU-197(N,TOT),,SIG')
+  21)	row: ('20603', '20603003', 0, 0.0, '16-S-0(N,THS),FA,SIG,,,DERIV')
+  22)	row: ('20603', '20603005', 0, 0.0, '82-PB-0(N,THS),FA,SIG,,,DERIV')
+  23)	row: ('20603', '20603007', 0, 0.0, '83-BI-209(N,THS)83-BI-209,FA,SIG,,,DERIV')
+  24)	row: ('21660', '21660024', 0, 0.0, '9-F-19(N,EL)9-F-19,FA,SIG,,,DERIV')
+  25)	row: ('21660', '21660025', 0, 0.0, '11-NA-23(N,EL)11-NA-23,FA,SIG,,,DERIV')
+  26)	row: ('21660', '21660026', 0, 0.0, '12-MG-0(N,EL)12-MG-0,FA,SIG,,,DERIV')
+  27)	row: ('21660', '21660027', 0, 0.0, '13-AL-27(N,EL)13-AL-27,FA,SIG,,,DERIV')
+  28)	row: ('21842', '218420241', 0, 0.0, '35-BR-0(N,EL)35-BR-0,FA,SIG')
+  29)	row: ('21842', '218420242', 0, 0.0, '35-BR-0(N,EL)35-BR-0,FA/COH,SIG')
+  30)	row: ('21842', '218420243', 0, 0.0, '35-BR-0(N,EL)35-BR-0,FA/INC,SIG')
+  31)	row: ('21842', '218420251', 0, 0.0, '37-RB-0(N,EL)37-RB-0,FA,SIG')
+  32)	row: ('21842', '218420252', 0, 0.0, '37-RB-0(N,EL)37-RB-0,FA/COH,SIG')
+  33)	row: ('21842', '218420253', 0, 0.0, '37-RB-0(N,EL)37-RB-0,FA/INC,SIG')
+  34)	row: ('21842', '218420261', 0, 0.0, '38-SR-0(N,EL)38-SR-0,FA,SIG')
+  35)	row: ('21842', '218420262', 0, 0.0, '38-SR-0(N,EL)38-SR-0,FA/COH,SIG')
+  36)	row: ('21842', '218420263', 0, 0.0, '38-SR-0(N,EL)38-SR-0,FA/INC,SIG')
+  37)	row: ('21842', '218420271', 0, 0.0, '39-Y-89(N,EL)39-Y-89,FA,SIG')
+  38)	row: ('21842', '218420272', 0, 0.0, '39-Y-89(N,EL)39-Y-89,FA/COH,SIG')
+  39)	row: ('21842', '218420273', 0, 0.0, '39-Y-89(N,EL)39-Y-89,FA/INC,SIG')
+  40)	row: ('21842', '218420281', 0, 0.0, '40-ZR-0(N,EL)40-ZR-0,FA,SIG')
+  41)	row: ('21842', '218420282', 0, 0.0, '40-ZR-0(N,EL)40-ZR-0,FA/COH,SIG')
+  42)	row: ('21842', '218420283', 0, 0.0, '40-ZR-0(N,EL)40-ZR-0,FA/INC,SIG')
+  43)	row: ('22104', '22104003', 0, 0.0, '82-PB-0(N,THS)82-PB-0,COH,AMP,,,DERIV')
+  44)	row: ('22104', '22104005', 0, 0.0, '83-BI-209(N,THS)83-BI-209,COH,AMP,,,DERIV')
+  45)	row: ('22138', '22138006', 0, 0.0, '90-TH-232(N,THS)90-TH-232,POT,RAD')
+  46)	row: ('22217', '222170022', 0, 0.0, '1-H-1(N,THS)1-H-1,FA,SIG,,,DERIV')
+  47)	row: ('22217', '22217003', 0, 0.0, '1-H-1(N,THS)1-H-1,COH,AMP')
+  48)	row: ('23747', '237470021', 0, 0.0, '2-HE-0(N,THS)2-HE-0,FA,SIG')
+  49)	row: ('23747', '237470022', 0, 0.0, '2-HE-0(N,THS)2-HE-0,BA,SIG')
+  50)	row: ('23747', '237470031', 0, 0.0, '18-AR-0(N,THS)18-AR-0,FA,SIG')
+  51)	row: ('23747', '237470032', 0, 0.0, '18-AR-0(N,THS)18-AR-0,BA,SIG')
+  52)	row: ('23747', '237470041', 0, 0.0, '36-KR-0(N,THS)36-KR-0,FA,SIG')
+  53)	row: ('23747', '237470042', 0, 0.0, '36-KR-0(N,THS)36-KR-0,BA,SIG')
+  54)	row: ('23747', '237470051', 0, 0.0, '54-XE-0(N,THS)54-XE-0,FA,SIG')
+  55)	row: ('23747', '237470052', 0, 0.0, '54-XE-0(N,THS)54-XE-0,BA,SIG')
+  56)	row: ('A0945', 'A0945004', 0, 0.0, '7-N-14(P,G)8-O-15,PAR,SIG,,SFC')
+  57)	row: ('A0945', 'A0945004', 1, 0.0, '7-N-14(P,G)8-O-15,PAR,SIG,,SFC')
+  58)	row: ('A0945', 'A0945004', 2, 0.0, '7-N-14(P,G)8-O-15,PAR,SIG,,SFC')
+  59)	row: ('A0945', 'A0945004', 3, 0.0, '7-N-14(P,G)8-O-15,PAR,SIG,,SFC')
+  60)	row: ('A0945', 'A0945004', 4, 0.0, '7-N-14(P,G)8-O-15,PAR,SIG,,SFC')
+  61)	row: ('A0945', 'A0945004', 5, 0.0, '7-N-14(P,G)8-O-15,PAR,SIG,,SFC')
+  62)	row: ('A0945', 'A0945004', 6, 0.0, '7-N-14(P,G)8-O-15,PAR,SIG,,SFC')
+  63)	row: ('A0945', 'A0945005', 0, 0.0, '7-N-14(P,G)8-O-15,,SIG,,SFC')
+  64)	row: ('A1258', 'A1258002', 0, 0.0, '2-HE-3(A,G)4-BE-7,,SIG,,SFC,EXP')
+  65)	row: ('A1258', 'A1258002', 1, 0.0, '2-HE-3(A,G)4-BE-7,,SIG,,SFC,EXP')
+  66)	row: ('A1436', 'A1436002', 0, 0.0, '3-LI-6(P,HE3)2-HE-4,,SIG,,SFC,EVAL')
+  67)	row: ('A1436', 'A1436003', 0, 0.0, '3-LI-7(P,A)2-HE-4,,SIG,,SFC,EVAL')
+  68)	row: ('A1459', 'A1459002', 0, 0.0, '3-LI-7(P,A)2-HE-4,,SIG,,SFC,CALC')
+  69)	row: ('C0174', 'C0174003', 0, 0.0, '8-O-16(P,G)9-F-17,,SIG,,SFC')
+  70)	row: ('C0720', 'C0720004', 0, 0.0, '21-SC-45(HE3,G)23-V-48,,SIG')
+  71)	row: ('C0720', 'C0720007', 0, 0.0, '53-I-127(A,G)55-CS-131,,SIG')
+  72)	row: ('C1290', 'C1290002', 0, 0.0, '3-LI-6(P,G)4-BE-7,PAR,SIG,,SFC,DERIV')
+  73)	row: ('C1290', 'C1290002', 1, 0.0, '3-LI-6(P,G)4-BE-7,PAR,SIG,,SFC,DERIV')
+  74)	row: ('C1290', 'C1290003', 0, 0.0, '3-LI-7(P,G)4-BE-8,PAR,SIG,,SFC,DERIV')
+  75)	row: ('C1290', 'C1290003', 1, 0.0, '3-LI-7(P,G)4-BE-8,PAR,SIG,,SFC,DERIV')
+  76)	row: ('C1290', 'C1290004', 0, 0.0, '4-BE-9(P,G)5-B-10,PAR,SIG,,SFC,DERIV')
+  77)	row: ('C1290', 'C1290004', 1, 0.0, '4-BE-9(P,G)5-B-10,PAR,SIG,,SFC,DERIV')
+  78)	row: ('C1290', 'C1290004', 2, 0.0, '4-BE-9(P,G)5-B-10,PAR,SIG,,SFC,DERIV')
+  79)	row: ('C1290', 'C1290004', 3, 0.0, '4-BE-9(P,G)5-B-10,PAR,SIG,,SFC,DERIV')
+  80)	row: ('C1290', 'C1290005', 0, 0.0, '5-B-11(P,G)6-C-12,PAR,SIG,,SFC,DERIV')
+  81)	row: ('C1290', 'C1290005', 1, 0.0, '5-B-11(P,G)6-C-12,PAR,SIG,,SFC,DERIV')
+  82)	row: ('C2598', 'C2598006', 0, 0.0, '2-HE-3(A,G)4-BE-7,,SIG,,SFC')
+  83)	row: ('D0002', 'D0002006', 0, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  84)	row: ('D0002', 'D0002006', 1, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  85)	row: ('D0002', 'D0002006', 2, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  86)	row: ('D0002', 'D0002006', 3, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  87)	row: ('D0002', 'D0002006', 4, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  88)	row: ('D0002', 'D0002006', 5, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  89)	row: ('D0002', 'D0002006', 6, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  90)	row: ('D0002', 'D0002006', 7, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  91)	row: ('D0002', 'D0002006', 8, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  92)	row: ('D0002', 'D0002006', 9, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  93)	row: ('D0002', 'D0002006', 10, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  94)	row: ('D0002', 'D0002006', 11, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  95)	row: ('D0002', 'D0002006', 12, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  96)	row: ('D0002', 'D0002006', 13, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  97)	row: ('D0002', 'D0002006', 14, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  98)	row: ('D0002', 'D0002006', 15, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  99)	row: ('D0002', 'D0002006', 16, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  100)	row: ('D0002', 'D0002006', 17, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  101)	row: ('D0002', 'D0002006', 18, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+  102)	row: ('D0002', 'D0002006', 19, 0.0, '1-H-3(P,N)2-HE-3,,DA,,,EVAL')
+
+---Collected datasets: 103
+
+---Save datasets to JSON file: EN-le0py.json
+
+---Save datasets to CSV file: EN-le0py.csv
+
+Program successfully completed

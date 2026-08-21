@@ -1,0 +1,9 @@
+fileID,srcFileName,myComment,srcFileDate,nDatasets,dbDate
+0,Erwin-Alhassan_2018.yaml,Erwin Alhassan for protons on Co59 and Cd111 (2018),2020-06-15 09:18:20,166,2021-02-23
+1,Natalia-Dzysiuk_2018.yaml,Natalia Dzysiuk for neutron-induced activation XS for F4E (2018),2021-02-22 20:06:38,1768,2021-02-23
+2,Natalia-Dzysiuk_2019.yaml,Natalia Dzysiuk for neutron-induced activation XS on Ni isotopes (2019),2021-02-19 16:40:43,570,2021-02-23
+3,Natalie-Gaughan_2019.yaml,Natalie Gaughan for proton induced reactions (2019),2021-02-23 11:00:16,90,2021-02-23
+4,Arjan-Koning_2020.yaml,"Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",2021-02-19 16:39:14,19145,2021-02-23
+5,trkov2013mn55n2n.txt,x4corr: A.Trkov 2012,2014-07-03 10:05:28,21,2021-02-24
+6,capote2010mn55ng.txt,x4corr: D.Smith and R.Capote 2010,2014-07-03 14:41:43,42,2021-02-24
+7,correction-Sjoestrand-2018-09-07.txt,"x4corr: H.Sjoestrand 2018, Ni59(n,*)",2018-09-12 15:16:37,3,2021-02-24

@@ -1,0 +1,851 @@
+{
+  "ENTRY": "10186",
+  "compiled": 20210922,
+  "x4dbVersion": "2023-03-15",
+  "year": 1971,
+  "a1": "G.N.Salaita",
+  "ref": "",
+  "title": "Absolute neutron cross sections for the production of the Na-24 isomer from magnesium and aluminum.",
+  "TransID": "1487",
+  "TransDate": 20220214,
+  "INSTITUTE": [
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "code": "1USASMU",
+          "dict": "INSTITUTE",
+          "idict": 3,
+          "hlp": "Southern Methodist University, Dallas, TX, United States of America"
+        }
+      ]
+    }
+  ],
+  "REFERENCE": [
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "code": "J,NP/A,170,193,1971",
+          "stdFileName": "J,NP_A,170,193,1971",
+          "year": 1971,
+          "typ": "J",
+          "ref": "J,NP/A",
+          "vol": "170",
+          "p": "193",
+          "shortRef": "Jour: Nuclear Physics, Section A, Vol.170, p.193 (1971)"
+        }
+      ]
+    }
+  ],
+  "AUTHOR": [
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "i": 1,
+          "ini": "G.N.",
+          "nam": "Salaita"
+        }
+      ]
+    }
+  ],
+  "TITLE": [
+    {
+      "x4pointer": " ",
+      "x4code": null,
+      "x4freetext": [
+        "Absolute neutron cross sections for the production of",
+        " the Na-24 isomer from magnesium and aluminum."
+      ]
+    }
+  ],
+  "FACILITY": [
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "code": "VDG",
+          "dict": "FACILITY",
+          "idict": 18,
+          "hlp": "Van de Graaff"
+        },
+        {
+          "code": "1USASMU",
+          "dict": "INSTITUTE",
+          "idict": 3,
+          "hlp": "Southern Methodist University, Dallas, TX, United States of America"
+        }
+      ],
+      "x4freetext": [
+        " 400 keV Van de Graaff."
+      ]
+    }
+  ],
+  "INC-SOURCE": [
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "code": "D-T",
+          "dict": "INC-SOURCE",
+          "idict": 19,
+          "hlp": "3H(d,n)"
+        }
+      ],
+      "x4freetext": [
+        " 300 keV deuterons. Yield measured by",
+        "associated-particle technique with a silicon",
+        "surface-barrier detector."
+      ]
+    }
+  ],
+  "SAMPLE": [
+    {
+      "x4pointer": " ",
+      "x4code": null,
+      "x4freetext": [
+        "Ring samples, 8.26 cm I.D.X13.34 cm O.D.X1.78 cm thick."
+      ]
+    }
+  ],
+  "METHOD": [
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "code": "ACTIV",
+          "dict": "METHOD",
+          "idict": 21,
+          "hlp": "Activation"
+        }
+      ],
+      "x4freetext": [
+        " Cyclic activation technique."
+      ]
+    }
+  ],
+  "DETECTOR": [
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "code": "GELI",
+          "dict": "DETECTOR",
+          "idict": 22,
+          "hlp": "Germanium-Lithium detector"
+        }
+      ],
+      "x4freetext": [
+        " 4.8 cm**3 Ge(Li) detector, shielded by tungsten",
+        " cone 16.51 cm long."
+      ]
+    }
+  ],
+  "MONITOR": [
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "code": ""
+      },
+      "x4freetext": [
+        "Detection efficiency and gamma self-absorption",
+        " in sample determined using standard gamma sources",
+        " (7Be, 65Zn, 60Co)."
+      ]
+    }
+  ],
+  "ERR-ANALYS": [
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "header": "ERR-T",
+        "headerHelp": "Total uncertainty (1-Sigma)"
+      },
+      "x4freetext": [
+        " Principle errors (quadratic sum about 10%):"
+      ]
+    },
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "header": "ERR-1",
+        "min": "7.",
+        "max": "8.",
+        "headerHelp": "1st partial uncertainty, defined under ERR-ANALYS"
+      },
+      "x4freetext": [
+        " Determination of gamma yield (7-8%),"
+      ]
+    },
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "header": "ERR-2",
+        "min": "4.",
+        "max": "5.",
+        "headerHelp": "2nd partial uncertainty, defined under ERR-ANALYS"
+      },
+      "x4freetext": [
+        " Neutron flux (believed to Be 4-5%)."
+      ]
+    },
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "header": "ERR-3",
+        "headerHelp": "3rd partial uncertainty, defined under ERR-ANALYS"
+      },
+      "x4freetext": [
+        " Neutron multiple scattering error",
+        " (estimated ~2%),"
+      ]
+    },
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "header": "ERR-4",
+        "headerHelp": "4th partial uncertainty, defined under ERR-ANALYS"
+      },
+      "x4freetext": [
+        " Background subtraction error (about 2%)."
+      ]
+    }
+  ],
+  "STATUS": [
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "code": "APRVD",
+          "dict": "STATUS",
+          "idict": 16,
+          "hlp": "Approved by author"
+        }
+      ],
+      "x4freetext": [
+        " Approved by author."
+      ]
+    },
+    {
+      "x4pointer": " ",
+      "x4codes": [
+        {
+          "code": "TABLE",
+          "dict": "STATUS",
+          "idict": 16,
+          "hlp": "Data presented by authors"
+        }
+      ],
+      "x4freetext": [
+        " Table 1 and text, both on p.198 of",
+        " Nucl.Phys.A170,193,1971"
+      ]
+    }
+  ],
+  "HISTORY": [
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "code": "19711203C",
+        "date": "19711203",
+        "act": "C",
+        "dict": "HISTORY",
+        "idict": 15,
+        "actHelp": "Compiled at the data center"
+      }
+    },
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "code": "19820916A",
+        "date": "19820916",
+        "act": "A",
+        "dict": "HISTORY",
+        "idict": 15,
+        "actHelp": "Important alterations"
+      },
+      "x4freetext": [
+        " Converted to reaction formalism"
+      ]
+    },
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "code": "20010214A",
+        "date": "20010214",
+        "act": "A",
+        "dict": "HISTORY",
+        "idict": 15,
+        "actHelp": "Important alterations"
+      },
+      "x4freetext": [
+        " Converted to new date formats, lower case."
+      ]
+    },
+    {
+      "x4pointer": " ",
+      "x4code": {
+        "code": "20210825A",
+        "date": "20210825",
+        "act": "A",
+        "dict": "HISTORY",
+        "idict": 15,
+        "actHelp": "Important alterations"
+      },
+      "x4freetext": [
+        " OS. ERR-ANALYS updated, reaction codes in",
+        " subs.2,3 modified, minor BIB changes"
+      ]
+    }
+  ],
+  "COMMON": {
+    "ncols": 3,
+    "nrows": 1,
+    "x4headers": [
+      {
+        "icol": 0,
+        "header": "EN",
+        "units": "MEV",
+        "pointer": " ",
+        "headerHelp": "Energy of incident projectile, laboratory system",
+        "pFlag": "1000000",
+        "unitsHelp": "MeV",
+        "familyCode": "E",
+        "convFc": 1000000.0,
+        "basicUnits": "EV"
+      },
+      {
+        "icol": 1,
+        "header": "ERR-3",
+        "units": "PER-CENT",
+        "pointer": " ",
+        "headerHelp": "3rd partial uncertainty, defined under ERR-ANALYS",
+        "pFlag": "0009550",
+        "unitsHelp": "per-cent",
+        "familyCode": "PC",
+        "convFc": 1.0,
+        "basicUnits": "PER-CENT"
+      },
+      {
+        "icol": 2,
+        "header": "ERR-4",
+        "units": "PER-CENT",
+        "pointer": " ",
+        "headerHelp": "4th partial uncertainty, defined under ERR-ANALYS",
+        "pFlag": "0009550",
+        "unitsHelp": "per-cent",
+        "familyCode": "PC",
+        "convFc": 1.0,
+        "basicUnits": "PER-CENT"
+      }
+    ],
+    "datacols": [
+      [
+        "EN",
+        "ERR-3",
+        "ERR-4"
+      ],
+      [
+        "MEV",
+        "PER-CENT",
+        "PER-CENT"
+      ],
+      [
+        " ",
+        " ",
+        " "
+      ]
+    ],
+    "data": [
+      [
+        14.8,
+        2.0,
+        2.0
+      ]
+    ]
+  },
+  "x4subents": [
+    {
+      "SUBENT": "10186002",
+      "isub": 2,
+      "compiled": 20210922,
+      "TransID": "1487",
+      "TransDate": 20220214,
+      "x4dbVersion": "2023-03-15",
+      "REACTION": [
+        {
+          "x4pointer": " ",
+          "x4code": {
+            "code": "13-AL-27(N,A)11-NA-24-L,,SIG",
+            "c4reac": "(N,A),SIG",
+            "combi": "a",
+            "MF": 3,
+            "MT": 107,
+            "Units": "B",
+            "reacs": [
+              {
+                "code": "13-AL-27(N,A)11-NA-24-L,,SIG",
+                "Reac": "N,A",
+                "SF1": "13-AL-27",
+                "Targ": {
+                  "code": "13-AL-27",
+                  "nam": "Al-27",
+                  "ZA": 13027
+                },
+                "SF2": "N",
+                "Proj": {
+                  "code": "N",
+                  "nam": "n",
+                  "ZA": 1
+                },
+                "SF3": "A",
+                "SF4": "11-NA-24-L",
+                "Prod": {
+                  "code": "11-NA-24-L",
+                  "nam": "Na-24-l",
+                  "ZAProd": 11024,
+                  "ProdM": "?"
+                },
+                "SF6": "SIG",
+                "SF58": ",SIG",
+                "Quant": "CS",
+                "BasicUnits": "B",
+                "QuantHlp": "Cross section"
+              }
+            ]
+          }
+        }
+      ],
+      "DECAY-DATA": [
+        {
+          "x4pointer": " ",
+          "x4codes": [
+            {
+              "Nucl": "11-NA-24-L",
+              "t12": 19.6,
+              "t12units": "MSEC",
+              "t12sec": 0.0196,
+              "Radiations": [
+                {
+                  "Type": "DG",
+                  "Energy": [
+                    472.48
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "HISTORY": [
+        {
+          "x4pointer": " ",
+          "x4code": {
+            "code": "20210825A",
+            "date": "20210825",
+            "act": "A",
+            "dict": "HISTORY",
+            "idict": 15,
+            "actHelp": "Important alterations"
+          },
+          "x4freetext": [
+            " Isomer code changed to L"
+          ]
+        }
+      ],
+      "DATA": {
+        "ncols": 2,
+        "nrows": 1,
+        "x4headers": [
+          {
+            "icol": 0,
+            "header": "DATA",
+            "units": "MB",
+            "pointer": " ",
+            "headerHelp": "Value of quantity specified under REACTION",
+            "pFlag": "0001000",
+            "unitsHelp": "millibarns",
+            "familyCode": "B",
+            "convFc": 0.001,
+            "basicUnits": "B"
+          },
+          {
+            "icol": 1,
+            "header": "ERR-T",
+            "units": "MB",
+            "pointer": " ",
+            "headerHelp": "Total uncertainty (1-Sigma)",
+            "pFlag": "0009110",
+            "unitsHelp": "millibarns",
+            "familyCode": "B",
+            "convFc": 0.001,
+            "basicUnits": "B"
+          }
+        ],
+        "datacols": [
+          [
+            "DATA",
+            "ERR-T"
+          ],
+          [
+            "MB",
+            "MB"
+          ],
+          [
+            " ",
+            " "
+          ]
+        ],
+        "data": [
+          [
+            65.0,
+            6.0
+          ]
+        ]
+      }
+    },
+    {
+      "SUBENT": "10186003",
+      "isub": 3,
+      "compiled": 20210922,
+      "TransID": "1487",
+      "TransDate": 20220214,
+      "x4dbVersion": "2023-03-15",
+      "REACTION": [
+        {
+          "x4pointer": " ",
+          "x4code": {
+            "code": "12-MG-24(N,P)11-NA-24-L,,SIG",
+            "c4reac": "(N,P),SIG",
+            "combi": "a",
+            "MF": 3,
+            "MT": 103,
+            "Units": "B",
+            "reacs": [
+              {
+                "code": "12-MG-24(N,P)11-NA-24-L,,SIG",
+                "Reac": "N,P",
+                "SF1": "12-MG-24",
+                "Targ": {
+                  "code": "12-MG-24",
+                  "nam": "Mg-24",
+                  "ZA": 12024
+                },
+                "SF2": "N",
+                "Proj": {
+                  "code": "N",
+                  "nam": "n",
+                  "ZA": 1
+                },
+                "SF3": "P",
+                "SF4": "11-NA-24-L",
+                "Prod": {
+                  "code": "11-NA-24-L",
+                  "nam": "Na-24-l",
+                  "ZAProd": 11024,
+                  "ProdM": "?"
+                },
+                "SF6": "SIG",
+                "SF58": ",SIG",
+                "Quant": "CS",
+                "BasicUnits": "B",
+                "QuantHlp": "Cross section"
+              }
+            ]
+          }
+        }
+      ],
+      "DECAY-DATA": [
+        {
+          "x4pointer": " ",
+          "x4codes": [
+            {
+              "Nucl": "11-NA-24-L",
+              "t12": 19.6,
+              "t12units": "MSEC",
+              "t12sec": 0.0196,
+              "Radiations": [
+                {
+                  "Type": "DG",
+                  "Energy": [
+                    472.48
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "HISTORY": [
+        {
+          "x4pointer": " ",
+          "x4code": {
+            "code": "20210825A",
+            "date": "20210825",
+            "act": "A",
+            "dict": "HISTORY",
+            "idict": 15,
+            "actHelp": "Important alterations"
+          },
+          "x4freetext": [
+            " Isomer code changed to L"
+          ]
+        }
+      ],
+      "DATA": {
+        "ncols": 2,
+        "nrows": 1,
+        "x4headers": [
+          {
+            "icol": 0,
+            "header": "DATA",
+            "units": "MB",
+            "pointer": " ",
+            "headerHelp": "Value of quantity specified under REACTION",
+            "pFlag": "0001000",
+            "unitsHelp": "millibarns",
+            "familyCode": "B",
+            "convFc": 0.001,
+            "basicUnits": "B"
+          },
+          {
+            "icol": 1,
+            "header": "ERR-T",
+            "units": "MB",
+            "pointer": " ",
+            "headerHelp": "Total uncertainty (1-Sigma)",
+            "pFlag": "0009110",
+            "unitsHelp": "millibarns",
+            "familyCode": "B",
+            "convFc": 0.001,
+            "basicUnits": "B"
+          }
+        ],
+        "datacols": [
+          [
+            "DATA",
+            "ERR-T"
+          ],
+          [
+            "MB",
+            "MB"
+          ],
+          [
+            " ",
+            " "
+          ]
+        ],
+        "data": [
+          [
+            138.0,
+            14.0
+          ]
+        ]
+      }
+    },
+    {
+      "SUBENT": "10186004",
+      "isub": 4,
+      "compiled": 20210922,
+      "TransID": "1487",
+      "TransDate": 20220214,
+      "x4dbVersion": "2023-03-15",
+      "REACTION": [
+        {
+          "x4pointer": " ",
+          "x4code": {
+            "code": "13-AL-27(N,P)12-MG-27,,SIG",
+            "c4reac": "(N,P),SIG",
+            "combi": "a",
+            "MF": 3,
+            "MT": 103,
+            "Units": "B",
+            "reacs": [
+              {
+                "code": "13-AL-27(N,P)12-MG-27,,SIG",
+                "Reac": "N,P",
+                "SF1": "13-AL-27",
+                "Targ": {
+                  "code": "13-AL-27",
+                  "nam": "Al-27",
+                  "ZA": 13027
+                },
+                "SF2": "N",
+                "Proj": {
+                  "code": "N",
+                  "nam": "n",
+                  "ZA": 1
+                },
+                "SF3": "P",
+                "SF4": "12-MG-27",
+                "Prod": {
+                  "code": "12-MG-27",
+                  "nam": "Mg-27",
+                  "ZAProd": 12027
+                },
+                "SF6": "SIG",
+                "SF58": ",SIG",
+                "Quant": "CS",
+                "BasicUnits": "B",
+                "QuantHlp": "Cross section"
+              }
+            ]
+          }
+        }
+      ],
+      "DATA": {
+        "ncols": 2,
+        "nrows": 1,
+        "x4headers": [
+          {
+            "icol": 0,
+            "header": "DATA",
+            "units": "MB",
+            "pointer": " ",
+            "headerHelp": "Value of quantity specified under REACTION",
+            "pFlag": "0001000",
+            "unitsHelp": "millibarns",
+            "familyCode": "B",
+            "convFc": 0.001,
+            "basicUnits": "B"
+          },
+          {
+            "icol": 1,
+            "header": "ERR-T",
+            "units": "MB",
+            "pointer": " ",
+            "headerHelp": "Total uncertainty (1-Sigma)",
+            "pFlag": "0009110",
+            "unitsHelp": "millibarns",
+            "familyCode": "B",
+            "convFc": 0.001,
+            "basicUnits": "B"
+          }
+        ],
+        "datacols": [
+          [
+            "DATA",
+            "ERR-T"
+          ],
+          [
+            "MB",
+            "MB"
+          ],
+          [
+            " ",
+            " "
+          ]
+        ],
+        "data": [
+          [
+            75.0,
+            6.0
+          ]
+        ]
+      }
+    },
+    {
+      "SUBENT": "10186005",
+      "isub": 5,
+      "compiled": 20210922,
+      "TransID": "1487",
+      "TransDate": 20220214,
+      "x4dbVersion": "2023-03-15",
+      "REACTION": [
+        {
+          "x4pointer": " ",
+          "x4code": {
+            "code": "13-AL-27(N,A)11-NA-24,,SIG",
+            "c4reac": "(N,A),SIG",
+            "combi": "a",
+            "MF": 3,
+            "MT": 107,
+            "Units": "B",
+            "reacs": [
+              {
+                "code": "13-AL-27(N,A)11-NA-24,,SIG",
+                "Reac": "N,A",
+                "SF1": "13-AL-27",
+                "Targ": {
+                  "code": "13-AL-27",
+                  "nam": "Al-27",
+                  "ZA": 13027
+                },
+                "SF2": "N",
+                "Proj": {
+                  "code": "N",
+                  "nam": "n",
+                  "ZA": 1
+                },
+                "SF3": "A",
+                "SF4": "11-NA-24",
+                "Prod": {
+                  "code": "11-NA-24",
+                  "nam": "Na-24",
+                  "ZAProd": 11024
+                },
+                "SF6": "SIG",
+                "SF58": ",SIG",
+                "Quant": "CS",
+                "BasicUnits": "B",
+                "QuantHlp": "Cross section"
+              }
+            ]
+          }
+        }
+      ],
+      "DATA": {
+        "ncols": 2,
+        "nrows": 1,
+        "x4headers": [
+          {
+            "icol": 0,
+            "header": "DATA",
+            "units": "MB",
+            "pointer": " ",
+            "headerHelp": "Value of quantity specified under REACTION",
+            "pFlag": "0001000",
+            "unitsHelp": "millibarns",
+            "familyCode": "B",
+            "convFc": 0.001,
+            "basicUnits": "B"
+          },
+          {
+            "icol": 1,
+            "header": "ERR-T",
+            "units": "MB",
+            "pointer": " ",
+            "headerHelp": "Total uncertainty (1-Sigma)",
+            "pFlag": "0009110",
+            "unitsHelp": "millibarns",
+            "familyCode": "B",
+            "convFc": 0.001,
+            "basicUnits": "B"
+          }
+        ],
+        "datacols": [
+          [
+            "DATA",
+            "ERR-T"
+          ],
+          [
+            "MB",
+            "MB"
+          ],
+          [
+            " ",
+            " "
+          ]
+        ],
+        "data": [
+          [
+            111.0,
+            9.0
+          ]
+        ]
+      }
+    }
+  ],
+  "ref1": "Jour: Nuclear Physics, Section A, Vol.170, p.193 (1971)"
+}

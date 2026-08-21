@@ -1,0 +1,42 @@
+Program: exec1sql.py, ver. 2024-12-16
+Author:  V.Zerkin, v.zerkin@gmail.com, Vienna, 2024
+Purpose: execute one SQL command on SQLite database.
+Operations:
+         - connect to SQLite data file;
+         - execute SQL command;
+         - read retrieved data rows to list of dicts
+           extracting data (incl.JSON) from row to dict;
+         - save result in JSON file and CSV file for EXCEL.
+
+Running: 2026-08-21 12:10:34
+
+---getConnSQLite: file:../../x4sqlite1.db?mode=ro
+
+---SQL:SELECT substr(DatasetID,1,5) as Entry
+  ,DatasetID,idat
+  ,CAST(json_extract(x4.xdat,'$.EN') AS FLOAT) as EN
+  ,REACODE.FullCode
+--  ,xdat
+FROM x4pro_x4data as x4
+  inner join REACODE on REACODE.ReacodeID=x4.DatasetID
+where json_extract(x4.xdat,'$.EN') is not null
+ and json_extract(x4.xdat,'$.EN') <=0
+
+---SQL executed: 0.17sec
+
+---Retrieved from the database
+rows: 0
+---No data found---
+---colinfo--- ('Entry', None, None, None, None, None, None)
+---colinfo--- ('DatasetID', None, None, None, None, None, None)
+---colinfo--- ('idat', None, None, None, None, None, None)
+---colinfo--- ('EN', None, None, None, None, None, None)
+---colinfo--- ('fullCode', None, None, None, None, None, None)
+
+---Collected datasets: 0
+
+---Save datasets to JSON file: EN-le0py.json
+
+---Save datasets to CSV file: EN-le0py.csv
+
+Program successfully completed

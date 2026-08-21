@@ -1,0 +1,208 @@
+Program: da0an.py, ver. 2022-12-20
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Retrieve and plot EXFOR angular distributions
+
+Running: 2026-08-21 12:03:45
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+___getX4SqlSearch_DA_e: O-16 n,el  and (En>13900000.0 and En<14300000.0)
+SQL:
+select *                          
+from da1                          
+where (Target like 'O-16')  
+  and (Reaction like 'n,el') 
+--  and ((Author1 like 'Korzh') or (Author1 like 'Mellema'))
+ and (En>13900000.0 and En<14300000.0)
+
+datapoints: 162
+DS:1) 8-O-16(N,EL)8-O-16,,DA 1992 A.Takahashi #22766011 Ei:14100000.0
+ pt:1/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:15.0 y:0.637 dy:0.025 dx:None
+ pt:2/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:25.0 y:0.307 dy:0.012 dx:None
+ pt:3/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:35.0 y:0.0969 dy:0.0038 dx:None
+ pt:4/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:45.0 y:0.0377 dy:0.0015 dx:None
+ pt:5/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:50.0 y:0.0384 dy:0.0015 dx:None
+ pt:6/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:60.0 y:0.0476 dy:0.0019 dx:None
+ pt:7/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:70.0 y:0.0447 dy:0.0017 dx:None
+ pt:8/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:80.0 y:0.0413 dy:0.0017 dx:None
+ pt:9/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:90.0 y:0.0363 dy:0.0015 dx:None
+ pt:10/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:100.0 y:0.0251 dy:0.001 dx:None
+ pt:11/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:110.0 y:0.0138 dy:0.00055 dx:None
+ pt:12/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:120.0 y:0.00654 dy:0.00026 dx:None
+ pt:13/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:130.0 y:0.00602 dy:0.00024 dx:None
+ pt:14/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:140.0 y:0.00883 dy:0.00035 dx:None
+ pt:15/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:150.0 y:0.0134 dy:0.00053 dx:None
+ pt:16/162) 8-O-16(N,EL)8-O-16,,DA 22766011 1992 A.Takahashi x:160.0 y:0.0181 dy:0.00072 dx:None
+DS:2) 8-O-16(N,EL)8-O-16,,DA 1989 L.Anli #13979002 Ei:14000000.0
+ pt:17/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:19.7 y:0.41516 dy:None dx:None
+ pt:18/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:25.9 y:0.24558 dy:None dx:None
+ pt:19/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:30.8 y:0.149959 dy:None dx:None
+ pt:20/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:35.8 y:0.090438 dy:None dx:None
+ pt:21/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:40.9 y:0.0475969 dy:None dx:None
+ pt:22/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:47.6 y:0.0284458 dy:None dx:None
+ pt:23/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:53.9 y:0.0381423 dy:None dx:None
+ pt:24/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:60.0 y:0.0438864 dy:None dx:None
+ pt:25/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:63.8 y:0.0506374 dy:None dx:None
+ pt:26/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:67.7 y:0.056319 dy:None dx:None
+ pt:27/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:73.1 y:0.0569301 dy:None dx:None
+ pt:28/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:78.4 y:0.0532325 dy:None dx:None
+ pt:29/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:82.3 y:0.047298 dy:None dx:None
+ pt:30/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:87.6 y:0.0442468 dy:None dx:None
+ pt:31/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:93.2 y:0.0376584 dy:None dx:None
+ pt:32/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:96.4 y:0.0288315 dy:None dx:None
+ pt:33/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:101.5 y:0.0211183 dy:None dx:None
+ pt:34/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:107.6 y:0.0157525 dy:None dx:None
+ pt:35/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:112.7 y:0.00978807 dy:None dx:None
+ pt:36/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:117.8 y:0.00609433 dy:None dx:None
+ pt:37/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:124.0 y:0.00447015 dy:None dx:None
+ pt:38/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:129.2 y:0.00645399 dy:None dx:None
+ pt:39/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:133.4 y:0.00866673 dy:None dx:None
+ pt:40/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:139.7 y:0.0133991 dy:None dx:None
+ pt:41/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:143.9 y:0.0171007 dy:None dx:None
+ pt:42/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:150.2 y:0.016968 dy:None dx:None
+ pt:43/162) 8-O-16(N,EL)8-O-16,,DA 13979002 1989 L.Anli x:158.7 y:0.0219652 dy:None dx:None
+DS:3) 8-O-16(N,EL)8-O-16,,DA 1988 M.Baba #22157033 Ei:14100000.0
+ pt:44/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:25.0 y:0.392428 dy:0.0345873 dx:None
+ pt:45/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:30.0 y:0.238833 dy:0.0138366 dx:None
+ pt:46/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:37.5 y:0.098118 dy:0.00691888 dx:None
+ pt:47/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:45.0 y:0.0403488 dy:0.00332036 dx:None
+ pt:48/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:52.5 y:0.0360606 dy:0.00291772 dx:None
+ pt:49/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:60.0 y:0.0462707 dy:0.00366125 dx:None
+ pt:50/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:80.0 y:0.0525801 dy:0.0032641 dx:None
+ pt:51/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:90.0 y:0.0413146 dy:0.00269133 dx:None
+ pt:52/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:105.0 y:0.0224788 dy:0.00138356 dx:None
+ pt:53/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:120.0 y:0.0102762 dy:0.00073459 dx:None
+ pt:54/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:135.0 y:0.00779953 dy:0.000607932 dx:None
+ pt:55/162) 8-O-16(N,EL)8-O-16,,DA 22157033 1988 M.Baba x:150.0 y:0.0170929 dy:0.00108006 dx:None
+DS:4) 8-O-16(N,EL)8-O-16,,DA 1986 M.Baba #21984089 Ei:14200000.0
+ pt:56/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:25.0 y:0.387014 dy:0.0279311 dx:None
+ pt:57/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:30.0 y:0.266146 dy:0.03035 dx:None
+ pt:58/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:44.9 y:0.0548404 dy:0.00423024 dx:None
+ pt:59/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:60.0 y:0.0516435 dy:0.00386795 dx:None
+ pt:60/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:75.0 y:0.0592846 dy:0.00441284 dx:None
+ pt:61/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:79.9 y:0.0524395 dy:0.00390745 dx:None
+ pt:62/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:105.0 y:0.0281999 dy:0.00219225 dx:None
+ pt:63/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:120.0 y:0.0125491 dy:0.00107697 dx:None
+ pt:64/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:134.9 y:0.00765082 dy:0.000747756 dx:None
+ pt:65/162) 8-O-16(N,EL)8-O-16,,DA 21984089 1986 M.Baba x:150.0 y:0.0212598 dy:0.00184013 dx:None
+DS:5) 8-O-16(N,EL)8-O-16,,DA 1983 J.H.Dave #14189051 Ei:14000000.0
+ pt:66/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:6.2 y:1.06265 dy:None dx:None
+ pt:67/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:9.6 y:0.941781 dy:None dx:None
+ pt:68/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:13.5 y:0.817654 dy:None dx:None
+ pt:69/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:23.8 y:0.420918 dy:None dx:None
+ pt:70/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:28.6 y:0.249861 dy:None dx:None
+ pt:71/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:33.5 y:0.16045 dy:None dx:None
+ pt:72/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:38.1 y:0.0861422 dy:None dx:None
+ pt:73/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:43.4 y:0.0461608 dy:None dx:None
+ pt:74/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:49.0 y:0.0267485 dy:None dx:None
+ pt:75/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:54.6 y:0.0356479 dy:None dx:None
+ pt:76/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:59.8 y:0.0413519 dy:None dx:None
+ pt:77/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:64.5 y:0.0479938 dy:None dx:None
+ pt:78/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:68.8 y:0.0557326 dy:None dx:None
+ pt:79/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:73.8 y:0.0573398 dy:None dx:None
+ pt:80/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:78.6 y:0.0544981 dy:None dx:None
+ pt:81/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:83.4 y:0.0507734 dy:None dx:None
+ pt:82/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:88.5 y:0.0454241 dy:None dx:None
+ pt:83/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:93.8 y:0.0382698 dy:None dx:None
+ pt:84/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:98.7 y:0.0303997 dy:None dx:None
+ pt:85/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:103.6 y:0.0218818 dy:None dx:None
+ pt:86/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:107.8 y:0.0157724 dy:None dx:None
+ pt:87/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:113.3 y:0.00987082 dy:None dx:None
+ pt:88/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:117.8 y:0.00606661 dy:None dx:None
+ pt:89/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:124.3 y:0.00443996 dy:None dx:None
+ pt:90/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:129.3 y:0.00628668 dy:None dx:None
+ pt:91/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:134.7 y:0.00790021 dy:None dx:None
+ pt:92/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:138.8 y:0.0131536 dy:None dx:None
+ pt:93/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:144.2 y:0.0159067 dy:None dx:None
+ pt:94/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:149.5 y:0.0164266 dy:None dx:None
+ pt:95/162) 8-O-16(N,EL)8-O-16,,DA 14189051 1983 J.H.Dave x:157.5 y:0.0210556 dy:None dx:None
+DS:6) 8-O-16(N,EL)8-O-16,,DA 1982 S.G.Glendinning #10859002 Ei:13938000.0
+ pt:96/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:26.0 y:0.3835 dy:0.0182363 dx:None
+ pt:97/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:31.0 y:0.22559 dy:0.010552 dx:None
+ pt:98/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:36.02 y:0.14537 dy:0.00835404 dx:None
+ pt:99/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:41.15 y:0.07961 dy:0.00530575 dx:None
+ pt:100/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:46.63 y:0.04218 dy:0.00344481 dx:None
+ pt:101/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:52.58 y:0.02518 dy:0.00203437 dx:None
+ pt:102/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:58.23 y:0.03358 dy:0.00239021 dx:None
+ pt:103/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:63.39 y:0.0402 dy:0.00230437 dx:None
+ pt:104/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:68.37 y:0.04608 dy:0.00266338 dx:None
+ pt:105/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:73.32 y:0.05267 dy:0.00274512 dx:None
+ pt:106/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:78.28 y:0.05568 dy:0.0026849 dx:None
+ pt:107/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:83.24 y:0.05262 dy:0.00330127 dx:None
+ pt:108/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:88.18 y:0.04981 dy:0.00283362 dx:None
+ pt:109/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:93.09 y:0.04651 dy:0.00286382 dx:None
+ pt:110/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:97.97 y:0.03836 dy:0.00289297 dx:None
+ pt:111/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:102.82 y:0.03101 dy:0.00217947 dx:None
+ pt:112/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:107.63 y:0.02173 dy:0.00157869 dx:None
+ pt:113/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:112.42 y:0.01632 dy:0.00116927 dx:None
+ pt:114/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:117.27 y:0.01019 dy:0.000746874 dx:None
+ pt:115/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:122.31 y:0.00622 dy:0.000557242 dx:None
+ pt:116/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:127.62 y:0.00465 dy:0.000461604 dx:None
+ pt:117/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:132.84 y:0.00662 dy:0.00104762 dx:None
+ pt:118/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:137.74 y:0.00884 dy:0.000635878 dx:None
+ pt:119/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:142.44 y:0.01402 dy:0.00213098 dx:None
+ pt:120/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:147.08 y:0.01708 dy:0.00233296 dx:None
+ pt:121/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:151.7 y:0.01781 dy:0.00178016 dx:None
+ pt:122/162) 8-O-16(N,EL)8-O-16,,DA 10859002 1982 S.G.Glendinning x:159.97 y:0.02298 dy:0.0017934 dx:None
+DS:7) 8-O-16(N,EL)8-O-16,,DA 1972 G.C.Bonazzola #20496002 Ei:14100000.0
+ pt:123/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:149.3 y:0.0187 dy:0.001 dx:1.0
+ pt:124/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:155.1 y:0.0243 dy:0.001 dx:1.0
+ pt:125/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:161.1 y:0.0301 dy:0.0011 dx:1.0
+ pt:126/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:163.5 y:0.0319 dy:0.0014 dx:1.0
+ pt:127/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:166.9 y:0.0315 dy:0.0015 dx:1.0
+ pt:128/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:171.0 y:0.0293 dy:0.0015 dx:1.0
+ pt:129/162) 8-O-16(N,EL)8-O-16,,DA 20496002 1972 G.C.Bonazzola x:178.0 y:0.0248 dy:0.0016 dx:1.0
+DS:8) 8-O-16(N,EL)8-O-16,,DA 1969 D.Meier #20907009 Ei:14140000.0
+ pt:130/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:7.51967 y:0.879 dy:0.0807118 dx:None
+ pt:131/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:10.0026 y:0.82 dy:0.0744744 dx:None
+ pt:132/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:15.0057 y:0.667 dy:0.0605607 dx:None
+ pt:133/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:19.9988 y:0.52 dy:0.0470663 dx:None
+ pt:134/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:25.0011 y:0.384 dy:0.0352618 dx:None
+ pt:135/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:25.9992 y:0.358 dy:0.0328691 dx:None
+ pt:136/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:30.0029 y:0.241 dy:0.021782 dx:None
+ pt:137/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:37.505 y:0.106 dy:0.00974739 dx:None
+ pt:138/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:45.0006 y:0.043 dy:0.00402329 dx:None
+ pt:139/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:49.9991 y:0.0363 dy:0.00355433 dx:None
+ pt:140/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:60.0 y:0.0491 dy:0.00450972 dx:None
+ pt:141/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:70.0012 y:0.0557 dy:0.00543509 dx:None
+ pt:142/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:75.0011 y:0.059 dy:0.00540334 dx:None
+ pt:143/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:80.0028 y:0.0552 dy:0.00525081 dx:None
+ pt:144/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:90.0 y:0.0432 dy:0.00432742 dx:None
+ pt:145/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:99.9972 y:0.0308 dy:0.00310548 dx:None
+ pt:146/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:109.999 y:0.0192 dy:0.00228823 dx:None
+ pt:147/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:120.0 y:0.0095 dy:0.00139321 dx:None
+ pt:148/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:130.001 y:0.0066 dy:0.00133897 dx:None
+ pt:149/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:139.996 y:0.0094 dy:0.00146824 dx:None
+ pt:150/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:147.501 y:0.0146 dy:0.00214863 dx:None
+ pt:151/162) 8-O-16(N,EL)8-O-16,,DA 20907009 1969 D.Meier x:154.999 y:0.0186 dy:0.0024581 dx:None
+DS:9) 8-O-16(N,EL)8-O-16,,DA 1966 W.J.Mcdonald #11383002 Ei:14100000.0
+ pt:152/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:22.0 y:0.47602 dy:0.023801 dx:None
+ pt:153/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:31.7 y:0.205282 dy:0.0102641 dx:None
+ pt:154/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:41.1 y:0.0712666 dy:0.00356333 dx:None
+ pt:155/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:52.3 y:0.0344736 dy:0.00172368 dx:None
+ pt:156/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:64.5 y:0.0442401 dy:0.002212 dx:None
+ pt:157/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:76.0 y:0.0432131 dy:0.00216066 dx:None
+ pt:158/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:90.9 y:0.0358581 dy:0.0017929 dx:None
+ pt:159/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:106.7 y:0.0206869 dy:0.00103435 dx:None
+ pt:160/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:118.3 y:0.00958317 dy:0.000479158 dx:None
+ pt:161/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:137.9 y:0.0065358 dy:0.00032679 dx:None
+ pt:162/162) 8-O-16(N,EL)8-O-16,,DA 11383002 1966 W.J.Mcdonald x:152.9 y:0.0142481 dy:0.000712405 dx:None
+datasets: 9
+
+Datasets: 9
+1) 8-O-16(N,EL)8-O-16,,DA
+reacodes: 1 
+
+Plot:1/9) #22766011 1992, A.Takahashi pt:16
+Plot:2/9) #13979002 1989, L.Anli pt:27
+Plot:3/9) #22157033 1988, M.Baba pt:12
+Plot:4/9) #21984089 1986, M.Baba pt:10
+Plot:5/9) #14189051 1983, J.H.Dave pt:30
+Plot:6/9) #10859002 1982, S.G.Glendinning pt:27
+Plot:7/9) #20496002 1972, G.C.Bonazzola pt:7
+Plot:8/9) #20907009 1969, D.Meier pt:22
+Plot:9/9) #11383002 1966, W.J.Mcdonald pt:11
+Will try---write_image: da0an.html.png
+
+Program successfully completed

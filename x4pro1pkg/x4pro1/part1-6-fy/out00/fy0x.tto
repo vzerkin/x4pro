@@ -1,0 +1,53 @@
+Program: fy0x.py, ver. 2022-11-09
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Retrieve and plot EXFOR fission yield (mass distribution)
+
+Running: 2026-08-21 12:03:57
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+___getX4SqlSearchFY_MASS: 92-U-238(N,F)MASS,CHN,FY and (En>=13e6)and (En<15e6)
+SQL:
+select *                                  
+ ,y  as FY, dy  as dFY                    
+ ,x1 as En, dx1 as dEn                    
+ ,x2 as MASS                              
+from uni1                                 
+where                                     
+ fullCode='92-U-238(N,F)MASS,CHN,FY'                   
+and (En>=13e6)and (En<15e6)
+order by fullCode,YearRef1 desc,DatasetID 
+ ,En,iPoint                               
+
+
+EXFOR SQL executed: 0.003sec
+
+datapoints: 143
+1) 14414002 2015 N.Gharibyan 92-U-238(N,F)MASS,CHN,FY Ei:14.0MeV
+2) 30639006 1976 S.Daroczy 92-U-238(N,F)MASS,CHN,FY Ei:14.4-14.52MeV
+3) 21734019 1972 J.P.Bocquet 92-U-238(N,F)MASS,CHN,FY Ei:14.5MeV
+4) 22039002 1971 O.Birgul 92-U-238(N,F)MASS,CHN,FY Ei:14.8MeV
+5) 13268008 1970 L.H.Gevaert 92-U-238(N,F)MASS,CHN,FY Ei:14.7MeV
+6) 22062005 1969 S.J.Lyle 92-U-238(N,F)MASS,CHN,FY Ei:14.2-15.4MeV
+7) 13233007 1968 D.J.Gorman 92-U-238(N,F)MASS,CHN,FY Ei:14.0MeV
+8) 13233008 1968 D.J.Gorman 92-U-238(N,F)MASS,CHN,FY Ei:14.0MeV
+9) 237110022 1964 R.H.James 92-U-238(N,F)MASS,CHN,FY Ei:14.3-15.1MeV
+datasets: 9
+
+Datasets: 9
+1) 92-U-238(N,F)MASS,CHN,FY
+Reaction codes: 1 
+
+Plot:1/9) #14414002 2015, N.Gharibyan pt:32
+Plot:2/9) #30639006 1976, S.Daroczy pt:37
+Plot:3/9) #21734019 1972, J.P.Bocquet pt:12
+Plot:4/9) #22039002 1971, O.Birgul pt:9
+Plot:5/9) #13268008 1970, L.H.Gevaert pt:9
+Plot:6/9) #22062005 1969, S.J.Lyle pt:6
+Plot:7/9) #13233007 1968, D.J.Gorman pt:8
+Plot:8/9) #13233008 1968, D.J.Gorman pt:12
+Plot:9/9) #237110022 1964, R.H.James pt:18
+Will try---write_image: U238nf-fy.html.png
+
+Program successfully completed

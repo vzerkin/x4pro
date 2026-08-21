@@ -1,0 +1,102 @@
+          Nuclear Data Section (NDS)
+ Department of Nuclear Sciences and Applications
+    International Atomic Energy Agency (IAEA)
+    Vienna International Centre, P.O. Box 100,
+            A-1400 Vienna, Austria
+    Tel:(+43 1) 2600-21714; Fax:(+43 1) 26007
+
+   WORKING MATERIALS ON THE DEVELOPMENT OF X4PRO
+ X4Pro - universal, fully relational EXFOR database
+ /Prepared by Viktor Zerkin, IAEA-NDS, 2022-03-29/
+_______________________________________________________
+
+Example of export contents of X4Pro to CouchDB database
+_______________________________________________________
+
+I.  CouchDB: downloading, installation
+    https://couchdb.apache.org/#download
+    Follow instructions...
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1. Download CouchDB
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2. Install CouchDB
+    on MS-Windows: > msiexec /i apache-couchdb-3.2.2.msi
+    on Linux:      $ sudo apt-get install couchdb
+                or $ snap install couchdb
+    on MacOS:      $ brew install couchdb
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 3. Install package for Python-3
+    > pip  install couchdb
+    $ pip3 install couchdb
+
+
+
+
+_______________________________________________________
+
+II. CouchDB: configuration
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1. Stop Database server
+    on MS-Windows (Run as administrator): 
+        Search: type: Task manager -->
+        "Task Manager" -> "Services" -> "Apache CouchgDB": stop
+    on Linux/MacOS: you will be asked to add user:admin before 1st start
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2. Add users (admin and exfor) to the Database Server
+    see: https://docs.couchdb.org/en/stable/intro/security.html
+    on Windows: edit file ...\Apache CouchDB\etc\local.d\10-admins.ini
+    on Linux:   edit file .../etc/local.ini:
+              $ sudo nano /var/snap/couchdb/9/etc/local.ini
+    on MacOS:   edit file .../etc/local.ini:
+              $ sudo nano /opt/homebrew/etc/local.ini
+
+[admins]
+admin = password
+exfor = exfor
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 3. Increase max_document_size
+    see: https://docs.couchdb.org/en/stable/config/couchdb.html#couchdb/max_document_size
+    on Windows: edit file ...\Apache CouchDB\etc\local.ini
+    on Linux:   edit file .../etc/local.ini
+              $ sudo nano /var/snap/couchdb/9/etc/local.ini
+    on MacOS:   edit file .../etc/local.ini:
+              $ sudo nano /opt/homebrew/etc/local.ini
+
+[couchdb]
+max_document_size = 4294967296 ; bytes
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 4. Start Database server
+    on MS-Windows (Run as administrator):
+        Search: type: Task manager -->
+        "Task Manager" -> "Services" -> "Apache CouchgDB": start
+    on Linux: $ sudo snap start couchdb.server
+    on MacOS: $ brew services start couchdb
+       in the same manner as "start" command, 
+       you can use "stop" and "restart"
+
+
+
+_______________________________________________________
+
+III. Run program to export X4Pro to CouchDB database
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1. Run program
+    > python -B export2couchdb3.py 
+      or
+    $ python3 -B export2couchdb3.py 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2. Start Web browser
+ 3. Set Web-address URL:
+    http://localhost:5984/_utils/#login
+ 4. Enter your working database, e.g. zv-exfor-001
+    http://localhost:5984/_utils/#database/zv-exfor-001/_all_docs
+    etc.
+
+
+
+_______________________________________________________
+
+ ALL PRODUCTS ON THIS PACKAGE ARE PROVIDED IN GOOD
+     FAITH AND WITHOUT A WARRANTY OF ANY KIND.

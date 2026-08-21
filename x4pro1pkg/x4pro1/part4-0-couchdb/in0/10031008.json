@@ -1,0 +1,69 @@
+{"SUBENT":"10031008", "isub":8, "compiled":19990719, "TransID":"0000", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"28-NI-58(N,X)27-CO-57,,SIG"
+	    ,"c4reac":"(N,X),SIG"
+	    ,"combi":"a"
+	    ,"MF":3
+	    ,"MT":9000
+	    ,"Units":"B"
+	    ,"reacs": [
+	    {"code":"28-NI-58(N,X)27-CO-57,,SIG"
+		,"Reac":"N,X"
+		,"SF1":"28-NI-58","Targ":{"code":"28-NI-58","nam":"Ni-58","ZA":28058}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"X","procHlp":"Process unspecified"
+		,"SF4":"27-CO-57","Prod":{"code":"27-CO-57","nam":"Co-57","ZAProd":27057}
+		,"SF6":"SIG"
+		,"SF58":",SIG","Quant":"CS","BasicUnits":"B","QuantHlp":"Cross section"
+	    }]}
+	}
+      ]
+     ,"SAMPLE":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Metal foil, 7.6 x 7.6 cm, with thickness 0.1 cm or"
+		," less."]
+	}
+      ]
+     ,"DECAY-DATA":[
+	{"x4pointer":" "
+	,"x4codes":[{"Nucl":"27-CO-57"
+	, "Radiations":[ {"Type":"DG", "Energy":[122.0], "Intensity":0.87}]}]
+	,"x4freetext":["Saturation activity (10**(-18)dps/nucleus) = 11.11."]
+	}
+      ]
+     ,"CORRECTION":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Corrected for presence of 0.136-MeV gamma (which"
+		,"interferes with counting of 0.122 MeV gamma), and for"
+		,"attenuation of 0.122 MeV gamma by foil. Corrected to"
+		,"account for production of 57Co by decay of 57Ni."]
+	}
+      ]
+     ,"HISTORY":[
+	{"x4pointer":" "
+	,"x4code":{"code":"19990719A", "date":"19990719", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" REACTION updated."]
+	}
+      ]
+    }
+    ,"DATA":{"ncols":2, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"DATA", "units":"MB", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ,{"icol":1, "header":"DATA-ERR", "units":"MB", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ]
+      ,"datacols":[
+	 ["DATA"      ,"DATA-ERR"  ]
+	,["MB"        ,"MB"        ]
+	,[" "         ," "         ]]
+      ,"data":[
+	 [750.0       ,60.0        ]]}
+}

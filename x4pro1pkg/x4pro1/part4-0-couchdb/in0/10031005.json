@@ -1,0 +1,60 @@
+{"SUBENT":"10031005", "isub":5, "compiled":19990719, "TransID":"0000", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"26-FE-56(N,P)25-MN-56,,SIG"
+	    ,"c4reac":"(N,P),SIG"
+	    ,"combi":"a"
+	    ,"MF":3
+	    ,"MT":103
+	    ,"Units":"B"
+	    ,"reacs": [
+	    {"code":"26-FE-56(N,P)25-MN-56,,SIG"
+		,"Reac":"N,P"
+		,"SF1":"26-FE-56","Targ":{"code":"26-FE-56","nam":"Fe-56","ZA":26056}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"P"
+		,"SF4":"25-MN-56","Prod":{"code":"25-MN-56","nam":"Mn-56","ZAProd":25056}
+		,"SF6":"SIG"
+		,"SF58":",SIG","Quant":"CS","BasicUnits":"B","QuantHlp":"Cross section"
+	    }]}
+	}
+      ]
+     ,"SAMPLE":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Metal foil, 7.6 x 7.6 cm, with thickness 0.1 cm or"
+		," less."]
+	}
+      ]
+     ,"DECAY-DATA":[
+	{"x4pointer":" "
+	,"x4codes":[{"Nucl":"25-MN-56"
+	, "Radiations":[ {"Type":"DG", "Energy":[854.0], "Intensity":0.99}]}]
+	,"x4freetext":["Saturation activity (10**(-18)dps/nucleus) = 1.605."]
+	}
+      ]
+     ,"HISTORY":[
+	{"x4pointer":" "
+	,"x4code":{"code":"19810423A", "date":"19810423", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" BIB correction to DECAY-DATA."]
+	}
+      ]
+    }
+    ,"DATA":{"ncols":2, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"DATA", "units":"MB", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ,{"icol":1, "header":"DATA-ERR", "units":"MB", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ]
+      ,"datacols":[
+	 ["DATA"      ,"DATA-ERR"  ]
+	,["MB"        ,"MB"        ]
+	,[" "         ," "         ]]
+      ,"data":[
+	 [109.0       ,9.0         ]]}
+}

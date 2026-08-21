@@ -1,0 +1,210 @@
+{"SUBENT":"10010002", "isub":2, "compiled":19990617, "TransID":"0000", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"83-BI-209(N,EL)83-BI-209,,SIG"
+	    ,"c4reac":"(N,EL),SIG"
+	    ,"combi":"a"
+	    ,"MF":3
+	    ,"MT":2
+	    ,"Units":"B"
+	    ,"reacs": [
+	    {"code":"83-BI-209(N,EL)83-BI-209,,SIG"
+		,"Reac":"N,EL"
+		,"SF1":"83-BI-209","Targ":{"code":"83-BI-209","nam":"Bi-209","ZA":83209}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"EL","procHlp":"Elastic scattering"
+		,"SF4":"83-BI-209","Prod":{"code":"83-BI-209","nam":"Bi-209","ZAProd":83209}
+		,"SF6":"SIG"
+		,"SF58":",SIG","Quant":"CS","BasicUnits":"B","QuantHlp":"Cross section"
+	    }]}
+	}
+      ]
+     ,"METHOD":[
+	{"x4pointer":" "
+	,"x4codes":[{"code":"TOF", "dict":"METHOD", "idict":21,"hlp":"Time-of-flight"}]
+	,"x4freetext":[" Time-of-flight"]
+	}
+      ]
+     ,"ANALYSIS":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["From Legendre polynomial fit to differential data in"
+		," angular interval 25 - 155 degr. 4 pi * B(0)."]
+	}
+      ]
+     ,"MONITOR":[
+	{"x4pointer":" "
+	,"x4code":{"code":"6-C-0(N,EL)6-C-0,,DA"
+		,"reaction":"6-C-0(N,EL)6-C-0,,DA"}
+	,"x4freetext":[" Elastic from ANL-5567 (Rev)"]
+	}
+      ]
+     ,"MISC-COL":[
+	{"x4pointer":" "
+	,"x4codes":[{"code":"MISC"}]
+	,"x4freetext":[" Measurement number where there is more than one"
+		," measurement at the same energy (to correlate with"
+		," fitting coefficients)."]
+	}
+      ]
+     ,"CORRECTION":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Corrected for multiple scattering."]
+	}
+      ]
+     ,"ERR-ANALYS":[
+	{"x4pointer":" "
+	,"x4code":{}
+	,"x4freetext":["Data error given is estimated error including standard"]
+	}
+      ]
+     ,"STATUS":[
+	{"x4pointer":" "
+	,"x4codes":[{"code":"COREL", "dict":"STATUS", "idict":16,"hlp":"Data correlated with another data set"}
+	    ,{"code":"10010003", "dict":"STATUS", "idict":16}]
+	}
+      ]
+     ,"HISTORY":[
+	{"x4pointer":" "
+	,"x4code":{"code":"19830329A", "date":"19830329", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" Added MISC-COL."]
+	}
+	,{"x4pointer":" "
+	,"x4code":{"code":"19931229A", "date":"19931229", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" MONITOR SF4 added."]
+	}
+      ]
+    }
+    ,"COMMON":{"ncols":2, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"EN-RSL", "units":"MEV", "pointer":" "
+	,"headerHelp":"Incident projectile energy resolution (Unspecified)", "pFlag":"9220000"
+	,"unitsHelp":"MeV","familyCode":"E","convFc":1000000.0,"basicUnits":"EV"}
+      ,{"icol":1, "header":"DATA-ERR", "units":"PER-CENT", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"per-cent","familyCode":"PC","convFc":1.0,"basicUnits":"PER-CENT"}
+      ]
+      ,"datacols":[
+	 ["EN-RSL"    ,"DATA-ERR"  ]
+	,["MEV"       ,"PER-CENT"  ]
+	,[" "         ," "         ]]
+      ,"data":[
+	 [0.02        ,8.0         ]]}
+    ,"DATA":{"ncols":3, "nrows":96
+      ,"x4headers":[
+       {"icol":0, "header":"EN", "units":"MEV", "pointer":" "
+	,"headerHelp":"Energy of incident projectile, laboratory system", "pFlag":"1000000"
+	,"unitsHelp":"MeV","familyCode":"E","convFc":1000000.0,"basicUnits":"EV"}
+      ,{"icol":1, "header":"DATA", "units":"B", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"barns","familyCode":"B","convFc":1.0,"basicUnits":"B"}
+      ,{"icol":2, "header":"MISC", "units":"NO-DIM", "pointer":" "
+	,"headerHelp":"Miscellaneous Information, defined under MISC-COL.", "pFlag":"0000000"
+	,"unitsHelp":"no Dimensions","familyCode":"NO","convFc":1.0,"basicUnits":"NO-DIM"}
+      ]
+      ,"datacols":[
+	 ["EN"        ,"DATA"      ,"MISC"      ]
+	,["MEV"       ,"B"         ,"NO-DIM"    ]
+	,[" "         ," "         ," "         ]]
+      ,"data":[
+	 [0.3         ,6.99        ,null        ]
+	,[0.34        ,7.73        ,null        ]
+	,[0.344       ,8.13        ,null        ]
+	,[0.4         ,7.64        ,null        ]
+	,[0.405       ,6.43        ,null        ]
+	,[0.42        ,7.87        ,null        ]
+	,[0.45        ,6.67        ,null        ]
+	,[0.46        ,6.7         ,null        ]
+	,[0.48        ,7.11        ,null        ]
+	,[0.49        ,6.31        ,null        ]
+	,[0.505       ,7.48        ,null        ]
+	,[0.515       ,6.29        ,null        ]
+	,[0.54        ,6.36        ,null        ]
+	,[0.545       ,5.81        ,null        ]
+	,[0.56        ,6.2         ,null        ]
+	,[0.565       ,6.84        ,null        ]
+	,[0.58        ,6.46        ,null        ]
+	,[0.6         ,5.93        ,1.0         ]
+	,[0.6         ,6.01        ,2.0         ]
+	,[0.6         ,6.51        ,3.0         ]
+	,[0.605       ,6.0         ,null        ]
+	,[0.62        ,6.21        ,null        ]
+	,[0.64        ,6.15        ,null        ]
+	,[0.65        ,5.99        ,null        ]
+	,[0.66        ,6.23        ,null        ]
+	,[0.68        ,5.8         ,null        ]
+	,[0.7         ,5.96        ,1.0         ]
+	,[0.7         ,5.98        ,2.0         ]
+	,[0.72        ,6.01        ,null        ]
+	,[0.74        ,5.71        ,null        ]
+	,[0.75        ,5.56        ,null        ]
+	,[0.76        ,5.78        ,null        ]
+	,[0.775       ,5.51        ,null        ]
+	,[0.78        ,5.49        ,null        ]
+	,[0.8         ,5.46        ,null        ]
+	,[0.82        ,5.21        ,null        ]
+	,[0.825       ,5.11        ,null        ]
+	,[0.84        ,5.31        ,null        ]
+	,[0.85        ,4.99        ,1.0         ]
+	,[0.85        ,4.79        ,2.0         ]
+	,[0.855       ,4.92        ,null        ]
+	,[0.86        ,5.44        ,null        ]
+	,[0.875       ,5.42        ,null        ]
+	,[0.88        ,5.31        ,null        ]
+	,[0.9         ,4.5         ,1.0         ]
+	,[0.9         ,5.01        ,2.0         ]
+	,[0.9         ,5.52        ,3.0         ]
+	,[0.9         ,5.17        ,4.0         ]
+	,[0.9         ,5.51        ,5.0         ]
+	,[0.92        ,4.78        ,null        ]
+	,[0.925       ,5.48        ,1.0         ]
+	,[0.925       ,5.19        ,2.0         ]
+	,[0.94        ,5.63        ,1.0         ]
+	,[0.94        ,5.36        ,2.0         ]
+	,[0.95        ,4.71        ,1.0         ]
+	,[0.95        ,4.87        ,2.0         ]
+	,[0.96        ,4.93        ,1.0         ]
+	,[0.96        ,4.73        ,2.0         ]
+	,[0.975       ,5.61        ,1.0         ]
+	,[0.975       ,5.18        ,2.0         ]
+	,[0.98        ,4.75        ,1.0         ]
+	,[0.98        ,5.34        ,2.0         ]
+	,[1.0         ,5.08        ,1.0         ]
+	,[1.0         ,4.89        ,2.0         ]
+	,[1.0         ,5.07        ,3.0         ]
+	,[1.02        ,5.15        ,1.0         ]
+	,[1.02        ,4.78        ,2.0         ]
+	,[1.025       ,5.12        ,null        ]
+	,[1.04        ,4.96        ,1.0         ]
+	,[1.04        ,4.89        ,2.0         ]
+	,[1.05        ,5.1         ,1.0         ]
+	,[1.05        ,4.75        ,2.0         ]
+	,[1.06        ,4.65        ,1.0         ]
+	,[1.06        ,5.03        ,2.0         ]
+	,[1.08        ,4.46        ,null        ]
+	,[1.1         ,4.69        ,null        ]
+	,[1.15        ,4.53        ,null        ]
+	,[1.2         ,4.61        ,null        ]
+	,[1.25        ,4.9         ,null        ]
+	,[1.3         ,5.2         ,null        ]
+	,[1.35        ,5.0         ,null        ]
+	,[1.38        ,5.08        ,1.0         ]
+	,[1.38        ,5.03        ,2.0         ]
+	,[1.4         ,5.37        ,1.0         ]
+	,[1.4         ,5.36        ,2.0         ]
+	,[1.4         ,5.22        ,3.0         ]
+	,[1.42        ,5.27        ,1.0         ]
+	,[1.42        ,5.34        ,2.0         ]
+	,[1.44        ,5.33        ,1.0         ]
+	,[1.44        ,5.31        ,2.0         ]
+	,[1.45        ,4.72        ,1.0         ]
+	,[1.45        ,5.35        ,2.0         ]
+	,[1.45        ,5.33        ,3.0         ]
+	,[1.46        ,5.06        ,null        ]
+	,[1.5         ,5.65        ,1.0         ]
+	,[1.5         ,4.93        ,2.0         ]]}
+}

@@ -1,0 +1,101 @@
+Program: fy1e.py, ver. 2024-09-02
+Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2024
+Purpose: Cumulative fission yield from EXFOR/ENDF:
+         retrieve list of datasets, filter data by product,
+         download fy.json, extract data, plot by Plotly
+Running: 2026-08-21 12:08:53
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+___getX4SqlSearchFY_ene: u-235 cd-115-g 
+SQL:
+select *                                  
+ ,y  as FY, dy  as dFY                    
+ ,x1 as En, dx1 as dEn                    
+ ,x2 as zap                               
+from uni2                                 
+where Target like 'u-235'            
+ and prod like '%cd-115-g'
+ and Reaction='N,F' and Quant='FY'        
+ and SF58='CUM,FY' and SF8=''             
+ order by fullCode,YearRef1 desc,DatasetID 
+ ,En,iPoint                               
+
+
+EXFOR SQL executed: OK
+
+datapoints: 17
+1) 12729002 1981 L.E.Glendenin 92-U-235(N,F)ELEM/MASS,CUM,FY 
+2) 10828002 1978 T.C.Chapman 92-U-235(N,F)ELEM/MASS,CUM,FY 
+3) 13077002 1965 G.P.Ford 92-U-235(N,F)ELEM/MASS,CUM,FY 
+4) 41735004 1961 E.K.Bonyushkin 92-U-235(N,F)ELEM/MASS,CUM,FY 
+5) 13368004 1952 A.C.Wahl 92-U-235(N,F)ELEM/MASS,CUM,FY 
+datasets: 5
+
+Datasets: 5
+1) 92-U-235(N,F)48-CD-115-G,CUM,FY
+Reaction codes: 1 
+
+Plot:1/5) #12729002 1981, L.E.Glendenin pt:9
+Plot:2/5) #10828002 1978, T.C.Chapman pt:1
+Plot:3/5) #13077002 1965, G.P.Ford pt:5
+Plot:4/5) #41735004 1961, E.K.Bonyushkin pt:1
+Plot:5/5) #13368004 1952, A.C.Wahl pt:1
+
+Retrieve list of sections from ENDF...
+---wgetdb_get:/e4list?Target=u-235&Reaction=n,cum_FY&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/e4list?Target=u-235&Reaction=n,cum_FY&json'
+   format:WebEndfSectionsList-0.1
+Retrieved list of ENDF sections:17
+   section:1/17/ok:0 SectID:9030505 U-235 Lib:ENDF/B-VIII.0 AUTH:[T.R. England et al]
+---wgetdb_get:/e4fy?SectID=9030505&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=9030505&json'
+   Prod:cd-115-g	 En:[0.0, 0.5, 14.0]
+		 FY:[0.0115782, 0.0310767, 0.63547]
+		dFY:[0.0006947, 0.0008701, 0.0254188]
+   section:2/17/ok:1 SectID:9150997 U-235 Lib:JEFF-3.3 AUTH:[R.Mills]
+---wgetdb_get:/e4fy?SectID=9150997&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=9150997&json'
+   Prod:cd-115-g	 En:[0.0, 0.4, 14.0]
+		 FY:[0.010747, 0.025453, 0.92424]
+		dFY:[0.0007965, 0.0030311, 0.046372]
+   section:3/17/ok:2 SectID:19185724 U-235 Lib:JENDL-5 AUTH:[K.Tsubakihara]
+---wgetdb_get:/e4fy?SectID=19185724&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=19185724&json'
+   Prod:cd-115-g	 En:[0.0, 0.5, 14.0]
+		 FY:[0.01232, 0.0333349, 0.8321354]
+		dFY:[0.0003408, 0.00093, 0.3694222]
+   section:4/17/ok:3 SectID:3095297 U-235 Lib:ENDF/B-V AUTH:[M.R.Bhat]
+---wgetdb_get:/e4fy?SectID=3095297&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=3095297&json'
+   Prod:cd-115-g	 En:[0.0, 0.5, 14.0]
+		 FY:[0.0096049, 0.0261893, 0.846087]
+		dFY:[0.0010565, 0.0020951, 0.0338435]
+Plot:1/4) 9030505	ENDF/B-VIII.0	pt:3	color:0,0,255
+Plot:2/4) 9150997	JEFF-3.3	pt:3	color:0,127,0
+Plot:3/4) 19185724	JENDL-5	pt:3	color:255,0,0
+Plot:4/4) 3095297	ENDF/B-V	pt:3	color:127,127,127
+Will try---write_image: u235-nf-cd115g-cumFY.html.png
+
+Program successfully completed

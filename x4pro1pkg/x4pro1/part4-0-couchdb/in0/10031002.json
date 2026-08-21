@@ -1,0 +1,53 @@
+{"SUBENT":"10031002", "isub":2, "compiled":19990719, "TransID":"0000", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"13-AL-27(N,A)11-NA-24,,SIG"
+	    ,"c4reac":"(N,A),SIG"
+	    ,"combi":"a"
+	    ,"MF":3
+	    ,"MT":107
+	    ,"Units":"B"
+	    ,"reacs": [
+	    {"code":"13-AL-27(N,A)11-NA-24,,SIG"
+		,"Reac":"N,A"
+		,"SF1":"13-AL-27","Targ":{"code":"13-AL-27","nam":"Al-27","ZA":13027}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"A"
+		,"SF4":"11-NA-24","Prod":{"code":"11-NA-24","nam":"Na-24","ZAProd":11024}
+		,"SF6":"SIG"
+		,"SF58":",SIG","Quant":"CS","BasicUnits":"B","QuantHlp":"Cross section"
+	    }]}
+	}
+      ]
+     ,"SAMPLE":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Metal foil, 7.6 x 7.6 cm, with thickness 0.1 cm or"
+		,"less."]
+	}
+      ]
+     ,"DECAY-DATA":[
+	{"x4pointer":" "
+	,"x4codes":[{"Nucl":"11-NA-24"
+	, "Radiations":[ {"Type":"DG", "Energy":[13700.0], "Intensity":1.0}]}]
+	,"x4freetext":[" Saturation activity (10**(-18)dps/nucleus) = 1.1717."]
+	}
+      ]
+    }
+    ,"DATA":{"ncols":2, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"DATA", "units":"MB", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ,{"icol":1, "header":"DATA-ERR", "units":"MB", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ]
+      ,"datacols":[
+	 ["DATA"      ,"DATA-ERR"  ]
+	,["MB"        ,"MB"        ]
+	,[" "         ," "         ]]
+      ,"data":[
+	 [116.0       ,8.0         ]]}
+}
