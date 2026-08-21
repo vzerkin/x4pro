@@ -5,8 +5,7 @@ by V.Zerkin, 2026-08-21
 
 - Documentation
     - general description [index.html](x4pro1pkg/x4pro1/doc/index.html.pdf)
-    - examples of plots using [plotly](x4pro1pkg/x4pro1/doc/out2plotly.html.pdf) and
-	[matplotlib](x4pro1pkg/x4pro1/doc/out2matplotlib.html.pdf)
+    - examples of plots using [plotly](x4pro1pkg/x4pro1/doc/out2plotly.html.pdf) and [matplotlib](x4pro1pkg/x4pro1/doc/out2matplotlib.html.pdf)
     - News-2026: [description and plots](x4pro1pkg/x4pro1/doc/news2026.html.pdf)
 - Database
     - X4Pro/SQLite database: mini-version
