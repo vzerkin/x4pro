@@ -1,0 +1,1873 @@
+Program: x12898sig.py, ver. 2022-11-09
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Automatic correction of EXFOR cross section data
+
+Running: 2026-08-25 23:14:31
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+___getX4SqlSearchCS: V-51 n,p
+SQL:
+SELECT x4.DatasetID,ds.year1 as YearRef1                              
+ ,ds.author1ini as Author1Ini,ds.author1 as Author1                   
+ ,x4.idat as iPoint,x4.xdat,c5.y,c5.dy                                
+ ,ds.reacode as fullCode                                              
+ ,round(c5.y*c5.Fcm0,10) as ynew0                                     
+ ,case                                                                
+  when c5.Fcm0>0 and corr.FcDecayData>0 and corr.FcDecayMon>0         
+   then c5.Fcm0*corr.FcDecayData*corr.FcDecayMon                      
+  when c5.Fcm0>0 and corr.FcDecayData>0 then c5.Fcm0*corr.FcDecayData 
+  when c5.Fcm0>0 and corr.FcDecayMon>0  then c5.Fcm0*corr.FcDecayMon  
+  when corr.FcDecayData>0 and corr.FcDecayMon>0                       
+   then corr.FcDecayData*corr.FcDecayMon                              
+  when c5.Fcm0>0 then c5.Fcm0                                         
+  when corr.FcDecayData>0 then corr.FcDecayData                       
+  when corr.FcDecayMon>0  then corr.FcDecayMon                        
+  else null                                                           
+ end as FcNew                                                         
+ ,c5.x1 as En,c5.dx1 as dEn                                           
+ ,c5.dyerr,c5.dysys,c5.dystat                                         
+ ,c5.Fcm0,corr.FcDecayData,corr.FcDecayMon                            
+ ,c5.m0,c5.dm0,c5.m1,c5.dm1                                           
+ FROM x4pro_x4data x4                                                 
+  inner join x4pro_c5dat c5 on                                        
+  x4.DatasetID=c5.DatasetID and x4.idat=c5.idat                       
+  inner join x4pro_ds ds on x4.DatasetID=ds.DatasetID                 
+  left  join x4pro_autocorr corr on corr.DatasetID=ds.DatasetID       
+ WHERE (ds.Targ1 like 'V-51')                                   
+  and ds.reacode like '%(n,p)%'                                 
+  and ds.reatyp like 'CS'                                     
+  and ds.quant1 like 'CS'                                      
+  and (x4.DatasetID='128980022' or x4.DatasetID='128980032' or x4.DatasetID='22156005')          
+ ORDER BY ds.reacode,ds.year1 desc,c5.DatasetID,c5.x1,x4.idat         
+
+____________________Data from database:
+
+[ { 'Author1': 'Katoh',
+    'Author1Ini': 'T.',
+    'DatasetID': '22156005',
+    'En': 13400000.0,
+    'FcDecayData': 0.998926,
+    'FcDecayMon': 0.983562,
+    'FcNew': 0.9961723080648711,
+    'Fcm0': 1.01391,
+    'YearRef1': 1989,
+    'dEn': 50000.0,
+    'dm0': None,
+    'dm1': 0.00144004,
+    'dy': 0.0017544,
+    'dyerr': 0.0017544,
+    'dystat': None,
+    'dysys': 0.00174764,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 5,
+    'm0': 0.08332,
+    'm1': 0.0844787,
+    'xdat': { 'DATA': 34.4,
+              'EN': 13.4,
+              'EN-ERR': 0.05,
+              'ERR-1': 4.1,
+              'ERR-2': 3,
+              'ERR-T': 5.1,
+              'MONIT': 83.32},
+    'y': 0.0344,
+    'ynew0': 0.034878504},
+  { 'Author1': 'Katoh',
+    'Author1Ini': 'T.',
+    'DatasetID': '22156005',
+    'En': 13700000.0,
+    'FcDecayData': 0.998926,
+    'FcDecayMon': 0.983562,
+    'FcNew': 0.9872118564966336,
+    'Fcm0': 1.00479,
+    'YearRef1': 1989,
+    'dEn': 50000.0,
+    'dm0': None,
+    'dm1': 0.00130106,
+    'dy': 0.0018734001,
+    'dyerr': 0.0018734,
+    'dystat': None,
+    'dysys': 0.0018834,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 4,
+    'm0': 0.07995,
+    'm1': 0.0803328,
+    'xdat': { 'DATA': 32.3,
+              'EN': 13.7,
+              'EN-ERR': 0.05,
+              'ERR-1': 5,
+              'ERR-2': 3,
+              'ERR-T': 5.8,
+              'MONIT': 79.95},
+    'y': 0.0323,
+    'ynew0': 0.032454717},
+  { 'Author1': 'Katoh',
+    'Author1Ini': 'T.',
+    'DatasetID': '22156005',
+    'En': 14010000.0,
+    'FcDecayData': 0.998926,
+    'FcDecayMon': 0.983562,
+    'FcNew': 0.9785992119300579,
+    'Fcm0': 0.996024,
+    'YearRef1': 1989,
+    'dEn': 50000.0,
+    'dm0': None,
+    'dm1': 0.00115907,
+    'dy': 0.0018589998,
+    'dyerr': 0.001859,
+    'dystat': None,
+    'dysys': 0.00185623,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 3,
+    'm0': 0.07636,
+    'm1': 0.0760564,
+    'xdat': { 'DATA': 33.8,
+              'EN': 14.01,
+              'EN-ERR': 0.05,
+              'ERR-1': 4.6,
+              'ERR-2': 3,
+              'ERR-T': 5.5,
+              'MONIT': 76.36},
+    'y': 0.0338,
+    'ynew0': 0.0336656112},
+  { 'Author1': 'Katoh',
+    'Author1Ini': 'T.',
+    'DatasetID': '22156005',
+    'En': 14350000.0,
+    'FcDecayData': 0.998926,
+    'FcDecayMon': 0.983562,
+    'FcNew': 0.968399820731607,
+    'Fcm0': 0.985643,
+    'YearRef1': 1989,
+    'dEn': 50000.0,
+    'dm0': None,
+    'dm1': 0.00105688,
+    'dy': 0.0019265999,
+    'dyerr': 0.0019266,
+    'dystat': None,
+    'dysys': 0.00194196,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 2,
+    'm0': 0.07266,
+    'm1': 0.0716168,
+    'xdat': { 'DATA': 33.8,
+              'EN': 14.35,
+              'EN-ERR': 0.05,
+              'ERR-1': 4.9,
+              'ERR-2': 3,
+              'ERR-T': 5.7,
+              'MONIT': 72.66},
+    'y': 0.0338,
+    'ynew0': 0.0333147334},
+  { 'Author1': 'Katoh',
+    'Author1Ini': 'T.',
+    'DatasetID': '22156005',
+    'En': 14640000.0,
+    'FcDecayData': 0.998926,
+    'FcDecayMon': 0.983562,
+    'FcNew': 0.9620223765288186,
+    'Fcm0': 0.979152,
+    'YearRef1': 1989,
+    'dEn': 50000.0,
+    'dm0': None,
+    'dm1': 0.00101375,
+    'dy': 0.001881,
+    'dyerr': 0.001881,
+    'dystat': None,
+    'dysys': 0.00189599,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 1,
+    'm0': 0.0694,
+    'm1': 0.0679531,
+    'xdat': { 'DATA': 33,
+              'EN': 14.64,
+              'EN-ERR': 0.05,
+              'ERR-1': 4.9,
+              'ERR-2': 3,
+              'ERR-T': 5.7,
+              'MONIT': 69.4},
+    'y': 0.033,
+    'ynew0': 0.032312016},
+  { 'Author1': 'Katoh',
+    'Author1Ini': 'T.',
+    'DatasetID': '22156005',
+    'En': 14870000.0,
+    'FcDecayData': 0.998926,
+    'FcDecayMon': 0.983562,
+    'FcNew': 0.9579793657609134,
+    'Fcm0': 0.975037,
+    'YearRef1': 1989,
+    'dEn': 50000.0,
+    'dm0': None,
+    'dm1': 0.00101697,
+    'dy': 0.0018788,
+    'dyerr': 0.0018788,
+    'dystat': None,
+    'dysys': 0.00187577,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 0,
+    'm0': 0.06682,
+    'm1': 0.065152,
+    'xdat': { 'DATA': 30.8,
+              'EN': 14.87,
+              'EN-ERR': 0.05,
+              'ERR-1': 5.3,
+              'ERR-2': 3,
+              'ERR-T': 6.1,
+              'MONIT': 66.82},
+    'y': 0.0308,
+    'ynew0': 0.0300311396},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 2856000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0162718922,
+    'Fcm0': 1.01301,
+    'YearRef1': 1984,
+    'dEn': 95000.0,
+    'dm0': 0.015864,
+    'dm1': 0.00725669,
+    'dy': 2.423495e-06,
+    'dyerr': 2.4235e-06,
+    'dystat': 2.29872e-06,
+    'dysys': 1.4397e-07,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 0,
+    'm0': 0.5288,
+    'm1': 0.535678,
+    'xdat': { 'DATA': 0.004799,
+              'EN': 2.856,
+              'EN-RSL-FW': 0.095,
+              'ERR-S': 47.9,
+              'ERR-T': 50.5,
+              'MONIT': 528.8,
+              'MONIT-ERR': 3},
+    'y': 4.799e-06,
+    'ynew0': 4.8614e-06},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 2957000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0120884648,
+    'Fcm0': 1.00884,
+    'YearRef1': 1984,
+    'dEn': 94000.0,
+    'dm0': 0.015732,
+    'dm1': 0.00711112,
+    'dy': 2.35068e-06,
+    'dyerr': 2.35068e-06,
+    'dystat': 2.12386e-06,
+    'dysys': 3.093e-07,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 1,
+    'm0': 0.5244,
+    'm1': 0.529037,
+    'xdat': { 'DATA': 0.01031,
+              'EN': 2.957,
+              'EN-RSL-FW': 0.094,
+              'ERR-S': 20.6,
+              'ERR-T': 22.8,
+              'MONIT': 524.4,
+              'MONIT-ERR': 3},
+    'y': 1.031e-05,
+    'ynew0': 1.04011e-05},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3057000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0142152912,
+    'Fcm0': 1.01096,
+    'YearRef1': 1984,
+    'dEn': 94000.0,
+    'dm0': 0.0130675,
+    'dm1': 0.00707845,
+    'dy': 3.4592201e-06,
+    'dyerr': 3.45922e-06,
+    'dystat': 2.14014e-06,
+    'dysys': 3.365e-07,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 2,
+    'm0': 0.5227,
+    'm1': 0.528426,
+    'xdat': { 'DATA': 0.01346,
+              'EN': 3.057,
+              'EN-RSL-FW': 0.094,
+              'ERR-S': 15.9,
+              'ERR-T': 25.7,
+              'MONIT': 522.7,
+              'MONIT-ERR': 2.5},
+    'y': 1.346e-05,
+    'ynew0': 1.36075e-05},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3158000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.018820071,
+    'Fcm0': 1.01555,
+    'YearRef1': 1984,
+    'dEn': 92000.0,
+    'dm0': 0.013105,
+    'dm1': 0.00713039,
+    'dy': 6.60573e-06,
+    'dyerr': 6.60573e-06,
+    'dystat': 2.58821e-06,
+    'dysys': 9.6575e-07,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 3,
+    'm0': 0.5242,
+    'm1': 0.532354,
+    'xdat': { 'DATA': 0.03863,
+              'EN': 3.158,
+              'EN-RSL-FW': 0.092,
+              'ERR-S': 6.7,
+              'ERR-T': 17.1,
+              'MONIT': 524.2,
+              'MONIT-ERR': 2.5},
+    'y': 3.863e-05,
+    'ynew0': 3.92307e-05},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3258000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0213983463999998,
+    'Fcm0': 1.01812,
+    'YearRef1': 1984,
+    'dEn': 90000.0,
+    'dm0': 0.0131675,
+    'dm1': 0.00718181,
+    'dy': 9.485e-06,
+    'dyerr': 9.485e-06,
+    'dystat': 3.71812e-06,
+    'dysys': 1.897e-06,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 4,
+    'm0': 0.5267,
+    'm1': 0.536242,
+    'xdat': { 'DATA': 0.07588,
+              'EN': 3.258,
+              'EN-RSL-FW': 0.09,
+              'ERR-S': 4.9,
+              'ERR-T': 12.5,
+              'MONIT': 526.7,
+              'MONIT-ERR': 2.5},
+    'y': 7.588e-05,
+    'ynew0': 7.72549e-05},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3359000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0240167506,
+    'Fcm0': 1.02073,
+    'YearRef1': 1984,
+    'dEn': 87000.0,
+    'dm0': 0.01323,
+    'dm1': 0.00723374,
+    'dy': 1.14632e-05,
+    'dyerr': 1.14632e-05,
+    'dystat': 4.4856e-06,
+    'dysys': 3.115e-06,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 5,
+    'm0': 0.5292,
+    'm1': 0.540169,
+    'xdat': { 'DATA': 0.1246,
+              'EN': 3.359,
+              'EN-RSL-FW': 0.087,
+              'ERR-S': 3.6,
+              'ERR-T': 9.2,
+              'MONIT': 529.2,
+              'MONIT-ERR': 2.5},
+    'y': 0.0001246,
+    'ynew0': 0.000127183},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3459000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0265348328,
+    'Fcm0': 1.02324,
+    'YearRef1': 1984,
+    'dEn': 87000.0,
+    'dm0': 0.0132925,
+    'dm1': 0.00728517,
+    'dy': 1.3485301e-05,
+    'dyerr': 1.34853e-05,
+    'dystat': 5.8038e-06,
+    'dysys': 4.2675e-06,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 6,
+    'm0': 0.5317,
+    'm1': 0.544057,
+    'xdat': { 'DATA': 0.1707,
+              'EN': 3.459,
+              'EN-RSL-FW': 0.087,
+              'ERR-S': 3.4,
+              'ERR-T': 7.9,
+              'MONIT': 531.7,
+              'MONIT-ERR': 2.5},
+    'y': 0.0001707,
+    'ynew0': 0.0001746671},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3560000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0254613874,
+    'Fcm0': 1.02217,
+    'YearRef1': 1984,
+    'dEn': 87000.0,
+    'dm0': 0.0134025,
+    'dm1': 0.0073371,
+    'dy': 1.9483201e-05,
+    'dyerr': 1.94832e-05,
+    'dystat': 7.0848e-06,
+    'dysys': 5.535e-06,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 7,
+    'm0': 0.5361,
+    'm1': 0.547985,
+    'xdat': { 'DATA': 0.2214,
+              'EN': 3.56,
+              'EN-RSL-FW': 0.087,
+              'ERR-S': 3.2,
+              'ERR-T': 8.8,
+              'MONIT': 536.1,
+              'MONIT-ERR': 2.5},
+    'y': 0.0002214,
+    'ynew0': 0.0002263084},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3661000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0200038705999999,
+    'Fcm0': 1.01673,
+    'YearRef1': 1984,
+    'dEn': 87000.0,
+    'dm0': 0.0135425,
+    'dm1': 0.00738043,
+    'dy': 2.72732e-05,
+    'dyerr': 2.72732e-05,
+    'dystat': 9.978e-06,
+    'dysys': 8.315e-06,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 8,
+    'm0': 0.5417,
+    'm1': 0.55076,
+    'xdat': { 'DATA': 0.3326,
+              'EN': 3.661,
+              'EN-RSL-FW': 0.087,
+              'ERR-S': 3,
+              'ERR-T': 8.2,
+              'MONIT': 541.7,
+              'MONIT-ERR': 2.5},
+    'y': 0.0003326,
+    'ynew0': 0.0003381644},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3761000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0188100388,
+    'Fcm0': 1.01554,
+    'YearRef1': 1984,
+    'dEn': 82000.0,
+    'dm0': 0.0136075,
+    'dm1': 0.00741775,
+    'dy': 3.9642797e-05,
+    'dyerr': 3.96428e-05,
+    'dystat': 1.24961e-05,
+    'dysys': 1.07725e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 9,
+    'm0': 0.5443,
+    'm1': 0.55276,
+    'xdat': { 'DATA': 0.4309,
+              'EN': 3.761,
+              'EN-RSL-FW': 0.082,
+              'ERR-S': 2.9,
+              'ERR-T': 9.2,
+              'MONIT': 544.3,
+              'MONIT-ERR': 2.5},
+    'y': 0.0004309,
+    'ynew0': 0.0004375962},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3861000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.021378282,
+    'Fcm0': 1.0181,
+    'YearRef1': 1984,
+    'dEn': 84000.0,
+    'dm0': 0.0136225,
+    'dm1': 0.00745506,
+    'dy': 4.8853002e-05,
+    'dyerr': 4.8853e-05,
+    'dystat': 1.95412e-05,
+    'dysys': 1.74475e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 10,
+    'm0': 0.5449,
+    'm1': 0.55476,
+    'xdat': { 'DATA': 0.6979,
+              'EN': 3.861,
+              'EN-RSL-FW': 0.084,
+              'ERR-S': 2.8,
+              'ERR-T': 7,
+              'MONIT': 544.9,
+              'MONIT-ERR': 2.5},
+    'y': 0.0006979,
+    'ynew0': 0.000710532},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3861000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.021378282,
+    'Fcm0': 1.0181,
+    'YearRef1': 1984,
+    'dEn': 84000.0,
+    'dm0': 0.0136225,
+    'dm1': 0.00745506,
+    'dy': 4.8902002e-05,
+    'dyerr': 4.8902e-05,
+    'dystat': 1.95608e-05,
+    'dysys': 1.7465e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 11,
+    'm0': 0.5449,
+    'm1': 0.55476,
+    'xdat': { 'DATA': 0.6986,
+              'EN': 3.861,
+              'EN-RSL-FW': 0.084,
+              'ERR-S': 2.8,
+              'ERR-T': 7,
+              'MONIT': 544.9,
+              'MONIT-ERR': 2.5},
+    'y': 0.0006986,
+    'ynew0': 0.0007112447},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 3962000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0239665896,
+    'Fcm0': 1.02068,
+    'YearRef1': 1984,
+    'dEn': 81000.0,
+    'dm0': 0.0136375,
+    'dm1': 0.00749275,
+    'dy': 4.48533e-05,
+    'dyerr': 4.48533e-05,
+    'dystat': 2.05884e-05,
+    'dysys': 1.83825e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 12,
+    'm0': 0.5455,
+    'm1': 0.55678,
+    'xdat': { 'DATA': 0.7353,
+              'EN': 3.962,
+              'EN-RSL-FW': 0.081,
+              'ERR-S': 2.8,
+              'ERR-T': 6.1,
+              'MONIT': 545.5,
+              'MONIT-ERR': 2.5},
+    'y': 0.0007353,
+    'ynew0': 0.000750506},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 4063000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.025040035,
+    'Fcm0': 1.02175,
+    'YearRef1': 1984,
+    'dEn': 81000.0,
+    'dm0': 0.0131112,
+    'dm1': 0.00752469,
+    'dy': 5.33988e-05,
+    'dyerr': 5.33988e-05,
+    'dystat': 2.37328e-05,
+    'dysys': 2.03424e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 13,
+    'm0': 0.5463,
+    'm1': 0.558184,
+    'xdat': { 'DATA': 0.8476,
+              'EN': 4.063,
+              'EN-RSL-FW': 0.081,
+              'ERR-S': 2.8,
+              'ERR-T': 6.3,
+              'MONIT': 546.3,
+              'MONIT-ERR': 2.4},
+    'y': 0.0008476,
+    'ynew0': 0.0008660353},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 4264000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.026745509,
+    'Fcm0': 1.02345,
+    'YearRef1': 1984,
+    'dEn': 75000.0,
+    'dm0': 0.0131376,
+    'dm1': 0.00758135,
+    'dy': 7.653199e-05,
+    'dyerr': 7.6532e-05,
+    'dystat': 2.7189e-05,
+    'dysys': 2.4168e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 14,
+    'm0': 0.5474,
+    'm1': 0.560238,
+    'xdat': { 'DATA': 1.007,
+              'EN': 4.264,
+              'EN-RSL-FW': 0.075,
+              'ERR-S': 2.7,
+              'ERR-T': 7.6,
+              'MONIT': 547.4,
+              'MONIT-ERR': 2.4},
+    'y': 0.001007,
+    'ynew0': 0.0010306142},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 4464000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0274878917999999,
+    'Fcm0': 1.02419,
+    'YearRef1': 1984,
+    'dEn': 76000.0,
+    'dm0': 0.013176,
+    'dm1': 0.00763772,
+    'dy': 9.4592004e-05,
+    'dyerr': 9.4592e-05,
+    'dystat': 3.9906e-05,
+    'dysys': 3.5472e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 15,
+    'm0': 0.549,
+    'm1': 0.562282,
+    'xdat': { 'DATA': 1.478,
+              'EN': 4.464,
+              'EN-RSL-FW': 0.076,
+              'ERR-S': 2.7,
+              'ERR-T': 6.4,
+              'MONIT': 549,
+              'MONIT-ERR': 2.4},
+    'y': 0.001478,
+    'ynew0': 0.0015137528},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 4664000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0345104318,
+    'Fcm0': 1.03119,
+    'YearRef1': 1984,
+    'dEn': 76000.0,
+    'dm0': 0.013056,
+    'dm1': 0.00761464,
+    'dy': 0.000135,
+    'dyerr': 0.000135,
+    'dystat': 6.3e-05,
+    'dysys': 5.4e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 16,
+    'm0': 0.544,
+    'm1': 0.560969,
+    'xdat': { 'DATA': 2.25,
+              'EN': 4.664,
+              'EN-RSL-FW': 0.076,
+              'ERR-S': 2.8,
+              'ERR-T': 6,
+              'MONIT': 544,
+              'MONIT-ERR': 2.4},
+    'y': 0.00225,
+    'ynew0': 0.0023201775},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980022',
+    'En': 4865000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0342495945999999,
+    'Fcm0': 1.03093,
+    'YearRef1': 1984,
+    'dEn': 76000.0,
+    'dm0': 0.0129024,
+    'dm1': 0.00756433,
+    'dy': 0.000163846,
+    'dyerr': 0.000163846,
+    'dystat': 7.5208e-05,
+    'dysys': 6.4464e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 17,
+    'm0': 0.5376,
+    'm1': 0.554226,
+    'xdat': { 'DATA': 2.686,
+              'EN': 4.865,
+              'EN-RSL-FW': 0.076,
+              'ERR-S': 2.8,
+              'ERR-T': 6.1,
+              'MONIT': 537.6,
+              'MONIT-ERR': 2.4},
+    'y': 0.002686,
+    'ynew0': 0.002769078},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 4643000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0335774372,
+    'Fcm0': 1.03026,
+    'YearRef1': 1984,
+    'dEn': 276000.0,
+    'dm0': 0.0130728,
+    'dm1': 0.00761889,
+    'dy': 0.00014086801,
+    'dyerr': 0.000140868,
+    'dystat': 6.0372e-05,
+    'dysys': 5.3664e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 0,
+    'm0': 0.5447,
+    'm1': 0.561184,
+    'xdat': { 'DATA': 2.236,
+              'EN': 4.643,
+              'EN-RSL-FW': 0.276,
+              'ERR-S': 2.7,
+              'ERR-T': 6.3,
+              'MONIT': 544.7,
+              'MONIT-ERR': 2.4},
+    'y': 0.002236,
+    'ynew0': 0.0023036614},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 4893000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.033768049,
+    'Fcm0': 1.03045,
+    'YearRef1': 1984,
+    'dEn': 248000.0,
+    'dm0': 0.0128832,
+    'dm1': 0.00755703,
+    'dy': 0.000202563,
+    'dyerr': 0.000202563,
+    'dystat': 7.4178e-05,
+    'dysys': 6.8472e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 1,
+    'm0': 0.5368,
+    'm1': 0.553144,
+    'xdat': { 'DATA': 2.853,
+              'EN': 4.893,
+              'EN-RSL-FW': 0.248,
+              'ERR-S': 2.6,
+              'ERR-T': 7.1,
+              'MONIT': 536.8,
+              'MONIT-ERR': 2.4},
+    'y': 0.002853,
+    'ynew0': 0.0029398739},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 5139000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.026745509,
+    'Fcm0': 1.02345,
+    'YearRef1': 1984,
+    'dEn': 211000.0,
+    'dm0': 0.0139698,
+    'dm1': 0.00758144,
+    'dy': 0.00020475,
+    'dyerr': 0.00020475,
+    'dystat': 7.8e-05,
+    'dysys': 8.45e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 2,
+    'm0': 0.5373,
+    'm1': 0.5499,
+    'xdat': { 'DATA': 3.25,
+              'EN': 5.139,
+              'EN-RSL-FW': 0.211,
+              'ERR-S': 2.4,
+              'ERR-T': 6.3,
+              'MONIT': 537.3,
+              'MONIT-ERR': 2.6},
+    'y': 0.00325,
+    'ynew0': 0.0033262125},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 5374000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0139343896,
+    'Fcm0': 1.01068,
+    'YearRef1': 1984,
+    'dEn': 194000.0,
+    'dm0': 0.0141414,
+    'dm1': 0.00763316,
+    'dy': 0.000222162,
+    'dyerr': 0.000222162,
+    'dystat': 8.7408e-05,
+    'dysys': 9.4692e-05,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 3,
+    'm0': 0.5439,
+    'm1': 0.549709,
+    'xdat': { 'DATA': 3.642,
+              'EN': 5.374,
+              'EN-RSL-FW': 0.194,
+              'ERR-S': 2.4,
+              'ERR-T': 6.1,
+              'MONIT': 543.9,
+              'MONIT-ERR': 2.6},
+    'y': 0.003642,
+    'ynew0': 0.0036808966},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 5600000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 0.99215047052,
+    'Fcm0': 0.988966,
+    'YearRef1': 1984,
+    'dEn': 180000.0,
+    'dm0': 0.0145704,
+    'dm1': 0.00775657,
+    'dy': 0.000280038,
+    'dyerr': 0.000280038,
+    'dystat': 0.000101832,
+    'dysys': 0.000110318,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 4,
+    'm0': 0.5604,
+    'm1': 0.554217,
+    'xdat': { 'DATA': 4.243,
+              'EN': 5.6,
+              'EN-RSL-FW': 0.18,
+              'ERR-S': 2.4,
+              'ERR-T': 6.6,
+              'MONIT': 560.4,
+              'MONIT-ERR': 2.6},
+    'y': 0.004243,
+    'ynew0': 0.0041961827},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 5819000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 0.97346048192,
+    'Fcm0': 0.970336,
+    'YearRef1': 1984,
+    'dEn': 174000.0,
+    'dm0': 0.015314,
+    'dm1': 0.00810786,
+    'dy': 0.000322624,
+    'dyerr': 0.000322624,
+    'dystat': 0.000120984,
+    'dysys': 0.000131066,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 5,
+    'm0': 0.589,
+    'm1': 0.571528,
+    'xdat': { 'DATA': 5.041,
+              'EN': 5.819,
+              'EN-RSL-FW': 0.174,
+              'ERR-S': 2.4,
+              'ERR-T': 6.4,
+              'MONIT': 589,
+              'MONIT-ERR': 2.6},
+    'y': 0.005041,
+    'ynew0': 0.0048914638},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 5822000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 0.9739129341399999,
+    'Fcm0': 0.970787,
+    'YearRef1': 1984,
+    'dEn': 167000.0,
+    'dm0': 0.0153244,
+    'dm1': 0.0081196,
+    'dy': 0.000334592,
+    'dyerr': 0.000334592,
+    'dystat': 0.0001307,
+    'dysys': 0.000135928,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 6,
+    'm0': 0.5894,
+    'm1': 0.572182,
+    'xdat': { 'DATA': 5.228,
+              'EN': 5.822,
+              'EN-RSL-FW': 0.167,
+              'ERR-S': 2.5,
+              'ERR-T': 6.4,
+              'MONIT': 589.4,
+              'MONIT-ERR': 2.6},
+    'y': 0.005228,
+    'ynew0': 0.0050752744},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 6040000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 0.99978497472,
+    'Fcm0': 0.996576,
+    'YearRef1': 1984,
+    'dEn': 162000.0,
+    'dm0': 0.0244686,
+    'dm1': 0.00902202,
+    'dy': 0.000403541,
+    'dyerr': 0.000403541,
+    'dystat': 0.000138529,
+    'dysys': 0.000234897,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 7,
+    'm0': 0.6274,
+    'm1': 0.625252,
+    'xdat': { 'DATA': 6.023,
+              'EN': 6.04,
+              'EN-RSL-FW': 0.162,
+              'ERR-S': 2.3,
+              'ERR-T': 6.7,
+              'MONIT': 627.4,
+              'MONIT-ERR': 3.9},
+    'y': 0.006023,
+    'ynew0': 0.0060023772},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 6254000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 0.9987356066,
+    'Fcm0': 0.99553,
+    'YearRef1': 1984,
+    'dEn': 153000.0,
+    'dm0': 0.02769,
+    'dm1': 0.0101511,
+    'dy': 0.00047137198,
+    'dyerr': 0.000471372,
+    'dystat': 0.000164266,
+    'dysys': 0.000278538,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 8,
+    'm0': 0.71,
+    'm1': 0.706827,
+    'xdat': { 'DATA': 7.142,
+              'EN': 6.254,
+              'EN-RSL-FW': 0.153,
+              'ERR-S': 2.3,
+              'ERR-T': 6.6,
+              'MONIT': 710,
+              'MONIT-ERR': 3.9},
+    'y': 0.007142,
+    'ynew0': 0.0071100753},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 6465000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.009941574,
+    'Fcm0': 1.0067,
+    'YearRef1': 1984,
+    'dEn': 146000.0,
+    'dm0': 0.0310713,
+    'dm1': 0.0113466,
+    'dy': 0.000488605,
+    'dyerr': 0.000488605,
+    'dystat': 0.000172891,
+    'dysys': 0.000293163,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 9,
+    'm0': 0.7967,
+    'm1': 0.802037,
+    'xdat': { 'DATA': 7.517,
+              'EN': 6.465,
+              'EN-RSL-FW': 0.146,
+              'ERR-S': 2.3,
+              'ERR-T': 6.5,
+              'MONIT': 796.7,
+              'MONIT-ERR': 3.9},
+    'y': 0.007517,
+    'ynew0': 0.0075673639},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 6675000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0054872771999999,
+    'Fcm0': 1.00226,
+    'YearRef1': 1984,
+    'dEn': 149000.0,
+    'dm0': 0.03354,
+    'dm1': 0.0122039,
+    'dy': 0.000520845,
+    'dyerr': 0.000520845,
+    'dystat': 0.000184299,
+    'dysys': 0.000312507,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 10,
+    'm0': 0.86,
+    'm1': 0.861941,
+    'xdat': { 'DATA': 8.013,
+              'EN': 6.675,
+              'EN-RSL-FW': 0.149,
+              'ERR-S': 2.3,
+              'ERR-T': 6.5,
+              'MONIT': 860,
+              'MONIT-ERR': 3.9},
+    'y': 0.008013,
+    'ynew0': 0.0080311094},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 6881000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0131619102,
+    'Fcm0': 1.00991,
+    'YearRef1': 1984,
+    'dEn': 144000.0,
+    'dm0': 0.0352911,
+    'dm1': 0.0129797,
+    'dy': 0.00058092806,
+    'dyerr': 0.000580928,
+    'dystat': 0.000208771,
+    'dysys': 0.000354003,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 11,
+    'm0': 0.9049,
+    'm1': 0.913865,
+    'xdat': { 'DATA': 9.077,
+              'EN': 6.881,
+              'EN-RSL-FW': 0.144,
+              'ERR-S': 2.3,
+              'ERR-T': 6.4,
+              'MONIT': 904.9,
+              'MONIT-ERR': 3.9},
+    'y': 0.009077,
+    'ynew0': 0.0091669531},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 6882000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0132120712,
+    'Fcm0': 1.00996,
+    'YearRef1': 1984,
+    'dEn': 141000.0,
+    'dm0': 0.0352989,
+    'dm1': 0.0129834,
+    'dy': 0.000577472,
+    'dyerr': 0.000577472,
+    'dystat': 0.000207529,
+    'dysys': 0.000351897,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 12,
+    'm0': 0.9051,
+    'm1': 0.914117,
+    'xdat': { 'DATA': 9.023,
+              'EN': 6.882,
+              'EN-RSL-FW': 0.141,
+              'ERR-S': 2.3,
+              'ERR-T': 6.4,
+              'MONIT': 905.1,
+              'MONIT-ERR': 3.9},
+    'y': 0.009023,
+    'ynew0': 0.0091128691},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 7087000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0239565574,
+    'Fcm0': 1.02067,
+    'YearRef1': 1984,
+    'dEn': 141000.0,
+    'dm0': 0.0363948,
+    'dm1': 0.0136474,
+    'dy': 0.000599168,
+    'dyerr': 0.000599168,
+    'dystat': 0.000215326,
+    'dysys': 0.000365118,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 13,
+    'm0': 0.9332,
+    'm1': 0.95249,
+    'xdat': { 'DATA': 9.362,
+              'EN': 7.087,
+              'EN-RSL-FW': 0.141,
+              'ERR-S': 2.3,
+              'ERR-T': 6.4,
+              'MONIT': 933.2,
+              'MONIT-ERR': 3.9},
+    'y': 0.009362,
+    'ynew0': 0.0095555125},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 7290000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0167333734000001,
+    'Fcm0': 1.01347,
+    'YearRef1': 1984,
+    'dEn': 144000.0,
+    'dm0': 0.0374283,
+    'dm1': 0.0141596,
+    'dy': 0.0006688,
+    'dyerr': 0.0006688,
+    'dystat': 0.00024035,
+    'dysys': 0.00040755,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 14,
+    'm0': 0.9597,
+    'm1': 0.972628,
+    'xdat': { 'DATA': 10.45,
+              'EN': 7.29,
+              'EN-RSL-FW': 0.144,
+              'ERR-S': 2.3,
+              'ERR-T': 6.4,
+              'MONIT': 959.7,
+              'MONIT-ERR': 3.9},
+    'y': 0.01045,
+    'ynew0': 0.0105907615},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 7494000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0099014452000001,
+    'Fcm0': 1.00666,
+    'YearRef1': 1984,
+    'dEn': 144000.0,
+    'dm0': 0.0384657,
+    'dm1': 0.0146745,
+    'dy': 0.00076956005,
+    'dyerr': 0.00076956,
+    'dystat': 0.00030316,
+    'dysys': 0.00045474,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 15,
+    'm0': 0.9863,
+    'm1': 0.992865,
+    'xdat': { 'DATA': 11.66,
+              'EN': 7.494,
+              'EN-RSL-FW': 0.144,
+              'ERR-S': 2.6,
+              'ERR-T': 6.6,
+              'MONIT': 986.3,
+              'MONIT-ERR': 3.9},
+    'y': 0.01166,
+    'ynew0': 0.0117376556},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 7694000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.010192379,
+    'Fcm0': 1.00695,
+    'YearRef1': 1984,
+    'dEn': 152000.0,
+    'dm0': 0.0385554,
+    'dm1': 0.0145524,
+    'dy': 0.0007618,
+    'dyerr': 0.0007618,
+    'dystat': 0.000293,
+    'dysys': 0.00045708,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 16,
+    'm0': 0.9886,
+    'm1': 0.99547,
+    'xdat': { 'DATA': 11.72,
+              'EN': 7.694,
+              'EN-RSL-FW': 0.152,
+              'ERR-S': 2.5,
+              'ERR-T': 6.5,
+              'MONIT': 988.6,
+              'MONIT-ERR': 3.9},
+    'y': 0.01172,
+    'ynew0': 0.011801454},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 7893000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0211575735999998,
+    'Fcm0': 1.01788,
+    'YearRef1': 1984,
+    'dEn': 155000.0,
+    'dm0': 0.0386139,
+    'dm1': 0.0144609,
+    'dy': 0.00085223996,
+    'dyerr': 0.00085224,
+    'dystat': 0.00036888,
+    'dysys': 0.00049608,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 17,
+    'm0': 0.9901,
+    'm1': 1.0078,
+    'xdat': { 'DATA': 12.72,
+              'EN': 7.893,
+              'EN-RSL-FW': 0.155,
+              'ERR-S': 2.9,
+              'ERR-T': 6.7,
+              'MONIT': 990.1,
+              'MONIT-ERR': 3.9},
+    'y': 0.01272,
+    'ynew0': 0.0129474336},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 7893000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0211575735999998,
+    'Fcm0': 1.01788,
+    'YearRef1': 1984,
+    'dEn': 156000.0,
+    'dm0': 0.0386139,
+    'dm1': 0.0144609,
+    'dy': 0.00088708,
+    'dyerr': 0.00088708,
+    'dystat': 0.00038396,
+    'dysys': 0.00051636,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 18,
+    'm0': 0.9901,
+    'm1': 1.0078,
+    'xdat': { 'DATA': 13.24,
+              'EN': 7.893,
+              'EN-RSL-FW': 0.156,
+              'ERR-S': 2.9,
+              'ERR-T': 6.7,
+              'MONIT': 990.1,
+              'MONIT-ERR': 3.9},
+    'y': 0.01324,
+    'ynew0': 0.0134767312},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 8092000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0280597271999998,
+    'Fcm0': 1.02476,
+    'YearRef1': 1984,
+    'dEn': 161000.0,
+    'dm0': 0.0287593,
+    'dm1': 0.0144213,
+    'dy': 0.00080519996,
+    'dyerr': 0.0008052,
+    'dystat': 0.0003828,
+    'dysys': 0.0003828,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 19,
+    'm0': 0.9917,
+    'm1': 1.01625,
+    'xdat': { 'DATA': 13.2,
+              'EN': 8.092,
+              'EN-RSL-FW': 0.161,
+              'ERR-S': 2.9,
+              'ERR-T': 6.1,
+              'MONIT': 991.7,
+              'MONIT-ERR': 2.9},
+    'y': 0.0132,
+    'ynew0': 0.013526832},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 8290000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.025842611,
+    'Fcm0': 1.02255,
+    'YearRef1': 1984,
+    'dEn': 169000.0,
+    'dm0': 0.0287999,
+    'dm1': 0.0144195,
+    'dy': 0.00084973,
+    'dyerr': 0.00084973,
+    'dystat': 0.00040397,
+    'dysys': 0.00040397,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 20,
+    'm0': 0.9931,
+    'm1': 1.0155,
+    'xdat': { 'DATA': 13.93,
+              'EN': 8.29,
+              'EN-RSL-FW': 0.169,
+              'ERR-S': 2.9,
+              'ERR-T': 6.1,
+              'MONIT': 993.1,
+              'MONIT-ERR': 2.9},
+    'y': 0.01393,
+    'ynew0': 0.0142441215},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 8486000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0235452372,
+    'Fcm0': 1.02026,
+    'YearRef1': 1984,
+    'dEn': 173000.0,
+    'dm0': 0.0288434,
+    'dm1': 0.0144177,
+    'dy': 0.0009097201,
+    'dyerr': 0.00090972,
+    'dystat': 0.00047652,
+    'dysys': 0.00041876,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 21,
+    'm0': 0.9946,
+    'm1': 1.01475,
+    'xdat': { 'DATA': 14.44,
+              'EN': 8.486,
+              'EN-RSL-FW': 0.173,
+              'ERR-S': 3.3,
+              'ERR-T': 6.3,
+              'MONIT': 994.6,
+              'MONIT-ERR': 2.9},
+    'y': 0.01444,
+    'ynew0': 0.0147325544},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 8683000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0227928222,
+    'Fcm0': 1.01951,
+    'YearRef1': 1984,
+    'dEn': 181000.0,
+    'dm0': 0.028884,
+    'dm1': 0.0144698,
+    'dy': 0.0010016001,
+    'dyerr': 0.0010016,
+    'dystat': 0.00051645,
+    'dysys': 0.00045385,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 22,
+    'm0': 0.996,
+    'm1': 1.01543,
+    'xdat': { 'DATA': 15.65,
+              'EN': 8.683,
+              'EN-RSL-FW': 0.181,
+              'ERR-S': 3.3,
+              'ERR-T': 6.4,
+              'MONIT': 996,
+              'MONIT-ERR': 2.9},
+    'y': 0.01565,
+    'ynew0': 0.0159553315},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 8684000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0227928222,
+    'Fcm0': 1.01951,
+    'YearRef1': 1984,
+    'dEn': 179000.0,
+    'dm0': 0.028884,
+    'dm1': 0.0144701,
+    'dy': 0.00099036,
+    'dyerr': 0.00099036,
+    'dystat': 0.00051876,
+    'dysys': 0.00045588,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 23,
+    'm0': 0.996,
+    'm1': 1.01544,
+    'xdat': { 'DATA': 15.72,
+              'EN': 8.684,
+              'EN-RSL-FW': 0.179,
+              'ERR-S': 3.3,
+              'ERR-T': 6.3,
+              'MONIT': 996,
+              'MONIT-ERR': 2.9},
+    'y': 0.01572,
+    'ynew0': 0.0160266972},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 8879000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0220404072,
+    'Fcm0': 1.01876,
+    'YearRef1': 1984,
+    'dEn': 184000.0,
+    'dm0': 0.0289275,
+    'dm1': 0.0145257,
+    'dy': 0.00100422,
+    'dyerr': 0.00100422,
+    'dystat': 0.00054196,
+    'dysys': 0.00046226,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 24,
+    'm0': 0.9975,
+    'm1': 1.01622,
+    'xdat': { 'DATA': 15.94,
+              'EN': 8.879,
+              'EN-RSL-FW': 0.184,
+              'ERR-S': 3.4,
+              'ERR-T': 6.3,
+              'MONIT': 997.5,
+              'MONIT-ERR': 2.9},
+    'y': 0.01594,
+    'ynew0': 0.0162390344},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 9071000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.02228118,
+    'Fcm0': 1.019,
+    'YearRef1': 1984,
+    'dEn': 189000.0,
+    'dm0': 0.0289217,
+    'dm1': 0.0145819,
+    'dy': 0.0011879099,
+    'dyerr': 0.00118791,
+    'dystat': 0.00067374,
+    'dysys': 0.00051417,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 25,
+    'm0': 0.9973,
+    'm1': 1.01625,
+    'xdat': { 'DATA': 17.73,
+              'EN': 9.071,
+              'EN-RSL-FW': 0.189,
+              'ERR-S': 3.8,
+              'ERR-T': 6.7,
+              'MONIT': 997.3,
+              'MONIT-ERR': 2.9},
+    'y': 0.01773,
+    'ynew0': 0.01806687},
+  { 'Author1': 'Smith',
+    'Author1Ini': 'D.L.',
+    'DatasetID': '128980032',
+    'En': 9267000.0,
+    'FcDecayData': 1.00322,
+    'FcDecayMon': None,
+    'FcNew': 1.0244080064,
+    'Fcm0': 1.02112,
+    'YearRef1': 1984,
+    'dEn': 195000.0,
+    'dm0': 0.028826,
+    'dm1': 0.0146418,
+    'dy': 0.00123213,
+    'dyerr': 0.00123213,
+    'dystat': 0.00069882,
+    'dysys': 0.00053331,
+    'fullCode': '23-V-51(N,P)22-TI-51,,SIG',
+    'iPoint': 26,
+    'm0': 0.994,
+    'm1': 1.01499,
+    'xdat': { 'DATA': 18.39,
+              'EN': 9.267,
+              'EN-RSL-FW': 0.195,
+              'ERR-S': 3.8,
+              'ERR-T': 6.7,
+              'MONIT': 994,
+              'MONIT-ERR': 2.9},
+    'y': 0.01839,
+    'ynew0': 0.0187783968}]
+
+datapoints: 51
+1) 23-V-51(N,P)22-TI-51,,SIG 22156005 1989 T.Katoh
+2) 23-V-51(N,P)22-TI-51,,SIG 128980022 1984 D.L.Smith
+3) 23-V-51(N,P)22-TI-51,,SIG 128980032 1984 D.L.Smith
+datasets: 3
+
+Datasets: 3
+1) 23-V-51(N,P)22-TI-51,,SIG
+reacodes: 1 
+
+Plot:1/3) #22156005 1989, T.Katoh pt:6
+Plot:2/3) #128980022 1984, D.L.Smith pt:18
+Plot:3/3) #128980032 1984, D.L.Smith pt:27
+
+datapoints: 51
+1) ___________
+2) ___________
+3) ___________
+_____________datasets00: 3
+___________auto_corr_dataset:::22156005 len=6 icmp=0
+
+__0________fcorr:22156005 En=13.4	y0=0.0344	fc=0.9961723080648711	dy0=0.0017544 icmp=0
+__Fin:__2__fcorr:22156005 En=13.4	y0=0.0344	y1=0.0342683	Fc=0.9961723	dy0=0.0017544	dy1=0.0017544
+
+__0________fcorr:22156005 En=13.7	y0=0.0323	fc=0.9872118564966336	dy0=0.0018734001 icmp=0
+__Fin:__2__fcorr:22156005 En=13.7	y0=0.0323	y1=0.0318869	Fc=0.9872119	dy0=0.0018734001	dy1=0.0018734
+
+__0________fcorr:22156005 En=14.01	y0=0.0338	fc=0.9785992119300579	dy0=0.0018589998 icmp=0
+__Fin:__2__fcorr:22156005 En=14.01	y0=0.0338	y1=0.0330767	Fc=0.9785992	dy0=0.0018589998	dy1=0.001859
+
+__0________fcorr:22156005 En=14.35	y0=0.0338	fc=0.968399820731607	dy0=0.0019265999 icmp=0
+__Fin:__2__fcorr:22156005 En=14.35	y0=0.0338	y1=0.0327319	Fc=0.9683998	dy0=0.0019265999	dy1=0.0019266
+
+__0________fcorr:22156005 En=14.64	y0=0.033	fc=0.9620223765288186	dy0=0.001881 icmp=0
+__Fin:__2__fcorr:22156005 En=14.64	y0=0.033	y1=0.0317467	Fc=0.9620224	dy0=0.001881	dy1=0.001881
+
+__0________fcorr:22156005 En=14.87	y0=0.0308	fc=0.9579793657609134	dy0=0.0018788 icmp=0
+__Fin:__2__fcorr:22156005 En=14.87	y0=0.0308	y1=0.0295058	Fc=0.9579794	dy0=0.0018788	dy1=0.0018788
+1) 6  pt:6
+___________auto_corr_dataset:::128980022 len=18 icmp=0
+
+__0________fcorr:128980022 En=2.856	y0=4.799e-06	fc=1.0162718922	dy0=2.423495e-06 icmp=0
+__1________fcorr-err:128980022 dy=50.5 dm0=3.0 dm1=1.355
+__2________fcorr-err:128980022 dy=50.429
+__Fin:__2__fcorr:128980022 En=2.856	y0=4.799e-06	y1=4.9e-06	Fc=1.0162719	dy0=2.423495e-06	dy1=2.5e-06
+
+__0________fcorr:128980022 En=2.957	y0=1.031e-05	fc=1.0120884648	dy0=2.35068e-06 icmp=0
+__1________fcorr-err:128980022 dy=22.8 dm0=3.0 dm1=1.344
+__2________fcorr-err:128980022 dy=22.642
+__Fin:__2__fcorr:128980022 En=2.957	y0=1.031e-05	y1=1.04e-05	Fc=1.0120885	dy0=2.35068e-06	dy1=2.4e-06
+
+__0________fcorr:128980022 En=3.057	y0=1.346e-05	fc=1.0142152912	dy0=3.4592201e-06 icmp=0
+__1________fcorr-err:128980022 dy=25.7 dm0=2.5 dm1=1.34
+__2________fcorr-err:128980022 dy=25.613
+__Fin:__2__fcorr:128980022 En=3.057	y0=1.346e-05	y1=1.37e-05	Fc=1.0142153	dy0=3.4592201e-06	dy1=3.5e-06
+
+__0________fcorr:128980022 En=3.158	y0=3.863e-05	fc=1.018820071	dy0=6.60573e-06 icmp=0
+__1________fcorr-err:128980022 dy=17.1 dm0=2.5 dm1=1.339
+__2________fcorr-err:128980022 dy=16.969
+__Fin:__2__fcorr:128980022 En=3.158	y0=3.863e-05	y1=3.94e-05	Fc=1.0188201	dy0=6.60573e-06	dy1=6.7e-06
+
+__0________fcorr:128980022 En=3.258	y0=7.588e-05	fc=1.0213983463999998	dy0=9.485e-06 icmp=0
+__1________fcorr-err:128980022 dy=12.5 dm0=2.5 dm1=1.339
+__2________fcorr-err:128980022 dy=12.32
+__Fin:__2__fcorr:128980022 En=3.258	y0=7.588e-05	y1=7.75e-05	Fc=1.0213983	dy0=9.485e-06	dy1=9.5e-06
+
+__0________fcorr:128980022 En=3.359	y0=0.0001246	fc=1.0240167506	dy0=1.14632e-05 icmp=0
+__1________fcorr-err:128980022 dy=9.2 dm0=2.5 dm1=1.339
+__2________fcorr-err:128980022 dy=8.955
+__Fin:__2__fcorr:128980022 En=3.359	y0=0.0001246	y1=0.0001276	Fc=1.0240168	dy0=1.14632e-05	dy1=1.14e-05
+
+__0________fcorr:128980022 En=3.459	y0=0.0001707	fc=1.0265348328	dy0=1.3485301e-05 icmp=0
+__1________fcorr-err:128980022 dy=7.9 dm0=2.5 dm1=1.339
+__2________fcorr-err:128980022 dy=7.613
+__Fin:__2__fcorr:128980022 En=3.459	y0=0.0001707	y1=0.0001752	Fc=1.0265348	dy0=1.3485301e-05	dy1=1.33e-05
+
+__0________fcorr:128980022 En=3.56	y0=0.0002214	fc=1.0254613874	dy0=1.9483201e-05 icmp=0
+__1________fcorr-err:128980022 dy=8.8 dm0=2.5 dm1=1.339
+__2________fcorr-err:128980022 dy=8.543
+__Fin:__2__fcorr:128980022 En=3.56	y0=0.0002214	y1=0.000227	Fc=1.0254614	dy0=1.9483201e-05	dy1=1.94e-05
+
+__0________fcorr:128980022 En=3.661	y0=0.0003326	fc=1.0200038705999999	dy0=2.72732e-05 icmp=0
+__1________fcorr-err:128980022 dy=8.2 dm0=2.5 dm1=1.34
+__2________fcorr-err:128980022 dy=7.924
+__Fin:__2__fcorr:128980022 En=3.661	y0=0.0003326	y1=0.0003393	Fc=1.0200039	dy0=2.72732e-05	dy1=2.69e-05
+
+__0________fcorr:128980022 En=3.761	y0=0.0004309	fc=1.0188100388	dy0=3.9642797e-05 icmp=0
+__1________fcorr-err:128980022 dy=9.2 dm0=2.5 dm1=1.342
+__2________fcorr-err:128980022 dy=8.955
+__Fin:__2__fcorr:128980022 En=3.761	y0=0.0004309	y1=0.000439	Fc=1.01881	dy0=3.9642797e-05	dy1=3.93e-05
+
+__0________fcorr:128980022 En=3.861	y0=0.0006979	fc=1.021378282	dy0=4.8853002e-05 icmp=0
+__1________fcorr-err:128980022 dy=7.0 dm0=2.5 dm1=1.344
+__2________fcorr-err:128980022 dy=6.675
+__Fin:__2__fcorr:128980022 En=3.861	y0=0.0006979	y1=0.0007128	Fc=1.0213783	dy0=4.8853002e-05	dy1=4.76e-05
+
+__0________fcorr:128980022 En=3.861	y0=0.0006986	fc=1.021378282	dy0=4.8902002e-05 icmp=0
+__1________fcorr-err:128980022 dy=7.0 dm0=2.5 dm1=1.344
+__2________fcorr-err:128980022 dy=6.675
+__Fin:__2__fcorr:128980022 En=3.861	y0=0.0006986	y1=0.0007135	Fc=1.0213783	dy0=4.8902002e-05	dy1=4.76e-05
+
+__0________fcorr:128980022 En=3.962	y0=0.0007353	fc=1.0239665896	dy0=4.48533e-05 icmp=0
+__1________fcorr-err:128980022 dy=6.1 dm0=2.5 dm1=1.346
+__2________fcorr-err:128980022 dy=5.725
+__Fin:__2__fcorr:128980022 En=3.962	y0=0.0007353	y1=0.0007529	Fc=1.0239666	dy0=4.48533e-05	dy1=4.31e-05
+
+__0________fcorr:128980022 En=4.063	y0=0.0008476	fc=1.025040035	dy0=5.33988e-05 icmp=0
+__1________fcorr-err:128980022 dy=6.3 dm0=2.4 dm1=1.348
+__2________fcorr-err:128980022 dy=5.979
+__Fin:__2__fcorr:128980022 En=4.063	y0=0.0008476	y1=0.0008688	Fc=1.02504	dy0=5.33988e-05	dy1=5.19e-05
+
+__0________fcorr:128980022 En=4.264	y0=0.001007	fc=1.026745509	dy0=7.653199e-05 icmp=0
+__1________fcorr-err:128980022 dy=7.6 dm0=2.4 dm1=1.353
+__2________fcorr-err:128980022 dy=7.337
+__Fin:__2__fcorr:128980022 En=4.264	y0=0.001007	y1=0.0010339	Fc=1.0267455	dy0=7.653199e-05	dy1=7.59e-05
+
+__0________fcorr:128980022 En=4.464	y0=0.001478	fc=1.0274878917999999	dy0=9.4592004e-05 icmp=0
+__1________fcorr-err:128980022 dy=6.4 dm0=2.4 dm1=1.358
+__2________fcorr-err:128980022 dy=6.086
+__Fin:__2__fcorr:128980022 En=4.464	y0=0.001478	y1=0.0015186	Fc=1.0274879	dy0=9.4592004e-05	dy1=9.24e-05
+
+__0________fcorr:128980022 En=4.664	y0=0.00225	fc=1.0345104318	dy0=0.000135 icmp=0
+__1________fcorr-err:128980022 dy=6.0 dm0=2.4 dm1=1.357
+__2________fcorr-err:128980022 dy=5.664
+__Fin:__2__fcorr:128980022 En=4.664	y0=0.00225	y1=0.0023276	Fc=1.0345104	dy0=0.000135	dy1=0.0001318
+
+__0________fcorr:128980022 En=4.865	y0=0.002686	fc=1.0342495945999999	dy0=0.000163846 icmp=0
+__1________fcorr-err:128980022 dy=6.1 dm0=2.4 dm1=1.365
+__2________fcorr-err:128980022 dy=5.772
+__Fin:__2__fcorr:128980022 En=4.865	y0=0.002686	y1=0.002778	Fc=1.0342496	dy0=0.000163846	dy1=0.0001603
+2) 24  pt:18
+___________auto_corr_dataset:::128980032 len=27 icmp=0
+
+__0________fcorr:128980032 En=4.643	y0=0.002236	fc=1.0335774372	dy0=0.00014086801 icmp=0
+__1________fcorr-err:128980032 dy=6.3 dm0=2.4 dm1=1.358
+__2________fcorr-err:128980032 dy=5.981
+__Fin:__2__fcorr:128980032 En=4.643	y0=0.002236	y1=0.0023111	Fc=1.0335774	dy0=0.00014086801	dy1=0.0001382
+
+__0________fcorr:128980032 En=4.893	y0=0.002853	fc=1.033768049	dy0=0.000202563 icmp=0
+__1________fcorr-err:128980032 dy=7.1 dm0=2.4 dm1=1.366
+__2________fcorr-err:128980032 dy=6.82
+__Fin:__2__fcorr:128980032 En=4.893	y0=0.002853	y1=0.0029493	Fc=1.033768	dy0=0.000202563	dy1=0.0002012
+
+__0________fcorr:128980032 En=5.139	y0=0.00325	fc=1.026745509	dy0=0.00020475 icmp=0
+__1________fcorr-err:128980032 dy=6.3 dm0=2.6 dm1=1.379
+__2________fcorr-err:128980032 dy=5.902
+__Fin:__2__fcorr:128980032 En=5.139	y0=0.00325	y1=0.0033369	Fc=1.0267455	dy0=0.00020475	dy1=0.0001969
+
+__0________fcorr:128980032 En=5.374	y0=0.003642	fc=1.0139343896	dy0=0.000222162 icmp=0
+__1________fcorr-err:128980032 dy=6.1 dm0=2.6 dm1=1.389
+__2________fcorr-err:128980032 dy=5.69
+__Fin:__2__fcorr:128980032 En=5.374	y0=0.003642	y1=0.0036927	Fc=1.0139344	dy0=0.000222162	dy1=0.0002101
+
+__0________fcorr:128980032 En=5.6	y0=0.004243	fc=0.99215047052	dy0=0.000280038 icmp=0
+__1________fcorr-err:128980032 dy=6.6 dm0=2.6 dm1=1.4
+__2________fcorr-err:128980032 dy=6.226
+__Fin:__2__fcorr:128980032 En=5.6	y0=0.004243	y1=0.0042097	Fc=0.9921505	dy0=0.000280038	dy1=0.0002621
+
+__0________fcorr:128980032 En=5.819	y0=0.005041	fc=0.97346048192	dy0=0.000322624 icmp=0
+__1________fcorr-err:128980032 dy=6.4 dm0=2.6 dm1=1.419
+__2________fcorr-err:128980032 dy=6.018
+__Fin:__2__fcorr:128980032 En=5.819	y0=0.005041	y1=0.0049072	Fc=0.9734605	dy0=0.000322624	dy1=0.0002953
+
+__0________fcorr:128980032 En=5.822	y0=0.005228	fc=0.9739129341399999	dy0=0.000334592 icmp=0
+__1________fcorr-err:128980032 dy=6.4 dm0=2.6 dm1=1.419
+__2________fcorr-err:128980032 dy=6.018
+__Fin:__2__fcorr:128980032 En=5.822	y0=0.005228	y1=0.0050916	Fc=0.9739129	dy0=0.000334592	dy1=0.0003064
+
+__0________fcorr:128980032 En=6.04	y0=0.006023	fc=0.99978497472	dy0=0.000403541 icmp=0
+__1________fcorr-err:128980032 dy=6.7 dm0=3.9 dm1=1.443
+__2________fcorr-err:128980032 dy=5.636
+__Fin:__2__fcorr:128980032 En=6.04	y0=0.006023	y1=0.0060217	Fc=0.999785	dy0=0.000403541	dy1=0.0003394
+
+__0________fcorr:128980032 En=6.254	y0=0.007142	fc=0.9987356066	dy0=0.00047137198 icmp=0
+__1________fcorr-err:128980032 dy=6.6 dm0=3.9 dm1=1.436
+__2________fcorr-err:128980032 dy=5.515
+__Fin:__2__fcorr:128980032 En=6.254	y0=0.007142	y1=0.007133	Fc=0.9987356	dy0=0.00047137198	dy1=0.0003934
+
+__0________fcorr:128980032 En=6.465	y0=0.007517	fc=1.009941574	dy0=0.000488605 icmp=0
+__1________fcorr-err:128980032 dy=6.5 dm0=3.9 dm1=1.415
+__2________fcorr-err:128980032 dy=5.389
+__Fin:__2__fcorr:128980032 En=6.465	y0=0.007517	y1=0.0075917	Fc=1.0099416	dy0=0.000488605	dy1=0.0004091
+
+__0________fcorr:128980032 En=6.675	y0=0.008013	fc=1.0054872771999999	dy0=0.000520845 icmp=0
+__1________fcorr-err:128980032 dy=6.5 dm0=3.9 dm1=1.416
+__2________fcorr-err:128980032 dy=5.389
+__Fin:__2__fcorr:128980032 En=6.675	y0=0.008013	y1=0.008057	Fc=1.0054873	dy0=0.000520845	dy1=0.0004342
+
+__0________fcorr:128980032 En=6.881	y0=0.009077	fc=1.0131619102	dy0=0.00058092806 icmp=0
+__1________fcorr-err:128980032 dy=6.4 dm0=3.9 dm1=1.42
+__2________fcorr-err:128980032 dy=5.269
+__Fin:__2__fcorr:128980032 En=6.881	y0=0.009077	y1=0.0091965	Fc=1.0131619	dy0=0.00058092806	dy1=0.0004846
+
+__0________fcorr:128980032 En=6.882	y0=0.009023	fc=1.0132120712	dy0=0.000577472 icmp=0
+__1________fcorr-err:128980032 dy=6.4 dm0=3.9 dm1=1.42
+__2________fcorr-err:128980032 dy=5.269
+__Fin:__2__fcorr:128980032 En=6.882	y0=0.009023	y1=0.0091422	Fc=1.0132121	dy0=0.000577472	dy1=0.0004817
+
+__0________fcorr:128980032 En=7.087	y0=0.009362	fc=1.0239565574	dy0=0.000599168 icmp=0
+__1________fcorr-err:128980032 dy=6.4 dm0=3.9 dm1=1.433
+__2________fcorr-err:128980032 dy=5.273
+__Fin:__2__fcorr:128980032 En=7.087	y0=0.009362	y1=0.0095863	Fc=1.0239566	dy0=0.000599168	dy1=0.0005055
+
+__0________fcorr:128980032 En=7.29	y0=0.01045	fc=1.0167333734000001	dy0=0.0006688 icmp=0
+__1________fcorr-err:128980032 dy=6.4 dm0=3.9 dm1=1.456
+__2________fcorr-err:128980032 dy=5.279
+__Fin:__2__fcorr:128980032 En=7.29	y0=0.01045	y1=0.0106249	Fc=1.0167334	dy0=0.0006688	dy1=0.0005609
+
+__0________fcorr:128980032 En=7.494	y0=0.01166	fc=1.0099014452000001	dy0=0.00076956005 icmp=0
+__1________fcorr-err:128980032 dy=6.6 dm0=3.9 dm1=1.478
+__2________fcorr-err:128980032 dy=5.526
+__Fin:__2__fcorr:128980032 En=7.494	y0=0.01166	y1=0.0117755	Fc=1.0099014	dy0=0.00076956005	dy1=0.0006507
+
+__0________fcorr:128980032 En=7.694	y0=0.01172	fc=1.010192379	dy0=0.0007618 icmp=0
+__1________fcorr-err:128980032 dy=6.5 dm0=3.9 dm1=1.462
+__2________fcorr-err:128980032 dy=5.402
+__Fin:__2__fcorr:128980032 En=7.694	y0=0.01172	y1=0.0118395	Fc=1.0101924	dy0=0.0007618	dy1=0.0006395
+
+__0________fcorr:128980032 En=7.893	y0=0.01272	fc=1.0211575735999998	dy0=0.00085223996 icmp=0
+__1________fcorr-err:128980032 dy=6.7 dm0=3.9 dm1=1.435
+__2________fcorr-err:128980032 dy=5.634
+__Fin:__2__fcorr:128980032 En=7.893	y0=0.01272	y1=0.0129891	Fc=1.0211576	dy0=0.00085223996	dy1=0.0007318
+
+__0________fcorr:128980032 En=7.893	y0=0.01324	fc=1.0211575735999998	dy0=0.00088708 icmp=0
+__1________fcorr-err:128980032 dy=6.7 dm0=3.9 dm1=1.435
+__2________fcorr-err:128980032 dy=5.634
+__Fin:__2__fcorr:128980032 En=7.893	y0=0.01324	y1=0.0135201	Fc=1.0211576	dy0=0.00088708	dy1=0.0007617
+
+__0________fcorr:128980032 En=8.092	y0=0.0132	fc=1.0280597271999998	dy0=0.00080519996 icmp=0
+__1________fcorr-err:128980032 dy=6.1 dm0=2.9 dm1=1.419
+__2________fcorr-err:128980032 dy=5.551
+__Fin:__2__fcorr:128980032 En=8.092	y0=0.0132	y1=0.0135704	Fc=1.0280597	dy0=0.00080519996	dy1=0.0007533
+
+__0________fcorr:128980032 En=8.29	y0=0.01393	fc=1.025842611	dy0=0.00084973 icmp=0
+__1________fcorr-err:128980032 dy=6.1 dm0=2.9 dm1=1.42
+__2________fcorr-err:128980032 dy=5.551
+__Fin:__2__fcorr:128980032 En=8.29	y0=0.01393	y1=0.01429	Fc=1.0258426	dy0=0.00084973	dy1=0.0007933
+
+__0________fcorr:128980032 En=8.486	y0=0.01444	fc=1.0235452372	dy0=0.0009097201 icmp=0
+__1________fcorr-err:128980032 dy=6.3 dm0=2.9 dm1=1.421
+__2________fcorr-err:128980032 dy=5.771
+__Fin:__2__fcorr:128980032 En=8.486	y0=0.01444	y1=0.01478	Fc=1.0235452	dy0=0.0009097201	dy1=0.0008529
+
+__0________fcorr:128980032 En=8.683	y0=0.01565	fc=1.0227928222	dy0=0.0010016001 icmp=0
+__1________fcorr-err:128980032 dy=6.4 dm0=2.9 dm1=1.425
+__2________fcorr-err:128980032 dy=5.881
+__Fin:__2__fcorr:128980032 En=8.683	y0=0.01565	y1=0.0160067	Fc=1.0227928	dy0=0.0010016001	dy1=0.0009413
+
+__0________fcorr:128980032 En=8.684	y0=0.01572	fc=1.0227928222	dy0=0.00099036 icmp=0
+__1________fcorr-err:128980032 dy=6.3 dm0=2.9 dm1=1.425
+__2________fcorr-err:128980032 dy=5.772
+__Fin:__2__fcorr:128980032 En=8.684	y0=0.01572	y1=0.0160783	Fc=1.0227928	dy0=0.00099036	dy1=0.000928
+
+__0________fcorr:128980032 En=8.879	y0=0.01594	fc=1.0220404072	dy0=0.00100422 icmp=0
+__1________fcorr-err:128980032 dy=6.3 dm0=2.9 dm1=1.429
+__2________fcorr-err:128980032 dy=5.773
+__Fin:__2__fcorr:128980032 En=8.879	y0=0.01594	y1=0.0162913	Fc=1.0220404	dy0=0.00100422	dy1=0.0009404
+
+__0________fcorr:128980032 En=9.071	y0=0.01773	fc=1.02228118	dy0=0.0011879099 icmp=0
+__1________fcorr-err:128980032 dy=6.7 dm0=2.9 dm1=1.435
+__2________fcorr-err:128980032 dy=6.208
+__Fin:__2__fcorr:128980032 En=9.071	y0=0.01773	y1=0.018125	Fc=1.0222812	dy0=0.0011879099	dy1=0.0011252
+
+__0________fcorr:128980032 En=9.267	y0=0.01839	fc=1.0244080064	dy0=0.00123213 icmp=0
+__1________fcorr-err:128980032 dy=6.7 dm0=2.9 dm1=1.443
+__2________fcorr-err:128980032 dy=6.21
+__Fin:__2__fcorr:128980032 En=9.267	y0=0.01839	y1=0.0188389	Fc=1.024408	dy0=0.00123213	dy1=0.0011698
+3) 51  pt:27
+
+datapoints: 51
+1) 23-V-51(N,P)22-TI-51,,SIG 22156005 1989 T.Katoh
+2) 23-V-51(N,P)22-TI-51,,SIG 128980022 1984 D.L.Smith
+3) 23-V-51(N,P)22-TI-51,,SIG 128980032 1984 D.L.Smith
+datasets: 3
+
+Datasets: 3
+1) 23-V-51(N,P)22-TI-51,,SIG
+reacodes: 1 
+
+Plot:1/3) #22156005 1989, T.Katoh* pt:6
+Plot:2/3) #128980022 1984, D.L.Smith* pt:18
+Plot:3/3) #128980032 1984, D.L.Smith* pt:27
+
+___getEndfDataForPlot: [V-51] [n,p]
+---wgetdb_get:/servlet/E4sSearch2?Target=V-51&Reaction=n,p&Quantity=SIG&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=V-51&Reaction=n,p&Quantity=SIG&json'
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-08-25T16:40:52.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1795
+,"sections":[
+ { "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":301136,"SectID":21390178,"PenSectID":26224817,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"T.Kawano"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":149511,"SectID":8952361,"PenSectID":13597604,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"T.Kawano"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":57349,"SectID":2252726,"PenSectID":7625385,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"T.Kawano"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":306642,"SectID":21535483,"PenSectID":26361919,"LibID":3400,"LibName":"JEFF-4.0","DATE":"MAY23","AUTH":"A.J. Koning, D. Rochman Svd Marck"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":150504,"SectID":9051629,"PenSectID":13692059,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":226262,"SectID":14406785,"PenSectID":19030396,"LibID":51,"LibName":"JENDL-5","DATE":"20100312","AUTH":"N.Iwamoto"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":39333,"SectID":1301408,"PenSectID":6863005,"LibID":40,"LibName":"JENDL-4.0","DATE":"20100312","AUTH":"N.Iwamoto"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":118554,"SectID":6054943,"PenSectID":10716431,"LibID":41031,"LibName":"BROND-3.1","DATE":"MAY10","AUTH":"N.Iwamoto"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":37976,"SectID":1217968,"PenSectID":6915290,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC06","AUTH":"Koscheev V.N."}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":27252,"SectID":574877,"PenSectID":6874669,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"DEC06","AUTH":"Koscheev V.N."}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":10300,"SectID":173731,"PenSectID":6952681,"LibID":9000,"LibName":"JEFF-3.1/A","DATE":"JUL03","AUTH":"Forrest, Kopecky, Sublet, Koning"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":116304,"SectID":5883445,"PenSectID":6539544,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"20150325","AUTH":"Iwamoto"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":155257,"SectID":9159119,"PenSectID":13791416,"LibID":6135,"LibName":"JENDL/AD-2017","DATE":"20131226","AUTH":"N.Iwamoto"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":20047,"SectID":436325,"PenSectID":6503849,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"MAY 3","AUTH":"K. Kosako"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":18728,"SectID":272324,"PenSectID":6492499,"LibID":6036,"LibName":"JENDL/HE-2004","DATE":"MAY 3","AUTH":"K. Kosako"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":116777,"SectID":5906571,"PenSectID":6657615,"LibID":32,"LibName":"JENDL-3.2","DATE":"MAR94","AUTH":"T.Watanabe"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":53039,"SectID":2222235,"PenSectID":7218608,"LibID":33010,"LibName":"EAF-2010","DATE":"SEP11","AUTH":""}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":18858,"SectID":278396,"PenSectID":7244486,"LibID":49020,"LibName":"MENDL-2","DATE":"SEP94","AUTH":"Yu.N.Shubin et.al."}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":290887,"SectID":20724505,"PenSectID":24720694,"LibID":61023,"LibName":"TENDL-2023","DATE":"DEC23","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":247019,"SectID":16318370,"PenSectID":21383615,"LibID":61022,"LibName":"TENDL-2021","DATE":"JAN22","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":198853,"SectID":14106789,"PenSectID":18750709,"LibID":61020,"LibName":"TENDL-2019.s60","DATE":"NOV19","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":302572,"SectID":21493658,"PenSectID":26324269,"LibID":33036,"LibName":"FENDL-3.2c","DATE":"MAY 3","AUTH":"K. Kosako"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":227858,"SectID":14627776,"PenSectID":19403608,"LibID":33035,"LibName":"FENDL-3.2b","DATE":"MAY 3","AUTH":"K. Kosako"}
+,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":142026,"SectID":8898629,"PenSectID":13485776,"LibID":33032,"LibName":"FENDL-3.1c","DATE":"MAY 3","AUTH":"K. Kosako"}
+]
+}
+
+format=WebEndfSectionsList-0.1
+___Retrieved sections:24
+SelectedLib-Sect:2) {'Targ': 'V-51', 'ZT': 23, 'AT': 51, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'V-51(N,P)TI-51,SIG', 'EvalID': 149511, 'SectID': 8952361, 'PenSectID': 13597604, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20111222', 'AUTH': 'T.Kawano'}
+SelectedLib-Sect:6) {'Targ': 'V-51', 'ZT': 23, 'AT': 51, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'V-51(N,P)TI-51,SIG', 'EvalID': 226262, 'SectID': 14406785, 'PenSectID': 19030396, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20100312', 'AUTH': 'N.Iwamoto'}
+Required sections:2
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13597604&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13597604&json'
+Downloaded:1)	V-51(N,P)TI-51,SIG	ENDF/B-VIII.0	PenSectID:13597604	pts:50	idy=0
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=19030396&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=19030396&json'
+Downloaded:2)	V-51(N,P)TI-51,SIG	JENDL-5	PenSectID:19030396	pts:93	idy=0
+Plot:1/2) 13597604	ENDF/B-VIII.0	pt:50	color:0,0,255
+Plot:2/2) 19030396	JENDL-5	pt:91	color:0,255,0
+Will try---write_image: auto2.html.png
+
+Program successfully completed

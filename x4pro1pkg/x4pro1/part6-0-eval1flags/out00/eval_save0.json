@@ -1,0 +1,66 @@
+[
+  {
+    "fileID": 0,
+    "srcFileName": "Erwin-Alhassan_2018.yaml",
+    "myComment": "Erwin Alhassan for protons on Co59 and Cd111 (2018)",
+    "srcFileDate": "2020-06-15 09:18:20",
+    "nDatasets": 166,
+    "dbDate": "2021-02-23"
+  },
+  {
+    "fileID": 1,
+    "srcFileName": "Natalia-Dzysiuk_2018.yaml",
+    "myComment": "Natalia Dzysiuk for neutron-induced activation XS for F4E (2018)",
+    "srcFileDate": "2021-02-22 20:06:38",
+    "nDatasets": 1768,
+    "dbDate": "2021-02-23"
+  },
+  {
+    "fileID": 2,
+    "srcFileName": "Natalia-Dzysiuk_2019.yaml",
+    "myComment": "Natalia Dzysiuk for neutron-induced activation XS on Ni isotopes (2019)",
+    "srcFileDate": "2021-02-19 16:40:43",
+    "nDatasets": 570,
+    "dbDate": "2021-02-23"
+  },
+  {
+    "fileID": 3,
+    "srcFileName": "Natalie-Gaughan_2019.yaml",
+    "myComment": "Natalie Gaughan for proton induced reactions (2019)",
+    "srcFileDate": "2021-02-23 11:00:16",
+    "nDatasets": 90,
+    "dbDate": "2021-02-23"
+  },
+  {
+    "fileID": 4,
+    "srcFileName": "Arjan-Koning_2020.yaml",
+    "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+    "srcFileDate": "2021-02-19 16:39:14",
+    "nDatasets": 19145,
+    "dbDate": "2021-02-23"
+  },
+  {
+    "fileID": 5,
+    "srcFileName": "trkov2013mn55n2n.txt",
+    "myComment": "x4corr: A.Trkov 2012",
+    "srcFileDate": "2014-07-03 10:05:28",
+    "nDatasets": 21,
+    "dbDate": "2021-02-24"
+  },
+  {
+    "fileID": 6,
+    "srcFileName": "capote2010mn55ng.txt",
+    "myComment": "x4corr: D.Smith and R.Capote 2010",
+    "srcFileDate": "2014-07-03 14:41:43",
+    "nDatasets": 42,
+    "dbDate": "2021-02-24"
+  },
+  {
+    "fileID": 7,
+    "srcFileName": "correction-Sjoestrand-2018-09-07.txt",
+    "myComment": "x4corr: H.Sjoestrand 2018, Ni59(n,*)",
+    "srcFileDate": "2018-09-12 15:16:37",
+    "nDatasets": 3,
+    "dbDate": "2021-02-24"
+  }
+]

@@ -1,0 +1,1 @@
+EXFOR/ENDF NUBAR - average number of neutrons per fission

@@ -1,0 +1,19 @@
+ Program: f1.f (ver.2022-12-22)
+ by V.Zerkin, IAEA-NDS, 2021-2022
+ Open database: ../../x4sqlite1.db
+
+ SQL command:
+ select Entry,YearRef1,Author1 
+ from ENTRY where Entry like 'F%' 
+ limit 8
+
+ SQL executed OK:            6 rows
+ Read data points:           6
+           1 F0001 1976,Gould       
+           2 F0012 1979,Elwyn       
+           3 F0198 1967,Brady       
+           4 F1013 1962,Harris      
+           5 F1041 1968,Morris      
+           6 F1217 1986,Buttsev     
+
+Program completed successfully

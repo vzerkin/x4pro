@@ -1,0 +1,475 @@
+Program: sig1r.py, ver. 2025-03-26
+Author:  V.Zerkin, Vienna, 2024-2025
+Purpose: Retrieve EXFOR cross sections, ratios
+         and monitor data from SQL database,
+         convert ratios to cross sections,
+         renormalize cross sections to new monitors,
+         search and download ENDF data from Web,
+         plot evaluated and experimental data.
+Running: 2026-08-25 23:15:12
+
+---arg[0]:sig1r.py
+---arg[1]:Zn-64
+---arg[2]:n,p
+---Reading blackList myBlackList.json with datasets to be ignored
+---blackList: 8 records
+---blackList: 5 datasets
+
+===Parameters:
+  target: "Zn-64"
+   react: "n,p"
+   quant: ",sig"
+   sProd: ""
+   xaxis: "linear"
+   ytype: "linear"
+   groupByMT: False
+   sortDatasets: True
+   markRejected: False
+   myBlackListFile: "myBlackList.json"
+   myBlackList: 5 datasets
+   outhtml: "Zn64np"
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---Read x4evalscores from X4Pro database...
+
+---SQL:[
+select x4evalscore.fileID,x4evalscore.DatasetID
+	 ,x4evalscore.author
+	 ,x4evalscore_file.myComment
+	 ,x4evalscore.itype
+	 ,x4evalscore.accepted
+	 ,x4evalscore.evalflag
+	 ,x4evalscore.comment2
+	from x4evalscore
+	 left join x4evalscore_file on x4evalscore_file.fileID=x4evalscore.fileID
+	order by x4evalscore.itype,x4evalscore.DatasetID
+	
+]
+===SQL executed. Rows:21804
+---x4evalflags:19514 datasets
+
+___getX4SqlSearchCS: target:[Zn-64] react:[n,p] sProd:[]
+SQL:
+	select x4pro_c5dat.DatasetID
+	 ,x4pro_ds.x4status,x4pro_ds.MF,x4pro_ds.MT
+	 ,REACSTR.code as Reacode
+	 ,REACODE.fullCode
+	 ,x4pro_c5dat.idat as iPoint
+	 ,REACODE.Pointer,ENTRY.Entry,REACODE.SubAcc as Subent   
+	 ,ENTRY.YearRef1,ENTRY.nAuthors,ENTRY.Author1Ini,ENTRY.Author1 
+	 ,REACSTR.Target, REACSTR.Reaction
+	 ,lower(REACSTR.Projectile) as Projectile
+	 ,REACSTR.sProd,REACSTR.sTarg
+	 ,REACODE.zaTarget1,REACODE.zaIncident1
+	 ,REACODE.outParticles,REACODE.MF,REACODE.MT
+	 ,REACSTR.code as reacode1
+	 ,x4pro_c5dat.x1   as En
+	 ,x4pro_c5dat.dx1  as dEn
+	 ,x4pro_c5dat.y    as Sig
+	 ,x4pro_c5dat.dy   as dSig
+	 ,x4pro_c5dat.m0   as m0
+	 ,x4pro_c5dat.dm0  as dm0
+	 ,x4pro_c5dat.m1   as m1
+	 ,x4pro_c5dat.dm1  as dm1
+	 ,x4pro_c5dat.Fcm0 as Fc
+	 ,x4pro_autocorr.FcDecayData
+	 ,x4pro_autocorr.FcDecayMon
+	 ,x4pro_autocorr.autoCorr
+	from x4pro_c5dat
+	 inner join REACODE        on REACODE.ReacodeID=x4pro_c5dat.DatasetID
+	 inner join REACSTR        on REACSTR.ReacodeID=REACODE.ReacodeID
+	 inner join SUBENT         on REACODE.SubentID=SUBENT.SubentID
+	 inner join ENTRY          on ENTRY.EntryID=SUBENT.EntryID
+	 inner join x4pro_ds       on REACODE.ReacodeID=x4pro_ds.DatasetID
+	 left  join x4pro_autocorr on x4pro_autocorr.DatasetID=x4pro_ds.DatasetID
+	where
+	 (x4pro_ds.MF=3 or (x4pro_ds.MF=203 and x4pro_c5dat.m1 is not Null))
+	 and (REACSTR.iReacstr=1)
+	 and (x4pro_ds.x4status<>'S' and x4pro_ds.x4status<>'P')
+	 and (REACSTR.SF8='')
+	 and ((REACSTR.SF9='') or (REACSTR.SF9='EXP'))
+	 and (Target like 'Zn-64') 
+	 and ((Reaction like 'n,p' and REACSTR.SF58 like ',SIG') 
+	 )
+	 and (sProd like '') 
+	order by
+	--  Reacode desc,
+	  ENTRY.YearRef1 desc,x4pro_c5dat.DatasetID
+	  ,En,x4pro_c5dat.idat
+
+EXFOR SQL executed: 0.063sec
+---All entries: 46
+10022*;10224*;10238*;10776*;11274*;11494*;11515*;11590*;11740*;11802*;12956*;13136*;13597*;20107*;20291*;20673*;20721*;20748*;20835*;21343*;21741*;21879*;22093*;22191*;22209*;22338*;22637*;22976*;23032*;30218*;30221*;30263*;30336*;30529*;30707*;30807*;30978*;31110*;31449*;31459*;31460*;31500*;32884*;40009*;40016*;40485*;
+
+___getDatasets from datapoints: 333
+-DS:  1) #32884002  2023,B.Liu                    MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  2) #23032009  2008,M.Furuta                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  3) #22976028  2007,W.Mannhart               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  4) #31500002  1999,Xiaolong Huang           MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  5) #13597002  1995,S.K.Ghorai               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  6) #31460002  1995,D.Kielan                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  7) #31449011  1994,N.I.Molla                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  8) #22637007  1993,C.Konno                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  9) #31459018  1992,I.Garlea                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 10) #22209012  1991,Y.Ikeda                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 11) #22338017  1991,A.Ercan                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 12) #30978030  1991,M.Viennot                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 13) #22093016  1990,I.Kimura                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 14) #22191005  1990,Y.Ikeda                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 15) #13136003  1988,D.A.Rutherford           MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 16) #30707015  1985,J.P.Gupta                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 17) #30807007  1985,I.Garlea                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 18) #21879005  1983,H.A.Hussain              MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 19) #30529002  1979,C.H.King                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 20) #40485003  1978,Yu.A.Nemilov             MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 21) #20721057  1977,N.I.Molla                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 22) #10776006  1976,R.A.Sigg                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 23) #20673010  1976,M.Valkonen               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 24) #20748002  1976,J.L.Casanova             MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 25) #102380431 1975,D.L.Smith                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 26) #102380441 1975,D.L.Smith                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 27) #102380451 1975,D.L.Smith                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 28) #12956003  1975,R.Spangler               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 29) #30263011  1973,J.Dresler                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 30) #10224002  1972,D.C.Santry               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 31) #10224003  1972,D.C.Santry               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 32) #10224004  1972,D.C.Santry               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 33) #10224005  1972,D.C.Santry               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 34) #303360202 1971,R.Prasad                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 35) #10022017  1969,R.C.Barrall              MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 36) #20835006  1969,M.Bormann                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 37) #11515007  1968,N.Ranakumar              MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 38) #400090031 1968,G.P.Vinitskaya           MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 39) #20107002  1966,A.Kjelberg               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 40) #21741005  1966,A.Paulsen                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 41) #40016019  1964,V.N.Levkovskii           MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 42) #11590023  1963,E.T.Bramlitt             MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 43) #21343009  1963,M.Bormann                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 44) #11494011  1962,F.Gabbard                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 45) #20291003  1962,K.Nakai                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 46) #20291005  1962,K.Nakai                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 47) #311100051 1962,E.Weigold                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 48) #30221004  1961,J.J.Van Loef             MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 49) #11740018  1960,I.L.Preiss               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 50) #11802003  1960,A.H.Armstrong            MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 51) #30218002  1959,J.Rapaport               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-rejected- datasetBlackList["11274037"]: "30-ZN-64(N,P)29-CU-64,,SIG   1953,E.B.Paul"
+---Extracted original datasets: 51
+
+___getDatasets from datapoints: 154
+-DS:  1) #13597002  1995,S.K.Ghorai               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  2) #31449011  1994,N.I.Molla                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  3) #22637007  1993,C.Konno                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  4) #31459018  1992,I.Garlea                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  5) #22209012  1991,Y.Ikeda                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  6) #22338017  1991,A.Ercan                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  7) #30978030  1991,M.Viennot                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  8) #22093016  1990,I.Kimura                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  9) #22191005  1990,Y.Ikeda                  MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 10) #13136003  1988,D.A.Rutherford           MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 11) #30707015  1985,J.P.Gupta                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 12) #30807007  1985,I.Garlea                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 13) #20721057  1977,N.I.Molla                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 14) #10776006  1976,R.A.Sigg                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 15) #20748002  1976,J.L.Casanova             MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 16) #102380431 1975,D.L.Smith                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 17) #102380441 1975,D.L.Smith                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 18) #102380451 1975,D.L.Smith                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 19) #12956003  1975,R.Spangler               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 20) #30263011  1973,J.Dresler                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 21) #10224003  1972,D.C.Santry               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 22) #10224004  1972,D.C.Santry               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 23) #10224005  1972,D.C.Santry               MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 24) #303360202 1971,R.Prasad                 MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 25) #10022017  1969,R.C.Barrall              MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 26) #20835006  1969,M.Bormann                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 27) #400090031 1968,G.P.Vinitskaya           MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 28) #11590023  1963,E.T.Bramlitt             MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 29) #21343009  1963,M.Bormann                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS: 30) #11494011  1962,F.Gabbard                MF:3   MT:103 30-ZN-64(N,P)29-CU-64,,SIG ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+---Extracted automatically renormalized datasets: 30
+
+___getDatasets from datapoints: 40
+-DS:  1) #102380432 1975,D.L.Smith                MF:203 MT:103 (30-ZN-64(N,P)29-CU-64,,SIG)/(92-U-235(N,F),,SIG) ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  2) #102380442 1975,D.L.Smith                MF:203 MT:103 (30-ZN-64(N,P)29-CU-64,,SIG)/(92-U-238(N,F),,SIG) ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  3) #102380452 1975,D.L.Smith                MF:203 MT:103 (30-ZN-64(N,P)29-CU-64,,SIG)/(92-U-238(N,F),,SIG) ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  4) #303360201 1971,R.Prasad                 MF:203 MT:103 (30-ZN-64(N,P)29-CU-64,,SIG)/(26-FE-56(N,P)25-MN-56,,SIG) ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  5) #400090032 1968,G.P.Vinitskaya           MF:203 MT:103 (30-ZN-64(N,P)29-CU-64,,SIG)/(29-CU-65(N,2N)29-CU-64,,SIG) ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+-DS:  6) #311100052 1962,E.Weigold                MF:203 MT:103 (30-ZN-64(N,P)29-CU-64,,SIG)/(29-CU-65(N,2N)29-CU-64,,SIG) ds.reac:30-ZN-64(N,P)29-CU-64,,SIG
+---Extract datasets converted from ratios: 6
+datasets:87 original:51X auto-corrected:30A* ratio2cs:6R#
+
+---getReacodes---Datasets: 87
+   Dataset:1/87) 30-ZN-64(N,P)29-CU-64,,SIG 32884002 L.group:1
+   Dataset:2/87) 30-ZN-64(N,P)29-CU-64,,SIG 23032009 L.group:2
+   Dataset:3/87) 30-ZN-64(N,P)29-CU-64,,SIG 22976028 L.group:3
+   Dataset:4/87) 30-ZN-64(N,P)29-CU-64,,SIG 31500002 L.group:4
+   Dataset:5/87) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 L.group:5
+   Dataset:6/87) 30-ZN-64(N,P)29-CU-64,,SIG 13597002 L.group:6
+   Dataset:7/87) 30-ZN-64(N,P)29-CU-64,,SIG 31460002 L.group:7
+   Dataset:8/87) 30-ZN-64(N,P)29-CU-64,,SIG 31449011 L.group:8
+   Dataset:9/87) 30-ZN-64(N,P)29-CU-64,,SIG 31449011 L.group:9
+   Dataset:10/87) 30-ZN-64(N,P)29-CU-64,,SIG 22637007 L.group:10
+   Dataset:11/87) 30-ZN-64(N,P)29-CU-64,,SIG 22637007 L.group:11
+   Dataset:12/87) 30-ZN-64(N,P)29-CU-64,,SIG 31459018 L.group:12
+   Dataset:13/87) 30-ZN-64(N,P)29-CU-64,,SIG 31459018 L.group:13
+   Dataset:14/87) 30-ZN-64(N,P)29-CU-64,,SIG 22209012 L.group:14
+   Dataset:15/87) 30-ZN-64(N,P)29-CU-64,,SIG 22209012 L.group:15
+   Dataset:16/87) 30-ZN-64(N,P)29-CU-64,,SIG 22338017 L.group:16
+   Dataset:17/87) 30-ZN-64(N,P)29-CU-64,,SIG 22338017 L.group:17
+   Dataset:18/87) 30-ZN-64(N,P)29-CU-64,,SIG 30978030 L.group:18
+   Dataset:19/87) 30-ZN-64(N,P)29-CU-64,,SIG 30978030 L.group:19
+   Dataset:20/87) 30-ZN-64(N,P)29-CU-64,,SIG 22093016 L.group:20
+   Dataset:21/87) 30-ZN-64(N,P)29-CU-64,,SIG 22093016 L.group:21
+   Dataset:22/87) 30-ZN-64(N,P)29-CU-64,,SIG 22191005 L.group:22
+   Dataset:23/87) 30-ZN-64(N,P)29-CU-64,,SIG 22191005 L.group:23
+   Dataset:24/87) 30-ZN-64(N,P)29-CU-64,,SIG 13136003 L.group:24
+   Dataset:25/87) 30-ZN-64(N,P)29-CU-64,,SIG 13136003 L.group:25
+   Dataset:26/87) 30-ZN-64(N,P)29-CU-64,,SIG 30707015 L.group:26
+   Dataset:27/87) 30-ZN-64(N,P)29-CU-64,,SIG 30707015 L.group:27
+   Dataset:28/87) 30-ZN-64(N,P)29-CU-64,,SIG 30807007 L.group:28
+   Dataset:29/87) 30-ZN-64(N,P)29-CU-64,,SIG 30807007 L.group:29
+   Dataset:30/87) 30-ZN-64(N,P)29-CU-64,,SIG 21879005 L.group:30
+   Dataset:31/87) 30-ZN-64(N,P)29-CU-64,,SIG 30529002 L.group:31
+   Dataset:32/87) 30-ZN-64(N,P)29-CU-64,,SIG 40485003 L.group:32
+   Dataset:33/87) 30-ZN-64(N,P)29-CU-64,,SIG 20721057 L.group:33
+   Dataset:34/87) 30-ZN-64(N,P)29-CU-64,,SIG 20721057 L.group:34
+   Dataset:35/87) 30-ZN-64(N,P)29-CU-64,,SIG 10776006 L.group:35
+   Dataset:36/87) 30-ZN-64(N,P)29-CU-64,,SIG 10776006 L.group:36
+   Dataset:37/87) 30-ZN-64(N,P)29-CU-64,,SIG 20673010 L.group:37
+   Dataset:38/87) 30-ZN-64(N,P)29-CU-64,,SIG 20748002 L.group:38
+   Dataset:39/87) 30-ZN-64(N,P)29-CU-64,,SIG 20748002 L.group:39
+   Dataset:40/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380431 L.group:40
+   Dataset:41/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380431 L.group:41
+   Dataset:42/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380432 L.group:42
+   Dataset:43/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380441 L.group:43
+   Dataset:44/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380441 L.group:44
+   Dataset:45/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380442 L.group:45
+   Dataset:46/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380451 L.group:46
+   Dataset:47/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380451 L.group:47
+   Dataset:48/87) 30-ZN-64(N,P)29-CU-64,,SIG 102380452 L.group:48
+   Dataset:49/87) 30-ZN-64(N,P)29-CU-64,,SIG 12956003 L.group:49
+   Dataset:50/87) 30-ZN-64(N,P)29-CU-64,,SIG 12956003 L.group:50
+   Dataset:51/87) 30-ZN-64(N,P)29-CU-64,,SIG 30263011 L.group:51
+   Dataset:52/87) 30-ZN-64(N,P)29-CU-64,,SIG 30263011 L.group:52
+   Dataset:53/87) 30-ZN-64(N,P)29-CU-64,,SIG 10224002 L.group:53
+   Dataset:54/87) 30-ZN-64(N,P)29-CU-64,,SIG 10224003 L.group:54
+   Dataset:55/87) 30-ZN-64(N,P)29-CU-64,,SIG 10224003 L.group:55
+   Dataset:56/87) 30-ZN-64(N,P)29-CU-64,,SIG 10224004 L.group:56
+   Dataset:57/87) 30-ZN-64(N,P)29-CU-64,,SIG 10224004 L.group:57
+   Dataset:58/87) 30-ZN-64(N,P)29-CU-64,,SIG 10224005 L.group:58
+   Dataset:59/87) 30-ZN-64(N,P)29-CU-64,,SIG 10224005 L.group:59
+   Dataset:60/87) 30-ZN-64(N,P)29-CU-64,,SIG 303360201 L.group:60
+   Dataset:61/87) 30-ZN-64(N,P)29-CU-64,,SIG 303360202 L.group:61
+   Dataset:62/87) 30-ZN-64(N,P)29-CU-64,,SIG 303360202 L.group:62
+   Dataset:63/87) 30-ZN-64(N,P)29-CU-64,,SIG 10022017 L.group:63
+   Dataset:64/87) 30-ZN-64(N,P)29-CU-64,,SIG 10022017 L.group:64
+   Dataset:65/87) 30-ZN-64(N,P)29-CU-64,,SIG 20835006 L.group:65
+   Dataset:66/87) 30-ZN-64(N,P)29-CU-64,,SIG 20835006 L.group:66
+   Dataset:67/87) 30-ZN-64(N,P)29-CU-64,,SIG 11515007 L.group:67
+   Dataset:68/87) 30-ZN-64(N,P)29-CU-64,,SIG 400090031 L.group:68
+   Dataset:69/87) 30-ZN-64(N,P)29-CU-64,,SIG 400090031 L.group:69
+   Dataset:70/87) 30-ZN-64(N,P)29-CU-64,,SIG 400090032 L.group:70
+   Dataset:71/87) 30-ZN-64(N,P)29-CU-64,,SIG 20107002 L.group:71
+   Dataset:72/87) 30-ZN-64(N,P)29-CU-64,,SIG 21741005 L.group:72
+   Dataset:73/87) 30-ZN-64(N,P)29-CU-64,,SIG 40016019 L.group:73
+   Dataset:74/87) 30-ZN-64(N,P)29-CU-64,,SIG 11590023 L.group:74
+   Dataset:75/87) 30-ZN-64(N,P)29-CU-64,,SIG 11590023 L.group:75
+   Dataset:76/87) 30-ZN-64(N,P)29-CU-64,,SIG 21343009 L.group:76
+   Dataset:77/87) 30-ZN-64(N,P)29-CU-64,,SIG 21343009 L.group:77
+   Dataset:78/87) 30-ZN-64(N,P)29-CU-64,,SIG 11494011 L.group:78
+   Dataset:79/87) 30-ZN-64(N,P)29-CU-64,,SIG 11494011 L.group:79
+   Dataset:80/87) 30-ZN-64(N,P)29-CU-64,,SIG 20291003 L.group:80
+   Dataset:81/87) 30-ZN-64(N,P)29-CU-64,,SIG 20291005 L.group:81
+   Dataset:82/87) 30-ZN-64(N,P)29-CU-64,,SIG 311100051 L.group:82
+   Dataset:83/87) 30-ZN-64(N,P)29-CU-64,,SIG 311100052 L.group:83
+   Dataset:84/87) 30-ZN-64(N,P)29-CU-64,,SIG 30221004 L.group:84
+   Dataset:85/87) 30-ZN-64(N,P)29-CU-64,,SIG 11740018 L.group:85
+   Dataset:86/87) 30-ZN-64(N,P)29-CU-64,,SIG 11802003 L.group:86
+   Dataset:87/87) 30-ZN-64(N,P)29-CU-64,,SIG 30218002 L.group:87
+Reaction codes: 1 
+
+Plot:1/87) #32884002 2023, B.Liu pt:1
+Plot:2/87) #23032009 2008, M.Furuta pt:11
+Plot:3/87) #22976028 2007, W.Mannhart pt:17
+Plot:4/87) #31500002 1999, Xiaolong Huang pt:13
+Plot:5/87) #13597002 1995, S.K.Ghorai pt:4
+Plot:6/87) #13597002 1995, S.K.Ghorai* pt:4
+Plot:7/87) #31460002 1995, D.Kielan pt:8
+Plot:8/87) #31449011 1994, N.I.Molla pt:4
+Plot:9/87) #31449011 1994, N.I.Molla* pt:4
+Plot:10/87) #22637007 1993, C.Konno pt:7
+Plot:11/87) #22637007 1993, C.Konno* pt:7
+Plot:12/87) #31459018 1992, I.Garlea pt:1
+Plot:13/87) #31459018 1992, I.Garlea* pt:1
+Plot:14/87) #22209012 1991, Y.Ikeda pt:2
+Plot:15/87) #22209012 1991, Y.Ikeda* pt:2
+Plot:16/87) #22338017 1991, A.Ercan pt:1
+Plot:17/87) #22338017 1991, A.Ercan* pt:1
+Plot:18/87) #30978030 1991, M.Viennot pt:7
+Plot:19/87) #30978030 1991, M.Viennot* pt:7
+Plot:20/87) #22093016 1990, I.Kimura pt:1
+Plot:21/87) #22093016 1990, I.Kimura* pt:1
+Plot:22/87) #22191005 1990, Y.Ikeda pt:8
+Plot:23/87) #22191005 1990, Y.Ikeda* pt:8
+Plot:24/87) #13136003 1988, D.A.Rutherford pt:1
+Plot:25/87) #13136003 1988, D.A.Rutherford* pt:1
+Plot:26/87) #30707015 1985, J.P.Gupta pt:1
+Plot:27/87) #30707015 1985, J.P.Gupta* pt:1
+Plot:28/87) #30807007 1985, I.Garlea pt:1
+Plot:29/87) #30807007 1985, I.Garlea* pt:1
+Plot:30/87) #21879005 1983, H.A.Hussain pt:13
+Plot:31/87) #30529002 1979, C.H.King pt:18
+Plot:32/87) #40485003 1978, Yu.A.Nemilov pt:4
+Plot:33/87) #20721057 1977, N.I.Molla pt:1
+Plot:34/87) #20721057 1977, N.I.Molla* pt:1
+Plot:35/87) #10776006 1976, R.A.Sigg pt:1
+Plot:36/87) #10776006 1976, R.A.Sigg* pt:1
+Plot:37/87) #20673010 1976, M.Valkonen pt:1
+Plot:38/87) #20748002 1976, J.L.Casanova pt:1
+Plot:39/87) #20748002 1976, J.L.Casanova* pt:1
+Plot:40/87) #102380431 1975, D.L.Smith pt:15
+Plot:41/87) #102380431 1975, D.L.Smith* pt:15
+Plot:42/87) #102380432 1975, D.L.Smith# pt:15
+Plot:43/87) #102380441 1975, D.L.Smith pt:8
+Plot:44/87) #102380441 1975, D.L.Smith* pt:8
+Plot:45/87) #102380442 1975, D.L.Smith# pt:8
+Plot:46/87) #102380451 1975, D.L.Smith pt:10
+Plot:47/87) #102380451 1975, D.L.Smith* pt:10
+Plot:48/87) #102380452 1975, D.L.Smith# pt:10
+Plot:49/87) #12956003 1975, R.Spangler pt:1
+Plot:50/87) #12956003 1975, R.Spangler* pt:1
+Plot:51/87) #30263011 1973, J.Dresler pt:1
+Plot:52/87) #30263011 1973, J.Dresler* pt:1
+Plot:53/87) #10224002 1972, D.C.Santry pt:22
+Plot:54/87) #10224003 1972, D.C.Santry pt:8
+Plot:55/87) #10224003 1972, D.C.Santry* pt:8
+Plot:56/87) #10224004 1972, D.C.Santry pt:33
+Plot:57/87) #10224004 1972, D.C.Santry* pt:33
+Plot:58/87) #10224005 1972, D.C.Santry pt:11
+Plot:59/87) #10224005 1972, D.C.Santry* pt:1
+Plot:60/87) #303360201 1971, R.Prasad# pt:1
+Plot:61/87) #303360202 1971, R.Prasad pt:1
+Plot:62/87) #303360202 1971, R.Prasad* pt:1
+Plot:63/87) #10022017 1969, R.C.Barrall pt:1
+Plot:64/87) #10022017 1969, R.C.Barrall* pt:1
+Plot:65/87) #20835006 1969, M.Bormann pt:10
+Plot:66/87) #20835006 1969, M.Bormann* pt:10
+Plot:67/87) #11515007 1968, N.Ranakumar pt:1
+Plot:68/87) #400090031 1968, G.P.Vinitskaya pt:1
+Plot:69/87) #400090031 1968, G.P.Vinitskaya* pt:1
+Plot:70/87) #400090032 1968, G.P.Vinitskaya# pt:1
+Plot:71/87) #20107002 1966, A.Kjelberg pt:1
+Plot:72/87) #21741005 1966, A.Paulsen pt:24
+Plot:73/87) #40016019 1964, V.N.Levkovskii pt:1
+Plot:74/87) #11590023 1963, E.T.Bramlitt pt:1
+Plot:75/87) #11590023 1963, E.T.Bramlitt* pt:1
+Plot:76/87) #21343009 1963, M.Bormann pt:5
+Plot:77/87) #21343009 1963, M.Bormann* pt:5
+Plot:78/87) #11494011 1962, F.Gabbard pt:17
+Plot:79/87) #11494011 1962, F.Gabbard* pt:17
+Plot:80/87) #20291003 1962, K.Nakai pt:6
+Plot:81/87) #20291005 1962, K.Nakai pt:7
+Plot:82/87) #311100051 1962, E.Weigold pt:5
+Plot:83/87) #311100052 1962, E.Weigold# pt:5
+Plot:84/87) #30221004 1961, J.J.Van Loef pt:1
+Plot:85/87) #11740018 1960, I.L.Preiss pt:1
+Plot:86/87) #11802003 1960, A.H.Armstrong pt:1
+Plot:87/87) #30218002 1959, J.Rapaport pt:12
+
+___getEndfDataForPlot: [Zn-64] [n,p]
+---wgetdb_get:/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json'
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-08-25T16:40:39.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1794
+,"sections":[
+ { "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":301162,"SectID":21398231,"PenSectID":26232896,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":149537,"SectID":8958164,"PenSectID":13602409,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":57370,"SectID":2255236,"PenSectID":7627895,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":306681,"SectID":21545243,"PenSectID":26371718,"LibID":3400,"LibName":"JEFF-4.0","DATE":"AUG24","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":150545,"SectID":9059377,"PenSectID":13699807,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":96419,"SectID":3710621,"PenSectID":6702240,"LibID":3200,"LibName":"JEFF-3.2","DATE":"DEC12","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":276847,"SectID":19207236,"PenSectID":24042301,"LibID":51,"LibName":"JENDL-5","DATE":"20210228","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":39370,"SectID":1303935,"PenSectID":6865185,"LibID":40,"LibName":"JENDL-4.0","DATE":"20100119","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":118572,"SectID":6057550,"PenSectID":10719038,"LibID":41031,"LibName":"BROND-3.1","DATE":"20100119","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":38012,"SectID":1219731,"PenSectID":6917053,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC06","AUTH":"Nikolaev M.N."}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":27288,"SectID":576759,"PenSectID":6876551,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"DEC06","AUTH":"Nikolaev M.N."}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":199104,"SectID":14178672,"PenSectID":18851927,"LibID":5040,"LibName":"CENDL-3.2","DATE":"20180815","AUTH":"Y.L.Han, J.Q.Hu, Y.L.Xu"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":10339,"SectID":174785,"PenSectID":6953779,"LibID":9000,"LibName":"JEFF-3.1/A","DATE":"JUL03","AUTH":"Forrest, Kopecky, Sublet, Koning"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":202948,"SectID":14261112,"PenSectID":18940979,"LibID":34026,"LibName":"IRDFF-II","DATE":"15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":202871,"SectID":14260583,"PenSectID":18940439,"LibID":34027,"LibName":"IRDFF-II-aux","DATE":"15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":96834,"SectID":3762899,"PenSectID":15692908,"LibID":34025,"LibName":"IRDFF-1.05","DATE":"15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":15965,"SectID":249658,"PenSectID":15693725,"LibID":34021,"LibName":"IRDF-2002","DATE":"4","AUTH":""}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":16015,"SectID":249937,"PenSectID":15694008,"LibID":34022,"LibName":"IRDF-2002G","DATE":"4","AUTH":""}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":7016,"SectID":50967,"PenSectID":7541126,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"Scientific Co-Ordination Group"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":116310,"SectID":5884019,"PenSectID":6540118,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"20150325","AUTH":"Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":199694,"SectID":14222146,"PenSectID":19380160,"LibID":6136,"LibName":"JENDL/ImPACT-18","DATE":"20100119","AUTH":"S.Kunieda+"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":155282,"SectID":9159855,"PenSectID":13792011,"LibID":6135,"LibName":"JENDL/AD-2017","DATE":"20140414","AUTH":"N.Iwamoto"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":20053,"SectID":437018,"PenSectID":6504542,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"AUG 7","AUTH":"K. Kosako"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":53086,"SectID":2231082,"PenSectID":7228451,"LibID":33010,"LibName":"EAF-2010","DATE":"SEP11","AUTH":""}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":18894,"SectID":281939,"PenSectID":7248029,"LibID":49020,"LibName":"MENDL-2","DATE":"SEP94","AUTH":"Yu.N.Shubin et.al."}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":20370,"SectID":443582,"PenSectID":19523192,"LibID":55040,"LibName":"IAEA-Therapeutic","DATE":"15","AUTH":"K.I.Zolotarev"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":291043,"SectID":20752444,"PenSectID":24748789,"LibID":61023,"LibName":"TENDL-2023","DATE":"DEC23","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":247168,"SectID":16347590,"PenSectID":21308973,"LibID":61022,"LibName":"TENDL-2021","DATE":"JAN22","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":199002,"SectID":14156899,"PenSectID":18800968,"LibID":61020,"LibName":"TENDL-2019.s60","DATE":"NOV19","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":302590,"SectID":21497786,"PenSectID":26328415,"LibID":33036,"LibName":"FENDL-3.2c","DATE":"AUG 7","AUTH":"K. Kosako"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":227877,"SectID":14632013,"PenSectID":19407864,"LibID":33035,"LibName":"FENDL-3.2b","DATE":"AUG 7","AUTH":"K. Kosako"}
+,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":142044,"SectID":8901004,"PenSectID":13488151,"LibID":33032,"LibName":"FENDL-3.1c","DATE":"AUG 7","AUTH":"K. Kosako"}
+]
+}
+
+format=WebEndfSectionsList-0.1
+___Retrieved sections:32
+SelectedLib-Sect:1) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 301162, 'SectID': 21398231, 'PenSectID': 26232896, 'LibID': 810, 'LibName': 'ENDF/B-VIII.1', 'DATE': '20240830', 'AUTH': 'N.Iwamoto'}
+SelectedLib-Sect:5) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 150545, 'SectID': 9059377, 'PenSectID': 13699807, 'LibID': 3300, 'LibName': 'JEFF-3.3', 'DATE': '20171231', 'AUTH': 'A.J. Koning and D. Rochman'}
+SelectedLib-Sect:9) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 118572, 'SectID': 6057550, 'PenSectID': 10719038, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': '20100119', 'AUTH': 'N.Iwamoto'}
+SelectedLib-Sect:12) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 199104, 'SectID': 14178672, 'PenSectID': 18851927, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': '20180815', 'AUTH': 'Y.L.Han, J.Q.Hu, Y.L.Xu'}
+Required sections:4
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26232896&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26232896&json'
+Downloaded:1)	ZN-64(N,P)CU-64,SIG	ENDF/B-VIII.1	PenSectID:26232896	pts:72	idy=71
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13699807&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13699807&json'
+Downloaded:2)	ZN-64(N,P)CU-64,SIG	JEFF-3.3	PenSectID:13699807	pts:333	idy=127
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10719038&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10719038&json'
+Downloaded:3)	ZN-64(N,P)CU-64,SIG	BROND-3.1	PenSectID:10719038	pts:181	idy=0
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18851927&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18851927&json'
+Downloaded:4)	ZN-64(N,P)CU-64,SIG	CENDL-3.2	PenSectID:18851927	pts:178	idy=0
+
+EXFOR SQL executed:  0.063sec
+ENDF Web downloaded: 0.025sec
+Plot:1/4) 26232896	ENDF/B-VIII.1	pt:72	color:0,0,255
+Plot:2/4) 13699807	JEFF-3.3	pt:331	color:0,127,63
+Plot:3/4) 10719038	BROND-3.1	pt:181	color:255,0,255
+Plot:4/4) 18851927	CENDL-3.2	pt:178	color:255,0,0
+Will try---write_image: Zn64np.html.png
+
+Program successfully completed

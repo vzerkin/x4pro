@@ -1,0 +1,28 @@
+Program: covar1.py, ver. 2022-11-09
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Retrieve and plot EXFOR Correlation matrices
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+Retrieved rows: 1
+
+___getDatasets from datapoints: 1
+___Row:0/1) DS:23114002
+0_______Marix::[COR:ERR-T]
+1_______Marix::[COR:MONIT-ERR]
+2_______Marix::[COR:ERR-5]
+datasets: 3
+___Dataset:#23114002 marix:9x9 name:23114002.COR:ERR-T (PER-CENT)
+___Dataset:#23114002 marix:9x9 name:23114002.COR:MONIT-ERR (PER-CENT)
+___Dataset:#23114002 marix:9x9 name:23114002.COR:ERR-5 (PER-CENT)
+ndat:3___subplots:2x2
+ii=1 ix=0 iy=0 iii=221
+ii=2 ix=1 iy=0 iii=222
+ii=3 ix=0 iy=1 iii=223
+_1_Dataset:#23114002 marix:9x9 name:23114002.COR:ERR-T (PER-CENT)
+ii=0 ix=0 iy=0
+_1_Dataset:#23114002 marix:9x9 name:23114002.COR:MONIT-ERR (PER-CENT)
+ii=1 ix=1 iy=0
+_1_Dataset:#23114002 marix:9x9 name:23114002.COR:ERR-5 (PER-CENT)
+ii=2 ix=0 iy=1

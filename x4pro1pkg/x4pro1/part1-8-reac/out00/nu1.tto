@@ -1,0 +1,478 @@
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-08-25       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-08-25 23:12:40
+
+---Arguments from command-line---
+   1  arg: -o:nu1
+   2  arg: -x:x1
+   3  arg: -lines
+   4  arg: -sym
+   5  arg: -ylog
+   6  arg: -xlog
+   7  arg: -fx:1e6
+   8  arg: -annot:3,11.5,<b>NUBAR</b>
+   ---str2annot:[3,11.5,<b>NUBAR</b>] --> ('<b>NUBAR</b>', 3.0, 11.5)
+   9  arg: 92-U-238(N,F),PR,NU
+
+---Input:
+   Reaction:  ['92-U-238(N,F),PR,NU']
+   xn:        x1
+   x1range:   None - None
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        1
+   xrange:    None
+   Output:    nu1
+   x4ei:      
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 1
+----1.
+    fullCode       92-U-238(N,F),PR,NU
+    ReactionType   NU         Neutron yield (nu-bar)
+    WebQuantity1   NU         Fission neutron multiplicities
+    nx             1          Number of x (independent variables)
+    y     c5data   PART/FIS   Data: data                           ///particles per fission
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+/Summary of Reaction-Codes
+Summary of Units 2
+---basicUnits:PART/FIS    category:FY
+   FY   1/4   PC/FIS      0.01            particles per 100 fissions
+   FY   2/4   PART/FIS    1.0             particles per fission
+   FY   3/4   PRD/FIS     1.0             products/fission
+   FY   4/4   PRT/FIS     1.0             particles per fission
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x1  reacodes: ['92-U-238(N,F),PR,NU']
+SQL:
+select *                                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x1 as XX, dx1 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x1'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+      fullCode like '92-U-238(N,F),PR,NU'
+ ) 
+  order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 246
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:246 xn=x1  fx=1.0e-06 fy=1.0e+00
+
+-new-1) 92-U-238(N,F),PR,NU 330840031 2015 Desai y=DATA(EN)
+1/246:1) 92-U-238(N,F),PR,NU 330840031 2015 Desai x:2.0 y:2.59 dy:0.02 dx:None
+2/246:1) 92-U-238(N,F),PR,NU 330840031 2015 Desai x:2.5 y:2.62 dy:0.02 dx:None
+3/246:1) 92-U-238(N,F),PR,NU 330840031 2015 Desai x:3.0 y:2.72 dy:0.025 dx:None
+
+-new-2) 92-U-238(N,F),PR,NU 330840041 2015 Desai y=DATA(EN)
+4/246:2) 92-U-238(N,F),PR,NU 330840041 2015 Desai x:2.0 y:2.59 dy:0.025 dx:None
+5/246:2) 92-U-238(N,F),PR,NU 330840041 2015 Desai x:2.5 y:2.62 dy:0.025 dx:None
+6/246:2) 92-U-238(N,F),PR,NU 330840041 2015 Desai x:3.0 y:2.62 dy:0.025 dx:None
+
+-new-3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent y=DATA(EN)
+7/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:1.39057 y:2.50296 dy:0.355338 dx:None
+8/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:1.58525 y:2.89963 dy:0.249436 dx:None
+9/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:1.80719 y:2.47254 dy:0.208494 dx:None
+10/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:2.06019 y:2.77328 dy:0.196131 dx:None
+11/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:2.34862 y:2.76306 dy:0.185854 dx:None
+12/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:2.67743 y:2.64286 dy:0.185945 dx:None
+13/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:3.05227 y:2.61352 dy:0.181496 dx:None
+14/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:3.47958 y:2.33066 dy:0.186384 dx:None
+15/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:3.96673 y:2.78304 dy:0.17198 dx:None
+16/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:4.52207 y:2.92825 dy:0.167301 dx:None
+17/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:5.15516 y:2.8789 dy:0.159823 dx:None
+18/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:5.87688 y:3.19902 dy:0.154175 dx:None
+19/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:6.69964 y:3.29485 dy:0.128396 dx:None
+20/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:7.63759 y:3.52655 dy:0.134278 dx:None
+21/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:8.70686 y:3.68242 dy:0.136136 dx:None
+22/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:9.92582 y:3.86793 dy:0.145246 dx:None
+23/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:11.3154 y:3.81355 dy:0.155891 dx:None
+24/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:12.8996 y:4.39874 dy:0.160402 dx:None
+25/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:14.7055 y:4.69169 dy:0.158944 dx:None
+26/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:16.7643 y:4.87619 dy:0.154534 dx:None
+27/246:3) 92-U-238(N,F),PR,NU 14384002 2014 Laurent x:19.1113 y:5.20817 dy:0.153385 dx:None
+
+-new-4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb y=DATA(EN)
+28/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:1.76 y:2.6 dy:0.08 dx:None
+29/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:2.52 y:2.78 dy:0.08 dx:None
+30/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:3.54 y:2.91 dy:0.08 dx:None
+31/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:4.5 y:3.14 dy:0.1 dx:None
+32/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:5.55 y:3.17 dy:0.1 dx:None
+33/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:6.54 y:3.08 dy:0.09 dx:None
+34/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:7.56 y:3.16 dy:0.09 dx:None
+35/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:8.55 y:3.42 dy:0.1 dx:None
+36/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:9.57 y:3.49 dy:0.1 dx:None
+37/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:11.03 y:3.68 dy:0.11 dx:None
+38/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:13.04 y:3.92 dy:0.12 dx:None
+39/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:15.05 y:4.15 dy:0.13 dx:None
+40/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:17.06 y:4.33 dy:0.13 dx:None
+41/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:19.05 y:4.62 dy:0.14 dx:None
+42/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:21.73 y:4.72 dy:0.14 dx:None
+43/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:24.79 y:5.19 dy:0.18 dx:None
+44/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:27.65 y:5.63 dy:0.19 dx:None
+45/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:30.71 y:5.95 dy:0.21 dx:None
+46/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:33.77 y:6.22 dy:0.16 dx:None
+47/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:37.85 y:6.58 dy:0.17 dx:None
+48/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:42.75 y:7.07 dy:0.21 dx:None
+49/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:47.86 y:7.43 dy:0.23 dx:None
+50/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:52.76 y:7.88 dy:0.25 dx:None
+51/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:57.66 y:8.21 dy:0.23 dx:None
+52/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:65.21 y:8.59 dy:0.3 dx:None
+53/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:75.22 y:9.08 dy:0.25 dx:None
+54/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:85.43 y:9.57 dy:0.32 dx:None
+55/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:95.23 y:10.01 dy:0.28 dx:None
+56/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:110.15 y:10.48 dy:0.34 dx:None
+57/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:130.16 y:11.21 dy:0.32 dx:None
+58/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:150.18 y:11.77 dy:0.36 dx:None
+59/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:170.2 y:12.27 dy:0.38 dx:None
+60/246:4) 92-U-238(N,F),PR,NU 14215003 2007 Taieb x:190.01 y:12.78 dy:0.43 dx:None
+
+-new-5) 92-U-238(N,F),PR,NU 41461003 1996 Smirenkin y=DATA(EN)
+61/246:5) 92-U-238(N,F),PR,NU 41461003 1996 Smirenkin x:16.0 y:4.58 dy:0.14 dx:None
+62/246:5) 92-U-238(N,F),PR,NU 41461003 1996 Smirenkin x:17.7 y:4.63 dy:0.14 dx:None
+
+-new-6) 92-U-238(N,F),PR,NU 411100071 1991 Boikov y=DATA(EN)
+63/246:6) 92-U-238(N,F),PR,NU 411100071 1991 Boikov x:2.9 y:2.71 dy:0.07 dx:None
+64/246:6) 92-U-238(N,F),PR,NU 411100071 1991 Boikov x:14.7 y:4.25 dy:0.1 dx:None
+
+-new-7) 92-U-238(N,F),PR,NU 411100072 1991 Boikov y=DATA(EN)
+65/246:7) 92-U-238(N,F),PR,NU 411100072 1991 Boikov x:2.9 y:2.76 dy:0.07 dx:None
+66/246:7) 92-U-238(N,F),PR,NU 411100072 1991 Boikov x:14.7 y:4.37 dy:0.12 dx:None
+
+-new-8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva y=DATA(EN)
+67/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:1.3 y:2.431 dy:0.048 dx:0.05
+68/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:1.4 y:2.458 dy:0.045 dx:0.05
+69/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:1.5 y:2.473 dy:0.027 dx:0.04
+70/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:1.6 y:2.533 dy:0.026 dx:0.04
+71/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:1.7 y:2.51 dy:0.035 dx:0.04
+72/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:1.75 y:2.61 dy:0.023 dx:0.06
+73/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:1.8 y:2.537 dy:0.026 dx:0.04
+74/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:1.9 y:2.547 dy:0.025 dx:0.04
+75/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.0 y:2.565 dy:0.022 dx:0.04
+76/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.1 y:2.613 dy:0.031 dx:0.04
+77/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.2 y:2.625 dy:0.025 dx:0.03
+78/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.3 y:2.655 dy:0.022 dx:0.03
+79/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.4 y:2.587 dy:0.022 dx:0.03
+80/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.5 y:2.632 dy:0.022 dx:0.03
+81/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.6 y:2.638 dy:0.025 dx:0.03
+82/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.7 y:2.661 dy:0.028 dx:0.03
+83/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.8 y:2.687 dy:0.02 dx:0.03
+84/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:2.9 y:2.693 dy:0.023 dx:0.04
+85/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:3.0 y:2.683 dy:0.023 dx:0.04
+86/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:3.1 y:2.693 dy:0.028 dx:0.04
+87/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:3.2 y:2.735 dy:0.023 dx:0.04
+88/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:3.3 y:2.765 dy:0.023 dx:0.04
+89/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:3.4 y:2.745 dy:0.026 dx:0.03
+90/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:3.5 y:2.735 dy:0.023 dx:0.03
+91/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:3.6 y:2.803 dy:0.029 dx:0.03
+92/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:3.7 y:2.79 dy:0.026 dx:0.03
+93/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:5.58 y:3.151 dy:0.058 dx:0.08
+94/246:8) 92-U-238(N,F),PR,NU 40665002 1981 Vorob'eva x:5.89 y:3.219 dy:0.031 dx:0.07
+
+-new-9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut y=DATA(EN)
+95/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:1.36 y:2.512 dy:0.03 dx:0.165
+96/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:1.37 y:2.556 dy:0.03 dx:0.15
+97/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:2.33 y:2.583 dy:0.03 dx:0.1
+98/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:2.45 y:2.6 dy:0.03 dx:0.125
+99/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:2.98 y:2.637 dy:0.023 dx:0.105
+100/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:3.5 y:2.756 dy:0.029 dx:0.1
+101/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:3.93 y:2.841 dy:0.027 dx:0.075
+102/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:4.03 y:2.84 dy:0.023 dx:0.09
+103/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:4.43 y:2.909 dy:0.03 dx:0.09
+104/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:4.54 y:2.916 dy:0.027 dx:0.08
+105/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:4.94 y:3.016 dy:0.03 dx:0.085
+106/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:5.06 y:3.035 dy:0.024 dx:0.07
+107/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:5.57 y:3.094 dy:0.035 dx:0.07
+108/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:5.98 y:3.211 dy:0.039 dx:0.075
+109/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:6.08 y:3.187 dy:0.034 dx:0.065
+110/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:6.97 y:3.355 dy:0.025 dx:0.17
+111/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:7.09 y:3.353 dy:0.032 dx:0.065
+112/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:7.48 y:3.392 dy:0.022 dx:0.165
+113/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:7.99 y:3.476 dy:0.021 dx:0.145
+114/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:8.49 y:3.547 dy:0.022 dx:0.13
+115/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:9.0 y:3.645 dy:0.022 dx:0.12
+116/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:9.49 y:3.698 dy:0.024 dx:0.11
+117/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:9.74 y:3.742 dy:0.026 dx:0.11
+118/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:9.98 y:3.814 dy:0.02 dx:0.1
+119/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:10.47 y:3.831 dy:0.024 dx:0.095
+120/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:10.96 y:3.927 dy:0.022 dx:0.09
+121/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:11.44 y:4.0 dy:0.025 dx:0.085
+122/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:11.93 y:4.094 dy:0.024 dx:0.08
+123/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:12.41 y:4.148 dy:0.024 dx:0.08
+124/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:12.88 y:4.205 dy:0.026 dx:0.08
+125/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:13.36 y:4.291 dy:0.027 dx:0.075
+126/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:13.84 y:4.393 dy:0.025 dx:0.075
+127/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:14.31 y:4.443 dy:0.026 dx:0.07
+128/246:9) 92-U-238(N,F),PR,NU 20490002 1980 Frehaut x:14.79 y:4.445 dy:0.025 dx:0.07
+
+-new-10) 92-U-238(N,F),PR,NU 21685003 1980 Frehaut y=DATA(EN)
+129/246:10) 92-U-238(N,F),PR,NU 21685003 1980 Frehaut x:22.79 y:5.513 dy:0.043 dx:0.14
+130/246:10) 92-U-238(N,F),PR,NU 21685003 1980 Frehaut x:23.94 y:5.702 dy:0.045 dx:0.115
+131/246:10) 92-U-238(N,F),PR,NU 21685003 1980 Frehaut x:25.05 y:5.755 dy:0.046 dx:0.105
+132/246:10) 92-U-238(N,F),PR,NU 21685003 1980 Frehaut x:26.15 y:5.823 dy:0.038 dx:0.09
+133/246:10) 92-U-238(N,F),PR,NU 21685003 1980 Frehaut x:27.22 y:6.099 dy:0.051 dx:0.08
+134/246:10) 92-U-238(N,F),PR,NU 21685003 1980 Frehaut x:28.28 y:6.137 dy:0.067 dx:0.075
+
+-new-11) 92-U-238(N,F),PR,NU 406310061 1980 Kornilov y=DATA(EN)
+135/246:11) 92-U-238(N,F),PR,NU 406310061 1980 Kornilov x:6.01 y:3.09 dy:0.11 dx:None
+136/246:11) 92-U-238(N,F),PR,NU 406310061 1980 Kornilov x:7.02 y:2.85 dy:0.09 dx:None
+137/246:11) 92-U-238(N,F),PR,NU 406310061 1980 Kornilov x:8.01 y:3.12 dy:0.17 dx:None
+138/246:11) 92-U-238(N,F),PR,NU 406310061 1980 Kornilov x:8.94 y:3.16 dy:0.24 dx:None
+
+-new-12) 92-U-238(N,F),PR,NU 40740003 1979 Baryba y=DATA(EN)
+139/246:12) 92-U-238(N,F),PR,NU 40740003 1979 Baryba x:14.3 y:5.07 dy:0.13 dx:None
+
+-new-13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu y=DATA(EN)
+140/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:1.22 y:2.421 dy:0.099 dx:None
+141/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:1.41 y:2.444 dy:0.042 dx:None
+142/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:1.62 y:2.488 dy:0.081 dx:None
+143/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:4.0 y:2.846 dy:0.062 dx:None
+144/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:4.14 y:2.905 dy:0.043 dx:None
+145/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:4.48 y:2.946 dy:0.06 dx:None
+146/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:4.66 y:2.94 dy:0.048 dx:None
+147/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:4.94 y:3.017 dy:0.072 dx:None
+148/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:5.08 y:3.024 dy:0.043 dx:None
+149/246:13) 92-U-238(N,F),PR,NU 32606002 1975 Bao Zongyu x:5.5 y:3.055 dy:0.047 dx:None
+
+-new-14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov y=DATA(EN)
+150/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:1.2 y:2.545 dy:0.036 dx:0.06
+151/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:1.3 y:2.45 dy:0.036 dx:0.056
+152/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:1.4 y:2.481 dy:0.031 dx:0.061
+153/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:1.5 y:2.533 dy:0.016 dx:0.059
+154/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:1.6 y:2.557 dy:0.018 dx:0.06
+155/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:1.7 y:2.555 dy:0.016 dx:0.057
+156/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:1.8 y:2.591 dy:0.021 dx:0.06
+157/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:1.9 y:2.61 dy:0.019 dx:0.054
+158/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.0 y:2.601 dy:0.024 dx:0.053
+159/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.1 y:2.625 dy:0.02 dx:0.053
+160/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.2 y:2.606 dy:0.021 dx:0.055
+161/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.3 y:2.639 dy:0.019 dx:0.055
+162/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.4 y:2.651 dy:0.018 dx:0.051
+163/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.5 y:2.652 dy:0.022 dx:0.048
+164/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.6 y:2.696 dy:0.019 dx:0.046
+165/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.7 y:2.699 dy:0.018 dx:0.047
+166/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:2.9 y:2.738 dy:0.02 dx:0.059
+167/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:3.1 y:2.766 dy:0.017 dx:0.057
+168/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:3.3 y:2.774 dy:0.022 dx:0.055
+169/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:3.78 y:2.828 dy:0.026 dx:0.25
+170/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:4.17 y:2.921 dy:0.026 dx:0.2
+171/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:4.61 y:2.984 dy:0.029 dx:0.16
+172/246:14) 92-U-238(N,F),PR,NU 404290032 1975 Nurpeisov x:4.89 y:3.063 dy:0.037 dx:0.14
+
+-new-15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin y=DATA(EN)
+173/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.27 y:2.503 dy:0.055 dx:None
+174/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.3 y:2.498 dy:0.052 dx:None
+175/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.33 y:2.544 dy:0.051 dx:None
+176/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.35 y:2.575 dy:0.049 dx:None
+177/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.42 y:2.591 dy:0.046 dx:None
+178/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.45 y:2.591 dy:0.046 dx:None
+179/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.48 y:2.518 dy:0.045 dx:None
+180/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.51 y:2.47 dy:0.044 dx:None
+181/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.55 y:2.467 dy:0.042 dx:None
+182/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.58 y:2.576 dy:0.044 dx:None
+183/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.62 y:2.577 dy:0.041 dx:None
+184/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.7 y:2.639 dy:0.042 dx:None
+185/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.78 y:2.552 dy:0.041 dx:None
+186/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.82 y:2.589 dy:0.041 dx:None
+187/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.87 y:2.586 dy:0.041 dx:None
+188/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.92 y:2.543 dy:0.041 dx:None
+189/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:1.97 y:2.621 dy:0.039 dx:None
+190/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.02 y:2.591 dy:0.039 dx:None
+191/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.07 y:2.587 dy:0.041 dx:None
+192/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.13 y:2.612 dy:0.039 dx:None
+193/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.18 y:2.61 dy:0.039 dx:None
+194/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.24 y:2.618 dy:0.042 dx:None
+195/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.31 y:2.653 dy:0.042 dx:None
+196/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.37 y:2.679 dy:0.043 dx:None
+197/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.44 y:2.708 dy:0.043 dx:None
+198/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.51 y:2.652 dy:0.042 dx:None
+199/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.59 y:2.609 dy:0.044 dx:None
+200/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.66 y:2.63 dy:0.045 dx:None
+201/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.74 y:2.613 dy:0.044 dx:None
+202/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.83 y:2.661 dy:0.045 dx:None
+203/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:2.92 y:2.644 dy:0.047 dx:None
+204/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:3.11 y:2.689 dy:0.048 dx:None
+205/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:3.21 y:2.721 dy:0.049 dx:None
+206/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:3.32 y:2.721 dy:0.049 dx:None
+207/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:3.43 y:2.812 dy:0.053 dx:None
+208/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:3.55 y:2.778 dy:0.053 dx:None
+209/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:3.68 y:2.819 dy:0.056 dx:None
+210/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:3.8 y:2.68 dy:0.057 dx:None
+211/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:3.94 y:2.886 dy:0.058 dx:None
+212/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:4.09 y:2.911 dy:0.061 dx:None
+213/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:4.24 y:2.876 dy:0.058 dx:None
+214/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:4.5 y:2.981 dy:0.057 dx:None
+215/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:4.86 y:3.023 dy:0.057 dx:None
+216/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:5.39 y:3.095 dy:0.08 dx:None
+217/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:5.62 y:3.186 dy:0.092 dx:None
+218/246:15) 92-U-238(N,F),PR,NU 40138002 1972 Sabin x:5.87 y:3.184 dy:0.092 dx:None
+
+-new-16) 92-U-238(N,F),PR,NU 212520042 1966 Fieldhouse y=DATA(EN)
+219/246:16) 92-U-238(N,F),PR,NU 212520042 1966 Fieldhouse x:14.2 y:4.421 dy:0.096841 dx:None
+
+-new-17) 92-U-238(N,F),PR,NU 21135006 1965 Mather y=DATA(EN)
+220/246:17) 92-U-238(N,F),PR,NU 21135006 1965 Mather x:1.41 y:2.57 dy:0.037 dx:0.16
+221/246:17) 92-U-238(N,F),PR,NU 21135006 1965 Mather x:1.98 y:2.658 dy:0.028 dx:0.145
+222/246:17) 92-U-238(N,F),PR,NU 21135006 1965 Mather x:3.0 y:2.788 dy:0.03 dx:0.115
+223/246:17) 92-U-238(N,F),PR,NU 21135006 1965 Mather x:4.02 y:2.973 dy:0.031 dx:0.095
+
+-new-18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson y=DATA(EN)
+224/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:1.49 y:2.52 dy:0.056 dx:0.01
+225/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:2.4 y:2.671 dy:0.051 dx:0.01
+226/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:3.5 y:2.864 dy:0.049 dx:0.02
+227/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:4.88 y:3.068 dy:0.049 dx:0.05
+228/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:5.63 y:3.159 dy:0.059 dx:0.15
+229/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:6.32 y:3.269 dy:0.059 dx:0.06
+230/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:6.83 y:3.379 dy:0.054 dx:0.06
+231/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:7.45 y:3.518 dy:0.053 dx:0.05
+232/246:18) 92-U-238(N,F),PR,NU 20075002 1964 Asplund-Nilsson x:14.8 y:4.563 dy:0.067 dx:0.2
+
+-new-19) 92-U-238(N,F),PR,NU 12462002 1961 Butler y=DATA(EN)
+233/246:19) 92-U-238(N,F),PR,NU 12462002 1961 Butler x:1.58 y:2.56 dy:0.03 dx:None
+
+-new-20) 92-U-238(N,F),PR,NU 20072003 1961 Conde y=DATA(EN)
+234/246:20) 92-U-238(N,F),PR,NU 20072003 1961 Conde x:3.6 y:2.79 dy:0.09 dx:0.6
+235/246:20) 92-U-238(N,F),PR,NU 20072003 1961 Conde x:14.9 y:4.75 dy:0.12 dx:0.6
+
+-new-21) 92-U-238(N,F),PR,NU 412130032 1961 Kuz'minov y=DATA(EN)
+236/246:21) 92-U-238(N,F),PR,NU 412130032 1961 Kuz'minov x:2.3 y:2.72 dy:0.0865055 dx:0.1
+237/246:21) 92-U-238(N,F),PR,NU 412130032 1961 Kuz'minov x:3.75 y:3.02 dy:0.106467 dx:0.15
+
+-new-22) 92-U-238(N,F),PR,NU 21453002 1960 Leroy y=DATA(EN)
+238/246:22) 92-U-238(N,F),PR,NU 21453002 1960 Leroy x:14.2 y:4.55 dy:0.15 dx:None
+
+-new-23) 92-U-238(N,F),PR,NU 40785003 1960 Vasil'ev y=DATA(EN)
+239/246:23) 92-U-238(N,F),PR,NU 40785003 1960 Vasil'ev x:14.3 y:4.28 dy:0.3 dx:None
+
+-new-24) 92-U-238(N,F),PR,NU 41254002 1959 Flerov y=DATA(EN)
+240/246:24) 92-U-238(N,F),PR,NU 41254002 1959 Flerov x:14.0 y:4.45 dy:0.35 dx:None
+
+-new-25) 92-U-238(N,F),PR,NU 40671003 1958 Bondarenko y=DATA(EN)
+241/246:25) 92-U-238(N,F),PR,NU 40671003 1958 Bondarenko x:4.0 y:3.11 dy:0.1 dx:None
+
+-new-26) 92-U-238(N,F),PR,NU 40806005 1958 Flerov y=DATA(EN)
+242/246:26) 92-U-238(N,F),PR,NU 40806005 1958 Flerov x:14.0 y:4.5 dy:0.32 dx:None
+
+-new-27) 92-U-238(N,F),PR,NU 12436003 1957 Diven y=DATA(EN)
+243/246:27) 92-U-238(N,F),PR,NU 12436003 1957 Diven x:1.5 y:2.65 dy:0.09 dx:None
+
+-new-28) 92-U-238(N,F),PR,NU 21696005 1956 Johnstone y=DATA(EN)
+244/246:28) 92-U-238(N,F),PR,NU 21696005 1956 Johnstone x:2.5 y:2.35 dy:0.18 dx:None
+245/246:28) 92-U-238(N,F),PR,NU 21696005 1956 Johnstone x:14.1 y:4.13 dy:0.25 dx:None
+
+-new-29) 92-U-238(N,F),PR,NU 12397004 1955 Bethe y=DATA(EN)
+246/246:29) 92-U-238(N,F),PR,NU 12397004 1955 Bethe x:4.5 y:3.1 dy:0.4 dx:None
+---outDatasets:29 datasets:29
+---ENTRY: 12397*;12436*;12462*;14215*;14384*;20072*;20075*;20490*;21135*;21252*;21453*;21685*;21696*;32606*;33084*;40138*;40429*;40631*;40665*;40671*;40740*;40785*;40806*;41110*;41213*;41254*;41461*;
+datasets: 29
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 29
+1) 92-U-238(N,F),PR,NU
+	Dataset:1/29) 92-U-238(N,F),PR,NU 330840031 2015, V.V.Desai
+	Dataset:2/29) 92-U-238(N,F),PR,NU 330840041 2015, V.V.Desai
+	Dataset:3/29) 92-U-238(N,F),PR,NU 14384002 2014, B.Laurent
+	Dataset:4/29) 92-U-238(N,F),PR,NU 14215003 2007, J.Taieb
+	Dataset:5/29) 92-U-238(N,F),PR,NU 41461003 1996, G.N.Smirenkin
+	Dataset:6/29) 92-U-238(N,F),PR,NU 411100071 1991, G.S.Boikov
+	Dataset:7/29) 92-U-238(N,F),PR,NU 411100072 1991, G.S.Boikov
+	Dataset:8/29) 92-U-238(N,F),PR,NU 40665002 1981, V.G.Vorob'eva
+	Dataset:9/29) 92-U-238(N,F),PR,NU 20490002 1980, J.Frehaut
+	Dataset:10/29) 92-U-238(N,F),PR,NU 21685003 1980, J.Frehaut
+	Dataset:11/29) 92-U-238(N,F),PR,NU 406310061 1980, N.V.Kornilov
+	Dataset:12/29) 92-U-238(N,F),PR,NU 40740003 1979, V.Ya.Baryba
+	Dataset:13/29) 92-U-238(N,F),PR,NU 32606002 1975, Bao Zongyu
+	Dataset:14/29) 92-U-238(N,F),PR,NU 404290032 1975, B.Nurpeisov
+	Dataset:15/29) 92-U-238(N,F),PR,NU 40138002 1972, M.V.Sabin
+	Dataset:16/29) 92-U-238(N,F),PR,NU 212520042 1966, P.Fieldhouse
+	Dataset:17/29) 92-U-238(N,F),PR,NU 21135006 1965, D.S.Mather
+	Dataset:18/29) 92-U-238(N,F),PR,NU 20075002 1964, I.Asplund-Nilsson
+	Dataset:19/29) 92-U-238(N,F),PR,NU 12462002 1961, D.Butler
+	Dataset:20/29) 92-U-238(N,F),PR,NU 20072003 1961, H.Conde
+	Dataset:21/29) 92-U-238(N,F),PR,NU 412130032 1961, B.D.Kuz'minov
+	Dataset:22/29) 92-U-238(N,F),PR,NU 21453002 1960, J.Leroy
+	Dataset:23/29) 92-U-238(N,F),PR,NU 40785003 1960, Yu.A.Vasil'ev
+	Dataset:24/29) 92-U-238(N,F),PR,NU 41254002 1959, N.N.Flerov
+	Dataset:25/29) 92-U-238(N,F),PR,NU 40671003 1958, I.I.Bondarenko
+	Dataset:26/29) 92-U-238(N,F),PR,NU 40806005 1958, N.N.Flerov
+	Dataset:27/29) 92-U-238(N,F),PR,NU 12436003 1957, B.C.Diven
+	Dataset:28/29) 92-U-238(N,F),PR,NU 21696005 1956, I.Johnstone
+	Dataset:29/29) 92-U-238(N,F),PR,NU 12397004 1955, H.A.Bethe
+---reacodes: 1 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/29) #330840031 2015, V.V.Desai pt:3
+Plot:2/29) #330840041 2015, V.V.Desai pt:3
+Plot:3/29) #14384002 2014, B.Laurent pt:21
+Plot:4/29) #14215003 2007, J.Taieb pt:33
+Plot:5/29) #41461003 1996, G.N.Smirenkin pt:2
+Plot:6/29) #411100071 1991, G.S.Boikov pt:2
+Plot:7/29) #411100072 1991, G.S.Boikov pt:2
+Plot:8/29) #40665002 1981, V.G.Vorob'eva pt:28
+Plot:9/29) #20490002 1980, J.Frehaut pt:34
+Plot:10/29) #21685003 1980, J.Frehaut pt:6
+Plot:11/29) #406310061 1980, N.V.Kornilov pt:4
+Plot:12/29) #40740003 1979, V.Ya.Baryba pt:1
+Plot:13/29) #32606002 1975, Bao Zongyu pt:10
+Plot:14/29) #404290032 1975, B.Nurpeisov pt:23
+Plot:15/29) #40138002 1972, M.V.Sabin pt:46
+Plot:16/29) #212520042 1966, P.Fieldhouse pt:1
+Plot:17/29) #21135006 1965, D.S.Mather pt:4
+Plot:18/29) #20075002 1964, I.Asplund-Nilsson pt:9
+Plot:19/29) #12462002 1961, D.Butler pt:1
+Plot:20/29) #20072003 1961, H.Conde pt:2
+Plot:21/29) #412130032 1961, B.D.Kuz'minov pt:2
+Plot:22/29) #21453002 1960, J.Leroy pt:1
+Plot:23/29) #40785003 1960, Yu.A.Vasil'ev pt:1
+Plot:24/29) #41254002 1959, N.N.Flerov pt:1
+Plot:25/29) #40671003 1958, I.I.Bondarenko pt:1
+Plot:26/29) #40806005 1958, N.N.Flerov pt:1
+Plot:27/29) #12436003 1957, B.C.Diven pt:1
+Plot:28/29) #21696005 1956, I.Johnstone pt:2
+Plot:29/29) #12397004 1955, H.A.Bethe pt:1
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- PART/FIS 1
+Will try---write_image: nu1.html.png
+
+Program successfully completed

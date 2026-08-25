@@ -1,0 +1,282 @@
+Program: daleg2sig.py, ver. 2022-11-09
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Retrieve EXFOR cross sections from SQL database
+	 including 4pi*L[0] from DA,,LEG Legendre coeff.
+	 and plot together with ENDF data retrieved from Web
+
+Running: 2026-08-25 23:14:38
+
+Number of arguments: 5 arguments.
+Argument List: ['daleg2sig.py', 'B-11', 'n,el', 'log', 'log']
+Script-name: daleg2sig.py
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+___getX4SqlSearchCS: [B-11] [n,el]
+SQL:
+select *                          
+from sig1                         
+where (Target like 'B-11')  
+  and (Reaction like 'n,el') 
+
+
+EXFOR SQL executed: 0.079sec
+
+___getDatasets from datapoints: 47
+DS:1) 5-B-11(N,EL)5-B-11,,SIG #22106006 1992,A.Takahashi
+ pt:1/47) 5-B-11(N,EL)5-B-11,,SIG 22106006 1992 A.Takahashi x:14.1 y:0.989 dy:0.03 dx:0.2
+DS:2) 5-B-11(N,EL)5-B-11,,SIG #22106033 1992,A.Takahashi
+ pt:2/47) 5-B-11(N,EL)5-B-11,,SIG 22106033 1992 A.Takahashi x:14.1 y:0.895 dy:0.027 dx:0.2
+DS:3) 5-B-11(N,EL)5-B-11,,SIG #12928009 1988,M.Drosg
+ pt:3/47) 5-B-11(N,EL)5-B-11,,SIG 12928009 1988 M.Drosg x:14.1 y:0.85 dy:0.029578 dx:0.03
+DS:4) 5-B-11(N,EL)5-B-11,,SIG #12986005 1986,M.Drosg
+ pt:4/47) 5-B-11(N,EL)5-B-11,,SIG 12986005 1986 M.Drosg x:6.0 y:1.331 dy:None dx:0.15
+ pt:5/47) 5-B-11(N,EL)5-B-11,,SIG 12986005 1986 M.Drosg x:10.0 y:0.876 dy:None dx:0.1
+DS:5) 5-B-11(N,EL)5-B-11,,SIG #21984028 1986,M.Baba
+ pt:6/47) 5-B-11(N,EL)5-B-11,,SIG 21984028 1986 M.Baba x:14.2 y:0.9136 dy:0.0521 dx:None
+DS:6) 5-B-11(N,EL)5-B-11,,SIG #13100007 1985,K.Murphy
+ pt:7/47) 5-B-11(N,EL)5-B-11,,SIG 13100007 1985 K.Murphy x:14.96 y:0.89053 dy:0.00644 dx:None
+ pt:8/47) 5-B-11(N,EL)5-B-11,,SIG 13100007 1985 K.Murphy x:16.94 y:1.02686 dy:0.00994 dx:None
+DS:7) 5-B-11(N,EL)5-B-11,,SIG #12800002 1983,P.E.Koehler
+ pt:9/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:4.86 y:1.524 dy:0.027 dx:None
+ pt:10/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:5.04 y:1.411 dy:0.025 dx:None
+ pt:11/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:5.25 y:1.509 dy:0.027 dx:None
+ pt:12/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:5.37 y:1.601 dy:0.029 dx:None
+ pt:13/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:5.45 y:1.268 dy:0.023 dx:None
+ pt:14/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:5.59 y:1.299 dy:0.022 dx:None
+ pt:15/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:5.62 y:1.498 dy:0.031 dx:None
+ pt:16/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:5.74 y:1.404 dy:0.025 dx:None
+ pt:17/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:6.0 y:1.359 dy:0.025 dx:None
+ pt:18/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:6.19 y:1.349 dy:0.026 dx:None
+ pt:19/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:6.39 y:1.228 dy:0.024 dx:None
+ pt:20/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:6.8 y:1.126 dy:0.022 dx:None
+ pt:21/47) 5-B-11(N,EL)5-B-11,,SIG 12800002 1983 P.E.Koehler x:7.55 y:1.114 dy:0.022 dx:None
+DS:8) 5-B-11(N,EL)5-B-11,,SIG #10819007 1982,S.G.Glendinning
+ pt:22/47) 5-B-11(N,EL)5-B-11,,SIG 10819007 1982 S.G.Glendinning x:7.98 y:1.2462 dy:0.0249 dx:0.1596
+ pt:23/47) 5-B-11(N,EL)5-B-11,,SIG 10819007 1982 S.G.Glendinning x:8.96 y:0.9308 dy:0.0261 dx:0.25088
+ pt:24/47) 5-B-11(N,EL)5-B-11,,SIG 10819007 1982 S.G.Glendinning x:9.69 y:0.9467 dy:0.0237 dx:0.3876
+ pt:25/47) 5-B-11(N,EL)5-B-11,,SIG 10819007 1982 S.G.Glendinning x:9.92 y:0.962 dy:0.0385 dx:0.248
+ pt:26/47) 5-B-11(N,EL)5-B-11,,SIG 10819007 1982 S.G.Glendinning x:10.96 y:0.8374 dy:0.0193 dx:0.25208
+ pt:27/47) 5-B-11(N,EL)5-B-11,,SIG 10819007 1982 S.G.Glendinning x:11.96 y:0.8584 dy:0.0211 dx:0.28704
+ pt:28/47) 5-B-11(N,EL)5-B-11,,SIG 10819007 1982 S.G.Glendinning x:12.95 y:0.8161 dy:0.0238 dx:0.58275
+ pt:29/47) 5-B-11(N,EL)5-B-11,,SIG 10819007 1982 S.G.Glendinning x:13.94 y:0.8002 dy:0.0331 dx:0.5576
+DS:9) 5-B-11(N,EL)5-B-11,,SIG #10685004 1980,R.M.White
+ pt:30/47) 5-B-11(N,EL)5-B-11,,SIG 10685004 1980 R.M.White x:4.0 y:1.374 dy:None dx:None
+ pt:31/47) 5-B-11(N,EL)5-B-11,,SIG 10685004 1980 R.M.White x:4.08 y:1.196 dy:None dx:None
+ pt:32/47) 5-B-11(N,EL)5-B-11,,SIG 10685004 1980 R.M.White x:4.21 y:1.221 dy:None dx:None
+ pt:33/47) 5-B-11(N,EL)5-B-11,,SIG 10685004 1980 R.M.White x:4.31 y:1.235 dy:None dx:None
+ pt:34/47) 5-B-11(N,EL)5-B-11,,SIG 10685004 1980 R.M.White x:4.41 y:1.26 dy:None dx:None
+ pt:35/47) 5-B-11(N,EL)5-B-11,,SIG 10685004 1980 R.M.White x:4.82 y:1.475 dy:None dx:None
+ pt:36/47) 5-B-11(N,EL)5-B-11,,SIG 10685004 1980 R.M.White x:7.52 y:1.106 dy:None dx:None
+DS:10) 5-B-11(N,EL)5-B-11,,SIG #20403020 1970,D.Porter
+ pt:37/47) 5-B-11(N,EL)5-B-11,,SIG 20403020 1970 D.Porter x:2.032 y:1.68 dy:0.06 dx:0.064
+ pt:38/47) 5-B-11(N,EL)5-B-11,,SIG 20403020 1970 D.Porter x:2.618 y:2.01 dy:0.07 dx:0.054
+ pt:39/47) 5-B-11(N,EL)5-B-11,,SIG 20403020 1970 D.Porter x:3.177 y:1.66 dy:0.06 dx:0.048
+ pt:40/47) 5-B-11(N,EL)5-B-11,,SIG 20403020 1970 D.Porter x:3.74 y:1.65 dy:0.06 dx:0.044
+ pt:41/47) 5-B-11(N,EL)5-B-11,,SIG 20403020 1970 D.Porter x:4.312 y:1.24 dy:0.05 dx:0.04
+ pt:42/47) 5-B-11(N,EL)5-B-11,,SIG 20403020 1970 D.Porter x:4.338 y:1.41 dy:0.05 dx:0.242
+ pt:43/47) 5-B-11(N,EL)5-B-11,,SIG 20403020 1970 D.Porter x:4.823 y:1.75 dy:0.07 dx:0.196
+DS:11) 5-B-11(N,EL)5-B-11,,SIG #20468008 1970,J.A.Cookson
+ pt:44/47) 5-B-11(N,EL)5-B-11,,SIG 20468008 1970 J.A.Cookson x:9.72 y:0.895 dy:0.063 dx:0.04
+DS:12) 5-B-11(N,EL)5-B-11,,SIG #20529002 1970,J.C.Alder
+ pt:45/47) 5-B-11(N,EL)5-B-11,,SIG 20529002 1970 J.C.Alder x:14.15 y:0.895 dy:0.032 dx:0.1
+DS:13) 5-B-11(N,EL)5-B-11,,SIG #41280002 1970,V.P.Vertebnyy
+ pt:46/47) 5-B-11(N,EL)5-B-11,,SIG 41280002 1970 V.P.Vertebnyy x:2.53e-08 y:4.9 dy:0.2 dx:None
+DS:14) 5-B-11(N,EL)5-B-11,,SIG #11202010 1969,J.C.Hopkins
+ pt:47/47) 5-B-11(N,EL)5-B-11,,SIG 11202010 1969 J.C.Hopkins x:7.55 y:1.23 dy:0.088 dx:0.12
+datasets: 14
+
+Datasets: 14
+1) 5-B-11(N,EL)5-B-11,,SIG
+Reaction codes: 1 
+
+Plot:1/14) #22106006 1992, A.Takahashi pt:1
+Plot:2/14) #22106033 1992, A.Takahashi pt:1
+Plot:3/14) #12928009 1988, M.Drosg pt:1
+Plot:4/14) #12986005 1986, M.Drosg pt:2
+Plot:5/14) #21984028 1986, M.Baba pt:1
+Plot:6/14) #13100007 1985, K.Murphy pt:2
+Plot:7/14) #12800002 1983, P.E.Koehler pt:13
+Plot:8/14) #10819007 1982, S.G.Glendinning pt:8
+Plot:9/14) #10685004 1980, R.M.White pt:7
+Plot:10/14) #20403020 1970, D.Porter pt:7
+Plot:11/14) #20468008 1970, J.A.Cookson pt:1
+Plot:12/14) #20529002 1970, J.C.Alder pt:1
+Plot:13/14) #41280002 1970, V.P.Vertebnyy pt:1
+Plot:14/14) #11202010 1969, J.C.Hopkins pt:1
+
+___getX4SqlSearchDALEG0: [B-11] [n,el]
+SQL:
+select *                                  
+ ,x1 as En,dx1 as dEn                     
+ ,y as Sig,dy as dSig                     
+from uni1                                 
+where                                     
+ (SF58 like ',DA,,LEG')                   
+ and x2=0                                 
+ and Target like 'B-11'             
+ and Reaction like 'n,el'            
+order by fullCode,YearRef1 desc,DatasetID 
+ ,En,iPoint                               
+
+
+EXFOR SQL executed.
+
+___getDatasets from datapoints: 68
+DS:1) 5-B-11(N,EL)5-B-11,,DA,,LEG #129280781 1988,M.Drosg
+ pt:1/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 129280781 1988 M.Drosg x:14.1 L[0]=0.068 y:0.854513 dy:0.029735 dx:0.03
+DS:2) 5-B-11(N,EL)5-B-11,,DA,,LEG #10093139 1970,R.O.Lane
+ pt:2/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.075 L[0]=0.354 y:4.4485 dy:0.0125664 dx:None
+ pt:3/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.1 L[0]=0.352 y:4.42336 dy:0.0628319 dx:None
+ pt:4/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.125 L[0]=0.347 y:4.36053 dy:0.0125664 dx:None
+ pt:5/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.15 L[0]=0.337 y:4.23487 dy:0.0251327 dx:None
+ pt:6/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.175 L[0]=0.326 y:4.09664 dy:0.0376991 dx:None
+ pt:7/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.2 L[0]=0.312 y:3.92071 dy:0.0125664 dx:None
+ pt:8/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.225 L[0]=0.313 y:3.93327 dy:0.0251327 dx:None
+ pt:9/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.25 L[0]=0.311 y:3.90814 dy:0.0125664 dx:None
+ pt:10/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.275 L[0]=0.292 y:3.66938 dy:0.0251327 dx:None
+ pt:11/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.3 L[0]=0.292 y:3.66938 dy:0.0251327 dx:None
+ pt:12/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.325 L[0]=0.286 y:3.59398 dy:0.0125664 dx:None
+ pt:13/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.35 L[0]=0.283 y:3.55628 dy:0.0251327 dx:None
+ pt:14/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.375 L[0]=0.301 y:3.78248 dy:0.0251327 dx:None
+ pt:15/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.4 L[0]=0.377 y:4.73752 dy:0.0125664 dx:None
+ pt:16/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.425 L[0]=0.518 y:6.50938 dy:0.0125664 dx:None
+ pt:17/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.434 L[0]=0.507 y:6.37115 dy:0.0376991 dx:None
+ pt:18/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.45 L[0]=0.407 y:5.11451 dy:0.0125664 dx:None
+ pt:19/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.475 L[0]=0.306 y:3.84531 dy:0.0125664 dx:None
+ pt:20/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.5 L[0]=0.265 y:3.33009 dy:0.0502655 dx:None
+ pt:21/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.55 L[0]=0.26 y:3.26726 dy:0.0502655 dx:None
+ pt:22/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.6 L[0]=0.233 y:2.92796 dy:0.0502655 dx:None
+ pt:23/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.65 L[0]=0.219 y:2.75204 dy:0.0376991 dx:None
+ pt:24/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.7 L[0]=0.193 y:2.42531 dy:0.0251327 dx:None
+ pt:25/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.75 L[0]=0.171 y:2.14885 dy:0.0251327 dx:None
+ pt:26/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.8 L[0]=0.168 y:2.11115 dy:0.0125664 dx:None
+ pt:27/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.85 L[0]=0.16 y:2.01062 dy:0.0251327 dx:None
+ pt:28/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.9 L[0]=0.149 y:1.87239 dy:0.0125664 dx:None
+ pt:29/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:0.95 L[0]=0.141 y:1.77186 dy:0.0251327 dx:None
+ pt:30/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.0 L[0]=0.123 y:1.54566 dy:0.0376991 dx:None
+ pt:31/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.03 L[0]=0.142 y:1.78442 dy:0.0251327 dx:None
+ pt:32/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.06 L[0]=0.152 y:1.91009 dy:0.0251327 dx:None
+ pt:33/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.09 L[0]=0.165 y:2.07345 dy:0.0125664 dx:None
+ pt:34/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.12 L[0]=0.178 y:2.23681 dy:0.0125664 dx:None
+ pt:35/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.15 L[0]=0.195 y:2.45044 dy:0.0125664 dx:None
+ pt:36/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.18 L[0]=0.249 y:3.12903 dy:0.0376991 dx:None
+ pt:37/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.21 L[0]=0.288 y:3.61911 dy:0.0376991 dx:None
+ pt:38/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.24 L[0]=0.337 y:4.23487 dy:0.0125664 dx:None
+ pt:39/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.27 L[0]=0.352 y:4.42336 dy:0.0251327 dx:None
+ pt:40/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.28 L[0]=0.372 y:4.67469 dy:0.0251327 dx:None
+ pt:41/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.3 L[0]=0.34 y:4.27257 dy:0.0251327 dx:None
+ pt:42/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.33 L[0]=0.302 y:3.79504 dy:0.0125664 dx:None
+ pt:43/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.36 L[0]=0.273 y:3.43062 dy:0.0125664 dx:None
+ pt:44/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.4 L[0]=0.258 y:3.24212 dy:0.0125664 dx:None
+ pt:45/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.45 L[0]=0.226 y:2.84 dy:0.0502655 dx:None
+ pt:46/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.5 L[0]=0.213 y:2.67664 dy:0.0125664 dx:None
+ pt:47/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.55 L[0]=0.199 y:2.50071 dy:0.0125664 dx:None
+ pt:48/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.6 L[0]=0.198 y:2.48814 dy:0.0125664 dx:None
+ pt:49/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.65 L[0]=0.194 y:2.43788 dy:0.0125664 dx:None
+ pt:50/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.7 L[0]=0.205 y:2.57611 dy:0.0125664 dx:None
+ pt:51/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.72 L[0]=0.203 y:2.55097 dy:0.0125664 dx:None
+ pt:52/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.74 L[0]=0.212 y:2.66407 dy:0.0125664 dx:None
+ pt:53/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.76 L[0]=0.214 y:2.6892 dy:0.0251327 dx:None
+ pt:54/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.78 L[0]=0.221 y:2.77717 dy:0.0376991 dx:None
+ pt:55/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.8 L[0]=0.203 y:2.55097 dy:0.0376991 dx:None
+ pt:56/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.82 L[0]=0.199 y:2.50071 dy:0.0376991 dx:None
+ pt:57/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.84 L[0]=0.193 y:2.42531 dy:0.0376991 dx:None
+ pt:58/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.86 L[0]=0.181 y:2.27451 dy:0.0502655 dx:None
+ pt:59/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.88 L[0]=0.18 y:2.26195 dy:0.0376991 dx:None
+ pt:60/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.92 L[0]=0.176 y:2.21168 dy:0.0502655 dx:None
+ pt:61/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:1.96 L[0]=0.167 y:2.09858 dy:0.0376991 dx:None
+ pt:62/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:2.0 L[0]=0.163 y:2.04832 dy:0.0628319 dx:None
+ pt:63/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:2.04 L[0]=0.15 y:1.88496 dy:0.0502655 dx:None
+ pt:64/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:2.08 L[0]=0.147 y:1.84726 dy:0.0502655 dx:None
+ pt:65/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:2.12 L[0]=0.145 y:1.82212 dy:0.0753982 dx:None
+ pt:66/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:2.16 L[0]=0.143 y:1.79699 dy:0.0376991 dx:None
+ pt:67/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:2.2 L[0]=0.141 y:1.77186 dy:0.0628319 dx:None
+ pt:68/68) 5-B-11(N,EL)5-B-11,,DA,,LEG 10093139 1970 R.O.Lane x:2.24 L[0]=0.139 y:1.74673 dy:0.0251327 dx:None
+
+Datasets: 2
+1) 5-B-11(N,EL)5-B-11,,DA,,LEG
+Plot:1/2) #129280781 1988, M.Drosg pt:1
+Plot:2/2) #10093139 1970, R.O.Lane pt:67
+
+___getEndfDataForPlot: [B-11] [n,el]
+---wgetdb_get:/servlet/E4sSearch2?Target=B-11&Reaction=n,el&Quantity=SIG&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=B-11&Reaction=n,el&Quantity=SIG&json'
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-08-25T16:41:08.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1796
+,"sections":[
+ { "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":272566,"SectID":19170963,"PenSectID":24018574,"LibID":30003,"LibName":"INDEN-Aug2023","DATE":"DEC06","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":272546,"SectID":19165394,"PenSectID":24012932,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"DEC06","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":301077,"SectID":21380816,"PenSectID":26215396,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":149452,"SectID":8943425,"PenSectID":13590730,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":57307,"SectID":2248052,"PenSectID":7620711,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":15253,"SectID":205792,"PenSectID":7578823,"LibID":70,"LibName":"ENDF/B-VII.0","DATE":"DEC06","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":306571,"SectID":21521673,"PenSectID":26348038,"LibID":3400,"LibName":"JEFF-4.0","DATE":"DEC06","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":150677,"SectID":9086854,"PenSectID":13727284,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":96519,"SectID":3726503,"PenSectID":6718122,"LibID":3200,"LibName":"JEFF-3.2","DATE":"20111222","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":57949,"SectID":2300911,"PenSectID":6659594,"LibID":3120,"LibName":"JEFF-3.1.2","DATE":"090105","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":22888,"SectID":536125,"PenSectID":7551939,"LibID":3100,"LibName":"JEFF-3.1","DATE":"090105","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":226186,"SectID":14385262,"PenSectID":19008797,"LibID":51,"LibName":"JENDL-5","DATE":"20090831","AUTH":"T.Fukahori"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":38764,"SectID":1264118,"PenSectID":6834091,"LibID":40,"LibName":"JENDL-4.0","DATE":"20090831","AUTH":"T.Fukahori"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":9218,"SectID":108237,"PenSectID":6613517,"LibID":30,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"T.Fukahori"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":9895,"SectID":148646,"PenSectID":6570704,"LibID":31,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"T.Fukahori"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":9158,"SectID":105329,"PenSectID":7401563,"LibID":60,"LibName":"ENDF/B-VI","DATE":"20011108","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":9560,"SectID":131783,"PenSectID":6553841,"LibID":61,"LibName":"ENDF/B-VI","DATE":"20010926","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":118512,"SectID":6049858,"PenSectID":10711346,"LibID":41031,"LibName":"BROND-3.1","DATE":"20111222","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":37904,"SectID":1213050,"PenSectID":6910366,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC06","AUTH":"Pronjaev V.G."}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":27183,"SectID":569985,"PenSectID":6869771,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"DEC06","AUTH":"Pronjaev V.G."}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":199058,"SectID":14173137,"PenSectID":18846346,"LibID":5040,"LibName":"CENDL-3.2","DATE":"JUN20","AUTH":"J.S.Zhang,J.M.Wang"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":37761,"SectID":1203206,"PenSectID":6517508,"LibID":5030,"LibName":"CENDL-3.1","DATE":"DEC09","AUTH":"J.S.Zhang,J.M.Wang"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":202916,"SectID":14260917,"PenSectID":18940784,"LibID":34026,"LibName":"IRDFF-II","DATE":"SEP11","AUTH":""}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":202824,"SectID":14260148,"PenSectID":18940009,"LibID":34027,"LibName":"IRDFF-II-aux","DATE":"SEP11","AUTH":""}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":7543,"SectID":73430,"PenSectID":6602937,"LibID":2300,"LibName":"JEFF-3.0","DATE":"APR02","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":6972,"SectID":47883,"PenSectID":7538042,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":116471,"SectID":5886768,"PenSectID":6637840,"LibID":32,"LibName":"JENDL-3.2","DATE":"SEP89","AUTH":"T.Fukahori"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":288449,"SectID":20279597,"PenSectID":24275805,"LibID":61023,"LibName":"TENDL-2023","DATE":"20111222","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":244611,"SectID":15867342,"PenSectID":19703715,"LibID":61022,"LibName":"TENDL-2021","DATE":"20111222","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":207120,"SectID":14298888,"PenSectID":18969606,"LibID":61021,"LibName":"TENDL-2015.s60","DATE":"DEC15","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":78313,"SectID":3084387,"PenSectID":6542077,"LibID":50,"LibName":"ENDF/B-V","DATE":"0","AUTH":"C.Cowan"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":199892,"SectID":14226951,"PenSectID":19348388,"LibID":39032,"LibName":"ADS-2.0","DATE":"DEC06","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":302526,"SectID":21485636,"PenSectID":26316261,"LibID":33036,"LibName":"FENDL-3.2c","DATE":"DEC06","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":227813,"SectID":14619863,"PenSectID":19395710,"LibID":33035,"LibName":"FENDL-3.2b","DATE":"DEC06","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":141982,"SectID":8891175,"PenSectID":13478646,"LibID":33032,"LibName":"FENDL-3.1c","DATE":"DEC06","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":22811,"SectID":528929,"PenSectID":6467471,"LibID":33021,"LibName":"FENDL/E-2.1","DATE":"20010926","AUTH":"P.G.Young"}
+,{ "Targ":"B-11","ZT":5,"AT":11,"NSUB":10,"MT":2,"MF":3,"R":"N,EL","RC":"B-11(N,EL)B-11-L0,SIG","EvalID":7735,"SectID":83242,"PenSectID":6461013,"LibID":5020,"LibName":"CENDL-2","DATE":"930318","AUTH":"Qi Huiquan"}
+]
+}
+
+format=WebEndfSectionsList-0.1
+___Retrieved sections:37
+SelectedLib-Sect:4) {'Targ': 'B-11', 'ZT': 5, 'AT': 11, 'NSUB': 10, 'MT': 2, 'MF': 3, 'R': 'N,EL', 'RC': 'B-11(N,EL)B-11-L0,SIG', 'EvalID': 149452, 'SectID': 8943425, 'PenSectID': 13590730, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20111222', 'AUTH': 'P.G.Young'}
+SelectedLib-Sect:12) {'Targ': 'B-11', 'ZT': 5, 'AT': 11, 'NSUB': 10, 'MT': 2, 'MF': 3, 'R': 'N,EL', 'RC': 'B-11(N,EL)B-11-L0,SIG', 'EvalID': 226186, 'SectID': 14385262, 'PenSectID': 19008797, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20090831', 'AUTH': 'T.Fukahori'}
+Required sections:2
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13590730&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13590730&json'
+Downloaded:1)	B-11(N,EL)B-11-L0,SIG	ENDF/B-VIII.0	PenSectID:13590730	pts:688	idy=0
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=19008797&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=19008797&json'
+Downloaded:2)	B-11(N,EL)B-11-L0,SIG	JENDL-5	PenSectID:19008797	pts:604	idy=0
+Plot:1/2) 13590730	ENDF/B-VIII.0	pt:688	color:0,0,255
+Plot:2/2) 19008797	JENDL-5	pt:604	color:255,80,80
+
+EXFOR SQL executed:  0.079sec
+ENDF Web downloaded: 0.089sec
+Will try---write_image: B11nel.html.png
+
+Program successfully completed

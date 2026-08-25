@@ -1,0 +1,10 @@
+{
+   "#now"	:"2025-01-22T13:20:00.000Z"
+  ,"#comment"	:"Records with key started with # will be ignored"
+  ,"231620022"	:"92-U-235(N,G)92-U-236,,SIG   2014 C.Guerrero. -- $C ZV, 2024: Many points with negative CS"
+  ,"33075002"	:"25-MN-55(N,A)23-V-52,,SIG    1962,O.N.Kaul"
+  ,"31316015"	:"25-MN-55(N,A)23-V-52,,SIG    1965,C.S.Khurana"
+  ,"11274030"	:"25-MN-55(N,A)23-V-52,,SIG    1953,E.B.Paul"
+  ,"11274037"	:"30-ZN-64(N,P)29-CU-64,,SIG   1953,E.B.Paul"
+  ,"#14223002"	:"94-PU-240(N,F),,SIG          2009,F.Tovesson -- $C Arjan Koning, 2020: #flag=T3  #[T]:Theoretical comparison  #[3]:Clear outlier"
+}

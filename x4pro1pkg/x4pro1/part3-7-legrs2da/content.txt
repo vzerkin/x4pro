@@ -1,0 +1,1 @@
+EXFOR LEG/RS and SIG from the same Entry; calc. missing Legendre coefficient L[0]; calc. angular distributions

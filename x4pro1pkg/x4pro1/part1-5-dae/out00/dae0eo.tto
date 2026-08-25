@@ -1,0 +1,34 @@
+Program: dae0eo.py, ver. 2022-11-09
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Retrieve and plot EXFOR double differential cross sections
+
+Running: 2026-08-25 23:12:21
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+___getX4SqlSearchDA_a: F-19 n,x n
+SQL:
+select *                               
+from dae1                              
+where (Target like 'F-19')       
+  and (Reaction like 'n,x')      
+  and (outParticles like '[n]') 
+ and (An=45) and (En>=14.1e6 and En<=14.2e6)
+
+datapoints: 208
+1) 220751131 1987 A.Takahashi 9-F-19(N,X)0-NN-1,,DA/DE Ei=14.1MeV An=45.0deg
+2) 220751132 1987 A.Takahashi 9-F-19(N,X)0-NN-1,,DA/DE Ei=14.1MeV An=45.0deg
+3) 21984097 1986 M.Baba 9-F-19(N,X)0-NN-1,,DA/DE Ei=14.2MeV An=45.0deg
+datasets: 3
+
+Datasets: 3
+1) 9-F-19(N,X)0-NN-1,,DA/DE
+reacodes: 1 
+
+Plot:1/3) #220751131 1987, A.Takahashi pt:70
+Plot:2/3) #220751132 1987, A.Takahashi pt:70
+Plot:3/3) #21984097 1986, M.Baba pt:68
+Will try---write_image: dae0eo.html.png
+
+Program successfully completed

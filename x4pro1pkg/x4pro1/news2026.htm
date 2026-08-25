@@ -1,0 +1,186 @@
+<html>
+<head>
+<style type="text/css" media="print">
+@page {
+  @bottom-right {
+    content: counter(page) " of " counter(pages);
+  }
+}
+</style>
+<script language=javascript>
+var dirMap=new Map([
+	 ["part1-8-reac","EXFOR universal: SIG, SIG-T, SIG-PAR, DA, DE, DA-PAR, FY, NUBAR, TKE, ETA"]
+	,["part2-8-sig1par","EXFOR/ENDF partial cross sections CSP:MT51"]
+	,["part2-9-nubar","EXFOR/ENDF NUBAR - average number of neutrons per fission"]
+    ]);
+</script>
+<script language=javascript>
+var num=0;
+var prevDir='';
+    function out1(filename,comment) {
+	var ii,nowDir='',shortHelp='',str1='';
+	var str=filename.replace(/ /g,'');
+	var hh=600;
+	if (typeof comment=='undefined') comment='';
+	if (filename.indexOf('couchdb')>=0) hh=760;
+	num++;
+	ii=filename.lastIndexOf('/');
+	if (ii>0) nowDir=filename.substring(0,ii);
+	ii=nowDir.lastIndexOf('/');
+	if (ii>0) nowDir=nowDir.substring(0,ii);
+	document.write('<div style="page-break-inside:avoid;">');
+	if (nowDir!=prevDir) {
+	    str1=nowDir+'/';
+	    shortHelp=dirMap.get(nowDir);
+	    if (typeof shortHelp!='undefined') str1+=' &nbsp; <i>'+shortHelp+'</i>';
+	    document.write('<div style="font-size:16pt;color:#fff;background-color:#44f;padding-left:10px;margin-bottom:4px;">'+str1+'</div>');
+	    prevDir=nowDir;
+	}
+        document.write('<div style="padding-top:3px">');
+        document.write('<span style="font-size:20pt;font-family:calibry;color:#a0a;'
+	+'border:1px solid #aaa;border-bottom:none;border-radius:6px 6px 0 0;margin-bottom:-1px;margin-left:10px;position:relative;'
+	+'padding-left:9px;padding-right:2px;background-color:#fff;">'
+	+num+') '+str+'</span><span style="font-size:14pt;margin-left:4px;color:blue;">'+comment+'</span>');
+        document.write('</div>');
+        document.write('<div style="border:1px solid #aaa;display:table;">');
+        document.write('<img src="'+str+'" height='+hh+'>');
+        document.write('</div><br>');
+	document.write('</div>');
+    }
+</script>
+</head>
+<body bgcolor="#ddddff">
+<big><big><b>X4Pro. <span style="color:red;">News-2026.<span></b></big></big>
+
+<div style="font-size:12pt;padding-top:6px;padding-bottom:6px;">
+1. Code reac1.py: universal retrieval and plotting of EXFOR data having one-string Reaction-codes.<br>
+<i>
+  &nbsp; &nbsp; &nbsp; Examples of newly supported quantities:<br>
+  &nbsp; &nbsp; - CSP Partial cross section data<br>
+  &nbsp; &nbsp; - CST Temperature dependent cross section<br>
+  &nbsp; &nbsp; - ETA Average neutron yield per nonelastic event<br>
+  &nbsp; &nbsp; - NU  Fission-neutron yield, nu-bar<br>
+  &nbsp; &nbsp; - TKE Total kinetic energy<br>
+</i>
+2. Plotting partial cross sections from local EXFOR and remote ENDF databases.<br>
+<i>
+  &nbsp; &nbsp; - CSP vs ENDF:MT51 - Production of a neutron, with residual in the 1st excited state<br>
+  &nbsp; &nbsp; - NUBAR vs ENDF:MF1:MT452/455/456 - Average number of total/delayed/prompt neutrons released per fission event
+</i>
+
+</div>
+Code reac1.py help:
+<pre style="margin:0;padding:0;font-size:9pt;line-height:10pt;margin-bottom:20px;padding-left:20px;margin-left:10px;padding-right:10px;background-color:white;border:1px solid #777;display:table;letter-spacing:0px;">
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-08-14       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+
+---------------------------------Help----------------------------------------
+Purpose: Retrieve and plot any type EXFOR data from local EXFOR database
+
+Introduction:
+  * computational data are presented as function y=f(x1,x2,..)
+    where f is measured quantity, xi are independent variables:
+     EN  - incident energy
+     ANG - angle of outgoing particle
+     E2  - energy of outgoing particle
+     EVL - energy level
+    etc.
+
+Algorithm:
+  * user defines EXFOR Reaction-code for data search, x-variable by number
+  * selects x-variable by number (default: x1)
+  * other variables will be used as parameter for grouping of data points
+
+Usage:
+    $ python [{flag}] x4update.py {[option|reaction]}
+      * flag: see all Python flags:  $ python --help
+        -B         don't write .pyc files on import
+      * option:
+        -help        print this help-text and exit (also --help)
+        -o:&lt;file&gt;    output file name
+        -x:x?        set x variable: "x1" to "x5", e.g. -x:x2, default: -x:x1
+        -x?fam:&lt;str&gt; filter for "families" of x? variable, e.g. -x2fam:"LVL;EXC"
+        -x?min:&lt;num&gt; filter out values of x? variable, e.g. -x1min:6e6
+        -x?max:&lt;num&gt; filter out values of x? variable, e.g. -x1max:30e6
+        -nogrp       avoid groupping datasets by reaction-codes on the plot
+        -fx:&lt;num&gt;    set factor for x-values, e.g. -fx:1e6 sets "MeV" on X-Axis
+        -fy:&lt;num&gt;    set factor for y-values, e.g. -fy:1e-3 sets "mb/sr" on Y-Axis
+        plotting:
+        -xlog           logaroithmic scale of X-Axis
+        -ylog           logaroithmic scale of Y-Axis
+        -lines          connect points on the plot by lines
+        -sym            draw border of a symbol of a data point on the plot
+        -annot:x,y,txt  annotation on top of the plot;
+                        x and y should be given in units of the plot;
+                        text can include html tags: &lt;b&gt;, &lt;sup&gt;
+      * reaction:    file name should not start with sign "-"
+        &lt;reaction&gt;   full EXFOR Reaction-code, e.g. "8-O-16(N,EL)8-O-16,,DA"
+
+Examples.
+  1) SIG(Ei) Cross sections
+     $ python -B reac1.py "13-AL-27(N,A)11-NA-24,,SIG"
+
+  2) DA(Ei)  Angular distributions
+     $ python3 -B reac1.py -o:da1e -x:x1    \
+         -x1max:6.5e6 -x2min:160 -x2max:170 \
+         -lines -sym -ylog -fx:1e3 -fy:1e-3 \
+         -annot:"2500,250,&lt;b&gt;DA(E)&lt;/b&gt; &lt;sup&gt;14&lt;/sup&gt;N(a,a')" \
+         "7-N-14(A,EL)7-N-14,,DA"&gt;da1e.tto
+
+  3) DE(Eo)  Emission spectra
+	$ python -B reac1.py -o:de1 -x:x2            \
+            -x1min:6e6 -fx:1e6 -fy:1e-9 -lines -ylog \
+            "90-TH-232(N,X)0-NN-1,,DE"
+
+  4) DAE(Eo) Double differential cross section
+	$ python -B reac1.py -o:de1 -x:x2            \
+            -x1min:6e6 -fx:1e6 -fy:1e-9 -lines -ylog \
+            "90-TH-232(N,X)0-NN-1,,DE"
+
+  5) TKE(Mass) Total Kinetic Energy
+	$ python -B reac1.py -o:tke1 -x:x2   \
+            -fy:1e6 -lines -sym              \
+            -annot:"80,180,&lt;b&gt;TKE&lt;/b&gt;"       \
+            "92-U-235(N,F)MASS,PRE,KE,LF+HF" \
+            "92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW"
+
+  6) ETA(Ri) Neutron yield (Eta)
+	$ python -B reac1.py -o:eta1 -x:x1 -x1max:4 \
+            -lines -sym -ylog                       \
+            -annot:"0.75,3.25,&lt;b&gt;ETA&lt;/b&gt;"           \
+            "92-U-235(N,ABS),,ETA"&gt;eta1.tto
+</pre>
+
+<script language="javascript">
+//  out1("part1-8-reac/out00/sig1.html.png            ","CS  Cross section data");
+    out1("part1-8-reac/out00/sig1p.html.png           ","CSP Partial cross section data");
+    out1("part1-8-reac/out00/cst1.html.png            ",'CST Temperature dependent cross section');
+//  out1("part1-8-reac/out00/da1a.html.png            ",'DA  Differential c/s data with respect to angle');
+//  out1("part1-8-reac/out00/da1e.html.png            ",'DA  Differential c/s data with respect to angle');
+//  out1("part1-8-reac/out00/da1p.html.png            ","DAP Partial differential c/s data with respect to angle");
+//  out1("part1-8-reac/out00/de1.html.png             ","DE  Energy spectrum of outgoing particles");
+//  out1("part1-8-reac/out00/dae1.html.png            ","DAE Double diff.c/s data with respect to angle and energy: d2/dA/dE");
+    out1("part1-8-reac/out00/eta1.html.png            ","ETA Average neutron yield per nonelastic event");
+//  out1("part1-8-reac/out00/fy1.html.png             ","FY  Fission-product yield");
+    out1("part1-8-reac/out00/nu1.html.png             ","NU  Fission-neutron yield, nu-bar");
+    out1("part1-8-reac/out00/tke1.html.png            ","TKE Total kinetic energy");
+    out1("part2-8-sig1par/out00/Li7ninl.html.png      ","Production of a neutron, with residual in the 1st excited state");
+    out1("part2-9-nubar/out00/U235nf_pr-nu.html.png   ","Prompt neutron yield (nu-bar)");
+    out1("part2-9-nubar/out00/U235nf_dl-nu.html.png   ","Delayed neutron yield");
+    out1("part2-9-nubar/out00/U235nf_-nu.html.png     ","Total neutron yield (nu-bar)");
+//    out1("part2-9-nubar/out00/U238nf_pr-nu.html.png   ");
+//    out1("part2-9-nubar/out00/U238nf_dl-nu.html.png   ");
+</script>
+
+<hr>
+<font face="helvetica" size="1">
+  Created by <a HREF="mailto:zerkin@iaeand.iaea.org">V.Zerkin</a>, 09-Aug-2026<br>
+  <script language="javascript">  document.write(" Last updated: "+document.lastModified) </script>
+</font>
+
+</body>
+</html>

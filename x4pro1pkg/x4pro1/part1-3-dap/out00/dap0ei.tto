@@ -1,0 +1,54 @@
+Program: da0an2.py, ver. 2022-11-09
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Retrieve and plot EXFOR partial angular distributions
+
+Running: 2026-08-25 23:12:15
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+___getX4SqlSearchDAP_Ei: Li-6 he3,p
+SQL:
+select *                           
+ ,round(An) as Anint               
+from dap1                          
+where (Target like 'Li-6')   
+  and (Reaction like 'he3,p')  
+ and (An=0 or An=150)
+ and (En<=9e6)       
+ and (Elv>=0)        
+
+order by fullCode,                 
+  YearRef1 desc,DatasetID          
+  ,Anint,En,iPoint                 
+
+
+datapoints: 409
+1) 3-LI-6(HE3,P)4-BE-8,PAR,DA T0031002 1980 A.J.Elwyn
+2) 3-LI-6(HE3,P)4-BE-8,PAR,DA F0001002 1976 C.R.Gould
+3) 3-LI-6(HE3,P)4-BE-8,PAR,DA D0601004 1969 B.Vignon
+4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 1956 J.P.Schiffer
+5) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 1956 J.P.Schiffer
+6) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 1956 J.P.Schiffer
+7) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 1956 J.P.Schiffer
+datasets: 7
+
+Datasets: 7
+1) 3-LI-6(HE3,P)4-BE-8,PAR,DA
+	Dataset:1/7) 3-LI-6(HE3,P)4-BE-8,PAR,DA T0031002 npt:15
+	Dataset:1/7) 3-LI-6(HE3,P)4-BE-8,PAR,DA F0001002 npt:1
+	Dataset:1/7) 3-LI-6(HE3,P)4-BE-8,PAR,DA D0601004 npt:1
+	Dataset:2/7) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 npt:94
+	Dataset:3/7) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 npt:107
+	Dataset:4/7) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 npt:92
+	Dataset:5/7) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 npt:99
+reacodes: 1 
+
+Plot:1/5) #T0031002 1980, A.J.Elwyn pt:15
+Plot:2/5) #A1495002 1956, J.P.Schiffer pt:94
+Plot:3/5) #A1495002 1956, J.P.Schiffer pt:107
+Plot:4/5) #A1495003 1956, J.P.Schiffer pt:92
+Plot:5/5) #A1495003 1956, J.P.Schiffer pt:99
+Will try---write_image: dap0ei.html.png
+
+Program successfully completed

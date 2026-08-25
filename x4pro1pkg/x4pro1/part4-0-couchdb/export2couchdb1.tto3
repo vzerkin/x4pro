@@ -1,0 +1,73 @@
+Program: export2couchdb1.py, ver. 2022-08-29
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Export EXFOR Entries from x4pro to CouchDB
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+SQL command:
+select distinct substr(Subent,1,5) as Entry from x4pro_x4z order by Entry
+Exporting Entries: 14370
+---Store EXFOR data in NoSQL database CouchDB---
+---Listing databases
+------1) dbname: zv-exfor-001
+Database already exists: zv-exfor-001
+---List of documents in zv-exfor-001
+------1) id:10001
+------2) id:10004
+------3) id:10005
+------4) id:10006
+------5) id:10008
+------6) id:10009
+------7) id:10011
+------8) id:10013
+------9) id:10016
+------10) id:10019
+export------1) Entry:10001
+	---------DocID:10001 exists. Removing from Database...
+	---------Entry:10001 retrieved: OK. Compiled:1998-09-14, Subent:16
+	Document successfully created: doc_id=10001 doc_rev=5-9df36b9748bf17297a19d90756b3fcbc
+export------2) Entry:10004
+	---------DocID:10004 exists. Removing from Database...
+	---------Entry:10004 retrieved: OK. Compiled:1999-06-17, Subent:2
+	Document successfully created: doc_id=10004 doc_rev=5-aefaec3aa7bd9ac2ad8dbaab71bc3321
+export------3) Entry:10005
+	---------DocID:10005 exists. Removing from Database...
+	---------Entry:10005 retrieved: OK. Compiled:1999-06-17, Subent:2
+	Document successfully created: doc_id=10005 doc_rev=5-554903d116dcc1b1f6fb18b5ee6462da
+export------4) Entry:10006
+	---------DocID:10006 exists. Removing from Database...
+	---------Entry:10006 retrieved: OK. Compiled:1999-06-17, Subent:2
+	Document successfully created: doc_id=10006 doc_rev=5-6b09ba5353a4aa81d5f56dbdc3386ec3
+export------5) Entry:10008
+	---------DocID:10008 exists. Removing from Database...
+	---------Entry:10008 retrieved: OK. Compiled:1999-06-17, Subent:6
+	Document successfully created: doc_id=10008 doc_rev=5-90a63cba2fdcda6330066e70ba6c967b
+export------6) Entry:10009
+	---------DocID:10009 exists. Removing from Database...
+	---------Entry:10009 retrieved: OK. Compiled:1999-06-17, Subent:3
+	Document successfully created: doc_id=10009 doc_rev=5-9d9b83cd35fc090468fc03c87a366002
+export------7) Entry:10011
+	---------DocID:10011 exists. Removing from Database...
+	---------Entry:10011 retrieved: OK. Compiled:1999-06-17, Subent:2
+	Document successfully created: doc_id=10011 doc_rev=5-d93b0b30fb4ae077e772d15ee5c101cd
+export------8) Entry:10013
+	---------DocID:10013 exists. Removing from Database...
+	---------Entry:10013 retrieved: OK. Compiled:2017-03-30, Subent:9
+	Document successfully created: doc_id=10013 doc_rev=5-f6f6352f4b78a6f723a90c7507ce5e92
+export------9) Entry:10016
+	---------DocID:10016 exists. Removing from Database...
+	---------Entry:10016 retrieved: OK. Compiled:1999-06-17, Subent:3
+	Document successfully created: doc_id=10016 doc_rev=5-f7667f894676a03c514d7219f2c17b76
+export------10) Entry:10019
+	---------DocID:10019 exists. Removing from Database...
+	---------Entry:10019 retrieved: OK. Compiled:1999-06-17, Subent:3
+	Document successfully created: doc_id=10019 doc_rev=5-7c86380c4a5ded3852e3f1a1fcbc1eee
+export------11) Entry:10020
+	---------Entry:10020 retrieved: OK. Compiled:1999-06-17, Subent:4
+	Document successfully created: doc_id=10020 doc_rev=1-7ee0a20318fea0ab331657064b69138d
+export------12) Entry:10021
+	---------Entry:10021 retrieved: OK. Compiled:1999-07-19, Subent:3
+	Document successfully created: doc_id=10021 doc_rev=1-4625f4ec8c0a6256a234b9d62529dee9
+
+Program successfully completed

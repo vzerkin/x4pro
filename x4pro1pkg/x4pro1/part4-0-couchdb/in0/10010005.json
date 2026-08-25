@@ -1,0 +1,117 @@
+{"SUBENT":"10010005", "isub":5, "compiled":19990617, "TransID":"1336", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"83-BI-209(N,INL)83-BI-209,PAR,DA,,LEG/RS"
+	    ,"c4reac":"(N,INL)PAR,DA,,LEG/RS"
+	    ,"combi":"a"
+	    ,"MF":154
+	    ,"MT":4
+	    ,"Units":"NO-DIM"
+	    ,"reacs": [
+	    {"code":"83-BI-209(N,INL)83-BI-209,PAR,DA,,LEG/RS"
+		,"Reac":"N,INL"
+		,"SF1":"83-BI-209","Targ":{"code":"83-BI-209","nam":"Bi-209","ZA":83209}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"INL","procHlp":"Inelastic scattering"
+		,"SF4":"83-BI-209","Prod":{"code":"83-BI-209","nam":"Bi-209","ZAProd":83209}
+		,"SF5":"PAR"
+		,"SF6":"DA"
+		,"SF8":"LEG/RS"
+		,"SF58":"PAR,DA,,LEG/RS","Quant":"DAP","BasicUnits":"NO-DIM","QuantHlp":"Leg.coef.fit partl.4pi/Sig d/dA=1+Sum(a(L)P(L))"
+	    }]}
+	}
+      ]
+     ,"MONITOR":[
+	{"x4pointer":" "
+	,"x4code":{"code":"6-C-0(N,EL)6-C-0,,DA"
+		,"reaction":"6-C-0(N,EL)6-C-0,,DA"}
+	,"x4freetext":[" Elastic from ANL-5567 (Rev)"]
+	}
+      ]
+     ,"CORRECTION":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Corrected for multiple scattering"]
+	}
+      ]
+     ,"ERR-ANALYS":[
+	{"x4pointer":" "
+	,"x4code":{}
+	,"x4freetext":["Data error given does not include uncertainty in C"
+		," standard"]
+	}
+      ]
+     ,"STATUS":[
+	{"x4pointer":" "
+	,"x4codes":[{"code":"DEP", "dict":"STATUS", "idict":16,"hlp":"Dependent data"}
+	    ,{"code":"10010004", "dict":"STATUS", "idict":16}]
+	,"x4freetext":[" Fit to measured inelastic cross section"]
+	}
+      ]
+     ,"HISTORY":[
+	{"x4pointer":" "
+	,"x4code":{"code":"19850307A", "date":"19850307", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" Data heading corrected."]
+	}
+	,{"x4pointer":" "
+	,"x4code":{"code":"19931229A", "date":"19931229", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" MONITOR SF4 added, data units corrected."]
+	}
+      ]
+    }
+    ,"COMMON":{"ncols":3, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"Q-VAL", "units":"KEV", "pointer":" "
+	,"headerHelp":"Q-value", "pFlag":"1000000"
+	,"unitsHelp":"keV","familyCode":"E","convFc":1000.0,"basicUnits":"EV"}
+      ,{"icol":1, "header":"Q-VAL-RSL", "units":"KEV", "pointer":" "
+	,"headerHelp":"Q-value resolution", "pFlag":"9220000"
+	,"unitsHelp":"keV","familyCode":"E","convFc":1000.0,"basicUnits":"EV"}
+      ,{"icol":2, "header":"EN-RSL", "units":"MEV", "pointer":" "
+	,"headerHelp":"Incident projectile energy resolution (Unspecified)", "pFlag":"9220000"
+	,"unitsHelp":"MeV","familyCode":"E","convFc":1000000.0,"basicUnits":"EV"}
+      ]
+      ,"datacols":[
+	 ["Q-VAL"     ,"Q-VAL-RSL" ,"EN-RSL"    ]
+	,["KEV"       ,"KEV"       ,"MEV"       ]
+	,[" "         ," "         ," "         ]]
+      ,"data":[
+	 [-895.0      ,2.0         ,0.01        ]]}
+    ,"DATA":{"ncols":4, "nrows":14
+      ,"x4headers":[
+       {"icol":0, "header":"NUMBER", "units":"NO-DIM", "pointer":" "
+	,"headerHelp":"Fitting coefficient number", "pFlag":"1000000"
+	,"unitsHelp":"no Dimensions","familyCode":"NO","convFc":1.0,"basicUnits":"NO-DIM"}
+      ,{"icol":1, "header":"EN", "units":"MEV", "pointer":" "
+	,"headerHelp":"Energy of incident projectile, laboratory system", "pFlag":"1000000"
+	,"unitsHelp":"MeV","familyCode":"E","convFc":1000000.0,"basicUnits":"EV"}
+      ,{"icol":2, "header":"DATA", "units":"NO-DIM", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"no Dimensions","familyCode":"NO","convFc":1.0,"basicUnits":"NO-DIM"}
+      ,{"icol":3, "header":"DATA-ERR", "units":"NO-DIM", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"no Dimensions","familyCode":"NO","convFc":1.0,"basicUnits":"NO-DIM"}
+      ]
+      ,"datacols":[
+	 ["NUMBER"    ,"EN"        ,"DATA"      ,"DATA-ERR"  ]
+	,["NO-DIM"    ,"MEV"       ,"NO-DIM"    ,"NO-DIM"    ]
+	,[" "         ," "         ," "         ," "         ]]
+      ,"data":[
+	 [1.0         ,1.09        ,-0.096      ,0.069       ]
+	,[1.0         ,1.14        ,-0.101      ,0.071       ]
+	,[1.0         ,1.17        ,-0.012      ,0.091       ]
+	,[1.0         ,1.195       ,-0.065      ,0.085       ]
+	,[1.0         ,1.213       ,-0.176      ,0.081       ]
+	,[1.0         ,1.233       ,-0.035      ,0.094       ]
+	,[1.0         ,1.306       ,-0.148      ,0.073       ]
+	,[2.0         ,1.09        ,0.137       ,0.095       ]
+	,[2.0         ,1.14        ,-0.14       ,0.097       ]
+	,[2.0         ,1.17        ,-0.139      ,0.115       ]
+	,[2.0         ,1.195       ,0.141       ,0.129       ]
+	,[2.0         ,1.213       ,0.05        ,0.098       ]
+	,[2.0         ,1.233       ,0.059       ,0.121       ]
+	,[2.0         ,1.306       ,0.004       ,0.098       ]]}
+}

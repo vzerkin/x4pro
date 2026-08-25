@@ -1,0 +1,226 @@
+Program: da1an.py, ver. 2022-11-15
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Retrieve and plot EXFOR/ENDF angular distributions
+
+Running: 2026-08-25 23:14:42
+
+---Preparing connection to EXFOR SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---Retrieve [,DA] from EXFOR SQL database---
+___getX4SqlSearch_DA_e: Cu-0 n,el  and (En=0.253e6 or (En>=1.46e6 and En<=1.5e6))
+SQL:
+select *                          
+from da1                          
+where (Target like 'Cu-0')  
+  and (Reaction like 'n,el') 
+--  and ((Author1 like 'Korzh') or (Author1 like 'Mellema'))
+ and (En=0.253e6 or (En>=1.46e6 and En<=1.5e6))
+
+datapoints: 19
+DS:1) 29-CU-0(N,EL)29-CU-0,,DA 1969 B.Holmqvist #20019148 Ei:1460000.0
+ pt:1/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:20.0 y:0.591246 dy:0.0295623 dx:None
+ pt:2/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:30.0 y:0.472719 dy:0.0236359 dx:None
+ pt:3/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:40.0 y:0.362649 dy:0.0181324 dx:None
+ pt:4/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:50.0 y:0.261228 dy:0.0130614 dx:None
+ pt:5/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:60.0 y:0.149328 dy:0.00746642 dx:None
+ pt:6/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:70.0 y:0.119272 dy:0.00596359 dx:None
+ pt:7/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:80.0 y:0.114615 dy:0.00573073 dx:None
+ pt:8/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:90.0 y:0.108986 dy:0.00544929 dx:None
+ pt:9/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:110.0 y:0.131545 dy:0.00657725 dx:None
+ pt:10/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:130.0 y:0.129311 dy:0.00646553 dx:None
+ pt:11/19) 29-CU-0(N,EL)29-CU-0,,DA 20019148 1969 B.Holmqvist x:150.0 y:0.130337 dy:0.00651685 dx:None
+DS:2) 29-CU-0(N,EL)29-CU-0,,DA 1967 I.A.Korzh #40042019 Ei:1500000.0
+ pt:12/19) 29-CU-0(N,EL)29-CU-0,,DA 40042019 1967 I.A.Korzh x:30.2154 y:0.45243 dy:0.0226215 dx:8.0
+ pt:13/19) 29-CU-0(N,EL)29-CU-0,,DA 40042019 1967 I.A.Korzh x:39.5337 y:0.30621 dy:0.0153105 dx:8.0
+ pt:14/19) 29-CU-0(N,EL)29-CU-0,,DA 40042019 1967 I.A.Korzh x:50.2976 y:0.18462 dy:0.009231 dx:8.0
+ pt:15/19) 29-CU-0(N,EL)29-CU-0,,DA 40042019 1967 I.A.Korzh x:70.614 y:0.10292 dy:0.005146 dx:8.0
+ pt:16/19) 29-CU-0(N,EL)29-CU-0,,DA 40042019 1967 I.A.Korzh x:90.1931 y:0.10445 dy:0.0052225 dx:8.0
+ pt:17/19) 29-CU-0(N,EL)29-CU-0,,DA 40042019 1967 I.A.Korzh x:110.107 y:0.10111 dy:0.0050555 dx:8.0
+ pt:18/19) 29-CU-0(N,EL)29-CU-0,,DA 40042019 1967 I.A.Korzh x:120.246 y:0.11162 dy:0.005581 dx:8.0
+ pt:19/19) 29-CU-0(N,EL)29-CU-0,,DA 40042019 1967 I.A.Korzh x:140.69 y:0.12507 dy:0.0062535 dx:8.0
+datasets: 2
+
+Datasets: 2
+1) 29-CU-0(N,EL)29-CU-0,,DA
+reacodes: 1 
+
+Plot:1/2) #20019148 1969, B.Holmqvist pt:11
+Plot:2/2) #40042019 1967, I.A.Korzh pt:8
+---Retrieve [,DA,,LEG/RS] from EXFOR SQL database---
+___getX4SqlSearch_DA_LEGRS: Cu-0 n,el  and (En=0.253e6 or (En>=1.46e6 and En<=1.5e6))
+SQL:
+select t1.Entry                                           
+ ,t1.DatasetID,t2.DatasetID as DS2                        
+ ,t1.Target,t1.Reaction                                   
+ ,t1.YearRef1,t1.nAuthors                                 
+ ,t1.Author1Ini,t1.Author1                                
+ ,t1.fullCode,t1.iPoint                                   
+ ,t1.zaTarget1,t1.zaIncident1                             
+ ,t1.Projectile,t1.sProd,t1.sTarg                         
+ ,t2.fullCode as R2                                       
+ ,t1.MF as MF ,t1.MT as MT                                
+ ,t2.MF as MF2,t2.MT as MT2                               
+ ,t1.y as LEGRS,t1.dy as dLEGRS                           
+ ,t2.y as Sig,t2.dy as dSig                               
+ ,t1.x1 as En,t1.dx1 as dEn,t1.dx1 as dEn2                
+ ,t1.x2 as number                                         
+ from uni1 as t1                                          
+ inner join uni1 as t2 on t1.Entry=t2.Entry               
+       and t1.x1=t2.x1                                    
+ where 1=1                                                
+ and (t1.Target like 'Cu-0')                        
+ and (t1.Reaction like 'n,el')                       
+ and (t1.SF58 like ',DA,,LEG/RS')                         
+ and (t2.SF58 like ',SIG')                                
+ and (t2.Target=t1.Target)                                
+ and (t2.Reaction=t1.Reaction)                            
+ and (t1.DatasetID='11749005' or t1.DatasetID='40940008') 
+ and (t2.DatasetID='11749006' or t2.DatasetID='40940002') 
+
+ and (En=0.253e6 or (En>=1.46e6 and En<=1.5e6))
+ order by t1.fullCode,t1.YearRef1 desc                    
+ ,t1.DatasetID,En,number                                  
+
+
+EXFOR SQL executed. Rows:6
+
+___rows2legrs::datapoints: 6
+#DS:1) 29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS 1986 A.B.Popov #40940008 Ei:253000.0 Ei:0.253MeV
+ pt:1/6) L:1   y:0.191	dy:0.023	Sig:5.57	array:2
+ pt:2/6) L:2   y:0.127	dy:0.037	Sig:5.57	array:3
+#DS:2) 29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS 1964 A.B.Smith #11749005 Ei:1500000.0 Ei:1.5MeV
+ pt:3/6) L:1   y:0.737	dy:0.037	Sig:2.41	array:2
+ pt:4/6) L:2   y:1.083	dy:0.052	Sig:2.41	array:3
+ pt:5/6) L:3   y:0.598	dy:0.07	Sig:2.41	array:4
+ pt:6/6) L:4   y:0.461	dy:0.077	Sig:2.41	array:5
+
+___calcLegrsDatasets2da4plot::Datasets: 2
+______Dataset:1/2) 40940008 Ei:0.253MeV 	num:[0, 1, 2] LEGRS:[0.44324651651092856, 0.191, 0.127]
+-0-outDA_AN:En:253000.0 an:0 f:0.5841989 df:0.0268084 df%:4.59
+-0-outDA_AN:En:253000.0 an:6 f:0.5828125 df:0.0265927 df%:4.56
+-0-outDA_AN:En:253000.0 an:12 f:0.5786988 df:0.0259609 df%:4.49
+-0-outDA_AN:En:253000.0 an:18 f:0.5719922 df:0.0249587 df%:4.36
+-0-outDA_AN:En:253000.0 an:24 f:0.5629106 df:0.0236607 df%:4.20
+-0-outDA_AN:En:253000.0 an:30 f:0.551747 df:0.0221689 df%:4.02
+-0-outDA_AN:En:253000.0 an:36 f:0.5388575 df:0.0206071 df%:3.82
+-0-outDA_AN:En:253000.0 an:42 f:0.5246474 df:0.0191127 df%:3.64
+-0-outDA_AN:En:253000.0 an:48 f:0.5095551 df:0.0178194 df%:3.50
+-0-outDA_AN:En:253000.0 an:54 f:0.4940351 df:0.0168313 df%:3.41
+-0-outDA_AN:En:253000.0 an:60 f:0.47854 df:0.0161929 df%:3.38
+-0-outDA_AN:En:253000.0 an:66 f:0.4635038 df:0.0158722 df%:3.42
+-0-outDA_AN:En:253000.0 an:72 f:0.4493249 df:0.0157708 df%:3.51
+-0-outDA_AN:En:253000.0 an:78 f:0.4363522 df:0.0157589 df%:3.61
+-0-outDA_AN:En:253000.0 an:84 f:0.4248723 df:0.0157144 df%:3.70
+-0-outDA_AN:En:253000.0 an:90 f:0.4151004 df:0.0155507 df%:3.75
+-0-outDA_AN:En:253000.0 an:96 f:0.4071736 df:0.0152322 df%:3.74
+-0-outDA_AN:En:253000.0 an:102 f:0.4011486 df:0.0147808 df%:3.68
+-0-outDA_AN:En:253000.0 an:108 f:0.3970021 df:0.0142776 df%:3.60
+-0-outDA_AN:En:253000.0 an:114 f:0.3946351 df:0.0138581 df%:3.51
+-0-outDA_AN:En:253000.0 an:120 f:0.3938799 df:0.0136886 df%:3.48
+-0-outDA_AN:En:253000.0 an:126 f:0.3945112 df:0.0139173 df%:3.53
+-0-outDA_AN:En:253000.0 an:132 f:0.3962578 df:0.0146133 df%:3.69
+-0-outDA_AN:En:253000.0 an:138 f:0.398818 df:0.0157341 df%:3.95
+-0-outDA_AN:En:253000.0 an:144 f:0.4018746 df:0.0171489 df%:4.27
+-0-outDA_AN:En:253000.0 an:150 f:0.4051114 df:0.0186895 df%:4.61
+-0-outDA_AN:En:253000.0 an:156 f:0.4082289 df:0.0201898 df%:4.95
+-0-outDA_AN:En:253000.0 an:162 f:0.4109591 df:0.0215071 df%:5.23
+-0-outDA_AN:En:253000.0 an:168 f:0.4130787 df:0.0225287 df%:5.45
+-0-outDA_AN:En:253000.0 an:174 f:0.4144199 df:0.0231739 df%:5.59
+-0-outDA_AN:En:253000.0 an:180 f:0.4148787 df:0.0233943 df%:5.64
+______Dataset:2/2) 11749005 Ei:1.5MeV 	num:[0, 1, 2, 3, 4] LEGRS:[0.1917817064257339, 0.737, 1.083, 0.598, 0.461]
+-0-outDA_AN:En:1500000.0 an:0 f:0.7439212 df:0.0260455 df%:3.50
+-0-outDA_AN:En:1500000.0 an:6 f:0.7312153 df:0.0252119 df%:3.45
+-0-outDA_AN:En:1500000.0 an:12 f:0.6943498 df:0.0228608 df%:3.29
+-0-outDA_AN:En:1500000.0 an:18 f:0.6369157 df:0.0194292 df%:3.05
+-0-outDA_AN:En:1500000.0 an:24 f:0.5643683 df:0.0156078 df%:2.77
+-0-outDA_AN:En:1500000.0 an:30 f:0.483318 df:0.0122771 df%:2.54
+-0-outDA_AN:En:1500000.0 an:36 f:0.4006908 df:0.0102571 df%:2.56
+-0-outDA_AN:En:1500000.0 an:42 f:0.3228843 df:0.0096442 df%:2.99
+-0-outDA_AN:En:1500000.0 an:48 f:0.2550405 df:0.0096037 df%:3.77
+-0-outDA_AN:En:1500000.0 an:54 f:0.2005369 df:0.0093119 df%:4.64
+-0-outDA_AN:En:1500000.0 an:60 f:0.1607595 df:0.0085406 df%:5.31
+-0-outDA_AN:En:1500000.0 an:66 f:0.1351765 df:0.0075877 df%:5.61
+-0-outDA_AN:En:1500000.0 an:72 f:0.1216824 df:0.0070024 df%:5.75
+-0-outDA_AN:En:1500000.0 an:78 f:0.1171417 df:0.0070705 df%:6.04
+-0-outDA_AN:En:1500000.0 an:84 f:0.1180339 df:0.0074678 df%:6.33
+-0-outDA_AN:En:1500000.0 an:90 f:0.1210862 df:0.0076799 df%:6.34
+-0-outDA_AN:En:1500000.0 an:96 f:0.1237939 df:0.0074897 df%:6.05
+-0-outDA_AN:En:1500000.0 an:102 f:0.1247477 df:0.007101 df%:5.69
+-0-outDA_AN:En:1500000.0 an:108 f:0.1237258 df:0.0070108 df%:5.67
+-0-outDA_AN:En:1500000.0 an:114 f:0.121553 df:0.0075332 df%:6.20
+-0-outDA_AN:En:1500000.0 an:120 f:0.1197662 df:0.0083807 df%:7.00
+-0-outDA_AN:En:1500000.0 an:126 f:0.1201607 df:0.0089802 df%:7.47
+-0-outDA_AN:En:1500000.0 an:132 f:0.1243099 df:0.0089754 df%:7.22
+-0-outDA_AN:En:1500000.0 an:138 f:0.1331496 df:0.0085231 df%:6.40
+-0-outDA_AN:En:1500000.0 an:144 f:0.1467057 df:0.0085136 df%:5.80
+-0-outDA_AN:En:1500000.0 an:150 f:0.1640142 df:0.0101031 df%:6.16
+-0-outDA_AN:En:1500000.0 an:156 f:0.1832441 df:0.0132866 df%:7.25
+-0-outDA_AN:En:1500000.0 an:162 f:0.2019978 df:0.0170765 df%:8.45
+-0-outDA_AN:En:1500000.0 an:168 f:0.2177284 df:0.0205009 df%:9.42
+-0-outDA_AN:En:1500000.0 an:174 f:0.2281943 df:0.0228482 df%:10.01
+-0-outDA_AN:En:1500000.0 an:180 f:0.2318641 df:0.0236802 df%:10.21
+
+Datasets: 2
+1) 29-CU-0(N,EL)29-CU-0,,DA,,LEG
+Plot:1/2) #40940008 1986, A.B.Popov pt:31
+Plot:2/2) #11749005 1964, A.B.Smith pt:31
+
+___webEndfDataForPlot_DADE: [Cu-0] [n,el] [&ei=0.253e6,1.5e6]
+---wgetdb_get:/servlet/E4sSearch2?Target=Cu-0&Reaction=n,el&Quantity=DA*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Cu-0&Reaction=n,el&Quantity=DA*&json&mats'
+format=WebEndfSectionsList-0.1
+___Retrieved sections:7
+SelectedLib-Sect:2) {'Targ': 'CU-0', 'ZT': 29, 'AT': 0, 'NSUB': 10, 'MT': 2, 'MF': 4, 'R': 'N,EL', 'RC': 'CU-0(N,EL)CU-L0,DA', 'EvalID': 199101, 'SectID': 14178307, 'PenSectID': 18851560, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': 'JUN08', 'AUTH': 'K.Xu, H.X.An, C.H.Cai, H.C.Wu'}
+SelectedLib-Sect:5) {'Targ': 'CU-0', 'ZT': 29, 'AT': 0, 'NSUB': 10, 'MT': 2, 'MF': 4, 'R': 'N,EL', 'RC': 'CU-0(N,EL)CU-L0,DA', 'EvalID': 116536, 'SectID': 5890619, 'PenSectID': 6641691, 'LibID': 32, 'LibName': 'JENDL-3.2', 'DATE': 'SEP93', 'AUTH': 'N.Yamamuro,T.Kawakita'}
+SelectedLib-Sect:6) {'Targ': 'CU-0', 'ZT': 29, 'AT': 0, 'NSUB': 10, 'MT': 2, 'MF': 4, 'R': 'N,EL', 'RC': 'CU-0(N,EL)CU-L0,DA', 'EvalID': 78337, 'SectID': 3086570, 'PenSectID': 6544261, 'LibID': 50, 'LibName': 'ENDF/B-V', 'DATE': '0', 'AUTH': 'Fu,Drake,Fricke'}
+___Required sections:3
+WebReq:1) EvalID:199101 PenSectID:18851560 Lib:CENDL-3.2 Color:255,0,0
+/servlet/E4sGetSectData?EvalID=199101&PenSectID=18851560&json&ei=0.253e6,1.5e6
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=199101&PenSectID=18851560&json&ei=0.253e6,1.5e6
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=199101&PenSectID=18851560&json&ei=0.253e6,1.5e6'
+Download...DS:1/2)	29-Cu-0(N,EL),DA	CENDL-3.2	EID:199101	SID:18851560	f(x):DA(A)	pts:25
+Downloaded:DS:1/2)	29-Cu-0(N,EL),DA	CENDL-3.2	EID:199101	SID:18851560	f(x):DA(A)	pts:25	idy=0
+Download...DS:1/2)	29-Cu-0(N,EL),DA	CENDL-3.2	EID:199101	SID:18851560	f(x):DA(A)	pts:25
+Downloaded:DS:1/2)	29-Cu-0(N,EL),DA	CENDL-3.2	EID:199101	SID:18851560	f(x):DA(A)	pts:25	idy=0
+WebReq:2) EvalID:116536 PenSectID:6641691 Lib:JENDL-3.2 Color:0,255,0
+/servlet/E4sGetSectData?EvalID=116536&PenSectID=6641691&json&ei=0.253e6,1.5e6
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=116536&PenSectID=6641691&json&ei=0.253e6,1.5e6
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=116536&PenSectID=6641691&json&ei=0.253e6,1.5e6'
+Download...DS:2/2)	29-Cu-0(N,EL),DA	JENDL-3.2	EID:116536	SID:6641691	f(x):DA(A)	pts:26
+Downloaded:DS:2/2)	29-Cu-0(N,EL),DA	JENDL-3.2	EID:116536	SID:6641691	f(x):DA(A)	pts:26	idy=0
+Download...DS:2/2)	29-Cu-0(N,EL),DA	JENDL-3.2	EID:116536	SID:6641691	f(x):DA(A)	pts:42
+Downloaded:DS:2/2)	29-Cu-0(N,EL),DA	JENDL-3.2	EID:116536	SID:6641691	f(x):DA(A)	pts:42	idy=0
+WebReq:3) EvalID:78337 PenSectID:6544261 Lib:ENDF/B-V Color:0,0,255
+/servlet/E4sGetSectData?EvalID=78337&PenSectID=6544261&json&ei=0.253e6,1.5e6
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=78337&PenSectID=6544261&json&ei=0.253e6,1.5e6
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=78337&PenSectID=6544261&json&ei=0.253e6,1.5e6'
+Download...DS:3/2)	29-Cu-0(N,EL),DA	ENDF/B-V	EID:78337	SID:6544261	f(x):DA(A)	pts:9
+Downloaded:DS:3/2)	29-Cu-0(N,EL),DA	ENDF/B-V	EID:78337	SID:6544261	f(x):DA(A)	pts:9	idy=0
+Download...DS:3/2)	29-Cu-0(N,EL),DA	ENDF/B-V	EID:78337	SID:6544261	f(x):DA(A)	pts:36
+Downloaded:DS:3/2)	29-Cu-0(N,EL),DA	ENDF/B-V	EID:78337	SID:6544261	f(x):DA(A)	pts:36	idy=0
+Plot:1/6) 18851560	CENDL-3.2 Ei2.53E+5	pt:25	color:255,0,0
+Plot:2/6) 18851560	CENDL-3.2 Ei1.50E+6	pt:25	color:255,0,0
+Plot:3/6) 6641691	JENDL-3.2 Ei2.53E+5	pt:26	color:0,255,0
+Plot:4/6) 6641691	JENDL-3.2 Ei1.50E+6	pt:42	color:0,255,0
+Plot:5/6) 6544261	ENDF/B-V Ei2.53E+5	pt:9	color:0,0,255
+Plot:6/6) 6544261	ENDF/B-V Ei1.50E+6	pt:36	color:0,0,255
+Will try---write_image: Cu0nel_da.html.png
+
+Program successfully completed

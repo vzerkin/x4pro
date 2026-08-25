@@ -1,0 +1,36 @@
+Program: exec2sql1.py, ver. 2025-01-13
+Author:  V.Zerkin, v.zerkin@gmail.com, Vienna, 2024-2025
+Purpose: execute one SQL command on SQLite database.
+Operations:
+         - connect to SQLite data file
+         - read SQL commands from a SQL-file
+         - execute SQL command
+         - read retrieved data rows to list of dicts
+           extracting data (incl.JSON) from row to dict;
+         - save result in JSON file and CSV file for EXCEL.
+
+Running: 2026-08-25 23:14:53
+
+---getConnSQLite: file:../../x4sqlite1.db?mode=ro
+
+---Execute SQL commands: 1
+
+
+===SQL executed: 0.001sec
+---Retrieved from the database cols:6 rows:8
+	cols:['fileID', 'srcFileName', 'myComment', 'srcFileDate', 'nDatasets', 'dbDate']
+	rows:[8]
+row-0:	 (0, 'Erwin-Alhassan_2018.yaml', 'Erwin Alhassan for protons on Co59 and Cd111 (2018)', '2020-06-15 09:18:20', 166, '2021-02-23')
+row-1:	 (1, 'Natalia-Dzysiuk_2018.yaml', 'Natalia Dzysiuk for neutron-induced activation XS for F4E (2018)', '2021-02-22 20:06:38', 1768, '2021-02-23')
+row-2:	 (2, 'Natalia-Dzysiuk_2019.yaml', 'Natalia Dzysiuk for neutron-induced activation XS on Ni isotopes (2019)', '2021-02-19 16:40:43', 570, '2021-02-23')
+row-3:	 (3, 'Natalie-Gaughan_2019.yaml', 'Natalie Gaughan for proton induced reactions (2019)', '2021-02-23 11:00:16', 90, '2021-02-23')
+row-4:	 (4, 'Arjan-Koning_2020.yaml', 'Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)', '2021-02-19 16:39:14', 19145, '2021-02-23')
+row-5:	 (5, 'trkov2013mn55n2n.txt', 'x4corr: A.Trkov 2012', '2014-07-03 10:05:28', 21, '2021-02-24')
+row-6:	 (6, 'capote2010mn55ng.txt', 'x4corr: D.Smith and R.Capote 2010', '2014-07-03 14:41:43', 42, '2021-02-24')
+row-7:	 (7, 'correction-Sjoestrand-2018-09-07.txt', 'x4corr: H.Sjoestrand 2018, Ni59(n,*)', '2018-09-12 15:16:37', 3, '2021-02-24')
+
+---Save datasets to JSON file: eval_save0.json
+
+---Save datasets to CSV file: eval_save0.csv
+
+Program successfully completed

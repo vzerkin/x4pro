@@ -1,0 +1,103 @@
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-08-14       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-08-20 19:42:15
+
+---Arguments from command-line---
+   1  arg: -o:sig1
+   2  arg: -fx:1e6
+   3  arg: -fy:1e-3
+   4  arg: -xlog
+   5  arg: -ylog
+   6  arg: -lines
+   7  arg: -sym
+   8  arg: 7-N-14(P,X)4-BE-7,,SIG,,,DERIV
+
+---Input:
+   Reaction:  ['7-N-14(P,X)4-BE-7,,SIG,,,DERIV']
+   xn:        x1
+   xrange:    None - None
+   x1range:   None - None
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        0.001
+   Output:    sig1
+   x4ei:      
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 1
+----1.
+    fullCode       7-N-14(P,X)4-BE-7,,SIG,,,DERIV
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+/Summary of Reaction-Codes
+Summary of Units 2
+---basicUnits:B           category:B
+   B    1/7   FB          1e-15           femtobarns
+   B    2/7   PB          1e-12           picobarns
+   B    3/7   NB          1e-09           nanobarns
+   B    4/7   MICRO-B     1e-06           microbarns
+   B    5/7   MB          0.001           millibarns
+   B    6/7   B           1.0             barns
+   B    7/7   KB          1000.0          kilobarns
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x1  reacodes: ['7-N-14(P,X)4-BE-7,,SIG,,,DERIV']
+SQL:
+select *                                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x1 as XX, dx1 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x1'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+      fullCode like '7-N-14(P,X)4-BE-7,,SIG,,,DERIV'
+ ) 
+  order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 0
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:0 xn=x1  fx=1.0e-06 fy=1.0e+03
+---outDatasets:0 datasets:0
+---ENTRY: 
+datasets: 0
+---No data found---

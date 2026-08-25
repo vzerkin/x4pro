@@ -1,0 +1,186 @@
+Program: nubar.py, ver. 2026-08-24
+Author:  V.Zerkin, Vienna, 2026
+Purpose: Retrieve and plot EXFOR and ENDF nu-bar data
+
+Running: 2026-08-25 23:13:59
+
+
+---Arguments from command-line---
+   1  arg: -xmax:34
+   2  arg: -ymax:7.5
+
+---Parameters:
+   target:  U-235
+   x4react: n,f
+   e4react: n,nu_p
+   x4quant: pr,nu
+   Output:  U235nf_pr-nu
+   x-axis:  linear  range: [None, 34.0]
+   y-axis:  linear  range: [None, 7.5]
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---getX4SqlSearch_NUBAR: U-235 n,f pr,nu  and sf8='' 
+SQL:
+select *                                  
+ ,y  as YY, dy  as dYY                    
+ ,x1 as En, dx1 as dEn                    
+from uni1                                 
+where                                     
+ Target like 'U-235'                 
+ and Reaction like 'n,f'            
+ and SF58 like 'pr,nu'                 
+ and x2 is null                           
+ and sf8=''  
+order by fullCode,YearRef1 desc,DatasetID 
+ ,En,iPoint                               
+
+
+EXFOR SQL executed: 0.015sec rows:454
+
+datapoints: 454
+1) 415970043 2013 A.S.Vorobyev 92-U-235(N,F),PR,NU
+2) 41516018 2010 A.S.Vorobyev 92-U-235(N,F),PR,NU
+3) 41378002 1994 Yu.A.Khokhlov 92-U-235(N,F),PR,NU
+4) 411100061 1991 G.S.Boikov 92-U-235(N,F),PR,NU
+5) 411100062 1991 G.S.Boikov 92-U-235(N,F),PR,NU
+6) 12870004 1984 R.E.Howe 92-U-235(N,F),PR,NU
+7) 21785003 1982 J.Frehaut 92-U-235(N,F),PR,NU
+8) 20506002 1980 J.Frehaut 92-U-235(N,F),PR,NU
+9) 21685002 1980 J.Frehaut 92-U-235(N,F),PR,NU
+10) 40493002 1979 M.V.Savin 92-U-235(N,F),PR,NU
+11) 14051002 1976 R.E.Howe 92-U-235(N,F),PR,NU
+12) 20427002 1975 F.Kaeppeler 92-U-235(N,F),PR,NU
+13) 40262002 1973 M.V.Savin 92-U-235(N,F),PR,NU
+14) 30006002 1971 R.L.Walsh 92-U-235(N,F),PR,NU
+15) 20568002 1970 M.Soleilhac 92-U-235(N,F),PR,NU
+16) 40033002 1970 V.G.Nesterov 92-U-235(N,F),PR,NU
+17) 40033006 1970 V.G.Nesterov 92-U-235(N,F),PR,NU
+18) 40058004 1970 M.V.Savin 92-U-235(N,F),PR,NU
+19) 401320022 1968 L.I.Prokhorova 92-U-235(N,F),PR,NU
+20) 12399002 1967 J.W.Meadows 92-U-235(N,F),PR,NU
+21) 212520052 1966 P.Fieldhouse 92-U-235(N,F),PR,NU
+22) 21252006 1966 P.Fieldhouse 92-U-235(N,F),PR,NU
+23) 20025002 1965 H.Conde 92-U-235(N,F),PR,NU
+24) 12391002 1964 J.W.Meadows Jr 92-U-235(N,F),PR,NU
+25) 12326004 1963 J.C.Hopkins 92-U-235(N,F),PR,NU
+26) 33102004 1963 S.S.Kapoor 92-U-235(N,F),PR,NU
+27) 124190022 1962 J.W.Meadows 92-U-235(N,F),PR,NU
+28) 142970061 1961 B.C.Diven 92-U-235(N,F),PR,NU
+29) 142970071 1961 B.C.Diven 92-U-235(N,F),PR,NU
+30) 40785002 1960 Yu.A.Vasil`ev 92-U-235(N,F),PR,NU
+31) 40388006 1958 G.N.Smirenkin 92-U-235(N,F),PR,NU
+32) 40392003 1958 A.N.Protopopov 92-U-235(N,F),PR,NU
+33) 40806003 1958 N.N.Flerov 92-U-235(N,F),PR,NU
+34) 12436002 1957 B.C.Diven 92-U-235(N,F),PR,NU
+35) 12337003 1956 B.C.Diven 92-U-235(N,F),PR,NU
+36) 21696004 1956 I.Johnstone 92-U-235(N,F),PR,NU
+37) 12397002 1955 H.A.Bethe 92-U-235(N,F),PR,NU
+---ENTRY: 12326*;12337*;12391*;12397*;12399*;12419*;12436*;12870*;14051*;14297*;20025*;20427*;20506*;20568*;21252*;21685*;21696*;21785*;30006*;33102*;40033*;40058*;40132*;40262*;40388*;40392*;40493*;40785*;40806*;41110*;41378*;41516*;41597*;
+datasets: 37
+
+Datasets: 37
+1) 92-U-235(N,F),PR,NU
+Reaction codes: 1 
+
+
+___webEndfDataForPlot_DADE: [U-235] [n,nu_p] []
+---wgetdb_get:/servlet/E4sSearch2?Target=U-235&Reaction=n,nu_p&Quantity=*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=U-235&Reaction=n,nu_p&Quantity=*&json&mats'
+format=WebEndfSectionsList-0.1
+___Retrieved sections:43
+SelectedLib-Sect:4) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-235(N,nu_p),INFO', 'EvalID': 149933, 'SectID': 9024579, 'PenSectID': 13662332, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'IAEA Cielo Collaboration'}
+SelectedLib-Sect:11) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-235(N,nu_p),INFO', 'EvalID': 23212, 'SectID': 558800, 'PenSectID': 7574613, 'LibID': 3100, 'LibName': 'JEFF-3.1', 'DATE': '090105', 'AUTH': 'Weston, Young, Poenitz, Lubitz'}
+SelectedLib-Sect:18) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-235(N,nu_p),INFO', 'EvalID': 118842, 'SectID': 6090156, 'PenSectID': 10751644, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'atyuk A.V.', 'AUTH': 'Nikolaev M.N.'}
+SelectedLib-Sect:34) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-235(N,nu_p),INFO', 'EvalID': 78565, 'SectID': 3093636, 'PenSectID': 6551327, 'LibID': 50, 'LibName': 'ENDF/B-V', 'DATE': '0', 'AUTH': 'M.R.Bhat'}
+___Required sections:4
+WebReq:1) EvalID:149933 PenSectID:13662332 Lib:ENDF/B-VIII.0 Color:0,0,255
+/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662332&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662332&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662332&json'
+Download...DS:1/1)		ENDF/B-VIII.0	EID:149933	SID:13662332	f(x):Prompt nu-bar	pts:85
+Downloaded:DS:1/1)		ENDF/B-VIII.0	EID:149933	SID:13662332	f(x):Prompt nu-bar	pts:85	idy=85
+WebReq:2) EvalID:23212 PenSectID:7574613 Lib:JEFF-3.1 Color:0,255,255
+/servlet/E4sGetSectData?EvalID=23212&PenSectID=7574613&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=23212&PenSectID=7574613&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=23212&PenSectID=7574613&json'
+Download...DS:2/1)		JEFF-3.1	EID:23212	SID:7574613	f(x):Prompt nu-bar	pts:79
+Downloaded:DS:2/1)		JEFF-3.1	EID:23212	SID:7574613	f(x):Prompt nu-bar	pts:79	idy=79
+WebReq:3) EvalID:118842 PenSectID:10751644 Lib:BROND-3.1 Color:255,0,255
+/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751644&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751644&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751644&json'
+Download...DS:3/1)		BROND-3.1	EID:118842	SID:10751644	f(x):Prompt nu-bar	pts:79
+Downloaded:DS:3/1)		BROND-3.1	EID:118842	SID:10751644	f(x):Prompt nu-bar	pts:79	idy=79
+WebReq:4) EvalID:78565 PenSectID:6551327 Lib:ENDF/B-V Color:127,127,127
+/servlet/E4sGetSectData?EvalID=78565&PenSectID=6551327&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=78565&PenSectID=6551327&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=78565&PenSectID=6551327&json'
+Download...DS:4/1)		ENDF/B-V	EID:78565	SID:6551327	f(x):Prompt nu-bar	pts:8
+Downloaded:DS:4/1)		ENDF/B-V	EID:78565	SID:6551327	f(x):Prompt nu-bar	pts:8	idy=0
+---e4datasets: 4
+Plot:1/4) 13662332	ENDF/B-VIII.0	pt:85	color:0,0,255
+Plot:2/4) 7574613	JEFF-3.1	pt:79	color:0,255,255
+Plot:3/4) 10751644	BROND-3.1	pt:79	color:255,0,255
+Plot:4/4) 6551327	ENDF/B-V	pt:8	color:127,127,127
+Plot:1/37) #415970043 2013, A.S.Vorobyev pt:1
+Plot:2/37) #41516018 2010, A.S.Vorobyev pt:1
+Plot:3/37) #41378002 1994, Yu.A.Khokhlov pt:86
+Plot:4/37) #411100061 1991, G.S.Boikov pt:2
+Plot:5/37) #411100062 1991, G.S.Boikov pt:2
+Plot:6/37) #12870004 1984, R.E.Howe pt:7
+Plot:7/37) #21785003 1982, J.Frehaut pt:29
+Plot:8/37) #20506002 1980, J.Frehaut pt:34
+Plot:9/37) #21685002 1980, J.Frehaut pt:6
+Plot:10/37) #40493002 1979, M.V.Savin pt:34
+Plot:11/37) #14051002 1976, R.E.Howe pt:27
+Plot:12/37) #20427002 1975, F.Kaeppeler pt:22
+Plot:13/37) #40262002 1973, M.V.Savin pt:30
+Plot:14/37) #30006002 1971, R.L.Walsh pt:14
+Plot:15/37) #20568002 1970, M.Soleilhac pt:21
+Plot:16/37) #40033002 1970, V.G.Nesterov pt:12
+Plot:17/37) #40033006 1970, V.G.Nesterov pt:1
+Plot:18/37) #40058004 1970, M.V.Savin pt:37
+Plot:19/37) #401320022 1968, L.I.Prokhorova pt:14
+Plot:20/37) #12399002 1967, J.W.Meadows pt:16
+Plot:21/37) #212520052 1966, P.Fieldhouse pt:3
+Plot:22/37) #21252006 1966, P.Fieldhouse pt:18
+Plot:23/37) #20025002 1965, H.Conde pt:2
+Plot:24/37) #12391002 1964, J.W.Meadows Jr pt:7
+Plot:25/37) #12326004 1963, J.C.Hopkins pt:7
+Plot:26/37) #33102004 1963, S.S.Kapoor pt:1
+Plot:27/37) #124190022 1962, J.W.Meadows pt:6
+Plot:28/37) #142970061 1961, B.C.Diven pt:1
+Plot:29/37) #142970071 1961, B.C.Diven pt:1
+Plot:30/37) #40785002 1960, Yu.A.Vasil`ev pt:1
+Plot:31/37) #40388006 1958, G.N.Smirenkin pt:2
+Plot:32/37) #40392003 1958, A.N.Protopopov pt:1
+Plot:33/37) #40806003 1958, N.N.Flerov pt:1
+Plot:34/37) #12436002 1957, B.C.Diven pt:2
+Plot:35/37) #12337003 1956, B.C.Diven pt:1
+Plot:36/37) #21696004 1956, I.Johnstone pt:2
+Plot:37/37) #12397002 1955, H.A.Bethe pt:2
+Will try---write_image: U235nf_pr-nu.html.png
+
+Program successfully completed

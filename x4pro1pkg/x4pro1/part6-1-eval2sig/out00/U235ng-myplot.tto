@@ -1,0 +1,135 @@
+Program: myplot.py, ver.2025-01-22
+Author:  V.Zerkin, Vienna, 2025
+Purpose: Plot EXFOR/ENDF/MyData
+Running: 2026-08-25 23:15:35
+
+---arg[0]:myplot.py
+---arg[1]:U235ng
+---arg[2]:-x:log
+---arg[3]:-y:log
+---arg[4]:-o:U235ng-myplot.html
+---Parameters:
+   xaxis:[log]
+   ytype:[log]
+   groupByMT:False
+   sortDatasets:True
+   markRejected:False
+   outhtml:U235ng-myplot.html
+
+
+---getReacodes---Datasets: 53
+   Dataset:1/53) U-235 MT102 31719002 L.group:1
+   Dataset:2/53) U-235 MT102 31719002 L.group:2
+   Dataset:3/53) U-235 MT102 14149003 L.group:3
+   Dataset:4/53) U-235 MT102 141490071 L.group:4
+   Dataset:5/53) U-235 MT102 141490072 L.group:5
+   Dataset:6/53) U-235 MT102 22941030 L.group:6
+   Dataset:7/53) U-235 MT102 41427004 L.group:7
+   Dataset:8/53) U-235 MT102 41380002 L.group:8
+   Dataset:9/53) U-235 MT102 41380003 L.group:9
+   Dataset:10/53) U-235 MT102 12318007 L.group:10
+   Dataset:11/53) U-235 MT102 20880002 L.group:11
+   Dataset:12/53) U-235 MT102 20880003 L.group:12
+   Dataset:13/53) U-235 MT102 20880004 L.group:13
+   Dataset:14/53) U-235 MT102 20880005 L.group:14
+   Dataset:15/53) U-235 MT102 40550004 L.group:15
+   Dataset:16/53) U-235 MT102 40562004 L.group:16
+   Dataset:17/53) U-235 MT102 20663002 L.group:17
+   Dataset:18/53) U-235 MT102 40412002 L.group:18
+   Dataset:19/53) U-235 MT102 40259002 L.group:19
+   Dataset:20/53) U-235 MT102 20158002 L.group:20
+   Dataset:21/53) U-235 MT102 10013003 L.group:21
+   Dataset:22/53) U-235 MT102 13047003 L.group:22
+   Dataset:23/53) U-235 MT102 20369008 L.group:23
+   Dataset:24/53) U-235 MT102 14182002 L.group:24
+   Dataset:25/53) U-235 MT102 12313007 L.group:25
+   Dataset:26/53) U-235 MT102 12409002 L.group:26
+   Dataset:27/53) U-235 MT102 12409003 L.group:27
+   Dataset:28/53) U-235 MT102 12428002 L.group:28
+   Dataset:29/53) U-235 MT102 13848003 L.group:29
+   Dataset:30/53) U-235 MT102 13848006 L.group:30
+   Dataset:31/53) U-235 MT102 12398002 L.group:31
+   Dataset:32/53) U-235 MT102 13205004 L.group:32
+   Dataset:33/53) U-235 MT102 13924002 L.group:33
+   Dataset:34/53) U-235 MT102 40808006 L.group:34
+   Dataset:35/53) U-235 MT102 12407002 L.group:35
+   Dataset:36/53) U-235 MT102 12420002 L.group:36
+   Dataset:37/53) U-235 MT102 40156007 L.group:37
+   Dataset:38/53) U-235 MT102 12456003 L.group:38
+   Dataset:39/53) U-235 MT102 12331004 L.group:39
+   Dataset:40/53) U-235 MT102 12331005 L.group:40
+   Dataset:41/53) U-235 MT102 14138003 L.group:41
+   Dataset:42/53) U-235 MT102 12438002 L.group:42
+   Dataset:43/53) U-235 MT102 23310003 L.group:43
+   Dataset:44/53) U-235 MT102 12439003 L.group:44
+   Dataset:45/53) U-235 MT102 12416002 L.group:45
+   Dataset:46/53) U-235 MT102 21202003 L.group:46
+   Dataset:47/53) U-235 MT102 21203003 L.group:47
+   Dataset:48/53) U-235 MT102 40385002 L.group:48
+   Dataset:49/53) U-235 MT102 40385005 L.group:49
+   Dataset:50/53) U-235 MT102 40385006 L.group:50
+   Dataset:51/53) U-235 MT102 40350007 L.group:51
+   Dataset:52/53) U-235 MT102 40350015 L.group:52
+   Dataset:53/53) U-235 MT102 21457003 L.group:53
+Reaction codes: 1 
+
+Plot:1/53) #31719002 2014, A.Wallner pt:1
+Plot:2/53) #31719002 2014, A.Wallner* pt:1
+Plot:3/53) #14149003 2012, M.Jandel pt:1047
+Plot:4/53) #141490071 2012, M.Jandel# pt:66
+Plot:5/53) #141490072 2012, M.Jandel pt:66
+Plot:6/53) #22941030 2009, A.Letourneau pt:1
+Plot:7/53) #41427004 2002, Yu.V.Grigoriev# pt:13
+Plot:8/53) #41380002 2001, Yu.V.Grigoriev# pt:6
+Plot:9/53) #41380003 2001, Yu.V.Grigoriev# pt:24
+Plot:10/53) #12318007 1982, J.R.Smith# pt:1
+Plot:11/53) #20880002 1978, H.Beer# pt:127
+Plot:12/53) #20880003 1978, H.Beer# pt:45
+Plot:13/53) #20880004 1978, H.Beer# pt:126
+Plot:14/53) #20880005 1978, H.Beer# pt:2
+Plot:15/53) #40550004 1977, G.V.Muradyan pt:21
+Plot:16/53) #40562004 1977, N.L.Gnidak# pt:1
+Plot:17/53) #20663002 1975, C.S.Yen# pt:24
+Plot:18/53) #40412002 1975, V.N.Kononov# pt:47
+Plot:19/53) #40259002 1973, V.P.Bolotskij# pt:14
+Plot:20/53) #20158002 1972, R.-E.Bandl# pt:21
+Plot:21/53) #10013003 1970, M.Lounsbury# pt:1
+Plot:22/53) #13047003 1970, J.R.Smith# pt:1
+Plot:23/53) #20369008 1970, H.Ceulemans pt:1
+Plot:24/53) #14182002 1968, F.L.Lisman# pt:1
+Plot:25/53) #12313007 1967, D.E.Conway# pt:1
+Plot:26/53) #12409002 1966, G.De Saussure# pt:36
+Plot:27/53) #12409003 1966, G.De Saussure# pt:5
+Plot:28/53) #12428002 1966, R.W.Durham# pt:1
+Plot:29/53) #13848003 1966, W.J.Maeck# pt:1
+Plot:30/53) #13848006 1966, W.J.Maeck# pt:1
+Plot:31/53) #12398002 1965, W.J.Maeck# pt:1
+Plot:32/53) #13205004 1965, B.F.Rider# pt:1
+Plot:33/53) #13924002 1965, D.E.Conway# pt:1
+Plot:34/53) #40808006 1965, A.A.Van`kov# pt:1
+Plot:35/53) #12407002 1964, L.W.Weston# pt:26
+Plot:36/53) #12420002 1964, A.Okazaki# pt:1
+Plot:37/53) #40156007 1964, K.G.Ignat`ev# pt:505
+Plot:38/53) #12456003 1963, L.W.Weston# pt:2
+Plot:39/53) #12331004 1962, J.C.Hopkins pt:9
+Plot:40/53) #12331005 1962, J.C.Hopkins# pt:9
+Plot:41/53) #14138003 1962, G.Desaussure# pt:2
+Plot:42/53) #12438002 1960, C.H.Hogg pt:1
+Plot:43/53) #23310003 1960, F.W.Cornish# pt:1
+Plot:44/53) #12439003 1959, G.J.Safford# pt:1
+Plot:45/53) #12416002 1958, B.C.Diven# pt:9
+Plot:46/53) #21202003 1958, H.M.Skarsgard# pt:8
+Plot:47/53) #21203003 1958, S.J.Cocking# pt:1
+Plot:48/53) #40385002 1958, V.N.Andreev# pt:1
+Plot:49/53) #40385005 1958, V.N.Andreev# pt:3
+Plot:50/53) #40385006 1958, V.N.Andreev pt:3
+Plot:51/53) #40350007 1956, P.E.Spivak pt:4
+Plot:52/53) #40350015 1956, P.E.Spivak# pt:5
+Plot:53/53) #21457003 1955, P.A.Egelstaff# pt:1
+Plot:1/4) 26213280	ENDF/B-VIII.1	pt:49106	color:0,0,255
+Plot:2/4) 13776134	JEFF-3.3	pt:49826	color:0,127,63
+Plot:3/4) 10751692	BROND-3.1	pt:49357	color:255,0,255
+Plot:4/4) 18873045	CENDL-3.2	pt:49310	color:255,0,0
+Open Page:  file:///G:\projects\zerkin\pdev\x4pro7-dist\x4pro15\part6-1-eval2sig/U235ng-myplot.html
+
+Program successfully completed

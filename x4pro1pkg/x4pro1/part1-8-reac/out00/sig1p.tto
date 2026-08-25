@@ -1,0 +1,342 @@
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-08-25       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-08-25 23:12:50
+
+---Arguments from command-line---
+   1  arg: -o:sig1p
+   2  arg: -x1max:10e6
+   3  arg: -x2min:478e3
+   4  arg: -x2max:478e3
+   5  arg: -fx:1e6
+   6  arg: -ylog
+   7  arg: -lines
+   8  arg: -sym
+   9  arg: -annot:2,0.31,<b>SIG/Partial</b>
+   ---str2annot:[2,0.31,<b>SIG/Partial</b>] --> ('<b>SIG/Partial</b>', 2.0, 0.31)
+   10 arg: 3-LI-7(N,INL)3-LI-7,PAR,SIG
+
+---Input:
+   Reaction:  ['3-LI-7(N,INL)3-LI-7,PAR,SIG']
+   xn:        x1
+   x1range:   None - 10000000.0
+   x2range:   478000.0 - 478000.0
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        1
+   xrange:    None
+   Output:    sig1p
+   x4ei:       and x1<=10000000.0 and x2>=478000.0 and x2<=478000.0
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 1
+----1.
+    fullCode       3-LI-7(N,INL)3-LI-7,PAR,SIG
+    ReactionType   CSP        Partial cross section
+    WebQuantity1   CSP        Partial cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    LVL      EV         Secondary energy: level energy       ///electron-Volts
+/Summary of Reaction-Codes
+Summary of Units 2
+---basicUnits:B           category:B
+   B    1/7   FB          1e-15           femtobarns
+   B    2/7   PB          1e-12           picobarns
+   B    3/7   NB          1e-09           nanobarns
+   B    4/7   MICRO-B     1e-06           microbarns
+   B    5/7   MB          0.001           millibarns
+   B    6/7   B           1.0             barns
+   B    7/7   KB          1000.0          kilobarns
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x1  reacodes: ['3-LI-7(N,INL)3-LI-7,PAR,SIG']
+SQL:
+select *                                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x1 as XX, dx1 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x1'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+      fullCode like '3-LI-7(N,INL)3-LI-7,PAR,SIG'
+ ) 
+ and x1<=10000000.0 and x2>=478000.0 and x2<=478000.0  order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 197
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:197 xn=x1  fx=1.0e-06 fy=1.0e+00
+
+-new-1) 3-LI-7(N,INL)3-LI-7,PAR,SIG 10914006 Lvl=0.478MeV 1979 Knox y=DATA(EN,LVL)
+1/197:1) 3-LI-7(N,INL)3-LI-7,PAR,SIG 10914006 Lvl=0.478MeV 1979 Knox x:2.63409 y:0.1813 dy:0.0009 dx:None
+2/197:1) 3-LI-7(N,INL)3-LI-7,PAR,SIG 10914006 Lvl=0.478MeV 1979 Knox x:3.20255 y:0.1908 dy:0.0068 dx:None
+3/197:1) 3-LI-7(N,INL)3-LI-7,PAR,SIG 10914006 Lvl=0.478MeV 1979 Knox x:3.77443 y:0.2276 dy:0.0079 dx:None
+4/197:1) 3-LI-7(N,INL)3-LI-7,PAR,SIG 10914006 Lvl=0.478MeV 1979 Knox x:4.34631 y:0.308 dy:0.0108 dx:None
+5/197:1) 3-LI-7(N,INL)3-LI-7,PAR,SIG 10914006 Lvl=0.478MeV 1979 Knox x:4.66657 y:0.2846 dy:0.0101 dx:None
+
+-new-2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser y=DATA(EN,LVL)
+6/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:0.95 y:0.184 dy:0.018 dx:0.025
+7/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.0 y:0.186 dy:0.018 dx:0.025
+8/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.05 y:0.2075 dy:0.021 dx:0.025
+9/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.1 y:0.22 dy:0.017 dx:0.025
+10/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.15 y:0.227 dy:0.018 dx:0.025
+11/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.2 y:0.225 dy:0.016 dx:0.025
+12/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.25 y:0.237 dy:0.015 dx:0.025
+13/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.3 y:0.235 dy:0.016 dx:0.025
+14/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.35 y:0.232 dy:0.015 dx:0.025
+15/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.4 y:0.2285 dy:0.015 dx:0.025
+16/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.45 y:0.23 dy:0.013 dx:0.025
+17/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.5 y:0.235 dy:0.012 dx:0.025
+18/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.55 y:0.2305 dy:0.01 dx:0.025
+19/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.6 y:0.233 dy:0.007 dx:0.025
+20/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.65 y:0.228 dy:0.007 dx:0.025
+21/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.7 y:0.232 dy:0.008 dx:0.025
+22/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.75 y:0.2305 dy:0.007 dx:0.025
+23/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.8 y:0.2285 dy:0.007 dx:0.025
+24/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.85 y:0.2245 dy:0.007 dx:0.025
+25/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.9 y:0.2225 dy:0.007 dx:0.025
+26/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:1.95 y:0.2325 dy:0.007 dx:0.025
+27/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.0 y:0.2285 dy:0.006 dx:0.025
+28/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.05 y:0.227 dy:0.006 dx:0.025
+29/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.1 y:0.2315 dy:0.007 dx:0.025
+30/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.15 y:0.222 dy:0.007 dx:0.025
+31/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.2 y:0.2297 dy:0.005 dx:0.025
+32/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.25 y:0.225 dy:0.007 dx:0.025
+33/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.3 y:0.2265 dy:0.007 dx:0.025
+34/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.35 y:0.2295 dy:0.007 dx:0.025
+35/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.4 y:0.224 dy:0.007 dx:0.025
+36/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.45 y:0.2245 dy:0.007 dx:0.025
+37/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.5 y:0.229 dy:0.007 dx:0.025
+38/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.55 y:0.23 dy:0.007 dx:0.025
+39/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.6 y:0.2305 dy:0.007 dx:0.025
+40/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.65 y:0.231 dy:0.007 dx:0.025
+41/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.7 y:0.228 dy:0.007 dx:0.025
+42/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.75 y:0.23 dy:0.007 dx:0.025
+43/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.8 y:0.233 dy:0.007 dx:0.025
+44/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.85 y:0.233 dy:0.007 dx:0.025
+45/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.9 y:0.2335 dy:0.007 dx:0.025
+46/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:2.95 y:0.237 dy:0.007 dx:0.025
+47/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.0 y:0.238 dy:0.007 dx:0.025
+48/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.05 y:0.238 dy:0.007 dx:0.025
+49/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.1 y:0.24 dy:0.007 dx:0.025
+50/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.15 y:0.238 dy:0.007 dx:0.025
+51/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.2 y:0.246 dy:0.008 dx:0.025
+52/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.25 y:0.248 dy:0.008 dx:0.025
+53/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.3 y:0.25 dy:0.008 dx:0.025
+54/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.35 y:0.2525 dy:0.008 dx:0.025
+55/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.4 y:0.2605 dy:0.008 dx:0.025
+56/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.45 y:0.266 dy:0.008 dx:0.025
+57/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.5 y:0.2782 dy:0.008 dx:0.025
+58/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.55 y:0.2845 dy:0.009 dx:0.025
+59/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.6 y:0.2805 dy:0.009 dx:0.025
+60/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.65 y:0.299 dy:0.009 dx:0.025
+61/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.7 y:0.303 dy:0.009 dx:0.025
+62/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.75 y:0.298 dy:0.009 dx:0.025
+63/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.8 y:0.3125 dy:0.01 dx:0.025
+64/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.85 y:0.313 dy:0.01 dx:0.025
+65/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.9 y:0.307 dy:0.01 dx:0.025
+66/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:3.95 y:0.3025 dy:0.009 dx:0.025
+67/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.0 y:0.296 dy:0.009 dx:0.025
+68/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.05 y:0.29 dy:0.009 dx:0.025
+69/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.1 y:0.272 dy:0.008 dx:0.025
+70/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.15 y:0.266 dy:0.008 dx:0.025
+71/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.2 y:0.273 dy:0.008 dx:0.025
+72/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.25 y:0.271 dy:0.008 dx:0.025
+73/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.3 y:0.2695 dy:0.008 dx:0.025
+74/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.35 y:0.267 dy:0.008 dx:0.025
+75/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.4 y:0.2585 dy:0.008 dx:0.025
+76/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.45 y:0.266 dy:0.008 dx:0.025
+77/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.5 y:0.259 dy:0.008 dx:0.025
+78/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.55 y:0.2575 dy:0.008 dx:0.025
+79/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.6 y:0.262 dy:0.008 dx:0.025
+80/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.65 y:0.26 dy:0.008 dx:0.025
+81/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.7 y:0.26 dy:0.008 dx:0.025
+82/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.75 y:0.255 dy:0.006 dx:0.025
+83/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.8 y:0.258 dy:0.008 dx:0.025
+84/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.85 y:0.2585 dy:0.008 dx:0.025
+85/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.9 y:0.259 dy:0.008 dx:0.025
+86/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:4.95 y:0.257 dy:0.008 dx:0.025
+87/197:2) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 Lvl=0.478MeV 1972 Presser x:5.0 y:0.267 dy:0.008 dx:0.025
+
+-new-3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser y=DATA(EN,LVL)
+88/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:4.75 y:0.2535 dy:0.007 dx:0.025
+89/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:4.8 y:0.2585 dy:0.008 dx:0.025
+90/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:4.85 y:0.256 dy:0.007 dx:0.025
+91/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:4.9 y:0.262 dy:0.007 dx:0.025
+92/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:4.95 y:0.257 dy:0.007 dx:0.025
+93/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.0 y:0.2705 dy:0.008 dx:0.025
+94/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.05 y:0.2505 dy:0.007 dx:0.025
+95/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.1 y:0.2675 dy:0.008 dx:0.025
+96/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.15 y:0.258 dy:0.007 dx:0.025
+97/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.2 y:0.251 dy:0.005 dx:0.025
+98/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.25 y:0.252 dy:0.007 dx:0.025
+99/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.3 y:0.2495 dy:0.007 dx:0.025
+100/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.35 y:0.253 dy:0.007 dx:0.025
+101/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.4 y:0.25 dy:0.007 dx:0.025
+102/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.45 y:0.247 dy:0.007 dx:0.025
+103/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.5 y:0.248 dy:0.005 dx:0.025
+104/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.55 y:0.2445 dy:0.007 dx:0.025
+105/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.6 y:0.2425 dy:0.007 dx:0.025
+106/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.65 y:0.2485 dy:0.007 dx:0.025
+107/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.7 y:0.237 dy:0.006 dx:0.025
+108/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.75 y:0.229 dy:0.005 dx:0.025
+109/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.8 y:0.232 dy:0.005 dx:0.025
+110/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.85 y:0.234 dy:0.005 dx:0.025
+111/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.9 y:0.236 dy:0.006 dx:0.025
+112/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:5.95 y:0.235 dy:0.006 dx:0.025
+113/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.0 y:0.23 dy:0.005 dx:0.025
+114/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.05 y:0.234 dy:0.006 dx:0.025
+115/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.1 y:0.229 dy:0.006 dx:0.025
+116/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.15 y:0.235 dy:0.007 dx:0.025
+117/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.2 y:0.232 dy:0.007 dx:0.025
+118/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.25 y:0.229 dy:0.005 dx:0.025
+119/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.3 y:0.2285 dy:0.007 dx:0.025
+120/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.35 y:0.23 dy:0.005 dx:0.025
+121/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.4 y:0.226 dy:0.006 dx:0.025
+122/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.45 y:0.2255 dy:0.006 dx:0.025
+123/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.5 y:0.2265 dy:0.007 dx:0.025
+124/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.55 y:0.216 dy:0.006 dx:0.025
+125/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.6 y:0.2235 dy:0.007 dx:0.025
+126/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.65 y:0.222 dy:0.007 dx:0.025
+127/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.7 y:0.216 dy:0.007 dx:0.025
+128/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.75 y:0.217 dy:0.009 dx:0.025
+129/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.8 y:0.213 dy:0.009 dx:0.025
+130/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.85 y:0.217 dy:0.009 dx:0.025
+131/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.9 y:0.216 dy:0.009 dx:0.025
+132/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:6.95 y:0.21 dy:0.01 dx:0.025
+133/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.0 y:0.211 dy:0.011 dx:0.025
+134/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.05 y:0.2115 dy:0.011 dx:0.025
+135/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.1 y:0.204 dy:0.01 dx:0.025
+136/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.15 y:0.204 dy:0.01 dx:0.025
+137/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.2 y:0.2035 dy:0.01 dx:0.025
+138/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.25 y:0.206 dy:0.007 dx:0.025
+139/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.3 y:0.2005 dy:0.012 dx:0.025
+140/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.35 y:0.201 dy:0.012 dx:0.025
+141/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.4 y:0.2045 dy:0.013 dx:0.025
+142/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.45 y:0.2 dy:0.014 dx:0.025
+143/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.5 y:0.2 dy:0.01 dx:0.025
+144/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.55 y:0.202 dy:0.01 dx:0.025
+145/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.6 y:0.2 dy:0.01 dx:0.025
+146/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.65 y:0.199 dy:0.01 dx:0.025
+147/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.7 y:0.199 dy:0.014 dx:0.025
+148/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.75 y:0.202 dy:0.015 dx:0.025
+149/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.8 y:0.2075 dy:0.015 dx:0.025
+150/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.85 y:0.193 dy:0.015 dx:0.025
+151/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.9 y:0.204 dy:0.017 dx:0.025
+152/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:7.95 y:0.197 dy:0.016 dx:0.025
+153/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.0 y:0.189 dy:0.016 dx:0.025
+154/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.05 y:0.193 dy:0.019 dx:0.025
+155/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.1 y:0.185 dy:0.018 dx:0.025
+156/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.15 y:0.1845 dy:0.019 dx:0.025
+157/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.2 y:0.182 dy:0.018 dx:0.025
+158/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.25 y:0.182 dy:0.018 dx:0.025
+159/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.3 y:0.1815 dy:0.018 dx:0.025
+160/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.35 y:0.192 dy:0.019 dx:0.025
+161/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.4 y:0.176 dy:0.018 dx:0.025
+162/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.45 y:0.1735 dy:0.018 dx:0.025
+163/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.5 y:0.1765 dy:0.018 dx:0.025
+164/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.55 y:0.175 dy:0.018 dx:0.025
+165/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.6 y:0.172 dy:0.017 dx:0.025
+166/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.65 y:0.168 dy:0.018 dx:0.025
+167/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.7 y:0.168 dy:0.02 dx:0.025
+168/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.75 y:0.171 dy:0.02 dx:0.025
+169/197:3) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 Lvl=0.478MeV 1972 Presser x:8.8 y:0.1645 dy:0.02 dx:0.025
+
+-new-4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser y=DATA(EN,LVL)
+170/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:4.96 y:0.259 dy:0.008 dx:0.01
+171/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:4.98 y:0.264 dy:0.008 dx:0.01
+172/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.0 y:0.26 dy:0.008 dx:0.01
+173/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.02 y:0.252 dy:0.007 dx:0.01
+174/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.04 y:0.265 dy:0.007 dx:0.01
+175/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.06 y:0.265 dy:0.007 dx:0.01
+176/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.08 y:0.252 dy:0.006 dx:0.01
+177/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.1 y:0.258 dy:0.006 dx:0.01
+178/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.11 y:0.253 dy:0.006 dx:0.01
+179/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.12 y:0.259 dy:0.006 dx:0.01
+180/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.13 y:0.2555 dy:0.006 dx:0.01
+181/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.14 y:0.2615 dy:0.007 dx:0.01
+182/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.15 y:0.2575 dy:0.006 dx:0.01
+183/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.16 y:0.2555 dy:0.005 dx:0.01
+184/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.17 y:0.257 dy:0.005 dx:0.01
+185/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.18 y:0.262 dy:0.007 dx:0.01
+186/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.19 y:0.251 dy:0.007 dx:0.01
+187/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.2 y:0.251 dy:0.007 dx:0.01
+188/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.22 y:0.25 dy:0.007 dx:0.01
+189/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.24 y:0.254 dy:0.007 dx:0.01
+190/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.26 y:0.249 dy:0.007 dx:0.01
+191/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.28 y:0.249 dy:0.007 dx:0.01
+192/197:4) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 Lvl=0.478MeV 1972 Presser x:5.3 y:0.253 dy:0.007 dx:0.01
+
+-new-5) 3-LI-7(N,INL)3-LI-7,PAR,SIG 11153017 Lvl=0.478MeV 1968 Hopkins y=DATA(EN,LVL)
+193/197:5) 3-LI-7(N,INL)3-LI-7,PAR,SIG 11153017 Lvl=0.478MeV 1968 Hopkins x:3.35 y:0.242 dy:0.02 dx:0.062
+194/197:5) 3-LI-7(N,INL)3-LI-7,PAR,SIG 11153017 Lvl=0.478MeV 1968 Hopkins x:4.83 y:0.178 dy:0.027 dx:0.047
+
+-new-6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 21147047 Lvl=0.478MeV 1963 Batchelor y=DATA(EN,LVL)
+195/197:6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 21147047 Lvl=0.478MeV 1963 Batchelor x:1.5 y:0.2 dy:0.03 dx:0.08
+196/197:6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 21147047 Lvl=0.478MeV 1963 Batchelor x:3.35 y:0.255 dy:0.03 dx:0.08
+197/197:6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 21147047 Lvl=0.478MeV 1963 Batchelor x:4.0 y:0.28 dy:0.03 dx:0.06
+---outDatasets:6 datasets:6
+---ENTRY: 10914*;11153*;20534*;21147*;
+datasets: 6
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 6
+1) 3-LI-7(N,INL)3-LI-7,PAR,SIG
+	Dataset:1/6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 10914006 1979, H.Knox Lvl=0.478MeV
+	Dataset:2/6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534002 1972, G.Presser Lvl=0.478MeV
+	Dataset:3/6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534003 1972, G.Presser Lvl=0.478MeV
+	Dataset:4/6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 20534004 1972, G.Presser Lvl=0.478MeV
+	Dataset:5/6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 11153017 1968, J.C.Hopkins Lvl=0.478MeV
+	Dataset:6/6) 3-LI-7(N,INL)3-LI-7,PAR,SIG 21147047 1963, R.Batchelor Lvl=0.478MeV
+---reacodes: 1 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/6) #10914006 1979, H.Knox Lvl=0.478MeV pt:5
+Plot:2/6) #20534002 1972, G.Presser Lvl=0.478MeV pt:82
+Plot:3/6) #20534003 1972, G.Presser Lvl=0.478MeV pt:82
+Plot:4/6) #20534004 1972, G.Presser Lvl=0.478MeV pt:23
+Plot:5/6) #11153017 1968, J.C.Hopkins Lvl=0.478MeV pt:2
+Plot:6/6) #21147047 1963, R.Batchelor Lvl=0.478MeV pt:3
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- B 1
+Will try---write_image: sig1p.html.png
+
+Program successfully completed

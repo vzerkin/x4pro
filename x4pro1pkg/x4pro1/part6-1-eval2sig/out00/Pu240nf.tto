@@ -1,0 +1,314 @@
+Program: sig1r.py, ver. 2025-03-26
+Author:  V.Zerkin, Vienna, 2024-2025
+Purpose: Retrieve EXFOR cross sections, ratios
+         and monitor data from SQL database,
+         convert ratios to cross sections,
+         renormalize cross sections to new monitors,
+         search and download ENDF data from Web,
+         plot evaluated and experimental data.
+Running: 2026-08-25 23:15:08
+
+---arg[0]:sig1r.py
+---arg[1]:Pu-240
+---arg[2]:n,f
+---arg[3]:-emin:6.5e+6
+---arg[4]:-emax:23e+6
+---arg[5]:-g:n
+---Reading blackList myBlackList.json with datasets to be ignored
+---blackList: 8 records
+---blackList: 5 datasets
+
+===Parameters:
+  target: "Pu-240"
+   react: "n,f"
+   quant: ",sig"
+   sProd: ""
+   xaxis: "linear"
+   ytype: "linear"
+   groupByMT: False
+   sortDatasets: True
+   markRejected: True
+   myBlackListFile: "myBlackList.json"
+   myBlackList: 5 datasets
+   outhtml: "Pu240nf-n"
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---Read x4evalscores from X4Pro database...
+
+---SQL:[
+select x4evalscore.fileID,x4evalscore.DatasetID
+	 ,x4evalscore.author
+	 ,x4evalscore_file.myComment
+	 ,x4evalscore.itype
+	 ,x4evalscore.accepted
+	 ,x4evalscore.evalflag
+	 ,x4evalscore.comment2
+	from x4evalscore
+	 left join x4evalscore_file on x4evalscore_file.fileID=x4evalscore.fileID
+	order by x4evalscore.itype,x4evalscore.DatasetID
+	
+]
+===SQL executed. Rows:21804
+---x4evalflags:19514 datasets
+
+___getX4SqlSearchCS: target:[Pu-240] react:[n,f] sProd:[]
+SQL:
+	select x4pro_c5dat.DatasetID
+	 ,x4pro_ds.x4status,x4pro_ds.MF,x4pro_ds.MT
+	 ,REACSTR.code as Reacode
+	 ,REACODE.fullCode
+	 ,x4pro_c5dat.idat as iPoint
+	 ,REACODE.Pointer,ENTRY.Entry,REACODE.SubAcc as Subent   
+	 ,ENTRY.YearRef1,ENTRY.nAuthors,ENTRY.Author1Ini,ENTRY.Author1 
+	 ,REACSTR.Target, REACSTR.Reaction
+	 ,lower(REACSTR.Projectile) as Projectile
+	 ,REACSTR.sProd,REACSTR.sTarg
+	 ,REACODE.zaTarget1,REACODE.zaIncident1
+	 ,REACODE.outParticles,REACODE.MF,REACODE.MT
+	 ,REACSTR.code as reacode1
+	 ,x4pro_c5dat.x1   as En
+	 ,x4pro_c5dat.dx1  as dEn
+	 ,x4pro_c5dat.y    as Sig
+	 ,x4pro_c5dat.dy   as dSig
+	 ,x4pro_c5dat.m0   as m0
+	 ,x4pro_c5dat.dm0  as dm0
+	 ,x4pro_c5dat.m1   as m1
+	 ,x4pro_c5dat.dm1  as dm1
+	 ,x4pro_c5dat.Fcm0 as Fc
+	 ,x4pro_autocorr.FcDecayData
+	 ,x4pro_autocorr.FcDecayMon
+	 ,x4pro_autocorr.autoCorr
+	from x4pro_c5dat
+	 inner join REACODE        on REACODE.ReacodeID=x4pro_c5dat.DatasetID
+	 inner join REACSTR        on REACSTR.ReacodeID=REACODE.ReacodeID
+	 inner join SUBENT         on REACODE.SubentID=SUBENT.SubentID
+	 inner join ENTRY          on ENTRY.EntryID=SUBENT.EntryID
+	 inner join x4pro_ds       on REACODE.ReacodeID=x4pro_ds.DatasetID
+	 left  join x4pro_autocorr on x4pro_autocorr.DatasetID=x4pro_ds.DatasetID
+	where
+	 (x4pro_ds.MF=3 or (x4pro_ds.MF=203 and x4pro_c5dat.m1 is not Null))
+	 and (REACSTR.iReacstr=1)
+	 and (x4pro_ds.x4status<>'S' and x4pro_ds.x4status<>'P')
+	 and (REACSTR.SF8='')
+	 and ((REACSTR.SF9='') or (REACSTR.SF9='EXP'))
+	 and (Target like 'Pu-240') 
+	 and ((Reaction like 'n,f' and REACSTR.SF58 like ',SIG') 
+	 )
+	 and (sProd like '') 
+	 and (x4pro_c5dat.x1>=6500000.0) 
+	 and (x4pro_c5dat.x1<=23000000.0) 
+	order by
+	--  Reacode desc,
+	  ENTRY.YearRef1 desc,x4pro_c5dat.DatasetID
+	  ,En,x4pro_c5dat.idat
+
+EXFOR SQL executed: 0.094sec
+---All entries: 19
+10597*;12549*;12714*;13801*;14223*;20488*;20786*;21195*;21764*;22211*;23653*;30548*;31711*;40509*;40636*;41444*;41487*;41656*;41675*;
+
+___getDatasets from datapoints: 245
+-DS:  1) #236530021 2022,F.Belloni                MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG
+-DS:  2) #236530022 2022,F.Belloni                MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG
+-DS:  3) #14223002  2009,F.Tovesson               MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --nT3
+-DS:  4) #41487011  2007,A.B.Laptev               MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT1
+-DS:  5) #31711006  1986,K.Gul                    MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG
+-DS:  6) #127140022 1981,J.W.Meadows              MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT1
+-DS:  7) #30548002  1980,N.A.Khan                 MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG
+-DS:  8) #20786002  1978,K.Kari                   MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT1
+-DS:  9) #41656004  1973,B.I.Fursov               MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT1
+-DS: 10) #211950082 1967,P.H.White                MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT1
+-DS: 11) #40636005  1961,M.I.Kazarinova           MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG
+-DS: 12) #41675002  1959,V.G.Nesterov             MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT2
+-DS: 13) #41675003  1959,V.G.Nesterov             MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG
+-DS: 14) #12549002  1957,R.L.Henkel               MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT2
+---Extracted original datasets: 14
+
+___getDatasets from datapoints: 50
+-DS:  1) #41487011  2007,A.B.Laptev               MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT1
+-DS:  2) #31711006  1986,K.Gul                    MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG
+-DS:  3) #127140022 1981,J.W.Meadows              MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT1
+-DS:  4) #30548002  1980,N.A.Khan                 MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG
+-DS:  5) #211950082 1967,P.H.White                MF:3   MT:18 94-PU-240(N,F),,SIG ds.reac:94-PU-240(N,F),,SIG --yT1
+---Extracted automatically renormalized datasets: 5
+
+___getDatasets from datapoints: 242
+-DS:  1) #41487014  2007,A.B.Laptev               MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS:  2) #41444002  2004,A.V.Fomichev             MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS:  3) #13801003  1998,P.Staples                MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS:  4) #22211002  1990,T.Iwasaki                MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS:  5) #127140021 1981,J.W.Meadows              MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS:  6) #21764004  1981,C.Budtz-Jorgensen        MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS:  7) #40509002  1979,V.M.Kupriyanov           MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS:  8) #10597002  1978,J.W.Behrens              MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS:  9) #20786003  1978,K.Kari                   MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS: 10) #20488002  1974,J.Frehaut                MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+-DS: 11) #211950081 1967,P.H.White                MF:203 MT:18 (94-PU-240(N,F),,SIG)/(92-U-235(N,F),,SIG) ds.reac:94-PU-240(N,F),,SIG
+---Extract datasets converted from ratios: 11
+datasets:30 original:14X auto-corrected:5A* ratio2cs:11R#
+
+---getReacodes---Datasets: 30
+   Dataset:1/30) 94-PU-240(N,F),,SIG 236530021 L.group:1
+   Dataset:2/30) 94-PU-240(N,F),,SIG 236530022 L.group:2
+   Dataset:3/30) 94-PU-240(N,F),,SIG 41487014 L.group:3
+   Dataset:4/30) 94-PU-240(N,F),,SIG 41444002 L.group:4
+   Dataset:5/30) 94-PU-240(N,F),,SIG 13801003 L.group:5
+   Dataset:6/30) 94-PU-240(N,F),,SIG 22211002 L.group:6
+   Dataset:7/30) 94-PU-240(N,F),,SIG 31711006 L.group:7
+   Dataset:8/30) 94-PU-240(N,F),,SIG 31711006 L.group:8
+   Dataset:9/30) 94-PU-240(N,F),,SIG 127140021 L.group:9
+   Dataset:10/30) 94-PU-240(N,F),,SIG 21764004 L.group:10
+   Dataset:11/30) 94-PU-240(N,F),,SIG 30548002 L.group:11
+   Dataset:12/30) 94-PU-240(N,F),,SIG 30548002 L.group:12
+   Dataset:13/30) 94-PU-240(N,F),,SIG 40509002 L.group:13
+   Dataset:14/30) 94-PU-240(N,F),,SIG 10597002 L.group:14
+   Dataset:15/30) 94-PU-240(N,F),,SIG 20786003 L.group:15
+   Dataset:16/30) 94-PU-240(N,F),,SIG 20488002 L.group:16
+   Dataset:17/30) 94-PU-240(N,F),,SIG 211950081 L.group:17
+   Dataset:18/30) 94-PU-240(N,F),,SIG 40636005 L.group:18
+   Dataset:19/30) 94-PU-240(N,F),,SIG 41675003 L.group:19
+   Dataset:20/30) 94-PU-240(N,F),,SIG --nT3 14223002 L.group:1
+   Dataset:21/30) 94-PU-240(N,F),,SIG --yT1 41487011 L.group:1
+   Dataset:22/30) 94-PU-240(N,F),,SIG --yT1 41487011 L.group:2
+   Dataset:23/30) 94-PU-240(N,F),,SIG --yT1 127140022 L.group:3
+   Dataset:24/30) 94-PU-240(N,F),,SIG --yT1 127140022 L.group:4
+   Dataset:25/30) 94-PU-240(N,F),,SIG --yT1 20786002 L.group:5
+   Dataset:26/30) 94-PU-240(N,F),,SIG --yT1 41656004 L.group:6
+   Dataset:27/30) 94-PU-240(N,F),,SIG --yT1 211950082 L.group:7
+   Dataset:28/30) 94-PU-240(N,F),,SIG --yT1 211950082 L.group:8
+   Dataset:29/30) 94-PU-240(N,F),,SIG --yT2 41675002 L.group:1
+   Dataset:30/30) 94-PU-240(N,F),,SIG --yT2 12549002 L.group:2
+Reaction codes: 4 
+
+Plot:1/30) #236530021 2022, F.Belloni pt:1
+Plot:2/30) #236530022 2022, F.Belloni pt:1
+Plot:3/30) #41487014 2007, A.B.Laptev# pt:34
+Plot:4/30) #41444002 2004, A.V.Fomichev# pt:17
+Plot:5/30) #13801003 1998, P.Staples# pt:43
+Plot:6/30) #22211002 1990, T.Iwasaki# pt:1
+Plot:7/30) #31711006 1986, K.Gul pt:1
+Plot:8/30) #31711006 1986, K.Gul* pt:1
+Plot:9/30) #127140021 1981, J.W.Meadows# pt:13
+Plot:10/30) #21764004 1981, C.Budtz-Jorgensen# pt:17
+Plot:11/30) #30548002 1980, N.A.Khan pt:1
+Plot:12/30) #30548002 1980, N.A.Khan* pt:1
+Plot:13/30) #40509002 1979, V.M.Kupriyanov# pt:5
+Plot:14/30) #10597002 1978, J.W.Behrens# pt:25
+Plot:15/30) #20786003 1978, K.Kari# pt:72
+Plot:16/30) #20488002 1974, J.Frehaut# pt:14
+Plot:17/30) #211950081 1967, P.H.White# pt:1
+Plot:18/30) #40636005 1961, M.I.Kazarinova pt:1
+Plot:19/30) #41675003 1959, V.G.Nesterov pt:1
+Plot:20/30) #14223002 2009, F.Tovesson pt:109
+Plot:21/30) #41487011 2007, A.B.Laptev pt:34
+Plot:22/30) #41487011 2007, A.B.Laptev* pt:34
+Plot:23/30) #127140022 1981, J.W.Meadows pt:13
+Plot:24/30) #127140022 1981, J.W.Meadows* pt:13
+Plot:25/30) #20786002 1978, K.Kari pt:72
+Plot:26/30) #41656004 1973, B.I.Fursov pt:5
+Plot:27/30) #211950082 1967, P.H.White pt:1
+Plot:28/30) #211950082 1967, P.H.White* pt:1
+Plot:29/30) #41675002 1959, V.G.Nesterov pt:1
+Plot:30/30) #12549002 1957, R.L.Henkel pt:4
+
+___getEndfDataForPlot: [Pu-240] [n,f]
+---wgetdb_get:/servlet/E4sSearch2?Target=Pu-240&Reaction=n,f&Quantity=SIG&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Pu-240&Reaction=n,f&Quantity=SIG&json'
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-08-25T16:42:13.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1800
+,"sections":[
+ { "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":272570,"SectID":19171675,"PenSectID":24019286,"LibID":30003,"LibName":"INDEN-Aug2023","DATE":"20111222","AUTH":"Young,Talou,Chadwick,Kahler,Kawan"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":301577,"SectID":21472633,"PenSectID":26306913,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"Young,Talou,Chadwick,Kahler,Kawan"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":149951,"SectID":9026896,"PenSectID":13664649,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"Young,Talou,Chadwick,Kahler,Kawan"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":57675,"SectID":2293934,"PenSectID":7666593,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"Young,Talou,Chadwick,Kahler,Kawan"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":15602,"SectID":244325,"PenSectID":7617356,"LibID":70,"LibName":"ENDF/B-VII.0","DATE":"DEC06","AUTH":"L.W. Weston and E. D. Arthur"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":307116,"SectID":21645717,"PenSectID":26472495,"LibID":3400,"LibName":"JEFF-4.0","DATE":"  REV1","AUTH":"Jeff Collaboration"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":150966,"SectID":9140446,"PenSectID":13778005,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"Cea/Dam Cea/Den Collaboration"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":96772,"SectID":3760522,"PenSectID":6752141,"LibID":3200,"LibName":"JEFF-3.2","DATE":"JUL12","AUTH":"Cea/Dam Cea/Den Collaboration"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":58286,"SectID":2328226,"PenSectID":6686908,"LibID":3120,"LibName":"JEFF-3.1.2","DATE":"090105","AUTH":"Bouland Derrien Morillon Romain"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":23225,"SectID":559787,"PenSectID":7575600,"LibID":3100,"LibName":"JEFF-3.1","DATE":"090105","AUTH":"Bouland Derrien Morillon Romain"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":226921,"SectID":14606655,"PenSectID":19242475,"LibID":51,"LibName":"JENDL-5","DATE":"20100325","AUTH":"O.Iwamoto,N.Otuka,S.Chiba,+"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":39146,"SectID":1290378,"PenSectID":6854891,"LibID":40,"LibName":"JENDL-4.0","DATE":"20100325","AUTH":"O.Iwamoto,N.Otuka,S.Chiba,+"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":9415,"SectID":123156,"PenSectID":6628436,"LibID":30,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"T.Murata, T.Kawano, T.Nakagawa"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":10092,"SectID":163565,"PenSectID":6585623,"LibID":31,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"T.Murata, T.Kawano, T.Nakagawa"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":9041,"SectID":96907,"PenSectID":7393141,"LibID":60,"LibName":"ENDF/B-VI","DATE":"19930930","AUTH":"L.W. Weston and E. D. Arthur"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":9855,"SectID":146335,"PenSectID":6568393,"LibID":61,"LibName":"ENDF/B-VI","DATE":"19930930","AUTH":"L.W. Weston and E. D. Arthur"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":118856,"SectID":6091702,"PenSectID":10753190,"LibID":41031,"LibName":"BROND-3.1","DATE":".Manokhin","AUTH":"A.Ignatyuk et al."}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":78804,"SectID":3105476,"PenSectID":6486596,"LibID":41020,"LibName":"BROND-2.2","DATE":"JUN85","AUTH":"Kon`Shin, Sukhovitskij,Antsipov"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":38535,"SectID":1251301,"PenSectID":6948647,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC06","AUTH":"A.V.Ignatyuk et al."}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":27809,"SectID":608269,"PenSectID":6908085,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"DEC06","AUTH":"A.V.Ignatyuk et al."}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":199305,"SectID":14200688,"PenSectID":18874144,"LibID":5040,"LibName":"CENDL-3.2","DATE":"OCT12","AUTH":"B.S.Yu,G.C.Chen,D.J.Cai+"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":37878,"SectID":1211739,"PenSectID":6526041,"LibID":5030,"LibName":"CENDL-3.1","DATE":"DEC03","AUTH":"B.S.Yu,G.C.Chen,D.J.Cai+"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":10943,"SectID":191852,"PenSectID":6972873,"LibID":9000,"LibName":"JEFF-3.1/A","DATE":"JUL03","AUTH":"Forrest, Kopecky, Sublet, Koning"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":7691,"SectID":81228,"PenSectID":6610734,"LibID":2300,"LibName":"JEFF-3.0","DATE":"APR02","AUTH":"002 O.Bouland,H.Derrien,S.Masetti"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":7252,"SectID":60384,"PenSectID":7550496,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"F.Froehner, E.Fort"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":116273,"SectID":5880256,"PenSectID":6536355,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"Nov20","AUTH":"T.Fukahori, A.Yu.Konobeyev"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":155175,"SectID":9156725,"PenSectID":13789057,"LibID":6135,"LibName":"JENDL/AD-2017","DATE":"20100325","AUTH":"O.Iwamoto,N.Otuka,S.Chiba,+"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":20033,"SectID":434805,"PenSectID":6502329,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"SEP01","AUTH":"T.Fukahori, A.Yu.Konobeyev"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":19913,"SectID":425013,"PenSectID":6476568,"LibID":6037,"LibName":"JENDL/AC-2008","DATE":"20080225","AUTH":"O.Iwamoto,N.Otuka,S.Chiba,+"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":116668,"SectID":5900100,"PenSectID":6651167,"LibID":32,"LibName":"JENDL-3.2","DATE":"AUG93","AUTH":"T.Murata, A.Zukeran"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":52813,"SectID":2179713,"PenSectID":7171263,"LibID":33010,"LibName":"EAF-2010","DATE":"SEP11","AUTH":""}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":232383,"SectID":14667295,"PenSectID":19433343,"LibID":54000,"LibName":"Wind","DATE":"OCT94","AUTH":"Yu.A.Korovin et.al."}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":290148,"SectID":20588964,"PenSectID":24584822,"LibID":61023,"LibName":"TENDL-2023","DATE":"DEC23","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":246285,"SectID":16179015,"PenSectID":20995460,"LibID":61022,"LibName":"TENDL-2021","DATE":"JAN22","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":198124,"SectID":13865954,"PenSectID":18509145,"LibID":61020,"LibName":"TENDL-2019.s60","DATE":"DEC19","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":78575,"SectID":3094201,"PenSectID":6551892,"LibID":50,"LibName":"ENDF/B-V","DATE":"0","AUTH":"L.W. Weston"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":200003,"SectID":14237978,"PenSectID":19359516,"LibID":39032,"LibName":"ADS-2.0","DATE":"DEC06","AUTH":"L.W. Weston and E. D. Arthur"}
+,{ "Targ":"PU-240","ZT":94,"AT":240,"NSUB":10,"MT":18,"MF":3,"R":"N,F","RC":"PU-240(N,F),SIG","EvalID":7788,"SectID":88210,"PenSectID":6465869,"LibID":5020,"LibName":"CENDL-2","DATE":"940802","AUTH":"Cai Dunjiu et al."}
+]
+}
+
+format=WebEndfSectionsList-0.1
+___Retrieved sections:38
+SelectedLib-Sect:2) {'Targ': 'PU-240', 'ZT': 94, 'AT': 240, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-240(N,F),SIG', 'EvalID': 301577, 'SectID': 21472633, 'PenSectID': 26306913, 'LibID': 810, 'LibName': 'ENDF/B-VIII.1', 'DATE': '20240830', 'AUTH': 'Young,Talou,Chadwick,Kahler,Kawan'}
+SelectedLib-Sect:7) {'Targ': 'PU-240', 'ZT': 94, 'AT': 240, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-240(N,F),SIG', 'EvalID': 150966, 'SectID': 9140446, 'PenSectID': 13778005, 'LibID': 3300, 'LibName': 'JEFF-3.3', 'DATE': '20171231', 'AUTH': 'Cea/Dam Cea/Den Collaboration'}
+SelectedLib-Sect:17) {'Targ': 'PU-240', 'ZT': 94, 'AT': 240, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-240(N,F),SIG', 'EvalID': 118856, 'SectID': 6091702, 'PenSectID': 10753190, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': '.Manokhin', 'AUTH': 'A.Ignatyuk et al.'}
+SelectedLib-Sect:21) {'Targ': 'PU-240', 'ZT': 94, 'AT': 240, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-240(N,F),SIG', 'EvalID': 199305, 'SectID': 14200688, 'PenSectID': 18874144, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': 'OCT12', 'AUTH': 'B.S.Yu,G.C.Chen,D.J.Cai+'}
+Required sections:4
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26306913&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26306913&json'
+Downloaded:1)	PU-240(N,F),SIG	ENDF/B-VIII.1	PenSectID:26306913	pts:82347	idy=83
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13778005&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13778005&json'
+Downloaded:2)	PU-240(N,F),SIG	JEFF-3.3	PenSectID:13778005	pts:81776	idy=104
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10753190&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10753190&json'
+Downloaded:3)	PU-240(N,F),SIG	BROND-3.1	PenSectID:10753190	pts:45624	idy=62
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18874144&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18874144&json'
+Downloaded:4)	PU-240(N,F),SIG	CENDL-3.2	PenSectID:18874144	pts:50787	idy=0
+
+EXFOR SQL executed:  0.094sec
+ENDF Web downloaded: 0.613sec
+Plot:1/4) 26306913	ENDF/B-VIII.1	pt:83	color:0,0,255
+Plot:2/4) 13778005	JEFF-3.3	pt:104	color:0,127,63
+Plot:3/4) 10753190	BROND-3.1	pt:62	color:255,0,255
+Plot:4/4) 18874144	CENDL-3.2	pt:66	color:255,0,0
+Will try---write_image: Pu240nf-n.html.png
+
+Program successfully completed

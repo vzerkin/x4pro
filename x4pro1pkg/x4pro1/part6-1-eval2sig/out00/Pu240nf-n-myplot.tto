@@ -1,0 +1,87 @@
+Program: myplot.py, ver.2025-01-22
+Author:  V.Zerkin, Vienna, 2025
+Purpose: Plot EXFOR/ENDF/MyData
+Running: 2026-08-25 23:15:35
+
+---arg[0]:myplot.py
+---arg[1]:Pu240nf-n
+---arg[2]:-o:Pu240nf-n-myplot.html
+---Parameters:
+   xaxis:[linear]
+   ytype:[linear]
+   groupByMT:False
+   sortDatasets:True
+   markRejected:False
+   outhtml:Pu240nf-n-myplot.html
+
+
+---getReacodes---Datasets: 30
+   Dataset:1/30) 94-PU-240(N,F),,SIG 236530021 L.group:1
+   Dataset:2/30) 94-PU-240(N,F),,SIG 236530022 L.group:2
+   Dataset:3/30) 94-PU-240(N,F),,SIG 41487014 L.group:3
+   Dataset:4/30) 94-PU-240(N,F),,SIG 41444002 L.group:4
+   Dataset:5/30) 94-PU-240(N,F),,SIG 13801003 L.group:5
+   Dataset:6/30) 94-PU-240(N,F),,SIG 22211002 L.group:6
+   Dataset:7/30) 94-PU-240(N,F),,SIG 31711006 L.group:7
+   Dataset:8/30) 94-PU-240(N,F),,SIG 31711006 L.group:8
+   Dataset:9/30) 94-PU-240(N,F),,SIG 127140021 L.group:9
+   Dataset:10/30) 94-PU-240(N,F),,SIG 21764004 L.group:10
+   Dataset:11/30) 94-PU-240(N,F),,SIG 30548002 L.group:11
+   Dataset:12/30) 94-PU-240(N,F),,SIG 30548002 L.group:12
+   Dataset:13/30) 94-PU-240(N,F),,SIG 40509002 L.group:13
+   Dataset:14/30) 94-PU-240(N,F),,SIG 10597002 L.group:14
+   Dataset:15/30) 94-PU-240(N,F),,SIG 20786003 L.group:15
+   Dataset:16/30) 94-PU-240(N,F),,SIG 20488002 L.group:16
+   Dataset:17/30) 94-PU-240(N,F),,SIG 211950081 L.group:17
+   Dataset:18/30) 94-PU-240(N,F),,SIG 40636005 L.group:18
+   Dataset:19/30) 94-PU-240(N,F),,SIG 41675003 L.group:19
+   Dataset:20/30) 94-PU-240(N,F),,SIG --nT3 14223002 L.group:1
+   Dataset:21/30) 94-PU-240(N,F),,SIG --yT1 41487011 L.group:1
+   Dataset:22/30) 94-PU-240(N,F),,SIG --yT1 41487011 L.group:2
+   Dataset:23/30) 94-PU-240(N,F),,SIG --yT1 127140022 L.group:3
+   Dataset:24/30) 94-PU-240(N,F),,SIG --yT1 127140022 L.group:4
+   Dataset:25/30) 94-PU-240(N,F),,SIG --yT1 20786002 L.group:5
+   Dataset:26/30) 94-PU-240(N,F),,SIG --yT1 41656004 L.group:6
+   Dataset:27/30) 94-PU-240(N,F),,SIG --yT1 211950082 L.group:7
+   Dataset:28/30) 94-PU-240(N,F),,SIG --yT1 211950082 L.group:8
+   Dataset:29/30) 94-PU-240(N,F),,SIG --yT2 41675002 L.group:1
+   Dataset:30/30) 94-PU-240(N,F),,SIG --yT2 12549002 L.group:2
+Reaction codes: 4 
+
+Plot:1/30) #236530021 2022, F.Belloni pt:1
+Plot:2/30) #236530022 2022, F.Belloni pt:1
+Plot:3/30) #41487014 2007, A.B.Laptev# pt:34
+Plot:4/30) #41444002 2004, A.V.Fomichev# pt:17
+Plot:5/30) #13801003 1998, P.Staples# pt:43
+Plot:6/30) #22211002 1990, T.Iwasaki# pt:1
+Plot:7/30) #31711006 1986, K.Gul pt:1
+Plot:8/30) #31711006 1986, K.Gul* pt:1
+Plot:9/30) #127140021 1981, J.W.Meadows# pt:13
+Plot:10/30) #21764004 1981, C.Budtz-Jorgensen# pt:17
+Plot:11/30) #30548002 1980, N.A.Khan pt:1
+Plot:12/30) #30548002 1980, N.A.Khan* pt:1
+Plot:13/30) #40509002 1979, V.M.Kupriyanov# pt:5
+Plot:14/30) #10597002 1978, J.W.Behrens# pt:25
+Plot:15/30) #20786003 1978, K.Kari# pt:72
+Plot:16/30) #20488002 1974, J.Frehaut# pt:14
+Plot:17/30) #211950081 1967, P.H.White# pt:1
+Plot:18/30) #40636005 1961, M.I.Kazarinova pt:1
+Plot:19/30) #41675003 1959, V.G.Nesterov pt:1
+Plot:20/30) #14223002 2009, F.Tovesson pt:109
+Plot:21/30) #41487011 2007, A.B.Laptev pt:34
+Plot:22/30) #41487011 2007, A.B.Laptev* pt:34
+Plot:23/30) #127140022 1981, J.W.Meadows pt:13
+Plot:24/30) #127140022 1981, J.W.Meadows* pt:13
+Plot:25/30) #20786002 1978, K.Kari pt:72
+Plot:26/30) #41656004 1973, B.I.Fursov pt:5
+Plot:27/30) #211950082 1967, P.H.White pt:1
+Plot:28/30) #211950082 1967, P.H.White* pt:1
+Plot:29/30) #41675002 1959, V.G.Nesterov pt:1
+Plot:30/30) #12549002 1957, R.L.Henkel pt:4
+Plot:1/4) 26306913	ENDF/B-VIII.1	pt:83	color:0,0,255
+Plot:2/4) 13778005	JEFF-3.3	pt:104	color:0,127,63
+Plot:3/4) 10753190	BROND-3.1	pt:62	color:255,0,255
+Plot:4/4) 18874144	CENDL-3.2	pt:66	color:255,0,0
+Open Page:  file:///G:\projects\zerkin\pdev\x4pro7-dist\x4pro15\part6-1-eval2sig/Pu240nf-n-myplot.html
+
+Program successfully completed

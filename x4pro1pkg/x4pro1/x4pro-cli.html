@@ -1,0 +1,81 @@
+<html>
+<head>
+<style type="text/css" media="print">
+@page {
+  @bottom-right {
+    content: counter(page) " of " counter(pages);
+  }
+}
+</style>
+<script language=javascript>
+var num=0;
+    function out1(filename,txt) {
+	var str=filename.replace(/ /g,'');
+	var ww=900;
+//	document.write('['+filename+']['+txt+']'+'<br>');
+
+//	if (filename.indexOf('couchdb')>=0) hh=760;
+	num++;
+    document.write('<div style="page-break-inside: avoid;">');
+        document.write('<div style="font-size:20pt;font-family:calibry;color:#a0a;'
+	+'border:1px solid #aaa;border-bottom:none;border-radius:6px 6px 0 0;margin-bottom:-1px;margin-left:10px;display:table;position:relative;'
+	+'padding-left:9px;padding-right:9px;background-color:#fff;">'
+//	+num+') '
+	+txt+'</div>');
+        document.write('<div style="border:1px solid #aaa;display:table;">');
+        document.write('<img src="'+str+'" width='+ww+'>');
+        document.write('</div><br>');
+    document.write('</div>');
+    }
+</script>
+</head>
+<body bgcolor="#ddddff">
+<h1>CLI: Command Line Interface for running demo-codes.</h1>
+
+<pre style="margin-top:0;">
+# Script:  run-all.sh
+# Author:  Viktor Zerkin <v.zerkin@gmail.com>
+# Created: 2026-02-17
+# Version: 2026-02-20
+# License: MIT
+# Run:     $ run-all.sh [pattern]
+# Example: $ bash run-all.sh part1
+#          $ bash run-all.sh "*sig"
+#          $ bash run-all.sh "*leg"
+</pre>
+<script language="javascript">
+    out1("img/cli1-screen1.png","run-all.sh -begin-");
+    out1("img/cli1-screen2.png","run-all.sh -end-");
+</script>
+
+<br><hr><br>
+<pre style="margin-top:0;">
+# Script:  quick-test.sh
+# Author:  Viktor Zerkin <v.zerkin@gmail.com>
+# Created: 2026-02-17
+# Version: 2026-02-20
+# License: MIT
+# Run:     $ ./quick-test.sh [# [# [#...]]]
+# Example: $ bash quick-test.sh 1 3 5 12
+</pre>
+<script language="javascript">
+    out1("img/cli2-screen1.png","quick-test.sh");
+</script>
+
+
+<br><hr><br>
+Sctipt: clean.sh
+<pre style="margin-top:0;">
+# Script:  clean.sh
+# Author:  Viktor Zerkin <v.zerkin@gmail.com>
+# Created: 2026-02-17
+# Version: 2026-02-20
+# License: MIT
+# Run:     $ clean.sh
+</pre>
+<script language="javascript">
+    out1("img/cli3-screen1.png","clean.sh");
+</script>
+
+</body>
+</html>

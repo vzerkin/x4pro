@@ -1,0 +1,115 @@
+Program: da1ei.py, ver. 2025-07-10
+Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2025
+Purpose: Retrieve and plot EXFOR/ENDF angular distributions
+
+Running: 2026-08-25 23:13:20
+
+___sys___nexample:[default]['da1ei.py']
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+___getX4SqlSearchDA_a: C-12 a,el
+SQL:
+select *                           
+ ,round(An) as Anint               
+from da1                           
+where (Target like 'C-12')   
+  and (Reaction like 'a,el')  
+ and (An>=127 and An<=134) and (En<=9e6)
+order by fullCode,                 
+  YearRef1 desc,DatasetID          
+  ,Anint,En,iPoint                 
+
+
+datapoints: 742
+1) 6-C-12(A,EL)6-C-12,,DA C1461014 2009 P.Tischhauser
+2) 6-C-12(A,EL)6-C-12,,DA C0064002 1987 R.Plaga
+3) 6-C-12(A,EL)6-C-12,,DA C0064002 1987 R.Plaga
+4) 6-C-12(A,EL)6-C-12,,DA A1616003 1982 C.W.Wang
+5) 6-C-12(A,EL)6-C-12,,DA A1616003 1982 C.W.Wang
+6) 6-C-12(A,EL)6-C-12,,DA F1041002 1968 J.M.Morris
+7) 6-C-12(A,EL)6-C-12,,DA F1041002 1968 J.M.Morris
+8) 6-C-12(A,EL)6-C-12,,DA F1041002 1968 J.M.Morris
+9) 6-C-12(A,EL)6-C-12,,DA F1041002 1968 J.M.Morris
+10) 6-C-12(A,EL)6-C-12,,DA F1041002 1968 J.M.Morris
+11) 6-C-12(A,EL)6-C-12,,DA F1041002 1968 J.M.Morris
+12) 6-C-12(A,EL)6-C-12,,DA F1041002 1968 J.M.Morris
+13) 6-C-12(A,EL)6-C-12,,DA F1041002 1968 J.M.Morris
+14) 6-C-12(A,EL)6-C-12,,DA O0888002 1968 G.J.Clark
+15) 6-C-12(A,EL)6-C-12,,DA O0888002 1968 G.J.Clark
+16) 6-C-12(A,EL)6-C-12,,DA O0888002 1968 G.J.Clark
+17) 6-C-12(A,EL)6-C-12,,DA O0888002 1968 G.J.Clark
+18) 6-C-12(A,EL)6-C-12,,DA F0198004 1967 F.P.Brady
+19) 6-C-12(A,EL)6-C-12,,DA F0198004 1967 F.P.Brady
+20) 6-C-12(A,EL)6-C-12,,DA C1359002 1954 J.W.Bittner
+21) 6-C-12(A,EL)6-C-12,,DA C1026003 1953 R.W.Hill
+datasets: 21
+
+Datasets: 21
+1) 6-C-12(A,EL)6-C-12,,DA
+	Dataset:1/21) 6-C-12(A,EL)6-C-12,,DA C1461014 npt:356
+	Dataset:2/21) 6-C-12(A,EL)6-C-12,,DA C0064002 npt:50
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA C0064002 npt:49
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA A1616003 npt:1
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA A1616003 npt:1
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F1041002 npt:1
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F1041002 npt:5
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F1041002 npt:2
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F1041002 npt:2
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F1041002 npt:5
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F1041002 npt:8
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F1041002 npt:5
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F1041002 npt:3
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA O0888002 npt:3
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA O0888002 npt:7
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA O0888002 npt:2
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA O0888002 npt:3
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F0198004 npt:1
+	Dataset:3/21) 6-C-12(A,EL)6-C-12,,DA F0198004 npt:1
+	Dataset:4/21) 6-C-12(A,EL)6-C-12,,DA C1359002 npt:173
+	Dataset:5/21) 6-C-12(A,EL)6-C-12,,DA C1026003 npt:64
+reacodes: 1 
+
+Plot:1/5) #C1461014 2009, P.Tischhauser pt:356
+Plot:2/5) #C0064002 1987, R.Plaga pt:50
+Plot:3/5) #C0064002 1987, R.Plaga pt:49
+Plot:4/5) #C1359002 1954, J.W.Bittner pt:173
+Plot:5/5) #C1026003 1953, R.W.Hill pt:64
+
+___webEndfDataForPlot_DADE: [C-12] [a,*] [&an=130&mf=4&mt=40002&zap=2004]
+---wgetdb_get:/servlet/E4sSearch2?Target=C-12&Reaction=a,*&Quantity=DA*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=C-12&Reaction=a,*&Quantity=DA*&json&mats'
+format=WebEndfSectionsList-0.1
+___Retrieved sections:5
+SelectedLib-Sect:1) {'Targ': 'C-12', 'ZT': 6, 'AT': 12, 'NSUB': 20040, 'MT': 2, 'MF': 6, 'R': 'HE4,EL', 'RC': 'C-12(HE4,EL)C-12-L0,DA/DE', 'EvalID': 232357, 'SectID': 14666610, 'PenSectID': 19432646, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20211227', 'AUTH': 'S.Nakayama'}
+SelectedLib-Sect:2) {'Targ': 'C-12', 'ZT': 6, 'AT': 12, 'NSUB': 20040, 'MT': 2, 'MF': 6, 'R': 'HE4,EL', 'RC': 'C-12(HE4,EL)C-12-L0,DA/DE', 'EvalID': 116873, 'SectID': 5914449, 'PenSectID': 6458835, 'LibID': 56001, 'LibName': 'IBA-EVAL', 'DATE': '', 'AUTH': 'A.Gurbich'}
+___Required sections:2
+WebReq:1) EvalID:232357 PenSectID:19432646 Lib:JENDL-5 Color:255,127,0
+/servlet/E4sGetSectData?EvalID=232357&PenSectID=19432646&json&an=130&mf=4&mt=40002&zap=2004
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=232357&PenSectID=19432646&json&an=130&mf=4&mt=40002&zap=2004
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=232357&PenSectID=19432646&json&an=130&mf=4&mt=40002&zap=2004'
+Download...DS:1/1)	6-C-12(A,EL),DA	JENDL-5	EID:232357	SID:19432646	f(x):DA(Ei)	pts:37
+Downloaded:DS:1/1)	6-C-12(A,EL),DA	JENDL-5	EID:232357	SID:19432646	f(x):DA(Ei)	pts:37	idy=0
+WebReq:2) EvalID:116873 PenSectID:6458835 Lib:IBA-EVAL Color:0,0,192
+/servlet/E4sGetSectData?EvalID=116873&PenSectID=6458835&json&an=130&mf=4&mt=40002&zap=2004
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=116873&PenSectID=6458835&json&an=130&mf=4&mt=40002&zap=2004
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=116873&PenSectID=6458835&json&an=130&mf=4&mt=40002&zap=2004'
+Download...DS:2/1)	6-C-12(A,EL),DA	IBA-EVAL	EID:116873	SID:6458835	f(x):DA(Ei)	pts:288
+Downloaded:DS:2/1)	6-C-12(A,EL),DA	IBA-EVAL	EID:116873	SID:6458835	f(x):DA(Ei)	pts:288	idy=0
+Plot:1/2) 19432646	JENDL-5 El0.00E+0 An130	pt:37	color:255,127,0
+Plot:2/2) 6458835	IBA-EVAL El0.00E+0 An130	pt:288	color:0,0,192
+Will try---write_image: da1ei.html.png
+
+Program successfully completed

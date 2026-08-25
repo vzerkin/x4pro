@@ -1,0 +1,290 @@
+Program: mn55na.py, ver. 2022-11-09
+Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
+Purpose: Automatic correction of EXFOR cross sections according to new Standard CS
+
+Running: 2026-08-25 23:14:20
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+___getX4SqlSearchCS: Mn-55 n,a
+SQL:
+SELECT x4.DatasetID,ds.year1 as YearRef1                              
+ ,ds.author1ini as Author1Ini,ds.author1 as Author1                   
+ ,ds.reacode as fullCode                                              
+ ,x4.idat as iPoint,x4.xdat                                           
+ ,round(c5.y*c5.Fcm0,10) as ynew0sql                                  
+ ,c5.y,c5.dy                                                          
+ ,case                                                                
+  when c5.Fcm0>0 and corr.FcDecayData>0 and corr.FcDecayMon>0         
+   then c5.Fcm0*corr.FcDecayData*corr.FcDecayMon                      
+  when c5.Fcm0>0 and corr.FcDecayData>0 then c5.Fcm0*corr.FcDecayData 
+  when c5.Fcm0>0 and corr.FcDecayMon>0  then c5.Fcm0*corr.FcDecayMon  
+  when corr.FcDecayData>0 and corr.FcDecayMon>0                       
+   then corr.FcDecayData*corr.FcDecayMon                              
+  when c5.Fcm0>0 then c5.Fcm0                                         
+  when corr.FcDecayData>0 then corr.FcDecayData                       
+  when corr.FcDecayMon>0  then corr.FcDecayMon                        
+  else null                                                           
+ end as FcNew                                                         
+ ,c5.x1 as En,c5.dx1 as dEn                                           
+ ,c5.dyerr,c5.dysys,c5.dystat                                         
+ ,c5.Fcm0,corr.FcDecayData,corr.FcDecayMon                            
+ ,c5.m0,c5.dm0,c5.m1,c5.dm1                                           
+ FROM x4pro_x4data x4                                                 
+  inner join x4pro_c5dat c5 on                                        
+  x4.DatasetID=c5.DatasetID and x4.idat=c5.idat                       
+  inner join x4pro_ds ds on x4.DatasetID=ds.DatasetID                 
+  left  join x4pro_autocorr corr on corr.DatasetID=ds.DatasetID       
+ WHERE (ds.Targ1 like 'Mn-55')                                   
+  and ds.reacode like '%(n,a)%'                                 
+--  and (Author1 like 'Zupranska' ) 
+  and ((Author1 like 'Zupranska' )  
+      or (ds.year1>2000 and Author1 like 'Filatenkov')    
+      or (Author1 like 'Bostan')    
+--      or (Author1 like 'Bormann')   
+--      or (Author1 like 'Fessler')   
+      )    
+-- and (Author1 like 'Filatenkov'  or Author1 like 'Bostan' or Author1 like 'Zupranska' ) 
+--  and x4.DatasetID='13597002'                                        
+ ORDER BY ds.reacode,ds.year1 desc,c5.DatasetID,c5.x1,x4.idat         
+
+
+__getDatasets4plot: forming Datasets for plotting
+datapoints: 25
+1) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov
+R:1/25) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:13.47 y:20.6 dy:0.77662 dx:None Fcm0:1.0 dm0:0.000997407 dm1:0.000997831
+R:2/25) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:13.66 y:21.0 dy:0.8778 dx:None Fcm0:0.999616 dm0:0.000656145 dm1:0.000723416
+R:3/25) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:13.88 y:22.8 dy:0.98268 dx:None Fcm0:0.999797 dm0:0.000606041 dm1:0.000610431
+R:4/25) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.04 y:22.7 dy:0.97156 dx:None Fcm0:0.999712 dm0:0.0005623 dm1:0.000573293
+R:5/25) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.26 y:22.9 dy:0.96867 dx:None Fcm0:0.99926 dm0:0.000487408 dm1:0.000508838
+R:6/25) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.44 y:23.5 dy:0.8695 dx:None Fcm0:0.999639 dm0:0.000436313 dm1:0.000451854
+R:7/25) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.63 y:23.7 dy:0.86742 dx:None Fcm0:0.999523 dm0:0.000437322 dm1:0.000451126
+R:8/25) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.81 y:22.8 dy:0.95988 dx:None Fcm0:0.999133 dm0:0.000484808 dm1:0.000476418
+2) 25-MN-55(N,A)23-V-52,,SIG 22292007 1994 M.Bostan
+R:9/25) 25-MN-55(N,A)23-V-52,,SIG 22292007 1994 M.Bostan x:6.33 y:0.86 dy:0.12 dx:0.13 Fcm0:None dm0:None dm1:None
+R:10/25) 25-MN-55(N,A)23-V-52,,SIG 22292007 1994 M.Bostan x:7.18 y:3.2 dy:0.43 dx:0.13 Fcm0:None dm0:None dm1:None
+R:11/25) 25-MN-55(N,A)23-V-52,,SIG 22292007 1994 M.Bostan x:8.0 y:5.5 dy:0.64 dx:0.13 Fcm0:None dm0:None dm1:None
+R:12/25) 25-MN-55(N,A)23-V-52,,SIG 22292007 1994 M.Bostan x:9.05 y:9.6 dy:1.3 dx:0.14 Fcm0:None dm0:None dm1:None
+R:13/25) 25-MN-55(N,A)23-V-52,,SIG 22292007 1994 M.Bostan x:10.1 y:14.6 dy:1.9 dx:0.15 Fcm0:None dm0:None dm1:None
+R:14/25) 25-MN-55(N,A)23-V-52,,SIG 22292007 1994 M.Bostan x:11.14 y:19.3 dy:2.9 dx:0.16 Fcm0:None dm0:None dm1:None
+R:15/25) 25-MN-55(N,A)23-V-52,,SIG 22292007 1994 M.Bostan x:11.97 y:22.1 dy:3.3 dx:0.18 Fcm0:None dm0:None dm1:None
+3) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska
+R:16/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:13.0 y:21.9 dy:2.1 dx:0.1 Fcm0:1.01635 dm0:0.007 dm1:0.00169076
+R:17/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:13.3 y:21.8 dy:1.4 dx:0.1 Fcm0:1.02552 dm0:0.007 dm1:0.00152722
+R:18/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:13.9 y:24.1 dy:1.5 dx:0.2 Fcm0:1.07402 dm0:0.007 dm1:0.00125861
+R:19/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:14.5 y:27.7 dy:1.6 dx:0.2 Fcm0:1.10564 dm0:0.00602105 dm1:0.00118709
+R:20/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:15.1 y:29.2 dy:1.9 dx:0.2 Fcm0:1.12444 dm0:0.00566842 dm1:0.00126404
+R:21/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:15.5 y:24.9 dy:1.8 dx:0.2 Fcm0:1.08816 dm0:0.00541351 dm1:0.00127928
+R:22/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:15.9 y:23.7 dy:2.2 dx:0.2 Fcm0:1.09573 dm0:0.00494375 dm1:0.00128455
+R:23/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:16.6 y:23.9 dy:2.6 dx:0.1 Fcm0:1.08634 dm0:0.00406087 dm1:0.00127983
+R:24/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:17.4 y:21.3 dy:2.6 dx:0.2 Fcm0:1.07063 dm0:0.00397812 dm1:0.00126339
+R:25/25) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:17.8 y:18.1 dy:2.4 dx:0.1 Fcm0:1.06899 dm0:0.00359677 dm1:0.00125742
+datasets: 3
+
+Datasets: 3
+1) 25-MN-55(N,A)23-V-52,,SIG
+reacodes: 1 
+
+Plot:1/3) #41614016 2016, A.A.Filatenkov pt:8
+Plot:2/3) #22292007 1994, M.Bostan pt:7
+Plot:3/3) #30581004 1980, E.Zupranska pt:10
+
+__getDatasets00: form Datasets consist of retieved data points
+datapoints: 25
+1) ___________#41614016
+2) ___________#22292007
+3) ___________#30581004
+_____________datasets00: 3
+___________auto_corr_dataset:::41614016 len=8 icmp=0
+
+__0________fcorr:41614016 En=13.47	y0=0.0206	fc=1.0	dy0=0.00077662 icmp=0
+__1________fcorr-err:41614016 dy=3.77 dm0=0.795 dm1=0.795
+__2________fcorr-err:41614016 dy=3.77
+__Fin:__2__fcorr:41614016 En=13.47	y0=0.0206	y1=0.0206	Fc=1.0	dy0=0.00077662	dy1=0.0007766
+
+__0________fcorr:41614016 En=13.66	y0=0.021	fc=0.999616	dy0=0.0008778 icmp=0
+__1________fcorr-err:41614016 dy=4.18 dm0=0.525 dm1=0.579
+__2________fcorr-err:41614016 dy=4.187
+__Fin:__2__fcorr:41614016 En=13.66	y0=0.021	y1=0.0209919	Fc=0.999616	dy0=0.0008778	dy1=0.000879
+
+__0________fcorr:41614016 En=13.88	y0=0.0228	fc=0.999797	dy0=0.00098268 icmp=0
+__1________fcorr-err:41614016 dy=4.31 dm0=0.491 dm1=0.495
+__2________fcorr-err:41614016 dy=4.31
+__Fin:__2__fcorr:41614016 En=13.88	y0=0.0228	y1=0.0227954	Fc=0.999797	dy0=0.00098268	dy1=0.0009826
+
+__0________fcorr:41614016 En=14.04	y0=0.0227	fc=0.999712	dy0=0.00097156013 icmp=0
+__1________fcorr-err:41614016 dy=4.28 dm0=0.462 dm1=0.471
+__2________fcorr-err:41614016 dy=4.281
+__Fin:__2__fcorr:41614016 En=14.04	y0=0.0227	y1=0.0226935	Fc=0.999712	dy0=0.00097156013	dy1=0.0009715
+
+__0________fcorr:41614016 En=14.26	y0=0.0229	fc=0.99926	dy0=0.00096867 icmp=0
+__1________fcorr-err:41614016 dy=4.23 dm0=0.41 dm1=0.428
+__2________fcorr-err:41614016 dy=4.232
+__Fin:__2__fcorr:41614016 En=14.26	y0=0.0229	y1=0.0228831	Fc=0.99926	dy0=0.00096867	dy1=0.0009684
+
+__0________fcorr:41614016 En=14.44	y0=0.0235	fc=0.999639	dy0=0.0008695 icmp=0
+__1________fcorr-err:41614016 dy=3.7 dm0=0.375 dm1=0.388
+__2________fcorr-err:41614016 dy=3.701
+__Fin:__2__fcorr:41614016 En=14.44	y0=0.0235	y1=0.0234915	Fc=0.999639	dy0=0.0008695	dy1=0.0008695
+
+__0________fcorr:41614016 En=14.63	y0=0.0237	fc=0.999523	dy0=0.00086742005 icmp=0
+__1________fcorr-err:41614016 dy=3.66 dm0=0.385 dm1=0.397
+__2________fcorr-err:41614016 dy=3.661
+__Fin:__2__fcorr:41614016 En=14.63	y0=0.0237	y1=0.0236887	Fc=0.999523	dy0=0.00086742005	dy1=0.0008673
+
+__0________fcorr:41614016 En=14.81	y0=0.0228	fc=0.999133	dy0=0.00095988007 icmp=0
+__1________fcorr-err:41614016 dy=4.21 dm0=0.437 dm1=0.43
+__2________fcorr-err:41614016 dy=4.209
+__Fin:__2__fcorr:41614016 En=14.81	y0=0.0228	y1=0.0227802	Fc=0.999133	dy0=0.00095988007	dy1=0.0009589
+1) 8  pt:8
+___________auto_corr_dataset:::22292007 len=7 icmp=0
+
+__0________fcorr:22292007 En=6.33	y0=0.00086	fc=None	dy0=0.00012 icmp=0
+
+__0________fcorr:22292007 En=7.18	y0=0.0032	fc=None	dy0=0.00043 icmp=0
+
+__0________fcorr:22292007 En=8.0	y0=0.0055	fc=None	dy0=0.00064 icmp=0
+
+__0________fcorr:22292007 En=9.05	y0=0.0096	fc=None	dy0=0.0013 icmp=0
+
+__0________fcorr:22292007 En=10.1	y0=0.0146	fc=None	dy0=0.0019 icmp=0
+
+__0________fcorr:22292007 En=11.14	y0=0.0193	fc=None	dy0=0.0029 icmp=0
+
+__0________fcorr:22292007 En=11.97	y0=0.0221	fc=None	dy0=0.0033 icmp=0
+2) 8  pt:0
+___________auto_corr_dataset:::30581004 len=10 icmp=1
+
+__0________fcorr:30581004 En=13.0	y0=0.0219	fc=1.01635	dy0=0.0021 icmp=1
+__Fin:__1__fcorr:30581004 En=13.0	y0=0.0219	y1=0.0222581	Fc=1.01635	dy0=0.0021	dy1=0.0021343
+
+__0________fcorr:30581004 En=13.3	y0=0.0218	fc=1.02552	dy0=0.0014 icmp=1
+__Fin:__1__fcorr:30581004 En=13.3	y0=0.0218	y1=0.0223563	Fc=1.02552	dy0=0.0014	dy1=0.0014357
+
+__0________fcorr:30581004 En=13.9	y0=0.0241	fc=1.07402	dy0=0.0015 icmp=1
+__Fin:__1__fcorr:30581004 En=13.9	y0=0.0241	y1=0.0258839	Fc=1.07402	dy0=0.0015	dy1=0.001611
+
+__0________fcorr:30581004 En=14.5	y0=0.0277	fc=1.10564	dy0=0.0016 icmp=1
+__Fin:__1__fcorr:30581004 En=14.5	y0=0.0277	y1=0.0306262	Fc=1.10564	dy0=0.0016	dy1=0.001769
+
+__0________fcorr:30581004 En=15.1	y0=0.0292	fc=1.12444	dy0=0.0019 icmp=1
+__Fin:__1__fcorr:30581004 En=15.1	y0=0.0292	y1=0.0328336	Fc=1.12444	dy0=0.0019	dy1=0.0021364
+
+__0________fcorr:30581004 En=15.5	y0=0.0249	fc=1.08816	dy0=0.0018 icmp=1
+__Fin:__1__fcorr:30581004 En=15.5	y0=0.0249	y1=0.0270952	Fc=1.08816	dy0=0.0018	dy1=0.0019587
+
+__0________fcorr:30581004 En=15.9	y0=0.0237	fc=1.09573	dy0=0.0022 icmp=1
+__Fin:__1__fcorr:30581004 En=15.9	y0=0.0237	y1=0.0259688	Fc=1.09573	dy0=0.0022	dy1=0.0024106
+
+__0________fcorr:30581004 En=16.6	y0=0.0239	fc=1.08634	dy0=0.0026 icmp=1
+__Fin:__1__fcorr:30581004 En=16.6	y0=0.0239	y1=0.0259635	Fc=1.08634	dy0=0.0026	dy1=0.0028245
+
+__0________fcorr:30581004 En=17.4	y0=0.0213	fc=1.07063	dy0=0.0026 icmp=1
+__Fin:__1__fcorr:30581004 En=17.4	y0=0.0213	y1=0.0228044	Fc=1.07063	dy0=0.0026	dy1=0.0027836
+
+__0________fcorr:30581004 En=17.8	y0=0.0181	fc=1.06899	dy0=0.0024 icmp=1
+__Fin:__1__fcorr:30581004 En=17.8	y0=0.0181	y1=0.0193487	Fc=1.06899	dy0=0.0024	dy1=0.0025656
+3) 18  pt:10
+
+__getDatasets4plot: forming Datasets for plotting
+datapoints: 18
+1) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov
+R:1/18) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:13.47 y:20.6 dy:0.776635 dx:None Fcm0:1.0 dm0:0.000997407 dm1:0.000997831
+R:2/18) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:13.66 y:20.9919 dy:0.87896 dx:None Fcm0:0.999616 dm0:0.000656145 dm1:0.000723416
+R:3/18) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:13.88 y:22.7954 dy:0.982576 dx:None Fcm0:0.999797 dm0:0.000606041 dm1:0.000610431
+R:4/18) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.04 y:22.6935 dy:0.971507 dx:None Fcm0:0.999712 dm0:0.0005623 dm1:0.000573293
+R:5/18) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.26 y:22.8831 dy:0.968369 dx:None Fcm0:0.99926 dm0:0.000487408 dm1:0.000508838
+R:6/18) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.44 y:23.4915 dy:0.869513 dx:None Fcm0:0.999639 dm0:0.000436313 dm1:0.000451854
+R:7/18) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.63 y:23.6887 dy:0.867319 dx:None Fcm0:0.999523 dm0:0.000437322 dm1:0.000451126
+R:8/18) 25-MN-55(N,A)23-V-52,,SIG 41614016 2016 A.A.Filatenkov x:14.81 y:22.7802 dy:0.958879 dx:None Fcm0:0.999133 dm0:0.000484808 dm1:0.000476418
+2) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska
+R:9/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:13.0 y:22.2581 dy:2.13434 dx:0.1 Fcm0:1.01635 dm0:0.007 dm1:0.00169076
+R:10/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:13.3 y:22.3563 dy:1.43573 dx:0.1 Fcm0:1.02552 dm0:0.007 dm1:0.00152722
+R:11/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:13.9 y:25.8839 dy:1.61103 dx:0.2 Fcm0:1.07402 dm0:0.007 dm1:0.00125861
+R:12/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:14.5 y:30.6262 dy:1.76902 dx:0.2 Fcm0:1.10564 dm0:0.00602105 dm1:0.00118709
+R:13/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:15.1 y:32.8336 dy:2.13644 dx:0.2 Fcm0:1.12444 dm0:0.00566842 dm1:0.00126404
+R:14/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:15.5 y:27.0952 dy:1.95869 dx:0.2 Fcm0:1.08816 dm0:0.00541351 dm1:0.00127928
+R:15/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:15.9 y:25.9688 dy:2.41061 dx:0.2 Fcm0:1.09573 dm0:0.00494375 dm1:0.00128455
+R:16/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:16.6 y:25.9635 dy:2.82448 dx:0.1 Fcm0:1.08634 dm0:0.00406087 dm1:0.00127983
+R:17/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:17.4 y:22.8044 dy:2.78364 dx:0.2 Fcm0:1.07063 dm0:0.00397812 dm1:0.00126339
+R:18/18) 25-MN-55(N,A)23-V-52,,SIG 30581004 1980 E.Zupranska x:17.8 y:19.3487 dy:2.56558 dx:0.1 Fcm0:1.06899 dm0:0.00359677 dm1:0.00125742
+datasets: 2
+
+Datasets: 2
+1) 25-MN-55(N,A)23-V-52,,SIG
+reacodes: 1 
+
+Plot:1/2) #41614016 2016, A.A.Filatenkov* pt:8
+Plot:2/2) #30581004 1980, E.Zupranska* pt:10
+
+___getEndfDataForPlot: [Mn-55] [n,a]
+---wgetdb_get:/servlet/E4sSearch2?Target=Mn-55&Reaction=n,a&Quantity=SIG&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Mn-55&Reaction=n,a&Quantity=SIG&json'
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-08-25T16:40:25.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1793
+,"sections":[
+ { "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":15299,"SectID":210577,"PenSectID":7583608,"LibID":70,"LibName":"ENDF/B-VII.0","DATE":"DEC06","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":57995,"SectID":2306326,"PenSectID":6665009,"LibID":3120,"LibName":"JEFF-3.1.2","DATE":"090105","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":22934,"SectID":541540,"PenSectID":7557354,"LibID":3100,"LibName":"JEFF-3.1","DATE":"090105","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":276817,"SectID":19194223,"PenSectID":24029288,"LibID":51,"LibName":"JENDL-5","DATE":"20210607","AUTH":"N.Iwamoto"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":39032,"SectID":1282429,"PenSectID":6848911,"LibID":40,"LibName":"JENDL-4.0","DATE":"20100121","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":9356,"SectID":118755,"PenSectID":6624035,"LibID":30,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":10033,"SectID":159164,"PenSectID":6581222,"LibID":31,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":9125,"SectID":103071,"PenSectID":7399305,"LibID":60,"LibName":"ENDF/B-VI","DATE":"20011108","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":9596,"SectID":135236,"PenSectID":6557294,"LibID":61,"LibName":"ENDF/B-VI","DATE":"20010926","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":37985,"SectID":1218411,"PenSectID":6915733,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"JAN06","AUTH":"M.N.Nikolaev,Zabrodskaya S.V."}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":27261,"SectID":575320,"PenSectID":6875112,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"JAN06","AUTH":"M.N.Nikolaev,Zabrodskaya S.V."}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":199090,"SectID":14176369,"PenSectID":18849610,"LibID":5040,"LibName":"CENDL-3.2","DATE":"950817","AUTH":"B.S.Yu, K.Shiba, K.Shibata, +"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":37681,"SectID":1195514,"PenSectID":6509816,"LibID":5030,"LibName":"CENDL-3.1","DATE":"950817","AUTH":"B.S.Yu, K.Shiba, K.Shibata, +"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":10310,"SectID":173989,"PenSectID":6952941,"LibID":9000,"LibName":"JEFF-3.1/A","DATE":"JUL03","AUTH":"Forrest, Kopecky, Sublet, Koning"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":7408,"SectID":66703,"PenSectID":6596210,"LibID":2300,"LibName":"JEFF-3.0","DATE":"APR02","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":7001,"SectID":50008,"PenSectID":7540167,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"Scientific Co-Ordination Group"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":116246,"SectID":5877836,"PenSectID":6533935,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"20150325","AUTH":"Iwamoto"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":199595,"SectID":14212412,"PenSectID":19370327,"LibID":6136,"LibName":"JENDL/ImPACT-18","DATE":"20150325","AUTH":"O.Iwamoto+"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":155114,"SectID":9155022,"PenSectID":13787354,"LibID":6135,"LibName":"JENDL/AD-2017","DATE":"20100121","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":20009,"SectID":432364,"PenSectID":6499888,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"MAY 3","AUTH":"K. Kosako"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":18711,"SectID":270374,"PenSectID":6490549,"LibID":6036,"LibName":"JENDL/HE-2004","DATE":"MAY 3","AUTH":"K. Kosako"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":116606,"SectID":5895697,"PenSectID":6646769,"LibID":32,"LibName":"JENDL-3.2","DATE":"AUG93","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":52665,"SectID":2151938,"PenSectID":7140997,"LibID":33010,"LibName":"EAF-2010","DATE":"SEP11","AUTH":""}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":289635,"SectID":20495340,"PenSectID":24491239,"LibID":61023,"LibName":"TENDL-2023","DATE":"DEC23","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":245776,"SectID":16084670,"PenSectID":20600266,"LibID":61022,"LibName":"TENDL-2021","DATE":"JAN22","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":197621,"SectID":13705581,"PenSectID":18348269,"LibID":61020,"LibName":"TENDL-2019.s60","DATE":"NOV19","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":78333,"SectID":3086146,"PenSectID":6543837,"LibID":50,"LibName":"ENDF/B-V","DATE":"0","AUTH":"S.F. Mughabghab"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":199975,"SectID":14235026,"PenSectID":19356536,"LibID":39032,"LibName":"ADS-2.0","DATE":"DEC06","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":22840,"SectID":531623,"PenSectID":6470165,"LibID":33021,"LibName":"FENDL/E-2.1","DATE":"20020214","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":7754,"SectID":84832,"PenSectID":6462603,"LibID":5020,"LibName":"CENDL-2","DATE":"950817","AUTH":"B.Yu, K.Shiba, K.Shibata et al"}
+]
+}
+
+format=WebEndfSectionsList-0.1
+___Retrieved sections:30
+SelectedLib-Sect:4) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'MN-55(N,A)V-52,SIG', 'EvalID': 276817, 'SectID': 19194223, 'PenSectID': 24029288, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20210607', 'AUTH': 'N.Iwamoto'}
+SelectedLib-Sect:12) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'MN-55(N,A)V-52,SIG', 'EvalID': 199090, 'SectID': 14176369, 'PenSectID': 18849610, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': '950817', 'AUTH': 'B.S.Yu, K.Shiba, K.Shibata, +'}
+Required sections:2
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=24029288&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=24029288&json'
+Downloaded:1)	MN-55(N,A)V-52,SIG	JENDL-5	PenSectID:24029288	pts:88	idy=84
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18849610&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18849610&json'
+Downloaded:2)	MN-55(N,A)V-52,SIG	CENDL-3.2	PenSectID:18849610	pts:22	idy=22
+Plot:1/2) 24029288	JENDL-5	pt:86	color:255,127,0
+Plot:2/2) 18849610	CENDL-3.2	pt:22	color:0,0,255
+Will try---write_image: auto1.html.png
+
+Program successfully completed

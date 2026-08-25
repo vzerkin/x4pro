@@ -1,0 +1,3183 @@
+{
+  "now":"2026-08-25T23:15:12"
+ ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
+ ,"datasets":[
+   {
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"32884002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":2023
+    ,"x4lbl":"2023, B.Liu"
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14           ,180.1        ,13           ,0.4         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"23032009"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":2008
+    ,"x4lbl":"2008, M.Furuta"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 3.57         ,136          ,8.432        ,0.1         ]
+	,[ 4.05         ,127          ,7.239        ,0.1         ]
+	,[ 4.28         ,156          ,9.672        ,0.1         ]
+	,[ 4.49         ,111          ,5.772        ,0.1         ]
+	,[ 4.59         ,154          ,9.856        ,0.1         ]
+	,[ 4.65         ,158          ,12.008       ,0.1         ]
+	,[ 4.7          ,160          ,11.36        ,0.1         ]
+	,[ 4.72         ,190          ,12.54        ,0.1         ]
+	,[ 5.16         ,166          ,9.296        ,0.1         ]
+	,[ 5.26         ,165          ,8.415        ,0.1         ]
+	,[ 5.48         ,151          ,34.73        ,0.1         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22976028"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":2007
+    ,"x4lbl":"2007, W.Mannhart"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 8.495        ,235.3        ,6.87076      ,0.02        ]
+	,[ 8.973        ,241.2        ,7.06716      ,0.02        ]
+	,[ 9.532        ,245.6        ,7.17152      ,0.02        ]
+	,[ 9.979        ,248.1        ,7.21971      ,0.02        ]
+	,[ 10.569       ,261.5        ,7.845        ,0.02        ]
+	,[ 10.929       ,255.6        ,7.56576      ,0.02        ]
+	,[ 11.495       ,250.8        ,7.49892      ,0.02        ]
+	,[ 11.909       ,249.8        ,7.26918      ,0.02        ]
+	,[ 12.207       ,245          ,7.35         ,0.02        ]
+	,[ 12.496       ,236.7        ,6.88797      ,0.02        ]
+	,[ 12.69        ,228.5        ,6.6265       ,0.02        ]
+	,[ 12.967       ,217.2        ,6.47256      ,0.02        ]
+	,[ 13.177       ,205.9        ,6.25936      ,0.02        ]
+	,[ 13.531       ,196.6        ,6.17324      ,0.02        ]
+	,[ 13.699       ,185.3        ,6.04078      ,0.02        ]
+	,[ 13.984       ,173.1        ,6.17967      ,0.02        ]
+	,[ 14.327       ,164.1        ,6.49836      ,0.02        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"31500002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1999
+    ,"x4lbl":"1999, Xiaolong Huang"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 4            ,132.9        ,3.8          ,0.16        ]
+	,[ 4.9          ,181.6        ,6.3          ,0.1         ]
+	,[ 6            ,205.2        ,7.9          ,0.13        ]
+	,[ 7            ,219.5        ,8.4          ,0.15        ]
+	,[ 8.37         ,235          ,12           ,0.58        ]
+	,[ 9.37         ,251          ,14           ,0.46        ]
+	,[ 9.5          ,257          ,13           ,0.5         ]
+	,[ 9.9          ,249          ,13           ,0.5         ]
+	,[ 10.4         ,249          ,13           ,0.33        ]
+	,[ 11.4         ,243          ,12           ,0.35        ]
+	,[ 14.65        ,134          ,4            ,0.2         ]
+	,[ 17.99        ,61           ,8            ,0.15        ]
+	,[ 19.02        ,57           ,5            ,0.22        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"13597002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1995
+    ,"x4lbl":"1995, S.K.Ghorai"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.2         ,180          ,10           ,0.2         ]
+	,[ 15.2         ,152          ,9            ,0.2         ]
+	,[ 16.2         ,116          ,6            ,0.2         ]
+	,[ 17.2         ,122          ,8            ,0.2         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"13597002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1995
+    ,"x4lbl":"1995, S.K.Ghorai*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " m0: [EN,MONIT,MONIT-ERR];#[0]#old monitor(energy)",
+      " m1: recom$al27na;        #[0]#new monitor(energy)",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #dm0=dm0/m0;             #[0]#---dm0-to-relative",
+      " #dm1=dm1/m1;             #[0]#---dm1-to-relative",
+      " #dy=(dy**2-dm0**2+dm1**2)**0.5; #[0]#---replace monitor uncertainties",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.7HR,AR,511.,0.386) #Ix_old=0.386 g-yield/decay",
+      " a1=0.386/0.352;          #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.352",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.0965909",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.2         ,193.536      ,12.6371      ,0.2          ,1.0752      ]
+	,[ 15.2         ,162.069      ,13.3573      ,0.2          ,1.06624     ]
+	,[ 16.2         ,126.15       ,9.89902      ,0.2          ,1.0875      ]
+	,[ 17.2         ,135.979      ,12.7219      ,0.2          ,1.11458     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"31460002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1995
+    ,"x4lbl":"1995, D.Kielan"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.04        ,218          ,24           ,0.4         ]
+	,[ 13.4         ,218          ,12           ,0.2         ]
+	,[ 13.9         ,190          ,11           ,0.3         ]
+	,[ 14.5         ,171          ,10           ,0.3         ]
+	,[ 15           ,159          ,10           ,0.3         ]
+	,[ 15.4         ,138          ,8            ,0.2         ]
+	,[ 15.9         ,141          ,18           ,0.5         ]
+	,[ 16.6         ,148          ,18           ,0.1         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"31449011"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1994
+    ,"x4lbl":"1994, N.I.Molla"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.9         ,228.2        ,18.5        ]
+	,[ 14.1         ,224.6        ,19          ]
+	,[ 14.51        ,217.4        ,19.4        ]
+	,[ 14.71        ,201.1        ,17.9        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"31449011"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1994
+    ,"x4lbl":"1994, N.I.Molla*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " #m0: {,H.Vonach,R,IAEA-227,58,1983} $ al27na;#[0]#old monit-ref",
+      " m0: vonach83$al27na;     #[0]#old monitor(energy) in ENDF",
+      " m1: recom$al27na;        #[0]#new monitor(energy)",
+      " dy=dy/y;                 #[0]#to rel. uncertainties.",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #dm0=dm0/m0;             #[0]#---dm0-to-relative",
+      " #dm1=dm1/m1;             #[0]#---dm1-to-relative",
+      " #dy=(dy**2-dm0**2+dm1**2)**0.5; #[0]#---replace monitor uncertainties",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.74HR,DG,511.,.357) #Ix_old=0.357 g-yield/decay",
+      " a1=0.357/0.35;           #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.35",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.02",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #[0]#to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.9         ,233.199      ,21.2169      ,0            ,1.02191     ]
+	,[ 14.1         ,227.388      ,21.5379      ,0            ,1.01241     ]
+	,[ 14.51        ,220.669      ,21.7145      ,0            ,1.01504     ]
+	,[ 14.71        ,203.884      ,20.0672      ,0            ,1.01385     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22637007"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1993
+    ,"x4lbl":"1993, C.Konno"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.32        ,192          ,12          ]
+	,[ 13.56        ,175          ,11          ]
+	,[ 13.74        ,156          ,10          ]
+	,[ 13.97        ,149.6        ,9.7         ]
+	,[ 14.21        ,143.8        ,9.3         ]
+	,[ 14.64        ,135.3        ,8.7         ]
+	,[ 14.9         ,127.4        ,8.3         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22637007"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1993
+    ,"x4lbl":"1993, C.Konno*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  41-NB-93(N,2N)41-NB-92-M,,SIG,,,DERIV",
+      " a0=[MONIT];              #[0]#old monitor point 0.464",
+      " a1=recom$nb93n2nm[1.41E7];#[0]#new monitor point [14.1MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.699HR,DG,511.00,0.386) #Ix_old=0.386 g-yield/decay",
+      " a1=0.386/0.35;           #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.35",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.1028572",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.32        ,209.768      ,23.0628      ,0            ,1.09254     ]
+	,[ 13.56        ,191.195      ,21.0891      ,0            ,1.09254     ]
+	,[ 13.74        ,170.437      ,19.0117      ,0            ,1.09254     ]
+	,[ 13.97        ,163.444      ,18.3522      ,0            ,1.09254     ]
+	,[ 14.21        ,157.108      ,17.6145      ,0            ,1.09254     ]
+	,[ 14.64        ,147.821      ,16.5184      ,0            ,1.09254     ]
+	,[ 14.9         ,139.19       ,15.6719      ,0            ,1.09254     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"31459018"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1992
+    ,"x4lbl":"1992, I.Garlea"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,158          ,13.2         ,0.3         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"31459018"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1992
+    ,"x4lbl":"1992, I.Garlea*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  41-NB-93(N,2N)41-NB-92,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.453",
+      " a1=recom$nb93n2n[EN];    #[0]#new monitor point [14.8MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,160.497      ,13.2         ,0.3          ,1.0158      ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22209012"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1991
+    ,"x4lbl":"1991, Y.Ikeda"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 9.5          ,266          ,38           ,0.5         ]
+	,[ 11           ,275          ,17           ,0.5         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22209012"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1991
+    ,"x4lbl":"1991, Y.Ikeda*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd*dm"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  79-AU-197(N,2N)79-AU-196-G,,SIG",
+      " m0: [EN,MONIT];          #[0]#old monitor(energy)",
+      " m1: recom$au197n2n;      #[0]#new monitor(energy)",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.70HR,DG,511.0,0.358) #Ix_old=0.358 g-yield/decay",
+      " a1=0.358/0.35;           #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.35",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.0228572",
+      " #[2]#---Monitor decay-data",
+      " #[2]#MONITOR    (79-AU-197(N,2N)79-AU-196-G,,SIG)",
+      " #[2]#DECAY-MON  (79-AU-196-G,6.183D,DG,355.65,.877) #Im_old=0.877 g-yield/decay",
+      " a2=0.87/0.877;           #[2]#DECAY-MON: to new Au-196-g:E=355.73keV Im_new=0.87",
+      " y=y*a2;                  #[2]#Renorm.factor: a2=0.9920183",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 9.5          ,261.333      ,38.5584      ,0.5          ,0.982456    ]
+	,[ 11           ,261.67       ,17.2498      ,0.5          ,0.951528    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22338017"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1991
+    ,"x4lbl":"1991, A.Ercan"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.6         ,140          ,40           ,0.1         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22338017"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1991
+    ,"x4lbl":"1991, A.Ercan*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.114",
+      " a1=recom$al27na[EN];     #[0]#new monitor point [14.6MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.6         ,139.98       ,40           ,0.1          ,0.99986     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30978030"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1991
+    ,"x4lbl":"1991, M.Viennot"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.77        ,232          ,9            ,0.26        ]
+	,[ 13.93        ,221          ,9            ,0.24        ]
+	,[ 14.11        ,209          ,9            ,0.26        ]
+	,[ 14.3         ,200          ,8            ,0.28        ]
+	,[ 14.47        ,191          ,8            ,0.34        ]
+	,[ 14.73        ,185          ,8            ,0.46        ]
+	,[ 14.83        ,180          ,8            ,0.5         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30978030"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1991
+    ,"x4lbl":"1991, M.Viennot*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " m0: [EN,MONIT,MONIT-ERR];#[0]#old monitor(energy)",
+      " m1: recom$al27na;        #[0]#new monitor(energy)",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #dm0=dm0/m0;             #[0]#---dm0-to-relative",
+      " #dm1=dm1/m1;             #[0]#---dm1-to-relative",
+      " #dy=(dy**2-dm0**2+dm1**2)**0.5; #[0]#---replace monitor uncertainties",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.77        ,232.856      ,11.7327      ,0.26         ,1.00369     ]
+	,[ 13.93        ,221.202      ,11.1663      ,0.24         ,1.00091     ]
+	,[ 14.11        ,207.22       ,10.8971      ,0.26         ,0.991485    ]
+	,[ 14.3         ,197.067      ,9.69496      ,0.28         ,0.985333    ]
+	,[ 14.47        ,189.844      ,9.65307      ,0.34         ,0.993945    ]
+	,[ 14.73        ,183.754      ,9.52353      ,0.46         ,0.993262    ]
+	,[ 14.83        ,178.139      ,9.80589      ,0.5          ,0.98966     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22093016"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1990
+    ,"x4lbl":"1990, I.Kimura"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.05        ,172.8        ,12.7         ,0.07        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22093016"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1990
+    ,"x4lbl":"1990, I.Kimura*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.123",
+      " a1=recom$al27na[EN];     #[0]#new monitor point [14.05MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.05        ,170.78       ,18.6298      ,0.07         ,0.988309    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22191005"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1990
+    ,"x4lbl":"1990, Y.Ikeda"
+    ,"x4evalflags":"yN1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "N1",
+        "comment2": [
+          "#flag=N1  #[N]:No pdf file available  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 2.08         ,7.79         ,0.29        ]
+	,[ 2.2          ,14.76        ,0.7         ]
+	,[ 2.3          ,17.34        ,0.76        ]
+	,[ 2.5          ,30.9         ,1.3         ]
+	,[ 2.67         ,42.6         ,1.7         ]
+	,[ 2.81         ,58.3         ,2.2         ]
+	,[ 2.92         ,67.3         ,2.6         ]
+	,[ 3.01         ,75.9         ,2.9         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"22191005"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1990
+    ,"x4lbl":"1990, Y.Ikeda*"
+    ,"x4evalflags":"yN1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "N1",
+        "comment2": [
+          "#flag=N1  #[N]:No pdf file available  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  49-IN-115(N,INL)49-IN-115-M,,SIG",
+      " #m0: {,,3,ENDF/B-V,6437,1984} $ in115ninlm;#[0]#old monit-ref",
+      " m0: endfb5$in115ninlm;   #[0]#old monitor(energy) in ENDF",
+      " m1: recom$in115ninlm;    #[0]#new monitor(energy)",
+      " dy=dy/y;                 #[0]#to rel. uncertainties.",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #dm0=dm0/m0;             #[0]#---dm0-to-relative",
+      " #dm1=dm1/m1;             #[0]#---dm1-to-relative",
+      " #dy=(dy**2-dm0**2+dm1**2)**0.5; #[0]#---replace monitor uncertainties",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #[0]#to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 2.08         ,8.225        ,1.62966      ,0            ,1.05584     ]
+	,[ 2.2          ,15.4153      ,3.20157      ,0            ,1.0444      ]
+	,[ 2.3          ,18.0262      ,3.66423      ,0            ,1.03958     ]
+	,[ 2.5          ,32.0273      ,6.40385      ,0            ,1.03648     ]
+	,[ 2.67         ,43.6643      ,8.57979      ,0            ,1.02498     ]
+	,[ 2.81         ,59.6422      ,11.5191      ,0            ,1.02302     ]
+	,[ 2.92         ,69.0008      ,13.2663      ,0            ,1.02527     ]
+	,[ 3.01         ,77.6565      ,14.7925      ,0            ,1.02314     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"13136003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1988
+    ,"x4lbl":"1988, D.A.Rutherford"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,176          ,4.5         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"13136003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1988
+    ,"x4lbl":"1988, D.A.Rutherford*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  29-CU-65(N,2N)29-CU-64,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.968",
+      " a1=recom$cu65n2n[EN];    #[0]#new monitor point [14.8MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,175.424      ,10.8326      ,0            ,0.996729    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30707015"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1985
+    ,"x4lbl":"1985, J.P.Gupta"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,171          ,13           ,0.5         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30707015"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1985
+    ,"x4lbl":"1985, J.P.Gupta*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  26-FE-56(N,P)25-MN-56,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.102",
+      " a1=recom$fe56np[EN];     #[0]#new monitor point [14.8MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,177.387      ,13           ,0.5          ,1.03735     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30807007"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1985
+    ,"x4lbl":"1985, I.Garlea"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,167          ,14          ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30807007"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1985
+    ,"x4lbl":"1985, I.Garlea*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  92-U-238(N,F),,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 1.23",
+      " a1=recom$u238nf[EN];     #[0]#new monitor point [14.8MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.8HR,DG,511.,0.370) #Ix_old=0.37 g-yield/decay",
+      " a1=0.37/0.35;            #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.35",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.0571429",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,175.253      ,14.8         ,0            ,1.04942     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"21879005"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1983
+    ,"x4lbl":"1983, H.A.Hussain"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 2.05         ,9.4          ,0.376        ,0.08        ]
+	,[ 2.116        ,13.3         ,0.532        ,0.08        ]
+	,[ 2.188        ,10.2         ,0.408        ,0.08        ]
+	,[ 2.266        ,11.4         ,0.456        ,0.08        ]
+	,[ 2.442        ,26           ,1.04         ,0.09        ]
+	,[ 2.552        ,31.7         ,1.268        ,0.14        ]
+	,[ 2.871        ,51.2         ,2.048        ,0.27        ]
+	,[ 2.992        ,56.9         ,2.276        ,0.32        ]
+	,[ 3.472        ,76.08        ,3.0432       ,0.52        ]
+	,[ 3.933        ,104.7        ,4.188        ,0.68        ]
+	,[ 4.259        ,107.8        ,4.312        ,0.74        ]
+	,[ 4.344        ,112.1        ,4.484        ,0.76        ]
+	,[ 4.504        ,124.8        ,4.992        ,0.76        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30529002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1979
+    ,"x4lbl":"1979, C.H.King"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 2.12         ,6.2          ,0.3          ,0.04        ]
+	,[ 2.22         ,15.7         ,0.8          ,0.04        ]
+	,[ 2.53         ,28.2         ,1.5          ,0.04        ]
+	,[ 2.63         ,36.8         ,2            ,0.04        ]
+	,[ 2.83         ,59.6         ,3.1          ,0.04        ]
+	,[ 3.03         ,80.5         ,4.3          ,0.05        ]
+	,[ 3.13         ,90.5         ,4.8          ,0.05        ]
+	,[ 3.33         ,102.6        ,5.4          ,0.05        ]
+	,[ 3.63         ,120.1        ,6.4          ,0.05        ]
+	,[ 3.83         ,128.8        ,6.8          ,0.05        ]
+	,[ 3.93         ,130.8        ,7            ,0.05        ]
+	,[ 4.02         ,139.2        ,7.4          ,0.05        ]
+	,[ 4.23         ,144.5        ,7.7          ,0.05        ]
+	,[ 4.33         ,145.5        ,7.7          ,0.05        ]
+	,[ 4.44         ,149.9        ,8            ,0.05        ]
+	,[ 4.54         ,150.5        ,8            ,0.05        ]
+	,[ 4.67         ,147.7        ,7.8          ,0.05        ]
+	,[ 4.84         ,154.8        ,8.2          ,0.05        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"40485003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1978
+    ,"x4lbl":"1978, Yu.A.Nemilov"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 7.6          ,249          ,30           ,0.3         ]
+	,[ 8.3          ,250          ,30           ,0.3         ]
+	,[ 8.8          ,252          ,30           ,0.3         ]
+	,[ 9.3          ,260          ,30           ,0.3         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20721057"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1977
+    ,"x4lbl":"1977, N.I.Molla"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.7         ,160          ,12           ,0.3         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20721057"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1977
+    ,"x4lbl":"1977, N.I.Molla*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*dd"
+    ,"autoCorr":[
+      "#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.7HR,DG,511.,0.386) #Ix_old=0.386 g-yield/decay",
+      " a1=0.386/0.35;           #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.35",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.1028572",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.7         ,176.458      ,13.2343      ,0.3          ,1.10286     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10776006"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1976
+    ,"x4lbl":"1976, R.A.Sigg"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.6         ,147          ,11          ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10776006"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1976
+    ,"x4lbl":"1976, R.A.Sigg*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.1142",
+      " a1=recom$al27na[EN];     #[0]#new monitor point [14.6MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.6         ,146.722      ,13.3151      ,0            ,0.998109    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20673010"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1976
+    ,"x4lbl":"1976, M.Valkonen"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.7         ,211          ,20           ,0.3         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20748002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1976
+    ,"x4lbl":"1976, J.L.Casanova"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.1         ,133          ,17.9529     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20748002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1976
+    ,"x4lbl":"1976, J.L.Casanova*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  29-CU-63(N,2N)29-CU-62,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.478",
+      " a1=recom$cu63n2n[EN];    #[0]#new monitor point [14.1MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.1         ,126.432      ,31.3485      ,0            ,0.950619    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380431"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 1.159        ,0.2265       ,0.01768      ,0.102       ]
+	,[ 1.363        ,0.4917       ,0.03147      ,0.104       ]
+	,[ 1.571        ,1.212        ,0.08         ,0.102       ]
+	,[ 1.774        ,2.417        ,0.1378       ,0.102       ]
+	,[ 1.949        ,5.335        ,0.2774       ,0.16        ]
+	,[ 2.154        ,9.781        ,0.4989       ,0.158       ]
+	,[ 2.356        ,16.96        ,0.8652       ,0.158       ]
+	,[ 2.562        ,29.18        ,1.489        ,0.156       ]
+	,[ 2.762        ,49.9         ,2.495        ,0.156       ]
+	,[ 2.963        ,74.63        ,3.732        ,0.156       ]
+	,[ 3.165        ,94.19        ,4.71         ,0.156       ]
+	,[ 3.367        ,108.9        ,5.447        ,0.156       ]
+	,[ 3.568        ,113.6        ,5.682        ,0.156       ]
+	,[ 3.77         ,125.3        ,6.264        ,0.156       ]
+	,[ 3.958        ,130.4        ,6.519        ,0.156       ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380431"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  92-U-235(N,F),,SIG",
+      " #[0]#Ratio is also given: (30-ZN-64(N,P)29-CU-64,,SIG)/(92-U-235(N,F),,SIG)",
+      " #m0: {,,3,ENDF/B-IV,,1974} $ u235nf;#[0]#old monit-ref",
+      " m0: endfb4$u235nf;       #[0]#old monitor(energy) in ENDF",
+      " m1: recom$u235nf;        #[0]#new monitor(energy)",
+      " dy=dy/y;                 #[0]#to rel. uncertainties.",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #dm0=dm0/m0;             #[0]#---dm0-to-relative",
+      " #dm1=dm1/m1;             #[0]#---dm1-to-relative",
+      " #dy=(dy**2-dm0**2+dm1**2)**0.5; #[0]#---replace monitor uncertainties",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.71HR,AR,511.,0.386) #Ix_old=0.386 g-yield/decay",
+      " a1=0.386/0.352;          #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.352",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.0965909",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #[0]#to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 1.159        ,0.238924     ,0.0193877    ,0.102        ,1.05485     ]
+	,[ 1.363        ,0.530007     ,0.0345097    ,0.104        ,1.07791     ]
+	,[ 1.571        ,1.32973      ,0.0877272    ,0.102        ,1.09714     ]
+	,[ 1.774        ,2.66911      ,0.15111      ,0.102        ,1.10431     ]
+	,[ 1.949        ,5.91386      ,0.304194     ,0.16         ,1.1085      ]
+	,[ 2.154        ,10.7392      ,0.547089     ,0.158        ,1.09796     ]
+	,[ 2.356        ,18.4359      ,0.94877      ,0.158        ,1.08702     ]
+	,[ 2.562        ,31.6095      ,1.63282      ,0.156        ,1.08326     ]
+	,[ 2.762        ,54.0401      ,2.73599      ,0.156        ,1.08297     ]
+	,[ 2.963        ,80.6656      ,4.09247      ,0.156        ,1.08087     ]
+	,[ 3.165        ,101.891      ,5.16494      ,0.156        ,1.08176     ]
+	,[ 3.367        ,118.018      ,5.97313      ,0.156        ,1.08373     ]
+	,[ 3.568        ,123.087      ,6.23082      ,0.156        ,1.08351     ]
+	,[ 3.77         ,135.685      ,6.86904      ,0.156        ,1.08288     ]
+	,[ 3.958        ,140.995      ,7.14867      ,0.156        ,1.08125     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380432"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith#"
+    ,"x4corr":"ratio*m1"
+    ,"autoCorr":null
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 1.159        ,0.218541     ,0.0202971    ,0.102        ,1.20674     ]
+	,[ 1.363        ,0.483515     ,0.0381285    ,0.104        ,1.23063     ]
+	,[ 1.571        ,1.21097      ,0.0978626    ,0.102        ,1.25554     ]
+	,[ 1.774        ,2.43153      ,0.174866     ,0.102        ,1.27372     ]
+	,[ 1.949        ,5.38855      ,0.36038      ,0.16         ,1.28513     ]
+	,[ 2.154        ,9.81223      ,0.646533     ,0.158        ,1.2783      ]
+	,[ 2.356        ,16.8624      ,1.1102       ,0.158        ,1.2669      ]
+	,[ 2.562        ,28.8344      ,1.89867      ,0.156        ,1.25476     ]
+	,[ 2.762        ,49.3167      ,3.19801      ,0.156        ,1.23787     ]
+	,[ 2.963        ,73.5046      ,4.77488      ,0.156        ,1.21656     ]
+	,[ 3.165        ,92.6471      ,6.0184       ,0.156        ,1.19854     ]
+	,[ 3.367        ,107.095      ,6.9575       ,0.156        ,1.18167     ]
+	,[ 3.568        ,111.675      ,7.24927      ,0.156        ,1.16486     ]
+	,[ 3.77         ,123.295      ,8.00064      ,0.156        ,1.15014     ]
+	,[ 3.958        ,128.567      ,8.34611      ,0.156        ,1.13776     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380441"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 4.172        ,136          ,6.802        ,0.158       ]
+	,[ 4.372        ,145.7        ,7.287        ,0.158       ]
+	,[ 4.573        ,148.8        ,7.438        ,0.16        ]
+	,[ 4.799        ,147.4        ,7.372        ,0.162       ]
+	,[ 4.974        ,162.8        ,8.138        ,0.162       ]
+	,[ 5.174        ,165.8        ,8.29         ,0.164       ]
+	,[ 5.377        ,170.6        ,8.531        ,0.166       ]
+	,[ 5.576        ,169.9        ,8.497        ,0.166       ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380441"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  92-U-238(N,F),,SIG",
+      " #[0]#Ratio is also given: (30-ZN-64(N,P)29-CU-64,,SIG)/(92-U-238(N,F),,SIG)",
+      " #m0: {,,3,ENDF/B-IV,,1974} $ u238nf;#[0]#old monit-ref",
+      " m0: endfb4$u238nf;       #[0]#old monitor(energy) in ENDF",
+      " m1: recom$u238nf;        #[0]#new monitor(energy)",
+      " dy=dy/y;                 #[0]#to rel. uncertainties.",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #dm0=dm0/m0;             #[0]#---dm0-to-relative",
+      " #dm1=dm1/m1;             #[0]#---dm1-to-relative",
+      " #dy=(dy**2-dm0**2+dm1**2)**0.5; #[0]#---replace monitor uncertainties",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.71HR,AR,511.,0.386) #Ix_old=0.386 g-yield/decay",
+      " a1=0.386/0.352;          #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.352",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.0965909",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #[0]#to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 4.172        ,147.641      ,7.45901      ,0.158        ,1.0856      ]
+	,[ 4.372        ,159.024      ,7.99085      ,0.158        ,1.09145     ]
+	,[ 4.573        ,163.118      ,8.15644      ,0.16         ,1.09622     ]
+	,[ 4.799        ,161.237      ,8.08406      ,0.162        ,1.09388     ]
+	,[ 4.974        ,176.886      ,8.92405      ,0.162        ,1.08652     ]
+	,[ 5.174        ,178.955      ,9.09073      ,0.164        ,1.07934     ]
+	,[ 5.377        ,182.886      ,9.35501      ,0.166        ,1.07202     ]
+	,[ 5.576        ,179.019      ,9.31773      ,0.166        ,1.05367     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380442"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith#"
+    ,"x4corr":"ratio*m1"
+    ,"autoCorr":null
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 4.172        ,134.679      ,8.55329      ,0.158        ,0.559298    ]
+	,[ 4.372        ,145.107      ,9.2258       ,0.158        ,0.561342    ]
+	,[ 4.573        ,148.792      ,9.46082      ,0.16         ,0.561902    ]
+	,[ 4.799        ,147.044      ,9.35728      ,0.162        ,0.556775    ]
+	,[ 4.974        ,161.209      ,10.2665      ,0.162        ,0.550014    ]
+	,[ 5.174        ,163.057      ,10.4039      ,0.164        ,0.550124    ]
+	,[ 5.377        ,166.712      ,10.6479      ,0.166        ,0.549659    ]
+	,[ 5.576        ,163.193      ,10.4431      ,0.166        ,0.552636    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380451"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 5.384        ,148          ,7.398        ,0.334       ]
+	,[ 5.725        ,161.6        ,8.241        ,0.328       ]
+	,[ 6.277        ,177.6        ,9.057        ,0.326       ]
+	,[ 6.978        ,162.6        ,8.132        ,0.334       ]
+	,[ 7.485        ,174.4        ,8.722        ,0.35        ]
+	,[ 7.984        ,174.9        ,8.919        ,0.364       ]
+	,[ 8.478        ,185.9        ,9.481        ,0.382       ]
+	,[ 8.968        ,190.8        ,9.733        ,0.398       ]
+	,[ 9.455        ,190.3        ,9.894        ,0.418       ]
+	,[ 9.939        ,188.4        ,9.984        ,0.436       ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380451"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  92-U-238(N,F),,SIG",
+      " #[0]#Ratio is also given: (30-ZN-64(N,P)29-CU-64,,SIG)/(92-U-238(N,F),,SIG)",
+      " #m0: {,,3,ENDF/B-IV,,1974} $ u238nf;#[0]#old monit-ref",
+      " m0: endfb4$u238nf;       #[0]#old monitor(energy) in ENDF",
+      " m1: recom$u238nf;        #[0]#new monitor(energy)",
+      " dy=dy/y;                 #[0]#to rel. uncertainties.",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #dm0=dm0/m0;             #[0]#---dm0-to-relative",
+      " #dm1=dm1/m1;             #[0]#---dm1-to-relative",
+      " #dy=(dy**2-dm0**2+dm1**2)**0.5; #[0]#---replace monitor uncertainties",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.71HR,AR,511.,0.386) #Ix_old=0.386 g-yield/decay",
+      " a1=0.386/0.352;          #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.352",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.0965909",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #[0]#to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 5.384        ,158.595      ,8.11257      ,0.334        ,1.07159     ]
+	,[ 5.725        ,167.783      ,9.037        ,0.328        ,1.03826     ]
+	,[ 6.277        ,185.761      ,9.93182      ,0.326        ,1.04595     ]
+	,[ 6.978        ,180.605      ,8.91747      ,0.334        ,1.11073     ]
+	,[ 7.485        ,194.186      ,9.56446      ,0.35         ,1.11345     ]
+	,[ 7.984        ,196.767      ,9.78049      ,0.364        ,1.12503     ]
+	,[ 8.478        ,206.942      ,10.3968      ,0.382        ,1.11319     ]
+	,[ 8.968        ,214.273      ,10.6731      ,0.398        ,1.12303     ]
+	,[ 9.455        ,215.239      ,10.8497      ,0.418        ,1.13105     ]
+	,[ 9.939        ,214.219      ,10.9484      ,0.436        ,1.13704     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"102380452"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, D.L.Smith#"
+    ,"x4corr":"ratio*m1"
+    ,"autoCorr":null
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 5.384        ,144.475      ,9.23295      ,0.334        ,0.549544    ]
+	,[ 5.725        ,153.043      ,9.96446      ,0.328        ,0.56245     ]
+	,[ 6.277        ,169.404      ,11.0708      ,0.326        ,0.717205    ]
+	,[ 6.978        ,164.768      ,10.5799      ,0.334        ,0.938315    ]
+	,[ 7.485        ,177.166      ,11.4731      ,0.35         ,0.991972    ]
+	,[ 7.984        ,179.4        ,11.6991      ,0.364        ,1.01528     ]
+	,[ 8.478        ,188.749      ,12.3069      ,0.382        ,1.01478     ]
+	,[ 8.968        ,195.486      ,12.7667      ,0.398        ,1.01657     ]
+	,[ 9.455        ,196.27       ,13.0546      ,0.418        ,1.01379     ]
+	,[ 9.939        ,195.265      ,13.2179      ,0.436        ,1.01069     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"12956003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, R.Spangler"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.1         ,143          ,13          ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"12956003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1975
+    ,"x4lbl":"1975, R.Spangler*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.115",
+      " a1=recom$al27na[EN];     #[0]#new monitor point [14.1MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,12.7HR,AR,511.,0.38) #Ix_old=0.38 g-yield/decay",
+      " a1=0.38/0.352;           #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.352",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.0795455",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.1         ,162.43       ,14.0341      ,0            ,1.13587     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30263011"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1973
+    ,"x4lbl":"1973, J.Dresler"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.6         ,292.6        ,9.2         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30263011"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1973
+    ,"x4lbl":"1973, J.Dresler*"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  26-FE-56(N,P)25-MN-56,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.105",
+      " a1=recom$fe56np[EN];     #[0]#new monitor point [14.6MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.6         ,301.829      ,9.2          ,0            ,1.03154     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10224002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1972
+    ,"x4lbl":"1972, D.C.Santry"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 1.5          ,0.5          ,0            ,0.08        ]
+	,[ 1.83         ,4.4          ,1            ,0.04        ]
+	,[ 2.01         ,8.2          ,1.7          ,0.04        ]
+	,[ 2.2          ,17.4         ,1.4          ,0.03        ]
+	,[ 2.36         ,26.2         ,2.5          ,0.04        ]
+	,[ 2.5          ,38.9         ,3.1          ,0.03        ]
+	,[ 2.81         ,67.6         ,2.8          ,0.03        ]
+	,[ 3.01         ,92           ,4.1          ,0.03        ]
+	,[ 3.1          ,100          ,4            ,0.06        ]
+	,[ 3.18         ,113          ,4            ,0.06        ]
+	,[ 3.21         ,119          ,7            ,0.03        ]
+	,[ 3.33         ,123          ,5            ,0.03        ]
+	,[ 3.46         ,119          ,7            ,0.03        ]
+	,[ 3.51         ,138          ,6            ,0.03        ]
+	,[ 4.07         ,148          ,10           ,0.08        ]
+	,[ 4.55         ,183          ,8            ,0.04        ]
+	,[ 4.6          ,180          ,11           ,0.03        ]
+	,[ 4.86         ,188          ,8            ,0.02        ]
+	,[ 4.88         ,192          ,7            ,0.04        ]
+	,[ 5.03         ,191          ,7            ,0.1         ]
+	,[ 5.13         ,191          ,9            ,0.1         ]
+	,[ 5.33         ,187          ,11           ,0.1         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10224003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1972
+    ,"x4lbl":"1972, D.C.Santry"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 4.86         ,189          ,8            ,0.02        ]
+	,[ 4.88         ,186          ,8            ,0.04        ]
+	,[ 5.03         ,181          ,7            ,0.1         ]
+	,[ 5.13         ,189          ,7            ,0.1         ]
+	,[ 5.33         ,199          ,7            ,0.08        ]
+	,[ 5.61         ,195          ,7            ,0.02        ]
+	,[ 6            ,229          ,7            ,0.09        ]
+	,[ 6.5          ,259          ,10           ,0.02        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10224003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1972
+    ,"x4lbl":"1972, D.C.Santry*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  16-S-32(N,P)15-P-32,,SIG",
+      " m0: [EN,MONIT];          #[0]#old monitor(energy)",
+      " m1: recom$s32np;         #[0]#new monitor(energy)",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 4.86         ,193.163      ,8            ,0.02         ,1.02202     ]
+	,[ 4.88         ,189.383      ,8            ,0.04         ,1.01819     ]
+	,[ 5.03         ,181.341      ,7            ,0.1          ,1.00188     ]
+	,[ 5.13         ,189.373      ,7            ,0.1          ,1.00198     ]
+	,[ 5.33         ,205.746      ,7            ,0.08         ,1.0339      ]
+	,[ 5.61         ,203.601      ,7            ,0.02         ,1.04411     ]
+	,[ 6            ,231.398      ,7            ,0.09         ,1.01047     ]
+	,[ 6.5          ,256.299      ,10           ,0.02         ,0.989572    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10224004"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1972
+    ,"x4lbl":"1972, D.C.Santry"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 4.96         ,196          ,7            ,0.17        ]
+	,[ 5.13         ,184          ,7            ,0.18        ]
+	,[ 5.3          ,194          ,7            ,0.2         ]
+	,[ 5.7          ,225          ,7            ,0.16        ]
+	,[ 5.94         ,229          ,8            ,0.15        ]
+	,[ 6.3          ,241          ,8            ,0.29        ]
+	,[ 6.4          ,263          ,8            ,0.14        ]
+	,[ 6.51         ,264          ,8            ,0.14        ]
+	,[ 6.75         ,251          ,8            ,0.14        ]
+	,[ 7.01         ,237          ,8            ,0.13        ]
+	,[ 7.25         ,258          ,8            ,0.12        ]
+	,[ 7.47         ,239          ,8            ,0.12        ]
+	,[ 7.5          ,238          ,8            ,0.12        ]
+	,[ 7.59         ,255          ,8            ,0.12        ]
+	,[ 7.8          ,268          ,9            ,0.12        ]
+	,[ 8.01         ,261          ,9            ,0.11        ]
+	,[ 8.27         ,253          ,8            ,0.11        ]
+	,[ 8.61         ,275          ,9            ,0.11        ]
+	,[ 9.02         ,280          ,9            ,0.11        ]
+	,[ 9.25         ,285          ,9            ,0.11        ]
+	,[ 9.3          ,283          ,10           ,0.11        ]
+	,[ 9.63         ,287          ,10           ,0.11        ]
+	,[ 9.8          ,296          ,10           ,0.11        ]
+	,[ 10.03        ,288          ,10           ,0.11        ]
+	,[ 10.25        ,294          ,10           ,0.11        ]
+	,[ 10.5         ,299          ,10           ,0.11        ]
+	,[ 10.75        ,297          ,10           ,0.11        ]
+	,[ 11           ,292          ,10           ,0.11        ]
+	,[ 11.5         ,286          ,10           ,0.11        ]
+	,[ 12.1         ,282          ,9            ,0.11        ]
+	,[ 12.6         ,267          ,12           ,0.12        ]
+	,[ 13.08        ,232          ,15           ,0.12        ]
+	,[ 13.58        ,216          ,16           ,0.12        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10224004"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1972
+    ,"x4lbl":"1972, D.C.Santry*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  16-S-32(N,P)15-P-32,,SIG",
+      " m0: [EN,MONIT];          #[0]#old monitor(energy)",
+      " m1: recom$s32np;         #[0]#new monitor(energy)",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 4.96         ,195.903      ,7            ,0.17         ,0.999504    ]
+	,[ 5.13         ,184.364      ,7            ,0.18         ,1.00198     ]
+	,[ 5.3          ,196.474      ,7            ,0.2          ,1.01275     ]
+	,[ 5.7          ,225.859      ,7            ,0.16         ,1.00382     ]
+	,[ 5.94         ,229.606      ,8            ,0.15         ,1.00264     ]
+	,[ 6.3          ,240.185      ,8            ,0.29         ,0.996619    ]
+	,[ 6.4          ,261.574      ,8            ,0.14         ,0.99458     ]
+	,[ 6.51         ,261.193      ,8            ,0.14         ,0.989368    ]
+	,[ 6.75         ,245.803      ,8            ,0.14         ,0.979295    ]
+	,[ 7.01         ,231.273      ,8            ,0.13         ,0.975834    ]
+	,[ 7.25         ,254.519      ,8            ,0.12         ,0.986509    ]
+	,[ 7.47         ,239.685      ,8            ,0.12         ,1.00287     ]
+	,[ 7.5          ,239.4        ,8            ,0.12         ,1.00588     ]
+	,[ 7.59         ,256.893      ,8            ,0.12         ,1.00742     ]
+	,[ 7.8          ,264.293      ,9            ,0.12         ,0.986169    ]
+	,[ 8.01         ,253.549      ,9            ,0.11         ,0.971451    ]
+	,[ 8.27         ,246.415      ,8            ,0.11         ,0.973971    ]
+	,[ 8.61         ,268.683      ,9            ,0.11         ,0.977028    ]
+	,[ 9.02         ,272.351      ,9            ,0.11         ,0.972681    ]
+	,[ 9.25         ,277.636      ,9            ,0.11         ,0.974161    ]
+	,[ 9.3          ,275.093      ,10           ,0.11         ,0.97206     ]
+	,[ 9.63         ,277.646      ,10           ,0.11         ,0.967409    ]
+	,[ 9.8          ,287.121      ,10           ,0.11         ,0.970003    ]
+	,[ 10.03        ,279.996      ,10           ,0.11         ,0.972208    ]
+	,[ 10.25        ,285.89       ,10           ,0.11         ,0.972416    ]
+	,[ 10.5         ,295.401      ,10           ,0.11         ,0.987962    ]
+	,[ 10.75        ,295.245      ,10           ,0.11         ,0.99409     ]
+	,[ 11           ,289.917      ,10           ,0.11         ,0.992867    ]
+	,[ 11.5         ,285.049      ,10           ,0.11         ,0.996674    ]
+	,[ 12.1         ,283.905      ,9            ,0.11         ,1.00676     ]
+	,[ 12.6         ,268.182      ,12           ,0.12         ,1.00443     ]
+	,[ 13.08        ,232.756      ,15           ,0.12         ,1.00326     ]
+	,[ 13.58        ,215.202      ,16           ,0.12         ,0.996307    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10224005"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1972
+    ,"x4lbl":"1972, D.C.Santry"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 12.5         ,265          ,15           ,0.4         ]
+	,[ 13.58        ,217          ,13           ,0.1         ]
+	,[ 13.89        ,200          ,12           ,0.06        ]
+	,[ 14.24        ,180          ,11           ,0.08        ]
+	,[ 14.5         ,178          ,10           ,0.15        ]
+	,[ 14.7         ,166          ,10           ,0.2         ]
+	,[ 16.2         ,114          ,8            ,0.6         ]
+	,[ 17.8         ,87.8         ,6.1          ,0.5         ]
+	,[ 19.1         ,76.2         ,5.9          ,0.3         ]
+	,[ 19.6         ,60.2         ,5.1          ,0.3         ]
+	,[ 19.8         ,66.6         ,5.6          ,0.3         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10224005"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1972
+    ,"x4lbl":"1972, D.C.Santry*"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  16-S-32(N,P)15-P-32,,SIG",
+      " m0: [EN,MONIT];          #[0]#old monitor(energy)",
+      " m1: recom$s32np;         #[0]#new monitor(energy)",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y/m0*m1;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.5         ,177.58       ,10           ,0.15         ,0.997642    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"303360201"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1971
+    ,"x4lbl":"1971, R.Prasad#"
+    ,"x4corr":"ratio*m1"
+    ,"autoCorr":null
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,172.47       ,14.7024      ,0.5          ,0.10581     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"303360202"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1971
+    ,"x4lbl":"1971, R.Prasad"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,205          ,15           ,0.5         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"303360202"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1971
+    ,"x4lbl":"1971, R.Prasad*"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  26-FE-56(N,P)25-MN-56,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.126",
+      " a1=recom$fe56np[EN];     #[0]#new monitor point [14.8MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,172.151      ,15           ,0.5          ,0.839762    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10022017"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1969
+    ,"x4lbl":"1969, R.C.Barrall"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.6         ,147          ,10           ,0.2         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"10022017"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1969
+    ,"x4lbl":"1969, R.C.Barrall*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0*dd"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.1207",
+      " a1=recom$al27na[EN];     #[0]#new monitor point [14.6MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #[1]#---Reaction decay-data",
+      " #[1]#REACTION   (30-ZN-64(N,P)29-CU-64,,SIG)",
+      " #[1]#DECAY-DATA (29-CU-64,.5333D,DG,511.,0.38) #Ix_old=0.38 g-yield/decay",
+      " a1=0.38/0.35;            #[1]#DECAY-DATA: to new Cu-64:E=511keV Ix_new=0.35",
+      " y=y*a1;                  #[1]#Renorm.factor: a1=1.0857143",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.6         ,150.719      ,10.8571      ,0.2          ,1.0253      ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20835006"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1969
+    ,"x4lbl":"1969, M.Bormann"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.1         ,191.7        ,12.4787      ,0.14        ]
+	,[ 14.82        ,145.4        ,9.85731      ,0.14        ]
+	,[ 15.46        ,155.4        ,10.3623      ,0.15        ]
+	,[ 16.05        ,133.3        ,8.75425      ,0.15        ]
+	,[ 16.51        ,141.4        ,9.35711      ,0.15        ]
+	,[ 17.08        ,132.8        ,8.95264      ,0.14        ]
+	,[ 17.48        ,120.3        ,8.04806      ,0.14        ]
+	,[ 17.84        ,118.1        ,7.74811      ,0.13        ]
+	,[ 18.06        ,125.7        ,8.05245      ,0.13        ]
+	,[ 18.19        ,113.9        ,7.64535      ,0.12        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20835006"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1969
+    ,"x4lbl":"1969, M.Bormann*"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  1-H-1(N,EL)1-H-1,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.689",
+      " a1=recom$h1nel[EN-NRM];  #[0]#new monitor point [14.1MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.1         ,190.03       ,14.545       ,0.14         ,0.991287    ]
+	,[ 14.82        ,144.133      ,11.4211      ,0.14         ,0.991287    ]
+	,[ 15.46        ,154.046      ,12.0351      ,0.15         ,0.991287    ]
+	,[ 16.05        ,132.139      ,10.1904      ,0.15         ,0.991287    ]
+	,[ 16.51        ,140.168      ,10.8799      ,0.15         ,0.991287    ]
+	,[ 17.08        ,131.643      ,10.3814      ,0.14         ,0.991287    ]
+	,[ 17.48        ,119.252      ,9.34283      ,0.14         ,0.991287    ]
+	,[ 17.84        ,117.071      ,9.02053      ,0.13         ,0.991287    ]
+	,[ 18.06        ,124.605      ,9.40845      ,0.13         ,0.991287    ]
+	,[ 18.19        ,112.908      ,8.87101      ,0.12         ,0.991287    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"11515007"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1968
+    ,"x4lbl":"1968, N.Ranakumar"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.4         ,210          ,20           ,0.3         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"400090031"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1968
+    ,"x4lbl":"1968, G.P.Vinitskaya"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,154          ,10          ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"400090031"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1968
+    ,"x4lbl":"1968, G.P.Vinitskaya*"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  29-CU-65(N,2N)29-CU-64,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 1.0",
+      " a1=recom$cu65n2n[EN];    #[0]#new monitor point [14.8MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,148.584      ,10           ,0            ,0.964834    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"400090032"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1968
+    ,"x4lbl":"1968, G.P.Vinitskaya#"
+    ,"x4corr":"ratio*m1"
+    ,"autoCorr":null
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,148.584      ,11.9546      ,0            ,0.964834    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20107002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1966
+    ,"x4lbl":"1966, A.Kjelberg"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,204          ,15           ,0.2         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"21741005"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1966
+    ,"x4lbl":"1966, A.Paulsen"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 0.99         ,0.04         ,0.0016      ]
+	,[ 1.05         ,0.14         ,0.0056      ]
+	,[ 1.11         ,0.11         ,0.0044      ]
+	,[ 1.17         ,0.2          ,0.008       ]
+	,[ 1.23         ,0.28         ,0.0112      ]
+	,[ 1.29         ,0.33         ,0.0132      ]
+	,[ 1.36         ,0.49         ,0.0196      ]
+	,[ 1.43         ,0.58         ,0.0232      ]
+	,[ 1.49         ,1.02         ,0.0408      ]
+	,[ 1.56         ,1.41         ,0.0564      ]
+	,[ 1.63         ,1.8          ,0.072       ]
+	,[ 1.69         ,2.31         ,0.0924      ]
+	,[ 1.76         ,3.67         ,0.1468      ]
+	,[ 1.82         ,4.1          ,0.164       ]
+	,[ 1.88         ,5.3          ,0.212       ]
+	,[ 1.94         ,6.8          ,0.272       ]
+	,[ 1.99         ,7.9          ,0.316       ]
+	,[ 2.04         ,9.4          ,0.376       ]
+	,[ 2.08         ,10.6         ,0.424       ]
+	,[ 2.12         ,13           ,0.52        ]
+	,[ 2.15         ,14.9         ,0.596       ]
+	,[ 2.18         ,15.7         ,0.628       ]
+	,[ 2.2          ,16           ,0.64        ]
+	,[ 2.21         ,17           ,0.68        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"40016019"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1964
+    ,"x4lbl":"1964, V.N.Levkovskii"
+    ,"x4evalflags":"yR1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R1",
+        "comment2": [
+          "#flag=R1  #[R]:Reviewed  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14           ,210          ,40          ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"11590023"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1963
+    ,"x4lbl":"1963, E.T.Bramlitt"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.7         ,230          ,30           ,0.4         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"11590023"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1963
+    ,"x4lbl":"1963, E.T.Bramlitt*"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  13-AL-27(N,A)11-NA-24,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.114",
+      " a1=recom$al27na[EN];     #[0]#new monitor point [14.7MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.7         ,226.951      ,30           ,0.4          ,0.986746    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"21343009"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1963
+    ,"x4lbl":"1963, M.Bormann"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.1         ,250          ,10           ,0.3         ]
+	,[ 14           ,207          ,14           ,0.2         ]
+	,[ 15.9         ,198          ,16           ,0.4         ]
+	,[ 18           ,187          ,17           ,0.4         ]
+	,[ 19.3         ,180          ,16           ,0.4         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"21343009"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1963
+    ,"x4lbl":"1963, M.Bormann*"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  29-CU-65(N,2N)29-CU-64,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.93",
+      " a1=recom$cu65n2n[EN-NRM];#[0]#new monitor point [14.1MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.1         ,239.109      ,34.6754      ,0.3          ,0.956438    ]
+	,[ 14           ,197.983      ,34.1821      ,0.2          ,0.956438    ]
+	,[ 15.9         ,189.375      ,35.191       ,0.4          ,0.956438    ]
+	,[ 18           ,178.854      ,35.0425      ,0.4          ,0.956438    ]
+	,[ 19.3         ,172.159      ,33.383       ,0.4          ,0.956438    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"11494011"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1962
+    ,"x4lbl":"1962, F.Gabbard"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 12.4         ,262          ,18           ,0.1         ]
+	,[ 13           ,245          ,20          ]
+	,[ 13.4         ,250          ,20          ]
+	,[ 13.65        ,235          ,15          ]
+	,[ 14           ,220          ,15          ]
+	,[ 14.3         ,185          ,15          ]
+	,[ 14.5         ,220          ,15          ]
+	,[ 14.75        ,180          ,15           ,0.1         ]
+	,[ 15.2         ,195          ,20          ]
+	,[ 15.4         ,180          ,15          ]
+	,[ 15.6         ,162          ,13          ]
+	,[ 16           ,148          ,12          ]
+	,[ 16.4         ,160          ,10          ]
+	,[ 16.7         ,135          ,10          ]
+	,[ 16.9         ,142          ,13          ]
+	,[ 17.2         ,135          ,10           ,0.2         ]
+	,[ 17.55        ,152          ,12           ,0.2         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"11494011"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1962
+    ,"x4lbl":"1962, F.Gabbard*"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":"*m1/m0"
+    ,"autoCorr":[
+      " #[0]#---Monitor xs-data",
+      " #[0]#Reaction: 30-ZN-64(N,P)29-CU-64,,SIG",
+      " #[0]#Monitor:  29-CU-65(N,2N)29-CU-64,,SIG",
+      " a0=[MONIT];              #[0]#old monitor point 0.935",
+      " a1=recom$cu65n2n[EN-NRM];#[0]#new monitor point [14.0MeV]",
+      " dy=dy/y;                 #to rel. uncertainties",
+      " y=y*a1/a0;               #[0]#renormalizing CS",
+      " #c0=0.02;                #---define calc-error as 2%",
+      " #dy=(dy**2+c0**2)**0.5;  #---add calc-error",
+      " dy=dy*y;                 #to abs. uncertainties",
+      ""
+    ]
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 12.4         ,245.416      ,18           ,0.1          ,0.936702    ]
+	,[ 13           ,229.492      ,20           ,0            ,0.936702    ]
+	,[ 13.4         ,234.175      ,20           ,0            ,0.936702    ]
+	,[ 13.65        ,220.125      ,15           ,0            ,0.936702    ]
+	,[ 14           ,206.074      ,15           ,0            ,0.936702    ]
+	,[ 14.3         ,173.29       ,15           ,0            ,0.936702    ]
+	,[ 14.5         ,206.074      ,15           ,0            ,0.936702    ]
+	,[ 14.75        ,168.606      ,15           ,0.1          ,0.936702    ]
+	,[ 15.2         ,182.657      ,20           ,0            ,0.936702    ]
+	,[ 15.4         ,168.606      ,15           ,0            ,0.936702    ]
+	,[ 15.6         ,151.746      ,13           ,0            ,0.936702    ]
+	,[ 16           ,138.632      ,12           ,0            ,0.936702    ]
+	,[ 16.4         ,149.872      ,10           ,0            ,0.936702    ]
+	,[ 16.7         ,126.455      ,10           ,0            ,0.936702    ]
+	,[ 16.9         ,133.012      ,13           ,0            ,0.936702    ]
+	,[ 17.2         ,126.455      ,10           ,0.2          ,0.936702    ]
+	,[ 17.55        ,142.379      ,12           ,0.2          ,0.936702    ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20291003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1962
+    ,"x4lbl":"1962, K.Nakai"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 2.52         ,25           ,5            ,0.23        ]
+	,[ 3.21         ,64           ,13           ,0.3         ]
+	,[ 3.61         ,85           ,18           ,0.27        ]
+	,[ 3.98         ,91           ,19           ,0.22        ]
+	,[ 4.33         ,114          ,23           ,0.15        ]
+	,[ 4.63         ,134          ,27           ,0.06        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"20291005"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1962
+    ,"x4lbl":"1962, K.Nakai"
+    ,"x4evalflags":"yT2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T2",
+        "comment2": [
+          "#flag=T2  #[T]:Theoretical comparison  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 1.84         ,7.4          ,2            ,0.05        ]
+	,[ 2.24         ,15           ,4            ,0.17        ]
+	,[ 2.89         ,43           ,9            ,0.3         ]
+	,[ 3.71         ,77           ,16           ,0.29        ]
+	,[ 4.13         ,98           ,20           ,0.22        ]
+	,[ 4.49         ,108          ,22           ,0.15        ]
+	,[ 4.82         ,125          ,25           ,0.05        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"311100051"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1962
+    ,"x4lbl":"1962, E.Weigold"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.86        ,190          ,15.2         ,0.1         ]
+	,[ 14.11        ,191          ,15.28        ,0.1         ]
+	,[ 14.37        ,177          ,14.16        ,0.15        ]
+	,[ 14.59        ,164          ,13.12        ,0.2         ]
+	,[ 14.77        ,155          ,12.4         ,0.25        ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"311100052"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1962
+    ,"x4lbl":"1962, E.Weigold#"
+    ,"x4corr":"ratio*m1"
+    ,"autoCorr":null
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 13.86        ,188.469      ,18.3271      ,0.1          ,0.856677    ]
+	,[ 14.11        ,190.643      ,18.0047      ,0.1          ,0.890854    ]
+	,[ 14.37        ,179.663      ,17.4329      ,0.15         ,0.921349    ]
+	,[ 14.59        ,166.258      ,15.7476      ,0.2          ,0.944647    ]
+	,[ 14.77        ,154.874      ,14.9016      ,0.25         ,0.96195     ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30221004"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1961
+    ,"x4lbl":"1961, J.J.Van Loef"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 3.3          ,51.5         ,5            ,0.1         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"11740018"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1960
+    ,"x4lbl":"1960, I.L.Preiss"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14.8         ,284          ,20           ,0.9         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"11802003"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1960
+    ,"x4lbl":"1960, A.H.Armstrong"
+    ,"x4evalflags":"yT1"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "T1",
+        "comment2": [
+          "#flag=T1  #[T]:Theoretical comparison  #[1]:Good"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 14           ,200         ]
+    ]
+  }
+  ,{
+     "LIBRARY":"EXFOR"
+    ,"mode":"points"
+    ,"DatasetID":"30218002"
+    ,"Reacode":"30-ZN-64(N,P)29-CU-64,,SIG"
+    ,"year":1959
+    ,"x4lbl":"1959, J.Rapaport"
+    ,"x4evalflags":"yR2"
+    ,"x4evalscores":[
+      {
+        "author": "Arjan Koning",
+        "myComment": "Arjan Koning, statistical verification of EXFOR neutron-ind. reactions XS (2020)",
+        "itype": "stat",
+        "accepted": 1,
+        "evalflag": "R2",
+        "comment2": [
+          "#flag=R2  #[R]:Reviewed  #[2]:Doubtful"
+        ]
+      }
+    ]
+    ,"x4corr":""
+    ,"fx":1e-06
+    ,"fy":1000.0
+    ,"x_y_dy_dx_fc":[
+	 [ 1.99         ,10.5         ,0.8          ,0.1         ]
+	,[ 2.05         ,15           ,1.5          ,0.07        ]
+	,[ 2.21         ,17.1         ,1.3          ,0.16        ]
+	,[ 2.24         ,19.8         ,2            ,0.13        ]
+	,[ 2.53         ,30.4         ,3.1          ,0.14        ]
+	,[ 2.58         ,26.4         ,2            ,0.19        ]
+	,[ 2.88         ,46.4         ,4.7          ,0.14        ]
+	,[ 3.04         ,46.4         ,3.4          ,0.2         ]
+	,[ 3.15         ,48.8         ,4.9          ,0.12        ]
+	,[ 3.27         ,51.3         ,5.2          ,0.09        ]
+	,[ 3.4          ,53.5         ,3.8          ,0.13        ]
+	,[ 3.55         ,56.4         ,4            ,0.1         ]
+    ]
+  }
+  ]
+}

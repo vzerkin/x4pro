@@ -1,0 +1,4061 @@
+#### 1
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     0
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.058
+$dLEGRS     0.049
+$Sig        10.53
+$dSig       0.8
+$En         1800.0
+$number     1.0
+//
+#### 2
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     1
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.023
+$dLEGRS     0.024
+$Sig        10.53
+$dSig       0.8
+$En         1800.0
+$number     2.0
+//
+#### 3
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     2
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.005
+$dLEGRS     0.022
+$Sig        9.13
+$dSig       0.8
+$En         4100.0
+$number     1.0
+//
+#### 4
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     3
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.014
+$dLEGRS     0.019
+$Sig        9.13
+$dSig       0.8
+$En         4100.0
+$number     2.0
+//
+#### 5
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     4
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.052
+$dLEGRS     0.042
+$Sig        12.66
+$dSig       0.8
+$En         8300.0
+$number     1.0
+//
+#### 6
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     5
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.014
+$dLEGRS     0.019
+$Sig        12.66
+$dSig       0.8
+$En         8300.0
+$number     2.0
+//
+#### 7
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     6
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.004
+$dLEGRS     0.022
+$Sig        10.61
+$dSig       0.8
+$En         11700.0
+$number     1.0
+//
+#### 8
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     7
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.073
+$dLEGRS     0.066
+$Sig        10.61
+$dSig       0.8
+$En         11700.0
+$number     2.0
+//
+#### 9
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     8
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.006
+$dLEGRS     0.022
+$Sig        11.4
+$dSig       0.8
+$En         14300.0
+$number     1.0
+//
+#### 10
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     9
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.014
+$dLEGRS     0.048
+$Sig        11.4
+$dSig       0.8
+$En         14300.0
+$number     2.0
+//
+#### 11
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     10
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.028
+$dLEGRS     0.018
+$Sig        9.81
+$dSig       0.8
+$En         18000.0
+$number     1.0
+//
+#### 12
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     11
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.033
+$dLEGRS     0.031
+$Sig        9.81
+$dSig       0.8
+$En         18000.0
+$number     2.0
+//
+#### 13
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     12
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.01
+$dLEGRS     0.015
+$Sig        10.69
+$dSig       0.8
+$En         23100.0
+$number     1.0
+//
+#### 14
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     13
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.019
+$dLEGRS     0.034
+$Sig        10.69
+$dSig       0.8
+$En         23100.0
+$number     2.0
+//
+#### 15
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     14
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.057
+$dLEGRS     0.033
+$Sig        8.49
+$dSig       0.8
+$En         29400.0
+$number     1.0
+//
+#### 16
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     15
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.02
+$dLEGRS     0.032
+$Sig        8.49
+$dSig       0.8
+$En         29400.0
+$number     2.0
+//
+#### 17
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     16
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.107
+$dLEGRS     0.04
+$Sig        7.07
+$dSig       0.8
+$En         41100.0
+$number     1.0
+//
+#### 18
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     17
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.0
+$dLEGRS     0.055
+$Sig        7.07
+$dSig       0.8
+$En         41100.0
+$number     2.0
+//
+#### 19
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     18
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.066
+$dLEGRS     0.027
+$Sig        8.29
+$dSig       0.8
+$En         48300.0
+$number     1.0
+//
+#### 20
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     19
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.026
+$dLEGRS     0.044
+$Sig        8.29
+$dSig       0.8
+$En         48300.0
+$number     2.0
+//
+#### 21
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     20
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.071
+$dLEGRS     0.024
+$Sig        7.58
+$dSig       0.8
+$En         58400.0
+$number     1.0
+//
+#### 22
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     21
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.063
+$dLEGRS     0.052
+$Sig        7.58
+$dSig       0.8
+$En         58400.0
+$number     2.0
+//
+#### 23
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     22
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.125
+$dLEGRS     0.021
+$Sig        7.41
+$dSig       0.8
+$En         72000.0
+$number     1.0
+//
+#### 24
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     23
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.008
+$dLEGRS     0.034
+$Sig        7.41
+$dSig       0.8
+$En         72000.0
+$number     2.0
+//
+#### 25
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     24
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.1
+$dLEGRS     0.024
+$Sig        6.32
+$dSig       0.4
+$En         96000.0
+$number     1.0
+//
+#### 26
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     25
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.019
+$dLEGRS     0.038
+$Sig        6.32
+$dSig       0.4
+$En         96000.0
+$number     2.0
+//
+#### 27
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     26
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.13
+$dLEGRS     0.042
+$Sig        5.97
+$dSig       0.4
+$En         120000.0
+$number     1.0
+//
+#### 28
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     27
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.111
+$dLEGRS     0.048
+$Sig        5.97
+$dSig       0.4
+$En         120000.0
+$number     2.0
+//
+#### 29
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     28
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.15
+$dLEGRS     0.026
+$Sig        6.05
+$dSig       0.4
+$En         138000.0
+$number     1.0
+//
+#### 30
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     29
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.062
+$dLEGRS     0.041
+$Sig        6.05
+$dSig       0.4
+$En         138000.0
+$number     2.0
+//
+#### 31
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     30
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.15
+$dLEGRS     0.03
+$Sig        6.36
+$dSig       0.4
+$En         164000.0
+$number     1.0
+//
+#### 32
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     31
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.091
+$dLEGRS     0.041
+$Sig        6.36
+$dSig       0.4
+$En         164000.0
+$number     2.0
+//
+#### 33
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     32
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.188
+$dLEGRS     0.025
+$Sig        5.96
+$dSig       0.4
+$En         201000.0
+$number     1.0
+//
+#### 34
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     33
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.042
+$dLEGRS     0.077
+$Sig        5.96
+$dSig       0.4
+$En         201000.0
+$number     2.0
+//
+#### 35
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     34
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.191
+$dLEGRS     0.023
+$Sig        5.57
+$dSig       0.4
+$En         253000.0
+$number     1.0
+//
+#### 36
+$Entry      40940
+$DatasetID  40940008
+$DS2        40940002
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1986
+$nAuthors   2
+$Author1Ini A.B.
+$Author1    Popov
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     35
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.127
+$dLEGRS     0.037
+$Sig        5.57
+$dSig       0.4
+$En         253000.0
+$number     2.0
+//
+#### 37
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     0
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.234
+$dLEGRS     0.02
+$Sig        5.56
+$dSig       0.4448
+$En         300000.0
+$number     1.0
+//
+#### 38
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     1
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.11
+$dLEGRS     0.034
+$Sig        5.56
+$dSig       0.4448
+$En         300000.0
+$number     2.0
+//
+#### 39
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     2
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.076
+$dLEGRS     0.038
+$Sig        5.56
+$dSig       0.4448
+$En         300000.0
+$number     3.0
+//
+#### 40
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     3
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.087
+$dLEGRS     0.05
+$Sig        5.56
+$dSig       0.4448
+$En         300000.0
+$number     4.0
+//
+#### 41
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     4
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.412
+$dLEGRS     0.011
+$Sig        4.64
+$dSig       0.3712
+$En         340000.0
+$number     1.0
+//
+#### 42
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     5
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.214
+$dLEGRS     0.019
+$Sig        4.64
+$dSig       0.3712
+$En         340000.0
+$number     2.0
+//
+#### 43
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     6
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.097
+$dLEGRS     0.021
+$Sig        4.64
+$dSig       0.3712
+$En         340000.0
+$number     3.0
+//
+#### 44
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     7
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.032
+$dLEGRS     0.027
+$Sig        4.64
+$dSig       0.3712
+$En         340000.0
+$number     4.0
+//
+#### 45
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     8
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.396
+$dLEGRS     0.018
+$Sig        4.52
+$dSig       0.3616
+$En         390000.0
+$number     1.0
+//
+#### 46
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     9
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.221
+$dLEGRS     0.031
+$Sig        4.52
+$dSig       0.3616
+$En         390000.0
+$number     2.0
+//
+#### 47
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     10
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.064
+$dLEGRS     0.035
+$Sig        4.52
+$dSig       0.3616
+$En         390000.0
+$number     3.0
+//
+#### 48
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     11
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.034
+$dLEGRS     0.046
+$Sig        4.52
+$dSig       0.3616
+$En         390000.0
+$number     4.0
+//
+#### 49
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     12
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.284
+$dLEGRS     0.016
+$Sig        4.66
+$dSig       0.3728
+$En         440000.0
+$number     1.0
+//
+#### 50
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     13
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.184
+$dLEGRS     0.027
+$Sig        4.66
+$dSig       0.3728
+$En         440000.0
+$number     2.0
+//
+#### 51
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     14
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.063
+$dLEGRS     0.032
+$Sig        4.66
+$dSig       0.3728
+$En         440000.0
+$number     3.0
+//
+#### 52
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     15
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.007
+$dLEGRS     0.038
+$Sig        4.66
+$dSig       0.3728
+$En         440000.0
+$number     4.0
+//
+#### 53
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     16
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.36
+$dLEGRS     0.011
+$Sig        4.65
+$dSig       0.372
+$En         490000.0
+$number     1.0
+//
+#### 54
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     17
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.192
+$dLEGRS     0.019
+$Sig        4.65
+$dSig       0.372
+$En         490000.0
+$number     2.0
+//
+#### 55
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     18
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.045
+$dLEGRS     0.021
+$Sig        4.65
+$dSig       0.372
+$En         490000.0
+$number     3.0
+//
+#### 56
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     19
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.006
+$dLEGRS     0.026
+$Sig        4.65
+$dSig       0.372
+$En         490000.0
+$number     4.0
+//
+#### 57
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     20
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.365
+$dLEGRS     0.012
+$Sig        4.55
+$dSig       0.36400002
+$En         550000.0
+$number     1.0
+//
+#### 58
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     21
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.309
+$dLEGRS     0.021
+$Sig        4.55
+$dSig       0.36400002
+$En         550000.0
+$number     2.0
+//
+#### 59
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     22
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.032
+$dLEGRS     0.025
+$Sig        4.55
+$dSig       0.36400002
+$En         550000.0
+$number     3.0
+//
+#### 60
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     23
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.089
+$dLEGRS     0.031
+$Sig        4.55
+$dSig       0.36400002
+$En         550000.0
+$number     4.0
+//
+#### 61
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     24
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.402
+$dLEGRS     0.008
+$Sig        4.54
+$dSig       0.3632
+$En         590000.0
+$number     1.0
+//
+#### 62
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     25
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.315
+$dLEGRS     0.015
+$Sig        4.54
+$dSig       0.3632
+$En         590000.0
+$number     2.0
+//
+#### 63
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     26
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.082
+$dLEGRS     0.017
+$Sig        4.54
+$dSig       0.3632
+$En         590000.0
+$number     3.0
+//
+#### 64
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     27
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.039
+$dLEGRS     0.021
+$Sig        4.54
+$dSig       0.3632
+$En         590000.0
+$number     4.0
+//
+#### 65
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     28
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.471
+$dLEGRS     0.042
+$Sig        3.95
+$dSig       0.316
+$En         640000.0
+$number     1.0
+//
+#### 66
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     29
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.395
+$dLEGRS     0.071
+$Sig        3.95
+$dSig       0.316
+$En         640000.0
+$number     2.0
+//
+#### 67
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     30
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.113
+$dLEGRS     0.084
+$Sig        3.95
+$dSig       0.316
+$En         640000.0
+$number     3.0
+//
+#### 68
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     31
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.042
+$dLEGRS     0.108
+$Sig        3.95
+$dSig       0.316
+$En         640000.0
+$number     4.0
+//
+#### 69
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     32
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.496
+$dLEGRS     0.028
+$Sig        3.9
+$dSig       0.312
+$En         690000.0
+$number     1.0
+//
+#### 70
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     33
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.375
+$dLEGRS     0.048
+$Sig        3.9
+$dSig       0.312
+$En         690000.0
+$number     2.0
+//
+#### 71
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     34
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.116
+$dLEGRS     0.055
+$Sig        3.9
+$dSig       0.312
+$En         690000.0
+$number     3.0
+//
+#### 72
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     35
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.041
+$dLEGRS     0.071
+$Sig        3.9
+$dSig       0.312
+$En         690000.0
+$number     4.0
+//
+#### 73
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     36
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.389
+$dLEGRS     0.033
+$Sig        3.78
+$dSig       0.3024
+$En         740000.0
+$number     1.0
+//
+#### 74
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     37
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.33
+$dLEGRS     0.056
+$Sig        3.78
+$dSig       0.3024
+$En         740000.0
+$number     2.0
+//
+#### 75
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     38
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.027
+$dLEGRS     0.067
+$Sig        3.78
+$dSig       0.3024
+$En         740000.0
+$number     3.0
+//
+#### 76
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     39
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.034
+$dLEGRS     0.086
+$Sig        3.78
+$dSig       0.3024
+$En         740000.0
+$number     4.0
+//
+#### 77
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     40
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.439
+$dLEGRS     0.017
+$Sig        3.93
+$dSig       0.31440002
+$En         790000.0
+$number     1.0
+//
+#### 78
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     41
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.405
+$dLEGRS     0.026
+$Sig        3.93
+$dSig       0.31440002
+$En         790000.0
+$number     2.0
+//
+#### 79
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     42
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.096
+$dLEGRS     0.036
+$Sig        3.93
+$dSig       0.31440002
+$En         790000.0
+$number     3.0
+//
+#### 80
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     43
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.052
+$dLEGRS     0.043
+$Sig        3.93
+$dSig       0.31440002
+$En         790000.0
+$number     4.0
+//
+#### 81
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     44
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.515
+$dLEGRS     0.021
+$Sig        3.74
+$dSig       0.2992
+$En         840000.0
+$number     1.0
+//
+#### 82
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     45
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.541
+$dLEGRS     0.035
+$Sig        3.74
+$dSig       0.2992
+$En         840000.0
+$number     2.0
+//
+#### 83
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     46
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.103
+$dLEGRS     0.041
+$Sig        3.74
+$dSig       0.2992
+$En         840000.0
+$number     3.0
+//
+#### 84
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     47
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.042
+$dLEGRS     0.053
+$Sig        3.74
+$dSig       0.2992
+$En         840000.0
+$number     4.0
+//
+#### 85
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     48
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.449
+$dLEGRS     0.029
+$Sig        4.24
+$dSig       0.3392
+$En         880000.0
+$number     1.0
+//
+#### 86
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     49
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.401
+$dLEGRS     0.043
+$Sig        4.24
+$dSig       0.3392
+$En         880000.0
+$number     2.0
+//
+#### 87
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     50
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.193
+$dLEGRS     0.056
+$Sig        4.24
+$dSig       0.3392
+$En         880000.0
+$number     3.0
+//
+#### 88
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     51
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.055
+$dLEGRS     0.061
+$Sig        4.24
+$dSig       0.3392
+$En         880000.0
+$number     4.0
+//
+#### 89
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     52
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.588
+$dLEGRS     0.043
+$Sig        3.48
+$dSig       0.2784
+$En         930000.0
+$number     1.0
+//
+#### 90
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     53
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.47
+$dLEGRS     0.063
+$Sig        3.48
+$dSig       0.2784
+$En         930000.0
+$number     2.0
+//
+#### 91
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     54
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.225
+$dLEGRS     0.083
+$Sig        3.48
+$dSig       0.2784
+$En         930000.0
+$number     3.0
+//
+#### 92
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     55
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      -0.058
+$dLEGRS     0.091
+$Sig        3.48
+$dSig       0.2784
+$En         930000.0
+$number     4.0
+//
+#### 93
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     56
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.473
+$dLEGRS     0.031
+$Sig        3.95
+$dSig       0.316
+$En         980000.0
+$number     1.0
+//
+#### 94
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     57
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.544
+$dLEGRS     0.048
+$Sig        3.95
+$dSig       0.316
+$En         980000.0
+$number     2.0
+//
+#### 95
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     58
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.143
+$dLEGRS     0.075
+$Sig        3.95
+$dSig       0.316
+$En         980000.0
+$number     3.0
+//
+#### 96
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     59
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.283
+$dLEGRS     0.098
+$Sig        3.95
+$dSig       0.316
+$En         980000.0
+$number     4.0
+//
+#### 97
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     60
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.465
+$dLEGRS     0.033
+$Sig        3.36
+$dSig       0.2688
+$En         990000.0
+$number     1.0
+//
+#### 98
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     61
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.625
+$dLEGRS     0.055
+$Sig        3.36
+$dSig       0.2688
+$En         990000.0
+$number     2.0
+//
+#### 99
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     62
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.311
+$dLEGRS     0.066
+$Sig        3.36
+$dSig       0.2688
+$En         990000.0
+$number     3.0
+//
+#### 100
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     63
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.071
+$dLEGRS     0.084
+$Sig        3.36
+$dSig       0.2688
+$En         990000.0
+$number     4.0
+//
+#### 101
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     64
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.559
+$dLEGRS     0.016
+$Sig        3.09
+$dSig       0.2472
+$En         1040000.0
+$number     1.0
+//
+#### 102
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     65
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.614
+$dLEGRS     0.026
+$Sig        3.09
+$dSig       0.2472
+$En         1040000.0
+$number     2.0
+//
+#### 103
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     66
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.242
+$dLEGRS     0.031
+$Sig        3.09
+$dSig       0.2472
+$En         1040000.0
+$number     3.0
+//
+#### 104
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     67
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.038
+$dLEGRS     0.04
+$Sig        3.09
+$dSig       0.2472
+$En         1040000.0
+$number     4.0
+//
+#### 105
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     68
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.603
+$dLEGRS     0.026
+$Sig        2.91
+$dSig       0.2328
+$En         1090000.0
+$number     1.0
+//
+#### 106
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     69
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.704
+$dLEGRS     0.045
+$Sig        2.91
+$dSig       0.2328
+$En         1090000.0
+$number     2.0
+//
+#### 107
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     70
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.35
+$dLEGRS     0.052
+$Sig        2.91
+$dSig       0.2328
+$En         1090000.0
+$number     3.0
+//
+#### 108
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     71
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.117
+$dLEGRS     0.067
+$Sig        2.91
+$dSig       0.2328
+$En         1090000.0
+$number     4.0
+//
+#### 109
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     72
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.533
+$dLEGRS     0.01
+$Sig        2.97
+$dSig       0.2376
+$En         1140000.0
+$number     1.0
+//
+#### 110
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     73
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.755
+$dLEGRS     0.017
+$Sig        2.97
+$dSig       0.2376
+$En         1140000.0
+$number     2.0
+//
+#### 111
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     74
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.342
+$dLEGRS     0.02
+$Sig        2.97
+$dSig       0.2376
+$En         1140000.0
+$number     3.0
+//
+#### 112
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     75
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.119
+$dLEGRS     0.026
+$Sig        2.97
+$dSig       0.2376
+$En         1140000.0
+$number     4.0
+//
+#### 113
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     76
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.633
+$dLEGRS     0.039
+$Sig        2.51
+$dSig       0.2008
+$En         1190000.0
+$number     1.0
+//
+#### 114
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     77
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.7
+$dLEGRS     0.066
+$Sig        2.51
+$dSig       0.2008
+$En         1190000.0
+$number     2.0
+//
+#### 115
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     78
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.394
+$dLEGRS     0.078
+$Sig        2.51
+$dSig       0.2008
+$En         1190000.0
+$number     3.0
+//
+#### 116
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     79
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.216
+$dLEGRS     0.093
+$Sig        2.51
+$dSig       0.2008
+$En         1190000.0
+$number     4.0
+//
+#### 117
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     80
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.575
+$dLEGRS     0.052
+$Sig        2.88
+$dSig       0.23040001
+$En         1250000.0
+$number     1.0
+//
+#### 118
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     81
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.734
+$dLEGRS     0.076
+$Sig        2.88
+$dSig       0.23040001
+$En         1250000.0
+$number     2.0
+//
+#### 119
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     82
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.394
+$dLEGRS     0.099
+$Sig        2.88
+$dSig       0.23040001
+$En         1250000.0
+$number     3.0
+//
+#### 120
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     83
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.246
+$dLEGRS     0.111
+$Sig        2.88
+$dSig       0.23040001
+$En         1250000.0
+$number     4.0
+//
+#### 121
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     84
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.651
+$dLEGRS     0.051
+$Sig        2.85
+$dSig       0.22799999
+$En         1300000.0
+$number     1.0
+//
+#### 122
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     85
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.976
+$dLEGRS     0.08
+$Sig        2.85
+$dSig       0.22799999
+$En         1300000.0
+$number     2.0
+//
+#### 123
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     86
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.54
+$dLEGRS     0.101
+$Sig        2.85
+$dSig       0.22799999
+$En         1300000.0
+$number     3.0
+//
+#### 124
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     87
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.418
+$dLEGRS     0.129
+$Sig        2.85
+$dSig       0.22799999
+$En         1300000.0
+$number     4.0
+//
+#### 125
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     88
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.597
+$dLEGRS     0.038
+$Sig        2.63
+$dSig       0.21040002
+$En         1350000.0
+$number     1.0
+//
+#### 126
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     89
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      1.055
+$dLEGRS     0.057
+$Sig        2.63
+$dSig       0.21040002
+$En         1350000.0
+$number     2.0
+//
+#### 127
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     90
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.448
+$dLEGRS     0.076
+$Sig        2.63
+$dSig       0.21040002
+$En         1350000.0
+$number     3.0
+//
+#### 128
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     91
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.433
+$dLEGRS     0.085
+$Sig        2.63
+$dSig       0.21040002
+$En         1350000.0
+$number     4.0
+//
+#### 129
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     92
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.702
+$dLEGRS     0.019
+$Sig        2.6
+$dSig       0.20799999
+$En         1400000.0
+$number     1.0
+//
+#### 130
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     93
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      1.035
+$dLEGRS     0.027
+$Sig        2.6
+$dSig       0.20799999
+$En         1400000.0
+$number     2.0
+//
+#### 131
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     94
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.517
+$dLEGRS     0.036
+$Sig        2.6
+$dSig       0.20799999
+$En         1400000.0
+$number     3.0
+//
+#### 132
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     95
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.281
+$dLEGRS     0.04
+$Sig        2.6
+$dSig       0.20799999
+$En         1400000.0
+$number     4.0
+//
+#### 133
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     96
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.708
+$dLEGRS     0.034
+$Sig        2.45
+$dSig       0.19600001
+$En         1450000.0
+$number     1.0
+//
+#### 134
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     97
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.999
+$dLEGRS     0.051
+$Sig        2.45
+$dSig       0.19600001
+$En         1450000.0
+$number     2.0
+//
+#### 135
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     98
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.616
+$dLEGRS     0.067
+$Sig        2.45
+$dSig       0.19600001
+$En         1450000.0
+$number     3.0
+//
+#### 136
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     99
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.395
+$dLEGRS     0.075
+$Sig        2.45
+$dSig       0.19600001
+$En         1450000.0
+$number     4.0
+//
+#### 137
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     100
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.737
+$dLEGRS     0.037
+$Sig        2.41
+$dSig       0.1928
+$En         1500000.0
+$number     1.0
+//
+#### 138
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     101
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      1.083
+$dLEGRS     0.052
+$Sig        2.41
+$dSig       0.1928
+$En         1500000.0
+$number     2.0
+//
+#### 139
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     102
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.598
+$dLEGRS     0.07
+$Sig        2.41
+$dSig       0.1928
+$En         1500000.0
+$number     3.0
+//
+#### 140
+$Entry      11749
+$DatasetID  11749005
+$DS2        11749006
+$Target     Cu-0
+$Reaction   N,EL
+$YearRef1   1964
+$nAuthors   3
+$Author1Ini A.B.
+$Author1    Smith
+$fullCode   29-CU-0(N,EL)29-CU-0,,DA,,LEG/RS
+$iPoint     103
+$zaTarget1  29000
+$zaIncident1 1
+$Projectile n
+$sProd      
+$sTarg      
+$R2         29-CU-0(N,EL)29-CU-0,,SIG
+$MF         154
+$MT         2
+$MF2        3
+$MT2        2
+$LEGRS      0.461
+$dLEGRS     0.077
+$Sig        2.41
+$dSig       0.1928
+$En         1500000.0
+$number     4.0
+//
+//EOF

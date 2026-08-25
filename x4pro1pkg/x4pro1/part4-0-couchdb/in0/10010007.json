@@ -1,0 +1,111 @@
+{"SUBENT":"10010007", "isub":7, "compiled":19990617, "TransID":"0000", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"83-BI-209(N,INL)83-BI-209,PAR,SIG"
+	    ,"c4reac":"(N,INL)PAR,SIG"
+	    ,"combi":"a"
+	    ,"MF":3
+	    ,"MT":51
+	    ,"Units":"B"
+	    ,"reacs": [
+	    {"code":"83-BI-209(N,INL)83-BI-209,PAR,SIG"
+		,"Reac":"N,INL"
+		,"SF1":"83-BI-209","Targ":{"code":"83-BI-209","nam":"Bi-209","ZA":83209}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"INL","procHlp":"Inelastic scattering"
+		,"SF4":"83-BI-209","Prod":{"code":"83-BI-209","nam":"Bi-209","ZAProd":83209}
+		,"SF5":"PAR"
+		,"SF6":"SIG"
+		,"SF58":"PAR,SIG","Quant":"CSP","BasicUnits":"B","QuantHlp":"Partial cross section"
+	    }]}
+	}
+      ]
+     ,"MONITOR":[
+	{"x4pointer":" "
+	,"x4code":{"code":"6-C-0(N,EL)6-C-0,,DA"
+		,"reaction":"6-C-0(N,EL)6-C-0,,DA"}
+	,"x4freetext":[" Elastic from ANL-5567 (Rev)"]
+	}
+      ]
+     ,"CORRECTION":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Corrected for multiple scattering."]
+	}
+      ]
+     ,"ERR-ANALYS":[
+	{"x4pointer":" "
+	,"x4code":{}
+	,"x4freetext":["No information"]
+	}
+      ]
+     ,"HISTORY":[
+	{"x4pointer":" "
+	,"x4code":{"code":"19850307A", "date":"19850307", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" Data heading corrected."]
+	}
+	,{"x4pointer":" "
+	,"x4code":{"code":"19931229A", "date":"19931229", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" MONITOR SF4 added."]
+	}
+      ]
+    }
+    ,"COMMON":{"ncols":2, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"Q-VAL", "units":"KEV", "pointer":" "
+	,"headerHelp":"Q-value", "pFlag":"1000000"
+	,"unitsHelp":"keV","familyCode":"E","convFc":1000.0,"basicUnits":"EV"}
+      ,{"icol":1, "header":"Q-VAL-RSL", "units":"KEV", "pointer":" "
+	,"headerHelp":"Q-value resolution", "pFlag":"9220000"
+	,"unitsHelp":"keV","familyCode":"E","convFc":1000.0,"basicUnits":"EV"}
+      ]
+      ,"datacols":[
+	 ["Q-VAL"     ,"Q-VAL-RSL" ]
+	,["KEV"       ,"KEV"       ]
+	,[" "         ," "         ]]
+      ,"data":[
+	 [-895.0      ,2.0         ]]}
+    ,"DATA":{"ncols":4, "nrows":20
+      ,"x4headers":[
+       {"icol":0, "header":"EN", "units":"MEV", "pointer":" "
+	,"headerHelp":"Energy of incident projectile, laboratory system", "pFlag":"1000000"
+	,"unitsHelp":"MeV","familyCode":"E","convFc":1000000.0,"basicUnits":"EV"}
+      ,{"icol":1, "header":"EN-RSL", "units":"MEV", "pointer":" "
+	,"headerHelp":"Incident projectile energy resolution (Unspecified)", "pFlag":"9220000"
+	,"unitsHelp":"MeV","familyCode":"E","convFc":1000000.0,"basicUnits":"EV"}
+      ,{"icol":2, "header":"DATA", "units":"B", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"barns","familyCode":"B","convFc":1.0,"basicUnits":"B"}
+      ,{"icol":3, "header":"DATA-ERR", "units":"B", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"barns","familyCode":"B","convFc":1.0,"basicUnits":"B"}
+      ]
+      ,"datacols":[
+	 ["EN"        ,"EN-RSL"    ,"DATA"      ,"DATA-ERR"  ]
+	,["MEV"       ,"MEV"       ,"B"         ,"B"         ]
+	,[" "         ," "         ," "         ," "         ]]
+      ,"data":[
+	 [1.09        ,0.01        ,0.1304      ,0.00493     ]
+	,[1.14        ,0.01        ,0.1212      ,0.00452     ]
+	,[1.17        ,0.01        ,0.1854      ,0.00872     ]
+	,[1.195       ,0.01        ,0.1423      ,0.00693     ]
+	,[1.213       ,0.01        ,0.1346      ,0.00576     ]
+	,[1.233       ,0.01        ,0.1465      ,0.0075      ]
+	,[1.295       ,0.02        ,0.214       ,0.0216      ]
+	,[1.3         ,0.02        ,0.1811      ,0.02726     ]
+	,[1.306       ,0.01        ,0.1059      ,0.00424     ]
+	,[1.35        ,0.02        ,0.222       ,0.02731     ]
+	,[1.38        ,0.02        ,0.2164      ,0.02597     ]
+	,[1.387       ,0.02        ,0.1907      ,0.0197      ]
+	,[1.42        ,0.02        ,0.2046      ,0.02456     ]
+	,[1.445       ,0.02        ,0.2007      ,0.02        ]
+	,[1.45        ,0.02        ,0.1874      ,0.03246     ]
+	,[1.46        ,0.02        ,0.2293      ,0.02751     ]
+	,[1.475       ,0.02        ,0.2135      ,0.02562     ]
+	,[1.495       ,0.02        ,0.1682      ,0.02018     ]
+	,[1.499       ,0.02        ,0.2104      ,0.02525     ]
+	,[1.5         ,0.02        ,0.238       ,0.036       ]]}
+}

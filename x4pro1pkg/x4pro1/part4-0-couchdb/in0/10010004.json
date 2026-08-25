@@ -1,0 +1,157 @@
+{"SUBENT":"10010004", "isub":4, "compiled":19990617, "TransID":"0000", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"83-BI-209(N,INL)83-BI-209,PAR,DA"
+	    ,"c4reac":"(N,INL)PAR,DA"
+	    ,"combi":"a"
+	    ,"MF":4
+	    ,"MT":51
+	    ,"Units":"B/SR"
+	    ,"reacs": [
+	    {"code":"83-BI-209(N,INL)83-BI-209,PAR,DA"
+		,"Reac":"N,INL"
+		,"SF1":"83-BI-209","Targ":{"code":"83-BI-209","nam":"Bi-209","ZA":83209}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"INL","procHlp":"Inelastic scattering"
+		,"SF4":"83-BI-209","Prod":{"code":"83-BI-209","nam":"Bi-209","ZAProd":83209}
+		,"SF5":"PAR"
+		,"SF6":"DA"
+		,"SF58":"PAR,DA","Quant":"DAP","BasicUnits":"B/SR","QuantHlp":"Partial differential cross section d/dA"
+	    }]}
+	}
+      ]
+     ,"MONITOR":[
+	{"x4pointer":" "
+	,"x4code":{"code":"6-C-0(N,EL)6-C-0,,DA"
+		,"reaction":"6-C-0(N,EL)6-C-0,,DA"}
+	,"x4freetext":[" Elastic from ANL-5567 (Rev)"]
+	}
+      ]
+     ,"CORRECTION":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Corrected for multiple scattering."]
+	}
+      ]
+     ,"ERR-ANALYS":[
+	{"x4pointer":" "
+	,"x4code":{}
+	,"x4freetext":["Data error given does not include uncertainty in C"
+		," standard."]
+	}
+      ]
+     ,"HISTORY":[
+	{"x4pointer":" "
+	,"x4code":{"code":"19850307A", "date":"19850307", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" Data heading corrected."]
+	}
+	,{"x4pointer":" "
+	,"x4code":{"code":"19931229A", "date":"19931229", "act":"A", "dict":"HISTORY", "idict":15
+	     ,"actHelp":"Important alterations"}
+	,"x4freetext":[" MONITOR SF4 added."]
+	}
+      ]
+    }
+    ,"COMMON":{"ncols":3, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"Q-VAL", "units":"KEV", "pointer":" "
+	,"headerHelp":"Q-value", "pFlag":"1000000"
+	,"unitsHelp":"keV","familyCode":"E","convFc":1000.0,"basicUnits":"EV"}
+      ,{"icol":1, "header":"Q-VAL-RSL", "units":"KEV", "pointer":" "
+	,"headerHelp":"Q-value resolution", "pFlag":"9220000"
+	,"unitsHelp":"keV","familyCode":"E","convFc":1000.0,"basicUnits":"EV"}
+      ,{"icol":2, "header":"EN-RSL", "units":"MEV", "pointer":" "
+	,"headerHelp":"Incident projectile energy resolution (Unspecified)", "pFlag":"9220000"
+	,"unitsHelp":"MeV","familyCode":"E","convFc":1000000.0,"basicUnits":"EV"}
+      ]
+      ,"datacols":[
+	 ["Q-VAL"     ,"Q-VAL-RSL" ,"EN-RSL"    ]
+	,["KEV"       ,"KEV"       ,"MEV"       ]
+	,[" "         ," "         ," "         ]]
+      ,"data":[
+	 [-895.0      ,2.0         ,0.01        ]]}
+    ,"DATA":{"ncols":4, "nrows":62
+      ,"x4headers":[
+       {"icol":0, "header":"ANG", "units":"ADEG", "pointer":" "
+	,"headerHelp":"Angle, laboratory system", "pFlag":"1000000"
+	,"unitsHelp":"angular Degrees","familyCode":"A","convFc":1.0,"basicUnits":"ADEG"}
+      ,{"icol":1, "header":"EN", "units":"MEV", "pointer":" "
+	,"headerHelp":"Energy of incident projectile, laboratory system", "pFlag":"1000000"
+	,"unitsHelp":"MeV","familyCode":"E","convFc":1000000.0,"basicUnits":"EV"}
+      ,{"icol":2, "header":"DATA", "units":"MB/SR", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"millibarns per steradian","familyCode":"DA","convFc":0.001,"basicUnits":"B/SR"}
+      ,{"icol":3, "header":"DATA-ERR", "units":"MB/SR", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"millibarns per steradian","familyCode":"DA","convFc":0.001,"basicUnits":"B/SR"}
+      ]
+      ,"datacols":[
+	 ["ANG"       ,"EN"        ,"DATA"      ,"DATA-ERR"  ]
+	,["ADEG"      ,"MEV"       ,"MB/SR"     ,"MB/SR"     ]
+	,[" "         ," "         ," "         ," "         ]]
+      ,"data":[
+	 [30.0        ,1.09        ,10.1        ,1.2         ]
+	,[30.0        ,1.14        ,8.2         ,1.1         ]
+	,[30.0        ,1.17        ,13.6        ,3.3         ]
+	,[30.0        ,1.195       ,11.5        ,1.7         ]
+	,[30.0        ,1.213       ,7.9         ,0.7         ]
+	,[30.0        ,1.233       ,12.2        ,0.7         ]
+	,[30.0        ,1.306       ,6.7         ,0.8         ]
+	,[45.0        ,1.09        ,10.3        ,1.2         ]
+	,[45.0        ,1.14        ,8.2         ,1.0         ]
+	,[45.0        ,1.17        ,14.5        ,2.6         ]
+	,[45.0        ,1.195       ,12.1        ,1.5         ]
+	,[45.0        ,1.213       ,11.6        ,1.1         ]
+	,[45.0        ,1.233       ,11.5        ,0.9         ]
+	,[45.0        ,1.306       ,8.3         ,0.7         ]
+	,[60.0        ,1.09        ,9.5         ,1.1         ]
+	,[60.0        ,1.14        ,9.9         ,1.1         ]
+	,[60.0        ,1.17        ,15.1        ,2.6         ]
+	,[60.0        ,1.195       ,6.6         ,1.5         ]
+	,[60.0        ,1.213       ,8.7         ,0.7         ]
+	,[60.0        ,1.233       ,6.8         ,0.8         ]
+	,[60.0        ,1.306       ,7.6         ,0.8         ]
+	,[75.0        ,1.09        ,9.1         ,1.1         ]
+	,[75.0        ,1.14        ,9.8         ,1.0         ]
+	,[75.0        ,1.17        ,11.3        ,1.6         ]
+	,[75.0        ,1.195       ,9.8         ,1.6         ]
+	,[75.0        ,1.213       ,10.3        ,0.9         ]
+	,[75.0        ,1.233       ,12.0        ,0.8         ]
+	,[75.0        ,1.306       ,7.3         ,0.7         ]
+	,[90.0        ,1.09        ,10.8        ,1.0         ]
+	,[90.0        ,1.14        ,10.3        ,0.9         ]
+	,[90.0        ,1.17        ,16.6        ,1.7         ]
+	,[90.0        ,1.195       ,11.4        ,2.1         ]
+	,[90.0        ,1.213       ,11.2        ,0.7         ]
+	,[90.0        ,1.233       ,12.9        ,0.7         ]
+	,[90.0        ,1.306       ,8.7         ,0.8         ]
+	,[105.0       ,1.09        ,8.9         ,1.1         ]
+	,[105.0       ,1.14        ,9.1         ,1.1         ]
+	,[105.0       ,1.17        ,16.2        ,2.5         ]
+	,[105.0       ,1.195       ,12.0        ,1.6         ]
+	,[105.0       ,1.213       ,9.3         ,0.7         ]
+	,[105.0       ,1.233       ,9.6         ,0.8         ]
+	,[105.0       ,1.306       ,8.7         ,0.9         ]
+	,[120.0       ,1.09        ,8.4         ,1.1         ]
+	,[120.0       ,1.14        ,11.7        ,1.2         ]
+	,[120.0       ,1.17        ,11.8        ,2.6         ]
+	,[120.0       ,1.195       ,11.3        ,1.4         ]
+	,[120.0       ,1.213       ,10.5        ,0.7         ]
+	,[120.0       ,1.233       ,10.9        ,0.9         ]
+	,[135.0       ,1.09        ,12.1        ,1.3         ]
+	,[135.0       ,1.14        ,8.7         ,1.1         ]
+	,[135.0       ,1.17        ,15.3        ,2.8         ]
+	,[135.0       ,1.195       ,9.4         ,2.0         ]
+	,[135.0       ,1.213       ,14.0        ,1.4         ]
+	,[135.0       ,1.233       ,13.3        ,1.3         ]
+	,[135.0       ,1.306       ,10.3        ,1.1         ]
+	,[145.0       ,1.09        ,12.5        ,1.7         ]
+	,[148.0       ,1.17        ,13.4        ,3.2         ]
+	,[148.0       ,1.195       ,13.7        ,2.3         ]
+	,[148.0       ,1.306       ,7.8         ,1.2         ]
+	,[150.0       ,1.14        ,9.8         ,1.8         ]
+	,[150.0       ,1.213       ,13.0        ,1.0         ]
+	,[150.0       ,1.233       ,12.6        ,1.1         ]]}
+}

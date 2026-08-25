@@ -1,0 +1,1734 @@
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-08-25       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-08-25 23:12:43
+
+---Arguments from command-line---
+   1  arg: -o:tke1
+   2  arg: -x:x2
+   3  arg: -fy:1e6
+   4  arg: -lines
+   5  arg: -sym
+   6  arg: -annot:80,180,<b>TKE</b>
+   ---str2annot:[80,180,<b>TKE</b>] --> ('<b>TKE</b>', 80.0, 180.0)
+   7  arg: 92-U-235(N,F)MASS,PRE,KE,LF+HF
+   8  arg: 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW
+
+---Input:
+   Reaction:  ['92-U-235(N,F)MASS,PRE,KE,LF+HF', '92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW']
+   xn:        x2
+   x1range:   None - None
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1
+   fy:        1000000.0
+   xrange:    None
+   Output:    tke1
+   x4ei:      
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 3
+----1.
+    fullCode       92-U-235(N,F)MASS,PRE,KE,LF+HF
+    ReactionType   E          Kinetic energy
+    WebQuantity1   E          Kinetic energies
+    nx             2          Number of x (independent variables)
+    y     c5data   EV         Data: data                           ///electron-Volts
+    x1    SpE      EV         Incident energy: spectrum energy     ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: mass ///arbitrary Units
+----2.
+    fullCode       92-U-235(N,F)MASS,PRE,KE,LF+HF
+    ReactionType   E          Kinetic energy
+    WebQuantity1   E          Kinetic energies
+    nx             2          Number of x (independent variables)
+    y     c5data   EV         Data: data                           ///electron-Volts
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: mass ///arbitrary Units
+----3.
+    fullCode       92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW
+    ReactionType   E          Kinetic energy
+    WebQuantity1   E          Kinetic energies
+    nx             2          Number of x (independent variables)
+    y     c5data   EV         Data: data                           ///electron-Volts
+    x1    SpE      EV         Incident energy: spectrum energy     ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: mass ///arbitrary Units
+/Summary of Reaction-Codes
+Summary of Units 2
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+---basicUnits:ARB-UNITS   category:NO
+   NO   1/1   NO-DIM      1.0             no Dimensions
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['92-U-235(N,F)MASS,PRE,KE,LF+HF', '92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW']
+SQL:
+select *                                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x2 as XX, dx2 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x2'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+      fullCode like '92-U-235(N,F)MASS,PRE,KE,LF+HF'
+   or fullCode like '92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW'
+ ) 
+  order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 1467
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:1467 xn=x2  fx=1.0e+00 fy=1.0e-06
+
+-new-1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili y=DATA(SpE,ZAM)
+1/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:71.0 y:143.6 dy:2.8369 dx:None
+2/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:72.0 y:144.818 dy:1.25848 dx:None
+3/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:73.0 y:147.316 dy:1.38663 dx:None
+4/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:74.0 y:148.375 dy:1.55341 dx:None
+5/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:75.0 y:146.926 dy:1.41026 dx:None
+6/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:76.0 y:147.104 dy:1.15128 dx:None
+7/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:77.0 y:149.869 dy:0.85544 dx:None
+8/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:78.0 y:150.775 dy:0.678 dx:None
+9/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:79.0 y:151.654 dy:0.59232 dx:None
+10/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:80.0 y:153.201 dy:0.46594 dx:None
+11/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:81.0 y:155.58 dy:0.31255 dx:None
+12/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:82.0 y:155.983 dy:0.26674 dx:None
+13/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:83.0 y:157.145 dy:0.19501 dx:None
+14/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:84.0 y:158.03 dy:0.16695 dx:None
+15/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:85.0 y:158.952 dy:0.14504 dx:None
+16/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:86.0 y:159.618 dy:0.11955 dx:None
+17/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:87.0 y:160.528 dy:0.10373 dx:None
+18/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:88.0 y:161.706 dy:0.09055 dx:None
+19/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:89.0 y:162.935 dy:0.07989 dx:None
+20/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:90.0 y:164.074 dy:0.0705 dx:None
+21/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:91.0 y:164.954 dy:0.06335 dx:None
+22/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:92.0 y:165.649 dy:0.06111 dx:None
+23/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:93.0 y:166.49 dy:0.05813 dx:None
+24/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:94.0 y:167.615 dy:0.06077 dx:None
+25/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:95.0 y:168.895 dy:0.06192 dx:None
+26/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:96.0 y:170.192 dy:0.0631 dx:None
+27/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:97.0 y:171.194 dy:0.06578 dx:None
+28/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:98.0 y:172.449 dy:0.06896 dx:None
+29/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:99.0 y:173.643 dy:0.07329 dx:None
+30/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:100.0 y:175.245 dy:0.07749 dx:None
+31/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:101.0 y:176.79 dy:0.08099 dx:None
+32/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:102.0 y:178.128 dy:0.08504 dx:None
+33/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:103.0 y:178.612 dy:0.09514 dx:None
+34/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:104.0 y:179.133 dy:0.1092 dx:None
+35/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:105.0 y:179.164 dy:0.12786 dx:None
+36/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:106.0 y:178.986 dy:0.15847 dx:None
+37/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:107.0 y:178.558 dy:0.21811 dx:None
+38/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:108.0 y:176.722 dy:0.29379 dx:None
+39/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:109.0 y:173.914 dy:0.43538 dx:None
+40/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:110.0 y:170.776 dy:0.67376 dx:None
+41/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:111.0 y:167.936 dy:0.89323 dx:None
+42/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:112.0 y:163.618 dy:1.25678 dx:None
+43/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:113.0 y:161.827 dy:1.47071 dx:None
+44/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:114.0 y:157.059 dy:1.45728 dx:None
+45/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:115.0 y:157.132 dy:1.46954 dx:None
+46/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:116.0 y:152.8 dy:1.12333 dx:None
+47/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:117.0 y:159.66 dy:1.5003 dx:None
+48/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:118.0 y:152.844 dy:1.47674 dx:None
+49/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:119.0 y:159.66 dy:1.5003 dx:None
+50/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:120.0 y:152.8 dy:1.12333 dx:None
+51/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:121.0 y:157.132 dy:1.46954 dx:None
+52/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:122.0 y:157.059 dy:1.45728 dx:None
+53/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:123.0 y:161.827 dy:1.47071 dx:None
+54/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:124.0 y:163.618 dy:1.25678 dx:None
+55/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:125.0 y:167.936 dy:0.89323 dx:None
+56/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:126.0 y:170.776 dy:0.67376 dx:None
+57/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:127.0 y:173.914 dy:0.43538 dx:None
+58/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:128.0 y:176.722 dy:0.29379 dx:None
+59/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:129.0 y:178.558 dy:0.21811 dx:None
+60/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:130.0 y:178.986 dy:0.15847 dx:None
+61/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:131.0 y:179.164 dy:0.12786 dx:None
+62/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:132.0 y:179.133 dy:0.1092 dx:None
+63/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:133.0 y:178.612 dy:0.09514 dx:None
+64/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:134.0 y:178.128 dy:0.08504 dx:None
+65/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:135.0 y:176.79 dy:0.08099 dx:None
+66/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:136.0 y:175.245 dy:0.07749 dx:None
+67/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:137.0 y:173.643 dy:0.07329 dx:None
+68/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:138.0 y:172.449 dy:0.06896 dx:None
+69/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:139.0 y:171.194 dy:0.06578 dx:None
+70/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:140.0 y:170.192 dy:0.0631 dx:None
+71/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:141.0 y:168.895 dy:0.06192 dx:None
+72/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:142.0 y:167.615 dy:0.06077 dx:None
+73/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:143.0 y:166.49 dy:0.05813 dx:None
+74/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:144.0 y:165.649 dy:0.06111 dx:None
+75/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:145.0 y:164.954 dy:0.06335 dx:None
+76/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:146.0 y:164.074 dy:0.0705 dx:None
+77/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:147.0 y:162.935 dy:0.07989 dx:None
+78/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:148.0 y:161.706 dy:0.09055 dx:None
+79/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:149.0 y:160.528 dy:0.10373 dx:None
+80/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:150.0 y:159.618 dy:0.11955 dx:None
+81/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:151.0 y:158.952 dy:0.14504 dx:None
+82/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:152.0 y:158.03 dy:0.16695 dx:None
+83/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:153.0 y:157.145 dy:0.19501 dx:None
+84/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:154.0 y:155.983 dy:0.26674 dx:None
+85/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:155.0 y:155.58 dy:0.31255 dx:None
+86/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:156.0 y:153.201 dy:0.46594 dx:None
+87/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:157.0 y:151.654 dy:0.59232 dx:None
+88/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:158.0 y:150.775 dy:0.678 dx:None
+89/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:159.0 y:149.869 dy:0.85544 dx:None
+90/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:160.0 y:147.104 dy:1.15128 dx:None
+91/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:161.0 y:146.926 dy:1.41026 dx:None
+92/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:162.0 y:148.375 dy:1.55341 dx:None
+93/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:163.0 y:147.316 dy:1.38663 dx:None
+94/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:164.0 y:144.818 dy:1.25848 dx:None
+95/1467:1) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 Spe=2.53e-8MeV 2016 Al-Adili x:165.0 y:143.6 dy:2.8369 dx:None
+
+-new-2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov y=DATA(SpE,ZAM)
+96/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:118.0 y:159.8 dy:1.19209 dx:None
+97/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:119.0 y:161.363 dy:0.93371 dx:None
+98/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:120.0 y:162.279 dy:1.33796 dx:None
+99/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:121.0 y:164.417 dy:1.18158 dx:None
+100/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:122.0 y:165.906 dy:0.89205 dx:None
+101/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:123.0 y:168.405 dy:0.71699 dx:None
+102/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:124.0 y:171.394 dy:0.51997 dx:None
+103/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:125.0 y:172.894 dy:0.3442 dx:None
+104/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:126.0 y:175.934 dy:0.23056 dx:None
+105/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:127.0 y:177.809 dy:0.1563 dx:None
+106/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:128.0 y:179.045 dy:0.11722 dx:None
+107/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:129.0 y:179.045 dy:0.05861 dx:None
+108/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:130.0 y:179.603 dy:0.07577 dx:None
+109/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:131.0 y:179.618 dy:0.06595 dx:None
+110/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:132.0 y:179.073 dy:0.05919 dx:None
+111/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:133.0 y:178.297 dy:0.05531 dx:None
+112/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:134.0 y:176.996 dy:0.05247 dx:None
+113/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:135.0 y:175.435 dy:0.04957 dx:None
+114/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:136.0 y:173.927 dy:0.04778 dx:None
+115/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:137.0 y:172.55 dy:0.04481 dx:None
+116/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:138.0 y:171.305 dy:0.04319 dx:None
+117/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:139.0 y:169.896 dy:0.04223 dx:None
+118/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:140.0 y:168.769 dy:0.04165 dx:None
+119/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:141.0 y:167.479 dy:0.04148 dx:None
+120/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:142.0 y:166.314 dy:0.0414 dx:None
+121/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:143.0 y:165.425 dy:0.04251 dx:None
+122/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:144.0 y:164.462 dy:0.04552 dx:None
+123/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:145.0 y:163.423 dy:0.04987 dx:None
+124/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:146.0 y:162.262 dy:0.05676 dx:None
+125/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:147.0 y:160.971 dy:0.06392 dx:None
+126/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:148.0 y:159.755 dy:0.07251 dx:None
+127/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:149.0 y:158.679 dy:0.08117 dx:None
+128/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:150.0 y:157.73 dy:0.09667 dx:None
+129/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:151.0 y:156.769 dy:0.11576 dx:None
+130/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:152.0 y:155.572 dy:0.14077 dx:None
+131/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:153.0 y:154.299 dy:0.18386 dx:None
+132/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:154.0 y:153.726 dy:0.2287 dx:None
+133/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:155.0 y:152.082 dy:0.30432 dx:None
+134/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:156.0 y:151.28 dy:0.38894 dx:None
+135/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:157.0 y:150.147 dy:0.43729 dx:None
+136/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:158.0 y:149.116 dy:0.60778 dx:None
+137/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:159.0 y:149.721 dy:0.97078 dx:None
+138/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:160.0 y:147.667 dy:2.21666 dx:None
+139/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:161.0 y:145.762 dy:1.43949 dx:None
+140/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:162.0 y:146.375 dy:2.52159 dx:None
+141/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:163.0 y:142.25 dy:2.38958 dx:None
+142/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:164.0 y:141.4 dy:3.93243 dx:None
+143/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:165.0 y:142.0 dy:6.48788 dx:None
+144/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:166.0 y:141.0 dy:3.60041 dx:None
+145/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:167.0 y:142.0 dy:2.0 dx:None
+146/1467:2) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 Spe=2.53e-8MeV 2006 Zeynalov x:168.0 y:140.0 dy:3.0 dx:None
+
+-new-3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko y=DATA(EN,ZAM)
+147/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:118.0 y:160.97 dy:None dx:None
+148/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:119.0 y:159.94 dy:None dx:None
+149/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:120.0 y:157.25 dy:None dx:None
+150/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:121.0 y:156.38 dy:None dx:None
+151/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:122.0 y:158.33 dy:None dx:None
+152/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:123.0 y:164.43 dy:None dx:None
+153/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:124.0 y:169.54 dy:None dx:None
+154/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:125.0 y:172.35 dy:None dx:None
+155/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:126.0 y:173.53 dy:None dx:None
+156/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:127.0 y:174.52 dy:None dx:None
+157/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:128.0 y:176.22 dy:None dx:None
+158/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:129.0 y:178.37 dy:None dx:None
+159/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:130.0 y:179.66 dy:None dx:None
+160/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:131.0 y:179.69 dy:None dx:None
+161/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:132.0 y:179.59 dy:None dx:None
+162/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:133.0 y:179.35 dy:None dx:None
+163/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:134.0 y:178.8 dy:None dx:None
+164/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:135.0 y:177.76 dy:None dx:None
+165/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:136.0 y:176.39 dy:None dx:None
+166/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:137.0 y:174.89 dy:None dx:None
+167/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:138.0 y:173.66 dy:None dx:None
+168/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:139.0 y:172.6 dy:None dx:None
+169/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:140.0 y:171.4 dy:None dx:None
+170/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:141.0 y:170.17 dy:None dx:None
+171/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:142.0 y:169.02 dy:None dx:None
+172/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:143.0 y:168.13 dy:None dx:None
+173/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:144.0 y:167.13 dy:None dx:None
+174/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:145.0 y:166.29 dy:None dx:None
+175/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:146.0 y:165.34 dy:None dx:None
+176/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:147.0 y:164.14 dy:None dx:None
+177/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:148.0 y:163.18 dy:None dx:None
+178/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:149.0 y:162.19 dy:None dx:None
+179/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:150.0 y:161.32 dy:None dx:None
+180/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:151.0 y:160.46 dy:None dx:None
+181/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:152.0 y:159.6 dy:None dx:None
+182/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:153.0 y:159.09 dy:None dx:None
+183/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:154.0 y:158.82 dy:None dx:None
+184/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:155.0 y:157.2 dy:None dx:None
+185/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:156.0 y:154.37 dy:None dx:None
+186/1467:3) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 En=2.53e-8MeV 1969 Dyachenko x:157.0 y:153.2 dy:None dx:None
+
+-new-4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko y=DATA(EN,ZAM)
+187/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:118.0 y:163.48 dy:None dx:None
+188/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:119.0 y:161.0 dy:None dx:None
+189/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:120.0 y:160.6 dy:None dx:None
+190/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:121.0 y:161.02 dy:None dx:None
+191/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:122.0 y:162.01 dy:None dx:None
+192/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:123.0 y:166.06 dy:None dx:None
+193/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:124.0 y:167.92 dy:None dx:None
+194/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:125.0 y:169.35 dy:None dx:None
+195/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:126.0 y:171.03 dy:None dx:None
+196/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:127.0 y:174.02 dy:None dx:None
+197/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:128.0 y:176.45 dy:None dx:None
+198/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:129.0 y:178.42 dy:None dx:None
+199/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:130.0 y:179.33 dy:None dx:None
+200/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:131.0 y:179.56 dy:None dx:None
+201/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:132.0 y:179.65 dy:None dx:None
+202/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:133.0 y:179.32 dy:None dx:None
+203/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:134.0 y:178.74 dy:None dx:None
+204/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:135.0 y:177.83 dy:None dx:None
+205/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:136.0 y:176.5 dy:None dx:None
+206/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:137.0 y:174.97 dy:None dx:None
+207/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:138.0 y:173.62 dy:None dx:None
+208/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:139.0 y:172.37 dy:None dx:None
+209/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:140.0 y:171.37 dy:None dx:None
+210/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:141.0 y:170.02 dy:None dx:None
+211/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:142.0 y:168.98 dy:None dx:None
+212/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:143.0 y:167.98 dy:None dx:None
+213/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:144.0 y:167.13 dy:None dx:None
+214/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:145.0 y:166.24 dy:None dx:None
+215/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:146.0 y:165.23 dy:None dx:None
+216/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:147.0 y:164.05 dy:None dx:None
+217/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:148.0 y:163.06 dy:None dx:None
+218/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:149.0 y:161.99 dy:None dx:None
+219/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:150.0 y:161.12 dy:None dx:None
+220/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:151.0 y:160.24 dy:None dx:None
+221/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:152.0 y:159.26 dy:None dx:None
+222/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:153.0 y:158.58 dy:None dx:None
+223/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:154.0 y:157.66 dy:None dx:None
+224/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:155.0 y:156.88 dy:None dx:None
+225/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:156.0 y:155.77 dy:None dx:None
+226/1467:4) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 En=2.53e-8MeV 1969 Dyachenko x:157.0 y:153.4 dy:None dx:None
+
+-new-5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko y=DATA(EN,ZAM)
+227/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:118.0 y:166.15 dy:None dx:None
+228/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:119.0 y:163.0 dy:None dx:None
+229/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:120.0 y:161.14 dy:None dx:None
+230/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:121.0 y:160.79 dy:None dx:None
+231/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:122.0 y:161.73 dy:None dx:None
+232/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:123.0 y:164.41 dy:None dx:None
+233/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:124.0 y:167.3 dy:None dx:None
+234/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:125.0 y:170.18 dy:None dx:None
+235/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:126.0 y:172.49 dy:None dx:None
+236/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:127.0 y:174.44 dy:None dx:None
+237/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:128.0 y:176.18 dy:None dx:None
+238/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:129.0 y:177.98 dy:None dx:None
+239/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:130.0 y:179.19 dy:None dx:None
+240/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:131.0 y:179.55 dy:None dx:None
+241/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:132.0 y:179.58 dy:None dx:None
+242/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:133.0 y:179.35 dy:None dx:None
+243/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:134.0 y:178.86 dy:None dx:None
+244/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:135.0 y:177.74 dy:None dx:None
+245/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:136.0 y:176.48 dy:None dx:None
+246/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:137.0 y:174.96 dy:None dx:None
+247/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:138.0 y:173.71 dy:None dx:None
+248/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:139.0 y:172.43 dy:None dx:None
+249/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:140.0 y:171.2 dy:None dx:None
+250/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:141.0 y:170.08 dy:None dx:None
+251/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:142.0 y:169.0 dy:None dx:None
+252/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:143.0 y:167.93 dy:None dx:None
+253/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:144.0 y:167.13 dy:None dx:None
+254/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:145.0 y:166.32 dy:None dx:None
+255/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:146.0 y:165.34 dy:None dx:None
+256/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:147.0 y:164.24 dy:None dx:None
+257/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:148.0 y:163.31 dy:None dx:None
+258/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:149.0 y:162.09 dy:None dx:None
+259/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:150.0 y:161.09 dy:None dx:None
+260/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:151.0 y:160.03 dy:None dx:None
+261/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:152.0 y:159.26 dy:None dx:None
+262/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:153.0 y:158.84 dy:None dx:None
+263/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:154.0 y:157.81 dy:None dx:None
+264/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:155.0 y:157.29 dy:None dx:None
+265/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:156.0 y:156.9 dy:None dx:None
+266/1467:5) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 En=2.53e-8MeV 1969 Dyachenko x:157.0 y:154.88 dy:None dx:None
+
+-new-6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko y=DATA(EN,ZAM)
+267/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:118.0 y:159.21 dy:None dx:None
+268/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:119.0 y:161.76 dy:None dx:None
+269/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:120.0 y:160.84 dy:None dx:None
+270/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:121.0 y:159.35 dy:None dx:None
+271/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:122.0 y:159.26 dy:None dx:None
+272/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:123.0 y:163.49 dy:None dx:None
+273/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:124.0 y:167.22 dy:None dx:None
+274/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:125.0 y:170.15 dy:None dx:None
+275/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:126.0 y:172.31 dy:None dx:None
+276/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:127.0 y:175.4 dy:None dx:None
+277/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:128.0 y:176.15 dy:None dx:None
+278/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:129.0 y:178.37 dy:None dx:None
+279/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:130.0 y:179.59 dy:None dx:None
+280/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:131.0 y:179.7 dy:None dx:None
+281/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:132.0 y:179.85 dy:None dx:None
+282/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:133.0 y:179.48 dy:None dx:None
+283/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:134.0 y:178.88 dy:None dx:None
+284/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:135.0 y:177.34 dy:None dx:None
+285/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:136.0 y:176.48 dy:None dx:None
+286/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:137.0 y:174.98 dy:None dx:None
+287/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:138.0 y:173.64 dy:None dx:None
+288/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:139.0 y:172.48 dy:None dx:None
+289/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:140.0 y:171.32 dy:None dx:None
+290/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:141.0 y:170.06 dy:None dx:None
+291/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:142.0 y:168.96 dy:None dx:None
+292/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:143.0 y:167.92 dy:None dx:None
+293/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:144.0 y:167.13 dy:None dx:None
+294/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:145.0 y:166.31 dy:None dx:None
+295/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:146.0 y:165.29 dy:None dx:None
+296/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:147.0 y:164.07 dy:None dx:None
+297/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:148.0 y:162.93 dy:None dx:None
+298/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:149.0 y:161.84 dy:None dx:None
+299/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:150.0 y:161.12 dy:None dx:None
+300/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:151.0 y:160.22 dy:None dx:None
+301/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:152.0 y:159.45 dy:None dx:None
+302/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:153.0 y:158.28 dy:None dx:None
+303/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:154.0 y:157.48 dy:None dx:None
+304/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:155.0 y:156.96 dy:None dx:None
+305/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:156.0 y:155.89 dy:None dx:None
+306/1467:6) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 En=2.53e-8MeV 1969 Dyachenko x:157.0 y:156.04 dy:None dx:None
+
+-new-7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko y=DATA(EN,ZAM)
+307/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:118.0 y:160.97 dy:None dx:None
+308/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:119.0 y:162.9 dy:None dx:None
+309/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:120.0 y:165.63 dy:None dx:None
+310/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:121.0 y:166.17 dy:None dx:None
+311/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:122.0 y:164.94 dy:None dx:None
+312/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:123.0 y:166.3 dy:None dx:None
+313/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:124.0 y:169.24 dy:None dx:None
+314/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:125.0 y:172.11 dy:None dx:None
+315/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:126.0 y:174.26 dy:None dx:None
+316/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:127.0 y:175.85 dy:None dx:None
+317/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:128.0 y:177.28 dy:None dx:None
+318/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:129.0 y:178.84 dy:None dx:None
+319/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:130.0 y:179.53 dy:None dx:None
+320/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:131.0 y:179.41 dy:None dx:None
+321/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:132.0 y:179.27 dy:None dx:None
+322/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:133.0 y:178.86 dy:None dx:None
+323/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:134.0 y:178.28 dy:None dx:None
+324/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:135.0 y:177.34 dy:None dx:None
+325/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:136.0 y:176.32 dy:None dx:None
+326/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:137.0 y:174.96 dy:None dx:None
+327/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:138.0 y:173.63 dy:None dx:None
+328/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:139.0 y:172.41 dy:None dx:None
+329/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:140.0 y:171.21 dy:None dx:None
+330/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:141.0 y:170.18 dy:None dx:None
+331/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:142.0 y:169.3 dy:None dx:None
+332/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:143.0 y:168.24 dy:None dx:None
+333/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:144.0 y:167.2 dy:None dx:None
+334/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:145.0 y:166.34 dy:None dx:None
+335/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:146.0 y:165.53 dy:None dx:None
+336/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:147.0 y:164.47 dy:None dx:None
+337/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:148.0 y:163.59 dy:None dx:None
+338/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:149.0 y:162.46 dy:None dx:None
+339/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:150.0 y:161.54 dy:None dx:None
+340/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:151.0 y:160.62 dy:None dx:None
+341/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:152.0 y:159.58 dy:None dx:None
+342/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:153.0 y:158.8 dy:None dx:None
+343/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:154.0 y:157.96 dy:None dx:None
+344/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:155.0 y:156.17 dy:None dx:None
+345/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:156.0 y:154.33 dy:None dx:None
+346/1467:7) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 En=2.53e-8MeV 1969 Dyachenko x:157.0 y:153.11 dy:None dx:None
+
+-new-8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko y=DATA(EN,ZAM)
+347/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:118.0 y:159.74 dy:None dx:None
+348/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:119.0 y:159.17 dy:None dx:None
+349/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:120.0 y:158.02 dy:None dx:None
+350/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:121.0 y:158.82 dy:None dx:None
+351/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:122.0 y:161.42 dy:None dx:None
+352/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:123.0 y:164.17 dy:None dx:None
+353/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:124.0 y:166.2 dy:None dx:None
+354/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:125.0 y:167.91 dy:None dx:None
+355/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:126.0 y:169.99 dy:None dx:None
+356/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:127.0 y:174.24 dy:None dx:None
+357/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:128.0 y:177.23 dy:None dx:None
+358/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:129.0 y:178.68 dy:None dx:None
+359/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:130.0 y:179.42 dy:None dx:None
+360/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:131.0 y:179.65 dy:None dx:None
+361/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:132.0 y:179.72 dy:None dx:None
+362/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:133.0 y:179.42 dy:None dx:None
+363/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:134.0 y:178.93 dy:None dx:None
+364/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:135.0 y:177.93 dy:None dx:None
+365/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:136.0 y:176.55 dy:None dx:None
+366/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:137.0 y:174.77 dy:None dx:None
+367/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:138.0 y:173.47 dy:None dx:None
+368/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:139.0 y:172.43 dy:None dx:None
+369/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:140.0 y:171.22 dy:None dx:None
+370/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:141.0 y:170.06 dy:None dx:None
+371/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:142.0 y:168.91 dy:None dx:None
+372/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:143.0 y:167.76 dy:None dx:None
+373/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:144.0 y:166.9 dy:None dx:None
+374/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:145.0 y:166.05 dy:None dx:None
+375/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:146.0 y:165.04 dy:None dx:None
+376/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:147.0 y:163.68 dy:None dx:None
+377/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:148.0 y:162.6 dy:None dx:None
+378/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:149.0 y:161.71 dy:None dx:None
+379/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:150.0 y:160.87 dy:None dx:None
+380/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:151.0 y:160.08 dy:None dx:None
+381/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:152.0 y:159.01 dy:None dx:None
+382/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:153.0 y:157.87 dy:None dx:None
+383/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:154.0 y:157.03 dy:None dx:None
+384/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:155.0 y:156.8 dy:None dx:None
+385/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:156.0 y:155.92 dy:None dx:None
+386/1467:8) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 En=2.53e-8MeV 1969 Dyachenko x:157.0 y:153.19 dy:None dx:None
+
+-new-9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko y=DATA(EN,ZAM)
+387/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:118.0 y:154.18 dy:None dx:None
+388/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:119.0 y:155.32 dy:None dx:None
+389/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:120.0 y:156.52 dy:None dx:None
+390/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:121.0 y:159.4 dy:None dx:None
+391/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:122.0 y:163.44 dy:None dx:None
+392/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:123.0 y:168.03 dy:None dx:None
+393/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:124.0 y:169.99 dy:None dx:None
+394/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:125.0 y:171.54 dy:None dx:None
+395/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:126.0 y:172.96 dy:None dx:None
+396/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:127.0 y:175.12 dy:None dx:None
+397/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:128.0 y:177.44 dy:None dx:None
+398/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:129.0 y:178.9 dy:None dx:None
+399/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:130.0 y:179.68 dy:None dx:None
+400/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:131.0 y:180.09 dy:None dx:None
+401/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:132.0 y:179.96 dy:None dx:None
+402/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:133.0 y:179.61 dy:None dx:None
+403/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:134.0 y:178.96 dy:None dx:None
+404/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:135.0 y:177.87 dy:None dx:None
+405/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:136.0 y:176.57 dy:None dx:None
+406/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:137.0 y:175.03 dy:None dx:None
+407/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:138.0 y:173.7 dy:None dx:None
+408/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:139.0 y:172.57 dy:None dx:None
+409/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:140.0 y:171.36 dy:None dx:None
+410/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:141.0 y:170.09 dy:None dx:None
+411/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:142.0 y:169.02 dy:None dx:None
+412/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:143.0 y:167.99 dy:None dx:None
+413/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:144.0 y:167.17 dy:None dx:None
+414/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:145.0 y:166.21 dy:None dx:None
+415/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:146.0 y:165.18 dy:None dx:None
+416/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:147.0 y:164.1 dy:None dx:None
+417/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:148.0 y:163.04 dy:None dx:None
+418/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:149.0 y:162.02 dy:None dx:None
+419/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:150.0 y:161.3 dy:None dx:None
+420/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:151.0 y:160.32 dy:None dx:None
+421/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:152.0 y:159.06 dy:None dx:None
+422/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:153.0 y:158.24 dy:None dx:None
+423/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:154.0 y:156.87 dy:None dx:None
+424/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:155.0 y:157.27 dy:None dx:None
+425/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:156.0 y:156.83 dy:None dx:None
+426/1467:9) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.12MeV 1969 Dyachenko x:157.0 y:155.5 dy:None dx:None
+
+-new-10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko y=DATA(EN,ZAM)
+427/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:118.0 y:156.45 dy:None dx:None
+428/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:119.0 y:156.55 dy:None dx:None
+429/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:120.0 y:157.8 dy:None dx:None
+430/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:121.0 y:160.26 dy:None dx:None
+431/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:122.0 y:163.09 dy:None dx:None
+432/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:123.0 y:165.64 dy:None dx:None
+433/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:124.0 y:167.33 dy:None dx:None
+434/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:125.0 y:169.69 dy:None dx:None
+435/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:126.0 y:172.39 dy:None dx:None
+436/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:127.0 y:175.38 dy:None dx:None
+437/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:128.0 y:177.22 dy:None dx:None
+438/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:129.0 y:178.82 dy:None dx:None
+439/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:130.0 y:179.83 dy:None dx:None
+440/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:131.0 y:180.03 dy:None dx:None
+441/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:132.0 y:179.89 dy:None dx:None
+442/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:133.0 y:179.53 dy:None dx:None
+443/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:134.0 y:178.85 dy:None dx:None
+444/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:135.0 y:177.63 dy:None dx:None
+445/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:136.0 y:176.34 dy:None dx:None
+446/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:137.0 y:174.86 dy:None dx:None
+447/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:138.0 y:173.54 dy:None dx:None
+448/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:139.0 y:172.37 dy:None dx:None
+449/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:140.0 y:171.21 dy:None dx:None
+450/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:141.0 y:170.02 dy:None dx:None
+451/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:142.0 y:168.9 dy:None dx:None
+452/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:143.0 y:167.83 dy:None dx:None
+453/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:144.0 y:166.97 dy:None dx:None
+454/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:145.0 y:166.09 dy:None dx:None
+455/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:146.0 y:165.14 dy:None dx:None
+456/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:147.0 y:164.02 dy:None dx:None
+457/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:148.0 y:163.03 dy:None dx:None
+458/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:149.0 y:161.88 dy:None dx:None
+459/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:150.0 y:160.97 dy:None dx:None
+460/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:151.0 y:160.22 dy:None dx:None
+461/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:152.0 y:159.57 dy:None dx:None
+462/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:153.0 y:158.79 dy:None dx:None
+463/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:154.0 y:158.23 dy:None dx:None
+464/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:155.0 y:157.57 dy:None dx:None
+465/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:156.0 y:156.88 dy:None dx:None
+466/1467:10) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.2MeV 1969 Dyachenko x:157.0 y:155.51 dy:None dx:None
+
+-new-11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko y=DATA(EN,ZAM)
+467/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:118.0 y:159.85 dy:None dx:None
+468/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:119.0 y:160.21 dy:None dx:None
+469/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:120.0 y:161.19 dy:None dx:None
+470/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:121.0 y:162.91 dy:None dx:None
+471/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:122.0 y:164.72 dy:None dx:None
+472/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:123.0 y:165.06 dy:None dx:None
+473/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:124.0 y:166.2 dy:None dx:None
+474/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:125.0 y:168.44 dy:None dx:None
+475/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:126.0 y:171.17 dy:None dx:None
+476/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:127.0 y:174.45 dy:None dx:None
+477/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:128.0 y:176.56 dy:None dx:None
+478/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:129.0 y:178.63 dy:None dx:None
+479/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:130.0 y:179.78 dy:None dx:None
+480/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:131.0 y:180.03 dy:None dx:None
+481/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:132.0 y:179.88 dy:None dx:None
+482/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:133.0 y:179.35 dy:None dx:None
+483/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:134.0 y:178.7 dy:None dx:None
+484/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:135.0 y:177.62 dy:None dx:None
+485/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:136.0 y:176.29 dy:None dx:None
+486/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:137.0 y:174.86 dy:None dx:None
+487/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:138.0 y:173.55 dy:None dx:None
+488/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:139.0 y:172.34 dy:None dx:None
+489/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:140.0 y:171.16 dy:None dx:None
+490/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:141.0 y:170.0 dy:None dx:None
+491/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:142.0 y:168.92 dy:None dx:None
+492/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:143.0 y:167.96 dy:None dx:None
+493/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:144.0 y:167.14 dy:None dx:None
+494/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:145.0 y:166.1 dy:None dx:None
+495/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:146.0 y:165.08 dy:None dx:None
+496/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:147.0 y:164.01 dy:None dx:None
+497/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:148.0 y:163.19 dy:None dx:None
+498/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:149.0 y:162.14 dy:None dx:None
+499/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:150.0 y:161.18 dy:None dx:None
+500/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:151.0 y:160.24 dy:None dx:None
+501/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:152.0 y:159.36 dy:None dx:None
+502/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:153.0 y:158.34 dy:None dx:None
+503/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:154.0 y:157.85 dy:None dx:None
+504/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:155.0 y:157.82 dy:None dx:None
+505/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:156.0 y:156.89 dy:None dx:None
+506/1467:11) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.3MeV 1969 Dyachenko x:157.0 y:154.95 dy:None dx:None
+
+-new-12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko y=DATA(EN,ZAM)
+507/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:118.0 y:160.85 dy:None dx:None
+508/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:119.0 y:160.18 dy:None dx:None
+509/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:120.0 y:158.43 dy:None dx:None
+510/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:121.0 y:158.01 dy:None dx:None
+511/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:122.0 y:159.64 dy:None dx:None
+512/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:123.0 y:164.71 dy:None dx:None
+513/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:124.0 y:168.85 dy:None dx:None
+514/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:125.0 y:171.89 dy:None dx:None
+515/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:126.0 y:173.8 dy:None dx:None
+516/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:127.0 y:175.36 dy:None dx:None
+517/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:128.0 y:177.24 dy:None dx:None
+518/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:129.0 y:178.91 dy:None dx:None
+519/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:130.0 y:179.92 dy:None dx:None
+520/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:131.0 y:179.8 dy:None dx:None
+521/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:132.0 y:179.55 dy:None dx:None
+522/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:133.0 y:179.29 dy:None dx:None
+523/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:134.0 y:178.67 dy:None dx:None
+524/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:135.0 y:177.5 dy:None dx:None
+525/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:136.0 y:176.24 dy:None dx:None
+526/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:137.0 y:174.8 dy:None dx:None
+527/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:138.0 y:173.62 dy:None dx:None
+528/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:139.0 y:172.44 dy:None dx:None
+529/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:140.0 y:171.2 dy:None dx:None
+530/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:141.0 y:170.06 dy:None dx:None
+531/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:142.0 y:169.0 dy:None dx:None
+532/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:143.0 y:167.8 dy:None dx:None
+533/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:144.0 y:166.88 dy:None dx:None
+534/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:145.0 y:165.92 dy:None dx:None
+535/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:146.0 y:165.04 dy:None dx:None
+536/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:147.0 y:163.86 dy:None dx:None
+537/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:148.0 y:162.66 dy:None dx:None
+538/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:149.0 y:161.82 dy:None dx:None
+539/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:150.0 y:161.13 dy:None dx:None
+540/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:151.0 y:160.4 dy:None dx:None
+541/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:152.0 y:159.46 dy:None dx:None
+542/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:153.0 y:158.37 dy:None dx:None
+543/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:154.0 y:158.06 dy:None dx:None
+544/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:155.0 y:157.15 dy:None dx:None
+545/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:156.0 y:155.64 dy:None dx:None
+546/1467:12) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.4MeV 1969 Dyachenko x:157.0 y:155.2 dy:None dx:None
+
+-new-13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko y=DATA(EN,ZAM)
+547/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:118.0 y:161.87 dy:None dx:None
+548/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:119.0 y:158.92 dy:None dx:None
+549/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:120.0 y:159.2 dy:None dx:None
+550/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:121.0 y:161.52 dy:None dx:None
+551/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:122.0 y:164.26 dy:None dx:None
+552/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:123.0 y:166.06 dy:None dx:None
+553/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:124.0 y:169.5 dy:None dx:None
+554/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:125.0 y:172.31 dy:None dx:None
+555/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:126.0 y:174.15 dy:None dx:None
+556/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:127.0 y:175.97 dy:None dx:None
+557/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:128.0 y:177.81 dy:None dx:None
+558/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:129.0 y:179.08 dy:None dx:None
+559/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:130.0 y:179.63 dy:None dx:None
+560/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:131.0 y:179.62 dy:None dx:None
+561/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:132.0 y:179.37 dy:None dx:None
+562/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:133.0 y:178.87 dy:None dx:None
+563/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:134.0 y:178.17 dy:None dx:None
+564/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:135.0 y:177.16 dy:None dx:None
+565/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:136.0 y:176.16 dy:None dx:None
+566/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:137.0 y:174.91 dy:None dx:None
+567/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:138.0 y:173.59 dy:None dx:None
+568/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:139.0 y:172.41 dy:None dx:None
+569/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:140.0 y:171.19 dy:None dx:None
+570/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:141.0 y:169.97 dy:None dx:None
+571/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:142.0 y:168.92 dy:None dx:None
+572/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:143.0 y:167.93 dy:None dx:None
+573/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:144.0 y:167.04 dy:None dx:None
+574/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:145.0 y:166.19 dy:None dx:None
+575/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:146.0 y:165.32 dy:None dx:None
+576/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:147.0 y:164.38 dy:None dx:None
+577/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:148.0 y:163.56 dy:None dx:None
+578/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:149.0 y:162.36 dy:None dx:None
+579/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:150.0 y:161.41 dy:None dx:None
+580/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:151.0 y:160.7 dy:None dx:None
+581/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:152.0 y:159.83 dy:None dx:None
+582/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:153.0 y:158.65 dy:None dx:None
+583/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:154.0 y:158.24 dy:None dx:None
+584/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:155.0 y:158.27 dy:None dx:None
+585/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:156.0 y:156.98 dy:None dx:None
+586/1467:13) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.5MeV 1969 Dyachenko x:157.0 y:152.01 dy:None dx:None
+
+-new-14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko y=DATA(EN,ZAM)
+587/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:118.0 y:163.18 dy:None dx:None
+588/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:119.0 y:159.97 dy:None dx:None
+589/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:120.0 y:158.63 dy:None dx:None
+590/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:121.0 y:160.49 dy:None dx:None
+591/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:122.0 y:162.69 dy:None dx:None
+592/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:123.0 y:164.79 dy:None dx:None
+593/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:124.0 y:166.54 dy:None dx:None
+594/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:125.0 y:168.82 dy:None dx:None
+595/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:126.0 y:171.45 dy:None dx:None
+596/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:127.0 y:174.63 dy:None dx:None
+597/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:128.0 y:176.76 dy:None dx:None
+598/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:129.0 y:178.85 dy:None dx:None
+599/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:130.0 y:179.72 dy:None dx:None
+600/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:131.0 y:180.24 dy:None dx:None
+601/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:132.0 y:180.07 dy:None dx:None
+602/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:133.0 y:179.53 dy:None dx:None
+603/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:134.0 y:178.87 dy:None dx:None
+604/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:135.0 y:177.73 dy:None dx:None
+605/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:136.0 y:176.38 dy:None dx:None
+606/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:137.0 y:174.94 dy:None dx:None
+607/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:138.0 y:173.63 dy:None dx:None
+608/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:139.0 y:172.46 dy:None dx:None
+609/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:140.0 y:171.3 dy:None dx:None
+610/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:141.0 y:170.06 dy:None dx:None
+611/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:142.0 y:168.89 dy:None dx:None
+612/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:143.0 y:167.58 dy:None dx:None
+613/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:144.0 y:166.94 dy:None dx:None
+614/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:145.0 y:165.97 dy:None dx:None
+615/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:146.0 y:164.84 dy:None dx:None
+616/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:147.0 y:163.82 dy:None dx:None
+617/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:148.0 y:162.91 dy:None dx:None
+618/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:149.0 y:161.67 dy:None dx:None
+619/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:150.0 y:160.76 dy:None dx:None
+620/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:151.0 y:160.02 dy:None dx:None
+621/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:152.0 y:158.98 dy:None dx:None
+622/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:153.0 y:158.24 dy:None dx:None
+623/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:154.0 y:156.89 dy:None dx:None
+624/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:155.0 y:155.47 dy:None dx:None
+625/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:156.0 y:153.22 dy:None dx:None
+626/1467:14) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 En=0.6MeV 1969 Dyachenko x:157.0 y:152.29 dy:None dx:None
+
+-new-15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko y=DATA(EN,ZAM)
+627/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:118.0 y:159.67 dy:None dx:None
+628/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:119.0 y:159.52 dy:None dx:None
+629/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:120.0 y:160.38 dy:None dx:None
+630/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:121.0 y:161.5 dy:None dx:None
+631/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:122.0 y:162.56 dy:None dx:None
+632/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:123.0 y:164.21 dy:None dx:None
+633/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:124.0 y:167.21 dy:None dx:None
+634/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:125.0 y:169.84 dy:None dx:None
+635/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:126.0 y:172.07 dy:None dx:None
+636/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:127.0 y:174.94 dy:None dx:None
+637/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:128.0 y:177.49 dy:None dx:None
+638/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:129.0 y:179.66 dy:None dx:None
+639/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:130.0 y:180.82 dy:None dx:None
+640/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:131.0 y:180.88 dy:None dx:None
+641/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:132.0 y:180.76 dy:None dx:None
+642/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:133.0 y:180.31 dy:None dx:None
+643/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:134.0 y:179.54 dy:None dx:None
+644/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:135.0 y:178.18 dy:None dx:None
+645/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:136.0 y:176.67 dy:None dx:None
+646/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:137.0 y:175.11 dy:None dx:None
+647/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:138.0 y:173.78 dy:None dx:None
+648/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:139.0 y:172.53 dy:None dx:None
+649/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:140.0 y:171.23 dy:None dx:None
+650/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:141.0 y:169.86 dy:None dx:None
+651/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:142.0 y:168.65 dy:None dx:None
+652/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:143.0 y:167.59 dy:None dx:None
+653/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:144.0 y:166.61 dy:None dx:None
+654/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:145.0 y:165.56 dy:None dx:None
+655/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:146.0 y:164.33 dy:None dx:None
+656/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:147.0 y:163.0 dy:None dx:None
+657/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:148.0 y:161.91 dy:None dx:None
+658/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:149.0 y:160.65 dy:None dx:None
+659/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:150.0 y:159.65 dy:None dx:None
+660/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:151.0 y:158.66 dy:None dx:None
+661/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:152.0 y:157.59 dy:None dx:None
+662/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:153.0 y:156.48 dy:None dx:None
+663/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:154.0 y:155.67 dy:None dx:None
+664/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:155.0 y:154.43 dy:None dx:None
+665/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:156.0 y:153.11 dy:None dx:None
+666/1467:15) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 En=2.53e-8MeV 1969 D'yachenko x:157.0 y:151.19 dy:None dx:None
+
+-new-16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko y=DATA(EN,ZAM)
+667/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:118.0 y:155.21 dy:None dx:None
+668/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:119.0 y:155.55 dy:None dx:None
+669/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:120.0 y:157.57 dy:None dx:None
+670/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:121.0 y:157.33 dy:None dx:None
+671/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:122.0 y:155.77 dy:None dx:None
+672/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:123.0 y:161.27 dy:None dx:None
+673/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:124.0 y:167.36 dy:None dx:None
+674/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:125.0 y:171.21 dy:None dx:None
+675/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:126.0 y:173.34 dy:None dx:None
+676/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:127.0 y:175.72 dy:None dx:None
+677/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:128.0 y:178.09 dy:None dx:None
+678/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:129.0 y:180.16 dy:None dx:None
+679/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:130.0 y:181.49 dy:None dx:None
+680/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:131.0 y:180.86 dy:None dx:None
+681/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:132.0 y:180.44 dy:None dx:None
+682/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:133.0 y:180.26 dy:None dx:None
+683/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:134.0 y:179.52 dy:None dx:None
+684/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:135.0 y:177.88 dy:None dx:None
+685/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:136.0 y:176.49 dy:None dx:None
+686/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:137.0 y:175.11 dy:None dx:None
+687/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:138.0 y:173.74 dy:None dx:None
+688/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:139.0 y:172.42 dy:None dx:None
+689/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:140.0 y:171.09 dy:None dx:None
+690/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:141.0 y:169.83 dy:None dx:None
+691/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:142.0 y:168.56 dy:None dx:None
+692/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:143.0 y:167.31 dy:None dx:None
+693/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:144.0 y:166.51 dy:None dx:None
+694/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:145.0 y:165.32 dy:None dx:None
+695/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:146.0 y:164.06 dy:None dx:None
+696/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:147.0 y:162.78 dy:None dx:None
+697/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:148.0 y:161.79 dy:None dx:None
+698/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:149.0 y:160.68 dy:None dx:None
+699/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:150.0 y:159.67 dy:None dx:None
+700/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:151.0 y:158.54 dy:None dx:None
+701/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:152.0 y:157.7 dy:None dx:None
+702/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:153.0 y:157.11 dy:None dx:None
+703/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:154.0 y:155.78 dy:None dx:None
+704/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:155.0 y:152.74 dy:None dx:None
+705/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:156.0 y:150.42 dy:None dx:None
+706/1467:16) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 En=0.28MeV 1969 D'yachenko x:157.0 y:150.78 dy:None dx:None
+
+-new-17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko y=DATA(EN,ZAM)
+707/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:118.0 y:161.89 dy:None dx:None
+708/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:119.0 y:166.41 dy:None dx:None
+709/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:120.0 y:164.09 dy:None dx:None
+710/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:121.0 y:162.28 dy:None dx:None
+711/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:122.0 y:163.51 dy:None dx:None
+712/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:123.0 y:167.2 dy:None dx:None
+713/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:124.0 y:171.7 dy:None dx:None
+714/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:125.0 y:172.45 dy:None dx:None
+715/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:126.0 y:172.37 dy:None dx:None
+716/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:127.0 y:175.52 dy:None dx:None
+717/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:128.0 y:177.99 dy:None dx:None
+718/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:129.0 y:180.19 dy:None dx:None
+719/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:130.0 y:181.14 dy:None dx:None
+720/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:131.0 y:181.31 dy:None dx:None
+721/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:132.0 y:181.0 dy:None dx:None
+722/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:133.0 y:180.65 dy:None dx:None
+723/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:134.0 y:179.59 dy:None dx:None
+724/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:135.0 y:178.05 dy:None dx:None
+725/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:136.0 y:176.66 dy:None dx:None
+726/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:137.0 y:175.14 dy:None dx:None
+727/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:138.0 y:173.79 dy:None dx:None
+728/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:139.0 y:172.52 dy:None dx:None
+729/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:140.0 y:171.29 dy:None dx:None
+730/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:141.0 y:170.03 dy:None dx:None
+731/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:142.0 y:168.86 dy:None dx:None
+732/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:143.0 y:167.7 dy:None dx:None
+733/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:144.0 y:166.78 dy:None dx:None
+734/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:145.0 y:165.56 dy:None dx:None
+735/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:146.0 y:164.16 dy:None dx:None
+736/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:147.0 y:162.95 dy:None dx:None
+737/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:148.0 y:161.89 dy:None dx:None
+738/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:149.0 y:160.69 dy:None dx:None
+739/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:150.0 y:160.02 dy:None dx:None
+740/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:151.0 y:159.02 dy:None dx:None
+741/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:152.0 y:158.24 dy:None dx:None
+742/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:153.0 y:156.59 dy:None dx:None
+743/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:154.0 y:155.33 dy:None dx:None
+744/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:155.0 y:155.05 dy:None dx:None
+745/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:156.0 y:154.34 dy:None dx:None
+746/1467:17) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 En=0.73MeV 1969 D'yachenko x:157.0 y:152.78 dy:None dx:None
+
+-new-18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko y=DATA(EN,ZAM)
+747/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:118.0 y:157.91 dy:None dx:None
+748/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:119.0 y:158.69 dy:None dx:None
+749/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:120.0 y:160.19 dy:None dx:None
+750/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:121.0 y:162.73 dy:None dx:None
+751/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:122.0 y:165.52 dy:None dx:None
+752/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:123.0 y:167.31 dy:None dx:None
+753/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:124.0 y:169.34 dy:None dx:None
+754/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:125.0 y:171.4 dy:None dx:None
+755/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:126.0 y:173.38 dy:None dx:None
+756/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:127.0 y:175.89 dy:None dx:None
+757/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:128.0 y:178.05 dy:None dx:None
+758/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:129.0 y:180.21 dy:None dx:None
+759/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:130.0 y:181.27 dy:None dx:None
+760/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:131.0 y:181.23 dy:None dx:None
+761/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:132.0 y:180.96 dy:None dx:None
+762/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:133.0 y:180.38 dy:None dx:None
+763/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:134.0 y:179.29 dy:None dx:None
+764/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:135.0 y:177.85 dy:None dx:None
+765/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:136.0 y:176.36 dy:None dx:None
+766/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:137.0 y:174.95 dy:None dx:None
+767/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:138.0 y:173.84 dy:None dx:None
+768/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:139.0 y:172.71 dy:None dx:None
+769/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:140.0 y:171.21 dy:None dx:None
+770/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:141.0 y:169.89 dy:None dx:None
+771/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:142.0 y:168.74 dy:None dx:None
+772/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:143.0 y:167.58 dy:None dx:None
+773/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:144.0 y:166.59 dy:None dx:None
+774/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:145.0 y:165.51 dy:None dx:None
+775/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:146.0 y:164.43 dy:None dx:None
+776/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:147.0 y:163.16 dy:None dx:None
+777/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:148.0 y:162.13 dy:None dx:None
+778/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:149.0 y:161.12 dy:None dx:None
+779/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:150.0 y:160.21 dy:None dx:None
+780/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:151.0 y:158.78 dy:None dx:None
+781/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:152.0 y:157.61 dy:None dx:None
+782/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:153.0 y:156.85 dy:None dx:None
+783/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:154.0 y:155.75 dy:None dx:None
+784/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:155.0 y:154.78 dy:None dx:None
+785/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:156.0 y:153.64 dy:None dx:None
+786/1467:18) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 En=1.08MeV 1969 D'yachenko x:157.0 y:153.14 dy:None dx:None
+
+-new-19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko y=DATA(EN,ZAM)
+787/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:118.0 y:161.61 dy:None dx:None
+788/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:119.0 y:161.16 dy:None dx:None
+789/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:120.0 y:162.89 dy:None dx:None
+790/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:121.0 y:164.97 dy:None dx:None
+791/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:122.0 y:166.44 dy:None dx:None
+792/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:123.0 y:167.43 dy:None dx:None
+793/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:124.0 y:168.49 dy:None dx:None
+794/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:125.0 y:170.86 dy:None dx:None
+795/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:126.0 y:173.55 dy:None dx:None
+796/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:127.0 y:176.27 dy:None dx:None
+797/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:128.0 y:178.65 dy:None dx:None
+798/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:129.0 y:180.22 dy:None dx:None
+799/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:130.0 y:180.77 dy:None dx:None
+800/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:131.0 y:181.26 dy:None dx:None
+801/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:132.0 y:180.71 dy:None dx:None
+802/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:133.0 y:179.94 dy:None dx:None
+803/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:134.0 y:179.09 dy:None dx:None
+804/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:135.0 y:177.69 dy:None dx:None
+805/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:136.0 y:176.36 dy:None dx:None
+806/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:137.0 y:174.98 dy:None dx:None
+807/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:138.0 y:173.66 dy:None dx:None
+808/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:139.0 y:172.59 dy:None dx:None
+809/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:140.0 y:171.42 dy:None dx:None
+810/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:141.0 y:170.07 dy:None dx:None
+811/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:142.0 y:168.8 dy:None dx:None
+812/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:143.0 y:167.82 dy:None dx:None
+813/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:144.0 y:166.88 dy:None dx:None
+814/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:145.0 y:165.55 dy:None dx:None
+815/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:146.0 y:164.47 dy:None dx:None
+816/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:147.0 y:163.35 dy:None dx:None
+817/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:148.0 y:162.26 dy:None dx:None
+818/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:149.0 y:160.97 dy:None dx:None
+819/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:150.0 y:160.32 dy:None dx:None
+820/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:151.0 y:159.57 dy:None dx:None
+821/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:152.0 y:158.39 dy:None dx:None
+822/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:153.0 y:156.64 dy:None dx:None
+823/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:154.0 y:155.75 dy:None dx:None
+824/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:155.0 y:155.39 dy:None dx:None
+825/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:156.0 y:154.58 dy:None dx:None
+826/1467:19) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 En=1.33MeV 1969 D'yachenko x:157.0 y:153.55 dy:None dx:None
+
+-new-20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko y=DATA(EN,ZAM)
+827/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:118.0 y:159.33 dy:None dx:None
+828/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:119.0 y:159.45 dy:None dx:None
+829/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:120.0 y:161.68 dy:None dx:None
+830/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:121.0 y:162.74 dy:None dx:None
+831/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:122.0 y:162.3 dy:None dx:None
+832/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:123.0 y:163.28 dy:None dx:None
+833/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:124.0 y:166.44 dy:None dx:None
+834/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:125.0 y:169.54 dy:None dx:None
+835/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:126.0 y:174.09 dy:None dx:None
+836/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:127.0 y:176.66 dy:None dx:None
+837/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:128.0 y:178.59 dy:None dx:None
+838/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:129.0 y:180.08 dy:None dx:None
+839/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:130.0 y:181.1 dy:None dx:None
+840/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:131.0 y:181.38 dy:None dx:None
+841/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:132.0 y:180.97 dy:None dx:None
+842/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:133.0 y:180.1 dy:None dx:None
+843/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:134.0 y:179.15 dy:None dx:None
+844/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:135.0 y:177.76 dy:None dx:None
+845/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:136.0 y:176.59 dy:None dx:None
+846/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:137.0 y:175.21 dy:None dx:None
+847/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:138.0 y:173.87 dy:None dx:None
+848/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:139.0 y:172.57 dy:None dx:None
+849/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:140.0 y:171.37 dy:None dx:None
+850/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:141.0 y:170.07 dy:None dx:None
+851/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:142.0 y:168.89 dy:None dx:None
+852/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:143.0 y:167.59 dy:None dx:None
+853/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:144.0 y:166.45 dy:None dx:None
+854/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:145.0 y:165.48 dy:None dx:None
+855/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:146.0 y:164.38 dy:None dx:None
+856/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:147.0 y:163.18 dy:None dx:None
+857/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:148.0 y:162.27 dy:None dx:None
+858/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:149.0 y:161.23 dy:None dx:None
+859/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:150.0 y:160.23 dy:None dx:None
+860/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:151.0 y:159.31 dy:None dx:None
+861/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:152.0 y:158.34 dy:None dx:None
+862/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:153.0 y:157.52 dy:None dx:None
+863/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:154.0 y:156.88 dy:None dx:None
+864/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:155.0 y:154.69 dy:None dx:None
+865/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:156.0 y:152.59 dy:None dx:None
+866/1467:20) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 En=1.69MeV 1969 D'yachenko x:157.0 y:151.93 dy:None dx:None
+
+-new-21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko y=DATA(EN,ZAM)
+867/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:118.0 y:163.34 dy:None dx:None
+868/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:119.0 y:160.79 dy:None dx:None
+869/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:120.0 y:161.03 dy:None dx:None
+870/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:121.0 y:161.97 dy:None dx:None
+871/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:122.0 y:169.77 dy:None dx:None
+872/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:123.0 y:164.36 dy:None dx:None
+873/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:124.0 y:166.28 dy:None dx:None
+874/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:125.0 y:169.34 dy:None dx:None
+875/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:126.0 y:172.24 dy:None dx:None
+876/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:127.0 y:174.33 dy:None dx:None
+877/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:128.0 y:176.56 dy:None dx:None
+878/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:129.0 y:178.99 dy:None dx:None
+879/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:130.0 y:180.29 dy:None dx:None
+880/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:131.0 y:180.42 dy:None dx:None
+881/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:132.0 y:180.26 dy:None dx:None
+882/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:133.0 y:179.41 dy:None dx:None
+883/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:134.0 y:178.55 dy:None dx:None
+884/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:135.0 y:177.46 dy:None dx:None
+885/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:136.0 y:176.25 dy:None dx:None
+886/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:137.0 y:174.85 dy:None dx:None
+887/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:138.0 y:173.68 dy:None dx:None
+888/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:139.0 y:172.53 dy:None dx:None
+889/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:140.0 y:171.25 dy:None dx:None
+890/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:141.0 y:169.93 dy:None dx:None
+891/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:142.0 y:168.72 dy:None dx:None
+892/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:143.0 y:167.69 dy:None dx:None
+893/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:144.0 y:166.72 dy:None dx:None
+894/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:145.0 y:165.71 dy:None dx:None
+895/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:146.0 y:164.57 dy:None dx:None
+896/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:147.0 y:163.31 dy:None dx:None
+897/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:148.0 y:162.16 dy:None dx:None
+898/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:149.0 y:161.16 dy:None dx:None
+899/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:150.0 y:160.44 dy:None dx:None
+900/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:151.0 y:159.64 dy:None dx:None
+901/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:152.0 y:158.11 dy:None dx:None
+902/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:153.0 y:157.35 dy:None dx:None
+903/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:154.0 y:157.23 dy:None dx:None
+904/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:155.0 y:156.02 dy:None dx:None
+905/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:156.0 y:154.93 dy:None dx:None
+906/1467:21) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 En=2.02MeV 1969 D'yachenko x:157.0 y:154.09 dy:None dx:None
+
+-new-22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko y=DATA(EN,ZAM)
+907/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:118.0 y:156.99 dy:None dx:None
+908/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:119.0 y:157.77 dy:None dx:None
+909/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:120.0 y:159.29 dy:None dx:None
+910/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:121.0 y:160.75 dy:None dx:None
+911/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:122.0 y:161.97 dy:None dx:None
+912/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:123.0 y:164.48 dy:None dx:None
+913/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:124.0 y:167.49 dy:None dx:None
+914/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:125.0 y:169.98 dy:None dx:None
+915/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:126.0 y:172.13 dy:None dx:None
+916/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:127.0 y:174.84 dy:None dx:None
+917/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:128.0 y:177.1 dy:None dx:None
+918/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:129.0 y:179.25 dy:None dx:None
+919/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:130.0 y:180.29 dy:None dx:None
+920/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:131.0 y:180.64 dy:None dx:None
+921/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:132.0 y:180.06 dy:None dx:None
+922/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:133.0 y:179.38 dy:None dx:None
+923/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:134.0 y:178.54 dy:None dx:None
+924/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:135.0 y:177.37 dy:None dx:None
+925/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:136.0 y:176.06 dy:None dx:None
+926/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:137.0 y:174.77 dy:None dx:None
+927/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:138.0 y:173.64 dy:None dx:None
+928/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:139.0 y:172.38 dy:None dx:None
+929/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:140.0 y:171.02 dy:None dx:None
+930/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:141.0 y:170.0 dy:None dx:None
+931/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:142.0 y:169.1 dy:None dx:None
+932/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:143.0 y:167.68 dy:None dx:None
+933/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:144.0 y:166.5 dy:None dx:None
+934/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:145.0 y:165.49 dy:None dx:None
+935/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:146.0 y:164.67 dy:None dx:None
+936/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:147.0 y:163.69 dy:None dx:None
+937/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:148.0 y:162.88 dy:None dx:None
+938/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:149.0 y:161.96 dy:None dx:None
+939/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:150.0 y:160.74 dy:None dx:None
+940/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:151.0 y:159.4 dy:None dx:None
+941/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:152.0 y:158.56 dy:None dx:None
+942/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:153.0 y:158.02 dy:None dx:None
+943/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:154.0 y:157.67 dy:None dx:None
+944/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:155.0 y:156.13 dy:None dx:None
+945/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:156.0 y:152.97 dy:None dx:None
+946/1467:22) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 En=2.53MeV 1969 D'yachenko x:157.0 y:150.77 dy:None dx:None
+
+-new-23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko y=DATA(EN,ZAM)
+947/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:118.0 y:163.0 dy:None dx:None
+948/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:119.0 y:163.84 dy:None dx:None
+949/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:120.0 y:163.85 dy:None dx:None
+950/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:121.0 y:164.21 dy:None dx:None
+951/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:122.0 y:165.21 dy:None dx:None
+952/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:123.0 y:166.72 dy:None dx:None
+953/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:124.0 y:168.11 dy:None dx:None
+954/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:125.0 y:169.91 dy:None dx:None
+955/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:126.0 y:171.93 dy:None dx:None
+956/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:127.0 y:174.94 dy:None dx:None
+957/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:128.0 y:177.77 dy:None dx:None
+958/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:129.0 y:179.34 dy:None dx:None
+959/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:130.0 y:180.47 dy:None dx:None
+960/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:131.0 y:180.55 dy:None dx:None
+961/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:132.0 y:180.42 dy:None dx:None
+962/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:133.0 y:179.8 dy:None dx:None
+963/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:134.0 y:178.8 dy:None dx:None
+964/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:135.0 y:177.47 dy:None dx:None
+965/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:136.0 y:176.16 dy:None dx:None
+966/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:137.0 y:174.78 dy:None dx:None
+967/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:138.0 y:173.58 dy:None dx:None
+968/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:139.0 y:172.42 dy:None dx:None
+969/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:140.0 y:171.23 dy:None dx:None
+970/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:141.0 y:170.09 dy:None dx:None
+971/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:142.0 y:168.84 dy:None dx:None
+972/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:143.0 y:167.58 dy:None dx:None
+973/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:144.0 y:166.45 dy:None dx:None
+974/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:145.0 y:165.32 dy:None dx:None
+975/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:146.0 y:164.33 dy:None dx:None
+976/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:147.0 y:163.28 dy:None dx:None
+977/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:148.0 y:162.37 dy:None dx:None
+978/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:149.0 y:161.27 dy:None dx:None
+979/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:150.0 y:160.42 dy:None dx:None
+980/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:151.0 y:159.73 dy:None dx:None
+981/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:152.0 y:158.97 dy:None dx:None
+982/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:153.0 y:158.06 dy:None dx:None
+983/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:154.0 y:156.91 dy:None dx:None
+984/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:155.0 y:155.49 dy:None dx:None
+985/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:156.0 y:155.09 dy:None dx:None
+986/1467:23) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 En=3.07MeV 1969 D'yachenko x:157.0 y:153.59 dy:None dx:None
+
+-new-24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko y=DATA(EN,ZAM)
+987/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:118.0 y:161.27 dy:None dx:None
+988/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:119.0 y:162.2 dy:None dx:None
+989/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:120.0 y:161.99 dy:None dx:None
+990/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:121.0 y:161.97 dy:None dx:None
+991/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:122.0 y:162.84 dy:None dx:None
+992/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:123.0 y:166.28 dy:None dx:None
+993/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:124.0 y:168.28 dy:None dx:None
+994/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:125.0 y:169.57 dy:None dx:None
+995/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:126.0 y:171.75 dy:None dx:None
+996/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:127.0 y:176.11 dy:None dx:None
+997/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:128.0 y:177.72 dy:None dx:None
+998/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:129.0 y:179.37 dy:None dx:None
+999/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:130.0 y:180.7 dy:None dx:None
+1000/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:131.0 y:180.67 dy:None dx:None
+1001/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:132.0 y:180.28 dy:None dx:None
+1002/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:133.0 y:179.78 dy:None dx:None
+1003/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:134.0 y:178.8 dy:None dx:None
+1004/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:135.0 y:177.41 dy:None dx:None
+1005/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:136.0 y:176.2 dy:None dx:None
+1006/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:137.0 y:174.88 dy:None dx:None
+1007/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:138.0 y:173.65 dy:None dx:None
+1008/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:139.0 y:172.51 dy:None dx:None
+1009/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:140.0 y:171.31 dy:None dx:None
+1010/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:141.0 y:170.07 dy:None dx:None
+1011/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:142.0 y:168.89 dy:None dx:None
+1012/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:143.0 y:167.79 dy:None dx:None
+1013/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:144.0 y:166.73 dy:None dx:None
+1014/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:145.0 y:165.49 dy:None dx:None
+1015/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:146.0 y:164.39 dy:None dx:None
+1016/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:147.0 y:163.34 dy:None dx:None
+1017/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:148.0 y:162.47 dy:None dx:None
+1018/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:149.0 y:161.44 dy:None dx:None
+1019/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:150.0 y:160.57 dy:None dx:None
+1020/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:151.0 y:159.96 dy:None dx:None
+1021/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:152.0 y:159.0 dy:None dx:None
+1022/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:153.0 y:157.68 dy:None dx:None
+1023/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:154.0 y:155.88 dy:None dx:None
+1024/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:155.0 y:154.04 dy:None dx:None
+1025/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:156.0 y:153.55 dy:None dx:None
+1026/1467:24) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 En=3.51MeV 1969 D'yachenko x:157.0 y:154.29 dy:None dx:None
+
+-new-25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko y=DATA(EN,ZAM)
+1027/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:118.0 y:163.27 dy:None dx:None
+1028/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:119.0 y:162.62 dy:None dx:None
+1029/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:120.0 y:162.45 dy:None dx:None
+1030/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:121.0 y:162.93 dy:None dx:None
+1031/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:122.0 y:164.49 dy:None dx:None
+1032/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:123.0 y:166.68 dy:None dx:None
+1033/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:124.0 y:168.52 dy:None dx:None
+1034/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:125.0 y:170.16 dy:None dx:None
+1035/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:126.0 y:171.59 dy:None dx:None
+1036/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:127.0 y:173.89 dy:None dx:None
+1037/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:128.0 y:176.29 dy:None dx:None
+1038/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:129.0 y:178.02 dy:None dx:None
+1039/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:130.0 y:178.84 dy:None dx:None
+1040/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:131.0 y:179.23 dy:None dx:None
+1041/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:132.0 y:178.93 dy:None dx:None
+1042/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:133.0 y:178.36 dy:None dx:None
+1043/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:134.0 y:177.69 dy:None dx:None
+1044/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:135.0 y:176.72 dy:None dx:None
+1045/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:136.0 y:175.75 dy:None dx:None
+1046/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:137.0 y:174.55 dy:None dx:None
+1047/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:138.0 y:173.36 dy:None dx:None
+1048/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:139.0 y:172.27 dy:None dx:None
+1049/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:140.0 y:171.07 dy:None dx:None
+1050/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:141.0 y:169.93 dy:None dx:None
+1051/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:142.0 y:168.75 dy:None dx:None
+1052/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:143.0 y:167.64 dy:None dx:None
+1053/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:144.0 y:166.6 dy:None dx:None
+1054/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:145.0 y:165.55 dy:None dx:None
+1055/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:146.0 y:164.75 dy:None dx:None
+1056/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:147.0 y:163.75 dy:None dx:None
+1057/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:148.0 y:162.78 dy:None dx:None
+1058/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:149.0 y:161.79 dy:None dx:None
+1059/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:150.0 y:160.95 dy:None dx:None
+1060/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:151.0 y:160.3 dy:None dx:None
+1061/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:152.0 y:159.77 dy:None dx:None
+1062/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:153.0 y:158.77 dy:None dx:None
+1063/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:154.0 y:157.9 dy:None dx:None
+1064/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:155.0 y:156.63 dy:None dx:None
+1065/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:156.0 y:155.54 dy:None dx:None
+1066/1467:25) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 En=5.04MeV 1969 D'yachenko x:157.0 y:154.66 dy:None dx:None
+
+-new-26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko y=DATA(EN,ZAM)
+1067/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:118.0 y:162.01 dy:None dx:None
+1068/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:119.0 y:162.23 dy:None dx:None
+1069/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:120.0 y:162.69 dy:None dx:None
+1070/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:121.0 y:163.46 dy:None dx:None
+1071/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:122.0 y:164.19 dy:None dx:None
+1072/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:123.0 y:165.69 dy:None dx:None
+1073/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:124.0 y:167.37 dy:None dx:None
+1074/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:125.0 y:168.95 dy:None dx:None
+1075/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:126.0 y:170.63 dy:None dx:None
+1076/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:127.0 y:173.57 dy:None dx:None
+1077/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:128.0 y:176.29 dy:None dx:None
+1078/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:129.0 y:178.01 dy:None dx:None
+1079/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:130.0 y:178.81 dy:None dx:None
+1080/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:131.0 y:179.04 dy:None dx:None
+1081/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:132.0 y:178.93 dy:None dx:None
+1082/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:133.0 y:178.51 dy:None dx:None
+1083/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:134.0 y:177.89 dy:None dx:None
+1084/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:135.0 y:176.93 dy:None dx:None
+1085/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:136.0 y:175.81 dy:None dx:None
+1086/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:137.0 y:174.62 dy:None dx:None
+1087/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:138.0 y:173.42 dy:None dx:None
+1088/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:139.0 y:172.24 dy:None dx:None
+1089/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:140.0 y:171.11 dy:None dx:None
+1090/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:141.0 y:169.91 dy:None dx:None
+1091/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:142.0 y:168.76 dy:None dx:None
+1092/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:143.0 y:167.57 dy:None dx:None
+1093/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:144.0 y:166.62 dy:None dx:None
+1094/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:145.0 y:165.67 dy:None dx:None
+1095/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:146.0 y:164.54 dy:None dx:None
+1096/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:147.0 y:163.62 dy:None dx:None
+1097/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:148.0 y:162.76 dy:None dx:None
+1098/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:149.0 y:161.71 dy:None dx:None
+1099/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:150.0 y:160.84 dy:None dx:None
+1100/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:151.0 y:159.58 dy:None dx:None
+1101/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:152.0 y:158.51 dy:None dx:None
+1102/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:153.0 y:157.73 dy:None dx:None
+1103/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:154.0 y:156.6 dy:None dx:None
+1104/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:155.0 y:154.88 dy:None dx:None
+1105/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:156.0 y:154.38 dy:None dx:None
+1106/1467:26) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 En=6.06MeV 1969 D'yachenko x:157.0 y:154.44 dy:None dx:None
+
+-new-27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko y=DATA(EN,ZAM)
+1107/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:118.0 y:161.95 dy:None dx:None
+1108/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:119.0 y:162.2 dy:None dx:None
+1109/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:120.0 y:162.52 dy:None dx:None
+1110/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:121.0 y:163.3 dy:None dx:None
+1111/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:122.0 y:164.37 dy:None dx:None
+1112/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:123.0 y:165.37 dy:None dx:None
+1113/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:124.0 y:167.12 dy:None dx:None
+1114/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:125.0 y:169.3 dy:None dx:None
+1115/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:126.0 y:171.61 dy:None dx:None
+1116/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:127.0 y:174.29 dy:None dx:None
+1117/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:128.0 y:176.07 dy:None dx:None
+1118/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:129.0 y:177.74 dy:None dx:None
+1119/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:130.0 y:178.62 dy:None dx:None
+1120/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:131.0 y:178.71 dy:None dx:None
+1121/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:132.0 y:178.52 dy:None dx:None
+1122/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:133.0 y:178.12 dy:None dx:None
+1123/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:134.0 y:177.64 dy:None dx:None
+1124/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:135.0 y:176.74 dy:None dx:None
+1125/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:136.0 y:175.82 dy:None dx:None
+1126/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:137.0 y:174.82 dy:None dx:None
+1127/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:138.0 y:173.64 dy:None dx:None
+1128/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:139.0 y:172.43 dy:None dx:None
+1129/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:140.0 y:171.28 dy:None dx:None
+1130/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:141.0 y:170.02 dy:None dx:None
+1131/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:142.0 y:168.78 dy:None dx:None
+1132/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:143.0 y:167.65 dy:None dx:None
+1133/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:144.0 y:166.7 dy:None dx:None
+1134/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:145.0 y:165.58 dy:None dx:None
+1135/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:146.0 y:164.51 dy:None dx:None
+1136/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:147.0 y:163.83 dy:None dx:None
+1137/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:148.0 y:163.33 dy:None dx:None
+1138/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:149.0 y:162.31 dy:None dx:None
+1139/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:150.0 y:161.26 dy:None dx:None
+1140/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:151.0 y:160.21 dy:None dx:None
+1141/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:152.0 y:159.29 dy:None dx:None
+1142/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:153.0 y:158.38 dy:None dx:None
+1143/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:154.0 y:157.76 dy:None dx:None
+1144/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:155.0 y:156.91 dy:None dx:None
+1145/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:156.0 y:156.9 dy:None dx:None
+1146/1467:27) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 En=7.04MeV 1969 D'yachenko x:157.0 y:155.7 dy:None dx:None
+
+-new-28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko y=DATA(EN,ZAM)
+1147/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:118.0 y:164.75 dy:None dx:None
+1148/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:119.0 y:164.34 dy:None dx:None
+1149/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:120.0 y:164.29 dy:None dx:None
+1150/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:121.0 y:164.22 dy:None dx:None
+1151/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:122.0 y:164.12 dy:None dx:None
+1152/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:123.0 y:164.32 dy:None dx:None
+1153/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:124.0 y:165.21 dy:None dx:None
+1154/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:125.0 y:166.34 dy:None dx:None
+1155/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:126.0 y:167.04 dy:None dx:None
+1156/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:127.0 y:167.21 dy:None dx:None
+1157/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:128.0 y:168.26 dy:None dx:None
+1158/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:129.0 y:170.09 dy:None dx:None
+1159/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:130.0 y:169.04 dy:None dx:None
+1160/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:131.0 y:169.02 dy:None dx:None
+1161/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:132.0 y:169.96 dy:None dx:None
+1162/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:133.0 y:169.95 dy:None dx:None
+1163/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:134.0 y:168.16 dy:None dx:None
+1164/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:135.0 y:167.64 dy:None dx:None
+1165/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:136.0 y:168.14 dy:None dx:None
+1166/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:137.0 y:168.66 dy:None dx:None
+1167/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:138.0 y:168.8 dy:None dx:None
+1168/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:139.0 y:168.58 dy:None dx:None
+1169/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:140.0 y:167.94 dy:None dx:None
+1170/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:141.0 y:167.22 dy:None dx:None
+1171/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:142.0 y:167.71 dy:None dx:None
+1172/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:143.0 y:166.68 dy:None dx:None
+1173/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:144.0 y:165.49 dy:None dx:None
+1174/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:145.0 y:164.09 dy:None dx:None
+1175/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:146.0 y:165.07 dy:None dx:None
+1176/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:147.0 y:164.51 dy:None dx:None
+1177/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:148.0 y:163.9 dy:None dx:None
+1178/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:149.0 y:162.27 dy:None dx:None
+1179/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:150.0 y:162.08 dy:None dx:None
+1180/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:151.0 y:161.59 dy:None dx:None
+1181/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:152.0 y:161.38 dy:None dx:None
+1182/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:153.0 y:160.57 dy:None dx:None
+1183/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:154.0 y:159.64 dy:None dx:None
+1184/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:155.0 y:159.0 dy:None dx:None
+1185/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:156.0 y:158.5 dy:None dx:None
+1186/1467:28) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 En=15.5MeV 1969 D'yachenko x:157.0 y:158.0 dy:None dx:None
+
+-new-29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko y=DATA(SpE,ZAM)
+1187/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:118.0 y:157.35 dy:None dx:0.033
+1188/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:119.0 y:156.49 dy:None dx:0.033
+1189/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:120.0 y:157.24 dy:None dx:0.033
+1190/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:121.0 y:158.22 dy:None dx:0.033
+1191/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:122.0 y:158.24 dy:None dx:0.033
+1192/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:124.0 y:161.48 dy:None dx:0.033
+1193/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:125.0 y:164.42 dy:None dx:0.033
+1194/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:126.0 y:166.85 dy:None dx:0.033
+1195/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:127.0 y:168.91 dy:None dx:0.033
+1196/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:128.0 y:170.61 dy:None dx:0.033
+1197/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:129.0 y:172.45 dy:None dx:0.033
+1198/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:129.0 y:173.78 dy:None dx:0.033
+1199/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:131.0 y:174.68 dy:None dx:0.033
+1200/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:132.0 y:174.62 dy:None dx:0.033
+1201/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:133.0 y:174.5 dy:None dx:0.033
+1202/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:133.0 y:174.44 dy:None dx:0.033
+1203/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:135.0 y:173.88 dy:None dx:0.033
+1204/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:135.0 y:173.02 dy:None dx:0.033
+1205/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:136.0 y:171.94 dy:None dx:0.033
+1206/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:137.0 y:170.93 dy:None dx:0.033
+1207/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:138.0 y:170.0 dy:None dx:0.033
+1208/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:139.0 y:168.78 dy:None dx:0.033
+1209/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:140.0 y:167.78 dy:None dx:0.033
+1210/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:141.0 y:166.7 dy:None dx:0.033
+1211/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:142.0 y:165.56 dy:None dx:0.033
+1212/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:143.0 y:164.77 dy:None dx:0.033
+1213/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:144.0 y:163.99 dy:None dx:0.033
+1214/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:145.0 y:163.27 dy:None dx:0.033
+1215/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:146.0 y:162.57 dy:None dx:0.033
+1216/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:147.0 y:161.64 dy:None dx:0.033
+1217/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:148.0 y:160.64 dy:None dx:0.033
+1218/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:149.0 y:159.56 dy:None dx:0.033
+1219/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:150.0 y:158.77 dy:None dx:0.033
+1220/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:151.0 y:158.28 dy:None dx:0.033
+1221/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:152.0 y:157.5 dy:None dx:0.033
+1222/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:153.0 y:156.65 dy:None dx:0.033
+1223/1467:29) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 Spe=2.53e-8MeV 1967 Dyachenko x:154.0 y:155.93 dy:None dx:0.033
+
+-new-30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba y=DATA(SpE,ZAM)
+1224/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:118.0 y:150.5 dy:None dx:None
+1225/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:119.0 y:151.2 dy:None dx:None
+1226/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:120.0 y:156.9 dy:None dx:None
+1227/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:121.0 y:156.4 dy:None dx:None
+1228/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:122.0 y:157.0 dy:None dx:None
+1229/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:123.0 y:160.1 dy:None dx:None
+1230/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:124.0 y:167.3 dy:None dx:None
+1231/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:125.0 y:169.6 dy:None dx:None
+1232/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:126.0 y:172.0 dy:None dx:None
+1233/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:127.0 y:175.6 dy:None dx:None
+1234/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:128.0 y:177.7 dy:None dx:None
+1235/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:129.0 y:179.6 dy:None dx:None
+1236/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:130.0 y:180.4 dy:None dx:None
+1237/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:131.0 y:180.5 dy:None dx:None
+1238/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:132.0 y:180.5 dy:None dx:None
+1239/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:133.0 y:180.2 dy:None dx:None
+1240/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:134.0 y:179.5 dy:None dx:None
+1241/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:135.0 y:178.2 dy:None dx:None
+1242/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:136.0 y:176.2 dy:None dx:None
+1243/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:137.0 y:174.6 dy:None dx:None
+1244/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:138.0 y:173.3 dy:None dx:None
+1245/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:139.0 y:172.3 dy:None dx:None
+1246/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:140.0 y:171.0 dy:None dx:None
+1247/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:141.0 y:169.6 dy:None dx:None
+1248/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:142.0 y:168.2 dy:None dx:None
+1249/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:143.0 y:167.2 dy:None dx:None
+1250/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:144.0 y:166.4 dy:None dx:None
+1251/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:145.0 y:165.5 dy:None dx:None
+1252/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:146.0 y:164.4 dy:None dx:None
+1253/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:147.0 y:163.0 dy:None dx:None
+1254/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:148.0 y:161.5 dy:None dx:None
+1255/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:149.0 y:160.4 dy:None dx:None
+1256/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:150.0 y:159.5 dy:None dx:None
+1257/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:151.0 y:158.3 dy:None dx:None
+1258/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:152.0 y:157.2 dy:None dx:None
+1259/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:153.0 y:155.6 dy:None dx:None
+1260/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:154.0 y:154.6 dy:None dx:None
+1261/1467:30) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 Spe=2.53e-8MeV 1997 Baba x:155.0 y:153.6 dy:None dx:None
+
+-new-31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon y=DATA(SpE,ZAM)
+1262/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:74.0 y:142.81 dy:4.1225 dx:0.1096
+1263/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:75.0 y:143.64 dy:4.2259 dx:0.1096
+1264/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:76.0 y:145.08 dy:1.5463 dx:0.1096
+1265/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:77.0 y:146.84 dy:2.0612 dx:0.1096
+1266/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:78.0 y:147.87 dy:1.0306 dx:0.1096
+1267/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:79.0 y:151.89 dy:0.61874 dx:0.1096
+1268/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:80.0 y:152.72 dy:0.61838 dx:0.1096
+1269/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:81.0 y:153.96 dy:0.41226 dx:0.1096
+1270/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:82.0 y:154.07 dy:0.20613 dx:0.1096
+1271/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:83.0 y:155.0 dy:0.30919 dx:0.1096
+1272/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:84.0 y:156.55 dy:0.20613 dx:0.1096
+1273/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:85.0 y:157.37 dy:0.10307 dx:0.1096
+1274/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:86.0 y:158.51 dy:0.20612 dx:0.1096
+1275/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:87.0 y:159.23 dy:None dx:0.1096
+1276/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:88.0 y:160.27 dy:None dx:0.1096
+1277/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:89.0 y:161.2 dy:None dx:0.1096
+1278/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:90.0 y:162.64 dy:None dx:0.1096
+1279/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:91.0 y:163.78 dy:None dx:0.1096
+1280/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:92.0 y:164.81 dy:None dx:0.1096
+1281/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:93.0 y:165.53 dy:None dx:0.1096
+1282/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:94.0 y:166.16 dy:None dx:0.1096
+1283/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:95.0 y:167.29 dy:None dx:0.1096
+1284/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:96.0 y:168.63 dy:None dx:0.1096
+1285/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:97.0 y:170.08 dy:None dx:0.1096
+1286/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:98.0 y:171.22 dy:None dx:0.1096
+1287/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:99.0 y:172.04 dy:None dx:0.1096
+1288/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:100.0 y:173.49 dy:None dx:0.1096
+1289/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:101.0 y:174.93 dy:None dx:0.1096
+1290/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:102.0 y:176.79 dy:None dx:0.1096
+1291/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:103.0 y:178.44 dy:None dx:0.1096
+1292/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:104.0 y:179.17 dy:None dx:0.1096
+1293/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:105.0 y:178.86 dy:None dx:0.1096
+1294/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:106.0 y:179.07 dy:None dx:0.1096
+1295/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:107.0 y:178.45 dy:None dx:0.1096
+1296/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:108.0 y:176.91 dy:0.20613 dx:0.1096
+1297/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:109.0 y:174.75 dy:0.20612 dx:0.1096
+1298/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:110.0 y:171.66 dy:0.41187 dx:0.1096
+1299/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:111.0 y:169.6 dy:0.72144 dx:0.1096
+1300/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:112.0 y:168.26 dy:1.0306 dx:0.1096
+1301/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:113.0 y:166.31 dy:1.7521 dx:0.1096
+1302/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:114.0 y:167.44 dy:2.1643 dx:0.1096
+1303/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:115.0 y:169.41 dy:2.9888 dx:0.1096
+1304/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:116.0 y:168.58 dy:3.1949 dx:0.1096
+1305/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:117.0 y:166.01 dy:6.4929 dx:0.1096
+1306/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:118.0 y:159.52 dy:2.3704 dx:0.1096
+1307/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:119.0 y:156.22 dy:1.3402 dx:0.1096
+1308/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:120.0 y:159.63 dy:2.2674 dx:0.1096
+1309/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:121.0 y:166.12 dy:6.4929 dx:0.1096
+1310/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:122.0 y:168.5 dy:3.298 dx:0.1096
+1311/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:123.0 y:169.43 dy:2.8857 dx:0.1096
+1312/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:124.0 y:167.37 dy:2.2677 dx:0.1096
+1313/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:125.0 y:166.34 dy:1.6486 dx:0.1096
+1314/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:126.0 y:168.2 dy:1.1337 dx:0.1096
+1315/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:127.0 y:169.64 dy:0.618 dx:0.1096
+1316/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:128.0 y:171.6 dy:0.41225 dx:0.1096
+1317/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:129.0 y:174.7 dy:0.20613 dx:0.1096
+1318/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:130.0 y:176.86 dy:0.30881 dx:0.1096
+1319/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:131.0 y:178.52 dy:None dx:0.1096
+1320/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:132.0 y:178.93 dy:None dx:0.1096
+1321/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:133.0 y:178.83 dy:None dx:0.1096
+1322/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:134.0 y:179.14 dy:None dx:0.1096
+1323/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:135.0 y:178.42 dy:None dx:0.1096
+1324/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:136.0 y:176.78 dy:None dx:0.1096
+1325/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:137.0 y:174.92 dy:None dx:0.1096
+1326/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:138.0 y:173.48 dy:None dx:0.1096
+1327/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:139.0 y:172.04 dy:None dx:0.1096
+1328/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:140.0 y:171.12 dy:None dx:0.1096
+1329/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:141.0 y:169.99 dy:None dx:0.1096
+1330/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:142.0 y:168.55 dy:None dx:0.1096
+1331/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:143.0 y:167.21 dy:None dx:0.1096
+1332/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:144.0 y:166.08 dy:None dx:0.1096
+1333/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:145.0 y:165.46 dy:None dx:0.1096
+1334/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:146.0 y:164.64 dy:None dx:0.1096
+1335/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:147.0 y:163.72 dy:None dx:0.1096
+1336/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:148.0 y:162.59 dy:None dx:0.1096
+1337/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:149.0 y:161.15 dy:None dx:0.1096
+1338/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:150.0 y:160.12 dy:None dx:0.1096
+1339/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:151.0 y:159.09 dy:None dx:0.1096
+1340/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:152.0 y:158.47 dy:None dx:0.1096
+1341/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:153.0 y:157.24 dy:None dx:0.1096
+1342/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:154.0 y:156.52 dy:None dx:0.1096
+1343/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:155.0 y:154.98 dy:0.2065 dx:0.1096
+1344/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:156.0 y:153.95 dy:0.20575 dx:0.1096
+1345/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:157.0 y:153.85 dy:0.51494 dx:0.1096
+1346/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:158.0 y:152.61 dy:0.72182 dx:0.1096
+1347/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:159.0 y:151.79 dy:0.72144 dx:0.1096
+1348/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:160.0 y:147.78 dy:1.1341 dx:0.1096
+1349/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:161.0 y:146.75 dy:1.9585 dx:0.1096
+1350/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:162.0 y:145.0 dy:1.6494 dx:0.1096
+1351/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:163.0 y:143.56 dy:4.1225 dx:0.1096
+1352/1467:31) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 Spe=2.53e-8MeV 1990 Simon x:164.0 y:142.74 dy:4.1228 dx:0.1096
+
+-new-32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort y=DATA(SpE,ZAM)
+1353/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:118.0 y:145.98 dy:None dx:None
+1354/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:119.0 y:151.31 dy:None dx:None
+1355/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:120.0 y:159.38 dy:None dx:None
+1356/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:121.0 y:161.13 dy:None dx:None
+1357/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:122.0 y:161.35 dy:None dx:None
+1358/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:123.0 y:162.66 dy:None dx:None
+1359/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:124.0 y:163.58 dy:None dx:None
+1360/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:125.0 y:165.44 dy:None dx:None
+1361/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:126.0 y:166.13 dy:None dx:None
+1362/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:127.0 y:169.22 dy:None dx:None
+1363/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:128.0 y:174.24 dy:None dx:None
+1364/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:129.0 y:177.95 dy:None dx:None
+1365/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:130.0 y:180.03 dy:None dx:None
+1366/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:131.0 y:180.03 dy:None dx:None
+1367/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:132.0 y:179.6 dy:None dx:None
+1368/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:133.0 y:179.59 dy:None dx:None
+1369/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:134.0 y:178.92 dy:None dx:None
+1370/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:135.0 y:176.67 dy:None dx:None
+1371/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:136.0 y:175.04 dy:None dx:None
+1372/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:137.0 y:173.57 dy:None dx:None
+1373/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:138.0 y:172.01 dy:None dx:None
+1374/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:139.0 y:171.23 dy:None dx:None
+1375/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:140.0 y:169.68 dy:None dx:None
+1376/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:141.0 y:168.2 dy:None dx:None
+1377/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:142.0 y:166.42 dy:None dx:None
+1378/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:143.0 y:165.56 dy:None dx:None
+1379/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:144.0 y:164.7 dy:None dx:None
+1380/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:145.0 y:164.31 dy:None dx:None
+1381/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:146.0 y:162.99 dy:None dx:None
+1382/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:147.0 y:160.97 dy:None dx:None
+1383/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:148.0 y:159.49 dy:None dx:None
+1384/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:149.0 y:158.71 dy:None dx:None
+1385/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:150.0 y:157.55 dy:None dx:None
+1386/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:151.0 y:156.46 dy:None dx:None
+1387/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:152.0 y:155.13 dy:None dx:None
+1388/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:153.0 y:153.89 dy:None dx:None
+1389/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:154.0 y:152.65 dy:None dx:None
+1390/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:155.0 y:152.56 dy:None dx:None
+1391/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:156.0 y:152.56 dy:None dx:None
+1392/1467:32) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 Spe=2.53e-8MeV 1985 Geltenbort x:157.0 y:152.71 dy:None dx:None
+
+-new-33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova y=DATA(SpE,ZAM)
+1393/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:71.0 y:147.84 dy:None dx:None
+1394/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:73.0 y:149.69 dy:None dx:None
+1395/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:74.0 y:146.79 dy:None dx:None
+1396/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:76.0 y:148.09 dy:None dx:None
+1397/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:77.0 y:150.81 dy:None dx:None
+1398/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:79.0 y:153.67 dy:None dx:None
+1399/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:80.0 y:155.77 dy:None dx:None
+1400/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:82.0 y:157.22 dy:None dx:None
+1401/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:83.0 y:158.36 dy:None dx:None
+1402/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:85.0 y:159.46 dy:None dx:None
+1403/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:86.0 y:160.5 dy:None dx:None
+1404/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:88.0 y:161.67 dy:None dx:None
+1405/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:89.0 y:162.84 dy:None dx:None
+1406/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:91.0 y:163.9 dy:None dx:None
+1407/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:92.0 y:164.92 dy:None dx:None
+1408/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:94.0 y:166.11 dy:None dx:None
+1409/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:95.0 y:167.6 dy:None dx:None
+1410/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:97.0 y:169.08 dy:None dx:None
+1411/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:98.0 y:170.78 dy:None dx:None
+1412/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:100.0 y:172.7 dy:None dx:None
+1413/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:101.0 y:174.4 dy:None dx:None
+1414/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:103.0 y:175.27 dy:None dx:None
+1415/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:104.0 y:175.59 dy:None dx:None
+1416/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:106.0 y:175.09 dy:None dx:None
+1417/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:107.0 y:173.66 dy:None dx:None
+1418/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:109.0 y:171.3 dy:None dx:None
+1419/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:110.0 y:168.67 dy:None dx:None
+1420/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:112.0 y:168.09 dy:None dx:None
+1421/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:118.0 y:151.55 dy:None dx:None
+1422/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:124.0 y:166.7 dy:None dx:None
+1423/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:125.0 y:169.29 dy:None dx:None
+1424/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:127.0 y:172.14 dy:None dx:None
+1425/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:128.0 y:174.77 dy:None dx:None
+1426/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:130.0 y:175.58 dy:None dx:None
+1427/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:131.0 y:175.73 dy:None dx:None
+1428/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:133.0 y:175.54 dy:None dx:None
+1429/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:134.0 y:174.28 dy:None dx:None
+1430/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:136.0 y:172.36 dy:None dx:None
+1431/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:137.0 y:170.37 dy:None dx:None
+1432/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:139.0 y:168.79 dy:None dx:None
+1433/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:140.0 y:167.55 dy:None dx:None
+1434/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:142.0 y:166.15 dy:None dx:None
+1435/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:143.0 y:165.11 dy:None dx:None
+1436/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:145.0 y:164.15 dy:None dx:None
+1437/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:146.0 y:163.02 dy:None dx:None
+1438/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:148.0 y:161.61 dy:None dx:None
+1439/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:149.0 y:160.39 dy:None dx:None
+1440/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:151.0 y:159.26 dy:None dx:None
+1441/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:152.0 y:158.24 dy:None dx:None
+1442/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:154.0 y:156.97 dy:None dx:None
+1443/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:155.0 y:155.93 dy:None dx:None
+1444/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:157.0 y:154.39 dy:None dx:None
+1445/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:158.0 y:152.31 dy:None dx:None
+1446/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:160.0 y:151.35 dy:None dx:None
+1447/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:161.0 y:148.94 dy:None dx:None
+1448/1467:33) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 Spe=2.53e-8MeV 1973 Zakharova x:163.0 y:149.95 dy:None dx:None
+
+-new-34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman y=DATA(SpE,ZAM)
+1449/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:119.0 y:148.89 dy:1.11667 dx:None
+1450/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:121.0 y:152.16 dy:1.1412 dx:None
+1451/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:123.0 y:156.86 dy:1.17645 dx:None
+1452/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:125.0 y:165.15 dy:1.23862 dx:None
+1453/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:127.0 y:177.27 dy:1.32952 dx:None
+1454/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:129.0 y:178.78 dy:1.34085 dx:None
+1455/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:131.0 y:179.11 dy:1.34332 dx:None
+1456/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:133.0 y:178.74 dy:1.34055 dx:None
+1457/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:135.0 y:176.24 dy:1.3218 dx:None
+1458/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:137.0 y:174.38 dy:1.30785 dx:None
+1459/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:139.0 y:171.18 dy:1.28385 dx:None
+1460/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:141.0 y:170.17 dy:1.27628 dx:None
+1461/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:143.0 y:167.09 dy:1.25317 dx:None
+1462/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:145.0 y:165.33 dy:1.23998 dx:None
+1463/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:147.0 y:163.04 dy:1.2228 dx:None
+1464/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:149.0 y:160.38 dy:1.20285 dx:None
+1465/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:151.0 y:159.0 dy:1.1925 dx:None
+1466/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:153.0 y:155.32 dy:1.1649 dx:None
+1467/1467:34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 Spe=2.53e-8MeV 1971 Boldeman x:155.0 y:152.08 dy:1.1406 dx:None
+---outDatasets:34 datasets:34
+---ENTRY: 21981*;22152*;23014*;23164*;30909*;40017*;40200*;40235*;41544*;41713*;
+datasets: 34
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 34
+1) 92-U-235(N,F)MASS,PRE,KE,LF+HF
+	Dataset:1/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 23164007 2016, A.Al-Adili Spe=2.53e-8MeV
+	Dataset:2/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41544004 2006, S.Zeynalov Spe=2.53e-8MeV
+	Dataset:3/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235017 1969, P.P.D'yachenko En=2.53e-8MeV
+	Dataset:4/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235018 1969, P.P.D'yachenko En=0.28MeV
+	Dataset:5/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235019 1969, P.P.D'yachenko En=0.73MeV
+	Dataset:6/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235020 1969, P.P.D'yachenko En=1.08MeV
+	Dataset:7/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235021 1969, P.P.D'yachenko En=1.33MeV
+	Dataset:8/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235022 1969, P.P.D'yachenko En=1.69MeV
+	Dataset:9/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235023 1969, P.P.D'yachenko En=2.02MeV
+	Dataset:10/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235024 1969, P.P.D'yachenko En=2.53MeV
+	Dataset:11/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235025 1969, P.P.D'yachenko En=3.07MeV
+	Dataset:12/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235026 1969, P.P.D'yachenko En=3.51MeV
+	Dataset:13/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235027 1969, P.P.D'yachenko En=5.04MeV
+	Dataset:14/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235028 1969, P.P.D'yachenko En=6.06MeV
+	Dataset:15/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235029 1969, P.P.D'yachenko En=7.04MeV
+	Dataset:16/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40235030 1969, P.P.D'yachenko En=15.5MeV
+	Dataset:17/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170091 1969, P.P.Dyachenko En=2.53e-8MeV
+	Dataset:18/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170092 1969, P.P.Dyachenko En=2.53e-8MeV
+	Dataset:19/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170093 1969, P.P.Dyachenko En=2.53e-8MeV
+	Dataset:20/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170094 1969, P.P.Dyachenko En=2.53e-8MeV
+	Dataset:21/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170095 1969, P.P.Dyachenko En=2.53e-8MeV
+	Dataset:22/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 400170096 1969, P.P.Dyachenko En=2.53e-8MeV
+	Dataset:23/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 1969, P.P.Dyachenko En=0.12MeV
+	Dataset:24/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 1969, P.P.Dyachenko En=0.2MeV
+	Dataset:25/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 1969, P.P.Dyachenko En=0.3MeV
+	Dataset:26/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 1969, P.P.Dyachenko En=0.4MeV
+	Dataset:27/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 1969, P.P.Dyachenko En=0.5MeV
+	Dataset:28/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 40017010 1969, P.P.Dyachenko En=0.6MeV
+	Dataset:29/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF 41713007 1967, P.P.Dyachenko Spe=2.53e-8MeV
+2) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW
+	Dataset:30/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 23014003 1997, H.Baba Spe=2.53e-8MeV
+	Dataset:31/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 22152010 1990, G.Simon Spe=2.53e-8MeV
+	Dataset:32/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 21981009 1985, P.Geltenbort Spe=2.53e-8MeV
+	Dataset:33/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 40200003 1973, V.P.Zakharova Spe=2.53e-8MeV
+	Dataset:34/34) 92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW 30909003 1971, J.W.Boldeman Spe=2.53e-8MeV
+---reacodes: 2 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/34) #23164007 2016, A.Al-Adili Spe=2.53e-8MeV pt:95
+Plot:2/34) #41544004 2006, S.Zeynalov Spe=2.53e-8MeV pt:51
+Plot:3/34) #40235017 1969, P.P.D'yachenko En=2.53e-8MeV pt:40
+Plot:4/34) #40235018 1969, P.P.D'yachenko En=0.28MeV pt:40
+Plot:5/34) #40235019 1969, P.P.D'yachenko En=0.73MeV pt:40
+Plot:6/34) #40235020 1969, P.P.D'yachenko En=1.08MeV pt:40
+Plot:7/34) #40235021 1969, P.P.D'yachenko En=1.33MeV pt:40
+Plot:8/34) #40235022 1969, P.P.D'yachenko En=1.69MeV pt:40
+Plot:9/34) #40235023 1969, P.P.D'yachenko En=2.02MeV pt:40
+Plot:10/34) #40235024 1969, P.P.D'yachenko En=2.53MeV pt:40
+Plot:11/34) #40235025 1969, P.P.D'yachenko En=3.07MeV pt:40
+Plot:12/34) #40235026 1969, P.P.D'yachenko En=3.51MeV pt:40
+Plot:13/34) #40235027 1969, P.P.D'yachenko En=5.04MeV pt:40
+Plot:14/34) #40235028 1969, P.P.D'yachenko En=6.06MeV pt:40
+Plot:15/34) #40235029 1969, P.P.D'yachenko En=7.04MeV pt:40
+Plot:16/34) #40235030 1969, P.P.D'yachenko En=15.5MeV pt:40
+Plot:17/34) #400170091 1969, P.P.Dyachenko En=2.53e-8MeV pt:40
+Plot:18/34) #400170092 1969, P.P.Dyachenko En=2.53e-8MeV pt:40
+Plot:19/34) #400170093 1969, P.P.Dyachenko En=2.53e-8MeV pt:40
+Plot:20/34) #400170094 1969, P.P.Dyachenko En=2.53e-8MeV pt:40
+Plot:21/34) #400170095 1969, P.P.Dyachenko En=2.53e-8MeV pt:40
+Plot:22/34) #400170096 1969, P.P.Dyachenko En=2.53e-8MeV pt:40
+Plot:23/34) #40017010 1969, P.P.Dyachenko En=0.12MeV pt:40
+Plot:24/34) #40017010 1969, P.P.Dyachenko En=0.2MeV pt:40
+Plot:25/34) #40017010 1969, P.P.Dyachenko En=0.3MeV pt:40
+Plot:26/34) #40017010 1969, P.P.Dyachenko En=0.4MeV pt:40
+Plot:27/34) #40017010 1969, P.P.Dyachenko En=0.5MeV pt:40
+Plot:28/34) #40017010 1969, P.P.Dyachenko En=0.6MeV pt:40
+Plot:29/34) #41713007 1967, P.P.Dyachenko Spe=2.53e-8MeV pt:37
+Plot:30/34) #23014003 1997, H.Baba Spe=2.53e-8MeV pt:38
+Plot:31/34) #22152010 1990, G.Simon Spe=2.53e-8MeV pt:91
+Plot:32/34) #21981009 1985, P.Geltenbort Spe=2.53e-8MeV pt:40
+Plot:33/34) #40200003 1973, V.P.Zakharova Spe=2.53e-8MeV pt:56
+Plot:34/34) #30909003 1971, J.W.Boldeman Spe=2.53e-8MeV pt:19
+--0--getUnits--- AMU 1
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+Will try---write_image: tke1.html.png
+
+Program successfully completed

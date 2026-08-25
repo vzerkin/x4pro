@@ -1,0 +1,140 @@
+Program: nubar.py, ver. 2026-08-24
+Author:  V.Zerkin, Vienna, 2026
+Purpose: Retrieve and plot EXFOR and ENDF nu-bar data
+
+Running: 2026-08-25 23:14:02
+
+
+---Arguments from command-line---
+   1  arg: -q:dl
+   ---input2x4quant:[dl]
+   2  arg: -ylog
+   3  arg: -xmax:21
+   4  arg: -ymin:0.006
+   5  arg: -ymax:0.024
+
+---Parameters:
+   target:  U-235
+   x4react: n,f
+   e4react: n,nu_d
+   x4quant: dl,nu
+   Output:  U235nf_dl-nu
+   x-axis:  linear  range: [None, 21.0]
+   y-axis:  log     range: [0.006, 0.024]
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---getX4SqlSearch_NUBAR: U-235 n,f dl,nu  and sf8='' 
+SQL:
+select *                                  
+ ,y  as YY, dy  as dYY                    
+ ,x1 as En, dx1 as dEn                    
+from uni1                                 
+where                                     
+ Target like 'U-235'                 
+ and Reaction like 'n,f'            
+ and SF58 like 'dl,nu'                 
+ and x2 is null                           
+ and sf8=''  
+order by fullCode,YearRef1 desc,DatasetID 
+ ,En,iPoint                               
+
+
+EXFOR SQL executed: 0.006sec rows:54
+
+datapoints: 54
+1) 41777002 2025 D.E.Gremyachkin 92-U-235(N,F),DL,NU
+2) 23767002 2020 D.Foligno 92-U-235(N,F),DL,NU
+3) 41500003 1999 V.A.Roshchenko 92-U-235(N,F),DL,NU
+4) 13668006 1997 H.H.Saleh 92-U-235(N,F),DL,NU
+5) 41291006 1997 V.M.Piksaykin 92-U-235(N,F),DL,NU
+6) 12856002 1983 P.L.Reeder 92-U-235(N,F),DL,NU
+7) 10117002 1972 M.S.Krick 92-U-235(N,F),DL,NU
+8) 10117003 1972 M.S.Krick 92-U-235(N,F),DL,NU
+9) 12288010 1969 C.F.Masters 92-U-235(N,F),DL,NU
+10) 12288011 1969 C.F.Masters 92-U-235(N,F),DL,NU
+11) 142970062 1961 B.C.Diven 92-U-235(N,F),DL,NU
+12) 12435002 1960 W.I.Mc Garry 92-U-235(N,F),DL,NU
+---ENTRY: 10117*;12288*;12435*;12856*;13668*;14297*;23767*;41291*;41500*;41777*;
+datasets: 12
+
+Datasets: 12
+1) 92-U-235(N,F),DL,NU
+Reaction codes: 1 
+
+
+___webEndfDataForPlot_DADE: [U-235] [n,nu_d] []
+---wgetdb_get:/servlet/E4sSearch2?Target=U-235&Reaction=n,nu_d&Quantity=*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=U-235&Reaction=n,nu_d&Quantity=*&json&mats'
+format=WebEndfSectionsList-0.1
+___Retrieved sections:43
+SelectedLib-Sect:4) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 455, 'MF': 1, 'R': 'N,nu_d', 'RC': 'U-235(N,nu_d),INFO', 'EvalID': 149933, 'SectID': 9024578, 'PenSectID': 13662331, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'IAEA Cielo Collaboration'}
+SelectedLib-Sect:11) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 455, 'MF': 1, 'R': 'N,nu_d', 'RC': 'U-235(N,nu_d),INFO', 'EvalID': 23212, 'SectID': 558799, 'PenSectID': 7574612, 'LibID': 3100, 'LibName': 'JEFF-3.1', 'DATE': '090105', 'AUTH': 'Weston, Young, Poenitz, Lubitz'}
+SelectedLib-Sect:18) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 455, 'MF': 1, 'R': 'N,nu_d', 'RC': 'U-235(N,nu_d),INFO', 'EvalID': 118842, 'SectID': 6090155, 'PenSectID': 10751643, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'atyuk A.V.', 'AUTH': 'Nikolaev M.N.'}
+SelectedLib-Sect:34) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 455, 'MF': 1, 'R': 'N,nu_d', 'RC': 'U-235(N,nu_d),INFO', 'EvalID': 78565, 'SectID': 3093635, 'PenSectID': 6551326, 'LibID': 50, 'LibName': 'ENDF/B-V', 'DATE': '0', 'AUTH': 'M.R.Bhat'}
+___Required sections:4
+WebReq:1) EvalID:149933 PenSectID:13662331 Lib:ENDF/B-VIII.0 Color:0,0,255
+/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662331&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662331&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662331&json'
+Download...DS:1/1)		ENDF/B-VIII.0	EID:149933	SID:13662331	f(x):Delayed nu-bar	pts:5
+Downloaded:DS:1/1)		ENDF/B-VIII.0	EID:149933	SID:13662331	f(x):Delayed nu-bar	pts:5	idy=5
+WebReq:2) EvalID:23212 PenSectID:7574612 Lib:JEFF-3.1 Color:0,255,255
+/servlet/E4sGetSectData?EvalID=23212&PenSectID=7574612&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=23212&PenSectID=7574612&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=23212&PenSectID=7574612&json'
+Download...DS:2/1)		JEFF-3.1	EID:23212	SID:7574612	f(x):Delayed nu-bar	pts:10
+Downloaded:DS:2/1)		JEFF-3.1	EID:23212	SID:7574612	f(x):Delayed nu-bar	pts:10	idy=0
+WebReq:3) EvalID:118842 PenSectID:10751643 Lib:BROND-3.1 Color:255,0,255
+/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751643&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751643&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751643&json'
+Download...DS:3/1)		BROND-3.1	EID:118842	SID:10751643	f(x):Delayed nu-bar	pts:10
+Downloaded:DS:3/1)		BROND-3.1	EID:118842	SID:10751643	f(x):Delayed nu-bar	pts:10	idy=10
+WebReq:4) EvalID:78565 PenSectID:6551326 Lib:ENDF/B-V Color:127,127,127
+/servlet/E4sGetSectData?EvalID=78565&PenSectID=6551326&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=78565&PenSectID=6551326&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=78565&PenSectID=6551326&json'
+Download...DS:4/1)		ENDF/B-V	EID:78565	SID:6551326	f(x):Delayed nu-bar	pts:7
+Downloaded:DS:4/1)		ENDF/B-V	EID:78565	SID:6551326	f(x):Delayed nu-bar	pts:7	idy=0
+---e4datasets: 4
+Plot:1/4) 13662331	ENDF/B-VIII.0	pt:5	color:0,0,255
+Plot:2/4) 7574612	JEFF-3.1	pt:10	color:0,255,255
+Plot:3/4) 10751643	BROND-3.1	pt:10	color:255,0,255
+Plot:4/4) 6551326	ENDF/B-V	pt:7	color:127,127,127
+Plot:1/12) #41777002 2025, D.E.Gremyachkin pt:14
+Plot:2/12) #23767002 2020, D.Foligno pt:1
+Plot:3/12) #41500003 1999, V.A.Roshchenko pt:5
+Plot:4/12) #13668006 1997, H.H.Saleh pt:1
+Plot:5/12) #41291006 1997, V.M.Piksaykin pt:1
+Plot:6/12) #12856002 1983, P.L.Reeder pt:1
+Plot:7/12) #10117002 1972, M.S.Krick pt:18
+Plot:8/12) #10117003 1972, M.S.Krick pt:9
+Plot:9/12) #12288010 1969, C.F.Masters pt:1
+Plot:10/12) #12288011 1969, C.F.Masters pt:1
+Plot:11/12) #142970062 1961, B.C.Diven pt:1
+Plot:12/12) #12435002 1960, W.I.Mc Garry pt:1
+Will try---write_image: U235nf_dl-nu.html.png
+
+Program successfully completed

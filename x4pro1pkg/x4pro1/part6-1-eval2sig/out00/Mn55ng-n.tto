@@ -1,0 +1,415 @@
+Program: sig1r.py, ver. 2025-03-26
+Author:  V.Zerkin, Vienna, 2024-2025
+Purpose: Retrieve EXFOR cross sections, ratios
+         and monitor data from SQL database,
+         convert ratios to cross sections,
+         renormalize cross sections to new monitors,
+         search and download ENDF data from Web,
+         plot evaluated and experimental data.
+Running: 2026-08-25 23:15:00
+
+---arg[0]:sig1r.py
+---arg[1]:Mn-55
+---arg[2]:n,g
+---arg[3]:-x:log
+---arg[4]:-y:log
+---arg[5]:-g:n
+---Reading blackList myBlackList.json with datasets to be ignored
+---blackList: 8 records
+---blackList: 5 datasets
+
+===Parameters:
+  target: "Mn-55"
+   react: "n,g"
+   quant: ",sig"
+   sProd: ""
+   xaxis: "log"
+   ytype: "log"
+   groupByMT: False
+   sortDatasets: True
+   markRejected: True
+   myBlackListFile: "myBlackList.json"
+   myBlackList: 5 datasets
+   outhtml: "Mn55ng-n"
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---Read x4evalscores from X4Pro database...
+
+---SQL:[
+select x4evalscore.fileID,x4evalscore.DatasetID
+	 ,x4evalscore.author
+	 ,x4evalscore_file.myComment
+	 ,x4evalscore.itype
+	 ,x4evalscore.accepted
+	 ,x4evalscore.evalflag
+	 ,x4evalscore.comment2
+	from x4evalscore
+	 left join x4evalscore_file on x4evalscore_file.fileID=x4evalscore.fileID
+	order by x4evalscore.itype,x4evalscore.DatasetID
+	
+]
+===SQL executed. Rows:21804
+---x4evalflags:19514 datasets
+
+___getX4SqlSearchCS: target:[Mn-55] react:[n,g] sProd:[]
+SQL:
+	select x4pro_c5dat.DatasetID
+	 ,x4pro_ds.x4status,x4pro_ds.MF,x4pro_ds.MT
+	 ,REACSTR.code as Reacode
+	 ,REACODE.fullCode
+	 ,x4pro_c5dat.idat as iPoint
+	 ,REACODE.Pointer,ENTRY.Entry,REACODE.SubAcc as Subent   
+	 ,ENTRY.YearRef1,ENTRY.nAuthors,ENTRY.Author1Ini,ENTRY.Author1 
+	 ,REACSTR.Target, REACSTR.Reaction
+	 ,lower(REACSTR.Projectile) as Projectile
+	 ,REACSTR.sProd,REACSTR.sTarg
+	 ,REACODE.zaTarget1,REACODE.zaIncident1
+	 ,REACODE.outParticles,REACODE.MF,REACODE.MT
+	 ,REACSTR.code as reacode1
+	 ,x4pro_c5dat.x1   as En
+	 ,x4pro_c5dat.dx1  as dEn
+	 ,x4pro_c5dat.y    as Sig
+	 ,x4pro_c5dat.dy   as dSig
+	 ,x4pro_c5dat.m0   as m0
+	 ,x4pro_c5dat.dm0  as dm0
+	 ,x4pro_c5dat.m1   as m1
+	 ,x4pro_c5dat.dm1  as dm1
+	 ,x4pro_c5dat.Fcm0 as Fc
+	 ,x4pro_autocorr.FcDecayData
+	 ,x4pro_autocorr.FcDecayMon
+	 ,x4pro_autocorr.autoCorr
+	from x4pro_c5dat
+	 inner join REACODE        on REACODE.ReacodeID=x4pro_c5dat.DatasetID
+	 inner join REACSTR        on REACSTR.ReacodeID=REACODE.ReacodeID
+	 inner join SUBENT         on REACODE.SubentID=SUBENT.SubentID
+	 inner join ENTRY          on ENTRY.EntryID=SUBENT.EntryID
+	 inner join x4pro_ds       on REACODE.ReacodeID=x4pro_ds.DatasetID
+	 left  join x4pro_autocorr on x4pro_autocorr.DatasetID=x4pro_ds.DatasetID
+	where
+	 (x4pro_ds.MF=3 or (x4pro_ds.MF=203 and x4pro_c5dat.m1 is not Null))
+	 and (REACSTR.iReacstr=1)
+	 and (x4pro_ds.x4status<>'S' and x4pro_ds.x4status<>'P')
+	 and (REACSTR.SF8='')
+	 and ((REACSTR.SF9='') or (REACSTR.SF9='EXP'))
+	 and (Target like 'Mn-55') 
+	 and ((Reaction like 'n,g' and REACSTR.SF58 like ',SIG') 
+	   or (REACSTR.Reaction like 'n,abs' and REACSTR.SF58 like ',ALF') 
+	 )
+	 and (sProd like '') 
+	order by
+	--  Reacode desc,
+	  ENTRY.YearRef1 desc,x4pro_c5dat.DatasetID
+	  ,En,x4pro_c5dat.idat
+
+EXFOR SQL executed: 0.114sec
+---All entries: 46
+11010*;11028*;11130*;11331*;11399*;11407*;11420*;11429*;11624*;11675*;12602*;12819*;14080*;14704*;20092*;20437*;20572*;20638*;20658*;20670*;21004*;21395*;21438*;21936*;22580*;22615*;23266*;23488*;30031*;30063*;30067*;30114*;30296*;30314*;30493*;30532*;30942*;31827*;33100*;33151*;40001*;40244*;40421*;40642*;40975*;41001*;
+
+___getDatasets from datapoints: 643
+-DS:  1) #31827002  2020,M.A.Islam                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS:  2) #33151006  2020,I.Pasha                  MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS:  3) #33100002  2016,V.Vansola                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS:  4) #23266033  2013,F.Farina Arbocco         MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS:  5) #309420021 1990,R.P.Gautam               MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS:  6) #309420022 1990,R.P.Gautam               MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT2
+-DS:  7) #23488014  1988,F.De Corte               MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS:  8) #40975011  1987,Yu.N.Trofimov            MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS:  9) #41001002  1987,Yu.N.Trofimov            MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 10) #128190032 1986,A.Arbildo                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 11) #21936009  1985,B.M.Bahal                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yR2
+-DS: 12) #21004002  1980,G.Magnusson              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS: 13) #30532020  1979,M.Budnar                 MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS: 14) #30296008  1977,Manjushree Majumder      MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n
+-DS: 15) #20572005  1976,C.Le Rigoleur            MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT2
+-DS: 16) #20670006  1976,O.Schwerer               MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS: 17) #20437003  1975,F.Widder                 MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 18) #30314005  1974,J.Vuletin                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS: 19) #12602006  1970,C.H.Hogg                 MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 20) #14080010  1970,R.P.Schuman              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 21) #30493002  1970,S.N.Chaturvedi           MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 22) #22615003  1969,E.K.Sokolowski           MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 23) #40001002  1969,A.G.Dovbenko             MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 24) #11624003  1968,D.C.Stupegia             MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 25) #20092006  1968,J.Colditz                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yN2
+-DS: 26) #30114006  1968,L.M.Spitz                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT2
+-DS: 27) #11420003  1967,H.O.Menlove              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 28) #30031003  1967,G.Peto                   MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT2
+-DS: 29) #30067010  1967,J.Csikai                 MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n
+-DS: 30) #30067020  1967,J.Csikai                 MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS: 31) #20658004  1966,J.C.Carre                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 32) #30063002  1965,A.K.Chaubey              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 33) #11331013  1963,R.L.Macklin              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 34) #11028009  1961,J.W.Meadows              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 35) #40642002  1961,Ju.Ya.Stavisskiy         MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yN1
+-DS: 36) #20638008  1960,R.B.Tattersall           MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 37) #11130008  1959,N.A.Bostrom              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT2
+-DS: 38) #11407004  1959,W.S.Lyon                 MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 39) #11675003  1959,A.E.Johnsrud             MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 40) #11429006  1958,R.Booth                  MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 41) #21438008  1958,J.L.Perkin               MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS: 42) #40244091  1958,A.I.Leipunskiy           MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yN2
+-DS: 43) #40244105  1958,A.I.Leipunskiy           MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yN2
+-DS: 44) #40421011  1958,V.N.Kononov              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,nT3
+-DS: 45) #11399009  1957,R.L.Macklin              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 46) #11010004  1951,V.Hummel                 MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT2
+-DS: 47) #21395017  1951,B.Grimeland              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS: 48) #22580003  1949,L.E.Beghian              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT2
+-DS: 49) #14704004  1939,H.L.Anderson             MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+---Extracted original datasets: 49
+
+___getDatasets from datapoints: 40
+-DS:  1) #31827002  2020,M.A.Islam                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS:  2) #33100002  2016,V.Vansola                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS:  3) #309420021 1990,R.P.Gautam               MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS:  4) #309420022 1990,R.P.Gautam               MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT2
+-DS:  5) #23488014  1988,F.De Corte               MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS:  6) #21004002  1980,G.Magnusson              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG
+-DS:  7) #30296008  1977,Manjushree Majumder      MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n
+-DS:  8) #14080010  1970,R.P.Schuman              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yT1
+-DS:  9) #30493002  1970,S.N.Chaturvedi           MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 10) #20092006  1968,J.Colditz                MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n,yN2
+-DS: 11) #11420003  1967,H.O.Menlove              MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --yT1
+-DS: 12) #30067010  1967,J.Csikai                 MF:3   MT:102 25-MN-55(N,G)25-MN-56,,SIG ds.reac:25-MN-55(N,G)25-MN-56,,SIG --n
+---Extracted automatically renormalized datasets: 12
+
+___getDatasets from datapoints: 0
+---Extract datasets converted from ratios: 0
+datasets:61 original:49X auto-corrected:12A* ratio2cs:0R#
+
+---getReacodes---Datasets: 61
+   Dataset:1/61) 25-MN-55(N,G)25-MN-56,,SIG 31827002 L.group:1
+   Dataset:2/61) 25-MN-55(N,G)25-MN-56,,SIG 31827002 L.group:2
+   Dataset:3/61) 25-MN-55(N,G)25-MN-56,,SIG 33151006 L.group:3
+   Dataset:4/61) 25-MN-55(N,G)25-MN-56,,SIG 21004002 L.group:4
+   Dataset:5/61) 25-MN-55(N,G)25-MN-56,,SIG 21004002 L.group:5
+   Dataset:6/61) 25-MN-55(N,G)25-MN-56,,SIG 30532020 L.group:6
+   Dataset:7/61) 25-MN-55(N,G)25-MN-56,,SIG 20670006 L.group:7
+   Dataset:8/61) 25-MN-55(N,G)25-MN-56,,SIG 30314005 L.group:8
+   Dataset:9/61) 25-MN-55(N,G)25-MN-56,,SIG 30067020 L.group:9
+   Dataset:10/61) 25-MN-55(N,G)25-MN-56,,SIG 21438008 L.group:10
+   Dataset:11/61) 25-MN-55(N,G)25-MN-56,,SIG 14704004 L.group:11
+   Dataset:12/61) 25-MN-55(N,G)25-MN-56,,SIG --n 30296008 L.group:1
+   Dataset:13/61) 25-MN-55(N,G)25-MN-56,,SIG --n 30296008 L.group:2
+   Dataset:14/61) 25-MN-55(N,G)25-MN-56,,SIG --n 30067010 L.group:3
+   Dataset:15/61) 25-MN-55(N,G)25-MN-56,,SIG --n 30067010 L.group:4
+   Dataset:16/61) 25-MN-55(N,G)25-MN-56,,SIG --n,nT3 40421011 L.group:1
+   Dataset:17/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yN2 20092006 L.group:1
+   Dataset:18/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yN2 20092006 L.group:2
+   Dataset:19/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yN2 40244091 L.group:3
+   Dataset:20/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yN2 40244105 L.group:4
+   Dataset:21/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yR2 21936009 L.group:1
+   Dataset:22/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 20437003 L.group:1
+   Dataset:23/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 12602006 L.group:2
+   Dataset:24/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 14080010 L.group:3
+   Dataset:25/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 14080010 L.group:4
+   Dataset:26/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 22615003 L.group:5
+   Dataset:27/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 20658004 L.group:6
+   Dataset:28/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 30063002 L.group:7
+   Dataset:29/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 11331013 L.group:8
+   Dataset:30/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 11028009 L.group:9
+   Dataset:31/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 20638008 L.group:10
+   Dataset:32/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 11407004 L.group:11
+   Dataset:33/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 11675003 L.group:12
+   Dataset:34/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 11429006 L.group:13
+   Dataset:35/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT1 21395017 L.group:14
+   Dataset:36/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT2 20572005 L.group:1
+   Dataset:37/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT2 30114006 L.group:2
+   Dataset:38/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT2 11010004 L.group:3
+   Dataset:39/61) 25-MN-55(N,G)25-MN-56,,SIG --n,yT2 22580003 L.group:4
+   Dataset:40/61) 25-MN-55(N,G)25-MN-56,,SIG --yN1 40642002 L.group:1
+   Dataset:41/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 33100002 L.group:1
+   Dataset:42/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 33100002 L.group:2
+   Dataset:43/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 23266033 L.group:3
+   Dataset:44/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 309420021 L.group:4
+   Dataset:45/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 309420021 L.group:5
+   Dataset:46/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 23488014 L.group:6
+   Dataset:47/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 23488014 L.group:7
+   Dataset:48/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 40975011 L.group:8
+   Dataset:49/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 41001002 L.group:9
+   Dataset:50/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 128190032 L.group:10
+   Dataset:51/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 30493002 L.group:11
+   Dataset:52/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 30493002 L.group:12
+   Dataset:53/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 40001002 L.group:13
+   Dataset:54/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 11624003 L.group:14
+   Dataset:55/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 11420003 L.group:15
+   Dataset:56/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 11420003 L.group:16
+   Dataset:57/61) 25-MN-55(N,G)25-MN-56,,SIG --yT1 11399009 L.group:17
+   Dataset:58/61) 25-MN-55(N,G)25-MN-56,,SIG --yT2 309420022 L.group:1
+   Dataset:59/61) 25-MN-55(N,G)25-MN-56,,SIG --yT2 309420022 L.group:2
+   Dataset:60/61) 25-MN-55(N,G)25-MN-56,,SIG --yT2 30031003 L.group:3
+   Dataset:61/61) 25-MN-55(N,G)25-MN-56,,SIG --yT2 11130008 L.group:4
+Reaction codes: 10 
+
+Plot:1/61) #31827002 2020, M.A.Islam pt:2
+Plot:2/61) #31827002 2020, M.A.Islam* pt:2
+Plot:3/61) #33151006 2020, I.Pasha pt:1
+Plot:4/61) #21004002 1980, G.Magnusson pt:1
+Plot:5/61) #21004002 1980, G.Magnusson* pt:1
+Plot:6/61) #30532020 1979, M.Budnar pt:1
+Plot:7/61) #20670006 1976, O.Schwerer pt:1
+Plot:8/61) #30314005 1974, J.Vuletin pt:1
+Plot:9/61) #30067020 1967, J.Csikai pt:7
+Plot:10/61) #21438008 1958, J.L.Perkin pt:1
+Plot:11/61) #14704004 1939, H.L.Anderson pt:1
+Plot:12/61) #30296008 1977, Manjushree Majumder pt:1
+Plot:13/61) #30296008 1977, Manjushree Majumder* pt:1
+Plot:14/61) #30067010 1967, J.Csikai pt:1
+Plot:15/61) #30067010 1967, J.Csikai* pt:1
+Plot:16/61) #40421011 1958, V.N.Kononov pt:1
+Plot:17/61) #20092006 1968, J.Colditz pt:1
+Plot:18/61) #20092006 1968, J.Colditz* pt:1
+Plot:19/61) #40244091 1958, A.I.Leipunskiy pt:2
+Plot:20/61) #40244105 1958, A.I.Leipunskiy pt:1
+Plot:21/61) #21936009 1985, B.M.Bahal pt:1
+Plot:22/61) #20437003 1975, F.Widder pt:261
+Plot:23/61) #12602006 1970, C.H.Hogg pt:1
+Plot:24/61) #14080010 1970, R.P.Schuman pt:1
+Plot:25/61) #14080010 1970, R.P.Schuman* pt:1
+Plot:26/61) #22615003 1969, E.K.Sokolowski pt:1
+Plot:27/61) #20658004 1966, J.C.Carre pt:1
+Plot:28/61) #30063002 1965, A.K.Chaubey pt:1
+Plot:29/61) #11331013 1963, R.L.Macklin pt:2
+Plot:30/61) #11028009 1961, J.W.Meadows pt:1
+Plot:31/61) #20638008 1960, R.B.Tattersall pt:1
+Plot:32/61) #11407004 1959, W.S.Lyon pt:1
+Plot:33/61) #11675003 1959, A.E.Johnsrud pt:18
+Plot:34/61) #11429006 1958, R.Booth pt:1
+Plot:35/61) #21395017 1951, B.Grimeland pt:1
+Plot:36/61) #20572005 1976, C.Le Rigoleur pt:200
+Plot:37/61) #30114006 1968, L.M.Spitz pt:29
+Plot:38/61) #11010004 1951, V.Hummel pt:1
+Plot:39/61) #22580003 1949, L.E.Beghian pt:1
+Plot:40/61) #40642002 1961, Ju.Ya.Stavisskiy pt:21
+Plot:41/61) #33100002 2016, V.Vansola pt:4
+Plot:42/61) #33100002 2016, V.Vansola* pt:4
+Plot:43/61) #23266033 2013, F.Farina Arbocco pt:3
+Plot:44/61) #309420021 1990, R.P.Gautam pt:3
+Plot:45/61) #309420021 1990, R.P.Gautam* pt:3
+Plot:46/61) #23488014 1988, F.De Corte pt:1
+Plot:47/61) #23488014 1988, F.De Corte* pt:1
+Plot:48/61) #40975011 1987, Yu.N.Trofimov pt:1
+Plot:49/61) #41001002 1987, Yu.N.Trofimov pt:1
+Plot:50/61) #128190032 1986, A.Arbildo pt:1
+Plot:51/61) #30493002 1970, S.N.Chaturvedi pt:1
+Plot:52/61) #30493002 1970, S.N.Chaturvedi* pt:1
+Plot:53/61) #40001002 1969, A.G.Dovbenko pt:22
+Plot:54/61) #11624003 1968, D.C.Stupegia pt:11
+Plot:55/61) #11420003 1967, H.O.Menlove pt:17
+Plot:56/61) #11420003 1967, H.O.Menlove* pt:17
+Plot:57/61) #11399009 1957, R.L.Macklin pt:1
+Plot:58/61) #309420022 1990, R.P.Gautam pt:7
+Plot:59/61) #309420022 1990, R.P.Gautam* pt:7
+Plot:60/61) #30031003 1967, G.Peto pt:1
+Plot:61/61) #11130008 1959, N.A.Bostrom pt:2
+
+___getEndfDataForPlot: [Mn-55] [n,g]
+---wgetdb_get:/servlet/E4sSearch2?Target=Mn-55&Reaction=n,g&Quantity=SIG&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Mn-55&Reaction=n,g&Quantity=SIG&json'
+txt={
+ "format":"WebEndfSectionsList-0.1" 
+ ,"now":"2026-08-25T16:42:04.000Z" 
+ ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
+ ,"req":1799
+,"sections":[
+ { "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":272564,"SectID":19170340,"PenSectID":24017951,"LibID":30003,"LibName":"INDEN-Aug2023","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":272544,"SectID":19164771,"PenSectID":24012307,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":301143,"SectID":21392886,"PenSectID":26227532,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":149518,"SectID":8953255,"PenSectID":13598498,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":57354,"SectID":2253170,"PenSectID":7625829,"LibID":75,"LibName":"ENDF/B-VII.1","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":15299,"SectID":210572,"PenSectID":7583603,"LibID":70,"LibName":"ENDF/B-VII.0","DATE":"DEC06","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":306651,"SectID":21538336,"PenSectID":26364781,"LibID":3400,"LibName":"JEFF-4.0","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":150513,"SectID":9053238,"PenSectID":13693668,"LibID":3300,"LibName":"JEFF-3.3","DATE":"20171231","AUTH":"IAEA Evaluation Consortium (Ib22)"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":96396,"SectID":3707094,"PenSectID":6698713,"LibID":3200,"LibName":"JEFF-3.2","DATE":"Oct13","AUTH":"IAEA Evaluation Consortium (Ib22)"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":57995,"SectID":2306321,"PenSectID":6665004,"LibID":3120,"LibName":"JEFF-3.1.2","DATE":"090105","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":22934,"SectID":541535,"PenSectID":7557349,"LibID":3100,"LibName":"JEFF-3.1","DATE":"090105","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":276817,"SectID":19194218,"PenSectID":24029283,"LibID":51,"LibName":"JENDL-5","DATE":"20210607","AUTH":"N.Iwamoto"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":39032,"SectID":1282424,"PenSectID":6848906,"LibID":40,"LibName":"JENDL-4.0","DATE":"20100121","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":9356,"SectID":118750,"PenSectID":6624030,"LibID":30,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":10033,"SectID":159159,"PenSectID":6581217,"LibID":31,"LibName":"JENDL-3.3","DATE":"20020214","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":9125,"SectID":103066,"PenSectID":7399300,"LibID":60,"LibName":"ENDF/B-VI","DATE":"20011108","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":9596,"SectID":135231,"PenSectID":6557289,"LibID":61,"LibName":"ENDF/B-VI","DATE":"20010926","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":118559,"SectID":6055371,"PenSectID":10716859,"LibID":41031,"LibName":"BROND-3.1","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":37985,"SectID":1218406,"PenSectID":6915728,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"JAN06","AUTH":"M.N.Nikolaev,Zabrodskaya S.V."}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":27261,"SectID":575315,"PenSectID":6875107,"LibID":41023,"LibName":"ROSFOND-2008","DATE":"JAN06","AUTH":"M.N.Nikolaev,Zabrodskaya S.V."}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":199090,"SectID":14176364,"PenSectID":18849605,"LibID":5040,"LibName":"CENDL-3.2","DATE":"950817","AUTH":"B.S.Yu, K.Shiba, K.Shibata, +"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":37681,"SectID":1195509,"PenSectID":6509811,"LibID":5030,"LibName":"CENDL-3.1","DATE":"950817","AUTH":"B.S.Yu, K.Shiba, K.Shibata, +"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":10310,"SectID":173984,"PenSectID":6952936,"LibID":9000,"LibName":"JEFF-3.1/A","DATE":"JUL03","AUTH":"Forrest, Kopecky, Sublet, Koning"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":202935,"SectID":14261026,"PenSectID":18940893,"LibID":34026,"LibName":"IRDFF-II","DATE":"Jul19","AUTH":"K.Zolotarev"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":202854,"SectID":14260398,"PenSectID":18940259,"LibID":34027,"LibName":"IRDFF-II-aux","DATE":"Jul19","AUTH":"K.Zolotarev"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":96825,"SectID":3762839,"PenSectID":15692848,"LibID":34025,"LibName":"IRDFF-1.05","DATE":"DEC06","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":15956,"SectID":249601,"PenSectID":15693668,"LibID":34021,"LibName":"IRDF-2002","DATE":"4","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":16006,"SectID":249887,"PenSectID":15693958,"LibID":34022,"LibName":"IRDF-2002G","DATE":"4","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":7408,"SectID":66698,"PenSectID":6596205,"LibID":2300,"LibName":"JEFF-3.0","DATE":"APR02","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":7001,"SectID":50004,"PenSectID":7540163,"LibID":2220,"LibName":"JEF-2.2","DATE":"920101","AUTH":"Scientific Co-Ordination Group"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":116246,"SectID":5877831,"PenSectID":6533930,"LibID":6039,"LibName":"JENDL-4.0/HE","DATE":"20150325","AUTH":"Iwamoto"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":199595,"SectID":14212407,"PenSectID":19370322,"LibID":6136,"LibName":"JENDL/ImPACT-18","DATE":"20150325","AUTH":"O.Iwamoto+"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":155114,"SectID":9155017,"PenSectID":13787349,"LibID":6135,"LibName":"JENDL/AD-2017","DATE":"20100121","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":20009,"SectID":432359,"PenSectID":6499883,"LibID":6038,"LibName":"JENDL/HE-2007","DATE":"MAY 3","AUTH":"K. Kosako"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":18711,"SectID":270369,"PenSectID":6490544,"LibID":6036,"LibName":"JENDL/HE-2004","DATE":"MAY 3","AUTH":"K. Kosako"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":116606,"SectID":5895692,"PenSectID":6646764,"LibID":32,"LibName":"JENDL-3.2","DATE":"AUG93","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":52665,"SectID":2151933,"PenSectID":7140992,"LibID":33010,"LibName":"EAF-2010","DATE":"SEP11","AUTH":""}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":289635,"SectID":20495335,"PenSectID":24491234,"LibID":61023,"LibName":"TENDL-2023","DATE":"DEC23","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":245776,"SectID":16084665,"PenSectID":20600261,"LibID":61022,"LibName":"TENDL-2021","DATE":"JAN22","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":197621,"SectID":13705576,"PenSectID":18348264,"LibID":61020,"LibName":"TENDL-2019.s60","DATE":"NOV19","AUTH":"A.J. Koning and D. Rochman"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":78333,"SectID":3086142,"PenSectID":6543833,"LibID":50,"LibName":"ENDF/B-V","DATE":"0","AUTH":"S.F. Mughabghab"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":199975,"SectID":14235021,"PenSectID":19356531,"LibID":39032,"LibName":"ADS-2.0","DATE":"DEC06","AUTH":"K.Shibata"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":302577,"SectID":21495478,"PenSectID":26326094,"LibID":33036,"LibName":"FENDL-3.2c","DATE":"Feb11","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":227864,"SectID":14629705,"PenSectID":19405543,"LibID":33035,"LibName":"FENDL-3.2b","DATE":"Feb11","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":142031,"SectID":8899227,"PenSectID":13486374,"LibID":33032,"LibName":"FENDL-3.1c","DATE":"Feb11","AUTH":"IAEA Evaluation Consortium"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":22840,"SectID":531618,"PenSectID":6470160,"LibID":33021,"LibName":"FENDL/E-2.1","DATE":"20020214","AUTH":"K.Shibata,T.Hojuyama"}
+,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":7754,"SectID":84827,"PenSectID":6462598,"LibID":5020,"LibName":"CENDL-2","DATE":"950817","AUTH":"B.Yu, K.Shiba, K.Shibata et al"}
+]
+}
+
+format=WebEndfSectionsList-0.1
+___Retrieved sections:47
+SelectedLib-Sect:3) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 102, 'MF': 3, 'R': 'N,G', 'RC': 'MN-55(N,G)MN-56,SIG', 'EvalID': 301143, 'SectID': 21392886, 'PenSectID': 26227532, 'LibID': 810, 'LibName': 'ENDF/B-VIII.1', 'DATE': '20240830', 'AUTH': 'IAEA Evaluation Consortium'}
+SelectedLib-Sect:8) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 102, 'MF': 3, 'R': 'N,G', 'RC': 'MN-55(N,G)MN-56,SIG', 'EvalID': 150513, 'SectID': 9053238, 'PenSectID': 13693668, 'LibID': 3300, 'LibName': 'JEFF-3.3', 'DATE': '20171231', 'AUTH': 'IAEA Evaluation Consortium (Ib22)'}
+SelectedLib-Sect:18) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 102, 'MF': 3, 'R': 'N,G', 'RC': 'MN-55(N,G)MN-56,SIG', 'EvalID': 118559, 'SectID': 6055371, 'PenSectID': 10716859, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': '20111222', 'AUTH': 'IAEA Evaluation Consortium'}
+SelectedLib-Sect:21) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 102, 'MF': 3, 'R': 'N,G', 'RC': 'MN-55(N,G)MN-56,SIG', 'EvalID': 199090, 'SectID': 14176364, 'PenSectID': 18849605, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': '950817', 'AUTH': 'B.S.Yu, K.Shiba, K.Shibata, +'}
+Required sections:4
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26227532&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26227532&json'
+Downloaded:1)	MN-55(N,G)MN-56,SIG	ENDF/B-VIII.1	PenSectID:26227532	pts:19765	idy=19765
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13693668&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13693668&json'
+Downloaded:2)	MN-55(N,G)MN-56,SIG	JEFF-3.3	PenSectID:13693668	pts:19977	idy=19977
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10716859&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10716859&json'
+Downloaded:3)	MN-55(N,G)MN-56,SIG	BROND-3.1	PenSectID:10716859	pts:19833	idy=19833
+---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18849605&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18849605&json'
+Downloaded:4)	MN-55(N,G)MN-56,SIG	CENDL-3.2	PenSectID:18849605	pts:18931	idy=18931
+
+EXFOR SQL executed:  0.114sec
+ENDF Web downloaded: 0.755sec
+Plot:1/4) 26227532	ENDF/B-VIII.1	pt:19765	color:0,0,255
+Plot:2/4) 13693668	JEFF-3.3	pt:19977	color:0,127,63
+Plot:3/4) 10716859	BROND-3.1	pt:19833	color:255,0,255
+Plot:4/4) 18849605	CENDL-3.2	pt:18931	color:255,0,0
+Will try---write_image: Mn55ng-n.html.png
+
+Program successfully completed

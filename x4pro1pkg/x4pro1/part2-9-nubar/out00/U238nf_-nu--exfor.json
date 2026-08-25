@@ -1,0 +1,23 @@
+{
+  "now":"2026-08-25T23:14:16"
+ ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
+ ,"datasets":[
+   {
+     "DatasetID":"21094007"
+    ,"Reacode":"92-U-238(N,F),,NU"
+    ,"x4lbl":"1968, J.Voignier"
+    ,"x_y_dy_dx_fc":[
+	 [ 14.1         ,4.46         ,0.4014       ,0.1         ]
+    ]
+  }
+  ,{
+     "DatasetID":"21139002"
+    ,"Reacode":"92-U-238(N,F),,NU"
+    ,"x4lbl":"1965, E.Barnard"
+    ,"x_y_dy_dx_fc":[
+	 [ 2.09         ,2.58        ]
+	,[ 4.91         ,3.02        ]
+    ]
+  }
+  ]
+}

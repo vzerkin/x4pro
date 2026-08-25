@@ -1,0 +1,53 @@
+{"SUBENT":"10031004", "isub":4, "compiled":19990719, "TransID":"0000", "TransDate":20050926, "x4dbVersion":"2023-03-15"
+    ,"BIB":{
+      "REACTION":[
+	{"x4pointer":" "
+	,"x4code":{"code":"25-MN-55(N,2N)25-MN-54,,SIG"
+	    ,"c4reac":"(N,2N),SIG"
+	    ,"combi":"a"
+	    ,"MF":3
+	    ,"MT":16
+	    ,"Units":"B"
+	    ,"reacs": [
+	    {"code":"25-MN-55(N,2N)25-MN-54,,SIG"
+		,"Reac":"N,2N"
+		,"SF1":"25-MN-55","Targ":{"code":"25-MN-55","nam":"Mn-55","ZA":25055}
+		,"SF2":"N","Proj":{"code":"N","nam":"n","ZA":1}
+		,"SF3":"2N"
+		,"SF4":"25-MN-54","Prod":{"code":"25-MN-54","nam":"Mn-54","ZAProd":25054}
+		,"SF6":"SIG"
+		,"SF58":",SIG","Quant":"CS","BasicUnits":"B","QuantHlp":"Cross section"
+	    }]}
+	}
+      ]
+     ,"SAMPLE":[
+	{"x4pointer":" "
+	,"x4code":null
+	,"x4freetext":["Mn02 powder, uniformly distributed between thin plastic"
+		," sheets, 7.6 by 7.6 cm."]
+	}
+      ]
+     ,"DECAY-DATA":[
+	{"x4pointer":" "
+	,"x4codes":[{"Nucl":"25-MN-54"
+	, "Radiations":[ {"Type":"DG", "Energy":[835.0], "Intensity":1.0}]}]
+	,"x4freetext":[" Saturation activity (10**(-18)dps/nucleus) = 11.06."]
+	}
+      ]
+    }
+    ,"DATA":{"ncols":2, "nrows":1
+      ,"x4headers":[
+       {"icol":0, "header":"DATA", "units":"MB", "pointer":" "
+	,"headerHelp":"Value of quantity specified under REACTION", "pFlag":"0001000"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ,{"icol":1, "header":"DATA-ERR", "units":"MB", "pointer":" "
+	,"headerHelp":"Error in value of quantity, defined under ERR-ANALYS", "pFlag":"0009110"
+	,"unitsHelp":"millibarns","familyCode":"B","convFc":0.001,"basicUnits":"B"}
+      ]
+      ,"datacols":[
+	 ["DATA"      ,"DATA-ERR"  ]
+	,["MB"        ,"MB"        ]
+	,[" "         ," "         ]]
+      ,"data":[
+	 [750.0       ,60.0        ]]}
+}

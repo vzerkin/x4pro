@@ -1,0 +1,121 @@
+<html>
+<head>
+<style type="text/css" media="print">
+@page {
+  @bottom-right {
+    content: counter(page) " of " counter(pages);
+  }
+}
+</style>
+<script language=javascript>
+var dirMap=new Map([
+	["part1-0-sig","Retrieve and plot EXFOR cross sections (plain Python-program)"]
+	,["part1-1-sig","Retrieve and plot EXFOR cross sections (modular Python-program)"]
+	,["part1-2-da","EXFOR angular distributions"]
+	,["part1-3-dap","EXFOR partial angular distributions"]
+	,["part1-4-de","EXFOR energy spectra of outgoing particles"]
+	,["part1-5-dae","EXFOR double differential cross sections"]
+	,["part1-6-fy","EXFOR fission yield"]
+	,["part1-7-covar","Retrieve and plot covariance data stored in EXFOR"]
+	,["part1-8-reac","EXFOR universal: SIG,SIG-T,SIG-PAR,DA,DE,DA-PAR,FY,NUBAR,TKE,ETA"]
+	,["part1-fortran","Retrieve data from EXFOR using SQL from Fortran programs"]
+	,["part2-1-sig1","Retrieve and plot EXFOR/ENDF cross sections"]
+	,["part2-2-da1an","EXFOR/ENDF angular distributions (Ei:fixed)"]
+	,["part2-3-da1ei","EXFOR/ENDF angular distributions (angle:fixed)"]
+	,["part2-4-de1eo","EXFOR/ENDF energy spectra of outgoing particles"]
+	,["part2-5-dae1eo","EXFOR/ENDF double differential cross sections"]
+	,["part2-6-fy","EXFOR/ENDF fission yeild (mass distribution)"]
+	,["part2-7-fye","EXFOR/ENDF fission yeild (energy distribution)"]
+	,["part2-8-sig1par","EXFOR/ENDF partial cross sections CSP:MT51"]
+	,["part3-1-auto1","Automatically renormalize EXFOR CS using old monitor CS and new standards"]
+	,["part3-2-user1","Correct data from EXFOR by user's program"]
+	,["part3-3-expert1","Apply experts corrections stored in X4Pro database"]
+	,["part3-4-auto2","Automatically renormalize EXFOR CS using old monitor CS and new standards, old and new decay data"]
+	,["part3-5-ratio2sig","Retrieve ratios, calculate CS and uncertainties using latest standards"]
+	,["part3-6-daleg2sig","Retrieve from EXFOR: Legendre coefficient L[0], calculate cross sections and errors"]
+	,["part3-7-legrs2da","EXFOR LEG/RS and SIG from the same Entry; calc. missing Legendre coefficient L[0]; calc. angular distributions"]
+	,["part3-8-leg2r33","Retrieve Legendre coefficient calculate angular distributions store R33dat (draft of R33)"]
+	,["part5-0-sql","SQL to find zero values of PARITY, ERR-T and DATA-ERR"]
+	,["part6-0-eval1flags","Generate summary tables with evaluators' flags and scores"]
+	,["part6-1-eval2sig","Retrieve CS, ratios, monit-data; renormalize to new standards and decay data; convert ratios to CS"]
+    ]);
+</script>
+<script language=javascript>
+var num=0;
+var prevDir='';
+    function out1(filename) {
+	var ii,nowDir='',shortHelp='',str1='';
+	var str=filename.replace(/ /g,'');
+	var hh=600;
+	if (filename.indexOf('couchdb')>=0) hh=760;
+	num++;
+	ii=filename.lastIndexOf('/');
+	if (ii>0) nowDir=filename.substring(0,ii);
+	ii=nowDir.lastIndexOf('/');
+	if (ii>0) nowDir=nowDir.substring(0,ii);
+	document.write('<div style="page-break-inside:avoid;">');
+	if (nowDir!=prevDir) {
+	    str1=nowDir+'/';
+	    shortHelp=dirMap.get(nowDir);
+	    if (typeof shortHelp!='undefined') str1+=' &nbsp; <i>'+shortHelp+'</i>';
+	    document.write('<div style="font-size:16pt;color:#fff;background-color:#44f;padding-left:10px;margin-bottom:4px;">'+str1+'</div>');
+	    prevDir=nowDir;
+	}
+        document.write('<div style="font-size:20pt;font-family:calibry;color:#a0a;'
+	+'border:1px solid #aaa;border-bottom:none;border-radius:6px 6px 0 0;margin-bottom:-1px;margin-left:10px;display:table;position:relative;'
+	+'padding-left:9px;padding-right:9px;background-color:#fff;">'
+	+num+') '+str+'</div>');
+        document.write('<div style="border:1px solid #aaa;display:table;">');
+        document.write('<img src="'+str+'" height='+hh+'>');
+        document.write('</div><br>');
+	document.write('</div>');
+    }
+</script>
+</head>
+<body bgcolor="#ddddff">
+<big><big><b>X4Pro. Plotting via Plotly.</b></big></big>
+<br><br>
+<script language="javascript">
+    out1("part1-1-sig/out00/Al27na-1.html.png         ");
+    out1("part1-1-sig/out00/Al27na-2.html.png         ");
+    out1("part1-2-da/out00/da0an.html.png             ");
+    out1("part1-3-dap/out00/dap0ei.html.png           ");
+    out1("part1-4-de/out00/de0eo.html.png             ");
+    out1("part1-5-dae/out00/dae0eo.html.png           ");
+    out1("part1-6-fy/out00/U238nf-fy.html.png         ");
+    out1("part2-1-sig1/out00/Al27na.html.png          ");
+    out1("part2-1-sig1/out00/Al27na2.html.png         ");
+    out1("part2-1-sig1/out00/mn55ng.html.png          ");
+    out1("part2-2-da1an/out00/da1an.html.png          ");
+    out1("part2-3-da1ei/out00/da1ei-ex2.html.png      ");
+    out1("part2-3-da1ei/out00/da1ei.html.png          ");
+    out1("part2-4-de1eo/out00/de1eo.html.png          ");
+    out1("part2-5-dae1eo/out00/dae1eo.html.png        ");
+    out1("part2-6-fy/out00/U238nf-fy.html.png         ");
+    out1("part2-7-fye/out00/Pu239-nf-Mo99-cumFY.html.png");
+    out1("part2-7-fye/out00/u235-nf-cd115g-cumFY.html.png");
+    out1("part2-7-fye/out00/u235-nf-kr85m-cumFY.html.png");
+    out1("part3-1-auto1/out00/auto1.html.png          ");
+    out1("part3-2-user1/out00/user1.html.png          ");
+    out1("part3-3-expert1/out00/expert1.html.png      ");
+    out1("part3-4-auto2/out00/auto2.html.png          ");
+    out1("part3-5-ratio2sig/out00/ratio2cs.html.png   ");
+    out1("part3-6-daleg2sig/out00/B11nel.html.png     ");
+    out1("part3-7-legrs2da/out00/Cu0nel_da.html.png   ");
+    out1("part3-8-leg2r33/out00/da1ei_leg2da.html.png ");
+    out1("part6-1-eval2sig/out00/Al27na.html.png      ");
+    out1("part6-1-eval2sig/out00/Mn55ng-n.html.png    ");
+    out1("part6-1-eval2sig/out00/Mn55ng.html.png      ");
+    out1("part6-1-eval2sig/out00/Pu240nf-n.html.png   ");
+    out1("part6-1-eval2sig/out00/U235ng.html.png      ");
+    out1("part6-1-eval2sig/out00/Zn64np.html.png      ");
+</script>
+
+<hr>
+<font face="helvetica" size="1">
+  Created by <a HREF="mailto:zerkin@iaeand.iaea.org">V.Zerkin</a>, 09-Aug-2026<br>
+  <script language="javascript">  document.write(" Last updated: "+document.lastModified) </script>
+</font>
+
+</body>
+</html>
