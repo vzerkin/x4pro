@@ -1,0 +1,940 @@
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-08-27       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-08-28 13:27:07
+
+---Arguments from command-line---
+   1  arg: -o:a1495
+   2  arg: -ds:a1495*
+   3  arg: -fx:1e6
+   4  arg: -fy:1e-3
+   5  arg: -lines
+   6  arg: -sym
+   7  arg: -annot:1.4,8.5,<b>A1495.x4:*,da</b>
+   ---str2annot:[1.4,8.5,<b>A1495.x4:*,da</b>] --> ('<b>A1495.x4:*,da</b>', 1.4, 8.5)
+   8  arg: *,DA
+
+---Input:
+   Reaction:  ['*,DA']
+   xn:        x1
+   x1range:   None - None
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        0.001
+   nPntMin:   1
+   xrange:    None
+   Output:    a1495
+   x4ei:       and (  (dsid like 'a1495%') )
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 5
+----1.
+    fullCode       3-LI-6(HE3,P)4-BE-8,PAR,DA
+    ReactionType   DAP        Partial differential d/dAngle
+    WebQuantity1   DAP        Partial differential data with respect to angle
+    nx             3          Number of x (independent variables)
+    y     c5data   B/SR       Data: data                           ///barns/steradian
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    LVL      EV         Secondary energy: level energy       ///electron-Volts
+    x3    ANG      ADEG       Angle: angle                         ///angular Degrees
+----3.
+    fullCode       5-B-10(HE3,P)6-C-12,PAR,DA
+    ReactionType   DAP        Partial differential d/dAngle
+    WebQuantity1   DAP        Partial differential data with respect to angle
+    nx             3          Number of x (independent variables)
+    y     c5data   B/SR       Data: data                           ///barns/steradian
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    LVL      EV         Secondary energy: level energy       ///electron-Volts
+    x3    ANG      ADEG       Angle: angle                         ///angular Degrees
+----5.
+    fullCode       6-C-13(HE3,P)7-N-15,PAR,DA
+    ReactionType   DAP        Partial differential d/dAngle
+    WebQuantity1   DAP        Partial differential data with respect to angle
+    nx             3          Number of x (independent variables)
+    y     c5data   B/SR       Data: data                           ///barns/steradian
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    LVL      EV         Secondary energy: level energy       ///electron-Volts
+    x3    ANG      ADEG       Angle: angle                         ///angular Degrees
+/Summary of Reaction-Codes
+Summary of Units 3
+---basicUnits:B/SR        category:DA
+   DA   1/4   NB/SR       1e-09           nanobarns per steradian
+   DA   2/4   MU-B/SR     1e-06           microbarns per steradian
+   DA   3/4   MB/SR       0.001           millibarns per steradian
+   DA   4/4   B/SR        1.0             barns/steradian
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+---basicUnits:ADEG        category:A
+   A    1/3   AMIN        0.016667        angular Minutes
+   A    2/3   ADEG        1.0             angular Degrees
+   A    3/3   ARAD        57.296          radians
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x1  reacodes: ['*,DA']
+SQL:
+select *                                                   
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x1 as XX, dx1 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x1'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+  (fullCode like '%,DA')
+ ) 
+ and (  (dsid like 'a1495%') )  order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 754
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:754 xn=x1  fx=1.0e-06 fy=1.0e+03
+
+-new-1) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+1/754:1) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:0.8982 y:0.257041 dy:0.0514082 dx:None
+
+-new-2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+2/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:0.9032 y:0.314341 dy:0.0628681 dx:None
+3/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:0.9266 y:0.332349 dy:0.0664698 dx:None
+4/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:0.9588 y:0.329704 dy:0.0659409 dx:None
+5/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:0.9638 y:0.418078 dy:0.0836156 dx:None
+6/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.001 y:0.537542 dy:0.107508 dx:None
+7/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.033 y:0.673769 dy:0.134754 dx:None
+8/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.042 y:0.55843 dy:0.111686 dx:None
+9/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.061 y:0.759679 dy:0.151936 dx:None
+10/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.088 y:0.672232 dy:0.134446 dx:None
+11/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.093 y:0.846149 dy:0.16923 dx:None
+12/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.13 y:0.949964 dy:0.189993 dx:None
+13/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.143 y:0.799832 dy:0.159966 dx:None
+14/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.144 y:1.00168 dy:0.200337 dx:None
+15/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.18 y:0.898728 dy:0.179746 dx:None
+16/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.181 y:1.14019 dy:0.228038 dx:None
+17/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.19 y:0.926657 dy:0.185331 dx:None
+18/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.204 y:1.2767 dy:0.255339 dx:None
+19/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.222 y:1.36316 dy:0.272633 dx:None
+20/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.227 y:0.968913 dy:0.193783 dx:None
+21/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.25 y:1.45032 dy:0.290064 dx:None
+22/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.26 y:0.969504 dy:0.193901 dx:None
+23/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.279 y:0.968807 dy:0.193761 dx:None
+24/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.282 y:1.55459 dy:0.310919 dx:None
+25/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.302 y:0.955294 dy:0.191059 dx:None
+26/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.32 y:1.5591 dy:0.31182 dx:None
+27/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.33 y:0.983248 dy:0.19665 dx:None
+28/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.34 y:0.969322 dy:0.193864 dx:None
+29/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.348 y:1.64672 dy:0.329345 dx:None
+30/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.359 y:0.968648 dy:0.19373 dx:None
+31/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.376 y:1.64957 dy:0.329914 dx:None
+32/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.378 y:0.968883 dy:0.193777 dx:None
+33/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.395 y:1.61718 dy:0.323437 dx:None
+34/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.396 y:0.954719 dy:0.190944 dx:None
+35/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.414 y:1.58586 dy:0.317172 dx:None
+36/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.415 y:0.941445 dy:0.188289 dx:None
+37/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.43 y:0.927423 dy:0.185485 dx:None
+38/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.442 y:1.65694 dy:0.331387 dx:None
+39/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.453 y:0.927571 dy:0.185514 dx:None
+40/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.48 y:1.59189 dy:0.318378 dx:None
+41/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.486 y:0.940895 dy:0.188179 dx:None
+42/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.494 y:1.59381 dy:0.318761 dx:None
+43/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.505 y:0.941175 dy:0.188235 dx:None
+44/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.519 y:0.927245 dy:0.185449 dx:None
+45/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.523 y:1.52802 dy:0.305605 dx:None
+46/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.561 y:1.01116 dy:0.202231 dx:None
+47/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.565 y:1.60114 dy:0.320228 dx:None
+48/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.584 y:1.09465 dy:0.218929 dx:None
+49/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.603 y:1.45 dy:0.29 dx:None
+50/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.611 y:1.16353 dy:0.232705 dx:None
+51/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.627 y:1.41848 dy:0.283695 dx:None
+52/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.654 y:1.17708 dy:0.235417 dx:None
+53/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.66 y:1.40424 dy:0.280848 dx:None
+54/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.714 y:1.28817 dy:0.257635 dx:None
+55/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.717 y:1.32318 dy:0.264637 dx:None
+56/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.742 y:1.28791 dy:0.257583 dx:None
+57/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.745 y:1.35947 dy:0.271895 dx:None
+58/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.77 y:1.2743 dy:0.25486 dx:None
+59/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.787 y:1.36357 dy:0.272713 dx:None
+60/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.806 y:1.34851 dy:0.269702 dx:None
+61/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.822 y:1.25978 dy:0.251955 dx:None
+62/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.846 y:1.30152 dy:0.260303 dx:None
+63/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.853 y:1.42091 dy:0.284183 dx:None
+64/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.882 y:1.33692 dy:0.267384 dx:None
+65/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.888 y:1.31494 dy:0.262988 dx:None
+66/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.91 y:1.3392 dy:0.267841 dx:None
+67/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.911 y:1.31491 dy:0.262983 dx:None
+68/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.963 y:1.32793 dy:0.265586 dx:None
+69/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.967 y:1.2754 dy:0.25508 dx:None
+70/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:1.991 y:1.36932 dy:0.273864 dx:None
+71/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.995 y:1.29471 dy:0.258943 dx:None
+72/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.028 y:1.31424 dy:0.262848 dx:None
+73/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.039 y:1.30022 dy:0.260044 dx:None
+74/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.071 y:1.1787 dy:0.235739 dx:None
+75/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.076 y:1.38271 dy:0.276543 dx:None
+76/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.094 y:1.21608 dy:0.243217 dx:None
+77/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.1 y:1.31382 dy:0.262765 dx:None
+78/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.155 y:1.25487 dy:0.250973 dx:None
+79/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.156 y:1.28619 dy:0.257238 dx:None
+80/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.179 y:1.18805 dy:0.237611 dx:None
+81/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.18 y:1.32758 dy:0.265517 dx:None
+82/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.217 y:1.35436 dy:0.270873 dx:None
+83/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.226 y:1.19075 dy:0.23815 dx:None
+84/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.269 y:1.15997 dy:0.231993 dx:None
+85/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.273 y:1.34087 dy:0.268173 dx:None
+86/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.316 y:1.16259 dy:0.232519 dx:None
+87/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.316 y:1.31299 dy:0.262598 dx:None
+88/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.34 y:1.31302 dy:0.262604 dx:None
+89/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.348 y:1.27073 dy:0.254146 dx:None
+90/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.377 y:1.3809 dy:0.276181 dx:None
+91/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.391 y:1.27448 dy:0.254897 dx:None
+92/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.419 y:1.42223 dy:0.284446 dx:None
+93/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.424 y:1.20632 dy:0.241265 dx:None
+94/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.466 y:1.29778 dy:0.259555 dx:None
+95/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.47 y:1.5304 dy:0.30608 dx:None
+96/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.485 y:1.29841 dy:0.259682 dx:None
+97/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.493 y:1.55655 dy:0.311311 dx:None
+98/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.55 y:1.52987 dy:0.305975 dx:None
+99/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.556 y:1.23357 dy:0.246715 dx:None
+100/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.582 y:1.61051 dy:0.322102 dx:None
+101/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.598 y:1.25458 dy:0.250917 dx:None
+102/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.621 y:1.36203 dy:0.272407 dx:None
+103/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.633 y:1.66412 dy:0.332824 dx:None
+104/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.663 y:1.43661 dy:0.287322 dx:None
+105/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.663 y:1.41803 dy:0.283605 dx:None
+106/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.67 y:1.75819 dy:0.351638 dx:None
+107/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.707 y:1.82518 dy:0.365036 dx:None
+108/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.71 y:1.43941 dy:0.287883 dx:None
+109/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.74 y:1.85147 dy:0.370295 dx:None
+110/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.753 y:1.31986 dy:0.263972 dx:None
+111/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.791 y:1.91851 dy:0.383702 dx:None
+112/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.8 y:1.3761 dy:0.27522 dx:None
+113/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.834 y:1.86459 dy:0.372918 dx:None
+114/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.837 y:1.4671 dy:0.29342 dx:None
+115/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.87 y:1.52308 dy:0.304617 dx:None
+116/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.871 y:1.93041 dy:0.386082 dx:None
+117/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.917 y:1.4745 dy:0.2949 dx:None
+118/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.918 y:2.02417 dy:0.404834 dx:None
+119/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.965 y:2.02367 dy:0.404735 dx:None
+120/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.969 y:1.37097 dy:0.274195 dx:None
+121/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:2.988 y:2.07693 dy:0.415387 dx:None
+122/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.002 y:1.46331 dy:0.292662 dx:None
+123/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.068 y:2.07571 dy:0.415142 dx:None
+124/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.082 y:1.39791 dy:0.279582 dx:None
+125/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.109 y:2.24839 dy:0.449678 dx:None
+126/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.13 y:1.27612 dy:0.255224 dx:None
+127/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.146 y:2.24738 dy:0.449476 dx:None
+128/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.167 y:1.35117 dy:0.270234 dx:None
+129/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.199 y:2.15374 dy:0.430748 dx:None
+130/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.21 y:1.3536 dy:0.270721 dx:None
+131/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.24 y:2.23241 dy:0.446482 dx:None
+132/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.242 y:1.44632 dy:0.289265 dx:None
+133/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.283 y:2.24573 dy:0.449146 dx:None
+134/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.304 y:1.34335 dy:0.268671 dx:None
+135/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.339 y:2.27125 dy:0.454249 dx:None
+136/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.342 y:1.23829 dy:0.247657 dx:None
+137/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.379 y:1.40211 dy:0.280423 dx:None
+138/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.387 y:2.20393 dy:0.440787 dx:None
+139/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.414 y:2.30947 dy:0.461893 dx:None
+140/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.422 y:1.31594 dy:0.263189 dx:None
+141/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.476 y:2.21599 dy:0.443199 dx:None
+142/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.478 y:1.26542 dy:0.253083 dx:None
+143/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.518 y:2.22854 dy:0.445708 dx:None
+144/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.53 y:1.28687 dy:0.257375 dx:None
+145/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.564 y:2.36013 dy:0.472026 dx:None
+146/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.573 y:1.2548 dy:0.250961 dx:None
+147/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.612 y:2.32036 dy:0.464072 dx:None
+148/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.629 y:1.31314 dy:0.262627 dx:None
+149/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.664 y:2.27965 dy:0.455929 dx:None
+150/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.671 y:1.31541 dy:0.263081 dx:None
+151/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.71 y:2.38452 dy:0.476905 dx:None
+152/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.718 y:1.28215 dy:0.25643 dx:None
+153/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.757 y:2.3178 dy:0.463559 dx:None
+154/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.765 y:1.30472 dy:0.260944 dx:None
+155/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.799 y:2.46166 dy:0.492332 dx:None
+156/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.817 y:1.27149 dy:0.254298 dx:None
+157/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.846 y:2.40856 dy:0.481712 dx:None
+158/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.864 y:1.29288 dy:0.258576 dx:None
+159/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.898 y:2.36888 dy:0.473776 dx:None
+160/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.907 y:1.15094 dy:0.230187 dx:None
+161/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.945 y:2.38108 dy:0.476217 dx:None
+162/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.954 y:1.20912 dy:0.241823 dx:None
+163/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:3.987 y:2.43321 dy:0.486641 dx:None
+164/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.001 y:1.26631 dy:0.253262 dx:None
+165/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.043 y:2.44494 dy:0.488988 dx:None
+166/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.053 y:1.26991 dy:0.253981 dx:None
+167/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.086 y:2.45812 dy:0.491624 dx:None
+168/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.101 y:1.14582 dy:0.229165 dx:None
+169/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.128 y:2.47049 dy:0.494098 dx:None
+170/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.138 y:1.25748 dy:0.251497 dx:None
+171/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.164 y:2.6397 dy:0.52794 dx:None
+172/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.19 y:1.16994 dy:0.233989 dx:None
+173/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.22 y:2.69077 dy:0.538153 dx:None
+174/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.231 y:1.35553 dy:0.271105 dx:None
+175/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.273 y:2.57305 dy:0.51461 dx:None
+176/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.284 y:1.1397 dy:0.22794 dx:None
+177/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.32 y:2.55909 dy:0.511818 dx:None
+178/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.331 y:1.17932 dy:0.235865 dx:None
+179/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.362 y:2.58481 dy:0.516962 dx:None
+180/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.373 y:1.2735 dy:0.254699 dx:None
+181/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.391 y:2.5843 dy:0.516859 dx:None
+182/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.429 y:1.29518 dy:0.259036 dx:None
+183/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.437 y:2.62236 dy:0.524473 dx:None
+184/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.472 y:1.17048 dy:0.234097 dx:None
+185/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.489 y:2.68687 dy:0.537375 dx:None
+186/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.52 y:2.81586 dy:0.563173 dx:None
+187/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.534 y:1.10116 dy:0.220232 dx:None
+188/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.582 y:2.71087 dy:0.542175 dx:None
+189/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.614 y:2.83961 dy:0.567921 dx:None
+190/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.666 y:2.81285 dy:0.56257 dx:None
+191/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.704 y:2.77433 dy:0.554866 dx:None
+192/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.756 y:2.7477 dy:0.54954 dx:None
+193/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.818 y:2.73316 dy:0.546632 dx:None
+194/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.86 y:2.74619 dy:0.549238 dx:None
+195/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.906 y:2.79641 dy:0.559282 dx:None
+196/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.935 y:2.74524 dy:0.549047 dx:None
+197/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:4.992 y:2.71858 dy:0.543717 dx:None
+198/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:5.011 y:2.71773 dy:0.543546 dx:None
+199/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:5.02 y:2.71816 dy:0.543632 dx:None
+200/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:5.048 y:2.71774 dy:0.543548 dx:None
+201/754:2) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 Lvl=0MeV Ang=150&deg; 1956 Schiffer x:5.076 y:2.80762 dy:0.561525 dx:None
+
+-new-3) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+202/754:3) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:0.8989 y:0.726541 dy:0.145308 dx:None
+
+-new-4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+203/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:0.9053 y:1.08392 dy:0.216784 dx:None
+204/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:0.9216 y:0.81675 dy:0.16335 dx:None
+205/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:0.9354 y:1.24984 dy:0.249968 dx:None
+206/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:0.9518 y:0.951487 dy:0.190297 dx:None
+207/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:0.9554 y:1.04225 dy:0.208449 dx:None
+208/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:0.9616 y:1.42934 dy:0.285868 dx:None
+209/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:0.9804 y:1.55373 dy:0.310745 dx:None
+210/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:0.9971 y:1.16501 dy:0.233002 dx:None
+211/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.006 y:1.78891 dy:0.357782 dx:None
+212/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.008 y:1.24326 dy:0.248652 dx:None
+213/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.04 y:2.03858 dy:0.407716 dx:None
+214/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.05 y:1.40018 dy:0.280036 dx:None
+215/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.062 y:2.26015 dy:0.452031 dx:None
+216/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.085 y:2.50985 dy:0.50197 dx:None
+217/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.088 y:1.5669 dy:0.313379 dx:None
+218/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.114 y:2.77509 dy:0.555017 dx:None
+219/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.125 y:1.77788 dy:0.355576 dx:None
+220/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.137 y:2.99808 dy:0.599617 dx:None
+221/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.163 y:1.92174 dy:0.384349 dx:None
+222/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.174 y:3.23774 dy:0.647549 dx:None
+223/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.193 y:3.51545 dy:0.703091 dx:None
+224/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.194 y:2.02032 dy:0.404065 dx:None
+225/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.223 y:3.61747 dy:0.723495 dx:None
+226/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.232 y:2.08544 dy:0.417088 dx:None
+227/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.245 y:3.81413 dy:0.762825 dx:None
+228/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.251 y:1.98413 dy:0.396825 dx:None
+229/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.258 y:2.01716 dy:0.403431 dx:None
+230/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.279 y:3.98624 dy:0.797248 dx:None
+231/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.317 y:4.1036 dy:0.820721 dx:None
+232/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.319 y:2.02431 dy:0.404861 dx:None
+233/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.336 y:4.21817 dy:0.843633 dx:None
+234/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.35 y:2.16752 dy:0.433504 dx:None
+235/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.358 y:4.416 dy:0.8832 dx:None
+236/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.392 y:4.43614 dy:0.887228 dx:None
+237/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.395 y:2.16399 dy:0.432797 dx:None
+238/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.414 y:4.83032 dy:0.966065 dx:None
+239/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.437 y:2.21752 dy:0.443503 dx:None
+240/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.441 y:4.76562 dy:0.953124 dx:None
+241/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.471 y:2.42546 dy:0.485093 dx:None
+242/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.472 y:4.74403 dy:0.948806 dx:None
+243/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.494 y:2.61237 dy:0.522474 dx:None
+244/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.494 y:4.92957 dy:0.985915 dx:None
+245/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.497 y:2.74518 dy:0.549036 dx:None
+246/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.515 y:3.15235 dy:0.630469 dx:None
+247/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.525 y:4.73945 dy:0.94789 dx:None
+248/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.552 y:3.58006 dy:0.716012 dx:None
+249/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.571 y:4.72001 dy:0.944002 dx:None
+250/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.593 y:4.07254 dy:0.814508 dx:None
+251/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.599 y:4.29195 dy:0.858391 dx:None
+252/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.627 y:4.38754 dy:0.877509 dx:None
+253/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.639 y:3.62545 dy:0.72509 dx:None
+254/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.657 y:4.3072 dy:0.861441 dx:None
+255/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.67 y:3.4203 dy:0.684059 dx:None
+256/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.689 y:4.01683 dy:0.803366 dx:None
+257/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.709 y:3.17255 dy:0.63451 dx:None
+258/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.739 y:3.74815 dy:0.74963 dx:None
+259/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.743 y:3.24623 dy:0.649246 dx:None
+260/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.774 y:3.56937 dy:0.713874 dx:None
+261/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.781 y:3.39184 dy:0.678367 dx:None
+262/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.797 y:3.52317 dy:0.704634 dx:None
+263/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.811 y:3.53685 dy:0.707369 dx:None
+264/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.832 y:3.31211 dy:0.662423 dx:None
+265/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.853 y:3.65507 dy:0.731015 dx:None
+266/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.866 y:3.23225 dy:0.64645 dx:None
+267/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.89 y:3.85824 dy:0.771648 dx:None
+268/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.897 y:3.13156 dy:0.626313 dx:None
+269/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.928 y:4.23156 dy:0.846311 dx:None
+270/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:1.95 y:3.18242 dy:0.636483 dx:None
+271/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.95 y:4.29132 dy:0.858264 dx:None
+272/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:1.999 y:4.58166 dy:0.916332 dx:None
+273/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.023 y:3.05708 dy:0.611415 dx:None
+274/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.03 y:4.65778 dy:0.931556 dx:None
+275/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.061 y:3.19504 dy:0.639009 dx:None
+276/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.075 y:4.87769 dy:0.975538 dx:None
+277/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.095 y:3.29076 dy:0.658152 dx:None
+278/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.108 y:5.12494 dy:1.02499 dx:None
+279/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.122 y:3.22298 dy:0.644596 dx:None
+280/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.142 y:5.21581 dy:1.04316 dx:None
+281/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.173 y:5.33502 dy:1.067 dx:None
+282/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.175 y:3.38194 dy:0.676388 dx:None
+283/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.213 y:3.3467 dy:0.66934 dx:None
+284/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.229 y:5.573 dy:1.1146 dx:None
+285/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.252 y:5.74773 dy:1.14955 dx:None
+286/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.255 y:3.23477 dy:0.646955 dx:None
+287/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.293 y:5.95546 dy:1.19109 dx:None
+288/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.294 y:3.24275 dy:0.648549 dx:None
+289/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.328 y:6.01864 dy:1.20373 dx:None
+290/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.339 y:3.40185 dy:0.68037 dx:None
+291/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.373 y:6.14229 dy:1.22846 dx:None
+292/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.385 y:3.32327 dy:0.664654 dx:None
+293/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.415 y:6.17793 dy:1.23559 dx:None
+294/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.427 y:3.33096 dy:0.666192 dx:None
+295/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.445 y:6.36986 dy:1.27397 dx:None
+296/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.461 y:3.37169 dy:0.674338 dx:None
+297/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.498 y:6.56708 dy:1.31342 dx:None
+298/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.499 y:3.45479 dy:0.690958 dx:None
+299/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.532 y:6.64569 dy:1.32914 dx:None
+300/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.541 y:3.49467 dy:0.698933 dx:None
+301/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.562 y:6.70864 dy:1.34173 dx:None
+302/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.576 y:3.45933 dy:0.691866 dx:None
+303/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.614 y:3.51085 dy:0.702169 dx:None
+304/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.619 y:6.82027 dy:1.36405 dx:None
+305/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.659 y:3.56081 dy:0.712161 dx:None
+306/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.661 y:6.92952 dy:1.3859 dx:None
+307/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.701 y:3.57969 dy:0.715938 dx:None
+308/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.711 y:6.95308 dy:1.39062 dx:None
+309/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.743 y:3.6619 dy:0.73238 dx:None
+310/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.748 y:7.20599 dy:1.4412 dx:None
+311/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.794 y:7.1137 dy:1.42274 dx:None
+312/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.8 y:3.81712 dy:0.763425 dx:None
+313/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.836 y:7.23736 dy:1.44747 dx:None
+314/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.842 y:3.71895 dy:0.74379 dx:None
+315/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.866 y:7.37314 dy:1.47463 dx:None
+316/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.888 y:3.74688 dy:0.749376 dx:None
+317/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.914 y:3.83012 dy:0.766025 dx:None
+318/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.916 y:7.39804 dy:1.47961 dx:None
+319/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.964 y:3.81616 dy:0.763232 dx:None
+320/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:2.973 y:7.35036 dy:1.47007 dx:None
+321/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:2.991 y:3.81377 dy:0.762755 dx:None
+322/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.023 y:7.27199 dy:1.4544 dx:None
+323/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.051 y:3.94719 dy:0.789437 dx:None
+324/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.062 y:6.93018 dy:1.38604 dx:None
+325/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.09 y:3.83871 dy:0.767741 dx:None
+326/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.096 y:7.02338 dy:1.40468 dx:None
+327/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.136 y:3.85708 dy:0.771416 dx:None
+328/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.147 y:6.63899 dy:1.3278 dx:None
+329/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.189 y:4.03282 dy:0.806565 dx:None
+330/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.196 y:6.69073 dy:1.33815 dx:None
+331/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.231 y:3.95531 dy:0.791062 dx:None
+332/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.235 y:6.57985 dy:1.31597 dx:None
+333/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.277 y:3.96332 dy:0.792664 dx:None
+334/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.284 y:6.70568 dy:1.34114 dx:None
+335/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.326 y:6.52182 dy:1.30436 dx:None
+336/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.334 y:3.84288 dy:0.768576 dx:None
+337/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.368 y:3.9675 dy:0.7935 dx:None
+338/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.376 y:6.38347 dy:1.27669 dx:None
+339/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.407 y:3.91207 dy:0.782413 dx:None
+340/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.423 y:6.28808 dy:1.25762 dx:None
+341/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.464 y:3.85528 dy:0.771057 dx:None
+342/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.473 y:6.16325 dy:1.23265 dx:None
+343/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.521 y:3.8413 dy:0.76826 dx:None
+344/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.522 y:6.22855 dy:1.24571 dx:None
+345/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.564 y:6.05847 dy:1.21169 dx:None
+346/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.571 y:3.89097 dy:0.778194 dx:None
+347/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.62 y:3.84536 dy:0.769072 dx:None
+348/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.622 y:5.91957 dy:1.18391 dx:None
+349/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.666 y:3.81116 dy:0.762231 dx:None
+350/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.668 y:5.85251 dy:1.1705 dx:None
+351/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.701 y:3.87216 dy:0.774431 dx:None
+352/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.722 y:5.75646 dy:1.15129 dx:None
+353/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.742 y:3.95298 dy:0.790596 dx:None
+354/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.749 y:5.76065 dy:1.15213 dx:None
+355/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.792 y:4.00245 dy:0.800489 dx:None
+356/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.798 y:5.88507 dy:1.17701 dx:None
+357/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.844 y:5.80207 dy:1.16041 dx:None
+358/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.853 y:4.01879 dy:0.803758 dx:None
+359/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.894 y:5.79441 dy:1.15888 dx:None
+360/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.947 y:5.74166 dy:1.14833 dx:None
+361/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:3.984 y:6.02862 dy:1.20572 dx:None
+362/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:3.998 y:4.03113 dy:0.806225 dx:None
+363/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.031 y:5.90114 dy:1.18023 dx:None
+364/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.032 y:3.9669 dy:0.793381 dx:None
+365/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.078 y:3.97439 dy:0.794879 dx:None
+366/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.088 y:5.78999 dy:1.158 dx:None
+367/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.12 y:3.9923 dy:0.798461 dx:None
+368/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.122 y:6.07609 dy:1.21522 dx:None
+369/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.172 y:6.0228 dy:1.20456 dx:None
+370/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.208 y:3.95631 dy:0.791261 dx:None
+371/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.213 y:6.22265 dy:1.24453 dx:None
+372/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.251 y:6.15241 dy:1.23048 dx:None
+373/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.257 y:4.08801 dy:0.817602 dx:None
+374/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.295 y:4.07508 dy:0.815017 dx:None
+375/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.313 y:6.11582 dy:1.22316 dx:None
+376/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.347 y:5.986 dy:1.1972 dx:None
+377/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=0&deg; 1956 Schiffer x:4.393 y:6.02201 dy:1.2044 dx:None
+378/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.441 y:4.04591 dy:0.809181 dx:None
+379/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.478 y:4.16794 dy:0.833588 dx:None
+380/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.521 y:4.17563 dy:0.835126 dx:None
+381/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.578 y:4.15139 dy:0.830279 dx:None
+382/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.62 y:4.21096 dy:0.842192 dx:None
+383/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.677 y:4.30021 dy:0.860042 dx:None
+384/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.722 y:4.45105 dy:0.89021 dx:None
+385/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.765 y:4.23293 dy:0.846585 dx:None
+386/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.81 y:4.35368 dy:0.870735 dx:None
+387/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.852 y:4.38219 dy:0.876437 dx:None
+388/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.905 y:4.35835 dy:0.871671 dx:None
+389/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.932 y:4.36719 dy:0.873437 dx:None
+390/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:4.993 y:4.38434 dy:0.876868 dx:None
+391/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:5.047 y:4.33983 dy:0.867967 dx:None
+392/754:4) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 Lvl=2.9MeV Ang=150&deg; 1956 Schiffer x:5.081 y:4.34819 dy:0.869638 dx:None
+
+-new-5) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+393/754:5) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.312 y:0.00327967 dy:0.00049195 dx:None
+
+-new-6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+394/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.312 y:0.00305312 dy:0.000457968 dx:None
+395/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.341 y:0.00324339 dy:0.000486509 dx:None
+396/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.341 y:0.00345582 dy:0.000518374 dx:None
+397/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.422 y:0.00552927 dy:0.00082939 dx:None
+398/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.422 y:0.006005 dy:0.00090075 dx:None
+399/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.463 y:0.00727902 dy:0.00109185 dx:None
+400/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.556 y:0.0115816 dy:0.00173724 dx:None
+401/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.708 y:0.0234382 dy:0.00351574 dx:None
+402/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.708 y:0.0211333 dy:0.00316999 dx:None
+403/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.842 y:0.0300722 dy:0.00451083 dx:None
+404/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.995 y:0.0389344 dy:0.00584016 dx:None
+405/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.998 y:0.0333392 dy:0.00500087 dx:None
+406/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.183 y:0.0332026 dy:0.00498039 dx:None
+407/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.183 y:0.0537565 dy:0.00806348 dx:None
+408/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.269 y:0.0326524 dy:0.00489786 dx:None
+409/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.271 y:0.0602878 dy:0.00904317 dx:None
+410/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.344 y:0.0321041 dy:0.00481562 dx:None
+411/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.346 y:0.0646213 dy:0.0096932 dx:None
+412/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.431 y:0.0325242 dy:0.00487864 dx:None
+413/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.434 y:0.0680452 dy:0.0102068 dx:None
+414/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.51 y:0.0745857 dy:0.0111879 dx:None
+415/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.512 y:0.0339177 dy:0.00508766 dx:None
+416/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.633 y:0.0806248 dy:0.0120937 dx:None
+417/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.644 y:0.0313731 dy:0.00470596 dx:None
+418/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.753 y:0.0332333 dy:0.00498499 dx:None
+419/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.754 y:0.0839967 dy:0.0125995 dx:None
+420/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.759 y:0.0332253 dy:0.0049838 dx:None
+421/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.86 y:0.092722 dy:0.0139083 dx:None
+422/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.864 y:0.0365668 dy:0.00548502 dx:None
+423/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.916 y:0.0375118 dy:0.00562678 dx:None
+424/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.98 y:0.0399127 dy:0.00598691 dx:None
+425/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.988 y:0.0987493 dy:0.0148124 dx:None
+426/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.061 y:0.0423058 dy:0.00634587 dx:None
+427/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.107 y:0.0432528 dy:0.00648792 dx:None
+428/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.122 y:0.101261 dy:0.0151891 dx:None
+429/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.13 y:0.0437322 dy:0.00655983 dx:None
+430/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.177 y:0.0451689 dy:0.00677534 dx:None
+431/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.18 y:0.103755 dy:0.0155632 dx:None
+432/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.229 y:0.0466105 dy:0.00699158 dx:None
+433/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.234 y:0.113039 dy:0.0169559 dx:None
+434/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.291 y:0.111639 dy:0.0167458 dx:None
+435/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.292 y:0.0470618 dy:0.00705928 dx:None
+436/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.339 y:0.0475253 dy:0.00712879 dx:None
+437/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.367 y:0.116828 dy:0.0175242 dx:None
+438/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.413 y:0.0459825 dy:0.00689737 dx:None
+439/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.42 y:0.119422 dy:0.0179133 dx:None
+440/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.49 y:0.122414 dy:0.0183621 dx:None
+441/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.493 y:0.0419681 dy:0.00629521 dx:None
+442/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.542 y:0.12321 dy:0.0184815 dx:None
+443/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.544 y:0.038955 dy:0.00584325 dx:None
+444/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.596 y:0.0379111 dy:0.00568667 dx:None
+445/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.617 y:0.124505 dy:0.0186757 dx:None
+446/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.676 y:0.0368564 dy:0.00552846 dx:None
+447/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.691 y:0.123403 dy:0.0185104 dx:None
+448/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.751 y:0.0367796 dy:0.00551693 dx:None
+449/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.755 y:0.124199 dy:0.0186298 dx:None
+450/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.833 y:0.0416805 dy:0.00625207 dx:None
+451/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.835 y:0.120102 dy:0.0180153 dx:None
+452/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.874 y:0.0471043 dy:0.00706564 dx:None
+453/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.881 y:0.120998 dy:0.0181497 dx:None
+454/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.951 y:0.0530152 dy:0.00795229 dx:None
+455/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.955 y:0.117301 dy:0.0175952 dx:None
+456/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.978 y:0.114205 dy:0.0171308 dx:None
+457/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.015 y:0.0574483 dy:0.00861724 dx:None
+458/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.023 y:0.11051 dy:0.0165765 dx:None
+459/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.08 y:0.0643889 dy:0.00965834 dx:None
+460/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.096 y:0.101123 dy:0.0151685 dx:None
+461/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.144 y:0.0718213 dy:0.0107732 dx:None
+462/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.155 y:0.109906 dy:0.0164858 dx:None
+463/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.192 y:0.117391 dy:0.0176086 dx:None
+464/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.198 y:0.0787833 dy:0.0118175 dx:None
+465/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.31 y:0.0922189 dy:0.0138328 dx:None
+466/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.312 y:0.114092 dy:0.0171137 dx:None
+467/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.334 y:0.0962026 dy:0.0144304 dx:None
+468/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.363 y:0.099699 dy:0.0149549 dx:None
+469/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.415 y:0.111792 dy:0.0167687 dx:None
+470/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.417 y:0.109192 dy:0.0163789 dx:None
+471/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.51 y:0.11415 dy:0.0171225 dx:None
+472/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.519 y:0.114283 dy:0.0171424 dx:None
+473/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.54 y:0.11971 dy:0.0179566 dx:None
+474/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.589 y:0.117274 dy:0.0175911 dx:None
+475/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.605 y:0.124645 dy:0.0186968 dx:None
+476/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.647 y:0.11807 dy:0.0177105 dx:None
+477/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.711 y:0.137208 dy:0.0205812 dx:None
+478/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.716 y:0.115772 dy:0.0173658 dx:None
+479/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.768 y:0.136274 dy:0.020441 dx:None
+480/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.778 y:0.112077 dy:0.0168115 dx:None
+481/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.842 y:0.112872 dy:0.0169309 dx:None
+482/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.845 y:0.145317 dy:0.0217975 dx:None
+483/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.913 y:0.139194 dy:0.0208792 dx:None
+484/754:6) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.923 y:0.112769 dy:0.0169154 dx:None
+
+-new-7) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+485/754:7) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:1.31 y:0.0698757 dy:0.0104813 dx:None
+486/754:7) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:1.418 y:0.0977601 dy:0.014664 dx:None
+487/754:7) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:1.549 y:0.147926 dy:0.0221889 dx:None
+
+-new-8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+488/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:1.549 y:0.178771 dy:0.0268156 dx:None
+489/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:1.617 y:0.184294 dy:0.027644 dx:None
+490/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:1.68 y:0.213283 dy:0.0319925 dx:None
+491/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:1.806 y:0.339611 dy:0.0509416 dx:None
+492/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.0 y:0.552693 dy:0.082904 dx:None
+493/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.006 y:0.601958 dy:0.0902937 dx:None
+494/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.183 y:0.676163 dy:0.101424 dx:None
+495/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.256 y:0.675514 dy:0.101327 dx:None
+496/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.262 y:0.644937 dy:0.0967406 dx:None
+497/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.353 y:0.636122 dy:0.0954183 dx:None
+498/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.358 y:0.621114 dy:0.093167 dx:None
+499/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.421 y:0.690445 dy:0.103567 dx:None
+500/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.443 y:0.582112 dy:0.0873169 dx:None
+501/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.505 y:0.581286 dy:0.0871929 dx:None
+502/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.507 y:0.709599 dy:0.10644 dx:None
+503/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.626 y:0.728043 dy:0.109206 dx:None
+504/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.63 y:0.572241 dy:0.0858361 dx:None
+505/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.738 y:0.609227 dy:0.091384 dx:None
+506/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.74 y:0.739695 dy:0.110954 dx:None
+507/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.857 y:0.661641 dy:0.0992462 dx:None
+508/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.859 y:0.758136 dy:0.11372 dx:None
+509/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:2.973 y:0.797649 dy:0.119647 dx:None
+510/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:2.977 y:0.737209 dy:0.110581 dx:None
+511/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.102 y:0.797673 dy:0.119651 dx:None
+512/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.103 y:0.808893 dy:0.121334 dx:None
+513/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.165 y:0.851028 dy:0.127654 dx:None
+514/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.228 y:0.896813 dy:0.134522 dx:None
+515/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.228 y:0.799466 dy:0.11992 dx:None
+516/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.284 y:0.770491 dy:0.115574 dx:None
+517/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.285 y:0.981443 dy:0.147216 dx:None
+518/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.353 y:0.796931 dy:0.11954 dx:None
+519/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.354 y:1.09693 dy:0.164539 dx:None
+520/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.421 y:0.802502 dy:0.120375 dx:None
+521/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.429 y:1.2513 dy:0.187695 dx:None
+522/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.478 y:0.815265 dy:0.12229 dx:None
+523/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.481 y:1.33676 dy:0.200513 dx:None
+524/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.556 y:1.46842 dy:0.220263 dx:None
+525/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.557 y:0.806753 dy:0.121013 dx:None
+526/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.608 y:0.805639 dy:0.120846 dx:None
+527/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.614 y:1.59217 dy:0.238825 dx:None
+528/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.676 y:0.797332 dy:0.1196 dx:None
+529/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.683 y:1.70851 dy:0.256277 dx:None
+530/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.75 y:1.66193 dy:0.249289 dx:None
+531/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.75 y:0.781934 dy:0.11729 dx:None
+532/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.818 y:0.780616 dy:0.117092 dx:None
+533/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.826 y:1.88038 dy:0.282057 dx:None
+534/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.886 y:0.800064 dy:0.12001 dx:None
+535/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.889 y:1.95791 dy:0.293686 dx:None
+536/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:3.96 y:0.791656 dy:0.118748 dx:None
+537/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:3.968 y:1.89595 dy:0.284392 dx:None
+538/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.016 y:0.790542 dy:0.118581 dx:None
+539/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.03 y:1.85701 dy:0.278551 dx:None
+540/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.096 y:0.788921 dy:0.118338 dx:None
+541/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.097 y:1.79455 dy:0.269182 dx:None
+542/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.158 y:0.766742 dy:0.115011 dx:None
+543/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.159 y:1.6533 dy:0.247995 dx:None
+544/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.192 y:0.738284 dy:0.110743 dx:None
+545/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.202 y:1.35654 dy:0.203481 dx:None
+546/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.282 y:0.729475 dy:0.109421 dx:None
+547/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.316 y:0.72188 dy:0.108282 dx:None
+548/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.331 y:1.21458 dy:0.182187 dx:None
+549/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.418 y:0.692009 dy:0.103801 dx:None
+550/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.421 y:1.12687 dy:0.169031 dx:None
+551/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.525 y:0.620319 dy:0.0930479 dx:None
+552/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.533 y:0.976997 dy:0.14655 dx:None
+553/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.593 y:0.61202 dy:0.091803 dx:None
+554/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.595 y:0.944945 dy:0.141742 dx:None
+555/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.656 y:0.701132 dy:0.10517 dx:None
+556/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.657 y:0.865553 dy:0.129833 dx:None
+557/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.713 y:0.686048 dy:0.102907 dx:None
+558/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.719 y:0.809653 dy:0.121448 dx:None
+559/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.798 y:0.761382 dy:0.114207 dx:None
+560/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.849 y:0.705466 dy:0.10582 dx:None
+561/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.849 y:0.68332 dy:0.102498 dx:None
+562/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=0&deg; 1956 Schiffer x:4.917 y:0.696567 dy:0.104485 dx:None
+563/754:8) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 Lvl=4.43MeV Ang=90&deg; 1956 Schiffer x:4.923 y:0.681906 dy:0.102286 dx:None
+
+-new-9) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+564/754:9) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.41 y:0.00228042 dy:0.000456084 dx:None
+565/754:9) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.454 y:0.0232601 dy:0.00465203 dx:None
+566/754:9) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.502 y:0.0342964 dy:0.00685928 dx:None
+567/754:9) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.525 y:0.0347798 dy:0.00695595 dx:None
+
+-new-10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer y=DATA(EN,LVL,ANG)
+568/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.544 y:0.000303951 dy:6.07901e-05 dx:None
+569/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.557 y:0.0354222 dy:0.00708443 dx:None
+570/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.564 y:0.000663349 dy:0.00013267 dx:None
+571/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.585 y:0.025887 dy:0.0051774 dx:None
+572/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.592 y:0.00116702 dy:0.000233403 dx:None
+573/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.608 y:0.00145376 dy:0.000290753 dx:None
+574/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.617 y:0.0467357 dy:0.00934714 dx:None
+575/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.623 y:0.0111205 dy:0.00222409 dx:None
+576/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.625 y:0.0772195 dy:0.0154439 dx:None
+577/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.653 y:0.087923 dy:0.0175846 dx:None
+578/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.655 y:0.0210816 dy:0.00421632 dx:None
+579/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.679 y:0.021511 dy:0.0043022 dx:None
+580/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.681 y:0.0986279 dy:0.0197256 dx:None
+581/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.72 y:0.129866 dy:0.0259732 dx:None
+582/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.731 y:0.0412026 dy:0.00824052 dx:None
+583/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.751 y:0.0415619 dy:0.00831237 dx:None
+584/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.756 y:0.140839 dy:0.0281678 dx:None
+585/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.794 y:0.0611127 dy:0.0122225 dx:None
+586/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.796 y:0.182207 dy:0.0364414 dx:None
+587/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.82 y:0.213222 dy:0.0426445 dx:None
+588/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.826 y:0.0804434 dy:0.0160887 dx:None
+589/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.854 y:0.0809519 dy:0.0161904 dx:None
+590/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.855 y:0.264916 dy:0.0529833 dx:None
+591/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.89 y:0.0909707 dy:0.0181941 dx:None
+592/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.891 y:0.306435 dy:0.0612871 dx:None
+593/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.917 y:0.1009 dy:0.02018 dx:None
+594/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.927 y:0.337861 dy:0.0675722 dx:None
+595/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:1.957 y:0.110988 dy:0.0221975 dx:None
+596/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.959 y:0.36919 dy:0.0738379 dx:None
+597/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:1.994 y:0.492252 dy:0.0984505 dx:None
+598/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.001 y:0.139856 dy:0.0279712 dx:None
+599/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.033 y:0.131063 dy:0.0262126 dx:None
+600/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.034 y:0.524005 dy:0.104801 dx:None
+601/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.076 y:0.14125 dy:0.0282499 dx:None
+602/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.078 y:0.525306 dy:0.105061 dx:None
+603/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.109 y:0.587471 dy:0.117494 dx:None
+604/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.112 y:0.170016 dy:0.0340033 dx:None
+605/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.148 y:0.198782 dy:0.0397564 dx:None
+606/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.153 y:0.639881 dy:0.127976 dx:None
+607/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.175 y:0.199279 dy:0.0398558 dx:None
+608/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.181 y:0.661141 dy:0.132228 dx:None
+609/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.22 y:0.693083 dy:0.138617 dx:None
+610/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.223 y:0.228342 dy:0.0456684 dx:None
+611/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.26 y:0.745496 dy:0.149099 dx:None
+612/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.263 y:0.238327 dy:0.0476653 dx:None
+613/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.295 y:0.257701 dy:0.0515402 dx:None
+614/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.296 y:0.756832 dy:0.151366 dx:None
+615/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.336 y:0.778672 dy:0.155734 dx:None
+616/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.342 y:0.258595 dy:0.0517189 dx:None
+617/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.366 y:0.287158 dy:0.0574316 dx:None
+618/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.371 y:0.872078 dy:0.174416 dx:None
+619/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.407 y:0.893839 dy:0.178768 dx:None
+620/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.414 y:0.325506 dy:0.0651011 dx:None
+621/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.45 y:0.3261 dy:0.06522 dx:None
+622/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.455 y:0.936508 dy:0.187301 dx:None
+623/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.49 y:0.978807 dy:0.195761 dx:None
+624/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.497 y:0.326992 dy:0.0653985 dx:None
+625/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.533 y:0.346363 dy:0.0692726 dx:None
+626/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.534 y:1.03177 dy:0.206354 dx:None
+627/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.573 y:0.347056 dy:0.0694113 dx:None
+628/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.578 y:1.01273 dy:0.202546 dx:None
+629/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.612 y:0.394689 dy:0.0789378 dx:None
+630/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.614 y:1.01407 dy:0.202813 dx:None
+631/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.665 y:1.09819 dy:0.219638 dx:None
+632/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.668 y:0.376903 dy:0.0753807 dx:None
+633/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.7 y:0.415048 dy:0.0830095 dx:None
+634/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.705 y:1.1202 dy:0.224039 dx:None
+635/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.743 y:0.406452 dy:0.0812904 dx:None
+636/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.745 y:1.20385 dy:0.24077 dx:None
+637/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.784 y:1.26765 dy:0.25353 dx:None
+638/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.787 y:0.397856 dy:0.0795713 dx:None
+639/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.823 y:0.426611 dy:0.0853222 dx:None
+640/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.824 y:1.28944 dy:0.257888 dx:None
+641/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.876 y:1.33254 dy:0.266507 dx:None
+642/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.878 y:0.455761 dy:0.0911521 dx:None
+643/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.915 y:1.35546 dy:0.271092 dx:None
+644/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.918 y:0.428292 dy:0.0856585 dx:None
+645/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.962 y:0.429084 dy:0.0858167 dx:None
+646/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.963 y:1.42964 dy:0.285927 dx:None
+647/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:2.998 y:0.457836 dy:0.0915672 dx:None
+648/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:2.999 y:1.42036 dy:0.284072 dx:None
+649/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.049 y:0.486884 dy:0.0973768 dx:None
+650/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.05 y:1.64028 dy:0.328057 dx:None
+651/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.098 y:1.72476 dy:0.344951 dx:None
+652/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.101 y:0.515931 dy:0.103186 dx:None
+653/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.145 y:0.507335 dy:0.101467 dx:None
+654/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.153 y:1.83064 dy:0.366127 dx:None
+655/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.193 y:1.97858 dy:0.395716 dx:None
+656/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.2 y:0.508323 dy:0.101665 dx:None
+657/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.232 y:2.12553 dy:0.425105 dx:None
+658/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.24 y:0.509014 dy:0.101803 dx:None
+659/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.287 y:0.538059 dy:0.107612 dx:None
+660/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.288 y:2.17947 dy:0.435893 dx:None
+661/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.327 y:0.576191 dy:0.115238 dx:None
+662/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.335 y:2.20309 dy:0.440617 dx:None
+663/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.371 y:0.55831 dy:0.111662 dx:None
+664/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.379 y:2.31927 dy:0.463855 dx:None
+665/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.434 y:0.615604 dy:0.123121 dx:None
+666/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.438 y:2.45725 dy:0.49145 dx:None
+667/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.474 y:2.60472 dy:0.520945 dx:None
+668/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.478 y:0.644546 dy:0.128909 dx:None
+669/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.525 y:2.77407 dy:0.554813 dx:None
+670/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.526 y:0.664103 dy:0.132821 dx:None
+671/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.581 y:0.655803 dy:0.131161 dx:None
+672/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.585 y:2.83985 dy:0.567971 dx:None
+673/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.628 y:2.90512 dy:0.581024 dx:None
+674/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.629 y:0.619153 dy:0.123831 dx:None
+675/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.669 y:0.610459 dy:0.122092 dx:None
+676/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.672 y:2.90775 dy:0.58155 dx:None
+677/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.708 y:0.592381 dy:0.118476 dx:None
+678/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.716 y:2.82631 dy:0.565263 dx:None
+679/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.752 y:0.574503 dy:0.114901 dx:None
+680/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.756 y:2.61908 dy:0.523816 dx:None
+681/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.804 y:2.54872 dy:0.509745 dx:None
+682/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.804 y:0.519189 dy:0.103838 dx:None
+683/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.852 y:2.3941 dy:0.478819 dx:None
+684/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.852 y:0.491929 dy:0.0983857 dx:None
+685/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.904 y:2.32361 dy:0.464723 dx:None
+686/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.907 y:0.474151 dy:0.0948302 dx:None
+687/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.916 y:2.49128 dy:0.498257 dx:None
+688/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.943 y:0.456078 dy:0.0912155 dx:None
+689/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.952 y:2.40912 dy:0.481825 dx:None
+690/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.964 y:2.34763 dy:0.469527 dx:None
+691/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:3.967 y:0.456473 dy:0.0912946 dx:None
+692/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:3.991 y:2.48435 dy:0.49687 dx:None
+693/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.006 y:0.447783 dy:0.0895565 dx:None
+694/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.019 y:2.59081 dy:0.518161 dx:None
+695/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.038 y:0.448376 dy:0.0896753 dx:None
+696/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.043 y:2.73883 dy:0.547765 dx:None
+697/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.062 y:2.81251 dy:0.562502 dx:None
+698/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.07 y:0.458353 dy:0.0916706 dx:None
+699/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.09 y:2.8775 dy:0.5755 dx:None
+700/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.106 y:0.458946 dy:0.0917892 dx:None
+701/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.114 y:3.03583 dy:0.607165 dx:None
+702/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.145 y:0.478404 dy:0.0956807 dx:None
+703/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.153 y:3.1328 dy:0.62656 dx:None
+704/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.173 y:3.19653 dy:0.639306 dx:None
+705/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.181 y:0.488379 dy:0.0976758 dx:None
+706/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.188 y:3.37615 dy:0.67523 dx:None
+707/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.213 y:0.507737 dy:0.101547 dx:None
+708/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.22 y:3.46179 dy:0.692359 dx:None
+709/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.243 y:3.65198 dy:0.730397 dx:None
+710/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.26 y:0.527291 dy:0.105458 dx:None
+711/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.271 y:3.83231 dy:0.766462 dx:None
+712/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.292 y:0.546648 dy:0.10933 dx:None
+713/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.302 y:3.94969 dy:0.789939 dx:None
+714/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.324 y:0.584669 dy:0.116934 dx:None
+715/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.326 y:4.25525 dy:0.85105 dx:None
+716/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.348 y:0.594445 dy:0.118889 dx:None
+717/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.349 y:4.38375 dy:0.87675 dx:None
+718/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.368 y:0.59484 dy:0.118968 dx:None
+719/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.376 y:4.67953 dy:0.935907 dx:None
+720/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.404 y:4.92359 dy:0.984717 dx:None
+721/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.407 y:0.642439 dy:0.128488 dx:None
+722/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.431 y:5.32469 dy:1.06494 dx:None
+723/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.435 y:0.652313 dy:0.130463 dx:None
+724/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.458 y:5.49556 dy:1.09911 dx:None
+725/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.459 y:0.662089 dy:0.132418 dx:None
+726/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.489 y:5.69837 dy:1.13967 dx:None
+727/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.491 y:0.671962 dy:0.134392 dx:None
+728/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.513 y:5.76301 dy:1.1526 dx:None
+729/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.523 y:0.700698 dy:0.14014 dx:None
+730/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.547 y:0.710473 dy:0.142095 dx:None
+731/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.553 y:5.75508 dy:1.15102 dx:None
+732/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.57 y:0.701485 dy:0.140297 dx:None
+733/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.589 y:5.64172 dy:1.12834 dx:None
+734/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.606 y:0.683414 dy:0.136683 dx:None
+735/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.617 y:5.65455 dy:1.13091 dx:None
+736/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.626 y:0.693189 dy:0.138638 dx:None
+737/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.637 y:5.50853 dy:1.10171 dx:None
+738/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.642 y:0.684104 dy:0.136821 dx:None
+739/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.662 y:0.646976 dy:0.129395 dx:None
+740/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.669 y:5.37438 dy:1.07488 dx:None
+741/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.681 y:0.62851 dy:0.125702 dx:None
+742/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.693 y:5.2703 dy:1.05406 dx:None
+743/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.705 y:0.610242 dy:0.122048 dx:None
+744/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.714 y:5.07091 dy:1.01418 dx:None
+745/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.725 y:0.629299 dy:0.12586 dx:None
+746/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.746 y:4.90479 dy:0.980958 dx:None
+747/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.753 y:0.611131 dy:0.122226 dx:None
+748/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.766 y:5.06432 dy:1.01286 dx:None
+749/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.769 y:0.602047 dy:0.120409 dx:None
+750/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.785 y:0.592963 dy:0.118593 dx:None
+751/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.797 y:5.08731 dy:1.01746 dx:None
+752/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.809 y:0.565216 dy:0.113043 dx:None
+753/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=0&deg; 1956 Schiffer x:4.818 y:4.98288 dy:0.996576 dx:None
+754/754:10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 Lvl=0MeV Ang=90&deg; 1956 Schiffer x:4.825 y:0.556132 dy:0.111226 dx:None
+---outDatasets:10 datasets:10
+---ENTRY: A1495*;
+datasets: 10
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 10
+1) 3-LI-6(HE3,P)4-BE-8,PAR,DA
+	Dataset:1/10) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 1956, J.P.Schiffer Lvl=0MeV Ang=0&deg;
+	Dataset:2/10) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495002 1956, J.P.Schiffer Lvl=0MeV Ang=150&deg;
+	Dataset:3/10) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 1956, J.P.Schiffer Lvl=2.9MeV Ang=0&deg;
+	Dataset:4/10) 3-LI-6(HE3,P)4-BE-8,PAR,DA A1495003 1956, J.P.Schiffer Lvl=2.9MeV Ang=150&deg;
+2) 5-B-10(HE3,P)6-C-12,PAR,DA
+	Dataset:5/10) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 1956, J.P.Schiffer Lvl=0MeV Ang=0&deg;
+	Dataset:6/10) 5-B-10(HE3,P)6-C-12,PAR,DA A1495006 1956, J.P.Schiffer Lvl=0MeV Ang=90&deg;
+	Dataset:7/10) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 1956, J.P.Schiffer Lvl=4.43MeV Ang=0&deg;
+	Dataset:8/10) 5-B-10(HE3,P)6-C-12,PAR,DA A1495007 1956, J.P.Schiffer Lvl=4.43MeV Ang=90&deg;
+3) 6-C-13(HE3,P)7-N-15,PAR,DA
+	Dataset:9/10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 1956, J.P.Schiffer Lvl=0MeV Ang=0&deg;
+	Dataset:10/10) 6-C-13(HE3,P)7-N-15,PAR,DA A1495010 1956, J.P.Schiffer Lvl=0MeV Ang=90&deg;
+---reacodes: 3 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/10) #A1495002 1956, J.P.Schiffer Lvl=0MeV Ang=0&deg; pt:94
+Plot:2/10) #A1495002 1956, J.P.Schiffer Lvl=0MeV Ang=150&deg; pt:107
+Plot:3/10) #A1495003 1956, J.P.Schiffer Lvl=2.9MeV Ang=0&deg; pt:92
+Plot:4/10) #A1495003 1956, J.P.Schiffer Lvl=2.9MeV Ang=150&deg; pt:99
+Plot:5/10) #A1495006 1956, J.P.Schiffer Lvl=0MeV Ang=0&deg; pt:48
+Plot:6/10) #A1495006 1956, J.P.Schiffer Lvl=0MeV Ang=90&deg; pt:44
+Plot:7/10) #A1495007 1956, J.P.Schiffer Lvl=4.43MeV Ang=0&deg; pt:43
+Plot:8/10) #A1495007 1956, J.P.Schiffer Lvl=4.43MeV Ang=90&deg; pt:36
+Plot:9/10) #A1495010 1956, J.P.Schiffer Lvl=0MeV Ang=0&deg; pt:98
+Plot:10/10) #A1495010 1956, J.P.Schiffer Lvl=0MeV Ang=90&deg; pt:93
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- B/SR 0.001
+--A--getUnits--- B/SR 0.001
+--1--getUnits--- B/SR 0.001  Category: DA
+Will try---write_image: a1495.html.png
+
+Program successfully completed

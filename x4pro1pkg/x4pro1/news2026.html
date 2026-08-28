@@ -55,7 +55,7 @@ var prevDir='';
 <body bgcolor="#ddddff">
 <center>
 <big><big><b><span style="color:blue;">X4Pro. News-2026.<span></b></big></big>
-<br><i>by V.Zerkin, Vienna, 2026-08-25</i>
+<br><i>by V.Zerkin, Vienna, 2026-08-28</i>
 </center>
 
 <div style="font-size:12pt;padding-top:6px;padding-bottom:6px;">
@@ -68,6 +68,7 @@ var prevDir='';
   <li> TKE Total kinetic energy</li>
   <li> SIG Cross section data given with limit as DATA and DATA-MIN</li>
 </ul>
+&nbsp; &nbsp; &nbsp; -- Currently implemented search: by full-Reaction-code, DatasetID, Author1<br>
 2. Plotting partial cross sections from local EXFOR and remote ENDF databases
 <ul style="margin:0;font-style:italic;font-size:11pt;">
  <li> CSP vs ENDF:MT51:MF3+33 - Production of a neutron, with residual in the 1st excited state</li>
@@ -129,6 +130,8 @@ Usage:
     out1("part1-8-reac/out00/nu1.html.png             ","NU  Fission-neutron yield, nu-bar");
     out1("part1-8-reac/out00/tke1.html.png            ","TKE Total kinetic energy");
     out1("part1-8-reac/out00/si28nn.html.png          ","SIG Cross section data given with limit as DATA and DATA-MIN");
+    out1("part1-8-reac/out00/a1495-li6.html.png       ",'Data from EXFOR:"A1495" & Reaction: "3-LI-6*DA"');
+    out1("part1-8-reac/out00/Kokkoris.html.png        ",'Data by "Kokkoris" & Reaction: "*,,DA"');
     out1("part2-8-sig1par/out00/Li7ninl.html.png      ","Production of a neutron, with residual in the 1st excited state");
     out1("part2-9-nubar/out00/U235nf_-nu.html.png     ","Total neutron yield (nu-bar)");
     out1("part2-9-nubar/out00/U235nf_pr-nu.html.png   ","Prompt neutron yield (nu-bar)");

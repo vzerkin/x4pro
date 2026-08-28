@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac1.py, ver.2026-08-25       |
+  | Program: reac1.py, ver.2026-08-27       |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-08-25 23:12:40
+Running: 2026-08-28 13:26:50
 
 ---Arguments from command-line---
    1  arg: -o:nu1
@@ -26,6 +26,7 @@ Running: 2026-08-25 23:12:40
    x3range:   None - None
    fx:        1000000.0
    fy:        1
+   nPntMin:   1
    xrange:    None
    Output:    nu1
    x4ei:      
@@ -35,7 +36,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=ro
    Connected to: [sqlite3]
 
 ---Print summary---
-Summary of Reaction-Codes 1
+Summary of Reaction-Codes 29
 ----1.
     fullCode       92-U-238(N,F),PR,NU
     ReactionType   NU         Neutron yield (nu-bar)
@@ -65,6 +66,8 @@ Summary of Units 2
 ---getX4SqlSearch_Reacodes: xn= x1  reacodes: ['92-U-238(N,F),PR,NU']
 SQL:
 select *                                                   
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
  ,y  as YY, dy  as dYY                                     
  ,x1 as XX, dx1 as dXX                             
  ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
@@ -86,7 +89,7 @@ select *
  left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
  where 1=1 
  and (
-      fullCode like '92-U-238(N,F),PR,NU'
+  (fullCode like '92-U-238(N,F),PR,NU')
  ) 
   order by fullCode,YearRef1 desc,DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    

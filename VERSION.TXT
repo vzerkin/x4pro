@@ -1,7 +1,7 @@
 "X4Pro - universal, fully relational EXFOR database"
-by V.Zerkin, IAEA-NRDC, 2020-2026, version 2026-08-25
+by V.Zerkin, IAEA-NRDC, 2020-2026, version 2026-08-28
 -----------------------------------------------------------------------------------------------------------
-1. Major data source: EXFOR Master File       2026-08-21 The data and resources available on this database are provided to
+1. Major data source: EXFOR Master File       2026-08-27 The data and resources available on this database are provided to
                                                          the IAEA by the NRDC Network, which is a network under the
                                                          auspices of the IAEA. As agreed by the NRDC Network, the IAEA has
                                                          the role of publication and dissemination for all the data and
@@ -11,8 +11,8 @@ by V.Zerkin, IAEA-NRDC, 2020-2026, version 2026-08-25
 4. Archive-monitors                           2026-03-25 K.Zolotarev (IPPE, Russia), V.Zerkin (IAEA-NRDC)
 5. Decay Data (converted from *ENSDF-2024)    2024-10-16 M.Verpelli (IAEA-NDS), *Nuclear Structure and Decay Data Network
 6. Program interpreter EXFOR to X5/exfor2x5z/ 2026-01-18 V.Zerkin (IAEA-NRDC) 2019-2026
-7. X4Pro database/SQLite                      2026-08-25 V.Zerkin (IAEA-NRDC) 2000-2026
-8. Demo-software Python/Fortran/Bash          2026-08-12 V.Zerkin (IAEA-NRDC) 2021-2026
+7. X4Pro database/SQLite                      2026-08-28 V.Zerkin (IAEA-NRDC) 2000-2026
+8. Demo-software Python/Fortran/Bash          2026-08-27 V.Zerkin (IAEA-NRDC) 2021-2026
 -----------------------------------------------------------------------------------------------------------
 References:
 1. EXFOR Reference Paper: Nucl. Data Sheets 120(2014)272, https://dx.doi.org/10.1016/j.nds.2014.07.065

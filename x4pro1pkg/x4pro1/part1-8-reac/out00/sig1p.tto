@@ -1,23 +1,22 @@
   +-----------------------------------------+
-  | Program: reac1.py, ver.2026-08-25       |
+  | Program: reac1.py, ver.2026-08-27       |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-08-25 23:12:50
+Running: 2026-08-28 13:26:58
 
 ---Arguments from command-line---
    1  arg: -o:sig1p
    2  arg: -x1max:10e6
-   3  arg: -x2min:478e3
-   4  arg: -x2max:478e3
-   5  arg: -fx:1e6
-   6  arg: -ylog
-   7  arg: -lines
-   8  arg: -sym
-   9  arg: -annot:2,0.31,<b>SIG/Partial</b>
+   3  arg: -x2:478e3
+   4  arg: -fx:1e6
+   5  arg: -ylog
+   6  arg: -lines
+   7  arg: -sym
+   8  arg: -annot:2,0.31,<b>SIG/Partial</b>
    ---str2annot:[2,0.31,<b>SIG/Partial</b>] --> ('<b>SIG/Partial</b>', 2.0, 0.31)
-   10 arg: 3-LI-7(N,INL)3-LI-7,PAR,SIG
+   9  arg: 3-LI-7(N,INL)3-LI-7,PAR,SIG
 
 ---Input:
    Reaction:  ['3-LI-7(N,INL)3-LI-7,PAR,SIG']
@@ -27,6 +26,7 @@ Running: 2026-08-25 23:12:50
    x3range:   None - None
    fx:        1000000.0
    fy:        1
+   nPntMin:   1
    xrange:    None
    Output:    sig1p
    x4ei:       and x1<=10000000.0 and x2>=478000.0 and x2<=478000.0
@@ -36,7 +36,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=ro
    Connected to: [sqlite3]
 
 ---Print summary---
-Summary of Reaction-Codes 1
+Summary of Reaction-Codes 8
 ----1.
     fullCode       3-LI-7(N,INL)3-LI-7,PAR,SIG
     ReactionType   CSP        Partial cross section
@@ -70,6 +70,8 @@ Summary of Units 2
 ---getX4SqlSearch_Reacodes: xn= x1  reacodes: ['3-LI-7(N,INL)3-LI-7,PAR,SIG']
 SQL:
 select *                                                   
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
  ,y  as YY, dy  as dYY                                     
  ,x1 as XX, dx1 as dXX                             
  ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
@@ -91,7 +93,7 @@ select *
  left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
  where 1=1 
  and (
-      fullCode like '3-LI-7(N,INL)3-LI-7,PAR,SIG'
+  (fullCode like '3-LI-7(N,INL)3-LI-7,PAR,SIG')
  ) 
  and x1<=10000000.0 and x2>=478000.0 and x2<=478000.0  order by fullCode,YearRef1 desc,DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    

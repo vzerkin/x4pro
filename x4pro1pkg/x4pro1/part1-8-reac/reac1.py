@@ -20,7 +20,7 @@ from exfor2plot import * #plot by plotly/matplotlib
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac1.py, ver.2026-08-25       |')
+    print('  | Program: reac1.py, ver.2026-08-27       |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -30,7 +30,9 @@ def main():
 
     ct=str(datetime.datetime.now())[:19]
     print("Running: "+ct)
+
     x4ei=''
+    x4where0=''
     fx=1; fy=1
     nPntMin=1
     plotTitle=''
@@ -53,6 +55,8 @@ def main():
     x1fam=None; x2fam=None
     x3fam=None; x4fam=None
     x5fam=None
+    a1=None
+    dsids=None
 
     def str2float(str1):
         if str1 is None: return None
@@ -95,15 +99,23 @@ def main():
     print('\n---Arguments from command-line---')
     for ii,arg in enumerate(sys.argv):
         if (ii==0): continue
+        if arg=='-h':		print(getHelp());	sys.exit(0)
+        if arg=='-help':	print(getHelp());	sys.exit(0)
+        if arg=='--h':		print(getHelp());	sys.exit(0)
+        if arg=='--help':	print(getHelp());	sys.exit(0)
         print('   '+str(ii).ljust(2)+" arg: "+arg)
         if arg=='-xlog': xtype='log';  continue
         if arg=='-ylog': ytype='log';  continue
+        if arg.startswith('-x1:'): x1max=x1min=str2float(arg[4:]); continue
+        if arg.startswith('-x2:'): x2max=x2min=str2float(arg[4:]); continue
+        if arg.startswith('-x3:'): x3max=x3min=str2float(arg[4:]); continue
         if arg.startswith('-x1min:'):  x1min=str2float(arg[7:]);   continue
         if arg.startswith('-x1max:'):  x1max=str2float(arg[7:]);   continue
         if arg.startswith('-x2min:'):  x2min=str2float(arg[7:]);   continue
         if arg.startswith('-x2max:'):  x2max=str2float(arg[7:]);   continue
         if arg.startswith('-x3min:'):  x3min=str2float(arg[7:]);   continue
         if arg.startswith('-x3max:'):  x3max=str2float(arg[7:]);   continue
+        if arg.startswith('-nmin:'):   nPntMin=str2int(arg[6:],1); continue
         if arg.startswith('-xmin:'):   xmin=str2float(arg[6:]);    continue
         if arg.startswith('-xmax:'):   xmax=str2float(arg[6:]);    continue
         if arg.startswith('-fx:'):     fx=str2float(arg[4:]);      continue
@@ -119,6 +131,8 @@ def main():
         if arg=='-nogrp':              groupReactions=False;       continue
         if arg.startswith('-o:') and len(arg)>4: outhtml=arg[3:];  continue
         if arg.startswith('-annot:'):  annot=str2annot(arg[7:]);   continue
+        if arg.lower().startswith('-a1:'):  a1=arg[4:];            continue
+        if arg.lower().startswith('-ds:'):  dsids=arg[4:];         continue
         if arg.startswith('-'): continue
         reacodes.append(arg)
 
@@ -134,6 +148,10 @@ def main():
     x4ei+=xfamily2where('x3',x3fam)
     x4ei+=xfamily2where('x4',x4fam)
     x4ei+=xfamily2where('x5',x5fam)
+    x4ei+=addStrToWhere('a1',a1)
+    x4ei+=addStrToWhere('dsid',dsids)
+    x4where0+=addStrToWhere('a1',a1)
+    x4where0+=addStrToWhere('dsid',dsids)
     if xmin is not None or xmax is not None: xrange=[xmin,xmax]
     if ymin is not None or ymax is not None: yrange=[ymin,ymax]
 
@@ -145,6 +163,7 @@ def main():
     print('   x3range:  ',str(x3min),'-',str(x3max))
     print('   fx:       ',str(fx))
     print('   fy:       ',str(fy))
+    print('   nPntMin:  ',str(nPntMin))
     print('   xrange:   ',str(xrange))
     print('   Output:   ',outhtml)
     print('   x4ei:     ',x4ei)
@@ -158,7 +177,7 @@ def main():
     print("   Connected to: ["+dbConn.dbType+"]")
 
     print("\n---Print summary---")
-    print_reacodes(dbConn,conn,reacodes)
+    print_reacodes(dbConn,conn,reacodes,add2Where=x4where0)
 
     print("\n---Retrieve EXFOR data from SQL database---")
     rows=getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,x4ei)
@@ -173,16 +192,25 @@ def main():
         sys.exit(2)
     #sys.exit(2)
 
+    if nPntMin>1:
+        print("\n---filter only large datasets:"+str(len(datasets))+' nPntMin='+str(nPntMin))
+        datasets=getDatasets_nPointsMin(datasets,nPntMin) #filter only large datasets
+        print('---datasets:',len(datasets),'\n')
+        if (len(datasets)<=0):
+            print("---No data after filtering by #DataPoints:",nPntMin)
+            sys.exit(2)
+
     groupReac=False
     if groupReactions:
         print("\n---Groupping datasets by Reaction-codes---")
-        reacodes=getReacodes(datasets,nPntMin) #filter only large datasets
+        reacodes=getReacodes(datasets)
         print('---reacodes:',len(reacodes),'\n')
         if (len(reacodes)<=0):
             print("---No data after filtering by #DataPoints:",nPntMin)
             sys.exit(2)
         groupReac=len(reacodes)>1
         datasets=getReacodes2Datasets(reacodes)
+
     nPnt=getNDataPoints(datasets)
 
     print("\n---Output EXFOR datasets to JSON file---")
@@ -210,7 +238,7 @@ def main():
     conn.close()
 
     myOfflinePlot(data1,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-08-25 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-08-27 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype

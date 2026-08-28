@@ -30,13 +30,16 @@ Usage:
       * flag: see all Python flags:  $ python --help
         -B         don't write .pyc files on import
       * option:
-        -help        print this help-text and exit (also --help)
+        --help       print this help-text and exit
         -o:<file>    output file name
         -x:x?        set x variable: "x1" to "x5", e.g. -x:x2, default: -x:x1
         -x?fam:<str> filter for "families" of x? variable, e.g. -x2fam:"LVL;EXC"
         -x?min:<num> filter out values of x? variable, e.g. -x1min:6e6
         -x?max:<num> filter out values of x? variable, e.g. -x1max:30e6
         -nogrp       avoid groupping datasets by reaction-codes on the plot
+        -a1:<str>    select datasets with 1st author name
+        -ds:<str>    select datasets with DatasetID
+        -nmin:<num>  select datasets with min number of data points
         -fx:<num>    set factor for x-values, e.g. -fx:1e6 sets "MeV" on X-Axis
         -fy:<num>    set factor for y-values, e.g. -fy:1e-3 sets "mb/sr" on Y-Axis
         plotting:
@@ -80,9 +83,18 @@ Examples.
             "92-U-235(N,F)MASS,PRE,KE,LF+HF"          \\
             "92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW"
 
-  6) ETA(Ri) Neutron yield (Eta)
+  6) ETA(Ei) Neutron yield (Eta)
 	$ python -B reac1.py -o:eta1 -x:x1 -x1max:4   \\
             -lines -sym -ylog                         \\
             -annot:"0.75,3.25,<b>ETA</b>"             \\
             "92-U-235(N,ABS),,ETA">eta1.tto
+
+  7) Data from Subentry
+	$ python -B reac1.py -ds:A1495003 -fx:1e6 -fy:1e-3
+        $ python -B reac1.py -ds:"A1495002;A1495003"
+
+  8) Filter data by 1st author, Angle in radians
+	$ python -B reac1.py -o:eta1 -x:x3 -a1:gould  \\
+           -lines -sym -fy:1e-3 -fx:57.296            \\
+           "3-LI-6(HE3,P)4-BE-8,PAR,DA">da1p.tto
     '''

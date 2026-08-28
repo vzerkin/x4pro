@@ -12,14 +12,12 @@ sys.path.append('../')
 from sqlsubr import *
 
 def print_reacodes(dbConn,conn,reacodes,add2Where=''):
-    if len(reacodes)<1: return
-    where=" where 1=1 and (\n"
-    for ii,reacode in enumerate(reacodes):
-        if (ii!=0): where+="   or"
-        else:       where+="     "
-        where+=" reacode like '"+reacode+"'\n"
-    where+=" )"
+#    if len(reacodes)<1: return
+    where=" where 1=1 \n"
+    where+=addArrToWhere('reacode',reacodes)
     sql=str("select distinct reacode\n"
+	+" ,x4pro_ds.Author1 as a1                                        \n"
+	+" ,x4pro_ds.DatasetID as dsid                                    \n"
 	+", reatyp as ReactionType, DICT013.ShortHelp as ReactionTypeHelp \n"
 	+", quant1 as WebQuantity1, QUANTITY.ShortHelp as WebQuantity1Help\n"
 	+", yformula as Formula, nx as nx, MF, MT \n"
@@ -39,19 +37,24 @@ def print_reacodes(dbConn,conn,reacodes,add2Where=''):
 	+" left join x4pro_hdr as hx4 on hx4.DatasetID=x4pro_ds.DatasetID and hx4.typ='c' and hx4.hdr='x4' \n"
 	+" left join x4pro_hdr as hx5 on hx5.DatasetID=x4pro_ds.DatasetID and hx5.typ='c' and hx5.hdr='x5' \n"
 	+where+" \n"
+	+add2Where+" \n"
 	+" order by reacode"
 	)
+#   print("---SQL:\n"+sql)
     rows,cols=execute1sql(dbConn,conn,sql,ttout=False)
 #   print('\n---print_reacodes---rows:',len(rows),' cols:',len(cols))
     irow=0; ww=14; lcode=10; lexpansion=36
     allBasicUnits={}
     print('Summary of Reaction-Codes',len(rows))
+    prevReacode=''
     for row in rows:
         irow+=1
 #       print('row-'+str(irow)+':\t',tuple(row))
 #       print('\n----'+str(irow)+': '+str(row['reacode']))
-        print('----'+str(irow)+'.')
-        if row['reacode'] is not None: 
+        if row['reacode'] is not None:
+            if prevReacode==row['reacode']: continue
+            print('----'+str(irow)+'.')
+            prevReacode=row['reacode']
             print('    '+'fullCode'.ljust(ww)+' '+str(row['reacode']).ljust(lcode))
         if row['ReactionType'] is not None: 
             print('    '+'ReactionType'.ljust(ww)+' '+str(row['ReactionType']).ljust(lcode),end='')
@@ -110,21 +113,16 @@ def getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,add2Where=''):
 #    rows=execute1sql(dbConn,conn,sql,verbose=True,ttout=True)
     return rows
 
-
 def getX4SqlSearch_Reacodes(reacodes,xn,add2Where=''):
     print("---getX4SqlSearch_Reacodes: xn=",xn,' reacodes:',reacodes)
-    if len(reacodes)<1: return ''
+#?    if len(reacodes)<1: return ''
     where=" where 1=1 \n"
-    if len(reacodes)>0:
-        where+=" and (\n"
-        for ii,reacode in enumerate(reacodes):
-            if (ii!=0): where+="   or"
-            else:       where+="     "
-            where+=" fullCode like '"+reacode+"'\n"
-        where+=" )"
+    where+=addArrToWhere('fullCode',reacodes)
 #   where=" where uni2.DatasetID='22754004'"
     sql=str(""
 	+"select *                                                   \n"
+	+" ,uni2.Author1 as a1                                       \n"
+	+" ,uni2.DatasetID as dsid                                   \n"
 	+" ,y  as YY, dy  as dYY                                     \n"
 	+" ,"+xn+" as XX, d"+xn+" as dXX                             \n"
 	+" ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion \n"
@@ -154,9 +152,9 @@ def getX4SqlSearch_Reacodes(reacodes,xn,add2Where=''):
 #+" and uni2.Author1 like 'hauser'"
 #+" and uni2.DatasetID='22754004'"
 #+" and uni2.DatasetID='21984097'"
+#+" and uni2.DatasetID='F0001002'"
 	+" order by fullCode,YearRef1 desc,DatasetID \n"
 	+" ,x1,x2,x2,x4,x5,iPoint                    \n"
-#	+" ,iPoint                    \n"
 	)
     print("SQL:\n"+sql)
     return sql
@@ -283,19 +281,27 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
     datasets=sorted(datasets,key=lambda x:(x['Reacode'],-x['YearRef1'],x['Author1'],x['g0'],x['g1']))
 #   datasets=sorted(datasets,key=lambda x:(-x['YearRef1'],x['Author1'],x['g0'],x['g1']))
     print('---outDatasets:'+str(len(outDatasets))+' datasets:'+str(len(datasets)))
-    typeEntries(datasets)
+    printEntries(datasets)
     return datasets
 
 
-def getReacodes(datasets,nptmin):
-#    print('--0--getReacodes: datasets:'+str(len(datasets))+' nptmin:'+str(nptmin))
+def getDatasets_nPointsMin(datasets,nptmin):
+#    print('--0--getDatasets_nPointsMin: datasets:'+str(len(datasets))+' nptmin:'+str(nptmin))
+    lx=len(datasets)
+    dss=[]
+    for dataset in datasets:
+        if len(dataset['x'])<nptmin: continue
+        dss.append(dataset)
+    return dss
+
+def getReacodes(datasets):
+#    print('--0--getReacodes: datasets:'+str(len(datasets)))
     lx=len(datasets)
     Reacodes=[]
     ii=0; lastReacodeStr='---'; lastReacode={}
     print('---getReacodes---Datasets:',len(datasets))
     for dataset in datasets:
 #        print('\t'+str(ii)+'---getReacodes---dataset:',dataset['DatasetID'],len(dataset['x']),nptmin)
-        if len(dataset['x'])<nptmin: continue
         Reacode=dataset['Reacode']
         if Reacode!=lastReacodeStr:
             lastReacode={}
@@ -307,7 +313,7 @@ def getReacodes(datasets,nptmin):
         lastReacode['datasets'].append(dataset);
         ii+=1
         print('\tDataset:'+str(ii)+'/'+str(lx)+') '+str(Reacode)+' '+str(dataset['DatasetID'])+' '+str(dataset['x4lbl']))
-#    print('--1--getReacodes: Reacodes:'+str(len(Reacodes))+' nptmin:'+str(nptmin)+' ii:'+str(ii))
+#    print('--1--getReacodes: Reacodes:'+str(len(Reacodes))+' ii:'+str(ii))
     return Reacodes
 
 def getReacodes2Datasets(reacodes):
@@ -317,20 +323,7 @@ def getReacodes2Datasets(reacodes):
             datasets.append(dataset)
     return datasets
 
-def typeEntries(datasets):
-    entries=[];ientry=0
-    print('---ENTRY: ',end='')
-    for dataset in datasets:
-        entry=dataset['DatasetID'][:5]
-        if entry not in entries:
-            entries.append(entry)
-            if ientry>0: print(';',end='')
-            print(entry,end='')
-            ientry+=1
-    print('')
-    return entries
-
-def typeEntries(datasets):
+def printEntries(datasets):
     entries=[]
     for dataset in datasets:
         entry=dataset['DatasetID'][:5]
@@ -346,3 +339,21 @@ def getNDataPoints(datasets):
     nn=0
     for dataset in datasets: nn+=len(dataset['x'])
     return nn
+
+def addStrToWhere(field,str0,end=''):
+    if str0 is None: return ''
+    strs=str0.split(";")
+    str1=addArrToWhere(field,strs,end)
+    return str1
+
+def addArrToWhere(field,arr,end='\n'):
+    where=""
+    if len(arr)>0:
+        where+=" and ("+end
+        for ii,value1 in enumerate(arr):
+            if (ii!=0): where+=" or"
+            else:       where+=" "
+            value1=value1.replace('*','%')
+            where+=" ("+field+" like '"+value1+"')"+end
+        where+=" )"
+    return where

@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac1.py, ver.2026-08-25       |
+  | Program: reac1.py, ver.2026-08-27       |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-08-25 23:12:43
+Running: 2026-08-28 13:26:52
 
 ---Arguments from command-line---
    1  arg: -o:tke1
@@ -25,6 +25,7 @@ Running: 2026-08-25 23:12:43
    x3range:   None - None
    fx:        1
    fy:        1000000.0
+   nPntMin:   1
    xrange:    None
    Output:    tke1
    x4ei:      
@@ -34,7 +35,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=ro
    Connected to: [sqlite3]
 
 ---Print summary---
-Summary of Reaction-Codes 3
+Summary of Reaction-Codes 29
 ----1.
     fullCode       92-U-235(N,F)MASS,PRE,KE,LF+HF
     ReactionType   E          Kinetic energy
@@ -43,15 +44,7 @@ Summary of Reaction-Codes 3
     y     c5data   EV         Data: data                           ///electron-Volts
     x1    SpE      EV         Incident energy: spectrum energy     ///electron-Volts
     x2    ZAM      ARB-UNITS  Isotope/particle identification: mass ///arbitrary Units
-----2.
-    fullCode       92-U-235(N,F)MASS,PRE,KE,LF+HF
-    ReactionType   E          Kinetic energy
-    WebQuantity1   E          Kinetic energies
-    nx             2          Number of x (independent variables)
-    y     c5data   EV         Data: data                           ///electron-Volts
-    x1    EN       EV         Incident energy: energy              ///electron-Volts
-    x2    ZAM      ARB-UNITS  Isotope/particle identification: mass ///arbitrary Units
-----3.
+----25.
     fullCode       92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW
     ReactionType   E          Kinetic energy
     WebQuantity1   E          Kinetic energies
@@ -78,6 +71,8 @@ Summary of Units 2
 ---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['92-U-235(N,F)MASS,PRE,KE,LF+HF', '92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW']
 SQL:
 select *                                                   
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
  ,y  as YY, dy  as dYY                                     
  ,x2 as XX, dx2 as dXX                             
  ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
@@ -99,8 +94,8 @@ select *
  left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
  where 1=1 
  and (
-      fullCode like '92-U-235(N,F)MASS,PRE,KE,LF+HF'
-   or fullCode like '92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW'
+  (fullCode like '92-U-235(N,F)MASS,PRE,KE,LF+HF')
+ or (fullCode like '92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW')
  ) 
   order by fullCode,YearRef1 desc,DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    
