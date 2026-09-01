@@ -2,10 +2,10 @@ Program: mn55na.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Automatic correction of EXFOR cross sections according to new Standard CS
 
-Running: 2026-08-25 23:14:20
+Running: 2026-09-01 13:42:32
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearchCS: Mn-55 n,a
 SQL:
@@ -220,16 +220,20 @@ Plot:2/2) #30581004 1980, E.Zupranska* pt:10
 
 ___getEndfDataForPlot: [Mn-55] [n,a]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Mn-55&Reaction=n,a&Quantity=SIG&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Mn-55&Reaction=n,a&Quantity=SIG&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=Mn-55&Reaction=n,a&Quantity=SIG&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:40:25.000Z" 
+ ,"now":"2026-09-01T13:42:33.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1793
+ ,"req":2030
 ,"sections":[
  { "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":15299,"SectID":210577,"PenSectID":7583608,"LibID":70,"LibName":"ENDF/B-VII.0","DATE":"DEC06","AUTH":"K.Shibata"}
 ,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"MN-55(N,A)V-52,SIG","EvalID":57995,"SectID":2306326,"PenSectID":6665009,"LibID":3120,"LibName":"JEFF-3.1.2","DATE":"090105","AUTH":"K.Shibata,T.Hojuyama"}
@@ -270,18 +274,26 @@ SelectedLib-Sect:4) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 107,
 SelectedLib-Sect:12) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'MN-55(N,A)V-52,SIG', 'EvalID': 199090, 'SectID': 14176369, 'PenSectID': 18849610, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': '950817', 'AUTH': 'B.S.Yu, K.Shiba, K.Shibata, +'}
 Required sections:2
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=24029288&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=24029288&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=24029288&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:1)	MN-55(N,A)V-52,SIG	JENDL-5	PenSectID:24029288	pts:88	idy=84
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18849610&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18849610&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=18849610&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:2)	MN-55(N,A)V-52,SIG	CENDL-3.2	PenSectID:18849610	pts:22	idy=22
 Plot:1/2) 24029288	JENDL-5	pt:86	color:255,127,0
 Plot:2/2) 18849610	CENDL-3.2	pt:22	color:0,0,255

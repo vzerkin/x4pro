@@ -2,10 +2,10 @@ Program: x12898sig.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Automatic correction of EXFOR cross section data
 
-Running: 2026-08-25 23:14:31
+Running: 2026-09-01 13:42:58
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearchCS: V-51 n,p
 SQL:
@@ -1809,16 +1809,20 @@ Plot:3/3) #128980032 1984, D.L.Smith* pt:27
 
 ___getEndfDataForPlot: [V-51] [n,p]
 ---wgetdb_get:/servlet/E4sSearch2?Target=V-51&Reaction=n,p&Quantity=SIG&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=V-51&Reaction=n,p&Quantity=SIG&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=V-51&Reaction=n,p&Quantity=SIG&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:40:52.000Z" 
+ ,"now":"2026-09-01T13:43:00.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1795
+ ,"req":2032
 ,"sections":[
  { "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":301136,"SectID":21390178,"PenSectID":26224817,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"T.Kawano"}
 ,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":149511,"SectID":8952361,"PenSectID":13597604,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"T.Kawano"}
@@ -1853,18 +1857,26 @@ SelectedLib-Sect:2) {'Targ': 'V-51', 'ZT': 23, 'AT': 51, 'NSUB': 10, 'MT': 103, 
 SelectedLib-Sect:6) {'Targ': 'V-51', 'ZT': 23, 'AT': 51, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'V-51(N,P)TI-51,SIG', 'EvalID': 226262, 'SectID': 14406785, 'PenSectID': 19030396, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20100312', 'AUTH': 'N.Iwamoto'}
 Required sections:2
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13597604&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13597604&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=13597604&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:1)	V-51(N,P)TI-51,SIG	ENDF/B-VIII.0	PenSectID:13597604	pts:50	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=19030396&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=19030396&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=19030396&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:2)	V-51(N,P)TI-51,SIG	JENDL-5	PenSectID:19030396	pts:93	idy=0
 Plot:1/2) 13597604	ENDF/B-VIII.0	pt:50	color:0,0,255
 Plot:2/2) 19030396	JENDL-5	pt:91	color:0,255,0

@@ -10,7 +10,7 @@
           "X4Pro - universal, fully relational EXFOR database"
              Prepared by Viktor Zerkin, IAEA-NRDC, 2021-2026
             Experimental version for MS-Windows, Linux, MacOS
-                 Last modified: 2026-08-28 by V.Zerkin
+                 Last modified: 2026-09-01 by V.Zerkin
 _______________________________________________________________________________
 CONTENT
 

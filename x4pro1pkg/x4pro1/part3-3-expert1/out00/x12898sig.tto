@@ -2,10 +2,10 @@ Program: x13597002.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Apply experts corrections from database to EXFOR data
 
-Running: 2026-08-25 23:14:27
+Running: 2026-09-01 13:42:45
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ___getX4SqlSearchCS: [Zn-64] [n,p]
@@ -277,16 +277,20 @@ Plot:3/3) #10224002 1972, D.C.Santry* pt:22
 
 ___getEndfDataForPlot: [Zn-64] [n,p]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:40:39.000Z" 
+ ,"now":"2026-09-01T13:42:47.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1794
+ ,"req":2031
 ,"sections":[
  { "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":301162,"SectID":21398231,"PenSectID":26232896,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"N.Iwamoto"}
 ,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":149537,"SectID":8958164,"PenSectID":13602409,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"N.Iwamoto"}
@@ -330,25 +334,37 @@ SelectedLib-Sect:7) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103,
 SelectedLib-Sect:26) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 20370, 'SectID': 443582, 'PenSectID': 19523192, 'LibID': 55040, 'LibName': 'IAEA-Therapeutic', 'DATE': '15', 'AUTH': 'K.I.Zolotarev'}
 Required sections:3
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13602409&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13602409&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=13602409&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:1)	ZN-64(N,P)CU-64,SIG	ENDF/B-VIII.0	PenSectID:13602409	pts:181	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=24042301&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=24042301&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=24042301&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:2)	ZN-64(N,P)CU-64,SIG	JENDL-5	PenSectID:24042301	pts:1582	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=19523192&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=19523192&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=19523192&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:3)	ZN-64(N,P)CU-64,SIG	IAEA-Therapeutic	PenSectID:19523192	pts:69	idy=68
 Plot:1/3) 13602409	ENDF/B-VIII.0	pt:181	color:0,0,255
 Plot:2/3) 24042301	JENDL-5	pt:1580	color:0,255,0

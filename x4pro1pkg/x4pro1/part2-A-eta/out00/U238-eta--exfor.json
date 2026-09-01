@@ -1,0 +1,16 @@
+{
+  "now":"2026-09-01T13:41:17"
+ ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
+ ,"datasets":[
+   {
+     "DatasetID":"40806004"
+    ,"Reacode":"92-U-238(N,NON),,ETA"
+    ,"Target":"U-238"
+    ,"Reaction":"N,NON"
+    ,"x4lbl":"1958, N.N.Flerov"
+    ,"x_y_dy_dx_fc":[
+	 [ 1.4e+07      ,2.99         ,0.15        ]
+    ]
+  }
+  ]
+}

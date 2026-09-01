@@ -15,6 +15,7 @@ var dirMap=new Map([
 	 ["part1-8-reac","EXFOR universal: SIG, SIG-T, SIG-PAR, DA, DE, DA-PAR, FY, NUBAR, TKE, ETA"]
 	,["part2-8-sig1par","EXFOR/ENDF partial cross sections CSP:MT51"]
 	,["part2-9-nubar","EXFOR/ENDF NUBAR - average number of neutrons per fission"]
+	,["part2-A-eta","EXFOR/ENDF Eta: neutron yield per nonelastic even"]
     ]);
 </script>
 <script language=javascript>
@@ -55,10 +56,10 @@ var prevDir='';
 <body bgcolor="#ddddff">
 <center>
 <big><big><b><span style="color:blue;">X4Pro. News-2026.<span></b></big></big>
-<br><i>by V.Zerkin, Vienna, 2026-08-28</i>
+<br><i>by V.Zerkin, Vienna, 2026-09-01</i>
 </center>
 
-<div style="font-size:12pt;padding-top:6px;padding-bottom:6px;">
+<div style="font-size:12pt;padding-top:6px;padding-bottom:0px;">
 1. Code reac1.py: universal retrieval and plotting of EXFOR data having one-string Reaction-codes, for example:
 <ul style="margin:0;font-style:italic;font-size:11pt;">
   <li> CSP Partial cross section data</li>
@@ -67,12 +68,14 @@ var prevDir='';
   <li> NU  Fission-neutron yield, nu-bar</li>
   <li> TKE Total kinetic energy</li>
   <li> SIG Cross section data given with limit as DATA and DATA-MIN</li>
+  <li> SIG Production cross section, where product coded as SF4 or in DATA (ELEM/MASS)</li>
 </ul>
 &nbsp; &nbsp; &nbsp; -- Currently implemented search: by full-Reaction-code, DatasetID, Author1<br>
 2. Plotting partial cross sections from local EXFOR and remote ENDF databases
 <ul style="margin:0;font-style:italic;font-size:11pt;">
- <li> CSP vs ENDF:MT51:MF3+33 - Production of a neutron, with residual in the 1st excited state</li>
- <li> NU vs ENDF:MT452/455/456:MF1+31 - Average number of total/delayed/prompt neutrons released per fission event</li>
+ <li> CSP vs ENDF MT:51/MF:3,33 - Production of a neutron, with residual in the 1st excited state</li>
+ <li> NU vs ENDF MT452,455,456/MF:1,31 - Average number of total/delayed/prompt neutrons released per fission event</li>
+ <li> ETA vs ENDF MT:452,18,102/MF:1,3,31,33 - Average neutron yield per nonelastic event: &eta; &plusmn; &Delta;&eta;</li>
 </ul>
 
 </div>
@@ -125,19 +128,23 @@ Usage:
 //  out1("part1-8-reac/out00/da1p.html.png            ","DAP Partial differential c/s data with respect to angle");
 //  out1("part1-8-reac/out00/de1.html.png             ","DE  Energy spectrum of outgoing particles");
 //  out1("part1-8-reac/out00/dae1.html.png            ","DAE Double diff.c/s data with respect to angle and energy: d2/dA/dE");
-    out1("part1-8-reac/out00/eta1.html.png            ","ETA Average neutron yield per nonelastic event");
-//  out1("part1-8-reac/out00/fy1.html.png             ","FY  Fission-product yield");
     out1("part1-8-reac/out00/nu1.html.png             ","NU  Fission-neutron yield, nu-bar");
+//  out1("part1-8-reac/out00/fy1.html.png             ","FY  Fission-product yield");
     out1("part1-8-reac/out00/tke1.html.png            ","TKE Total kinetic energy");
     out1("part1-8-reac/out00/si28nn.html.png          ","SIG Cross section data given with limit as DATA and DATA-MIN");
     out1("part1-8-reac/out00/a1495-li6.html.png       ",'Data from EXFOR:"A1495" & Reaction: "3-LI-6*DA"');
     out1("part1-8-reac/out00/Kokkoris.html.png        ",'Data by "Kokkoris" & Reaction: "*,,DA"');
+    out1("part1-8-reac/out00/sig1prod.html.png        ","Production cross section coded as SF4 and ELEM/MASS");
     out1("part2-8-sig1par/out00/Li7ninl.html.png      ","Production of a neutron, with residual in the 1st excited state");
     out1("part2-9-nubar/out00/U235nf_-nu.html.png     ","Total neutron yield (nu-bar)");
     out1("part2-9-nubar/out00/U235nf_pr-nu.html.png   ","Prompt neutron yield (nu-bar)");
     out1("part2-9-nubar/out00/U235nf_dl-nu.html.png   ","Delayed neutron yield");
 //    out1("part2-9-nubar/out00/U238nf_pr-nu.html.png   ");
-//    out1("part2-9-nubar/out00/U238nf_dl-nu.html.png   ");
+    out1("part2-9-nubar/out00/U238nf_dl-nu.html.png   ");
+    out1("part1-8-reac/out00/eta1.html.png            ","ETA Average neutron yield per nonelastic event");
+    out1("part1-8-reac/out00/eta2.html.png            ","ETA: (N,ABS)+(N,NON)");
+    out1("part2-A-eta/out00/U235-eta.html.png         ","ETA: EXFOR vs. ENDF &eta; &plusmn; &Delta;&eta;");
+    out1("myplot1.png","Interactive plot: EXFOR:ETA + ENDF:MT:452,18,102,MF:1,3,31,33");
 </script>
 
 <hr>

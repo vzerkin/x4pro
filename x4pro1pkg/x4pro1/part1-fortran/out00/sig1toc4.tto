@@ -1,7 +1,7 @@
  Program: sig1toc4.f (ver.2022-08-26)
  Author:  V.Zerkin, IAEA-NDS, 2021-2022
  Purpose: get CS data from X4Pro and output to C4
- Running: 2026-08-25,23:12:58
+ Running: 2026-09-01,13:35:19
 
  Open database: ../../x4sqlite1.db ierr=           0
 

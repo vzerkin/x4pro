@@ -102,7 +102,7 @@ var x4pro='\
 X4Pro - universal, fully relational EXFOR database<br>
 </span>
 <span class=author>
-by V.Zerkin, IAEA:2021-2023, version 2026-08-25<br>
+by V.Zerkin, IAEA:2021-2023, version 2026-09-01<br>
 </span>
 <br>
 This page presents progress in development X4Pro database and tools
@@ -137,9 +137,9 @@ Tasks of the project:<br>
 Distribution (see
  <a href="readme.txt" target="_blank">readme</a>,
  <a href="LICENSE.TXT" target="_blank">license</a>,
- <a href="COPYRIGHT.TXT" target="_blank">copyright</a>), ver.2026-08-25:<br> 
-- X4Pro/SQLite database, ver.2026-08-25<br>
-- Python and Fortran demo-programs, ver.2026-08-25<br>
+ <a href="COPYRIGHT.TXT" target="_blank">copyright</a>), ver.2026-09-01:<br> 
+- X4Pro/SQLite database, ver.2026-09-01<br>
+- Python and Fortran demo-programs, ver.2026-09-01<br>
 - Bash-scripts running demo-programs (CLI 
   <script language="javascript">
     outLink('x4pro-cli.html','[1]','Command Line Interface for running demo-codes','');
@@ -148,7 +148,7 @@ and TUI
   <script language="javascript">
     outLink('x4pro-tui.html','[2]','Basic interactive script','');
     outLink('x4pro-dia.html','[3]','Menu-type interactive script','');
-  </script>), database statistics, ver.2026-08-25<br>
+  </script>), database statistics, ver.2026-09-01<br>
 - consists of 6 parts:<br>
 
 <table border=1>
@@ -363,13 +363,19 @@ CSP, DAP<br>
 TKE, ETA<br>
 NUDAT<br>
 FY<br>
+ELEM/<br>MASS<br>
 </span></td>
 <td>1) Partial cross section CSP
 <br>2) Temperatire dependent CST
 <br>3) Total kinetic energy TKE
 <br>4) Neutron yield ETA
 <br>5) Neutron yield NUBAR
-<br> &nbsp; &nbsp; etc.
+<br>6) DATA and DATA-MIN
+<br>7) Search by author
+<br>8) Production cross section,
+<br> &nbsp; &nbsp;where product coded as SF4
+<br> &nbsp; &nbsp;or in DATA (ELEM/MASS)
+<br> -- etc.
 </td>
 <td>
   <script language="javascript">
@@ -404,6 +410,16 @@ FY<br>
     outLink('part1-8-reac/out00/si28nn.html.png','png','Plotly:png','/');
     outLink('part1-8-reac/out00/si28nn.json','json','Output',', ');
     outLink('part1-8-reac/out00/si28nn.tto','tto','terminal-output','<br>');
+
+    outLink('part1-8-reac/out00/Kokkoris.html','Kokkoris.html','Search data by 1st author and quantity-code: interactive plot','/','7) Author1: ')
+    outLink('part1-8-reac/out00/Kokkoris.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/Kokkoris.json','json','Output',', ');
+    outLink('part1-8-reac/out00/Kokkoris.tto','tto','terminal-output','<br>');
+
+    outLink('part1-8-reac/out00/sig1prod.html','sig1prod.html','Cross sections with DATA and DATA-MIN: interactive plot','/','8) Prod: ')
+    outLink('part1-8-reac/out00/sig1prod.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/sig1prod.json','json','Output',', ');
+    outLink('part1-8-reac/out00/sig1prod.tto','tto','terminal-output','<br>');
 
     outLink('part1-8-reac/reac1.py','[reac1.py]','Main',' &nbsp; &nbsp; &nbsp; &nbsp; main code<br>','&nbsp;- ');
     outLink('part1-8-reac/reac1help.py','[reac1help.py]','Module',' &nbsp; display help-text<br>','&nbsp;- ');
@@ -744,6 +760,46 @@ Common subroutines:
 <td><br>---in progress---</td>
 </tr>
 
+
+<tr>
+<td>10.</td>
+<td bgcolor=#ddffff>part2-A-eta
+<span class=newdev>2026</span>
+</td>
+<td>Eta: average neutron yield <br>per nonelastic event</td>
+<td><span class=sigma>ETA</span></td>
+<td>	U-235(n,abs)(n,non),,eta<br>MT452:MF1+MF31<br>MT18:MF3+MF33<br>MT102:MF3+MF33</td>
+<td>
+  <script language="javascript">
+
+    outLink('part2-A-eta/out00/U235-eta.html','U235-eta.html','Neutron yield (nu-bar): interactive plot','/','')
+    outLink('part2-A-eta/out00/U235-eta.html.png','png','Plotly:png','/');
+    outLink('part2-A-eta/out00/U235-eta.json','json','Output',',');
+    outLink('part2-A-eta/out00/U235-eta--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-A-eta/out00/U235-eta--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-A-eta/out00/eta-u235.tto','tto','terminal-output','<br>');
+
+    outLink('part2-A-eta/out00/U233-eta.html','U233-eta.html','Neutron yield (nu-bar): interactive plot','/','')
+    outLink('part2-A-eta/out00/U233-eta.html.png','png','Plotly:png','/');
+    outLink('part2-A-eta/out00/U233-eta.json','json','Output',',');
+    outLink('part2-A-eta/out00/U233-eta--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-A-eta/out00/U233-eta--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-A-eta/out00/eta-u233.tto','tto','terminal-output','<br>');
+
+    outLink('part2-A-eta/out00/Pu239-eta.html','Pu239-eta.html','Neutron yield (nu-bar): interactive plot','/','')
+    outLink('part2-A-eta/out00/Pu239-eta.html.png','png','Plotly:png','/');
+    outLink('part2-A-eta/out00/Pu239-eta.json','json','Output',',');
+    outLink('part2-A-eta/out00/Pu239-eta--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-A-eta/out00/Pu239-eta--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-A-eta/out00/eta-pu239.tto','tto','terminal-output','<br>');
+
+    outLink('part2-A-eta/eta.py','[eta.py]','Main',' &nbsp; &nbsp; &nbsp; main code<br>','&nbsp;- ');
+    outLink('part2-A-eta/rx4eta.py','[rx4eta.py]','Module',' &nbsp;retrieval subroutines<br>','&nbsp;- ');
+
+  </script>
+</td>
+<td><br>---in progress---</td>
+</tr>
 
 
 <tr>

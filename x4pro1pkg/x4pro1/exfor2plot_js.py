@@ -16,6 +16,7 @@ def prepareExforDataForPlot(datasets,msize=8,groupReac=False,autocolor=False,lin
 	,lblPrefix=''
 	,symBorder=False
 	,useRecalcFlag=False
+	,bwColor=False
 	):
     ldata=len(datasets)
     data1=[]; ii=0; iir=0; lastReacode='?'

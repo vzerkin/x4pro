@@ -1,0 +1,21 @@
+[
+  {
+    "DatasetID": "40806004",
+    "Reacode": "92-U-238(N,NON),,ETA",
+    "Target": "U-238",
+    "Reaction": "N,NON",
+    "x4lbl": "1958, N.N.Flerov",
+    "x": [
+      14000000.0
+    ],
+    "y": [
+      2.99
+    ],
+    "dy": [
+      0.15
+    ],
+    "dx": [
+      null
+    ]
+  }
+]

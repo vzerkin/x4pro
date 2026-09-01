@@ -6,7 +6,7 @@ Purpose: Retrieve EXFOR cross sections, ratios
          renormalize cross sections to new monitors,
          search and download ENDF data from Web,
          plot evaluated and experimental data.
-Running: 2026-08-25 23:15:16
+Running: 2026-09-01 13:44:37
 
 ---arg[0]:sig1r.py
 ---arg[1]:U-235
@@ -33,7 +33,7 @@ Running: 2026-08-25 23:15:16
    outhtml: "U235ng"
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---Read x4evalscores from X4Pro database...
@@ -104,7 +104,7 @@ SQL:
 	  ENTRY.YearRef1 desc,x4pro_c5dat.DatasetID
 	  ,En,x4pro_c5dat.idat
 
-EXFOR SQL executed: 0.133sec
+EXFOR SQL executed: 0.027sec
 ---All entries: 41
 10013*;12313*;12318*;12331*;12398*;12407*;12409*;12416*;12420*;12428*;12438*;12439*;12456*;13047*;13205*;13848*;13924*;14138*;14149*;14182*;20158*;20369*;20663*;20880*;21202*;21203*;21457*;22941*;23162*;23310*;31719*;40156*;40259*;40350*;40385*;40412*;40550*;40562*;40808*;41380*;41427*;
 
@@ -285,16 +285,20 @@ Plot:53/53) #21457003 1955, P.A.Egelstaff# pt:1
 
 ___getEndfDataForPlot: [U-235] [n,g]
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-235&Reaction=n,g&Quantity=SIG&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=U-235&Reaction=n,g&Quantity=SIG&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=U-235&Reaction=n,g&Quantity=SIG&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:42:49.000Z" 
+ ,"now":"2026-09-01T13:44:38.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1801
+ ,"req":2038
 ,"sections":[
  { "Targ":"U-235","ZT":92,"AT":235,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"U-235(N,G)U-236,SIG","EvalID":272576,"SectID":19172632,"PenSectID":24020251,"LibID":30003,"LibName":"INDEN-Aug2023","DATE":"2023_Feb","AUTH":"Lanl/Inden Collaboration"}
 ,{ "Targ":"U-235","ZT":92,"AT":235,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"U-235(N,G)U-236,SIG","EvalID":272552,"SectID":19166598,"PenSectID":24014142,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"2020_Apr","AUTH":"IAEA Cielo Collaboration"}
@@ -353,36 +357,52 @@ SelectedLib-Sect:18) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 10
 SelectedLib-Sect:22) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 102, 'MF': 3, 'R': 'N,G', 'RC': 'U-235(N,G)U-236,SIG', 'EvalID': 199290, 'SectID': 14199604, 'PenSectID': 18873045, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': 'FEB25', 'AUTH': 'B.S.Yu,G.Y.Tang,D.J.Cai,H.C.Wu'}
 Required sections:4
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26213280&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26213280&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=26213280&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:1)	U-235(N,G)U-236,SIG	ENDF/B-VIII.1	PenSectID:26213280	pts:49106	idy=49106
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13776134&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13776134&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=13776134&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:2)	U-235(N,G)U-236,SIG	JEFF-3.3	PenSectID:13776134	pts:49826	idy=49826
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10751692&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10751692&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=10751692&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:3)	U-235(N,G)U-236,SIG	BROND-3.1	PenSectID:10751692	pts:49357	idy=49357
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18873045&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18873045&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=18873045&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:4)	U-235(N,G)U-236,SIG	CENDL-3.2	PenSectID:18873045	pts:49310	idy=0
 
-EXFOR SQL executed:  0.133sec
-ENDF Web downloaded: 0.364sec
+EXFOR SQL executed:  0.027sec
+ENDF Web downloaded: 16.226sec
 Plot:1/4) 26213280	ENDF/B-VIII.1	pt:49106	color:0,0,255
 Plot:2/4) 13776134	JEFF-3.3	pt:49826	color:0,127,63
 Plot:3/4) 10751692	BROND-3.1	pt:49357	color:255,0,255

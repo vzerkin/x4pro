@@ -1,5 +1,5 @@
 "X4Pro - universal, fully relational EXFOR database"
-by V.Zerkin, IAEA-NRDC, 2020-2026, version 2026-08-25
+by V.Zerkin, IAEA-NRDC, 2020-2026, version 2026-09-01
 ---------------------------------------------------------------------------------------------
 1. Data source EXFOR:         The data and resources available on this database are provided
                               to the IAEA by the NRDC Network, which is a network under the

@@ -4,7 +4,7 @@
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-08-28 13:27:04
+Running: 2026-09-01 13:35:06
 
 ---Arguments from command-line---
    1  arg: -o:a1495-li6
@@ -31,7 +31,7 @@ Running: 2026-08-28 13:27:04
    x4ei:       and (  (dsid like 'a1495%') )
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
    Connected to: [sqlite3]
 
 ---Print summary---
@@ -96,7 +96,7 @@ select *
  and (
   (fullCode like '3-li-6%da')
  ) 
- and (  (dsid like 'a1495%') )  order by fullCode,YearRef1 desc,DatasetID 
+ and (  (dsid like 'a1495%') )   order by fullCode,YearRef1 desc,DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    
 
    Retrieved rows: 392

@@ -2,13 +2,13 @@ Program: sig1x.py, ver. 2025-01-24
 Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2025
 Purpose: Retrieve and plot EXFOR cross sections
 	 from SQL database and ENDF data from Web
-Running: 2026-08-25 23:13:00
+Running: 2026-09-01 13:35:20
 
 Number of arguments: 4 arguments.
 Argument List: ['sig1x.py', '', '', 'log']
 Script-name: sig1x.py
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ___getX4SqlSearchCS: [Al-27] [n,a]] []
@@ -20,7 +20,7 @@ where (Target like 'Al-27')
   and (sProd like '') 
 
 
-EXFOR SQL executed: 0.008sec
+EXFOR SQL executed: 0.007sec
 
 ___getDatasets from datapoints: 692
 DS:1) 13-AL-27(N,A)11-NA-24,,SIG #31842017 2022,J.Jarosik
@@ -898,16 +898,19 @@ Plot:87/87) #11474002 1952, S.G.Forbes pt:1
 
 ___getEndfDataForPlot: [Al-27] [n,a]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Al-27&Reaction=n,a&Quantity=SIG&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
-
----wgetdb_get---retrieved from wget_cache rows: 1
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Al-27&Reaction=n,a&Quantity=SIG&json'
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=Al-27&Reaction=n,a&Quantity=SIG&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:34:29.000Z" 
+ ,"now":"2026-09-01T13:35:22.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1776
+ ,"req":2009
 ,"sections":[
  { "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":301095,"SectID":21383122,"PenSectID":26217720,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"M.B.Chadwick+,Derrien+"}
 ,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":149470,"SectID":8945716,"PenSectID":13670440,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"M.B.Chadwick+,Derrien+"}
@@ -971,53 +974,81 @@ SelectedLib-Sect:19) {'Targ': 'AL-27', 'ZT': 13, 'AT': 27, 'NSUB': 10, 'MT': 107
 SelectedLib-Sect:35) {'Targ': 'AL-27', 'ZT': 13, 'AT': 27, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'AL-27(N,A)NA-24,SIG', 'EvalID': 196329, 'SectID': 13291298, 'PenSectID': 17932694, 'LibID': 61020, 'LibName': 'TENDL-2019.s60', 'DATE': 'NOV19', 'AUTH': 'A.J. Koning and D. Rochman'}
 Required sections:7
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26217720&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26217720&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=26217720&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:1)	AL-27(N,A)NA-24,SIG	ENDF/B-VIII.1	PenSectID:26217720	pts:185	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13670440&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13670440&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=13670440&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:2)	AL-27(N,A)NA-24,SIG	ENDF/B-VIII.0	PenSectID:13670440	pts:55	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13681520&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13681520&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=13681520&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:3)	AL-27(N,A)NA-24,SIG	JEFF-3.3	PenSectID:13681520	pts:55	idy=52
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=24021365&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=24021365&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=24021365&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:4)	AL-27(N,A)NA-24,SIG	JENDL-5	PenSectID:24021365	pts:73	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10712405&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10712405&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=10712405&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:5)	AL-27(N,A)NA-24,SIG	BROND-3.1	PenSectID:10712405	pts:55	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18847510&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18847510&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=18847510&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:6)	AL-27(N,A)NA-24,SIG	CENDL-3.2	PenSectID:18847510	pts:109	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=17932694&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=17932694&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=17932694&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:7)	AL-27(N,A)NA-24,SIG	TENDL-2019.s60	PenSectID:17932694	pts:269	idy=267
 Plot:1/7) 26217720	ENDF/B-VIII.1	pt:183	color:0,0,255
 Plot:2/7) 13670440	ENDF/B-VIII.0	pt:53	color:0,127,127
@@ -1027,8 +1058,8 @@ Plot:5/7) 10712405	BROND-3.1	pt:53	color:255,0,255
 Plot:6/7) 18847510	CENDL-3.2	pt:109	color:255,0,0
 Plot:7/7) 17932694	TENDL-2019.s60	pt:267	color:127,127,127
 
-EXFOR SQL executed:  0.008sec
-ENDF Web downloaded: 0.215sec
+EXFOR SQL executed:  0.007sec
+ENDF Web downloaded: 20.335sec
 Will try---write_image: Al27na.html.png
 
 Program successfully completed

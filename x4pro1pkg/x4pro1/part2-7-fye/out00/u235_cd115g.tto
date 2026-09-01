@@ -3,10 +3,10 @@ Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2024
 Purpose: Cumulative fission yield from EXFOR/ENDF:
          retrieve list of datasets, filter data by product,
          download fy.json, extract data, plot by Plotly
-Running: 2026-08-25 23:13:51
+Running: 2026-09-01 13:39:01
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearchFY_ene: u-235 cd-115-g 
 SQL:
@@ -45,7 +45,7 @@ Plot:5/5) #13368004 1952, A.C.Wahl pt:1
 
 Retrieve list of sections from ENDF...
 ---wgetdb_get:/e4list?Target=u-235&Reaction=n,cum_FY&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
@@ -54,7 +54,7 @@ Connected to: [sqlite3]
 Retrieved list of ENDF sections:17
    section:1/17/ok:0 SectID:9030505 U-235 Lib:ENDF/B-VIII.0 AUTH:[T.R. England et al]
 ---wgetdb_get:/e4fy?SectID=9030505&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
@@ -64,7 +64,7 @@ Connected to: [sqlite3]
 		dFY:[0.0006947, 0.0008701, 0.0254188]
    section:2/17/ok:1 SectID:9150997 U-235 Lib:JEFF-3.3 AUTH:[R.Mills]
 ---wgetdb_get:/e4fy?SectID=9150997&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
@@ -74,7 +74,7 @@ Connected to: [sqlite3]
 		dFY:[0.0007965, 0.0030311, 0.046372]
    section:3/17/ok:2 SectID:19185724 U-235 Lib:JENDL-5 AUTH:[K.Tsubakihara]
 ---wgetdb_get:/e4fy?SectID=19185724&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
@@ -84,7 +84,7 @@ Connected to: [sqlite3]
 		dFY:[0.0003408, 0.00093, 0.3694222]
    section:4/17/ok:3 SectID:3095297 U-235 Lib:ENDF/B-V AUTH:[M.R.Bhat]
 ---wgetdb_get:/e4fy?SectID=3095297&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1

@@ -6,7 +6,7 @@ Purpose: Retrieve EXFOR cross sections, ratios
          renormalize cross sections to new monitors,
          search and download ENDF data from Web,
          plot evaluated and experimental data.
-Running: 2026-08-25 23:15:12
+Running: 2026-09-01 13:44:24
 
 ---arg[0]:sig1r.py
 ---arg[1]:Zn-64
@@ -30,7 +30,7 @@ Running: 2026-08-25 23:15:12
    outhtml: "Zn64np"
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---Read x4evalscores from X4Pro database...
@@ -100,7 +100,7 @@ SQL:
 	  ENTRY.YearRef1 desc,x4pro_c5dat.DatasetID
 	  ,En,x4pro_c5dat.idat
 
-EXFOR SQL executed: 0.063sec
+EXFOR SQL executed: 0.005sec
 ---All entries: 46
 10022*;10224*;10238*;10776*;11274*;11494*;11515*;11590*;11740*;11802*;12956*;13136*;13597*;20107*;20291*;20673*;20721*;20748*;20835*;21343*;21741*;21879*;22093*;22191*;22209*;22338*;22637*;22976*;23032*;30218*;30221*;30263*;30336*;30529*;30707*;30807*;30978*;31110*;31449*;31459*;31460*;31500*;32884*;40009*;40016*;40485*;
 
@@ -382,16 +382,16 @@ Plot:87/87) #30218002 1959, J.Rapaport pt:12
 
 ___getEndfDataForPlot: [Zn-64] [n,p]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json'
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:40:39.000Z" 
+ ,"now":"2026-09-01T13:42:47.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1794
+ ,"req":2031
 ,"sections":[
  { "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":301162,"SectID":21398231,"PenSectID":26232896,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"N.Iwamoto"}
 ,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":149537,"SectID":8958164,"PenSectID":13602409,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"N.Iwamoto"}
@@ -436,36 +436,52 @@ SelectedLib-Sect:9) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103,
 SelectedLib-Sect:12) {'Targ': 'ZN-64', 'ZT': 30, 'AT': 64, 'NSUB': 10, 'MT': 103, 'MF': 3, 'R': 'N,P', 'RC': 'ZN-64(N,P)CU-64,SIG', 'EvalID': 199104, 'SectID': 14178672, 'PenSectID': 18851927, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': '20180815', 'AUTH': 'Y.L.Han, J.Q.Hu, Y.L.Xu'}
 Required sections:4
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26232896&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26232896&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=26232896&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:1)	ZN-64(N,P)CU-64,SIG	ENDF/B-VIII.1	PenSectID:26232896	pts:72	idy=71
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13699807&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13699807&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=13699807&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:2)	ZN-64(N,P)CU-64,SIG	JEFF-3.3	PenSectID:13699807	pts:333	idy=127
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10719038&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10719038&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=10719038&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:3)	ZN-64(N,P)CU-64,SIG	BROND-3.1	PenSectID:10719038	pts:181	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18851927&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18851927&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetTabSect?PenSectID=18851927&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Downloaded:4)	ZN-64(N,P)CU-64,SIG	CENDL-3.2	PenSectID:18851927	pts:178	idy=0
 
-EXFOR SQL executed:  0.063sec
-ENDF Web downloaded: 0.025sec
+EXFOR SQL executed:  0.005sec
+ENDF Web downloaded: 9.89sec
 Plot:1/4) 26232896	ENDF/B-VIII.1	pt:72	color:0,0,255
 Plot:2/4) 13699807	JEFF-3.3	pt:331	color:0,127,63
 Plot:3/4) 10719038	BROND-3.1	pt:181	color:255,0,255

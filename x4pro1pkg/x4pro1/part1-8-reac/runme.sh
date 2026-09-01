@@ -13,12 +13,14 @@ sqlite3 -header -box ../../x4sqlite1.db <reactions1.sql >reactions1.txt
  ${mypython3} -B reac1.py -o:cst1  -x:x1 -lines -sym -ylog -xlog -fx:1e-3 -annot:"0.5,7.5,<b>SIG/Temp</b>" "82-PB-0(N,TOT),,SIG/TMP">cst1.tto
  ${mypython3} -B reac1.py -o:nu1  -x:x1 -lines -sym -ylog -xlog -fx:1e6 -annot:"3,11.5,<b>NUBAR</b>" "92-U-238(N,F),PR,NU">nu1.tto
  ${mypython3} -B reac1.py -o:tke1 -x:x2 -fy:1e6 -lines -sym -annot:"80,180,<b>TKE</b>" "92-U-235(N,F)MASS,PRE,KE,LF+HF" "92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW">tke1.tto
- ${mypython3} -B reac1.py -o:eta1 -x:x1 -x1max:4 -lines -sym -ylog -annot:"0.75,3.25,<b>ETA</b>" "92-U-235(N,ABS),,ETA">eta1.tto
+#${mypython3} -B reac1.py -o:eta1 -x:x1 -x1max:4 -lines -sym -ylog -annot:"0.75,3.25,<b>ETA</b>" "92-U-235(N,ABS),,ETA">eta1.tto
+ ${mypython3} -B reac1.py -o:eta2 -x:x1 -lines -sym -ylog -xlog -annot:"0.1,3.5,<b>Eta: ABS+NON</b>" "92-U-235(N,ABS),,ETA" "92-U-235(N,NON),,ETA">eta2.tto
  ${mypython3} -B reac1.py -o:sig1p -x1max:10e6 -x2:478e3 -fx:1e6 -ylog -lines -sym -annot:"2,0.31,<b>SIG/Partial</b>" "3-LI-7(N,INL)3-LI-7,PAR,SIG">sig1p.tto
  ${mypython3} -B reac1.py -o:si28nn -fx:1e6 -xlog -xmin:1 -xmax:21 -lines -sym -annot:"10.4,1.3,<b>DATA and DATA-MIN</b>" "14-SI-28(N,INL)14-SI-28,,SIG">si28nn.tto
  ${mypython3} -B reac1.py -o:a1495-li6 -ds:"a1495*" -fx:1e6 -fy:1e-3 -lines -sym -annot:"1.4,8.5,<b>A1495.x4:3-Li-6*,da</b>" "3-li-6*da">a1495-li6.tto
  ${mypython3} -B reac1.py -o:a1495 -ds:"a1495*" -fx:1e6 -fy:1e-3 -lines -sym -annot:"1.4,8.5,<b>A1495.x4:*,da</b>" "*,DA">a1495.tto
  ${mypython3} -B reac1.py -o:Kokkoris -a1:"Kokkoris" -xlog -ylog -fx:1e6 -fy:1e-3 -lines -sym "*,,DA" -annot:"1.6,350,<b>A1:Kokkoris  R:*,,DA</b>">Kokkoris.tto
+ ${mypython3} -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '40-Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
 
 set +x
 
@@ -67,3 +69,7 @@ txt2html2browser reactions1.txt reactions1.sql
 #python -B reac1.py -o:da1a -ds:"A1495002;A1495003" -lines -sym -fy:1e-3>aa2.tto
 #python -B reac1.py -o:da1a -x:x3 -ds:"F0001002" -ylog -lines -sym -fy:1e-3 -fx:57.296>aa2.tto
 #python -B reac1.py -o:da1a -x:x2 -nmin:12 -lines -sym -ylog -fy:1e-3 -annot:"60,1e3,<b>DA(A)</b>" "8-O-16(N,EL)8-O-16,,DA">da1a.tto
+
+#python -B reac1.py -o:sig1prod -x2:40097 -fx:1e6 -fy:1e-3 -xlog -ylog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG">sig1prod.tto
+#python -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '40-Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
+#python -B ../myplot1.py sig1prod -x:log -o:sig1prod-myplot.html

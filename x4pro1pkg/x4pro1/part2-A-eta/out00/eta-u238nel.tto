@@ -1,0 +1,95 @@
+Program: eta.py, ver.2026-08-31
+Author:  V.Zerkin, Vienna, 2026
+Purpose: Retrieve and plot EXFOR and ENDF data
+         Eta: neutron yield per nonelastic even
+
+Running: 2026-09-01 13:41:59
+
+
+---Arguments from command-line---
+   1  arg: u-238
+   2  arg: -r:n,el
+   3  arg: -ylog
+   4  arg: -xlog
+
+---Parameters:
+   target:  u-238
+   x4react: n,el
+   e4react: n,nu_tot
+   x4quant: ,eta
+   Output:  U238nel-eta
+   x-axis:  log     range: None
+   y-axis:  log     range: None
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+---getX4SqlSearch_NUBAR: u-238 n,el ,eta  and sf8='' 
+SQL:
+select *                                  
+ ,y  as YY, dy  as dYY                    
+ ,x1 as En, dx1 as dEn                    
+from uni1                                 
+where                                     
+ Target like 'u-238'                 
+ and (  (Reaction like 'n,el') ) 
+ and SF58 like ',eta'                 
+ and x2 is null                           
+ and sf8=''  
+order by fullCode,YearRef1 desc,DatasetID 
+ ,En,iPoint                               
+
+
+EXFOR SQL executed: 0.003sec rows:0
+
+datapoints: 0
+---ENTRY: 
+datasets: 0
+---No EXFOR data found---
+
+___webEndfDataForPlot_DADE: [u-238] [n,nu_tot] [&eta=2]
+---wgetdb_get:/servlet/E4sSearch2?Target=u-238&Reaction=n,nu_tot&Quantity=*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=u-238&Reaction=n,nu_tot&Quantity=*&json&mats'
+format=WebEndfSectionsList-0.1
+___Retrieved sections:45
+SelectedLib-Sect:4) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 452, 'MF': 1, 'R': 'N,nu_tot', 'RC': 'U-238(N,nu_tot),INFO', 'EvalID': 149936, 'SectID': 9025220, 'PenSectID': 13662973, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'IAEA Consortium'}
+SelectedLib-Sect:7) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 452, 'MF': 1, 'R': 'N,nu_tot', 'RC': 'U-238(N,nu_tot),INFO', 'EvalID': 307103, 'SectID': 21643630, 'PenSectID': 26470395, 'LibID': 3400, 'LibName': 'JEFF-4.0', 'DATE': 'NOV24', 'AUTH': 'Jeff Collab'}
+___Required sections:2
+WebReq:1) EvalID:149936 PenSectID:13662973 Lib:ENDF/B-VIII.0 Color:0,0,255
+/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662973&json&eta=2
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662973&json&eta=2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662973&json&eta=2'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662973&json&eta=2
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:1/1)		ENDF/B-VIII.0	EID:149936	SID:13662973	f(x):Eta(MT=2)	pts:45
+Downloaded:DS:1/1)		ENDF/B-VIII.0	EID:149936	SID:13662973	f(x):Eta(MT=2)	pts:45	idy=45
+WebReq:2) EvalID:307103 PenSectID:26470395 Lib:JEFF-4.0 Color:255,0,0
+/servlet/E4sGetSectData?EvalID=307103&PenSectID=26470395&json&eta=2
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=307103&PenSectID=26470395&json&eta=2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=307103&PenSectID=26470395&json&eta=2'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=307103&PenSectID=26470395&json&eta=2
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:2/1)		JEFF-4.0	EID:307103	SID:26470395	f(x):Eta(MT=2)	pts:119
+Downloaded:DS:2/1)		JEFF-4.0	EID:307103	SID:26470395	f(x):Eta(MT=2)	pts:119	idy=119
+---e4datasets: 2
+Plot:1/2) 13662973	ENDF/B-VIII.0	pt:45	color:0,0,255
+Plot:2/2) 26470395	JEFF-4.0	pt:119	color:255,0,0
+Will try---write_image: U238nel-eta.html.png
+
+Program successfully completed

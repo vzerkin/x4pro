@@ -3,10 +3,10 @@ Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2024
 Purpose: Cumulative fission yield from EXFOR/ENDF:
          retrieve list of datasets, filter data by product,
          download fy.json, extract data, plot by Plotly
-Running: 2026-08-25 23:13:44
+Running: 2026-09-01 13:38:30
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearchFY_ene: Pu-239 Mo-99 
 SQL:
@@ -47,50 +47,70 @@ Plot:6/6) #41070002 1961, E.K.Bonyushkan pt:1
 
 Retrieve list of sections from ENDF...
 ---wgetdb_get:/e4list?Target=Pu-239&Reaction=n,cum_FY&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4list?Target=Pu-239&Reaction=n,cum_FY&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4list?Target=Pu-239&Reaction=n,cum_FY&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    format:WebEndfSectionsList-0.1
 Retrieved list of ENDF sections:17
    section:1/17/ok:0 SectID:9030526 PU-239 Lib:ENDF/B-VIII.0 AUTH:[M.B. Chadwick, T. Kawano]
 ---wgetdb_get:/e4fy?SectID=9030526&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=9030526&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4fy?SectID=9030526&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    Prod:Mo-99	 En:[0.0, 0.5, 2.0, 14.0]
 		 FY:[6.2117, 6.23, 6.09, 5.655593]
 		dFY:[0.0869638, 0.04361, 0.18879, 0.2827797]
    section:2/17/ok:1 SectID:9151015 PU-239 Lib:JEFF-3.3 AUTH:[R.Mills]
 ---wgetdb_get:/e4fy?SectID=9151015&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=9151015&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4fy?SectID=9151015&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    Prod:Mo-99	 En:[0.0, 0.4]
 		 FY:[6.141, 5.8366]
 		dFY:[0.043029, 0.13426]
    section:3/17/ok:2 SectID:19185748 PU-239 Lib:JENDL-5 AUTH:[K.Tsubakihara]
 ---wgetdb_get:/e4fy?SectID=19185748&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=19185748&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4fy?SectID=19185748&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    Prod:Mo-99	 En:[0.0, 0.5, 14.0]
 		 FY:[6.198019, 5.956747, 4.773764]
 		dFY:[0.1482051, 0.1189045, 1.21347]
    section:4/17/ok:3 SectID:3095309 PU-239 Lib:ENDF/B-V AUTH:[E.Arthur, P.Young]
 ---wgetdb_get:/e4fy?SectID=3095309&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=3095309&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4fy?SectID=3095309&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    Prod:Mo-99	 En:[0.0, 0.5, 14.0]
 		 FY:[6.15612, 6.00468, 4.12695]
 		dFY:[0.123122, 0.168131, 0.330156]

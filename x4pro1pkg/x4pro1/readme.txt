@@ -10,7 +10,7 @@
           "X4Pro - universal, fully relational EXFOR database"
              Prepared by Viktor Zerkin, IAEA-NRDC, 2021-2026
             Experimental version for MS-Windows, Linux, MacOS
-                 Last modified: 2026-08-25 by V.Zerkin
+                 Last modified: 2026-09-01 by V.Zerkin
 _______________________________________________________________________________
 CONTENT
 
@@ -47,12 +47,12 @@ DOWNLOAD
     https://github.com/vzerkin/x4pro
     click "<>Code" and  "Download-ZIP"
  ~or~
- 3) Download file "x4pro1-20260825-mini.zip" from Internet:
+ 3) Download file "x4pro1-20260828-mini.zip" from Internet:
     https://nds.iaea.org/cdroms/x4pro.htm#x4pro1
 _______________________________________________________________________________
 UNCOMPRESS
 
- 1) Uncompress file "x4pro1-20260825-mini.zip" (~8Gb)
+ 1) Uncompress file "x4pro1-20260828-mini.zip" (~8Gb)
     or x4pro-master.zip downloaded from GitHub:
     $ unzip ~/Downloads/x4pro-master.zip
     (required free space on HD disk: ~2Gb)
@@ -67,7 +67,7 @@ INSTALL
  *Note. Windows distibution is portable (having embedded python3, mingw, gfortran)
 
  Linux/MacOS:
- 1) If you downloaded and uncompressed "x4pro1-20260825-mini.zip"
+ 1) If you downloaded and uncompressed "x4pro1-20260828-mini.zip"
     you can remove preinstalled Windows' system components:
       $ rm -rf x4pro1pkg/win-*
  2) check python3* (install if you don't have it)

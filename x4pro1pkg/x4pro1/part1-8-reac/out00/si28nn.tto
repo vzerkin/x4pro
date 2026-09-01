@@ -4,7 +4,7 @@
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-08-28 13:27:01
+Running: 2026-09-01 13:35:03
 
 ---Arguments from command-line---
    1  arg: -o:si28nn
@@ -32,7 +32,7 @@ Running: 2026-08-28 13:27:01
    x4ei:      
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
    Connected to: [sqlite3]
 
 ---Print summary---
@@ -94,7 +94,7 @@ select *
  and (
   (fullCode like '14-SI-28(N,INL)14-SI-28,,SIG')
  ) 
-  order by fullCode,YearRef1 desc,DatasetID 
+   order by fullCode,YearRef1 desc,DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    
 
    Retrieved rows: 952

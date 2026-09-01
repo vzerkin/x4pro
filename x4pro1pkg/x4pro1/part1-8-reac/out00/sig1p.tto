@@ -4,7 +4,7 @@
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-08-28 13:26:58
+Running: 2026-09-01 13:35:01
 
 ---Arguments from command-line---
    1  arg: -o:sig1p
@@ -32,7 +32,7 @@ Running: 2026-08-28 13:26:58
    x4ei:       and x1<=10000000.0 and x2>=478000.0 and x2<=478000.0
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
    Connected to: [sqlite3]
 
 ---Print summary---
@@ -95,7 +95,7 @@ select *
  and (
   (fullCode like '3-LI-7(N,INL)3-LI-7,PAR,SIG')
  ) 
- and x1<=10000000.0 and x2>=478000.0 and x2<=478000.0  order by fullCode,YearRef1 desc,DatasetID 
+ and x1<=10000000.0 and x2>=478000.0 and x2<=478000.0   order by fullCode,YearRef1 desc,DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    
 
    Retrieved rows: 197

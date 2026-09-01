@@ -3,10 +3,10 @@ Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2024
 Purpose: Cumulative fission yield from EXFOR/ENDF:
          retrieve list of datasets, filter data by product,
          download fy.json, extract data, plot by Plotly
-Running: 2026-08-25 23:13:47
+Running: 2026-09-01 13:38:45
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearchFY_ene: u-235 kr-85-m 
 SQL:
@@ -41,50 +41,70 @@ Plot:3/3) #13274003 1973, N.E.Ballou pt:1
 
 Retrieve list of sections from ENDF...
 ---wgetdb_get:/e4list?Target=u-235&Reaction=n,cum_FY&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4list?Target=u-235&Reaction=n,cum_FY&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4list?Target=u-235&Reaction=n,cum_FY&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    format:WebEndfSectionsList-0.1
 Retrieved list of ENDF sections:17
    section:1/17/ok:0 SectID:9030505 U-235 Lib:ENDF/B-VIII.0 AUTH:[T.R. England et al]
 ---wgetdb_get:/e4fy?SectID=9030505&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=9030505&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4fy?SectID=9030505&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    Prod:kr-85-m	 En:[0.0, 0.5, 14.0]
 		 FY:[1.29071, 1.36069, 1.63849]
 		dFY:[0.0045175, 0.0190496, 0.0655397]
    section:2/17/ok:1 SectID:9150997 U-235 Lib:JEFF-3.3 AUTH:[R.Mills]
 ---wgetdb_get:/e4fy?SectID=9150997&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=9150997&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4fy?SectID=9150997&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    Prod:kr-85-m	 En:[0.0, 0.4, 14.0]
 		 FY:[1.3052, 1.3088, 1.6393]
 		dFY:[0.014529, 0.035455, 0.31325]
    section:3/17/ok:2 SectID:19185724 U-235 Lib:JENDL-5 AUTH:[K.Tsubakihara]
 ---wgetdb_get:/e4fy?SectID=19185724&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=19185724&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4fy?SectID=19185724&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    Prod:kr-85-m	 En:[0.0, 0.5, 14.0]
 		 FY:[1.249375, 1.215944, 1.630623]
 		dFY:[0.0048501, 0.0097129, 0.557749]
    section:4/17/ok:3 SectID:3095297 U-235 Lib:ENDF/B-V AUTH:[M.R.Bhat]
 ---wgetdb_get:/e4fy?SectID=3095297&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/e4fy?SectID=3095297&json'
+...wget_nds:URL:http://localhost:5557/exfor2/e4fy?SectID=3095297&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
    Prod:kr-85-m	 En:[0.0, 0.5, 14.0]
 		 FY:[1.30461, 1.32505, 1.66679]
 		dFY:[0.0045661, 0.0185507, 0.0466702]

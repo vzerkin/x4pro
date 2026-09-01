@@ -33,6 +33,7 @@ def main():
 
     x4ei=''
     x4where0=''
+    usr2where=''
     fx=1; fy=1
     nPntMin=1
     plotTitle=''
@@ -133,6 +134,7 @@ def main():
         if arg.startswith('-annot:'):  annot=str2annot(arg[7:]);   continue
         if arg.lower().startswith('-a1:'):  a1=arg[4:];            continue
         if arg.lower().startswith('-ds:'):  dsids=arg[4:];         continue
+        if arg.startswith('-w:'):           usr2where=arg[3:];     continue
         if arg.startswith('-'): continue
         reacodes.append(arg)
 
@@ -180,7 +182,7 @@ def main():
     print_reacodes(dbConn,conn,reacodes,add2Where=x4where0)
 
     print("\n---Retrieve EXFOR data from SQL database---")
-    rows=getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,x4ei)
+    rows=getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,x4ei,usr2where=usr2where)
     print("   Retrieved rows: "+str(len(rows)))
 
     print("\n---Extract EXFOR data from recordsets (rows)---")

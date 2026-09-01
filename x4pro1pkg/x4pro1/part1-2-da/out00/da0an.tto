@@ -2,10 +2,10 @@ Program: da0an.py, ver. 2022-12-20
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Retrieve and plot EXFOR angular distributions
 
-Running: 2026-08-25 23:12:11
+Running: 2026-09-01 13:34:29
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearch_DA_e: O-16 n,el  and (En>13900000.0 and En<14300000.0)
 SQL:

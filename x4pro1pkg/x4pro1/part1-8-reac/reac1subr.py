@@ -107,13 +107,13 @@ def getUnits(dbConn,conn,basicUnits,factor=1,verbose=True):
     units=basicUnits+'&times;'+"{:.0e}".format(factor).replace('e+0','e').replace('e-0','e-')
     return units
 
-def getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,add2Where=''):
-    sql=getX4SqlSearch_Reacodes(reacodes,xn,add2Where)
+def getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,add2Where='',usr2where=''):
+    sql=getX4SqlSearch_Reacodes(reacodes,xn,add2Where,usr2where)
     rows=executeSql(dbConn,conn,sql)
 #    rows=execute1sql(dbConn,conn,sql,verbose=True,ttout=True)
     return rows
 
-def getX4SqlSearch_Reacodes(reacodes,xn,add2Where=''):
+def getX4SqlSearch_Reacodes(reacodes,xn,add2Where='',usr2where=''):
     print("---getX4SqlSearch_Reacodes: xn=",xn,' reacodes:',reacodes)
 #?    if len(reacodes)<1: return ''
     where=" where 1=1 \n"
@@ -132,6 +132,7 @@ def getX4SqlSearch_Reacodes(reacodes,xn,add2Where=''):
 	+" ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  \n"
 	+" ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  \n"
 	+" ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  \n"
+#	+" from uni2all as uni2                                      \n"
 	+" from uni2                                                 \n"
 	+" left join DICT036 on DICT036.Code=uni2.SF58               \n"
 	+" join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       \n"
@@ -144,6 +145,7 @@ def getX4SqlSearch_Reacodes(reacodes,xn,add2Where=''):
 	+" left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' \n"
 	+where+" \n"
 	+add2Where+" "
+	+usr2where+" "
 #+" and uni2.DatasetID='40230006'"
 #+" and uni2.DatasetID='40017010'"
 #+" and uni2.DatasetID like '4%'"
@@ -153,6 +155,9 @@ def getX4SqlSearch_Reacodes(reacodes,xn,add2Where=''):
 #+" and uni2.DatasetID='22754004'"
 #+" and uni2.DatasetID='21984097'"
 #+" and uni2.DatasetID='F0001002'"
+#+" and uni2.prod='40-Zr-97'"
+#+" and (uni2.prod='40-Zr-97' or fullCode like '%)40-ZR-97,%')"
+#+" and (prod like '40-Zr-97' or outParticles like '%zr-97%')"
 	+" order by fullCode,YearRef1 desc,DatasetID \n"
 	+" ,x1,x2,x2,x4,x5,iPoint                    \n"
 	)
@@ -210,6 +215,13 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
                 grp+=' '+xifam+'='+str(emev)
                 if grp.endswith('.0'): grp=grp[:-2]
                 grp+='MeV'
+            elif xiunt=='ARB-UNITS':
+#                smev="{:.3e}".format(xival/1e3)
+#                emev=float(smev)
+#                emev=float(xival/1e3)
+                emev=float(xival)
+                grp+=' '+xifam.upper()+':'+str(emev)
+                if grp.endswith('.0'): grp=grp[:-2]
             else:
 #               xivaltx="{:.3e}".format(xival)
                 xivaltx="{:.2e}".format(xival)

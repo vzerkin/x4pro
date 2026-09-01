@@ -1,0 +1,52 @@
+Program: myplot.py, ver.2025-01-22
+Author:  V.Zerkin, Vienna, 2025
+Purpose: Plot EXFOR/ENDF/MyData
+Running: 2026-09-01 13:42:31
+
+---arg[0]:../myplot1.py
+---arg[1]:U233-eta
+---arg[2]:-x:log
+---arg[3]:-y:log
+---arg[4]:-o:U233-eta-myplot.html
+---Parameters:
+   xaxis:[log]
+   ytype:[log]
+   groupByMT:False
+   sortDatasets:True
+   markRejected:False
+   outhtml:U233-eta-myplot.html
+
+
+Datasets: 23
+1) 92-U-233(N,ABS),,ETA
+2) 92-U-233(N,NON),,ETA
+Reaction codes: 2 
+
+Plot:1/23) #13805002 1984, J.R.Smith pt:2
+Plot:2/23) #123180022 1982, J.R.Smith pt:2
+Plot:3/23) #404260051 1978, V.A.Pshenichnyj pt:70
+Plot:4/23) #404260052 1978, V.A.Pshenichnyj pt:62
+Plot:5/23) #10100004 1970, L.W.Weston pt:50
+Plot:6/23) #13018002 1970, J.R.Smith pt:3
+Plot:7/23) #205520031 1970, R.Vidal pt:1
+Plot:8/23) #12554003 1968, J.R.Smith pt:2
+Plot:9/23) #20917015 1966, F.D.Brooks pt:479
+Plot:10/23) #20917016 1966, F.D.Brooks pt:83
+Plot:11/23) #20917017 1966, F.D.Brooks pt:74
+Plot:12/23) #20917018 1966, F.D.Brooks pt:32
+Plot:13/23) #12330002 1961, M.L.Yeater pt:155
+Plot:14/23) #12349002 1960, R.L.Macklin pt:1
+Plot:15/23) #14393009 1960, R.Block pt:43
+Plot:16/23) #14083002 1957, M.L.Yeater pt:117
+Plot:17/23) #12317002 1956, E.H.Magleby pt:154
+Plot:18/23) #12322002 1956, H.Palevsky pt:14
+Plot:19/23) #12348002 1956, J.T.Thomas pt:1
+Plot:20/23) #12348003 1956, J.T.Thomas pt:1
+Plot:21/23) #40639004 1961, N.N.Flerov pt:1
+Plot:22/23) #403500021 1956, P.E.Spivak pt:3
+Plot:23/23) #403500022 1956, P.E.Spivak pt:2
+Plot:1/2) 13662060	ENDF/B-VIII.0	pt:15	color:0,0,255
+Plot:2/2) 26469644	JEFF-4.0	pt:98	color:255,0,0
+Open Page:  file:///G:\projects\zerkin\pdev\x4pro7-dist\x4pro15\part2-A-eta/U233-eta-myplot.html
+
+Program successfully completed

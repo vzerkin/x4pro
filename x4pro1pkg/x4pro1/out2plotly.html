@@ -31,6 +31,7 @@ var dirMap=new Map([
 	,["part2-7-fye","EXFOR/ENDF fission yeild (energy distribution)"]
 	,["part2-8-sig1par","EXFOR/ENDF partial cross sections CSP:MT51"]
 	,["part2-9-nubar","EXFOR/ENDF NUBAR - average number of neutrons per fission"]
+	,["part2-A-eta","EXFOR/ENDF Eta - average neutron yield per nonelastic event"]
 	,["part3-1-auto1","Automatically renormalize EXFOR CS using old monitor CS and new standards"]
 	,["part3-2-user1","Correct data from EXFOR by user's program"]
 	,["part3-3-expert1","Apply experts corrections stored in X4Pro database"]
@@ -47,10 +48,11 @@ var dirMap=new Map([
 <script language=javascript>
 var num=0;
 var prevDir='';
-    function out1(filename) {
+    function out1(filename,comment) {
 	var ii,nowDir='',shortHelp='',str1='';
 	var str=filename.replace(/ /g,'');
 	var hh=600;
+	if (typeof comment=='undefined') comment='';
 	if (filename.indexOf('couchdb')>=0) hh=760;
 	num++;
 	ii=filename.lastIndexOf('/');
@@ -65,10 +67,12 @@ var prevDir='';
 	    document.write('<div style="font-size:16pt;color:#fff;background-color:#44f;padding-left:10px;margin-bottom:4px;">'+str1+'</div>');
 	    prevDir=nowDir;
 	}
-        document.write('<div style="font-size:20pt;font-family:calibry;color:#a0a;'
-	+'border:1px solid #aaa;border-bottom:none;border-radius:6px 6px 0 0;margin-bottom:-1px;margin-left:10px;display:table;position:relative;'
-	+'padding-left:9px;padding-right:9px;background-color:#fff;">'
-	+num+') '+str+'</div>');
+        document.write('<div style="padding-top:3px">');
+        document.write('<span style="font-size:20pt;font-family:calibry;color:#a0a;'
+	+'border:1px solid #aaa;border-bottom:none;border-radius:6px 6px 0 0;margin-bottom:-1px;margin-left:10px;position:relative;'
+	+'padding-left:9px;padding-right:2px;background-color:#fff;">'
+	+num+') '+str+'</span><span style="font-size:14pt;margin-left:4px;color:blue;">'+comment+'</span>');
+        document.write('</div>');
         document.write('<div style="border:1px solid #aaa;display:table;">');
         document.write('<img src="'+str+'" height='+hh+'>');
         document.write('</div><br>');
@@ -78,7 +82,7 @@ var prevDir='';
 </head>
 <body bgcolor="#ddddff">
 <big><big><b>X4Pro. Plotting via Plotly.</b></big></big>
-<br>Generated: 2026-08-28,13:21:43<br>
+<br>Generated: 2026-09-01,13:49:45<br>
 <script language="javascript">
     out1("part1-1-sig/out00/Al27na-1.html.png         ");
     out1("part1-1-sig/out00/Al27na-2.html.png         ");
@@ -105,6 +109,14 @@ var prevDir='';
     out1("part2-9-nubar/out00/U238nf_-nu.html.png     ");
     out1("part2-9-nubar/out00/U238nf_dl-nu.html.png   ");
     out1("part2-9-nubar/out00/U238nf_pr-nu.html.png   ");
+    out1("part2-A-eta/out00/Pu239-eta.html.png        ");
+    out1("part2-A-eta/out00/Pu239nel-eta.html.png     ");
+    out1("part2-A-eta/out00/U233-eta.html.png         ");
+    out1("part2-A-eta/out00/U233nel-eta.html.png      ");
+    out1("part2-A-eta/out00/U235-eta.html.png         ");
+    out1("part2-A-eta/out00/U235nel-eta.html.png      ");
+    out1("part2-A-eta/out00/U238-eta.html.png         ");
+    out1("part2-A-eta/out00/U238nel-eta.html.png      ");
     out1("part3-1-auto1/out00/auto1.html.png          ");
     out1("part3-2-user1/out00/user1.html.png          ");
     out1("part3-3-expert1/out00/expert1.html.png      ");
@@ -119,6 +131,7 @@ var prevDir='';
     out1("part6-1-eval2sig/out00/Pu240nf-n.html.png   ");
     out1("part6-1-eval2sig/out00/U235ng.html.png      ");
     out1("part6-1-eval2sig/out00/Zn64np.html.png      ");
+    out1("myplot1.png","Interactive plot: EXFOR:ETA + ENDF:MT452,18,102,MF1,3,31,33");
 </script>
 
 <hr>

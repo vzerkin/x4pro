@@ -22,6 +22,7 @@ def prepareExforDataForPlot(datasets,msize=8,groupReac=False,lines=False,lwidth=
 	,lblPrefix=''
 	,symBorder=False
 	,useRecalcFlag=False
+	,bwColor=False
 	):
     ldata=len(datasets)
     #https://matplotlib.org/stable/api/markers_api.html

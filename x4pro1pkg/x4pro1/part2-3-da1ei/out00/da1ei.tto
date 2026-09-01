@@ -2,11 +2,11 @@ Program: da1ei.py, ver. 2025-07-10
 Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2025
 Purpose: Retrieve and plot EXFOR/ENDF angular distributions
 
-Running: 2026-08-25 23:13:20
+Running: 2026-09-01 13:36:49
 
 ___sys___nexample:[default]['da1ei.py']
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearchDA_a: C-12 a,el
 SQL:
@@ -78,11 +78,15 @@ Plot:5/5) #C1026003 1953, R.W.Hill pt:64
 
 ___webEndfDataForPlot_DADE: [C-12] [a,*] [&an=130&mf=4&mt=40002&zap=2004]
 ---wgetdb_get:/servlet/E4sSearch2?Target=C-12&Reaction=a,*&Quantity=DA*&json&mats
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=C-12&Reaction=a,*&Quantity=DA*&json&mats'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=C-12&Reaction=a,*&Quantity=DA*&json&mats
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 format=WebEndfSectionsList-0.1
 ___Retrieved sections:5
 SelectedLib-Sect:1) {'Targ': 'C-12', 'ZT': 6, 'AT': 12, 'NSUB': 20040, 'MT': 2, 'MF': 6, 'R': 'HE4,EL', 'RC': 'C-12(HE4,EL)C-12-L0,DA/DE', 'EvalID': 232357, 'SectID': 14666610, 'PenSectID': 19432646, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20211227', 'AUTH': 'S.Nakayama'}
@@ -91,21 +95,29 @@ ___Required sections:2
 WebReq:1) EvalID:232357 PenSectID:19432646 Lib:JENDL-5 Color:255,127,0
 /servlet/E4sGetSectData?EvalID=232357&PenSectID=19432646&json&an=130&mf=4&mt=40002&zap=2004
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=232357&PenSectID=19432646&json&an=130&mf=4&mt=40002&zap=2004
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=232357&PenSectID=19432646&json&an=130&mf=4&mt=40002&zap=2004'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=232357&PenSectID=19432646&json&an=130&mf=4&mt=40002&zap=2004
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Download...DS:1/1)	6-C-12(A,EL),DA	JENDL-5	EID:232357	SID:19432646	f(x):DA(Ei)	pts:37
 Downloaded:DS:1/1)	6-C-12(A,EL),DA	JENDL-5	EID:232357	SID:19432646	f(x):DA(Ei)	pts:37	idy=0
 WebReq:2) EvalID:116873 PenSectID:6458835 Lib:IBA-EVAL Color:0,0,192
 /servlet/E4sGetSectData?EvalID=116873&PenSectID=6458835&json&an=130&mf=4&mt=40002&zap=2004
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=116873&PenSectID=6458835&json&an=130&mf=4&mt=40002&zap=2004
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=116873&PenSectID=6458835&json&an=130&mf=4&mt=40002&zap=2004'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=116873&PenSectID=6458835&json&an=130&mf=4&mt=40002&zap=2004
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Download...DS:2/1)	6-C-12(A,EL),DA	IBA-EVAL	EID:116873	SID:6458835	f(x):DA(Ei)	pts:288
 Downloaded:DS:2/1)	6-C-12(A,EL),DA	IBA-EVAL	EID:116873	SID:6458835	f(x):DA(Ei)	pts:288	idy=0
 Plot:1/2) 19432646	JENDL-5 El0.00E+0 An130	pt:37	color:255,127,0

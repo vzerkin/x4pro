@@ -17,6 +17,7 @@ def prepareExforDataForPlot(datasets,msize=8,groupReac=False,autocolor=False,lin
 	,lblPrefix=''
 	,symBorder=False
 	,useRecalcFlag=False
+	,bwColor=False
 	):
     ldata=len(datasets)
     symBorder0=symBorder
@@ -31,6 +32,7 @@ def prepareExforDataForPlot(datasets,msize=8,groupReac=False,autocolor=False,lin
         msize1=msize
         iSymPlus=0
         symColor='Black'
+        if bwColor: symColor='Grey'
         symWidth=1
         hiden0=False
         if useRecalcFlag:
@@ -86,6 +88,8 @@ def prepareExforDataForPlot(datasets,msize=8,groupReac=False,autocolor=False,lin
         if dataset.get('DatasetSplit') is not None: tr.name+=' '+dataset['DatasetSplit']
         if (lines): tr.mode="markers+lines"
         if (lwidth>0): tr.line=dict(width=lwidth)
+	###marker=dict(size=12, color='blue', line=dict(color='darkblue', width=2))
+        if bwColor: tr.marker.color='rgba(127,127,127,0.5)'
 #        if (symBorder): tr.marker.line=dict(color='Black',width=0.8);tr['marker_symbol']='circle-open'
         if (symBorder): tr.marker.line=dict(color=symColor,width=symWidth)
         if (groupReac):

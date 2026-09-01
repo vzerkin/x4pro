@@ -1,0 +1,1489 @@
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-08-27       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-09-01 13:35:14
+
+---Arguments from command-line---
+   1  arg: -o:sig1prod
+   2  arg: -fx:1e6
+   3  arg: -fy:1e-3
+   4  arg: -xlog
+   5  arg: -lines
+   6  arg: -sym
+   7  arg: 92-U-238(P,*)*,*,SIG
+   8  arg: 92-U-0(P,*)*,*,SIG
+   9  arg: -w: and (prod like '40-Zr-97' or outParticles like '%zr-97%')
+
+---Input:
+   Reaction:  ['92-U-238(P,*)*,*,SIG', '92-U-0(P,*)*,*,SIG']
+   xn:        x1
+   x1range:   None - None
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        0.001
+   nPntMin:   1
+   xrange:    None
+   Output:    sig1prod
+   x4ei:      
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 191
+----1.
+    fullCode       92-U-0(P,F)37-RB-86,IND,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----2.
+    fullCode       92-U-0(P,F)40-ZR-97,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----3.
+    fullCode       92-U-0(P,F)41-NB-95-M,IND,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----4.
+    fullCode       92-U-0(P,F)41-NB-96,IND,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----5.
+    fullCode       92-U-0(P,F)41-NB-97,IND,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----6.
+    fullCode       92-U-0(P,F)54-XE-138,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----7.
+    fullCode       92-U-0(P,F)55-CS-130,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----8.
+    fullCode       92-U-0(P,F)55-CS-132,IND,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----9.
+    fullCode       92-U-0(P,F)55-CS-134,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----10.
+    fullCode       92-U-0(P,F)55-CS-134-M,IND,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----11.
+    fullCode       92-U-0(P,F)55-CS-136-G,IND,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----12.
+    fullCode       92-U-0(P,F)55-CS-137,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----13.
+    fullCode       92-U-0(P,F)55-CS-138-G,IND/M+,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----14.
+    fullCode       92-U-0(P,F)ELEM/MASS,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: element ///arbitrary Units
+----16.
+    fullCode       92-U-0(P,F)ELEM/MASS,IND,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: element ///arbitrary Units
+----17.
+    fullCode       92-U-0(P,X)ELEM/MASS,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: element ///arbitrary Units
+----19.
+    fullCode       92-U-0(P,X)ELEM/MASS,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: element ///arbitrary Units
+----20.
+    fullCode       92-U-238(P,F),,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----22.
+    fullCode       92-U-238(P,F)28-NI-66,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----23.
+    fullCode       92-U-238(P,F)30-ZN-73,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----24.
+    fullCode       92-U-238(P,F)35-BR-86,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----25.
+    fullCode       92-U-238(P,F)35-BR-86,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----26.
+    fullCode       92-U-238(P,F)36-KR-85-M,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----27.
+    fullCode       92-U-238(P,F)36-KR-87,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----28.
+    fullCode       92-U-238(P,F)36-KR-88,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----29.
+    fullCode       92-U-238(P,F)36-KR-92,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----30.
+    fullCode       92-U-238(P,F)37-RB-89,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----31.
+    fullCode       92-U-238(P,F)37-RB-90-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----32.
+    fullCode       92-U-238(P,F)37-RB-91,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----33.
+    fullCode       92-U-238(P,F)37-RB-91,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----34.
+    fullCode       92-U-238(P,F)37-RB-94,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----35.
+    fullCode       92-U-238(P,F)37-RB-94,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----36.
+    fullCode       92-U-238(P,F)38-SR-91,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----37.
+    fullCode       92-U-238(P,F)38-SR-91,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----38.
+    fullCode       92-U-238(P,F)38-SR-92,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----39.
+    fullCode       92-U-238(P,F)38-SR-93,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----40.
+    fullCode       92-U-238(P,F)38-SR-93,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----41.
+    fullCode       92-U-238(P,F)38-SR-94,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----42.
+    fullCode       92-U-238(P,F)38-SR-94,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----43.
+    fullCode       92-U-238(P,F)38-SR-95,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----44.
+    fullCode       92-U-238(P,F)39-Y-91-M,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----45.
+    fullCode       92-U-238(P,F)39-Y-92,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----46.
+    fullCode       92-U-238(P,F)39-Y-92,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----47.
+    fullCode       92-U-238(P,F)39-Y-93,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----48.
+    fullCode       92-U-238(P,F)39-Y-95,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----49.
+    fullCode       92-U-238(P,F)39-Y-95,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----50.
+    fullCode       92-U-238(P,F)39-Y-96-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----51.
+    fullCode       92-U-238(P,F)39-Y-97-M1,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----52.
+    fullCode       92-U-238(P,F)40-ZR-100,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----53.
+    fullCode       92-U-238(P,F)40-ZR-95,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----54.
+    fullCode       92-U-238(P,F)40-ZR-97,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----55.
+    fullCode       92-U-238(P,F)40-ZR-97,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----56.
+    fullCode       92-U-238(P,F)41-NB-104-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----57.
+    fullCode       92-U-238(P,F)41-NB-97,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----58.
+    fullCode       92-U-238(P,F)41-NB-97,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----59.
+    fullCode       92-U-238(P,F)42-MO-101,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----60.
+    fullCode       92-U-238(P,F)42-MO-102,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----61.
+    fullCode       92-U-238(P,F)42-MO-105,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----62.
+    fullCode       92-U-238(P,F)42-MO-105,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----63.
+    fullCode       92-U-238(P,F)42-MO-99,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----64.
+    fullCode       92-U-238(P,F)43-TC-101,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----65.
+    fullCode       92-U-238(P,F)43-TC-101,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----66.
+    fullCode       92-U-238(P,F)43-TC-104,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----67.
+    fullCode       92-U-238(P,F)43-TC-104,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----68.
+    fullCode       92-U-238(P,F)43-TC-106,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----69.
+    fullCode       92-U-238(P,F)43-TC-106,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----70.
+    fullCode       92-U-238(P,F)43-TC-108,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----71.
+    fullCode       92-U-238(P,F)43-TC-99-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----72.
+    fullCode       92-U-238(P,F)43-TC-99-M,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----73.
+    fullCode       92-U-238(P,F)44-RU-103,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----74.
+    fullCode       92-U-238(P,F)44-RU-105,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----75.
+    fullCode       92-U-238(P,F)44-RU-108,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----76.
+    fullCode       92-U-238(P,F)44-RU-110,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----77.
+    fullCode       92-U-238(P,F)45-RH-105-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----78.
+    fullCode       92-U-238(P,F)45-RH-107,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----79.
+    fullCode       92-U-238(P,F)45-RH-109,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----80.
+    fullCode       92-U-238(P,F)46-PD-112,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----81.
+    fullCode       92-U-238(P,F)46-PD-113,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----82.
+    fullCode       92-U-238(P,F)46-PD-113,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----83.
+    fullCode       92-U-238(P,F)46-PD-115-M,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----84.
+    fullCode       92-U-238(P,F)47-AG-111,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----85.
+    fullCode       92-U-238(P,F)47-AG-111-G,CUM/M-,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----86.
+    fullCode       92-U-238(P,F)47-AG-112,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----87.
+    fullCode       92-U-238(P,F)47-AG-112,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----88.
+    fullCode       92-U-238(P,F)47-AG-113-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----89.
+    fullCode       92-U-238(P,F)48-CD-115-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----90.
+    fullCode       92-U-238(P,F)48-CD-117-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----91.
+    fullCode       92-U-238(P,F)49-IN-117-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----92.
+    fullCode       92-U-238(P,F)49-IN-117-M,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----93.
+    fullCode       92-U-238(P,F)50-SN-123-M,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----94.
+    fullCode       92-U-238(P,F)50-SN-127-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----95.
+    fullCode       92-U-238(P,F)50-SN-127-M,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----96.
+    fullCode       92-U-238(P,F)50-SN-128-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----97.
+    fullCode       92-U-238(P,F)50-SN-128-M,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----98.
+    fullCode       92-U-238(P,F)50-SN-130-G,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----99.
+    fullCode       92-U-238(P,F)51-SB-127,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----100.
+    fullCode       92-U-238(P,F)51-SB-128-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----101.
+    fullCode       92-U-238(P,F)51-SB-128-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----102.
+    fullCode       92-U-238(P,F)51-SB-129-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----103.
+    fullCode       92-U-238(P,F)51-SB-130-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----104.
+    fullCode       92-U-238(P,F)51-SB-131,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----105.
+    fullCode       92-U-238(P,F)51-SB-132-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----106.
+    fullCode       92-U-238(P,F)51-SB-133,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----107.
+    fullCode       92-U-238(P,F)52-TE-131-G,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----108.
+    fullCode       92-U-238(P,F)52-TE-131-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----109.
+    fullCode       92-U-238(P,F)52-TE-131-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----110.
+    fullCode       92-U-238(P,F)52-TE-132,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----111.
+    fullCode       92-U-238(P,F)52-TE-132,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----112.
+    fullCode       92-U-238(P,F)52-TE-133-G,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----113.
+    fullCode       92-U-238(P,F)52-TE-133-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----114.
+    fullCode       92-U-238(P,F)52-TE-133-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----115.
+    fullCode       92-U-238(P,F)52-TE-134,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----116.
+    fullCode       92-U-238(P,F)52-TE-135,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----117.
+    fullCode       92-U-238(P,F)52-TE-135,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----118.
+    fullCode       92-U-238(P,F)52-TE-136,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----119.
+    fullCode       92-U-238(P,F)53-I-130-G,M+,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----120.
+    fullCode       92-U-238(P,F)53-I-131,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----121.
+    fullCode       92-U-238(P,F)53-I-132-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----122.
+    fullCode       92-U-238(P,F)53-I-132-G,M+,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----123.
+    fullCode       92-U-238(P,F)53-I-133,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----124.
+    fullCode       92-U-238(P,F)53-I-133,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----125.
+    fullCode       92-U-238(P,F)53-I-134,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----126.
+    fullCode       92-U-238(P,F)53-I-134-G,M+,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----127.
+    fullCode       92-U-238(P,F)53-I-134-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----128.
+    fullCode       92-U-238(P,F)53-I-135,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----129.
+    fullCode       92-U-238(P,F)53-I-135,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----130.
+    fullCode       92-U-238(P,F)53-I-138,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----131.
+    fullCode       92-U-238(P,F)53-I-138,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----132.
+    fullCode       92-U-238(P,F)54-XE-133-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----133.
+    fullCode       92-U-238(P,F)54-XE-135-G,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----134.
+    fullCode       92-U-238(P,F)54-XE-135-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----135.
+    fullCode       92-U-238(P,F)54-XE-135-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----136.
+    fullCode       92-U-238(P,F)54-XE-138,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----137.
+    fullCode       92-U-238(P,F)54-XE-138,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----138.
+    fullCode       92-U-238(P,F)54-XE-139,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----139.
+    fullCode       92-U-238(P,F)55-CS-136,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----140.
+    fullCode       92-U-238(P,F)55-CS-138-G,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----141.
+    fullCode       92-U-238(P,F)55-CS-138-M,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----142.
+    fullCode       92-U-238(P,F)55-CS-140,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----143.
+    fullCode       92-U-238(P,F)55-CS-140,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----144.
+    fullCode       92-U-238(P,F)55-CS-142,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----145.
+    fullCode       92-U-238(P,F)55-CS-142,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----146.
+    fullCode       92-U-238(P,F)56-BA-131-G,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----147.
+    fullCode       92-U-238(P,F)56-BA-139,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----148.
+    fullCode       92-U-238(P,F)56-BA-139,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----149.
+    fullCode       92-U-238(P,F)56-BA-140,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----150.
+    fullCode       92-U-238(P,F)56-BA-140,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----151.
+    fullCode       92-U-238(P,F)56-BA-141,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----152.
+    fullCode       92-U-238(P,F)56-BA-141,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----153.
+    fullCode       92-U-238(P,F)56-BA-142,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----154.
+    fullCode       92-U-238(P,F)56-BA-142,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----155.
+    fullCode       92-U-238(P,F)56-BA-144,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----156.
+    fullCode       92-U-238(P,F)57-LA-140,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----157.
+    fullCode       92-U-238(P,F)57-LA-140,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----158.
+    fullCode       92-U-238(P,F)57-LA-142,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----159.
+    fullCode       92-U-238(P,F)57-LA-144,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----160.
+    fullCode       92-U-238(P,F)57-LA-144,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----161.
+    fullCode       92-U-238(P,F)57-LA-145,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----162.
+    fullCode       92-U-238(P,F)57-LA-145,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----163.
+    fullCode       92-U-238(P,F)57-LA-146,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----164.
+    fullCode       92-U-238(P,F)57-LA-146,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----165.
+    fullCode       92-U-238(P,F)58-CE-141,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----166.
+    fullCode       92-U-238(P,F)58-CE-143,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----167.
+    fullCode       92-U-238(P,F)58-CE-144,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----168.
+    fullCode       92-U-238(P,F)58-CE-145,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----169.
+    fullCode       92-U-238(P,F)58-CE-145,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----170.
+    fullCode       92-U-238(P,F)58-CE-146,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----171.
+    fullCode       92-U-238(P,F)58-CE-146,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----172.
+    fullCode       92-U-238(P,F)58-CE-148,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----173.
+    fullCode       92-U-238(P,F)59-PR-146,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----174.
+    fullCode       92-U-238(P,F)59-PR-146,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----175.
+    fullCode       92-U-238(P,F)60-ND-147,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----176.
+    fullCode       92-U-238(P,F)60-ND-149,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----177.
+    fullCode       92-U-238(P,F)60-ND-151,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----178.
+    fullCode       92-U-238(P,F)62-SM-153,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----179.
+    fullCode       92-U-238(P,F)62-SM-156,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----180.
+    fullCode       92-U-238(P,F)63-EU-156,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----181.
+    fullCode       92-U-238(P,F)63-EU-156,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----182.
+    fullCode       92-U-238(P,F)63-EU-157,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----183.
+    fullCode       92-U-238(P,F)ELEM/MASS,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: element ///arbitrary Units
+----186.
+    fullCode       92-U-238(P,F)ELEM/MASS,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: element ///arbitrary Units
+----188.
+    fullCode       92-U-238(P,F)MASS,CHN,SIG
+    ReactionType   FYS        Production cross section of fission products
+    WebQuantity1   FY         Fission product yields
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: mass ///arbitrary Units
+----190.
+    fullCode       92-U-238(P,N)93-NP-238,,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             1          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+----191.
+    fullCode       92-U-238(P,X)ELEM/MASS,CUM,SIG
+    ReactionType   CS         Cross section
+    WebQuantity1   CS         Cross section data
+    nx             2          Number of x (independent variables)
+    y     c5data   B          Data: data                           ///barns
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    ZAM      ARB-UNITS  Isotope/particle identification: element ///arbitrary Units
+/Summary of Reaction-Codes
+Summary of Units 3
+---basicUnits:B           category:B
+   B    1/7   FB          1e-15           femtobarns
+   B    2/7   PB          1e-12           picobarns
+   B    3/7   NB          1e-09           nanobarns
+   B    4/7   MICRO-B     1e-06           microbarns
+   B    5/7   MB          0.001           millibarns
+   B    6/7   B           1.0             barns
+   B    7/7   KB          1000.0          kilobarns
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+---basicUnits:ARB-UNITS   category:NO
+   NO   1/1   NO-DIM      1.0             no Dimensions
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x1  reacodes: ['92-U-238(P,*)*,*,SIG', '92-U-0(P,*)*,*,SIG']
+SQL:
+select *                                                   
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x1 as XX, dx1 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x1'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+  (fullCode like '92-U-238(P,%)%,%,SIG')
+ or (fullCode like '92-U-0(P,%)%,%,SIG')
+ ) 
+  and (prod like '40-Zr-97' or outParticles like '%zr-97%')  order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 26
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:26 xn=x1  fx=1.0e-06 fy=1.0e+03
+
+-new-1) 92-U-0(P,F)40-ZR-97,CUM,SIG T0297003 1963 Davies y=DATA(EN)
+1/26:1) 92-U-0(P,F)40-ZR-97,CUM,SIG T0297003 1963 Davies x:20.0 y:50.0 dy:10.0 dx:None
+2/26:1) 92-U-0(P,F)40-ZR-97,CUM,SIG T0297003 1963 Davies x:36.0 y:65.0 dy:14.0 dx:None
+3/26:1) 92-U-0(P,F)40-ZR-97,CUM,SIG T0297003 1963 Davies x:50.0 y:85.0 dy:17.0 dx:None
+4/26:1) 92-U-0(P,F)40-ZR-97,CUM,SIG T0297003 1963 Davies x:65.0 y:72.0 dy:15.0 dx:None
+5/26:1) 92-U-0(P,F)40-ZR-97,CUM,SIG T0297003 1963 Davies x:80.0 y:56.0 dy:12.0 dx:None
+
+-new-2) 92-U-0(P,F)ELEM/MASS,CUM,SIG D0153002 ZAM:40097 1964 Hagebo y=DATA(EN,ZAM)
+6/26:2) 92-U-0(P,F)ELEM/MASS,CUM,SIG D0153002 ZAM:40097 1964 Hagebo x:170.0 y:32.0 dy:6.0 dx:None
+
+-new-3) 92-U-0(P,X)ELEM/MASS,,SIG C0373002 ZAM:40097 1955 Hicks y=DATA(EN,ZAM)
+7/26:3) 92-U-0(P,X)ELEM/MASS,,SIG C0373002 ZAM:40097 1955 Hicks x:75.0 y:51.5 dy:None dx:None
+8/26:3) 92-U-0(P,X)ELEM/MASS,,SIG C0373002 ZAM:40097 1955 Hicks x:150.0 y:45.5 dy:None dx:None
+9/26:3) 92-U-0(P,X)ELEM/MASS,,SIG C0373002 ZAM:40097 1955 Hicks x:250.0 y:43.0 dy:None dx:None
+10/26:3) 92-U-0(P,X)ELEM/MASS,,SIG C0373002 ZAM:40097 1955 Hicks x:340.0 y:42.5 dy:None dx:None
+
+-new-4) 92-U-0(P,X)ELEM/MASS,CUM,SIG O0986003 ZAM:40097 2002 Titarenko y=DATA(EN,ZAM)
+11/26:4) 92-U-0(P,X)ELEM/MASS,CUM,SIG O0986003 ZAM:40097 2002 Titarenko x:100.0 y:50.1 dy:3.8 dx:None
+12/26:4) 92-U-0(P,X)ELEM/MASS,CUM,SIG O0986003 ZAM:40097 2002 Titarenko x:200.0 y:39.5 dy:2.6 dx:None
+13/26:4) 92-U-0(P,X)ELEM/MASS,CUM,SIG O0986003 ZAM:40097 2002 Titarenko x:800.0 y:35.3 dy:2.3 dx:None
+14/26:4) 92-U-0(P,X)ELEM/MASS,CUM,SIG O0986003 ZAM:40097 2002 Titarenko x:1200.0 y:31.9 dy:2.3 dx:None
+15/26:4) 92-U-0(P,X)ELEM/MASS,CUM,SIG O0986003 ZAM:40097 2002 Titarenko x:1600.0 y:27.1 dy:2.3 dx:None
+
+-new-5) 92-U-238(P,F)40-ZR-97,,SIG P0046006 1954 Lindner y=DATA(EN)
+16/26:5) 92-U-238(P,F)40-ZR-97,,SIG P0046006 1954 Lindner x:50.2 y:25.5 dy:None dx:None
+17/26:5) 92-U-238(P,F)40-ZR-97,,SIG P0046006 1954 Lindner x:100.0 y:49.5 dy:None dx:None
+18/26:5) 92-U-238(P,F)40-ZR-97,,SIG P0046006 1954 Lindner x:189.0 y:52.5 dy:None dx:None
+19/26:5) 92-U-238(P,F)40-ZR-97,,SIG P0046006 1954 Lindner x:269.0 y:51.5 dy:None dx:None
+20/26:5) 92-U-238(P,F)40-ZR-97,,SIG P0046006 1954 Lindner x:339.0 y:38.8 dy:None dx:None
+21/26:5) 92-U-238(P,F)40-ZR-97,,SIG P0046006 1954 Lindner x:339.0 y:42.5 dy:None dx:None
+
+-new-6) 92-U-238(P,F)40-ZR-97,CUM,SIG O0348068 1996 Yokoyama y=DATA(EN)
+22/26:6) 92-U-238(P,F)40-ZR-97,CUM,SIG O0348068 1996 Yokoyama x:8.6 y:0.6 dy:0.03 dx:None
+
+-new-7) 92-U-238(P,F)ELEM/MASS,,SIG O0624007 ZAM:40097 1955 Vinogradov y=DATA(EN,ZAM)
+23/26:7) 92-U-238(P,F)ELEM/MASS,,SIG O0624007 ZAM:40097 1955 Vinogradov x:480.0 y:37.0 dy:10.107 dx:None
+
+-new-8) 92-U-238(P,F)ELEM/MASS,CUM,SIG E2036003 ZAM:40097 1996 Baba y=DATA(EN,ZAM)
+24/26:8) 92-U-238(P,F)ELEM/MASS,CUM,SIG E2036003 ZAM:40097 1996 Baba x:12.4 y:9.3 dy:0.48 dx:None
+
+-new-9) 92-U-238(P,F)ELEM/MASS,CUM,SIG E2036006 ZAM:40097 1996 Baba y=DATA(EN,ZAM)
+25/26:9) 92-U-238(P,F)ELEM/MASS,CUM,SIG E2036006 ZAM:40097 1996 Baba x:9.4 y:1.34 dy:0.12 dx:None
+
+-new-10) 92-U-238(P,X)ELEM/MASS,CUM,SIG C2546002 ZAM:40097 1983 Jacak y=DATA(EN,ZAM)
+26/26:10) 92-U-238(P,X)ELEM/MASS,CUM,SIG C2546002 ZAM:40097 1983 Jacak x:28000.0 y:11.8 dy:1.2 dx:None
+---outDatasets:10 datasets:10
+---ENTRY: C0373*;C2546*;D0153*;E2036*;O0348*;O0624*;O0986*;P0046*;T0297*;
+datasets: 10
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 10
+1) 92-U-0(P,F)40-ZR-97,CUM,SIG
+	Dataset:1/10) 92-U-0(P,F)40-ZR-97,CUM,SIG T0297003 1963, J.H.Davies
+2) 92-U-0(P,F)ELEM/MASS,CUM,SIG
+	Dataset:2/10) 92-U-0(P,F)ELEM/MASS,CUM,SIG D0153002 1964, E.Hagebo ZAM:40097
+3) 92-U-0(P,X)ELEM/MASS,,SIG
+	Dataset:3/10) 92-U-0(P,X)ELEM/MASS,,SIG C0373002 1955, H.G.Hicks ZAM:40097
+4) 92-U-0(P,X)ELEM/MASS,CUM,SIG
+	Dataset:4/10) 92-U-0(P,X)ELEM/MASS,CUM,SIG O0986003 2002, Yu.E.Titarenko ZAM:40097
+5) 92-U-238(P,F)40-ZR-97,,SIG
+	Dataset:5/10) 92-U-238(P,F)40-ZR-97,,SIG P0046006 1954, M.Lindner
+6) 92-U-238(P,F)40-ZR-97,CUM,SIG
+	Dataset:6/10) 92-U-238(P,F)40-ZR-97,CUM,SIG O0348068 1996, A.Yokoyama
+7) 92-U-238(P,F)ELEM/MASS,,SIG
+	Dataset:7/10) 92-U-238(P,F)ELEM/MASS,,SIG O0624007 1955, A.P.Vinogradov ZAM:40097
+8) 92-U-238(P,F)ELEM/MASS,CUM,SIG
+	Dataset:8/10) 92-U-238(P,F)ELEM/MASS,CUM,SIG E2036003 1996, H.Baba ZAM:40097
+	Dataset:9/10) 92-U-238(P,F)ELEM/MASS,CUM,SIG E2036006 1996, H.Baba ZAM:40097
+9) 92-U-238(P,X)ELEM/MASS,CUM,SIG
+	Dataset:10/10) 92-U-238(P,X)ELEM/MASS,CUM,SIG C2546002 1983, B.V.Jacak ZAM:40097
+---reacodes: 9 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/10) #T0297003 1963, J.H.Davies pt:5
+Plot:2/10) #D0153002 1964, E.Hagebo ZAM:40097 pt:1
+Plot:3/10) #C0373002 1955, H.G.Hicks ZAM:40097 pt:4
+Plot:4/10) #O0986003 2002, Yu.E.Titarenko ZAM:40097 pt:5
+Plot:5/10) #P0046006 1954, M.Lindner pt:6
+Plot:6/10) #O0348068 1996, A.Yokoyama pt:1
+Plot:7/10) #O0624007 1955, A.P.Vinogradov ZAM:40097 pt:1
+Plot:8/10) #E2036003 1996, H.Baba ZAM:40097 pt:1
+Plot:9/10) #E2036006 1996, H.Baba ZAM:40097 pt:1
+Plot:10/10) #C2546002 1983, B.V.Jacak ZAM:40097 pt:1
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- B 0.001
+--A--getUnits--- B 0.001
+--1--getUnits--- B 0.001  Category: B
+Will try---write_image: sig1prod.html.png
+
+Program successfully completed

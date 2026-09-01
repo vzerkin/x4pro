@@ -6,7 +6,7 @@ Purpose: Retrieve EXFOR cross sections, ratios
          renormalize cross sections to new monitors,
          search and download ENDF data from Web,
          plot evaluated and experimental data.
-Running: 2026-08-25 23:14:56
+Running: 2026-09-01 13:43:53
 
 ---arg[0]:sig1r.py
 ---arg[1]:Al-27
@@ -31,7 +31,7 @@ Running: 2026-08-25 23:14:56
    outhtml: "Al27na"
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---Read x4evalscores from X4Pro database...
@@ -101,7 +101,7 @@ SQL:
 	  ENTRY.YearRef1 desc,x4pro_c5dat.DatasetID
 	  ,En,x4pro_c5dat.idat
 
-EXFOR SQL executed: 0.121sec
+EXFOR SQL executed: 0.007sec
 ---All entries: 77
 10031*;10116*;10186*;10417*;11274*;11421*;11457*;11462*;11464*;11474*;11481*;11484*;11494*;11504*;11512*;11526*;11530*;12912*;12969*;12977*;13171*;14818*;20111*;20280*;20283*;20378*;20387*;20798*;20837*;20842*;20843*;20867*;20887*;20888*;20890*;20903*;20904*;20921*;20922*;20930*;20986*;21049*;21250*;21345*;21372*;21419*;21756*;21923*;21941*;22012*;22209*;22312*;22497*;22703*;22976*;23279*;30008*;30118*;30403*;30523*;30590*;30640*;30645*;30755*;30813*;30821*;30933*;30993*;31459*;31528*;31834*;31842*;33025*;40135*;40686*;41048*;41051*;
 
@@ -469,16 +469,16 @@ Plot:116/116) #11474002 1952, S.G.Forbes pt:1
 
 ___getEndfDataForPlot: [Al-27] [n,a]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Al-27&Reaction=n,a&Quantity=SIG&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Al-27&Reaction=n,a&Quantity=SIG&json'
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:34:29.000Z" 
+ ,"now":"2026-09-01T13:35:22.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1776
+ ,"req":2009
 ,"sections":[
  { "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":301095,"SectID":21383122,"PenSectID":26217720,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"M.B.Chadwick+,Derrien+"}
 ,{ "Targ":"AL-27","ZT":13,"AT":27,"NSUB":10,"MT":107,"MF":3,"R":"N,A","RC":"AL-27(N,A)NA-24,SIG","EvalID":149470,"SectID":8945716,"PenSectID":13670440,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"M.B.Chadwick+,Derrien+"}
@@ -539,36 +539,36 @@ SelectedLib-Sect:16) {'Targ': 'AL-27', 'ZT': 13, 'AT': 27, 'NSUB': 10, 'MT': 107
 SelectedLib-Sect:19) {'Targ': 'AL-27', 'ZT': 13, 'AT': 27, 'NSUB': 10, 'MT': 107, 'MF': 3, 'R': 'N,A', 'RC': 'AL-27(N,A)NA-24,SIG', 'EvalID': 199067, 'SectID': 14174292, 'PenSectID': 18847510, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': '20150815', 'AUTH': 'Y.L.Han'}
 Required sections:4
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26217720&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26217720&json'
 Downloaded:1)	AL-27(N,A)NA-24,SIG	ENDF/B-VIII.1	PenSectID:26217720	pts:185	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13681520&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13681520&json'
 Downloaded:2)	AL-27(N,A)NA-24,SIG	JEFF-3.3	PenSectID:13681520	pts:55	idy=52
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10712405&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10712405&json'
 Downloaded:3)	AL-27(N,A)NA-24,SIG	BROND-3.1	PenSectID:10712405	pts:55	idy=0
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18847510&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18847510&json'
 Downloaded:4)	AL-27(N,A)NA-24,SIG	CENDL-3.2	PenSectID:18847510	pts:109	idy=0
 
-EXFOR SQL executed:  0.121sec
-ENDF Web downloaded: 0.075sec
+EXFOR SQL executed:  0.007sec
+ENDF Web downloaded: 0.005sec
 Plot:1/4) 26217720	ENDF/B-VIII.1	pt:183	color:0,0,255
 Plot:2/4) 13681520	JEFF-3.3	pt:53	color:0,127,63
 Plot:3/4) 10712405	BROND-3.1	pt:53	color:255,0,255

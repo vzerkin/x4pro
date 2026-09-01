@@ -6,7 +6,7 @@ Purpose: Retrieve EXFOR cross sections, ratios
          renormalize cross sections to new monitors,
          search and download ENDF data from Web,
          plot evaluated and experimental data.
-Running: 2026-08-25 23:15:26
+Running: 2026-09-01 13:45:01
 
 ---arg[0]:sig1r.py
 ---arg[1]:Mn-55
@@ -32,7 +32,7 @@ Running: 2026-08-25 23:15:26
    outhtml: "Mn55ng"
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---Read x4evalscores from X4Pro database...
@@ -103,7 +103,7 @@ SQL:
 	  ENTRY.YearRef1 desc,x4pro_c5dat.DatasetID
 	  ,En,x4pro_c5dat.idat
 
-EXFOR SQL executed: 0.198sec
+EXFOR SQL executed: 0.006sec
 ---All entries: 46
 11010*;11028*;11130*;11331*;11399*;11407*;11420*;11429*;11624*;11675*;12602*;12819*;14080*;14704*;20092*;20437*;20572*;20638*;20658*;20670*;21004*;21395*;21438*;21936*;22580*;22615*;23266*;23488*;30031*;30063*;30067*;30114*;30296*;30314*;30493*;30532*;30942*;31827*;33100*;33151*;40001*;40244*;40421*;40642*;40975*;41001*;
 
@@ -306,16 +306,16 @@ Plot:61/61) #14704004 1939, H.L.Anderson pt:1
 
 ___getEndfDataForPlot: [Mn-55] [n,g]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Mn-55&Reaction=n,g&Quantity=SIG&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Mn-55&Reaction=n,g&Quantity=SIG&json'
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:42:04.000Z" 
+ ,"now":"2026-09-01T13:43:58.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1799
+ ,"req":2036
 ,"sections":[
  { "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":272564,"SectID":19170340,"PenSectID":24017951,"LibID":30003,"LibName":"INDEN-Aug2023","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
 ,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":272544,"SectID":19164771,"PenSectID":24012307,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
@@ -375,36 +375,36 @@ SelectedLib-Sect:18) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 102
 SelectedLib-Sect:21) {'Targ': 'MN-55', 'ZT': 25, 'AT': 55, 'NSUB': 10, 'MT': 102, 'MF': 3, 'R': 'N,G', 'RC': 'MN-55(N,G)MN-56,SIG', 'EvalID': 199090, 'SectID': 14176364, 'PenSectID': 18849605, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': '950817', 'AUTH': 'B.S.Yu, K.Shiba, K.Shibata, +'}
 Required sections:4
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=26227532&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=26227532&json'
 Downloaded:1)	MN-55(N,G)MN-56,SIG	ENDF/B-VIII.1	PenSectID:26227532	pts:19765	idy=19765
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=13693668&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=13693668&json'
 Downloaded:2)	MN-55(N,G)MN-56,SIG	JEFF-3.3	PenSectID:13693668	pts:19977	idy=19977
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=10716859&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=10716859&json'
 Downloaded:3)	MN-55(N,G)MN-56,SIG	BROND-3.1	PenSectID:10716859	pts:19833	idy=19833
 ---wgetdb_get:/servlet/E4sGetTabSect?PenSectID=18849605&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetTabSect?PenSectID=18849605&json'
 Downloaded:4)	MN-55(N,G)MN-56,SIG	CENDL-3.2	PenSectID:18849605	pts:18931	idy=18931
 
-EXFOR SQL executed:  0.198sec
-ENDF Web downloaded: 0.566sec
+EXFOR SQL executed:  0.006sec
+ENDF Web downloaded: 0.067sec
 Plot:1/4) 26227532	ENDF/B-VIII.1	pt:19765	color:0,0,255
 Plot:2/4) 13693668	JEFF-3.3	pt:19977	color:0,127,63
 Plot:3/4) 10716859	BROND-3.1	pt:19833	color:255,0,255

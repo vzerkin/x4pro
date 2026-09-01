@@ -1,0 +1,143 @@
+Program: eta.py, ver.2026-08-31
+Author:  V.Zerkin, Vienna, 2026
+Purpose: Retrieve and plot EXFOR and ENDF data
+         Eta: neutron yield per nonelastic even
+
+Running: 2026-09-01 13:40:50
+
+
+---Arguments from command-line---
+   1  arg: u-235
+   2  arg: -ylog
+   3  arg: -xlog
+   4  arg: -annot:0.01,6,<b>Eta(MT18)</b>
+   ---str2annot:[0.01,6,<b>Eta(MT18)</b>] --> ('<b>Eta(MT18)</b>', 0.01, 6.0)
+
+---Parameters:
+   target:  u-235
+   x4react: n,abs;n,non
+   e4react: n,nu_tot
+   x4quant: ,eta
+   Output:  U235-eta
+   x-axis:  log     range: None
+   y-axis:  log     range: None
+
+---Retrieve EXFOR data from SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+---getX4SqlSearch_NUBAR: u-235 n,abs;n,non ,eta  and sf8='' 
+SQL:
+select *                                  
+ ,y  as YY, dy  as dYY                    
+ ,x1 as En, dx1 as dEn                    
+from uni1                                 
+where                                     
+ Target like 'u-235'                 
+ and (  (Reaction like 'n,abs') or (Reaction like 'n,non') ) 
+ and SF58 like ',eta'                 
+ and x2 is null                           
+ and sf8=''  
+order by fullCode,YearRef1 desc,DatasetID 
+ ,En,iPoint                               
+
+
+EXFOR SQL executed: 0.014sec rows:2732
+
+datapoints: 2732
+1) 22194002 1990 H.Weigmann 92-U-235(N,ABS),,ETA
+2) 22194003 1990 H.Weigmann 92-U-235(N,ABS),,ETA
+3) 13805003 1984 J.R.Smith 92-U-235(N,ABS),,ETA
+4) 12318004 1982 J.R.Smith 92-U-235(N,ABS),,ETA
+5) 13018003 1970 J.R.Smith 92-U-235(N,ABS),,ETA
+6) 12554004 1968 J.R.Smith 92-U-235(N,ABS),,ETA
+7) 20938025 1966 F.D.Brooks 92-U-235(N,ABS),,ETA
+8) 20938026 1966 F.D.Brooks 92-U-235(N,ABS),,ETA
+9) 20938027 1966 F.D.Brooks 92-U-235(N,ABS),,ETA
+10) 20938028 1966 F.D.Brooks 92-U-235(N,ABS),,ETA
+11) 40156002 1964 K.G.Ignat`ev 92-U-235(N,ABS),,ETA
+12) 12349003 1960 R.L.Macklin 92-U-235(N,ABS),,ETA
+13) 21202002 1958 H.M.Skarsgard 92-U-235(N,ABS),,ETA
+14) 12411002 1957 J.R.Smith 92-U-235(N,ABS),,ETA
+15) 12322003 1956 H.Palevsky 92-U-235(N,ABS),,ETA
+16) 20938024 1966 F.D.Brooks 92-U-235(N,NON),,ETA
+17) 20938029 1966 F.D.Brooks 92-U-235(N,NON),,ETA
+18) 40808007 1965 A.A.Van`kov 92-U-235(N,NON),,ETA
+19) 40385004 1958 V.N.Andreev 92-U-235(N,NON),,ETA
+20) 40806002 1958 N.N.Flerov 92-U-235(N,NON),,ETA
+21) 403500031 1956 P.E.Spivak 92-U-235(N,NON),,ETA
+22) 403500032 1956 P.E.Spivak 92-U-235(N,NON),,ETA
+---ENTRY: 12318*;12322*;12349*;12411*;12554*;13018*;13805*;20938*;21202*;22194*;40156*;40350*;40385*;40806*;40808*;
+datasets: 22
+Plot:1/22) #22194002 1990, H.Weigmann pt:73
+Plot:2/22) #22194003 1990, H.Weigmann pt:47
+Plot:3/22) #13805003 1984, J.R.Smith pt:2
+Plot:4/22) #12318004 1982, J.R.Smith pt:1
+Plot:5/22) #13018003 1970, J.R.Smith pt:1
+Plot:6/22) #12554004 1968, J.R.Smith pt:2
+Plot:7/22) #20938025 1966, F.D.Brooks pt:732
+Plot:8/22) #20938026 1966, F.D.Brooks pt:110
+Plot:9/22) #20938027 1966, F.D.Brooks pt:60
+Plot:10/22) #20938028 1966, F.D.Brooks pt:33
+Plot:11/22) #40156002 1964, K.G.Ignat`ev pt:58
+Plot:12/22) #12349003 1960, R.L.Macklin pt:1
+Plot:13/22) #21202002 1958, H.M.Skarsgard pt:8
+Plot:14/22) #12411002 1957, J.R.Smith pt:83
+Plot:15/22) #12322003 1956, H.Palevsky pt:20
+Plot:16/22) #20938024 1966, F.D.Brooks pt:1486
+Plot:17/22) #20938029 1966, F.D.Brooks pt:5
+Plot:18/22) #40808007 1965, A.A.Van`kov pt:1
+Plot:19/22) #40385004 1958, V.N.Andreev pt:3
+Plot:20/22) #40806002 1958, N.N.Flerov pt:1
+Plot:21/22) #403500031 1956, P.E.Spivak pt:3
+Plot:22/22) #403500032 1956, P.E.Spivak pt:2
+
+___webEndfDataForPlot_DADE: [u-235] [n,nu_tot] [&eta=18]
+---wgetdb_get:/servlet/E4sSearch2?Target=u-235&Reaction=n,nu_tot&Quantity=*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=u-235&Reaction=n,nu_tot&Quantity=*&json&mats'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=u-235&Reaction=n,nu_tot&Quantity=*&json&mats
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+format=WebEndfSectionsList-0.1
+___Retrieved sections:44
+SelectedLib-Sect:4) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 452, 'MF': 1, 'R': 'N,nu_tot', 'RC': 'U-235(N,nu_tot),INFO', 'EvalID': 149933, 'SectID': 9024577, 'PenSectID': 13662330, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'IAEA Cielo Collaboration'}
+SelectedLib-Sect:7) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 452, 'MF': 1, 'R': 'N,nu_tot', 'RC': 'U-235(N,nu_tot),INFO', 'EvalID': 307100, 'SectID': 21643146, 'PenSectID': 26469908, 'LibID': 3400, 'LibName': 'JEFF-4.0', 'DATE': 'NOV24', 'AUTH': 'Jeff Collab'}
+___Required sections:2
+WebReq:1) EvalID:149933 PenSectID:13662330 Lib:ENDF/B-VIII.0 Color:0,0,255
+/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662330&json&eta=18
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662330&json&eta=18
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662330&json&eta=18'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662330&json&eta=18
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:1/1)		ENDF/B-VIII.0	EID:149933	SID:13662330	f(x):Eta(MT=18)	pts:86
+Downloaded:DS:1/1)		ENDF/B-VIII.0	EID:149933	SID:13662330	f(x):Eta(MT=18)	pts:86	idy=86
+WebReq:2) EvalID:307100 PenSectID:26469908 Lib:JEFF-4.0 Color:255,0,0
+/servlet/E4sGetSectData?EvalID=307100&PenSectID=26469908&json&eta=18
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=307100&PenSectID=26469908&json&eta=18
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=307100&PenSectID=26469908&json&eta=18'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=307100&PenSectID=26469908&json&eta=18
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:2/1)		JEFF-4.0	EID:307100	SID:26469908	f(x):Eta(MT=18)	pts:3351
+Downloaded:DS:2/1)		JEFF-4.0	EID:307100	SID:26469908	f(x):Eta(MT=18)	pts:3351	idy=3351
+---e4datasets: 2
+Plot:1/2) 13662330	ENDF/B-VIII.0	pt:86	color:0,0,255
+Plot:2/2) 26469908	JEFF-4.0	pt:3351	color:255,0,0
+Will try---write_image: U235-eta.html.png
+
+Program successfully completed

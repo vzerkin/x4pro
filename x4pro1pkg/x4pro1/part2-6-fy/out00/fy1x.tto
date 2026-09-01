@@ -2,10 +2,10 @@ Program: fy0x.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Retrieve and plot EXFOR fission yield (mass distribution)
 
-Running: 2026-08-25 23:13:40
+Running: 2026-09-01 13:38:22
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearchFY_MASS: 92-U-238(N,F)MASS,CHN,FY and (En>=13e6)and (En<15e6)
 SQL:
@@ -52,16 +52,20 @@ Plot:9/9) #237110022 1964, R.H.James pt:18
 ___webEndfDataForPlot_FYA: [U-238] [n*,ind_FY]
 web0get:/servlet/E4sSearch2?Target=U-238&Reaction=n*,ind_FY&json
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-238&Reaction=n*,ind_FY&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=U-238&Reaction=n*,ind_FY&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=U-238&Reaction=n*,ind_FY&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-08-25T16:37:49.000Z" 
+ ,"now":"2026-09-01T13:38:23.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":1783
+ ,"req":2016
 ,"sections":[
  { "Targ":"U-238","ZT":92,"AT":238,"NSUB":10,"MT":454,"MF":8,"R":"N,ind_FY","RC":"U-238(N,ind_FY),RNP","EvalID":118846,"SectID":6090731,"PenSectID":10752219,"LibID":41031,"LibName":"BROND-3.1","DATE":"atyuk A.V.","AUTH":"Nikolaev M.N., Koscheev V.N."}
 ,{ "Targ":"U-238","ZT":92,"AT":238,"NSUB":10,"MT":454,"MF":8,"R":"N,ind_FY","RC":"U-238(N,ind_FY),RNP","EvalID":38524,"SectID":1250623,"PenSectID":6947969,"LibID":59020,"LibName":"ROSFOND-2010","DATE":"DEC06","AUTH":"Nikolaev M.N., Koscheev V.N."}
@@ -91,11 +95,15 @@ ___Required sections:1
 WebReq:1) SectID:9030513 Lib:ENDF/B-VIII.0 Color:0,0,255
 /servlet/E4sGetSect2?SectID=9030513
 ---wgetdb_get:/servlet/E4sGetSect2?SectID=9030513
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---retrieved from wget_cache rows: 0
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSect2?SectID=9030513'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSect2?SectID=9030513
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
 Download...DS:1/2)	ENDF/B-VIII.0 92-U-238 FY_ind,Ei=14MeV	ENDF/B-VIII.0	pts:1283
 ________masses:107 XXs:107 YYs:107 DYYs:107
 Downloaded:DS:1/2)		ENDF/B-VIII.0	pts:1283	idy=1283
