@@ -20,7 +20,8 @@ sqlite3 -header -box ../../x4sqlite1.db <reactions1.sql >reactions1.txt
  ${mypython3} -B reac1.py -o:a1495-li6 -ds:"a1495*" -fx:1e6 -fy:1e-3 -lines -sym -annot:"1.4,8.5,<b>A1495.x4:3-Li-6*,da</b>" "3-li-6*da">a1495-li6.tto
  ${mypython3} -B reac1.py -o:a1495 -ds:"a1495*" -fx:1e6 -fy:1e-3 -lines -sym -annot:"1.4,8.5,<b>A1495.x4:*,da</b>" "*,DA">a1495.tto
  ${mypython3} -B reac1.py -o:Kokkoris -a1:"Kokkoris" -xlog -ylog -fx:1e6 -fy:1e-3 -lines -sym "*,,DA" -annot:"1.6,350,<b>A1:Kokkoris  R:*,,DA</b>">Kokkoris.tto
- ${mypython3} -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '40-Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
+#${mypython3} -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '40-Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
+ ${mypython3} -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -prod:"Zr-97">sig1prod.tto
 
 set +x
 
@@ -72,4 +73,5 @@ txt2html2browser reactions1.txt reactions1.sql
 
 #python -B reac1.py -o:sig1prod -x2:40097 -fx:1e6 -fy:1e-3 -xlog -ylog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG">sig1prod.tto
 #python -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '40-Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
+#python -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '%Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
 #python -B ../myplot1.py sig1prod -x:log -o:sig1prod-myplot.html

@@ -20,7 +20,7 @@ from exfor2plot import * #plot by plotly/matplotlib
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac1.py, ver.2026-08-27       |')
+    print('  | Program: reac1.py, ver.2026-09-02       |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -58,6 +58,7 @@ def main():
     x5fam=None
     a1=None
     dsids=None
+    aprod=None #product in SF4 or DATA(ELEM/MASS)
 
     def str2float(str1):
         if str1 is None: return None
@@ -127,6 +128,7 @@ def main():
         if arg.startswith('-x3fam:'):  x3fam=arg[7:];              continue
         if arg.startswith('-x4fam:'):  x4fam=arg[7:];              continue
         if arg.startswith('-x5fam:'):  x5fam=arg[7:];              continue
+        if arg.startswith('-prod:'):   aprod=arg[6:];              continue
         if arg=='-sym':                symBorder=True;             continue
         if arg=='-lines':              lines=True;                 continue
         if arg=='-nogrp':              groupReactions=False;       continue
@@ -154,6 +156,7 @@ def main():
     x4ei+=addStrToWhere('dsid',dsids)
     x4where0+=addStrToWhere('a1',a1)
     x4where0+=addStrToWhere('dsid',dsids)
+    if aprod is not None: x4ei+=" and (prod like '%"+aprod+"' or outParticles like '%["+aprod+"]%')\n"
     if xmin is not None or xmax is not None: xrange=[xmin,xmax]
     if ymin is not None or ymax is not None: yrange=[ymin,ymax]
 
@@ -240,7 +243,7 @@ def main():
     conn.close()
 
     myOfflinePlot(data1,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-08-27 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-02 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype
