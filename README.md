@@ -1,5 +1,5 @@
 # X4Pro - universal, fully relational EXFOR database.<br>Professional edition.
-by V.Zerkin, 2026-09-01
+by V.Zerkin, 2026-09-04
 
 ## Content
 
@@ -14,7 +14,7 @@ by V.Zerkin, 2026-09-01
   - retrieve and recalculate EXFOR data [DA,LEG/RS]&[SIG]&rarr;[DA]&rarr;[C4]
 - Python demo codes
     - retrieve/plot local EXFOR data: SIG, DA, DAP, DE, DAE, FY, [CSP](x4pro1pkg/x4pro1/part1-8-reac/out00/sig1p.html.png "partial cross section"), [CST](x4pro1pkg/x4pro1/part1-8-reac/out00/cst1.html.png  "temperature dependent cross section"), [TKE](x4pro1pkg/x4pro1/part1-8-reac/out00/tke1.html.png  "total kinetic energy of primary fission fragments"), [ETA](x4pro1pkg/x4pro1/part1-8-reac/out00/eta1.html.png  "average neutron yield per nonelastic event"), [Nubar](x4pro1pkg/x4pro1/part1-8-reac/out00/nu1.html.png "average number of neutrons per fission"), [Author1](x4pro1pkg/x4pro1/part1-8-reac/out00/Kokkoris.html.png "search by 1st author and data type"), [Product](x4pro1pkg/x4pro1/part1-8-reac/out00/sig1prod.html.png "Production cross section, where product coded as SF4 or in DATA (ELEM/MASS)")
-    - retrieve/plot local EXROR and remote ENDF data, e.g. [DA:MF4+34](x4pro1pkg/x4pro1/part2-2-da1an/out00/da1an.html.png), [FY(E)](x4pro1pkg/x4pro1/part2-7-fye/out00/u235-nf-cd115g-cumFY.html.png), [CSP:MT51](x4pro1pkg/x4pro1/part2-8-sig1par/out00/Li7ninl.html.png), [Nubar:MT455](x4pro1pkg/x4pro1/part2-9-nubar/out00/U238nf_dl-nu.html.png), [Eta](x4pro1pkg/x4pro1/part2-A-eta/out00/U235-eta.html.png "Average neutron yield per nonelastic event")
+    - retrieve/plot local EXROR and remote ENDF data, e.g. [DA:mf4/34](x4pro1pkg/x4pro1/part2-2-da1an/out00/da1an.html.png), [FY(E)](x4pro1pkg/x4pro1/part2-7-fye/out00/u235-nf-cd115g-cumFY.html.png), [CSP:mt51](x4pro1pkg/x4pro1/part2-8-sig1par/out00/Li7ninl.html.png), [Nubar:mt455](x4pro1pkg/x4pro1/part2-9-nubar/out00/U238nf_dl-nu.html.png), [Eta](x4pro1pkg/x4pro1/part2-A-eta/out00/U235-eta.html.png "Average neutron yield per nonelastic event"), PFNS
     - renormalize and correct EXFOR data: automatically, by own user's code, by expert's codes  
     - recalculate EXFOR data: [Ratio]&rarr;[SIG], [DA,LEG]&rarr;[SIG]
     - recalculate EXFOR data: [DA,LEG/RS]&[SIG]&rarr;[DA]; [DA,LEG]&rarr;[DA]&rarr;[R33]
