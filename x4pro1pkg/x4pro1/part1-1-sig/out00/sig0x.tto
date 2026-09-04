@@ -2,7 +2,7 @@ Program: sig0x.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Retrieve and plot EXFOR cross sections
 
-Running: 2026-09-01 13:34:24
+Running: 2026-09-04 23:06:38
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw

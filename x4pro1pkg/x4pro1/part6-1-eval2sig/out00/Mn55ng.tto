@@ -6,7 +6,7 @@ Purpose: Retrieve EXFOR cross sections, ratios
          renormalize cross sections to new monitors,
          search and download ENDF data from Web,
          plot evaluated and experimental data.
-Running: 2026-09-01 13:45:01
+Running: 2026-09-04 23:17:44
 
 ---arg[0]:sig1r.py
 ---arg[1]:Mn-55
@@ -313,9 +313,9 @@ Connected to: [sqlite3]
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Mn-55&Reaction=n,g&Quantity=SIG&json'
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-09-01T13:43:58.000Z" 
+ ,"now":"2026-09-04T23:16:27.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":2036
+ ,"req":2132
 ,"sections":[
  { "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":272564,"SectID":19170340,"PenSectID":24017951,"LibID":30003,"LibName":"INDEN-Aug2023","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
 ,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":272544,"SectID":19164771,"PenSectID":24012307,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
@@ -404,7 +404,7 @@ Connected to: [sqlite3]
 Downloaded:4)	MN-55(N,G)MN-56,SIG	CENDL-3.2	PenSectID:18849605	pts:18931	idy=18931
 
 EXFOR SQL executed:  0.006sec
-ENDF Web downloaded: 0.067sec
+ENDF Web downloaded: 0.129sec
 Plot:1/4) 26227532	ENDF/B-VIII.1	pt:19765	color:0,0,255
 Plot:2/4) 13693668	JEFF-3.3	pt:19977	color:0,127,63
 Plot:3/4) 10716859	BROND-3.1	pt:19833	color:255,0,255

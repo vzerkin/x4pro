@@ -1,10 +1,10 @@
 {
-  "now": "2026-09-01 13:41:32",
+  "now": "2026-09-04 23:14:13",
   "plotQuantity": "Eta neutron yield",
   "plotTitle": " EXFOR:Pu-239(n,abs)(n,non)  ENDF:MT18",
   "plotSummary": " Exp.datasets:21, points:5932",
   "plotLegend": "",
-  "plotAuthor": "X4Pro, by V.Zerkin, 2021-2026, ver.2026-08-31 //run:2026-09-01 13:41:32",
+  "plotAuthor": "X4Pro, by V.Zerkin, 2021-2026, ver.2026-08-31 //run:2026-09-04 23:14:13",
   "xTitle": "Incident energy",
   "xunit": "eV",
   "yTitle": "Neutron yield ETA",

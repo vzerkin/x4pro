@@ -2,7 +2,7 @@ Program: sig1x.py, ver. 2025-01-24
 Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2025
 Purpose: Retrieve and plot EXFOR cross sections
 	 from SQL database and ENDF data from Web
-Running: 2026-09-01 13:35:47
+Running: 2026-09-04 23:08:13
 
 Number of arguments: 5 arguments.
 Argument List: ['sig1x.py', 'mn-55', 'n,g', 'log', 'log']
@@ -784,9 +784,9 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-09-01T13:35:48.000Z" 
+ ,"now":"2026-09-04T23:07:59.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":2010
+ ,"req":2106
 ,"sections":[
  { "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":272564,"SectID":19170340,"PenSectID":24017951,"LibID":30003,"LibName":"INDEN-Aug2023","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
 ,{ "Targ":"MN-55","ZT":25,"AT":55,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"MN-55(N,G)MN-56,SIG","EvalID":272544,"SectID":19164771,"PenSectID":24012307,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"20111222","AUTH":"IAEA Evaluation Consortium"}
@@ -934,7 +934,7 @@ Plot:6/7) 18849605	CENDL-3.2	pt:18931	color:255,0,0
 Plot:7/7) 18348264	TENDL-2019.s60	pt:19801	color:127,127,127
 
 EXFOR SQL executed:  0.006sec
-ENDF Web downloaded: 21.214sec
+ENDF Web downloaded: 21.747sec
 Will try---write_image: mn55ng.html.png
 
 Program successfully completed

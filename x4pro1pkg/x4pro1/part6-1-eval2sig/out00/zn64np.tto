@@ -6,7 +6,7 @@ Purpose: Retrieve EXFOR cross sections, ratios
          renormalize cross sections to new monitors,
          search and download ENDF data from Web,
          plot evaluated and experimental data.
-Running: 2026-09-01 13:44:24
+Running: 2026-09-04 23:17:07
 
 ---arg[0]:sig1r.py
 ---arg[1]:Zn-64
@@ -389,9 +389,9 @@ Connected to: [sqlite3]
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Zn-64&Reaction=n,p&Quantity=SIG&json'
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-09-01T13:42:47.000Z" 
+ ,"now":"2026-09-04T23:15:14.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":2031
+ ,"req":2127
 ,"sections":[
  { "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":301162,"SectID":21398231,"PenSectID":26232896,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"N.Iwamoto"}
 ,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":149537,"SectID":8958164,"PenSectID":13602409,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"N.Iwamoto"}
@@ -481,7 +481,7 @@ Connected to: [sqlite3]
 Downloaded:4)	ZN-64(N,P)CU-64,SIG	CENDL-3.2	PenSectID:18851927	pts:178	idy=0
 
 EXFOR SQL executed:  0.005sec
-ENDF Web downloaded: 9.89sec
+ENDF Web downloaded: 10.084sec
 Plot:1/4) 26232896	ENDF/B-VIII.1	pt:72	color:0,0,255
 Plot:2/4) 13699807	JEFF-3.3	pt:331	color:0,127,63
 Plot:3/4) 10719038	BROND-3.1	pt:181	color:255,0,255

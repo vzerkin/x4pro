@@ -3,7 +3,7 @@ Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2024
 Purpose: Cumulative fission yield from EXFOR/ENDF:
          retrieve list of datasets, filter data by product,
          download fy.json, extract data, plot by Plotly
-Running: 2026-09-01 13:38:30
+Running: 2026-09-04 23:11:03
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw

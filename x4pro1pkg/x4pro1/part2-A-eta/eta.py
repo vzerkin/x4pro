@@ -181,15 +181,16 @@ outX4Datasets(datasets,outhtml)
 data1=[]
 #data1=prepareExforDataForPlot(datasets,msize=10,groupReac=len(reacodes)>1,lines=False)
 #data1=prepareExforDataForPlot(datasets,msize=10,groupReac=groupReac,lines=True,lwidth=0.9,symBorder=True,bwColor=True)
-data1=prepareExforDataForPlot(datasets,msize=10,groupReac=groupReac,lines=True,lwidth=0.9,symBorder=True)
+data1=prepareExforDataForPlot(datasets,msize=9,groupReac=groupReac,lines=True,lwidth=0.9,symBorder=True)
 
 #_________________Retrieve ENDF_________________
 data2=[]
 e4datasets=[]
 reqLibs={
+#	'ENDF/B-VIII.1':"0,80,255",
 	'ENDF/B-VIII.0':"0,0,255",
 #	'JENDL-5':"0,255,0",
-	'JEFF-4.0':"255,0,0"
+	'JEFF-4.0':"255,0,0",
 #	'JEFF-3.3':"0,255,255",
 #	'JEFF-3.1':"0,255,255",
 #	'JEF-2.2':"0,255,255",

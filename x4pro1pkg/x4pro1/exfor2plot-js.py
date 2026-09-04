@@ -91,6 +91,8 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     ,xstep30=False
     ,annot1=None
     ,plotParams=None
+    ,showgrid=True
+    ,zeroline=True
     ):
 
     if not filename.endswith('.html'): filename=filename+'.html'
@@ -118,6 +120,8 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
 <script language="javascript">
 ''')
 
+    if showgrid: ff.write('grid=true;\n')
+    else:        ff.write('grid=false;\n')
     if plotParams is not None:
         ff.write('plotParams=\n')
         json.dump(plotParams,ff,indent=2)

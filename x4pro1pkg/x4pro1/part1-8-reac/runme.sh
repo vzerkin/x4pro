@@ -1,5 +1,6 @@
 source ../mypython3.sh
 set -x
+
 sqlite3 -header -box ../../x4sqlite1.db <reactions1.sql >reactions1.txt
 #sqlite3 -header -box ../../tmp1full/x4sqlite1.db <reactions1.sql >reactions1.txt
 #${mypython3} -B reac1.py -o:sig1 -x1max:30e6 -fx:1e6 -fy:1e-3 -lines -sym -annot:"7,180,<b>SIG</b>" "13-AL-27(N,A)11-NA-24,,SIG">sig1.tto
@@ -21,7 +22,13 @@ sqlite3 -header -box ../../x4sqlite1.db <reactions1.sql >reactions1.txt
  ${mypython3} -B reac1.py -o:a1495 -ds:"a1495*" -fx:1e6 -fy:1e-3 -lines -sym -annot:"1.4,8.5,<b>A1495.x4:*,da</b>" "*,DA">a1495.tto
  ${mypython3} -B reac1.py -o:Kokkoris -a1:"Kokkoris" -xlog -ylog -fx:1e6 -fy:1e-3 -lines -sym "*,,DA" -annot:"1.6,350,<b>A1:Kokkoris  R:*,,DA</b>">Kokkoris.tto
 #${mypython3} -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '40-Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
- ${mypython3} -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -prod:"Zr-97">sig1prod.tto
+ ${mypython3} -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -prod:"Zr-97" -symw:11 -annot:"1000,90,<b>Production<br>cross sections</b>">sig1prod.tto
+
+ ${mypython3} -B reac1.py -o:pfns1 -x:x2 -fx:1e6 -fy:1e-6 -xlog -lines -sym -annot:"0.5,0.5,<b>P F N S</b><br>PR,NU/DE,,MXW" "94-PU-239(N,F),PR,NU/DE,,MXW" >pfns1.tto
+ ${mypython3} -B reac1.py -o:pfns2 -x:x2 -x1min:1.45e6 -x1max:1.5e6 -fx:1e6 -fy:1e-6 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE" >pfns2.tto
+ ${mypython3} -B reac1.py -o:pfns3 -fx:1e6 -xlog -ylog -lines -sym "94-PU-242(0,F),*,NU/DE,,REL" >pfns3.tto
+ ${mypython3} -B reac1.py -o:pfns4 -fx:1e6 -xlog -ylog -lines -sym "98-CF-252(0,F),PR,NU/DE,,REL" >pfns4.tto
+#${mypython3} -B reac1.py -o:pfns4 -fx:1e6 -xlog -ylog -lines -sym "98-CF-252(0,F),*,NU/DE,,REL" >pfns4.tto
 
 set +x
 
@@ -75,3 +82,10 @@ txt2html2browser reactions1.txt reactions1.sql
 #python -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '40-Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
 #python -B reac1.py -o:sig1prod -fx:1e6 -fy:1e-3 -xlog -lines -sym "92-U-238(P,*)*,*,SIG" "92-U-0(P,*)*,*,SIG" -w:" and (prod like '%Zr-97' or outParticles like '%zr-97%')">sig1prod.tto
 #python -B ../myplot1.py sig1prod -x:log -o:sig1prod-myplot.html
+#python -B reac1.py -o:pfns1 -x:x2 -fx:1e6 -xlog -lines -sym "92-U-235(N,F),PR,NU/DE" >pfns1.tto
+#python -B reac1.py -o:pfns1 -x:x2 -fx:1e6 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE,,MXW" >pfns1.tto
+#python -B reac1.py -o:pfns1 -x:x2 -x1min:1.45e6 -x1max:1.5e6 -fx:1e6 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE" >pfns1.tto
+#python -B reac1.py -o:pfns1r -x:x2 -fx:1e6 -xlog -lines -sym "94-PU-240(N,F),PR,NU/DE,,REL" >pfns1r.tto
+#python -B reac1.py -o:pfns1 -fx:1e6 -xlog -lines -sym "94-PU-242(0,F),PR,NU/DE,,REL" >pfns1.tto
+#python -B reac1.py -o:pfns1 -fx:1e6 -xlog -lines -sym "94-PU-242(0,F),*,NU/DE,,REL" >pfns1.tto
+#python -B reac1.py -o:pfns1 -x:x2 -fx:1e6 -fy:1e-6 -xlog -lines -sym -annot:"0.5,0.5,<b>P F N S<br><sup>239</sup>Pu(n,f)</b><br>PR,NU/DE,,MXW" "94-PU-239(N,F),PR,NU/DE,,MXW" >pfns1.tto

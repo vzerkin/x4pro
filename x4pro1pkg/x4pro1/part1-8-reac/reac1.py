@@ -44,8 +44,13 @@ def main():
     xtype='linear';ytype='linear'
     lines=False
     groupReactions=True
+    msize=8
+    lwidth=0.9
     symBorder=False
     annot=None
+    showgrid=True
+    zeroline=True
+#   showgrid=False;    zeroline=False
 
     xrange=None; yrange=None;
     x1min=None; x1max=None
@@ -117,6 +122,7 @@ def main():
         if arg.startswith('-x2max:'):  x2max=str2float(arg[7:]);   continue
         if arg.startswith('-x3min:'):  x3min=str2float(arg[7:]);   continue
         if arg.startswith('-x3max:'):  x3max=str2float(arg[7:]);   continue
+        if arg.startswith('-symw:'):   msize=str2int(arg[6:],msize); continue
         if arg.startswith('-nmin:'):   nPntMin=str2int(arg[6:],1); continue
         if arg.startswith('-xmin:'):   xmin=str2float(arg[6:]);    continue
         if arg.startswith('-xmax:'):   xmax=str2float(arg[6:]);    continue
@@ -222,7 +228,7 @@ def main():
     outX4Datasets(datasets,outhtml)
     outX4Datasets(datasets,outhtml+"--exfor",frmArray=2) #Store EXFOR with data in columns
 
-    data1=prepareExforDataForPlot(datasets,msize=8,groupReac=groupReac,lines=lines,lwidth=0.9,symBorder=symBorder)
+    data1=prepareExforDataForPlot(datasets,msize=msize,groupReac=groupReac,lines=lines,lwidth=lwidth,symBorder=symBorder)
 
     xtitle='XX'
     ytitle='YY'
@@ -250,6 +256,8 @@ def main():
 	,xrange=xrange,yrange=yrange
 	,filename=outhtml
 	,annot1=annot
+	,showgrid=showgrid
+	,zeroline=zeroline
 	)
     return
 

@@ -3,7 +3,7 @@ Author:  V.Zerkin, Vienna, 2026
 Purpose: Retrieve and plot EXFOR and ENDF data
          Eta: neutron yield per nonelastic even
 
-Running: 2026-09-01 13:41:32
+Running: 2026-09-04 23:14:13
 
 
 ---Arguments from command-line---
@@ -41,7 +41,7 @@ order by fullCode,YearRef1 desc,DatasetID
  ,En,iPoint                               
 
 
-EXFOR SQL executed: 0.028sec rows:5932
+EXFOR SQL executed: 0.033sec rows:5932
 
 datapoints: 5932
 1) 13805004 1984 J.R.Smith 94-PU-239(N,ABS),,ETA

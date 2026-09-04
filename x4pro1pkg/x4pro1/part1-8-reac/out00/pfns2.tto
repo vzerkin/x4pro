@@ -1,0 +1,235 @@
+  +-----------------------------------------+
+  | Program: reac1.py, ver.2026-09-02       |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-09-04 23:07:34
+
+---Arguments from command-line---
+   1  arg: -o:pfns2
+   2  arg: -x:x2
+   3  arg: -x1min:1.45e6
+   4  arg: -x1max:1.5e6
+   5  arg: -fx:1e6
+   6  arg: -fy:1e-6
+   7  arg: -xlog
+   8  arg: -lines
+   9  arg: -sym
+   10 arg: 94-PU-239(N,F),PR,NU/DE
+
+---Input:
+   Reaction:  ['94-PU-239(N,F),PR,NU/DE']
+   xn:        x2
+   x1range:   1450000.0 - 1500000.0
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        1e-06
+   nPntMin:   1
+   xrange:    None
+   Output:    pfns2
+   x4ei:       and x1>=1450000.0 and x1<=1500000.0
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 3
+----1.
+    fullCode       94-PU-239(N,F),PR,NU/DE
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   PC/FIS/MEV Data: data                           ///particl. per 100 fissions per MeV
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+/Summary of Reaction-Codes
+Summary of Units 2
+---basicUnits:PC/FIS/MEV  category:FYDE
+   FYDE 1/3   PC/FIS/MEV  1e-08           particl. per 100 fissions per MeV
+   FYDE 2/3   PD/FIS/MEV  1e-06           products per fission per MeV
+   FYDE 3/3   PT/FIS/MEV  1e-06           particles per fission per MeV
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['94-PU-239(N,F),PR,NU/DE']
+SQL:
+select *                                                   
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x2 as XX, dx2 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x2'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+  (fullCode like '94-PU-239(N,F),PR,NU/DE')
+ ) 
+ and x1>=1450000.0 and x1<=1500000.0   order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 102
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:102 xn=x2  fx=1.0e-06 fy=1.0e+06
+
+-new-1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini y=DATA(EN,E2)
+1/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.05 y:0.429757 dy:0.0123519 dx:0.05
+2/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.15 y:0.695187 dy:0.0176799 dx:0.05
+3/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.25 y:0.831291 dy:0.0355238 dx:0.05
+4/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.35 y:0.937829 dy:0.0113602 dx:0.05
+5/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.45 y:0.971998 dy:0.0087981 dx:0.05
+6/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.55 y:1.0148 dy:0.00812522 dx:0.05
+7/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.65 y:1.02476 dy:0.00781543 dx:0.05
+8/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.75 y:1.03952 dy:0.00771912 dx:0.05
+9/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.85 y:1.0225 dy:0.00754653 dx:0.05
+10/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:0.95 y:1.01747 dy:0.00740876 dx:0.05
+11/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.05 y:0.993651 dy:0.00727114 dx:0.05
+12/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.15 y:0.970376 dy:0.00714356 dx:0.05
+13/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.25 y:0.948408 dy:0.00701294 dx:0.05
+14/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.35 y:0.932075 dy:0.00687467 dx:0.05
+15/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.45 y:0.895454 dy:0.0067136 dx:0.05
+16/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.55 y:0.869397 dy:0.00658692 dx:0.05
+17/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.65 y:0.837225 dy:0.00641904 dx:0.05
+18/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.75 y:0.807059 dy:0.00628747 dx:0.05
+19/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.85 y:0.781924 dy:0.00614646 dx:0.05
+20/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:1.95 y:0.741819 dy:0.00601521 dx:0.05
+21/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.05 y:0.713844 dy:0.00588874 dx:0.05
+22/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.15 y:0.687638 dy:0.00574757 dx:0.05
+23/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.25 y:0.657165 dy:0.00560429 dx:0.05
+24/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.35 y:0.615703 dy:0.00546632 dx:0.05
+25/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.45 y:0.59214 dy:0.00532568 dx:0.05
+26/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.55 y:0.561822 dy:0.00522336 dx:0.05
+27/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.65 y:0.534173 dy:0.00507259 dx:0.05
+28/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.75 y:0.510299 dy:0.00496911 dx:0.05
+29/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.85 y:0.484737 dy:0.00483478 dx:0.05
+30/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:2.95 y:0.461616 dy:0.00474309 dx:0.05
+31/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.04568 y:0.430997 dy:0.00477019 dx:0.045685
+32/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.13918 y:0.410919 dy:0.00458796 dx:0.04781
+33/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.23705 y:0.392638 dy:0.00440837 dx:0.050065
+34/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.33959 y:0.373858 dy:0.00425926 dx:0.05247
+35/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.44708 y:0.348741 dy:0.0040539 dx:0.055025
+36/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.55986 y:0.32243 dy:0.00385996 dx:0.057755
+37/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.67828 y:0.301425 dy:0.0036587 dx:0.060665
+38/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.80272 y:0.281655 dy:0.00348734 dx:0.06377
+39/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:3.93359 y:0.259667 dy:0.0032871 dx:0.067105
+40/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:4.07137 y:0.238249 dy:0.00309306 dx:0.070665
+41/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:4.21652 y:0.218838 dy:0.00293454 dx:0.074485
+42/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:4.36958 y:0.198079 dy:0.00272814 dx:0.078585
+43/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:4.53116 y:0.181325 dy:0.00258424 dx:0.082995
+44/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:4.7019 y:0.164289 dy:0.00242777 dx:0.08774
+45/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:4.8825 y:0.145874 dy:0.00227153 dx:0.09286
+46/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:5.07374 y:0.127051 dy:0.00210498 dx:0.09838
+47/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:5.27647 y:0.111399 dy:0.0019561 dx:0.104355
+48/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:5.49165 y:0.100884 dy:0.00184037 dx:0.110815
+49/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:5.72029 y:0.084045 dy:0.00167524 dx:0.11783
+50/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:5.96357 y:0.0706472 dy:0.00155825 dx:0.12545
+51/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:6.22276 y:0.0606632 dy:0.00143434 dx:0.13374
+52/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:6.49928 y:0.0510405 dy:0.00131669 dx:0.142785
+53/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:6.79473 y:0.0412762 dy:0.00120243 dx:0.152665
+54/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:7.11088 y:0.0327495 dy:0.00109362 dx:0.16348
+55/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:7.4497 y:0.0269276 dy:0.0010025 dx:0.175345
+56/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:7.81345 y:0.0212736 dy:0.00092501 dx:0.1884
+57/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:8.20463 y:0.0152041 dy:0.000833761 dx:0.202775
+58/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:8.62608 y:0.012398 dy:0.000751966 dx:0.218675
+59/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:9.08103 y:0.00968976 dy:0.000683139 dx:0.236275
+60/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:9.57313 y:0.00609601 dy:0.000597311 dx:0.255835
+61/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:10.1066 y:0.00540187 dy:0.000540659 dx:0.277615
+62/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:10.6862 y:0.00330323 dy:0.000478683 dx:0.302
+63/102:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=1.45MeV 2020 Marini x:11.3174 y:0.00199992 dy:0.000436683 dx:0.32925
+
+-new-2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon y=DATA(EN,E2)
+64/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:0.3 y:0.248576 dy:0.024649 dx:None
+65/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:0.5 y:0.319326 dy:0.016559 dx:None
+66/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:0.7 y:0.309482 dy:0.011481 dx:None
+67/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:0.9 y:0.33888 dy:0.010718 dx:None
+68/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:1.1 y:0.314532 dy:0.010287 dx:None
+69/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:1.3 y:0.299562 dy:0.009911 dx:None
+70/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:1.5 y:0.302919 dy:0.00993 dx:None
+71/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:1.7 y:0.275393 dy:0.009352 dx:None
+72/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:1.9 y:0.252244 dy:0.008766 dx:None
+73/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:2.1 y:0.232335 dy:0.008852 dx:None
+74/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:2.3 y:0.218868 dy:0.00838 dx:None
+75/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:2.5 y:0.199972 dy:0.008249 dx:None
+76/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:2.7 y:0.195363 dy:0.008044 dx:None
+77/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:2.9 y:0.158599 dy:0.007333 dx:None
+78/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:3.125 y:0.149581 dy:0.006333 dx:None
+79/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:3.375 y:0.119419 dy:0.005618 dx:None
+80/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:3.625 y:0.109178 dy:0.005439 dx:None
+81/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:3.875 y:0.086276 dy:0.00488 dx:None
+82/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:4.2 y:0.071081 dy:0.00369 dx:None
+83/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:4.6 y:0.053493 dy:0.003072 dx:None
+84/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:5.0 y:0.036598 dy:0.002491 dx:None
+85/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:5.4 y:0.03506 dy:0.002332 dx:None
+86/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:5.8 y:0.024524 dy:0.001904 dx:None
+87/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:6.25 y:0.016295 dy:0.001546 dx:None
+88/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:6.75 y:0.013736 dy:0.001196 dx:None
+89/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:7.25 y:0.00831 dy:0.000986 dx:None
+90/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:7.75 y:0.004396 dy:0.000668 dx:None
+91/102:2) 94-PU-239(N,F),PR,NU/DE 14379002 En=1.5MeV 2014 Chatillon x:8.25 y:0.003284 dy:0.000613 dx:None
+
+-new-3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone y=DATA(EN,E2)
+92/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:1.5 y:0.2905 dy:0.0073 dx:None
+93/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:2.5 y:0.1945 dy:0.0049 dx:None
+94/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:3.5 y:0.111 dy:0.0028 dx:None
+95/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:4.5 y:0.0607 dy:0.0015 dx:None
+96/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:5.5 y:0.0318 dy:0.001 dx:None
+97/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:6.5 y:0.0166 dy:0.0006 dx:None
+98/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:7.5 y:0.00853 dy:0.00039 dx:None
+99/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:8.5 y:0.00421 dy:0.00035 dx:None
+100/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:9.5 y:0.00224 dy:0.00026 dx:None
+101/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:10.5 y:0.00135 dy:0.00027 dx:None
+102/102:3) 94-PU-239(N,F),PR,NU/DE 14430002 En=1.5MeV 2014 Lestone x:11.5 y:0.00029 dy:0.00032 dx:None
+---outDatasets:3 datasets:3
+---ENTRY: 14379*;14430*;14684*;
+datasets: 3
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 3
+1) 94-PU-239(N,F),PR,NU/DE
+	Dataset:1/3) 94-PU-239(N,F),PR,NU/DE 14684002 2020, P.Marini En=1.45MeV
+	Dataset:2/3) 94-PU-239(N,F),PR,NU/DE 14379002 2014, A.Chatillon En=1.5MeV
+	Dataset:3/3) 94-PU-239(N,F),PR,NU/DE 14430002 2014, J.P.Lestone En=1.5MeV
+---reacodes: 1 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/3) #14684002 2020, P.Marini En=1.45MeV pt:63
+Plot:2/3) #14379002 2014, A.Chatillon En=1.5MeV pt:28
+Plot:3/3) #14430002 2014, J.P.Lestone En=1.5MeV pt:11
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- PC/FIS/MEV 1e-06
+--A--getUnits--- PC/FIS/MEV 1e-06
+--1--getUnits--- PC/FIS/MEV 1e-06  Category: FYDE
+Will try---write_image: pfns2.html.png
+
+Program successfully completed

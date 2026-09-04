@@ -4,7 +4,7 @@
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-02 14:48:30
+Running: 2026-09-04 23:07:29
 
 ---Arguments from command-line---
    1  arg: -o:sig1prod
@@ -16,6 +16,9 @@ Running: 2026-09-02 14:48:30
    7  arg: 92-U-238(P,*)*,*,SIG
    8  arg: 92-U-0(P,*)*,*,SIG
    9  arg: -prod:Zr-97
+   10 arg: -symw:11
+   11 arg: -annot:1000,90,<b>Production<br>cross sections</b>
+   ---str2annot:[1000,90,<b>Production<br>cross sections</b>] --> ('<b>Production<br>cross sections</b>', 1000.0, 90.0)
 
 ---Input:
    Reaction:  ['92-U-238(P,*)*,*,SIG', '92-U-0(P,*)*,*,SIG']
@@ -32,7 +35,7 @@ Running: 2026-09-02 14:48:30
 
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
    Connected to: [sqlite3]
 
 ---Print summary---

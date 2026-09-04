@@ -102,7 +102,7 @@ var x4pro='\
 X4Pro - universal, fully relational EXFOR database<br>
 </span>
 <span class=author>
-by V.Zerkin, IAEA:2021-2023, version 2026-09-01<br>
+by V.Zerkin, IAEA:2021-2023, version 2026-09-04<br>
 </span>
 <br>
 This page presents progress in development X4Pro database and tools
@@ -137,9 +137,9 @@ Tasks of the project:<br>
 Distribution (see
  <a href="readme.txt" target="_blank">readme</a>,
  <a href="LICENSE.TXT" target="_blank">license</a>,
- <a href="COPYRIGHT.TXT" target="_blank">copyright</a>), ver.2026-09-01:<br> 
-- X4Pro/SQLite database, ver.2026-09-01<br>
-- Python and Fortran demo-programs, ver.2026-09-01<br>
+ <a href="COPYRIGHT.TXT" target="_blank">copyright</a>), ver.2026-09-04:<br> 
+- X4Pro/SQLite database, ver.2026-09-04<br>
+- Python and Fortran demo-programs, ver.2026-09-04<br>
 - Bash-scripts running demo-programs (CLI 
   <script language="javascript">
     outLink('x4pro-cli.html','[1]','Command Line Interface for running demo-codes','');
@@ -148,7 +148,7 @@ and TUI
   <script language="javascript">
     outLink('x4pro-tui.html','[2]','Basic interactive script','');
     outLink('x4pro-dia.html','[3]','Menu-type interactive script','');
-  </script>), database statistics, ver.2026-09-01<br>
+  </script>), database statistics, ver.2026-09-04<br>
 - consists of 6 parts:<br>
 
 <table border=1>
@@ -364,6 +364,8 @@ TKE, ETA<br>
 NUDAT<br>
 FY<br>
 ELEM/<br>MASS<br>
+FY<br>
+NU/DE<br>
 </span></td>
 <td>1) Partial cross section CSP
 <br>2) Temperatire dependent CST
@@ -375,6 +377,8 @@ ELEM/<br>MASS<br>
 <br>8) Production cross section,
 <br> &nbsp; &nbsp;where product coded as SF4
 <br> &nbsp; &nbsp;or in DATA (ELEM/MASS)
+<br>9) PFNS prompt-fission
+<br> &nbsp; &nbsp;neutron energy spectra
 <br> -- etc.
 </td>
 <td>
@@ -420,6 +424,16 @@ ELEM/<br>MASS<br>
     outLink('part1-8-reac/out00/sig1prod.html.png','png','Plotly:png','/');
     outLink('part1-8-reac/out00/sig1prod.json','json','Output',', ');
     outLink('part1-8-reac/out00/sig1prod.tto','tto','terminal-output','<br>');
+
+    outLink('part1-8-reac/out00/pfns1.html','pfns1.html','Energy spectrum of prompt fission neutrons: interactive plot','/','9) PFNS: ')
+    outLink('part1-8-reac/out00/pfns1.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/pfns1.json','json','Output',', ');
+    outLink('part1-8-reac/out00/pfns1.tto','tto','terminal-output','<br>');
+
+    outLink('part1-8-reac/out00/pfns4.html','pfns4.html','Prompt neutron energy spectra of spontaneous fission: interactive plot','/',' &nbsp; &nbsp; PFNS (SF): ')
+    outLink('part1-8-reac/out00/pfns4.html.png','png','Plotly:png','/');
+    outLink('part1-8-reac/out00/pfns4.json','json','Output',',');
+    outLink('part1-8-reac/out00/pfns4.tto','tto','terminal-output','<br>');
 
     outLink('part1-8-reac/reac1.py','[reac1.py]','Main',' &nbsp; &nbsp; &nbsp; &nbsp; main code<br>','&nbsp;- ');
     outLink('part1-8-reac/reac1help.py','[reac1help.py]','Module',' &nbsp; display help-text<br>','&nbsp;- ');

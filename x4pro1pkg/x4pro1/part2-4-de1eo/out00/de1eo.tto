@@ -2,7 +2,7 @@ Program: de1eo.py, ver. 2024-09-02
 Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2024
 Purpose: Retrieve and plot EXFOR/ENDF energy spectra of outgoing particles
 
-Running: 2026-09-01 13:37:14
+Running: 2026-09-04 23:09:45
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw

@@ -2,7 +2,7 @@ Program: da1ei_leg.py, ver. 2023-06-08
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2023
 Purpose: Retrieve and plot EXFOR/ENDF angular distributions
 
-Running: 2026-09-01:13:43:37
+Running: 2026-09-04:23:16:21
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw

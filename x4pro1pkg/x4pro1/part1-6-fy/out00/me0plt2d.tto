@@ -2,7 +2,7 @@ Program: me0plt2d.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Retrieve and plot EXFOR mass-energy distribution)
 
-Running: 2026-09-01:13:34:43
+Running: 2026-09-04:23:06:57
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw

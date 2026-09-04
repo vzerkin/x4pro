@@ -1,10 +1,10 @@
 {
-  "now": "2026-09-01 13:43:53",
+  "now": "2026-09-04 23:16:37",
   "plotQuantity": "Cross sections \u03c3(E)",
   "plotTitle": "Al-27(n,a),sig",
   "plotSummary": "datasets:116 original:85X auto-corrected:22A* ratio2cs:9R#",
   "plotLegend": "Eva-flags: y:accepted, n:rejected, R:reviewed, T:theoretical comparison, N:no pdf, 1:good, 2:doubtful, 3:outlier",
-  "plotAuthor": "X4Pro, by V.Zerkin, IAEA-NRDC, 2021-2025, ver.2025-03-26 //run:2026-09-01 13:43:53",
+  "plotAuthor": "X4Pro, by V.Zerkin, IAEA-NRDC, 2021-2025, ver.2025-03-26 //run:2026-09-04 23:16:37",
   "xTitle": "Incident energy",
   "xunit": "MeV",
   "yTitle": "Cross section",

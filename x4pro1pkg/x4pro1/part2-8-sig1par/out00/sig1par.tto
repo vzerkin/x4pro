@@ -2,7 +2,7 @@ Program: sig1par.py, ver. 2026-08-10
 Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2026
 Purpose: Retrieve and plot EXFOR partial cross sections
 	 from SQL database and ENDF data from Web
-Running: 2026-09-01 13:39:04
+Running: 2026-09-04 23:11:37
 
 Number of arguments: 1 arguments.
 Argument List: ['sig1par.py']
@@ -79,7 +79,7 @@ where
   ,Elv,En,x4pro_c5dat.idat                                      
 
 
-EXFOR SQL executed: 0.048sec
+EXFOR SQL executed: 0.055sec
 
 ___getDatasets from datapoints: 209
 DS:1) 3-LI-7(N,INL)3-LI-7,PAR,SIG #10914006 1979,H.Knox
@@ -325,9 +325,9 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-09-01T13:39:05.000Z" 
+ ,"now":"2026-09-04T23:11:23.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":2019
+ ,"req":2115
 ,"sections":[
  { "Targ":"LI-7","ZT":3,"AT":7,"NSUB":10,"MT":51,"MF":3,"R":"N,N`","RC":"LI-7(N,N`)LI-7-L1,SIG","EvalID":301073,"SectID":21380510,"PenSectID":26215086,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"P.G.Young"}
 ,{ "Targ":"LI-7","ZT":3,"AT":7,"NSUB":10,"MT":51,"MF":3,"R":"N,N`","RC":"LI-7(N,N`)LI-7-L1,SIG","EvalID":149448,"SectID":8943126,"PenSectID":13590431,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"P.G.Young"}
@@ -410,8 +410,8 @@ Plot:1/3) 26215086	ENDF/B-VIII.1	pt:78	color:0,0,255
 Plot:2/3) 24020908	JENDL-5	pt:69	color:0,255,0
 Plot:3/3) 19395234	IAEA-Ref17	pt:74	color:255,0,0
 
-EXFOR SQL executed:  0.048sec
-ENDF Web downloaded: 9.969sec
+EXFOR SQL executed:  0.055sec
+ENDF Web downloaded: 9.946sec
 Will try---write_image: Li7ninl.html.png
 
 Program successfully completed

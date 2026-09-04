@@ -3,7 +3,7 @@ Author:  V.Zerkin, v.zerkin@gmail.com, Vienna, 2024
 Purpose: execute SQL command on SQLite
          to find EXFOR datasets with ERR-T<=0
 
-Running: 2026-09-01 13:43:48
+Running: 2026-09-04 23:16:31
 
 ___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 SQL:
@@ -17,7 +17,7 @@ where json_extract(x4.xdat,'$.ERR-T') is not null
 and json_extract(x4.xdat,'$.ERR-T') <=0
 
 
-EXFOR SQL executed: 0.125sec
+EXFOR SQL executed: 0.146sec
 rows: 178
 datasets: [
   {

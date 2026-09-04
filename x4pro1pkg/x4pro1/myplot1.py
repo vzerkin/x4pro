@@ -1,29 +1,9 @@
 """
- ***********************************************************************************
- * Copyright (C) 2023-2025 Viktor Zerkin, v.zerkin@gmail.com                       *
- *---------------------------------------------------------------------------------*
- * Permission is hereby granted, free of charge, to any person obtaining a copy    *
- * of this software and associated documentation files (the "Software"), to deal   *
- * in the Software without restriction, including without limitation the rights    *
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell       *
- * copies of the Software, and to permit persons to whom the Software is furnished *
- * to do so, subject to the following conditions:                                  *
- *                                                                                 *
- * The above copyright notice and this permission notice shall be included in all  *
- * copies or substantial portions of the Software.                                 *
- *                                                                                 *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR      *
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,        *
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE     *
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER          *
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,   *
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN       *
- * THE SOFTWARE.                                                                   *
- *                                                                                 *
- *---------------------------------------------------------------------------------*
- *   AUTHOR: Viktor Zerkin, PhD, IAEA(1999-2023), NRDC(1996-2025)                  *
- *   e-mail: v.zerkin@gmail.com                                                    *
- ***********************************************************************************
+ **********************************************************************
+ * Copyright (c) 2026 Viktor Zerkin, v.zerkin@gmail.com               *
+ * Author:   Viktor Zerkin, PhD, IAEA-NDS(1999-2023), NRDC(1999-2026) *
+ * License:  MIT License (MIT)                                        *
+ **********************************************************************
 """
 import os
 import sys
@@ -43,19 +23,6 @@ def str2float(str0,ndefault):
         rr=ndefault
     return rr
 
-def read_data_file(file1):
-    datasets=[]
-    try:
-        with open(file1, encoding='utf-8') as F:
-            obj1=json.loads(F.read())
-            datasets=obj1['datasets']
-            for dataset in datasets:
-                extract_x_y_dy_dx_fc(dataset)
-    except Exception as e:
-        print("===Exception==="+str(e))
-        datasets=[]
-    return datasets
-
 def read_plotparams(file1,default):
     plotParams=default
     try:
@@ -66,13 +33,40 @@ def read_plotparams(file1,default):
         plotParams=default
     return plotParams
 
-def extract_x_y_dy_dx_fc(dataset):
+def read_data_file(file1,ffx=1,ffy=1):
+    datasets=[]
+    try:
+        with open(file1, encoding='utf-8') as F:
+            obj1=json.loads(F.read())
+            datasets=obj1['datasets']
+            for dataset in datasets:
+                extract_x_y_dy_dx_fc(dataset,ffx,ffy)
+    except Exception as e:
+        print("===Exception==="+str(e))
+        datasets=[]
+    return datasets
+
+def data2factor(dd,ff):
+    if dd is None: return dd
+    dd=float(dd)*ff
+    dd=float(format(dd,".7e")) # 8 digits
+#   dd=float(format(dd,".6e")) # 7 digits
+#   dd=float(format(dd,".5e")) # 6 digits
+    return dd
+
+def extract_x_y_dy_dx_fc(dataset,ffx=1,ffy=1):
     x=[]; y=[]; dy=[]; dx=[]; fc=[]
     dataset['x']=x
     dataset['y']=y
     dataset['dy']=dy
     dataset['dx']=dx
     dataset['FcApplied']=fc
+    fx=dataset.get('fx')
+    if fx is None: fx=1
+    fx*=ffx
+    fy=dataset.get('fy')
+    if fy is None: fy=1
+    fy*=ffy
     arr2=dataset.get('x_y_dy_dx_fc')
     if arr2 is None: return
     ll=len(arr2)
@@ -87,6 +81,10 @@ def extract_x_y_dy_dx_fc(dataset):
             elif ii==2: dy1=rr1
             elif ii==3: dx1=rr1
             elif ii==4: fc1=rr1
+        x1=data2factor(x1,fx)
+        y1=data2factor(y1,fy)
+        dx1=data2factor(dx1,fx)
+        dy1=data2factor(dy1,fy)
         x.append(x1);
         y.append(y1);
         dy.append(dy1)
@@ -118,8 +116,8 @@ def getNDataPoints(datasets):
     for dataset in datasets: nn+=len(dataset['x'])
     return nn
 
-print("Program: myplot.py, ver.2025-01-22")
-print("Author:  V.Zerkin, Vienna, 2025")
+print("Program: myplot.py, ver.2026-09-02")
+print("Author:  V.Zerkin, Vienna, 2025-2026")
 print("Purpose: Plot EXFOR/ENDF/MyData")
 
 if len(sys.argv)<2:
@@ -151,8 +149,8 @@ eMinEv=None
 eMaxEv=None
 #eMinEv=6.2e+6;eMaxEv=23e+6
 markRejected=False
-fx=1e-6; xunit="MeV"	#fx=1e-3; xunit="keV"
-fy=1e3;  yunit="mb"	#fy=1;    yunit="barn"
+fx=1; xunit="eV"	#fx=1e-6; xunit="MeV"	#fx=1e-3; xunit="keV"
+fy=1; yunit="b"		#fy=1e3;  yunit="mb"	#fy=1;    yunit="barn"
 
 #print('Number of arguments:', len(sys.argv), 'arguments.')
 #print('Argument List:', str(sys.argv))
@@ -165,7 +163,7 @@ plotParams0={
 	,"plotTitle":	"---"
 	,"plotSummary":	"---"
 	,"plotLegend":	"---"
-	,"plotAuthor":	"X4Pro, by V.Zerkin, IAEA-NRDC, 2021-2025, ver.2025-01-22 //run:"+ct
+	,"plotAuthor":	"X4Pro, by V.Zerkin, IAEA-NRDC, 2021-2026, ver.2026-09-02 //run:"+ct
 	,"xTitle":	"Incident energy"
 	,"xunit":	xunit
 	,"yTitle":	"Cross section"
@@ -191,8 +189,8 @@ for ii,arg in enumerate(sys.argv):
     if arg.startswith('-o:'): outhtml=arg[3:];	  continue
     if not arg.startswith('-'):
         file1=arg
-        x4datasets+=read_data_file(file1+'--exfor.json')
-        e4datasets+=read_data_file(file1+'--endf.json')
+        x4datasets+=read_data_file(file1+'--exfor.json',fx,fy)
+        e4datasets+=read_data_file(file1+'--endf.json',fx,fy)
 #       plotParams=read_plotparams(file1+'--plot.json',plotParams)
         plotParams=read_plotparams(file1+'--plot.json',None)
         continue
@@ -232,12 +230,14 @@ if plotParams is None:
     plotParams['ytype']=ytype
     if len(x4datasets)>0:
         ds=x4datasets[0]
-        plotParams['plotQuantity']=ds['Quantity']
+        plotParams['plotQuantity']=str(ds.get('Quantity'))
         plotParams['plotTitle']=ds['Reacode']
-        plotParams['yTitle']=ds['Quantity']
-        plotParams['xTitle']=ds['xexpansion']
-        plotParams['xunit']=ds['xBasicUnits']
-        plotParams['yunit']=ds['yBasicUnits']
+        plotParams['yTitle']=str(ds.get('Quantity'))
+        plotParams['xTitle']=str(ds.get('xexpansion'))
+        plotParams['xunit']=str(ds.get('xBasicUnits'))
+        if (fx!=1): plotParams['xunit']+='&times;'+"{:.0e}".format(1/fx).replace('e+0','e').replace('e-0','e-')
+        plotParams['yunit']=str(ds.get('yBasicUnits'))
+        if (fy!=1): plotParams['yunit']+='&times;'+"{:.0e}".format(1/fy).replace('e+0','e').replace('e-0','e-')
         plotParams['plotSummary']='Datasets:'+str(len(x4datasets))+' Datapoints:'+str(getNDataPoints(x4datasets))
 
 #_________________Plot data from EXFOR and ENDF_________________

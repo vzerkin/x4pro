@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac1.py, ver.2026-08-27       |
+  | Program: reac1.py, ver.2026-09-02       |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-01 13:34:52
+Running: 2026-09-04 23:07:07
 
 ---Arguments from command-line---
    1  arg: -o:nu1

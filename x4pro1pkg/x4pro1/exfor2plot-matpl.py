@@ -87,6 +87,8 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     ,xstep30=False
     ,annot1=None
     ,plotParams=None
+    ,showgrid=True
+    ,zeroline=True
     ):
 
     filename=filename.replace('.html','').replace('.htm','')
@@ -122,8 +124,9 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     #plt.tight_layout(rect=[0,0,1.2,1])
 #    plt.grid(b=True, which='major')
 #    plt.grid(b=True, which='minor', linewidth=0.2)
-    plt.grid(True, which='major')
-    plt.grid(True, which='minor', linewidth=0.2)
+    if showgrid:
+        plt.grid(True, which='major')
+        plt.grid(True, which='minor', linewidth=0.2)
     if xstep30: plt.xticks(range(0,181,30)) #display xticks with step 30
     #plt.minorticks_on()
     plt.savefig(filename+'.png')

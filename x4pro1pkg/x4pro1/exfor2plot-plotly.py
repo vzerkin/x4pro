@@ -33,8 +33,10 @@ def prepareExforDataForPlot(datasets,msize=8,groupReac=False,autocolor=False,lin
         iSymPlus=0
         symColor='Black'
         if bwColor: symColor='Grey'
-        symWidth=1
+        symWidth=0.7
         hiden0=False
+        fill=None;fillcolor=None
+#       fill='tozeroy'
         if useRecalcFlag:
             flagModif0='X ' #Original EXFOR data
             symBorder=True
@@ -60,7 +62,6 @@ def prepareExforDataForPlot(datasets,msize=8,groupReac=False,autocolor=False,lin
             if dataset.get('x4evalflags') is not None:
                 flagModif1+=' flags:'+dataset['x4evalflags']
                 if "n" in dataset['x4evalflags']: hiden0=True
-        fill=None;fillcolor=None
         if dataset['x4lbl'].find('/data')>=0:
             symBorder=False
             msize1=3
@@ -115,6 +116,8 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     ,xstep30=False
     ,annot1=None
     ,plotParams=None
+    ,showgrid=True
+    ,zeroline=True
     ):
 
     #If you have problems with offline plot, try to uncomment next line:
@@ -124,16 +127,17 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     plot1={}
     plot1['data']=data1
     xaxis=dict(title=xtitle,showline=True,linecolor='black'
-	,ticks='outside',showgrid=True,gridcolor='#aaaaaa',type=xtype)
+	,ticks='outside',showgrid=showgrid,gridcolor='#aaaaaa',type=xtype)
     yaxis={'title':ytitle,'showline':True,'linecolor':'black'
-	,'showgrid':True, 'gridcolor':'#aaaaaa','ticks':'outside','type':ytype
-	,'zeroline':True, 'zerolinecolor':'#dddddd'#, 'zerolinewidth':0.1
+	,'showgrid':showgrid, 'gridcolor':'#aaaaaa','ticks':'outside','type':ytype
+#	,'zeroline':zeroline, 'zerolinecolor':'#dddddd'#, 'zerolinewidth':0.1
 	}
 
     xaxis['mirror']='ticks'
     yaxis['mirror']='ticks' 
-    yaxis['zeroline']=True;    yaxis['zerolinecolor']="#AAAAAA";    yaxis['zerolinewidth']=1
-    xaxis['zeroline']=True;    xaxis['zerolinecolor']="#AAAAAA";    xaxis['zerolinewidth']=1
+    if zeroline:
+        yaxis['zeroline']=True;    yaxis['zerolinecolor']="#AAAAAA";    yaxis['zerolinewidth']=1
+        xaxis['zeroline']=True;    xaxis['zerolinecolor']="#AAAAAA";    xaxis['zerolinewidth']=1
     if xstep30: #display xticks with step 30
         xaxis['tick0']=0
         xaxis['dtick']=30

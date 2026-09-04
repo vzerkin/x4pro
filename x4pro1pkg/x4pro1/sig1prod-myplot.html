@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>X4Pro-MyPlot</title>
+
+<script src="../../jsx/plotly-2.min.js"></script>
+<link rel="stylesheet" href="../../x4js/x4pro2.css">
+<script src="../../x4js/zvSwitch.js"></script>
+<script src="../../x4js/gg.js"></script>
+<script src="../../x4js/ggp.js"></script>
+<script src="../../x4js/ggpd.js"></script>
+<script src="../../x4js/ggx.js"></script>
+<script src="../../x4js/ggsub.js"></script>
+<script src="../../x4js/x4pro2pro.js"></script>
+
+<script src="../jsx/plotly-2.min.js"></script>
+<link rel="stylesheet" href="../x4js/x4pro2.css">
+<script src="../x4js/zvSwitch.js"></script>
+<script src="../x4js/gg.js"></script>
+<script src="../x4js/ggp.js"></script>
+<script src="../x4js/ggpd.js"></script>
+<script src="../x4js/ggx.js"></script>
+<script src="../x4js/ggsub.js"></script>
+<script src="../x4js/x4pro2pro.js"></script>
+
+</head>
+<body bgcolor=#f0f0ff onload="javascript:bodyOnload();">
+<script language="javascript">
+plotParams=
+{
+  "now": "2026-09-02 16:59:42",
+  "plotQuantity": "Cumulative cross section",
+  "plotTitle": "92-U-0(P,F)40-ZR-97,CUM,SIG",
+  "plotSummary": "Datasets:10 Datapoints:26",
+  "plotLegend": "---",
+  "plotAuthor": "X4Pro, by V.Zerkin, IAEA-NRDC, 2021-2026, ver.2026-09-02 //run:2026-09-02 16:59:42",
+  "xTitle": "Incident energy: energy",
+  "xunit": "EV",
+  "yTitle": "Cumulative cross section",
+  "yunit": "B",
+  "xtype": "log",
+  "ytype": "linear"
+};
+data4plot=
+[
+  {
+    "DatasetID": "T0297003",
+    "Reacode": "92-U-0(P,F)40-ZR-97,CUM,SIG",
+    "Quantity": "Cumulative cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN)",
+    "DatasetSplit": "",
+    "g0": 0,
+    "g1": 0,
+    "YearRef1": 1963,
+    "Author1Ini": "J.H.",
+    "Author1": "Davies",
+    "x4lbl": "1963, J.H.Davies",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      20000000.0,
+      36000000.0,
+      50000000.0,
+      65000000.0,
+      80000000.0
+    ],
+    "y": [
+      0.05,
+      0.065,
+      0.085,
+      0.07200000000000001,
+      0.056
+    ],
+    "dy": [
+      0.01,
+      0.014,
+      0.017,
+      0.015,
+      0.012
+    ],
+    "dx": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "FcApplied": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "tr": {
+      "text": "1963, J.H.Davies",
+      "name": "1) X 1963, J.H.Davies pt:5 x4:T0297003",
+      "marker_symbol": "0",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp1",
+      "legendgrouptitle.text": "92-U-0(P,F)40-ZR-97,CUM,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "D0153002",
+    "Reacode": "92-U-0(P,F)ELEM/MASS,CUM,SIG",
+    "Quantity": "Cumulative cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN,ZAM)",
+    "DatasetSplit": "",
+    "g0": 40097.0,
+    "g1": 0,
+    "YearRef1": 1964,
+    "Author1Ini": "E.",
+    "Author1": "Hagebo",
+    "x4lbl": "1964, E.Hagebo ZAM:40097",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      170000000.0
+    ],
+    "y": [
+      0.032
+    ],
+    "dy": [
+      0.006
+    ],
+    "dx": [
+      0.0
+    ],
+    "FcApplied": [
+      1
+    ],
+    "tr": {
+      "text": "1964, E.Hagebo ZAM:40097",
+      "name": "2) X 1964, E.Hagebo ZAM:40097 pt:1 x4:D0153002",
+      "marker_symbol": "1",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp2",
+      "legendgrouptitle.text": "92-U-0(P,F)ELEM/MASS,CUM,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "C0373002",
+    "Reacode": "92-U-0(P,X)ELEM/MASS,,SIG",
+    "Quantity": "Cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN,ZAM)",
+    "DatasetSplit": "",
+    "g0": 40097.0,
+    "g1": 0,
+    "YearRef1": 1955,
+    "Author1Ini": "H.G.",
+    "Author1": "Hicks",
+    "x4lbl": "1955, H.G.Hicks ZAM:40097",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      75000000.0,
+      150000000.0,
+      250000000.0,
+      340000000.0
+    ],
+    "y": [
+      0.051500000000000004,
+      0.0455,
+      0.043000000000000003,
+      0.0425
+    ],
+    "dy": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "dx": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "FcApplied": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "tr": {
+      "text": "1955, H.G.Hicks ZAM:40097",
+      "name": "3) X 1955, H.G.Hicks ZAM:40097 pt:4 x4:C0373002",
+      "marker_symbol": "2",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp3",
+      "legendgrouptitle.text": "92-U-0(P,X)ELEM/MASS,,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "O0986003",
+    "Reacode": "92-U-0(P,X)ELEM/MASS,CUM,SIG",
+    "Quantity": "Cumulative cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN,ZAM)",
+    "DatasetSplit": "",
+    "g0": 40097.0,
+    "g1": 0,
+    "YearRef1": 2002,
+    "Author1Ini": "Yu.E.",
+    "Author1": "Titarenko",
+    "x4lbl": "2002, Yu.E.Titarenko ZAM:40097",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      100000000.0,
+      200000000.0,
+      800000000.0,
+      1200000000.0,
+      1600000000.0
+    ],
+    "y": [
+      0.050100000000000006,
+      0.0395,
+      0.0353,
+      0.0319,
+      0.027100000000000003
+    ],
+    "dy": [
+      0.0038,
+      0.0026000000000000003,
+      0.0023,
+      0.0023,
+      0.0023
+    ],
+    "dx": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "FcApplied": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "tr": {
+      "text": "2002, Yu.E.Titarenko ZAM:40097",
+      "name": "4) X 2002, Yu.E.Titarenko ZAM:40097 pt:5 x4:O0986003",
+      "marker_symbol": "3",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp4",
+      "legendgrouptitle.text": "92-U-0(P,X)ELEM/MASS,CUM,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "P0046006",
+    "Reacode": "92-U-238(P,F)40-ZR-97,,SIG",
+    "Quantity": "Cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN)",
+    "DatasetSplit": "",
+    "g0": 0,
+    "g1": 0,
+    "YearRef1": 1954,
+    "Author1Ini": "M.",
+    "Author1": "Lindner",
+    "x4lbl": "1954, M.Lindner",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      50200000.0,
+      100000000.0,
+      189000000.0,
+      269000000.0,
+      339000000.0,
+      339000000.0
+    ],
+    "y": [
+      0.025500000000000002,
+      0.0495,
+      0.0525,
+      0.051500000000000004,
+      0.0388,
+      0.0425
+    ],
+    "dy": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "dx": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "FcApplied": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "tr": {
+      "text": "1954, M.Lindner",
+      "name": "5) X 1954, M.Lindner pt:6 x4:P0046006",
+      "marker_symbol": "4",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp5",
+      "legendgrouptitle.text": "92-U-238(P,F)40-ZR-97,,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "O0348068",
+    "Reacode": "92-U-238(P,F)40-ZR-97,CUM,SIG",
+    "Quantity": "Cumulative cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN)",
+    "DatasetSplit": "",
+    "g0": 0,
+    "g1": 0,
+    "YearRef1": 1996,
+    "Author1Ini": "A.",
+    "Author1": "Yokoyama",
+    "x4lbl": "1996, A.Yokoyama",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      8600000.0
+    ],
+    "y": [
+      0.0006
+    ],
+    "dy": [
+      3e-05
+    ],
+    "dx": [
+      0.0
+    ],
+    "FcApplied": [
+      1
+    ],
+    "tr": {
+      "text": "1996, A.Yokoyama",
+      "name": "6) X 1996, A.Yokoyama pt:1 x4:O0348068",
+      "marker_symbol": "5",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp6",
+      "legendgrouptitle.text": "92-U-238(P,F)40-ZR-97,CUM,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "O0624007",
+    "Reacode": "92-U-238(P,F)ELEM/MASS,,SIG",
+    "Quantity": "Cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN,ZAM)",
+    "DatasetSplit": "",
+    "g0": 40097.0,
+    "g1": 0,
+    "YearRef1": 1955,
+    "Author1Ini": "A.P.",
+    "Author1": "Vinogradov",
+    "x4lbl": "1955, A.P.Vinogradov ZAM:40097",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      480000000.0
+    ],
+    "y": [
+      0.037
+    ],
+    "dy": [
+      0.010107
+    ],
+    "dx": [
+      0.0
+    ],
+    "FcApplied": [
+      1
+    ],
+    "tr": {
+      "text": "1955, A.P.Vinogradov ZAM:40097",
+      "name": "7) X 1955, A.P.Vinogradov ZAM:40097 pt:1 x4:O0624007",
+      "marker_symbol": "6",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp7",
+      "legendgrouptitle.text": "92-U-238(P,F)ELEM/MASS,,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "E2036003",
+    "Reacode": "92-U-238(P,F)ELEM/MASS,CUM,SIG",
+    "Quantity": "Cumulative cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN,ZAM)",
+    "DatasetSplit": "",
+    "g0": 40097.0,
+    "g1": 0,
+    "YearRef1": 1996,
+    "Author1Ini": "H.",
+    "Author1": "Baba",
+    "x4lbl": "1996, H.Baba ZAM:40097",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      12400000.0
+    ],
+    "y": [
+      0.009300000000000001
+    ],
+    "dy": [
+      0.00048
+    ],
+    "dx": [
+      0.0
+    ],
+    "FcApplied": [
+      1
+    ],
+    "tr": {
+      "text": "1996, H.Baba ZAM:40097",
+      "name": "8) X 1996, H.Baba ZAM:40097 pt:1 x4:E2036003",
+      "marker_symbol": "7",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp8",
+      "legendgrouptitle.text": "92-U-238(P,F)ELEM/MASS,CUM,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "E2036006",
+    "Reacode": "92-U-238(P,F)ELEM/MASS,CUM,SIG",
+    "Quantity": "Cumulative cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN,ZAM)",
+    "DatasetSplit": "",
+    "g0": 40097.0,
+    "g1": 0,
+    "YearRef1": 1996,
+    "Author1Ini": "H.",
+    "Author1": "Baba",
+    "x4lbl": "1996, H.Baba ZAM:40097",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      9400000.0
+    ],
+    "y": [
+      0.00134
+    ],
+    "dy": [
+      0.00012
+    ],
+    "dx": [
+      0.0
+    ],
+    "FcApplied": [
+      1
+    ],
+    "tr": {
+      "text": "1996, H.Baba ZAM:40097",
+      "name": "9) X 1996, H.Baba ZAM:40097 pt:1 x4:E2036006",
+      "marker_symbol": "8",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp8",
+      "legendgrouptitle.text": "92-U-238(P,F)ELEM/MASS,CUM,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  },
+  {
+    "DatasetID": "C2546002",
+    "Reacode": "92-U-238(P,X)ELEM/MASS,CUM,SIG",
+    "Quantity": "Cumulative cross section",
+    "xBasicUnits": "EV",
+    "yBasicUnits": "B",
+    "xexpansion": "Incident energy: energy",
+    "yexpansion": "Data: data",
+    "Quant": "CS",
+    "yformula": "y=DATA(EN,ZAM)",
+    "DatasetSplit": "",
+    "g0": 40097.0,
+    "g1": 0,
+    "YearRef1": 1983,
+    "Author1Ini": "B.V.",
+    "Author1": "Jacak",
+    "x4lbl": "1983, B.V.Jacak ZAM:40097",
+    "fx": 1000000.0,
+    "fy": 0.001,
+    "x": [
+      28000000000.0
+    ],
+    "y": [
+      0.011800000000000001
+    ],
+    "dy": [
+      0.0012
+    ],
+    "dx": [
+      0.0
+    ],
+    "FcApplied": [
+      1
+    ],
+    "tr": {
+      "text": "1983, B.V.Jacak ZAM:40097",
+      "name": "10) X 1983, B.V.Jacak ZAM:40097 pt:1 x4:C2546002",
+      "marker_symbol": "9",
+      "marker_size": 10,
+      "mode": "markers",
+      "legendgroup": "exGrp9",
+      "legendgrouptitle.text": "92-U-238(P,X)ELEM/MASS,CUM,SIG"
+    },
+    "LIBRARY": "EXFOR",
+    "mode": "points"
+  }
+];
+    x4pro_outAll(data4plot);
+</script>
+</body>
+</html>

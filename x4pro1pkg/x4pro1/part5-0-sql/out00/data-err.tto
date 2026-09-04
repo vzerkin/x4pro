@@ -3,7 +3,7 @@ Author:  V.Zerkin, v.zerkin@gmail.com, Vienna, 2024
 Purpose: execute SQL command on SQLite
          to find EXFOR datasets with DATA-ERR<0
 
-Running: 2026-09-01 13:43:48
+Running: 2026-09-04 23:16:32
 
 ___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 SQL:
@@ -21,7 +21,7 @@ where json_extract(x4.xdat,'$.DATA-ERR') is not null
  and h4.hdr='DATA-ERR'
 
 
-EXFOR SQL executed: 0.109sec
+EXFOR SQL executed: 0.116sec
 rows: 5
 cols: 7 ['Entry', 'DatasetID', 'idat', 'DATA', 'DATA-ERR', 'units', 'xdat']
   0)	row: ('C0683', 'C0683003', 71, -0.02, -0.021, 'NO-DIM', '{"DATA":-0.02,"DATA-ERR":-0.021,"EN":650,"ANG-CM":23.27}')
