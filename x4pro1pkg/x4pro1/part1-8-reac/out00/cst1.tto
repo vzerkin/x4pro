@@ -4,7 +4,7 @@
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-04 23:07:04
+Running: 2026-09-10 19:02:22
 
 ---Arguments from command-line---
    1  arg: -o:cst1
@@ -108,90 +108,90 @@ select *
 ---getDatasets4plot---datapoints:78 xn=x1  fx=1.0e+03 fy=1.0e+00
 
 -new-1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev y=DATA(EN,TMS)
-1/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:2.26 y:1.4 dy:0.1 dx:None
-2/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:2.69 y:1.4 dy:0.1 dx:None
-3/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:3.53 y:1.4 dy:0.1 dx:None
-4/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:4.0 y:1.5 dy:0.1 dx:None
-5/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:4.92 y:1.9 dy:0.1 dx:None
-6/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:5.54 y:1.9 dy:0.1 dx:None
-7/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:6.87 y:2.2 dy:0.1 dx:None
-8/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:7.93 y:2.5 dy:0.1 dx:None
-9/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:8.73 y:2.5 dy:0.1 dx:None
-10/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:9.92 y:2.9 dy:0.1 dx:None
-11/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:12.8 y:3.4 dy:0.1 dx:None
-12/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:15.7 y:3.8 dy:0.1 dx:None
-13/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:19.8 y:5.6 dy:0.1 dx:None
-14/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:24.4 y:5.0 dy:0.1 dx:None
-15/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:33.2 y:5.2 dy:0.1 dx:None
-16/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:37.0 y:5.6 dy:0.1 dx:None
-17/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:52.4 y:6.6 dy:0.1 dx:None
-18/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:83.5 y:7.9 dy:0.1 dx:None
+   1/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:2.26        y:1.4         dy:0.1 dx:None
+   2/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:2.69        y:1.4         dy:0.1 dx:None
+   3/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:3.53        y:1.4         dy:0.1 dx:None
+   4/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:4           y:1.5         dy:0.1 dx:None
+   5/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:4.92        y:1.9         dy:0.1 dx:None
+   6/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:5.54        y:1.9         dy:0.1 dx:None
+   7/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:6.87        y:2.2         dy:0.1 dx:None
+   8/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:7.93        y:2.5         dy:0.1 dx:None
+   9/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:8.73        y:2.5         dy:0.1 dx:None
+  10/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:9.92        y:2.9         dy:0.1 dx:None
+  11/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:12.8        y:3.4         dy:0.1 dx:None
+  12/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:15.7        y:3.8         dy:0.1 dx:None
+  13/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:19.8        y:5.6         dy:0.1 dx:None
+  14/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:24.4        y:5           dy:0.1 dx:None
+  15/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:33.2        y:5.2         dy:0.1 dx:None
+  16/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:37          y:5.6         dy:0.1 dx:None
+  17/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:52.4        y:6.6         dy:0.1 dx:None
+  18/78:1) 82-PB-0(N,TOT),,SIG/TMP 30528007 Tms=297K 1979 Grabcev x:83.5        y:7.9         dy:0.1 dx:None
 
 -new-2) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky y=DATA(EN,TMS)
-19/78:2) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.182 y:1.98 dy:None dx:None
-20/78:2) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.221 y:1.72 dy:None dx:None
+  19/78:2) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.182       y:1.98        dy:None dx:None
+  20/78:2) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.221       y:1.72        dy:None dx:None
 
 -new-3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky y=DATA(EN,TMS)
-21/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.222 y:2.29 dy:None dx:None
-22/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.244 y:2.05 dy:None dx:None
-23/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.245 y:3.44 dy:None dx:None
-24/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.271 y:2.17 dy:None dx:None
-25/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.272 y:2.04 dy:None dx:None
-26/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.301 y:1.95 dy:None dx:None
-27/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.303 y:2.59 dy:None dx:None
-28/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.339 y:1.88 dy:None dx:None
-29/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.34 y:2.35 dy:None dx:None
-30/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.383 y:1.82 dy:None dx:None
-31/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.384 y:2.27 dy:None dx:None
-32/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.437 y:1.77 dy:None dx:None
-33/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.437 y:2.22 dy:None dx:None
-34/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.501 y:2.1 dy:None dx:None
-35/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.503 y:1.7 dy:None dx:None
-36/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.567 y:1.58 dy:None dx:None
-37/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.584 y:2.09 dy:None dx:None
+  21/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.222       y:2.29        dy:None dx:None
+  22/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.244       y:2.05        dy:None dx:None
+  23/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.245       y:3.44        dy:None dx:None
+  24/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.271       y:2.17        dy:None dx:None
+  25/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.272       y:2.04        dy:None dx:None
+  26/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.301       y:1.95        dy:None dx:None
+  27/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.303       y:2.59        dy:None dx:None
+  28/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.339       y:1.88        dy:None dx:None
+  29/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.34        y:2.35        dy:None dx:None
+  30/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.383       y:1.82        dy:None dx:None
+  31/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.384       y:2.27        dy:None dx:None
+  32/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.437       y:1.77        dy:None dx:None
+  33/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.437       y:2.22        dy:None dx:None
+  34/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.501       y:2.1         dy:None dx:None
+  35/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.503       y:1.7         dy:None dx:None
+  36/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.567       y:1.58        dy:None dx:None
+  37/78:3) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.584       y:2.09        dy:None dx:None
 
 -new-4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky y=DATA(EN,TMS)
-38/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.685 y:1.14 dy:None dx:None
-39/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.688 y:1.52 dy:None dx:None
-40/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.7 y:2.04 dy:None dx:None
-41/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.757 y:1.15 dy:None dx:None
-42/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.789 y:1.95 dy:None dx:None
-43/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.795 y:1.46 dy:None dx:None
-44/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.818 y:1.98 dy:None dx:None
-45/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.851 y:1.14 dy:None dx:None
-46/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.9 y:1.42 dy:None dx:None
-47/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.9 y:1.97 dy:None dx:None
-48/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.932 y:1.04 dy:None dx:None
-49/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.01 y:1.4 dy:None dx:None
-50/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.02 y:2.02 dy:None dx:None
-51/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.06 y:1.02 dy:None dx:None
-52/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.16 y:1.41 dy:None dx:None
-53/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.19 y:0.99 dy:None dx:None
-54/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.19 y:2.03 dy:None dx:None
-55/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.36 y:1.38 dy:None dx:None
-56/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.38 y:0.95 dy:None dx:None
-57/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.38 y:2.08 dy:None dx:None
-58/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.6 y:0.91 dy:None dx:None
-59/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.6 y:1.4 dy:None dx:None
-60/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.63 y:2.18 dy:None dx:None
-61/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.87 y:0.92 dy:None dx:None
-62/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.87 y:1.42 dy:None dx:None
-63/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.96 y:2.33 dy:None dx:None
-64/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.18 y:1.45 dy:None dx:None
-65/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:2.22 y:0.89 dy:None dx:None
-66/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:2.42 y:2.52 dy:None dx:None
-67/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.62 y:1.54 dy:None dx:None
-68/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:2.68 y:0.96 dy:None dx:None
-69/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.86 y:1.59 dy:None dx:None
-70/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:3.02 y:2.95 dy:None dx:None
-71/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.14 y:1.68 dy:None dx:None
-72/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:3.3 y:1.22 dy:None dx:None
-73/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.37 y:1.88 dy:None dx:None
-74/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.78 y:1.96 dy:None dx:None
-75/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:4.18 y:1.97 dy:None dx:None
-76/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:4.71 y:1.96 dy:None dx:None
-77/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:5.19 y:2.05 dy:None dx:None
-78/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:5.87 y:2.17 dy:None dx:None
+  38/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.685       y:1.14        dy:None dx:None
+  39/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.688       y:1.52        dy:None dx:None
+  40/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.7         y:2.04        dy:None dx:None
+  41/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.757       y:1.15        dy:None dx:None
+  42/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.789       y:1.95        dy:None dx:None
+  43/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.795       y:1.46        dy:None dx:None
+  44/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.818       y:1.98        dy:None dx:None
+  45/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.851       y:1.14        dy:None dx:None
+  46/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:0.9         y:1.42        dy:None dx:None
+  47/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:0.9         y:1.97        dy:None dx:None
+  48/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:0.932       y:1.04        dy:None dx:None
+  49/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.01        y:1.4         dy:None dx:None
+  50/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.02        y:2.02        dy:None dx:None
+  51/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.06        y:1.02        dy:None dx:None
+  52/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.16        y:1.41        dy:None dx:None
+  53/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.19        y:0.99        dy:None dx:None
+  54/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.19        y:2.03        dy:None dx:None
+  55/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.36        y:1.38        dy:None dx:None
+  56/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.38        y:0.95        dy:None dx:None
+  57/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.38        y:2.08        dy:None dx:None
+  58/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.6         y:0.91        dy:None dx:None
+  59/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.6         y:1.4         dy:None dx:None
+  60/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.63        y:2.18        dy:None dx:None
+  61/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:1.87        y:0.92        dy:None dx:None
+  62/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:1.87        y:1.42        dy:None dx:None
+  63/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:1.96        y:2.33        dy:None dx:None
+  64/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.18        y:1.45        dy:None dx:None
+  65/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:2.22        y:0.89        dy:None dx:None
+  66/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:2.42        y:2.52        dy:None dx:None
+  67/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.62        y:1.54        dy:None dx:None
+  68/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:2.68        y:0.96        dy:None dx:None
+  69/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:2.86        y:1.59        dy:None dx:None
+  70/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=573K 1955 Palevsky x:3.02        y:2.95        dy:None dx:None
+  71/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.14        y:1.68        dy:None dx:None
+  72/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=109K 1955 Palevsky x:3.3         y:1.22        dy:None dx:None
+  73/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.37        y:1.88        dy:None dx:None
+  74/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:3.78        y:1.96        dy:None dx:None
+  75/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:4.18        y:1.97        dy:None dx:None
+  76/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:4.71        y:1.96        dy:None dx:None
+  77/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:5.19        y:2.05        dy:None dx:None
+  78/78:4) 82-PB-0(N,TOT),,SIG/TMP 11782007 Tms=296K 1955 Palevsky x:5.87        y:2.17        dy:None dx:None
 ---outDatasets:4 datasets:4
 ---ENTRY: 11782*;30528*;
 datasets: 4

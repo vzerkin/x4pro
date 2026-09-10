@@ -1,16 +1,20 @@
 {
-  "now":"2026-09-04T23:07:10"
+  "now":"2026-09-10T19:02:27"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":"23164007"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(SpE,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -122,12 +126,16 @@
   ,{
      "DatasetID":"41544004"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(SpE,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -195,12 +203,16 @@
   ,{
      "DatasetID":"40235017"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -257,12 +269,16 @@
   ,{
      "DatasetID":"40235018"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":280000.0
@@ -319,12 +335,16 @@
   ,{
      "DatasetID":"40235019"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":730000.0
@@ -381,12 +401,16 @@
   ,{
      "DatasetID":"40235020"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":1080000.0
@@ -443,12 +467,16 @@
   ,{
      "DatasetID":"40235021"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":1330000.0
@@ -505,12 +533,16 @@
   ,{
      "DatasetID":"40235022"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":1690000.0
@@ -567,12 +599,16 @@
   ,{
      "DatasetID":"40235023"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":2020000.0
@@ -629,12 +665,16 @@
   ,{
      "DatasetID":"40235024"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":2530000.0
@@ -691,12 +731,16 @@
   ,{
      "DatasetID":"40235025"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":3070000.0
@@ -753,12 +797,16 @@
   ,{
      "DatasetID":"40235026"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":3510000.0
@@ -815,12 +863,16 @@
   ,{
      "DatasetID":"40235027"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":5040000.0
@@ -877,12 +929,16 @@
   ,{
      "DatasetID":"40235028"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":6060000.0
@@ -939,12 +995,16 @@
   ,{
      "DatasetID":"40235029"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":7040000.0
@@ -1001,12 +1061,16 @@
   ,{
      "DatasetID":"40235030"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":15500000.0
@@ -1063,12 +1127,16 @@
   ,{
      "DatasetID":"400170091"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -1125,12 +1193,16 @@
   ,{
      "DatasetID":"400170092"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -1187,12 +1259,16 @@
   ,{
      "DatasetID":"400170093"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -1249,12 +1325,16 @@
   ,{
      "DatasetID":"400170094"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -1311,12 +1391,16 @@
   ,{
      "DatasetID":"400170095"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -1373,12 +1457,16 @@
   ,{
      "DatasetID":"400170096"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -1435,12 +1523,16 @@
   ,{
      "DatasetID":"40017010"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":120000.0
@@ -1497,12 +1589,16 @@
   ,{
      "DatasetID":"40017010"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":200000.0
@@ -1559,12 +1655,16 @@
   ,{
      "DatasetID":"40017010"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":300000.0
@@ -1621,12 +1721,16 @@
   ,{
      "DatasetID":"40017010"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":400000.0
@@ -1683,12 +1787,16 @@
   ,{
      "DatasetID":"40017010"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":500000.0
@@ -1745,12 +1853,16 @@
   ,{
      "DatasetID":"40017010"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":600000.0
@@ -1807,12 +1919,16 @@
   ,{
      "DatasetID":"41713007"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(SpE,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -1866,12 +1982,16 @@
   ,{
      "DatasetID":"23014003"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(SpE,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -1926,12 +2046,16 @@
   ,{
      "DatasetID":"22152010"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(SpE,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -2039,12 +2163,16 @@
   ,{
      "DatasetID":"21981009"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(SpE,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -2101,12 +2229,16 @@
   ,{
      "DatasetID":"40200003"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(SpE,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253
@@ -2179,12 +2311,16 @@
   ,{
      "DatasetID":"30909003"
     ,"Reacode":"92-U-235(N,F)MASS,PRE,KE,LF+HF,MXW"
+    ,"Target":"U-235"
+    ,"Reaction":"N,F"
     ,"Quantity":"Tot.kin.energy of primary fission fragments spec."
     ,"xBasicUnits":"AMU"
     ,"yBasicUnits":"EV"
     ,"xexpansion":"Isotope/particle identification: mass"
     ,"yexpansion":"Data: data"
     ,"Quant":"E"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(SpE,ZAM)"
     ,"DatasetSplit":""
     ,"g0":0.0253

@@ -111,13 +111,14 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     ,flagShow=True
     ,xrange=None
     ,yrange=None
-    ,legendInside=True
+    ,legendInside=False
     ,how2plot=1
     ,xstep30=False
     ,annot1=None
     ,plotParams=None
     ,showgrid=True
     ,zeroline=True
+    ,wwPng=1300,hhPng=830
     ):
 
     #If you have problems with offline plot, try to uncomment next line:
@@ -155,10 +156,15 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
         if (xtype=='log'): x=math.log10(x)
         if (ytype=='log'): y=math.log10(y)
         annotations=[dict(text=txt,x=x,y=y,font_size=32,showarrow=False,font_color='#0000FF')]
+    legend=dict(traceorder="grouped")
+    if legendInside:
+#       legend=dict(traceorder="grouped",xanchor='right',x=0.99,font=dict(family='Arial',size=11),bgcolor='rgba(255,255,255,0.8)')
+#       legend=dict(traceorder="grouped",xanchor='left',x=0.015,yanchor='top',y=0.98,bgcolor='rgba(255,255,255,0.8)',borderwidth=1)
+        legend=dict(traceorder="grouped",xanchor='left',x=0.015,yanchor='top',y=0.93,bgcolor='rgba(255,255,255,0.8)',borderwidth=1)
     plot1['layout']=Layout(title=ptitle
 	,xaxis=xaxis,yaxis=yaxis
 	,plot_bgcolor='white'
-	,legend=dict(traceorder="grouped")
+	,legend=legend
 	,annotations=annotations
 	)
 
@@ -172,7 +178,8 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     #needs: $ pip3 install -U kaleido
     print("Will try---write_image: "+filename+".png")
     try:
-        plotly.io.write_image(plot1,filename+'.png',width=1300,height=830)
+#       plotly.io.write_image(plot1,filename+'.png',width=1300,height=830)
+        plotly.io.write_image(plot1,filename+'.png',width=wwPng,height=hhPng)
     except Exception as ex:
         sys.stderr.write("---plotly.io.write_image---Exception-error: "+str(ex)+"\n")
         rows=[]

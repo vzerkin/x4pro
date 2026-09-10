@@ -1,16 +1,20 @@
 {
-  "now":"2026-09-04T23:07:13"
+  "now":"2026-09-10T19:02:30"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":"22194002"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -100,12 +104,16 @@
   ,{
      "DatasetID":"22194003"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -169,12 +177,16 @@
   ,{
      "DatasetID":"13805003"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -193,12 +205,16 @@
   ,{
      "DatasetID":"12318004"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -216,12 +232,16 @@
   ,{
      "DatasetID":"13018003"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -239,12 +259,16 @@
   ,{
      "DatasetID":"12554004"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -263,12 +287,16 @@
   ,{
      "DatasetID":"20938025"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1017,12 +1045,16 @@
   ,{
      "DatasetID":"20938026"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1149,12 +1181,16 @@
   ,{
      "DatasetID":"20938027"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1231,12 +1267,16 @@
   ,{
      "DatasetID":"20938028"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1286,12 +1326,16 @@
   ,{
      "DatasetID":"40156002"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1366,12 +1410,16 @@
   ,{
      "DatasetID":"12349003"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1389,12 +1437,16 @@
   ,{
      "DatasetID":"21202002"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1419,12 +1471,16 @@
   ,{
      "DatasetID":"12411002"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1524,12 +1580,16 @@
   ,{
      "DatasetID":"12322003"
     ,"Reacode":"92-U-235(N,ABS),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,ABS"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1566,12 +1626,16 @@
   ,{
      "DatasetID":"20938024"
     ,"Reacode":"92-U-235(N,NON),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,NON"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -3074,12 +3138,16 @@
   ,{
      "DatasetID":"20938029"
     ,"Reacode":"92-U-235(N,NON),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,NON"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -3101,12 +3169,16 @@
   ,{
      "DatasetID":"40808007"
     ,"Reacode":"92-U-235(N,NON),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,NON"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -3124,12 +3196,16 @@
   ,{
      "DatasetID":"40385004"
     ,"Reacode":"92-U-235(N,NON),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,NON"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -3149,12 +3225,16 @@
   ,{
      "DatasetID":"40806002"
     ,"Reacode":"92-U-235(N,NON),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,NON"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -3172,12 +3252,16 @@
   ,{
      "DatasetID":"403500031"
     ,"Reacode":"92-U-235(N,NON),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,NON"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -3197,12 +3281,16 @@
   ,{
      "DatasetID":"403500032"
     ,"Reacode":"92-U-235(N,NON),,ETA"
+    ,"Target":"U-235"
+    ,"Reaction":"N,NON"
     ,"Quantity":"Neutron yield (Eta)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PRD/REAC"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0

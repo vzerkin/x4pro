@@ -16,6 +16,7 @@ var dirMap=new Map([
 	,["part2-8-sig1par","EXFOR/ENDF partial cross sections CSP:MT51"]
 	,["part2-9-nubar","EXFOR/ENDF NUBAR - average number of neutrons per fission"]
 	,["part2-A-eta","EXFOR/ENDF Eta: neutron yield per nonelastic even"]
+	,["part2-B-pfns","EXFOR/ENDF PFNS - energy spectrum of prompt fission neutrons"]
     ]);
 </script>
 <script language=javascript>
@@ -56,7 +57,7 @@ var prevDir='';
 <body bgcolor="#ddddff">
 <center>
 <big><big><b><span style="color:blue;">X4Pro. News-2026.<span></b></big></big>
-<br><i>by V.Zerkin, Vienna, 2026-09-04</i>
+<br><i>by V.Zerkin, Vienna, 2026-09-10</i>
 </center>
 
 <div style="font-size:12pt;padding-top:6px;padding-bottom:0px;">
@@ -77,6 +78,7 @@ var prevDir='';
  <li> CSP vs ENDF MT:51/MF:3,33 - Production of a neutron, with residual in the 1st excited state</li>
  <li> NU vs ENDF MT452,455,456/MF:1,31 - Average number of total/delayed/prompt neutrons released per fission event</li>
  <li> ETA vs ENDF MT:452,18,102/MF:1,3,31,33 - Average neutron yield per nonelastic event: &eta; &plusmn; &Delta;&eta;</li>
+ <li> PFNS vs ENDF - Prompt-fission neutron energy spectra (ratio to Maxwellian: T=1.32MeV)</li>
 </ul>
 
 </div>
@@ -148,6 +150,10 @@ Usage:
     out1("part1-8-reac/out00/eta2.html.png            ","ETA: (N,ABS)+(N,NON)");
     out1("part2-A-eta/out00/U235-eta.html.png         ","ETA: EXFOR vs. ENDF &eta; &plusmn; &Delta;&eta;");
     out1("myplot1.png","Interactive plot: EXFOR:ETA + ENDF:MT:452,18,102,MF:1,3,31,33");
+    out1("part2-B-pfns/out00/pfns239pu_t.html.png     ","<sup>233</sup>Pu(n<sub>thermal</sub>,f) PFNS-ratio to Mxw.distr. (T=1.32MeV)");
+    out1("part2-B-pfns/out00/pfns233u_t.html.png      ","<sup>233</sup>U(n<sub>thermal</sub>,f) PFNS-ratio to Mxw.distr. (T=1.32MeV)");
+    out1("part2-B-pfns/out00/pfns238u14_3.html.png    ","<sup>238</sup>U(n<sub>14.3MeV</sub>,f) PFNS-ratio to Mxw.distr. (T=1.32MeV)");
+    out1("part2-B-pfns/out00/pfns239pu14_5.html.png   ","<sup><sup>239</sup>Pu(n<sub>1.45MeV</sub>,f) PFNS-ratio to Mxw.distr. (T=1.32MeV)");
 </script>
 
 <hr>

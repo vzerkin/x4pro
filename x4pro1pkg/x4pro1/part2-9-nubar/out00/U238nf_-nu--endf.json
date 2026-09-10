@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-04T23:13:25"
+  "now":"2026-09-10T19:08:47"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,8 @@
     ,"TARGET":"U-238"
     ,"MF":1
     ,"MT":452
+    ,"fx":1000000.0
+    ,"fy":1.0
     ,"x4lbl":"ENDF/B-VIII.0"
     ,"DATE":"2018"
     ,"AUTH":"2018 IAEA Consortium"
@@ -65,6 +67,8 @@
     ,"TARGET":"U-238"
     ,"MF":1
     ,"MT":452
+    ,"fx":1000000.0
+    ,"fy":1.0
     ,"x4lbl":"JEFF-3.1"
     ,"DATE":"1990"
     ,"AUTH":"1990 Lopez-Jimenez, Morillon, Romain"
@@ -189,6 +193,8 @@
     ,"TARGET":"U-238"
     ,"MF":1
     ,"MT":452
+    ,"fx":1000000.0
+    ,"fy":1.0
     ,"x4lbl":"BROND-3.1"
     ,"DATE":""
     ,"AUTH":"Nikolaev M.N., Koscheev V.N."
@@ -215,6 +221,8 @@
     ,"TARGET":"U-238"
     ,"MF":1
     ,"MT":452
+    ,"fx":1000000.0
+    ,"fy":1.0
     ,"x4lbl":"ENDF/B-V"
     ,"DATE":""
     ,"AUTH":"E.Pennington,A.Smith,W.Poenitz"

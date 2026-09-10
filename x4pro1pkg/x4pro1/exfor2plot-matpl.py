@@ -82,13 +82,15 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     ,flagShow=False
     ,xrange=None
     ,yrange=None
-    ,legendInside=True
+#2026   ,legendInside=True
+    ,legendInside=False
     ,how2plot=1
     ,xstep30=False
     ,annot1=None
     ,plotParams=None
     ,showgrid=True
     ,zeroline=True
+    ,wwPng=1300,hhPng=830
     ):
 
     filename=filename.replace('.html','').replace('.htm','')

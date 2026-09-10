@@ -1,7 +1,7 @@
 Program: myplot.py, ver.2026-09-02
 Author:  V.Zerkin, Vienna, 2025-2026
 Purpose: Plot EXFOR/ENDF/MyData
-Running: 2026-09-04 23:15:13
+Running: 2026-09-10 19:10:36
 
 ---arg[0]:../myplot1.py
 ---arg[1]:Pu239-eta

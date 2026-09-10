@@ -1,0 +1,434 @@
+  +-----------------------------------------+
+  | Program: reac2pfns.py, ver.2026-09-06   |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-09-07 18:00:58
+
+---Arguments from command-line---
+   1  arg: -o:pfns2
+   2  arg: -x:x2
+   3  arg: -x1:14.9e6
+   4  arg: -fx:1e6
+   5  arg: -xlog
+   6  arg: -lines
+   7  arg: -sym
+   8  arg: 94-PU-239(N,F),PR,NU/DE
+   9  arg: 94-PU-239(N,F),PR,NU/DE,,MXD
+
+---Input:
+   Reaction:  ['94-PU-239(N,F),PR,NU/DE', '94-PU-239(N,F),PR,NU/DE,,MXD']
+   xn:        x2
+   x1range:   14900000.0 - 14900000.0
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        1
+   nPntMin:   1
+   xrange:    None
+   Output:    pfns2
+   x4ei:       and x1>=14900000.0 and x1<=14900000.0
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 10
+----1.
+    fullCode       94-PU-239(N,F),PR,NU/DE
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   PC/FIS/MEV Data: data                           ///particl. per 100 fissions per MeV
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+----4.
+    fullCode       94-PU-239(N,F),PR,NU/DE,,MXD
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   NO-DIM     Data: data                           ///no Dimensions
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+/Summary of Reaction-Codes
+Summary of Units 3
+---basicUnits:PC/FIS/MEV  category:FYDE
+   FYDE 1/3   PC/FIS/MEV  1e-08           particl. per 100 fissions per MeV
+   FYDE 2/3   PD/FIS/MEV  1e-06           products per fission per MeV
+   FYDE 3/3   PT/FIS/MEV  1e-06           particles per fission per MeV
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+---basicUnits:NO-DIM      category:NO
+   NO   1/1   NO-DIM      1.0             no Dimensions
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['94-PU-239(N,F),PR,NU/DE', '94-PU-239(N,F),PR,NU/DE,,MXD']
+SQL:
+select distinct *                                          
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x2 as XX, dx2 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ ,json_extract(x4cdat.xdat,'$.KT-NRM') as KT_NRM           
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ inner join x4pro_x4cdat as x4cdat on x4cdat.DatasetID=uni2.DatasetID        
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x2'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+  (fullCode like '94-PU-239(N,F),PR,NU/DE')
+ or (fullCode like '94-PU-239(N,F),PR,NU/DE,,MXD')
+ ) 
+ and x1>=14900000.0 and x1<=14900000.0   order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 126
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:126 xn=x2  fx=1.0e-06 fy=1.0e+00
+
+-new-1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini y=DATA(EN,E2)
+1/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:5.00000e-02 y:6.66857e-07 dy:2.92987e-08 dx:0.05
+2/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.50000e-01 y:1.08260e-06 dy:4.19174e-08 dx:0.05
+3/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.50000e-01 y:1.14963e-06 dy:8.14516e-08 dx:0.05
+4/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.50000e-01 y:1.41633e-06 dy:2.58938e-08 dx:0.05
+5/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:4.50000e-01 y:1.53786e-06 dy:1.91378e-08 dx:0.05
+6/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:5.50000e-01 y:1.61720e-06 dy:1.68791e-08 dx:0.05
+7/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:6.50000e-01 y:1.64137e-06 dy:1.58125e-08 dx:0.05
+8/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:7.50000e-01 y:1.65816e-06 dy:1.53414e-08 dx:0.05
+9/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:8.50000e-01 y:1.64620e-06 dy:1.48999e-08 dx:0.05
+10/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:9.50000e-01 y:1.61851e-06 dy:1.45017e-08 dx:0.05
+11/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.05000e+00 y:1.57658e-06 dy:1.42393e-08 dx:0.05
+12/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.15000e+00 y:1.57986e-06 dy:1.41462e-08 dx:0.05
+13/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.25000e+00 y:1.51818e-06 dy:1.38677e-08 dx:0.05
+14/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.35000e+00 y:1.47185e-06 dy:1.36599e-08 dx:0.05
+15/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.45000e+00 y:1.44450e-06 dy:1.35235e-08 dx:0.05
+16/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.55000e+00 y:1.39186e-06 dy:1.33026e-08 dx:0.05
+17/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.65000e+00 y:1.32410e-06 dy:1.30389e-08 dx:0.05
+18/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.75000e+00 y:1.26515e-06 dy:1.28219e-08 dx:0.05
+19/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.85000e+00 y:1.22102e-06 dy:1.26328e-08 dx:0.05
+20/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.95000e+00 y:1.16307e-06 dy:1.24477e-08 dx:0.05
+21/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.05000e+00 y:1.10593e-06 dy:1.22641e-08 dx:0.05
+22/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.15000e+00 y:1.04657e-06 dy:1.20257e-08 dx:0.05
+23/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.25000e+00 y:1.01570e-06 dy:1.18906e-08 dx:0.05
+24/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.35000e+00 y:9.54242e-07 dy:1.16449e-08 dx:0.05
+25/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.45000e+00 y:9.28180e-07 dy:1.15093e-08 dx:0.05
+26/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.55000e+00 y:8.81752e-07 dy:1.13432e-08 dx:0.05
+27/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.65000e+00 y:8.41079e-07 dy:1.11163e-08 dx:0.05
+28/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.75000e+00 y:7.98535e-07 dy:1.09737e-08 dx:0.05
+29/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.85000e+00 y:7.59059e-07 dy:1.0779e-08 dx:0.05
+30/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:2.95000e+00 y:7.22545e-07 dy:1.06001e-08 dx:0.05
+31/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.04568e+00 y:6.89886e-07 dy:1.08963e-08 dx:0.045685
+32/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.13918e+00 y:6.72767e-07 dy:1.05615e-08 dx:0.04781
+33/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.23705e+00 y:6.34830e-07 dy:1.0142e-08 dx:0.050065
+34/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.33959e+00 y:6.00285e-07 dy:9.76422e-09 dx:0.05247
+35/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.44708e+00 y:5.66369e-07 dy:9.36302e-09 dx:0.055025
+36/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.55986e+00 y:5.15609e-07 dy:8.86063e-09 dx:0.057755
+37/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.67828e+00 y:4.98290e-07 dy:8.53125e-09 dx:0.060665
+38/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.80272e+00 y:4.59201e-07 dy:8.14954e-09 dx:0.06377
+39/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:3.93359e+00 y:4.26833e-07 dy:7.69343e-09 dx:0.067105
+40/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:4.07137e+00 y:4.02902e-07 dy:7.36352e-09 dx:0.070665
+41/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:4.21652e+00 y:3.67987e-07 dy:6.98946e-09 dx:0.074485
+42/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:4.36958e+00 y:3.38032e-07 dy:6.56493e-09 dx:0.078585
+43/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:4.53116e+00 y:3.11108e-07 dy:6.22712e-09 dx:0.082995
+44/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:4.70190e+00 y:2.86096e-07 dy:5.91881e-09 dx:0.08774
+45/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:4.88250e+00 y:2.66583e-07 dy:5.61813e-09 dx:0.09286
+46/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:5.07374e+00 y:2.33452e-07 dy:5.21738e-09 dx:0.09838
+47/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:5.27647e+00 y:2.13574e-07 dy:4.95309e-09 dx:0.104355
+48/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:5.49165e+00 y:1.83154e-07 dy:4.58751e-09 dx:0.110815
+49/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:5.72029e+00 y:1.59945e-07 dy:4.22198e-09 dx:0.11783
+50/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:5.96357e+00 y:1.47221e-07 dy:4.01818e-09 dx:0.12545
+51/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:6.22276e+00 y:1.20220e-07 dy:3.65246e-09 dx:0.13374
+52/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:6.49928e+00 y:1.05247e-07 dy:3.37402e-09 dx:0.142785
+53/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:6.79473e+00 y:9.12985e-08 dy:3.14102e-09 dx:0.152665
+54/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:7.11088e+00 y:7.29939e-08 dy:2.82956e-09 dx:0.16348
+55/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:7.44970e+00 y:6.42763e-08 dy:2.62809e-09 dx:0.175345
+56/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:7.81345e+00 y:5.72815e-08 dy:2.4597e-09 dx:0.1884
+57/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:8.20463e+00 y:4.33188e-08 dy:2.19131e-09 dx:0.202775
+58/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:8.62608e+00 y:3.25057e-08 dy:1.88288e-09 dx:0.218675
+59/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:9.08103e+00 y:2.11137e-08 dy:1.62754e-09 dx:0.236275
+60/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:9.57313e+00 y:1.27639e-08 dy:1.3595e-09 dx:0.255835
+61/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.01066e+01 y:9.57353e-09 dy:1.18027e-09 dx:0.277615
+62/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.06862e+01 y:4.05616e-09 dy:9.67467e-10 dx:0.302
+63/126:1) 94-PU-239(N,F),PR,NU/DE 14684002 En=14.9MeV 2020 Marini x:1.13174e+01 y:2.56683e-09 dy:8.54258e-10 dx:0.32925
+
+-new-2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini y=DATA(EN,E2)
+64/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:5.00000e-02 y:8.41055e-01 dy:0.0528805 dx:0.05
+65/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.50000e-01 y:8.50695e-01 dy:0.0456253 dx:0.05
+66/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.50000e-01 y:7.46492e-01 dy:0.0532187 dx:0.05
+67/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.50000e-01 y:8.38813e-01 dy:0.0158438 dx:0.05
+68/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:4.50000e-01 y:8.66594e-01 dy:0.0114636 dx:0.05
+69/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:5.50000e-01 y:8.89188e-01 dy:0.0100739 dx:0.05
+70/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:6.50000e-01 y:8.95476e-01 dy:0.00947638 dx:0.05
+71/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:7.50000e-01 y:9.08436e-01 dy:0.00930007 dx:0.05
+72/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:8.50000e-01 y:9.13886e-01 dy:0.00918665 dx:0.05
+73/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:9.50000e-01 y:9.16748e-01 dy:0.00915686 dx:0.05
+74/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.05000e+00 y:9.16230e-01 dy:0.00923228 dx:0.05
+75/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.15000e+00 y:9.46399e-01 dy:0.0094328 dx:0.05
+76/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.25000e+00 y:9.40952e-01 dy:0.00955912 dx:0.05
+77/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.35000e+00 y:9.46843e-01 dy:0.00974461 dx:0.05
+78/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.45000e+00 y:9.67284e-01 dy:0.0100024 dx:0.05
+79/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.55000e+00 y:9.72375e-01 dy:0.0102446 dx:0.05
+80/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.65000e+00 y:9.67072e-01 dy:0.0104587 dx:0.05
+81/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.75000e+00 y:9.67877e-01 dy:0.0107384 dx:0.05
+82/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.85000e+00 y:9.80001e-01 dy:0.0110577 dx:0.05
+83/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.95000e+00 y:9.80716e-01 dy:0.011407 dx:0.05
+84/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.05000e+00 y:9.81094e-01 dy:0.011775 dx:0.05
+85/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.15000e+00 y:9.77904e-01 dy:0.0121102 dx:0.05
+86/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.25000e+00 y:1.00087e+00 dy:0.0125716 dx:0.05
+87/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.35000e+00 y:9.92412e-01 dy:0.0129534 dx:0.05
+88/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.45000e+00 y:1.01990e+00 dy:0.0134626 dx:0.05
+89/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.55000e+00 y:1.02440e+00 dy:0.0139883 dx:0.05
+90/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.65000e+00 y:1.03393e+00 dy:0.0144526 dx:0.05
+91/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.75000e+00 y:1.03951e+00 dy:0.0150433 dx:0.05
+92/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.85000e+00 y:1.04705e+00 dy:0.0155991 dx:0.05
+93/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:2.95000e+00 y:1.05674e+00 dy:0.016233 dx:0.05
+94/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.04568e+00 y:1.06775e+00 dy:0.0175331 dx:0.045685
+95/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.13918e+00 y:1.10095e+00 dy:0.0179506 dx:0.04781
+96/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.23705e+00 y:1.10170e+00 dy:0.018268 dx:0.050065
+97/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.33959e+00 y:1.10848e+00 dy:0.0187056 dx:0.05247
+98/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.44708e+00 y:1.11676e+00 dy:0.0191251 dx:0.055025
+99/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.55986e+00 y:1.08964e+00 dy:0.0193884 dx:0.057755
+100/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.67828e+00 y:1.13325e+00 dy:0.0200399 dx:0.060665
+101/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.80272e+00 y:1.12865e+00 dy:0.020649 dx:0.06377
+102/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:3.93359e+00 y:1.13900e+00 dy:0.0211523 dx:0.067105
+103/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:4.07137e+00 y:1.17320e+00 dy:0.0220301 dx:0.070665
+104/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:4.21652e+00 y:1.17536e+00 dy:0.022905 dx:0.074485
+105/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:4.36958e+00 y:1.19100e+00 dy:0.0236817 dx:0.078585
+106/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:4.53116e+00 y:1.21668e+00 dy:0.0249059 dx:0.082995
+107/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:4.70190e+00 y:1.25001e+00 dy:0.026382 dx:0.08774
+108/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:4.88250e+00 y:1.31072e+00 dy:0.0281361 dx:0.09286
+109/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:5.07374e+00 y:1.30151e+00 dy:0.0295807 dx:0.09838
+110/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:5.27647e+00 y:1.36180e+00 dy:0.0320293 dx:0.104355
+111/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:5.49165e+00 y:1.34706e+00 dy:0.0342088 dx:0.110815
+112/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:5.72029e+00 y:1.37073e+00 dy:0.0366113 dx:0.11783
+113/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:5.96357e+00 y:1.48596e+00 dy:0.0409659 dx:0.12545
+114/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:6.22276e+00 y:1.44556e+00 dy:0.0443103 dx:0.13374
+115/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:6.49928e+00 y:1.52695e+00 dy:0.0493364 dx:0.142785
+116/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:6.79473e+00 y:1.62118e+00 dy:0.0561117 dx:0.152665
+117/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:7.11088e+00 y:1.60950e+00 dy:0.0627269 dx:0.16348
+118/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:7.44970e+00 y:1.79028e+00 dy:0.0735283 dx:0.175345
+119/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:7.81345e+00 y:2.05265e+00 dy:0.0884467 dx:0.1884
+120/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:8.20463e+00 y:2.03734e+00 dy:0.103376 dx:0.202775
+121/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:8.62608e+00 y:2.05116e+00 dy:0.119189 dx:0.218675
+122/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:9.08103e+00 y:1.83235e+00 dy:0.141666 dx:0.236275
+123/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:9.57313e+00 y:1.56612e+00 dy:0.1673 dx:0.255835
+124/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.01066e+01 y:1.71244e+00 dy:0.211758 dx:0.277615
+125/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.06862e+01 y:1.09299e+00 dy:0.261828 dx:0.302
+126/126:2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 En=14.9MeV T=1.32MeV 2020 Marini x:1.13174e+01 y:1.08127e+00 dy:0.362197 dx:0.32925
+---outDatasets:2 datasets:2
+---ENTRY: 14684*;
+datasets: 2
+--0--treatDatasets: datasets:2 oper:None
+	Dataset:0/2) 94-PU-239(N,F),PR,NU/DE 14684002 Pt:63   2020, P.Marini En=14.9MeV
+	    0) E:5.00000e+04 FC:1.60187e-07 y0:6.66857e-07 yy:4.16298e+00
+	    1) E:1.50000e+05 FC:2.57210e-07 y0:1.08260e-06 yy:4.20901e+00
+	    2) E:2.50000e+05 FC:3.07830e-07 y0:1.14963e-06 yy:3.73462e+00
+	    3) E:3.50000e+05 FC:3.37656e-07 y0:1.41633e-06 yy:4.19460e+00
+	    4) E:4.50000e+05 FC:3.54932e-07 y0:1.53786e-06 yy:4.33283e+00
+	    5) E:5.50000e+05 FC:3.63764e-07 y0:1.61720e-06 yy:4.44574e+00
+	    6) E:6.50000e+05 FC:3.66601e-07 y0:1.64137e-06 yy:4.47726e+00
+	    7) E:7.50000e+05 FC:3.65062e-07 y0:1.65816e-06 yy:4.54213e+00
+	    8) E:8.50000e+05 FC:3.60283e-07 y0:1.64620e-06 yy:4.56918e+00
+	    9) E:9.50000e+05 FC:3.53098e-07 y0:1.61851e-06 yy:4.58374e+00
+	   10) E:1.05000e+06 FC:3.44134e-07 y0:1.57658e-06 yy:4.58130e+00
+	   11) E:1.15000e+06 FC:3.33872e-07 y0:1.57986e-06 yy:4.73193e+00
+	   12) E:1.25000e+06 FC:3.22690e-07 y0:1.51818e-06 yy:4.70476e+00
+	   13) E:1.35000e+06 FC:3.10882e-07 y0:1.47185e-06 yy:4.73443e+00
+	   14) E:1.45000e+06 FC:2.98684e-07 y0:1.44450e-06 yy:4.83621e+00
+	   15) E:1.55000e+06 FC:2.86281e-07 y0:1.39186e-06 yy:4.86186e+00
+	   16) E:1.65000e+06 FC:2.73822e-07 y0:1.32410e-06 yy:4.83563e+00
+	   17) E:1.75000e+06 FC:2.61423e-07 y0:1.26515e-06 yy:4.83947e+00
+	   18) E:1.85000e+06 FC:2.49178e-07 y0:1.22102e-06 yy:4.90019e+00
+	   19) E:1.95000e+06 FC:2.37159e-07 y0:1.16307e-06 yy:4.90417e+00
+	   20) E:2.05000e+06 FC:2.25423e-07 y0:1.10593e-06 yy:4.90602e+00
+	   21) E:2.15000e+06 FC:2.14013e-07 y0:1.04657e-06 yy:4.89022e+00
+	   22) E:2.25000e+06 FC:2.02960e-07 y0:1.01570e-06 yy:5.00443e+00
+	   23) E:2.35000e+06 FC:1.92288e-07 y0:9.54242e-07 yy:4.96257e+00
+	   24) E:2.45000e+06 FC:1.82012e-07 y0:9.28180e-07 yy:5.09955e+00
+	   25) E:2.55000e+06 FC:1.72142e-07 y0:8.81752e-07 yy:5.12224e+00
+	   26) E:2.65000e+06 FC:1.62681e-07 y0:8.41079e-07 yy:5.17010e+00
+	   27) E:2.75000e+06 FC:1.53632e-07 y0:7.98535e-07 yy:5.19773e+00
+	   28) E:2.85000e+06 FC:1.44989e-07 y0:7.59059e-07 yy:5.23528e+00
+	   29) E:2.95000e+06 FC:1.36749e-07 y0:7.22545e-07 yy:5.28375e+00
+	   30) E:3.04568e+06 FC:1.29233e-07 y0:6.89886e-07 yy:5.33830e+00
+	   31) E:3.13918e+06 FC:1.22230e-07 y0:6.72767e-07 yy:5.50411e+00
+	   32) E:3.23705e+06 FC:1.15251e-07 y0:6.34830e-07 yy:5.50825e+00
+	   33) E:3.33959e+06 FC:1.08313e-07 y0:6.00285e-07 yy:5.54215e+00
+	   34) E:3.44708e+06 FC:1.01436e-07 y0:5.66369e-07 yy:5.58350e+00
+	   35) E:3.55986e+06 FC:9.46406e-08 y0:5.15609e-07 yy:5.44807e+00
+	   36) E:3.67828e+06 FC:8.79472e-08 y0:4.98290e-07 yy:5.66579e+00
+	   37) E:3.80272e+06 FC:8.13776e-08 y0:4.59201e-07 yy:5.64284e+00
+	   38) E:3.93359e+06 FC:7.49539e-08 y0:4.26833e-07 yy:5.69460e+00
+	   39) E:4.07137e+06 FC:6.86972e-08 y0:4.02902e-07 yy:5.86490e+00
+	   40) E:4.21652e+06 FC:6.26311e-08 y0:3.67987e-07 yy:5.87547e+00
+	   41) E:4.36958e+06 FC:5.67772e-08 y0:3.38032e-07 yy:5.95365e+00
+	   42) E:4.53116e+06 FC:5.11561e-08 y0:3.11108e-07 yy:6.08154e+00
+	   43) E:4.70190e+06 FC:4.57883e-08 y0:2.86096e-07 yy:6.24824e+00
+	   44) E:4.88250e+06 FC:4.06930e-08 y0:2.66583e-07 yy:6.55108e+00
+	   45) E:5.07374e+06 FC:3.58874e-08 y0:2.33452e-07 yy:6.50512e+00
+	   46) E:5.27647e+06 FC:3.13870e-08 y0:2.13574e-07 yy:6.80454e+00
+	   47) E:5.49165e+06 FC:2.72040e-08 y0:1.83154e-07 yy:6.73262e+00
+	   48) E:5.72029e+06 FC:2.33488e-08 y0:1.59945e-07 yy:6.85024e+00
+	   49) E:5.96357e+06 FC:1.98275e-08 y0:1.47221e-07 yy:7.42510e+00
+	   50) E:6.22276e+06 FC:1.66429e-08 y0:1.20220e-07 yy:7.22349e+00
+	   51) E:6.49928e+06 FC:1.37941e-08 y0:1.05247e-07 yy:7.62987e+00
+	   52) E:6.79473e+06 FC:1.12756e-08 y0:9.12985e-08 yy:8.09700e+00
+	   53) E:7.11088e+06 FC:9.07817e-09 y0:7.29939e-08 yy:8.04060e+00
+	   54) E:7.44970e+06 FC:7.18837e-09 y0:6.42763e-08 yy:8.94171e+00
+	   55) E:7.81345e+06 FC:5.58862e-09 y0:5.72815e-08 yy:1.02497e+01
+	   56) E:8.20463e+06 FC:4.25805e-09 y0:4.33188e-08 yy:1.01734e+01
+	   57) E:8.62608e+06 FC:3.17268e-09 y0:3.25057e-08 yy:1.02455e+01
+	   58) E:9.08103e+06 FC:2.30623e-09 y0:2.11137e-08 yy:9.15506e+00
+	   59) E:9.57313e+06 FC:1.63101e-09 y0:1.27639e-08 yy:7.82577e+00
+	   60) E:1.01066e+07 FC:1.11870e-09 y0:9.57353e-09 yy:8.55771e+00
+	   61) E:1.06862e+07 FC:7.41530e-10 y0:4.05616e-09 yy:5.46999e+00
+	   62) E:1.13174e+07 FC:4.73063e-10 y0:2.56683e-09 yy:5.42598e+00
+	Dataset:1/2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 Pt:63   2020, P.Marini En=14.9MeV T=1.32MeV
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 2
+1) 94-PU-239(N,F),PR,NU/DE
+	Dataset:1/2) 94-PU-239(N,F),PR,NU/DE 14684002 2020, P.Marini En=14.9MeV
+2) 94-PU-239(N,F),PR,NU/DE,,MXD
+	Dataset:2/2) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 2020, P.Marini En=14.9MeV T=1.32MeV
+---reacodes: 2 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/2) #14684002 2020, P.Marini En=14.9MeV pt:63
+Plot:2/2) #14684003 2020, P.Marini En=14.9MeV T=1.32MeV pt:63
+
+___webEndfDataForPlot_DADE: [Pu-239] [N,F] [&mf=5&mt=18&ei=14900000.0]
+---wgetdb_get:/servlet/E4sSearch2?Target=Pu-239&Reaction=N,F&Quantity=*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=Pu-239&Reaction=N,F&Quantity=*&json&mats
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+---wgetdb_execupdate---error-execute SQL:  attempt to write a readonly database
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+format=WebEndfSectionsList-0.1
+___Retrieved sections:49
+SelectedLib-Sect:1) {'Targ': 'PU-239', 'ZT': 94, 'AT': 239, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-239(N,F),SIG', 'EvalID': 272569, 'SectID': 19171522, 'PenSectID': 24019133, 'LibID': 30003, 'LibName': 'INDEN-Aug2023', 'DATE': '20170914', 'AUTH': 'Lanl, Ornl, et al.'}
+SelectedLib-Sect:4) {'Targ': 'PU-239', 'ZT': 94, 'AT': 239, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-239(N,F),SIG', 'EvalID': 149950, 'SectID': 9026738, 'PenSectID': 13664491, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20170914', 'AUTH': 'Lanl, Ornl, et al.'}
+SelectedLib-Sect:5) {'Targ': 'PU-239', 'ZT': 94, 'AT': 239, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-239(N,F),SIG', 'EvalID': 57674, 'SectID': 2293801, 'PenSectID': 7666460, 'LibID': 75, 'LibName': 'ENDF/B-VII.1', 'DATE': '20111222', 'AUTH': 'Young,Chadwick,Macfarlane,Derrien'}
+SelectedLib-Sect:12) {'Targ': 'PU-239', 'ZT': 94, 'AT': 239, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-239(N,F),SIG', 'EvalID': 226920, 'SectID': 14606515, 'PenSectID': 19242334, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20111206', 'AUTH': 'O.Iwamoto,N.Otuka,S.Chiba,+'}
+SelectedLib-Sect:18) {'Targ': 'PU-239', 'ZT': 94, 'AT': 239, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'PU-239(N,F),SIG', 'EvalID': 118855, 'SectID': 6091594, 'PenSectID': 10753082, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'atyuk A.V.', 'AUTH': 'Nikolaev M.N.'}
+___Required sections:5
+WebReq:1) EvalID:272569 PenSectID:24019133 Lib:INDEN-Aug2023 Color:0,80,255
+/servlet/E4sGetSectData?EvalID=272569&PenSectID=24019133&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=272569&PenSectID=24019133&json&mf=5&mt=18&ei=14900000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272569&PenSectID=24019133&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+---wgetdb_execupdate---error-execute SQL:  attempt to write a readonly database
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+Download...DS:1/1)	94-Pu-239(N,F),DE	INDEN-Aug2023	EID:272569	SID:24019133	f(x):DE(Eo)	pts:640
+Downloaded:DS:1/1)	94-Pu-239(N,F),DE	INDEN-Aug2023	EID:272569	SID:24019133	f(x):DE(Eo)	pts:640	idy=0
+WebReq:2) EvalID:149950 PenSectID:13664491 Lib:ENDF/B-VIII.0 Color:0,0,255
+/servlet/E4sGetSectData?EvalID=149950&PenSectID=13664491&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149950&PenSectID=13664491&json&mf=5&mt=18&ei=14900000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149950&PenSectID=13664491&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+---wgetdb_execupdate---error-execute SQL:  attempt to write a readonly database
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+Download...DS:2/1)	94-Pu-239(N,F),DE	ENDF/B-VIII.0	EID:149950	SID:13664491	f(x):DE(Eo)	pts:591
+Downloaded:DS:2/1)	94-Pu-239(N,F),DE	ENDF/B-VIII.0	EID:149950	SID:13664491	f(x):DE(Eo)	pts:591	idy=0
+WebReq:3) EvalID:57674 PenSectID:7666460 Lib:ENDF/B-VII.1 Color:80,0,255
+/servlet/E4sGetSectData?EvalID=57674&PenSectID=7666460&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=57674&PenSectID=7666460&json&mf=5&mt=18&ei=14900000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57674&PenSectID=7666460&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+---wgetdb_execupdate---error-execute SQL:  attempt to write a readonly database
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+Download...DS:3/1)	94-Pu-239(N,F),DE	ENDF/B-VII.1	EID:57674	SID:7666460	f(x):DE(Eo)	pts:641
+Downloaded:DS:3/1)	94-Pu-239(N,F),DE	ENDF/B-VII.1	EID:57674	SID:7666460	f(x):DE(Eo)	pts:641	idy=0
+WebReq:4) EvalID:226920 PenSectID:19242334 Lib:JENDL-5 Color:0,255,0
+/servlet/E4sGetSectData?EvalID=226920&PenSectID=19242334&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=226920&PenSectID=19242334&json&mf=5&mt=18&ei=14900000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226920&PenSectID=19242334&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+---wgetdb_execupdate---error-execute SQL:  attempt to write a readonly database
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+Download...DS:4/1)	94-Pu-239(N,F),DE	JENDL-5	EID:226920	SID:19242334	f(x):DE(Eo)	pts:551
+Downloaded:DS:4/1)	94-Pu-239(N,F),DE	JENDL-5	EID:226920	SID:19242334	f(x):DE(Eo)	pts:551	idy=0
+WebReq:5) EvalID:118855 PenSectID:10753082 Lib:BROND-3.1 Color:255,0,255
+/servlet/E4sGetSectData?EvalID=118855&PenSectID=10753082&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=118855&PenSectID=10753082&json&mf=5&mt=18&ei=14900000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118855&PenSectID=10753082&json&mf=5&mt=18&ei=14900000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+---wgetdb_execupdate---error-execute SQL:  attempt to write a readonly database
+---wgetdb_exec---error-execute SQL:  no such table: wget_cache
+Download...DS:5/1)	94-Pu-239(N,F),DE	BROND-3.1	EID:118855	SID:10753082	f(x):DE(Eo)	pts:254
+Downloaded:DS:5/1)	94-Pu-239(N,F),DE	BROND-3.1	EID:118855	SID:10753082	f(x):DE(Eo)	pts:254	idy=0
+---e4datasets: 5
+Plot:1/5) 24019133	INDEN-Aug2023 Ei1.49E+7	pt:640	color:0,80,255
+Plot:2/5) 13664491	ENDF/B-VIII.0 Ei1.49E+7	pt:591	color:0,0,255
+Plot:3/5) 7666460	ENDF/B-VII.1 Ei1.49E+7	pt:641	color:80,0,255
+Plot:4/5) 19242334	JENDL-5 Ei1.49E+7	pt:551	color:0,255,0
+Plot:5/5) 10753082	BROND-3.1 Ei1.49E+7	pt:254	color:255,0,255
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- no-dim 1
+Will try---write_image: pfns2.html.png
+
+Program successfully completed

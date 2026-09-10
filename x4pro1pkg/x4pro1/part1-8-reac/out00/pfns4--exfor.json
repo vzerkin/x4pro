@@ -1,16 +1,20 @@
 {
-  "now":"2026-09-04T23:07:39"
+  "now":"2026-09-10T19:02:57"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":"33183004"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -35,12 +39,16 @@
   ,{
      "DatasetID":"33183005"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -65,12 +73,16 @@
   ,{
      "DatasetID":"14477002"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -99,12 +111,16 @@
   ,{
      "DatasetID":"14477003"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -134,12 +150,16 @@
   ,{
      "DatasetID":"23268009"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -956,12 +976,16 @@
   ,{
      "DatasetID":"41158002"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1048,12 +1072,16 @@
   ,{
      "DatasetID":"31440003"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1140,12 +1168,16 @@
   ,{
      "DatasetID":"31854002"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1178,12 +1210,16 @@
   ,{
      "DatasetID":"31854003"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1206,12 +1242,16 @@
   ,{
      "DatasetID":"40644003"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1327,12 +1367,16 @@
   ,{
      "DatasetID":"40472003"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1447,12 +1491,16 @@
   ,{
      "DatasetID":"40418004"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1504,12 +1552,16 @@
   ,{
      "DatasetID":"40418005"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1559,12 +1611,16 @@
   ,{
      "DatasetID":"20401003"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1671,12 +1727,16 @@
   ,{
      "DatasetID":"20401004"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1786,12 +1846,16 @@
   ,{
      "DatasetID":"30099002"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1880,12 +1944,16 @@
   ,{
      "DatasetID":"30099003"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1918,12 +1986,16 @@
   ,{
      "DatasetID":"40064031"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -1988,12 +2060,16 @@
   ,{
      "DatasetID":"20575008"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -2021,12 +2097,16 @@
   ,{
      "DatasetID":"14387008"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -2057,12 +2137,16 @@
   ,{
      "DatasetID":"14798002"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -2097,12 +2181,16 @@
   ,{
      "DatasetID":"14798003"
     ,"Reacode":"98-CF-252(0,F),PR,NU/DE,,REL"
+    ,"Target":"Cf-252"
+    ,"Reaction":"0,F"
     ,"Quantity":"Energy spectrum of prompt fission neutrons"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"ARB-UNITS"
     ,"xexpansion":"Secondary energy: particle energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"MFQ"
+    ,"MF":5
+    ,"MT":18
     ,"yformula":"y=DATA(E2)"
     ,"DatasetSplit":""
     ,"g0":0

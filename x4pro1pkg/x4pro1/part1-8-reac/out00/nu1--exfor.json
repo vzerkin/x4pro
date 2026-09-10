@@ -1,16 +1,20 @@
 {
-  "now":"2026-09-04T23:07:07"
+  "now":"2026-09-10T19:02:24"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":"330840031"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -30,12 +34,16 @@
   ,{
      "DatasetID":"330840041"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -55,12 +63,16 @@
   ,{
      "DatasetID":"14384002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -98,12 +110,16 @@
   ,{
      "DatasetID":"14215003"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -153,12 +169,16 @@
   ,{
      "DatasetID":"41461003"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -177,12 +197,16 @@
   ,{
      "DatasetID":"411100071"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -201,12 +225,16 @@
   ,{
      "DatasetID":"411100072"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -225,12 +253,16 @@
   ,{
      "DatasetID":"40665002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -275,12 +307,16 @@
   ,{
      "DatasetID":"20490002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -331,12 +367,16 @@
   ,{
      "DatasetID":"21685003"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -359,12 +399,16 @@
   ,{
      "DatasetID":"406310061"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -385,12 +429,16 @@
   ,{
      "DatasetID":"40740003"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -408,12 +456,16 @@
   ,{
      "DatasetID":"32606002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -440,12 +492,16 @@
   ,{
      "DatasetID":"404290032"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -485,12 +541,16 @@
   ,{
      "DatasetID":"40138002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -553,12 +613,16 @@
   ,{
      "DatasetID":"212520042"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -576,12 +640,16 @@
   ,{
      "DatasetID":"21135006"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -602,12 +670,16 @@
   ,{
      "DatasetID":"20075002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -633,12 +705,16 @@
   ,{
      "DatasetID":"12462002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -656,12 +732,16 @@
   ,{
      "DatasetID":"20072003"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -680,12 +760,16 @@
   ,{
      "DatasetID":"412130032"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -704,12 +788,16 @@
   ,{
      "DatasetID":"21453002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -727,12 +815,16 @@
   ,{
      "DatasetID":"40785003"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -750,12 +842,16 @@
   ,{
      "DatasetID":"41254002"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -773,12 +869,16 @@
   ,{
      "DatasetID":"40671003"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -796,12 +896,16 @@
   ,{
      "DatasetID":"40806005"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -819,12 +923,16 @@
   ,{
      "DatasetID":"12436003"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -842,12 +950,16 @@
   ,{
      "DatasetID":"21696005"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -866,12 +978,16 @@
   ,{
      "DatasetID":"12397004"
     ,"Reacode":"92-U-238(N,F),PR,NU"
+    ,"Target":"U-238"
+    ,"Reaction":"N,F"
     ,"Quantity":"Prompt neutron yield (nu-bar)"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"PART/FIS"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"NU"
+    ,"MF":1
+    ,"MT":456
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0

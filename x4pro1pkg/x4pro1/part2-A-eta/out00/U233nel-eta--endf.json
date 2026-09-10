@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-04T23:15:00"
+  "now":"2026-09-10T19:10:23"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,8 @@
     ,"TARGET":"U-233"
     ,"MF":1
     ,"MT":452
+    ,"fx":1.0
+    ,"fy":1.0
     ,"x4lbl":"ENDF/B-VIII.0"
     ,"DATE":"2010"
     ,"AUTH":"2010 O.Iwamoto,N.Otuka,S.Chiba,et al."
@@ -36,6 +38,8 @@
     ,"TARGET":"U-233"
     ,"MF":1
     ,"MT":452
+    ,"fx":1.0
+    ,"fy":1.0
     ,"x4lbl":"JEFF-4.0"
     ,"DATE":"2017"
     ,"AUTH":"2017 Young,Chadwick,Talou,Leal,Derrien"

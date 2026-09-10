@@ -86,13 +86,14 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
     ,flagShow=True
     ,xrange=None
     ,yrange=None
-    ,legendInside=True
+    ,legendInside=False
     ,how2plot=1
     ,xstep30=False
     ,annot1=None
     ,plotParams=None
     ,showgrid=True
     ,zeroline=True
+    ,wwPng=1300,hhPng=830
     ):
 
     if not filename.endswith('.html'): filename=filename+'.html'

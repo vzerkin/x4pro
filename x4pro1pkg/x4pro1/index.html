@@ -102,7 +102,7 @@ var x4pro='\
 X4Pro - universal, fully relational EXFOR database<br>
 </span>
 <span class=author>
-by V.Zerkin, IAEA:2021-2023, version 2026-09-04<br>
+by V.Zerkin, IAEA:2021-2023, version 2026-09-10<br>
 </span>
 <br>
 This page presents progress in development X4Pro database and tools
@@ -137,9 +137,9 @@ Tasks of the project:<br>
 Distribution (see
  <a href="readme.txt" target="_blank">readme</a>,
  <a href="LICENSE.TXT" target="_blank">license</a>,
- <a href="COPYRIGHT.TXT" target="_blank">copyright</a>), ver.2026-09-04:<br> 
-- X4Pro/SQLite database, ver.2026-09-04<br>
-- Python and Fortran demo-programs, ver.2026-09-04<br>
+ <a href="COPYRIGHT.TXT" target="_blank">copyright</a>), ver.2026-09-10:<br> 
+- X4Pro/SQLite database, ver.2026-09-10<br>
+- Python and Fortran demo-programs, ver.2026-09-10<br>
 - Bash-scripts running demo-programs (CLI 
   <script language="javascript">
     outLink('x4pro-cli.html','[1]','Command Line Interface for running demo-codes','');
@@ -148,7 +148,7 @@ and TUI
   <script language="javascript">
     outLink('x4pro-tui.html','[2]','Basic interactive script','');
     outLink('x4pro-dia.html','[3]','Menu-type interactive script','');
-  </script>), database statistics, ver.2026-09-04<br>
+  </script>), database statistics, ver.2026-09-10<br>
 - consists of 6 parts:<br>
 
 <table border=1>
@@ -809,6 +809,70 @@ Common subroutines:
 
     outLink('part2-A-eta/eta.py','[eta.py]','Main',' &nbsp; &nbsp; &nbsp; main code<br>','&nbsp;- ');
     outLink('part2-A-eta/rx4eta.py','[rx4eta.py]','Module',' &nbsp;retrieval subroutines<br>','&nbsp;- ');
+
+  </script>
+</td>
+<td><br>---in progress---</td>
+</tr>
+
+<tr>
+<td>11.</td>
+<td bgcolor=#ddffff>part2-B-pfns
+<span class=newdev>2026</span>
+</td>
+<td>PFNS - energy spectrum of <br>prompt fission neutrons</td>
+<td><span class=sigma>NU/DE</span></td>
+<td>	*(N,F),PR,NU/DE*<br>MF5+MT18,...</td>
+<td>
+  <script language="javascript">
+    document.write('<span style="font-family:narrow arial;font-size:9pt;">');
+
+    outLink('part2-B-pfns/out00/pfns233u_t.html','html','PFNS Ratio to Maxwellian (T=1.32MeV): interactive plot','/','U-233(n:thermal,f) ')
+    outLink('part2-B-pfns/out00/pfns233u_t.html.png','png','Plotly:png','/');
+    outLink('part2-B-pfns/out00/pfns233u_t.json','json','Output',',');
+    outLink('part2-B-pfns/out00/pfns233u_t--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns233u_t--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns233u_t.tto','tto','terminal-output','<br>');
+
+    outLink('part2-B-pfns/out00/pfns235u_t.html','html','PFNS Ratio to Maxwellian (T=1.32MeV): interactive plot','/','U-235(n:thermal,f) ')
+    outLink('part2-B-pfns/out00/pfns235u_t.html.png','png','Plotly:png','/');
+    outLink('part2-B-pfns/out00/pfns235u_t.json','json','Output',',');
+    outLink('part2-B-pfns/out00/pfns235u_t--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns235u_t--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns235u_t.tto','tto','terminal-output','<br>');
+
+    outLink('part2-B-pfns/out00/pfns235u_5.html','html','PFNS Ratio to Maxwellian (T=1.32MeV): interactive plot','/','U-235(n:0.5MeV,f)')
+    outLink('part2-B-pfns/out00/pfns235u_5.html.png','png','Plotly:png','/');
+    outLink('part2-B-pfns/out00/pfns235u_5.json','json','Output',',');
+    outLink('part2-B-pfns/out00/pfns235u_5--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns235u_5--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns235u_5.tto','tto','terminal-output','<br>');
+
+    outLink('part2-B-pfns/out00/pfns238u14_3.html','html','PFNS Ratio to Maxwellian (T=1.32MeV): interactive plot','/','U-238(n:14.3MeV,f) ')
+    outLink('part2-B-pfns/out00/pfns238u14_3.html.png','png','Plotly:png','/');
+    outLink('part2-B-pfns/out00/pfns238u14_3.json','json','Output',',');
+    outLink('part2-B-pfns/out00/pfns238u14_3--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns238u14_3--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns238u14_3.tto','tto','terminal-output','<br>');
+
+    outLink('part2-B-pfns/out00/pfns239pu_t.html','html','PFNS Ratio to Maxwellian (T=1.32MeV): interactive plot','/','Pu-239(n:thermal,f) ')
+    outLink('part2-B-pfns/out00/pfns239pu_t.html.png','png','Plotly:png','/');
+    outLink('part2-B-pfns/out00/pfns239pu_t.json','json','Output',',');
+    outLink('part2-B-pfns/out00/pfns239pu_t--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns239pu_t--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns239pu_t.tto','tto','terminal-output','<br>');
+
+    outLink('part2-B-pfns/out00/pfns239pu14_5.html','html','PFNS Ratio to Maxwellian (T=1.32MeV): interactive plot','/','Pu-239(n:1.45MeV,f) ')
+    outLink('part2-B-pfns/out00/pfns239pu14_5.html.png','png','Plotly:png','/');
+    outLink('part2-B-pfns/out00/pfns239pu14_5.json','json','Output',',');
+    outLink('part2-B-pfns/out00/pfns239pu14_5--exfor.json','ex','Output:EXFOR-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns239pu14_5--endf.json','ev','Output:ENDF-data in JSON columns',',');
+    outLink('part2-B-pfns/out00/pfns239pu14_5.tto','tto','terminal-output','<br>');
+    document.write('</span>');
+
+    outLink('part2-B-pfns/reac2pfns.py','[reac2pfns.py]','Main',  ' &nbsp;main code<br>','&nbsp;- ');
+    outLink('part2-B-pfns/reac2subr.py','[reac2subr.py]','Module',' &nbsp;retrieval subroutines<br>','&nbsp;- ');
+    outLink('part2-B-pfns/reac2proc.py','[reac2proc.py]','Module',' &nbsp;convert to ratios<br>','&nbsp;- ');
 
   </script>
 </td>

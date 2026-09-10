@@ -1,16 +1,20 @@
 {
-  "now":"2026-09-04T23:07:04"
+  "now":"2026-09-10T19:02:22"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":"30528007"
     ,"Reacode":"82-PB-0(N,TOT),,SIG/TMP"
+    ,"Target":"Pb-0"
+    ,"Reaction":"N,TOT"
     ,"Quantity":"Temperature-dependent cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CST"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,TMS)"
     ,"DatasetSplit":""
     ,"g0":297.0
@@ -45,12 +49,16 @@
   ,{
      "DatasetID":"11782007"
     ,"Reacode":"82-PB-0(N,TOT),,SIG/TMP"
+    ,"Target":"Pb-0"
+    ,"Reaction":"N,TOT"
     ,"Quantity":"Temperature-dependent cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CST"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,TMS)"
     ,"DatasetSplit":""
     ,"g0":109.0
@@ -79,12 +87,16 @@
   ,{
      "DatasetID":"11782007"
     ,"Reacode":"82-PB-0(N,TOT),,SIG/TMP"
+    ,"Target":"Pb-0"
+    ,"Reaction":"N,TOT"
     ,"Quantity":"Temperature-dependent cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CST"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,TMS)"
     ,"DatasetSplit":""
     ,"g0":296.0
@@ -129,12 +141,16 @@
   ,{
      "DatasetID":"11782007"
     ,"Reacode":"82-PB-0(N,TOT),,SIG/TMP"
+    ,"Target":"Pb-0"
+    ,"Reaction":"N,TOT"
     ,"Quantity":"Temperature-dependent cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CST"
+    ,"MF":null
+    ,"MT":null
     ,"yformula":"y=DATA(EN,TMS)"
     ,"DatasetSplit":""
     ,"g0":573.0

@@ -64,6 +64,7 @@ def main():
     a1=None
     dsids=None
     aprod=None #product in SF4 or DATA(ELEM/MASS)
+    oper=None
 
     def str2float(str1):
         if str1 is None: return None

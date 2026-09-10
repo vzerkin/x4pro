@@ -173,7 +173,10 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
     for row in rows:
         fullCode=row['fullCode']; DatasetID=row['DatasetID']; iPoint=row['iPoint']
         YearRef1=row['YearRef1']; Author1Ini=row['Author1Ini']; Author1=row['Author1'];
+        Target=row['Target']
+        Reaction=row['Reaction']
         Quant=row['Quant']
+        MF=row['MF']; MT=row['MT']
         yformula=row['yformula']
         yval=row['yval']  #2:DATA-MIN 3:DATA-MAX
         if DatasetID=='41109007': continue #Mistake in EXFOR: "DATA" --> "DATA-MAX"
@@ -242,14 +245,19 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
             outDatasets[nowDatasetSplit]=nowDataset
             nowDataset['DatasetID']=DatasetID
             nowDataset['Reacode']=fullCode
+            nowDataset['Target']=Target
+            nowDataset['Reaction']=Reaction
             nowDataset['Quantity']=ShortHelp
             nowDataset['xBasicUnits']=xBasicUnits
             nowDataset['yBasicUnits']=yBasicUnits
             nowDataset['xexpansion']=xexpansion
             nowDataset['yexpansion']=yexpansion
             nowDataset['Quant']=Quant
+            nowDataset['MF']=MF
+            nowDataset['MT']=MT
             nowDataset['yformula']=yformula
             nowDataset['DatasetSplit']=''
+#?          nowDataset['DatasetSplit']=nowDatasetSplit
             nowDataset['g0']=g0
             nowDataset['g1']=g1
             nowDataset['YearRef1']=YearRef1
@@ -267,7 +275,7 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
 #            print('-old-'+str(len(outDatasets))+') '+nowDatasetSplit)
             y=nowDataset['y']; dy=nowDataset['dy']
             x=nowDataset['x']; dx=nowDataset['dx']
-#        print(str(ii)+'/'+str(lx)+':'+str(len(outDatasets))+') '+str(fullCode)+' '+str(DatasetID)+grp+' '+str(YearRef1)+' '+Author1+" x:"+str(xx)+" y:"+str(yy)+" g0:"+str(g0)+" g1:"+str(g1))
+#       print(str(ii)+'/'+str(lx)+':'+str(len(outDatasets))+') '+str(fullCode)+' '+str(DatasetID)+grp+' '+str(YearRef1)+' '+Author1+" x:"+str(xx)+" y:"+str(yy)+" g0:"+str(g0)+" g1:"+str(g1))
         if DatasetID=='40017010' and g0==0.12e6 and xx==154: yy=1.5687E+02*1e6
         xx=float(xx)*fx; xx=float(format(xx,".5e")) #precision: 11 columns = 6 digits: 1.23456e-02
         yy=float(yy)*fy; yy=float(format(yy,".5e"))
@@ -284,7 +292,7 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
         dy.append(dyy)
         dx.append(dxx)
         ii+=1
-        print(str(ii)+'/'+str(lx)+':'+str(len(outDatasets))+') '+str(fullCode)+' '+str(DatasetID)+grp+' '+str(YearRef1)+' '+Author1+" x:"+str(xx)+" y:"+str(yy)+" dy:"+str(dyy)+" dx:"+str(dxx))
+        print(format(ii,"4d")+'/'+str(lx)+':'+str(len(outDatasets))+') '+str(fullCode)+' '+str(DatasetID)+grp+' '+str(YearRef1)+' '+Author1+" x:"+format(xx,"<11.5g")+" y:"+format(yy,"<11.5g")+" dy:"+str(dyy)+" dx:"+str(dxx))
     datasets=[]
     for nowDatasetSplit in outDatasets:
         dataset=outDatasets[nowDatasetSplit]

@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-04T23:12:05"
+  "now":"2026-09-10T19:07:27"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,8 @@
     ,"TARGET":"U-235"
     ,"MF":1
     ,"MT":456
+    ,"fx":1000000.0
+    ,"fy":1.0
     ,"x4lbl":"ENDF/B-VIII.0"
     ,"DATE":"2018"
     ,"AUTH":"2018 IAEA Cielo Collaboration"
@@ -106,6 +108,8 @@
     ,"TARGET":"U-235"
     ,"MF":1
     ,"MT":456
+    ,"fx":1000000.0
+    ,"fy":1.0
     ,"x4lbl":"JEFF-3.1"
     ,"DATE":"1990"
     ,"AUTH":"1990 Weston, Young, Poenitz, Lubitz"
@@ -198,6 +202,8 @@
     ,"TARGET":"U-235"
     ,"MF":1
     ,"MT":456
+    ,"fx":1000000.0
+    ,"fy":1.0
     ,"x4lbl":"BROND-3.1"
     ,"DATE":""
     ,"AUTH":"Nikolaev M.N."
@@ -290,6 +296,8 @@
     ,"TARGET":"U-235"
     ,"MF":1
     ,"MT":456
+    ,"fx":1000000.0
+    ,"fy":1.0
     ,"x4lbl":"ENDF/B-V"
     ,"DATE":""
     ,"AUTH":"M.R.Bhat"

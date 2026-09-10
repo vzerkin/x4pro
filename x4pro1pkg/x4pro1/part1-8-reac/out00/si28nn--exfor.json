@@ -1,16 +1,20 @@
 {
-  "now":"2026-09-04T23:07:18"
+  "now":"2026-09-10T19:02:36"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":"23173004"
     ,"Reacode":"14-SI-28(N,INL)14-SI-28,,SIG"
+    ,"Target":"Si-28"
+    ,"Reaction":"N,INL"
     ,"Quantity":"Cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":4
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -537,12 +541,16 @@
   ,{
      "DatasetID":"23173004"
     ,"Reacode":"14-SI-28(N,INL)14-SI-28,,SIG"
+    ,"Target":"Si-28"
+    ,"Reaction":"N,INL"
     ,"Quantity":"Cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":4
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -742,12 +750,16 @@
   ,{
      "DatasetID":"32688006"
     ,"Reacode":"14-SI-28(N,INL)14-SI-28,,SIG"
+    ,"Target":"Si-28"
+    ,"Reaction":"N,INL"
     ,"Quantity":"Cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":4
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -765,12 +777,16 @@
   ,{
      "DatasetID":"10529003"
     ,"Reacode":"14-SI-28(N,INL)14-SI-28,,SIG"
+    ,"Target":"Si-28"
+    ,"Reaction":"N,INL"
     ,"Quantity":"Cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":4
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0

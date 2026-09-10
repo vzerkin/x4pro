@@ -15,7 +15,7 @@ import json
 web0prog='/servlet/E4sSearch2?'
 web1prog='/servlet/E4sGetSectData?'
 
-def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="DA"):
+def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="DA",add2title=""):
     datasets=[]
     print('\n___webEndfDataForPlot_DADE: ['+target+'] ['+react+'] ['+strPar+']')
     web0par='Target='+target+'&Reaction='+react+'&Quantity='+quantPrexix+'*&json&mats'
@@ -73,9 +73,13 @@ def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="D
             lastDataset['TARGET']=ds['TARGET']
             lastDataset['MF']=ds['MF']
             lastDataset['MT']=ds['MT']
+            lastDataset['fx']=1/fx
+            lastDataset['fy']=1/fy
             #lastDataset['x4lbl']=ds['LIBRARY']#+' '+ds['REACTION'].lower()
             lastDataset['x4lbl']=(ds['LIBRARY']+' '+ds['param']).strip()
-#            lastDataset['AUTH']=sect1['AUTH']
+#           if ds['MF']==5 and ds['MT']: lastDataset['x4lbl']+=' (T=1.32MeV)'
+            lastDataset['x4lbl']+=add2title
+#           lastDataset['AUTH']=sect1['AUTH']
             lastDataset['DATE']=getEndfDate(sect1.get('DATE')).strip()
             lastDataset['AUTH']=getEndfDate(sect1.get('DATE'))+sect1['AUTH']
             x=[];     lastDataset['x']=x

@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-04T23:09:41"
+  "now":"2026-09-10T19:05:01"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,8 @@
     ,"TARGET":"FE-56"
     ,"MF":4
     ,"MT":40002
+    ,"fx":1000000.0
+    ,"fy":0.001
     ,"x4lbl":"ENDF/B-VIII.0 El0.00E+0 An 39"
     ,"DATE":"2018"
     ,"AUTH":"2018 Cielo Collaboration"
@@ -49675,6 +49677,8 @@
     ,"TARGET":"FE-56"
     ,"MF":4
     ,"MT":40002
+    ,"fx":1000000.0
+    ,"fy":0.001
     ,"x4lbl":"JENDL-5 El0.00E+0 An 39"
     ,"DATE":"2021"
     ,"AUTH":"2021 N.Iwamoto"

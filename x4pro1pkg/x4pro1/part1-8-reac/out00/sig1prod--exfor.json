@@ -1,16 +1,20 @@
 {
-  "now":"2026-09-04T23:07:29"
+  "now":"2026-09-10T19:02:47"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":"T0297003"
     ,"Reacode":"92-U-0(P,F)40-ZR-97,CUM,SIG"
+    ,"Target":"U-0"
+    ,"Reaction":"P,F"
     ,"Quantity":"Cumulative cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":18
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -32,12 +36,16 @@
   ,{
      "DatasetID":"D0153002"
     ,"Reacode":"92-U-0(P,F)ELEM/MASS,CUM,SIG"
+    ,"Target":"U-0"
+    ,"Reaction":"P,F"
     ,"Quantity":"Cumulative cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":18
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":40097.0
@@ -55,12 +63,16 @@
   ,{
      "DatasetID":"C0373002"
     ,"Reacode":"92-U-0(P,X)ELEM/MASS,,SIG"
+    ,"Target":"U-0"
+    ,"Reaction":"P,X"
     ,"Quantity":"Cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":0
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":40097.0
@@ -81,12 +93,16 @@
   ,{
      "DatasetID":"O0986003"
     ,"Reacode":"92-U-0(P,X)ELEM/MASS,CUM,SIG"
+    ,"Target":"U-0"
+    ,"Reaction":"P,X"
     ,"Quantity":"Cumulative cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":0
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":40097.0
@@ -108,12 +124,16 @@
   ,{
      "DatasetID":"P0046006"
     ,"Reacode":"92-U-238(P,F)40-ZR-97,,SIG"
+    ,"Target":"U-238"
+    ,"Reaction":"P,F"
     ,"Quantity":"Cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":18
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -136,12 +156,16 @@
   ,{
      "DatasetID":"O0348068"
     ,"Reacode":"92-U-238(P,F)40-ZR-97,CUM,SIG"
+    ,"Target":"U-238"
+    ,"Reaction":"P,F"
     ,"Quantity":"Cumulative cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":18
     ,"yformula":"y=DATA(EN)"
     ,"DatasetSplit":""
     ,"g0":0
@@ -159,12 +183,16 @@
   ,{
      "DatasetID":"O0624007"
     ,"Reacode":"92-U-238(P,F)ELEM/MASS,,SIG"
+    ,"Target":"U-238"
+    ,"Reaction":"P,F"
     ,"Quantity":"Cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":18
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":40097.0
@@ -182,12 +210,16 @@
   ,{
      "DatasetID":"E2036003"
     ,"Reacode":"92-U-238(P,F)ELEM/MASS,CUM,SIG"
+    ,"Target":"U-238"
+    ,"Reaction":"P,F"
     ,"Quantity":"Cumulative cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":18
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":40097.0
@@ -205,12 +237,16 @@
   ,{
      "DatasetID":"E2036006"
     ,"Reacode":"92-U-238(P,F)ELEM/MASS,CUM,SIG"
+    ,"Target":"U-238"
+    ,"Reaction":"P,F"
     ,"Quantity":"Cumulative cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":18
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":40097.0
@@ -228,12 +264,16 @@
   ,{
      "DatasetID":"C2546002"
     ,"Reacode":"92-U-238(P,X)ELEM/MASS,CUM,SIG"
+    ,"Target":"U-238"
+    ,"Reaction":"P,X"
     ,"Quantity":"Cumulative cross section"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"B"
     ,"xexpansion":"Incident energy: energy"
     ,"yexpansion":"Data: data"
     ,"Quant":"CS"
+    ,"MF":3
+    ,"MT":0
     ,"yformula":"y=DATA(EN,ZAM)"
     ,"DatasetSplit":""
     ,"g0":40097.0
