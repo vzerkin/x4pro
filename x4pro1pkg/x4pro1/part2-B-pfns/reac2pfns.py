@@ -235,7 +235,7 @@ def main():
             print("---No data after filtering by #DataPoints:",nPntMin)
             sys.exit(2)
     if not showSpectra:
-        datasets=datasets2mxwRatio(datasets,oper)
+        datasets=datasets2mxwRatio(datasets,oper,Tm=Tmxw)
 
     groupReac=False
     if groupReactions:

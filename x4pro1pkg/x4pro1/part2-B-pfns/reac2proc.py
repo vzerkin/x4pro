@@ -25,7 +25,7 @@ delBlackList={
 }
 
 def datasets2mxwRatio(datasets,oper,Tm=1.32e6):
-    print('--0--treatDatasets: datasets:'+str(len(datasets))+' oper:'+str(oper))
+    print('--0--datasets2mxwRatio: datasets:'+str(len(datasets))+' oper:'+str(oper)+' Tm:'+str(Tm))
     lx=len(datasets)
     dssout=[]
     for ii,dataset in enumerate(datasets):
@@ -36,7 +36,7 @@ def datasets2mxwRatio(datasets,oper,Tm=1.32e6):
             print('---Dataset in delBlackList:',dataset['DatasetID'],' [',dataset['x4lbl']+']')
             continue
 #       dataset2mxwRatio(dataset)
-        dataset2mxwRatio(dataset,renorm2maxw=False)
+        dataset2mxwRatio(dataset,renorm2maxw=False,Tm=Tm)
         dssout.append(dataset)
     return dssout
 
