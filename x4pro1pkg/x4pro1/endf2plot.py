@@ -14,6 +14,10 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
     ii=0; data1=[]
     for dataset in datasets:
         #if (len(dataset['x'])<=1): continue
+        myColor=dataset['myColor']
+        myDash=None
+        strs=myColor.split("|")
+        if len(strs)>1: myColor=strs[0]; myDash=strs[1]
         trErr=None
         if (dataset['idy']>0):
             x=dataset['x'];
@@ -29,14 +33,14 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
 		,name='err-'+str(ii+1)+') '+dataset['x4lbl']+' pt:'+str(len(dataset['x']))
 		,mode="lines"
 		,fill='toself'
-		,fillcolor='rgba('+dataset['myColor']+',0.2)'
+		,fillcolor='rgba('+myColor+',0.2)'
 		,line=dict(width=0)
 #		,showlegend=False
 		)
 
-        #myline=dict(color='rgba('+dataset['myColor']+',0.7)', width=4)
+        #myline=dict(color='rgba('+myColor+',0.7)', width=4)
         if autocolor: myline=dict(width=lwidth)
-        else: myline=dict(color='rgb('+dataset['myColor']+')', width=lwidth)
+        else: myline=dict(color='rgb('+myColor+')', width=lwidth)
         name=str(ii+1)+') '+dataset['x4lbl']
         if showAuth: name+=' '+dataset['AUTH']
         name+=' pt:'+str(len(dataset['x']))
@@ -44,12 +48,12 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
 		,text=dataset['x4lbl']
 #2024		,name=str(ii+1)+') '+dataset['x4lbl']+' pt:'+str(len(dataset['x']))
 		,name=name
-#		,line=dict(color='rgb('+dataset['myColor']+')', width=3)
-#		,line=dict(color='rgba('+dataset['myColor']+',0.7)', width=4, dash='dot')
-#		,line=dict(color='rgba('+dataset['myColor']+',0.7)', width=4, dash='longdashdot')
-#		,line=dict(color='rgba('+dataset['myColor']+',0.7)', width=4, dash='dashdot')
-#		,line=dict(color='rgba('+dataset['myColor']+',0.7)', width=3, dash='dashdot')
-	#	,line=dict(color='rgba('+dataset['myColor']+',0.7)', width=4)
+#		,line=dict(color='rgb('+myColor+')', width=3)
+#		,line=dict(color='rgba('+myColor+',0.7)', width=4, dash='dot')
+#		,line=dict(color='rgba('+myColor+',0.7)', width=4, dash='longdashdot')
+#		,line=dict(color='rgba('+myColor+',0.7)', width=4, dash='dashdot')
+#		,line=dict(color='rgba('+myColor+',0.7)', width=3, dash='dashdot')
+	#	,line=dict(color='rgba('+myColor+',0.7)', width=4)
 		,line=myline
 		,opacity=0.8
 		,mode="lines"
@@ -59,6 +63,7 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
 		)
         try: tr['legendrank']=ii
         except Exception as ex: print('Plotly version: '+plotly.__version__)
+        if myDash is not None: tr['line']['dash']=myDash # dash | dot | dashdot
         if (legendgroup!=''):
             tr.legendgroup=legendgroup
             tr.legendgrouptitle.text="EVALUATED DATA"
@@ -81,6 +86,6 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
                 #print('Plotly version: '+plotly.__version__)
                 data1.append(trErr)
         ii+=1
-        print('Plot:'+str(ii)+'/'+str(ldata)+') '+str(dataset['DatasetID'])+'\t'+str(dataset['x4lbl'])+'\tpt:'+str(len(dataset['x']))+'\tcolor:'+dataset['myColor'])
+        print('Plot:'+str(ii)+'/'+str(ldata)+') '+str(dataset['DatasetID'])+'\t'+str(dataset['x4lbl'])+'\tpt:'+str(len(dataset['x']))+'\tcolor:'+myColor+'\tdash:'+str(myDash))
 
     return data1

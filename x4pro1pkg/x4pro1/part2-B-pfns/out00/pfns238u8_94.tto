@@ -4,7 +4,7 @@
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-10 19:11:55
+Running: 2026-09-13 17:51:52
 
 ---Arguments from command-line---
    1  arg: -o:pfns238u8_94
@@ -194,88 +194,89 @@ select distinct *
 datasets: 1
 --0--treatDatasets: datasets:1 oper:None
 	Dataset:0/1) 92-U-238(N,F),PR,NU/DE 40631005 Pt:80   1980, N.V.Kornilov En=8.94MeV
-  PFNS re-normalisation to Maxwellian 0.2850019157843955
----dataset2mxwRatio---Target:[U-238] 1/FSP=3.5087483438409657
-	    0) E:6.10000e+05 FC:3.66069e-07 y0:3.65087e-07 yy:9.97320e-01
-	    1) E:7.00000e+05 FC:3.66299e-07 y0:3.51692e-07 yy:9.60124e-01
-	    2) E:8.00000e+05 FC:3.63020e-07 y0:3.77058e-07 yy:1.03867e+00
-	    3) E:9.00000e+05 FC:3.56948e-07 y0:3.59957e-07 yy:1.00843e+00
-	    4) E:1.00000e+06 FC:3.48805e-07 y0:3.66797e-07 yy:1.05158e+00
-	    5) E:1.10000e+06 FC:3.39140e-07 y0:3.47702e-07 yy:1.02525e+00
-	    6) E:1.20000e+06 FC:3.28376e-07 y0:3.27467e-07 yy:9.97232e-01
-	    7) E:1.30000e+06 FC:3.16848e-07 y0:3.19202e-07 yy:1.00743e+00
-	    8) E:1.40000e+06 FC:3.04820e-07 y0:2.95547e-07 yy:9.69580e-01
-	    9) E:1.50000e+06 FC:2.92498e-07 y0:2.95262e-07 yy:1.00945e+00
-	   10) E:1.60000e+06 FC:2.80051e-07 y0:2.73545e-07 yy:9.76769e-01
-	   11) E:1.70000e+06 FC:2.67609e-07 y0:2.66448e-07 yy:9.95664e-01
-	   12) E:1.80000e+06 FC:2.55276e-07 y0:2.62202e-07 yy:1.02713e+00
-	   13) E:1.90000e+06 FC:2.43136e-07 y0:2.28002e-07 yy:9.37751e-01
-	   14) E:2.00000e+06 FC:2.31253e-07 y0:2.05914e-07 yy:8.90427e-01
-	   15) E:2.10000e+06 FC:2.19675e-07 y0:2.27859e-07 yy:1.03725e+00
-	   16) E:2.20000e+06 FC:2.08440e-07 y0:2.05401e-07 yy:9.85419e-01
-	   17) E:2.30000e+06 FC:1.97575e-07 y0:1.98646e-07 yy:1.00542e+00
-	   18) E:2.39000e+06 FC:1.88129e-07 y0:1.86705e-07 yy:9.92427e-01
-	   19) E:2.50000e+06 FC:1.77026e-07 y0:1.62793e-07 yy:9.19601e-01
-	   20) E:2.59000e+06 FC:1.68308e-07 y0:1.66470e-07 yy:9.89075e-01
-	   21) E:2.70000e+06 FC:1.58105e-07 y0:1.54186e-07 yy:9.75211e-01
-	   22) E:2.81000e+06 FC:1.48397e-07 y0:1.50139e-07 yy:1.01174e+00
-	   23) E:2.91000e+06 FC:1.39997e-07 y0:1.30246e-07 yy:9.30348e-01
-	   24) E:3.01000e+06 FC:1.31994e-07 y0:1.26712e-07 yy:9.59981e-01
-	   25) E:3.10000e+06 FC:1.25124e-07 y0:1.18846e-07 yy:9.49823e-01
-	   26) E:3.20000e+06 FC:1.17851e-07 y0:1.19273e-07 yy:1.01207e+00
-	   27) E:3.30000e+06 FC:1.10947e-07 y0:1.08500e-07 yy:9.77948e-01
-	   28) E:3.39000e+06 FC:1.05038e-07 y0:9.37656e-08 yy:8.92682e-01
-	   29) E:3.50000e+06 FC:9.81951e-08 y0:9.40506e-08 yy:9.57794e-01
-	   30) E:3.61000e+06 FC:9.17526e-08 y0:8.89206e-08 yy:9.69135e-01
-	   31) E:3.71000e+06 FC:8.62284e-08 y0:8.63556e-08 yy:1.00147e+00
-	   32) E:3.81000e+06 FC:8.10074e-08 y0:7.72355e-08 yy:9.53437e-01
-	   33) E:3.91000e+06 FC:7.60763e-08 y0:7.15355e-08 yy:9.40312e-01
-	   34) E:3.99000e+06 FC:7.23314e-08 y0:7.83755e-08 yy:1.08356e+00
-	   35) E:4.08000e+06 FC:6.83218e-08 y0:7.03955e-08 yy:1.03035e+00
-	   36) E:4.20000e+06 FC:6.32955e-08 y0:6.21304e-08 yy:9.81593e-01
-	   37) E:4.32000e+06 FC:5.86150e-08 y0:5.47204e-08 yy:9.33556e-01
-	   38) E:4.41000e+06 FC:5.53191e-08 y0:5.07303e-08 yy:9.17049e-01
-	   39) E:4.51000e+06 FC:5.18612e-08 y0:5.47204e-08 yy:1.05513e+00
-	   40) E:4.61000e+06 FC:4.86076e-08 y0:5.18703e-08 yy:1.06712e+00
-	   41) E:4.71000e+06 FC:4.55473e-08 y0:3.96153e-08 yy:8.69760e-01
-	   42) E:4.82000e+06 FC:4.23921e-08 y0:4.07553e-08 yy:9.61389e-01
-	   43) E:4.89000e+06 FC:4.04935e-08 y0:4.30353e-08 yy:1.06277e+00
-	   44) E:5.01000e+06 FC:3.74255e-08 y0:4.01853e-08 yy:1.07374e+00
-	   45) E:5.13000e+06 FC:3.45801e-08 y0:4.04703e-08 yy:1.17033e+00
-	   46) E:5.21000e+06 FC:3.27994e-08 y0:3.27752e-08 yy:9.99263e-01
-	   47) E:5.29000e+06 FC:3.11067e-08 y0:3.27752e-08 yy:1.05364e+00
-	   48) E:5.38000e+06 FC:2.93026e-08 y0:3.53402e-08 yy:1.20604e+00
-	   49) E:5.46000e+06 FC:2.77837e-08 y0:3.42002e-08 yy:1.23094e+00
-	   50) E:5.60000e+06 FC:2.53062e-08 y0:2.87852e-08 yy:1.13748e+00
-	   51) E:5.74000e+06 FC:2.30424e-08 y0:2.37122e-08 yy:1.02907e+00
-	   52) E:5.83000e+06 FC:2.16917e-08 y0:1.90951e-08 yy:8.80295e-01
-	   53) E:5.93000e+06 FC:2.02809e-08 y0:1.94371e-08 yy:9.58398e-01
-	   54) E:6.03000e+06 FC:1.89591e-08 y0:2.29142e-08 yy:1.20861e+00
-	   55) E:6.14000e+06 FC:1.76016e-08 y0:2.00356e-08 yy:1.13829e+00
-	   56) E:6.24000e+06 FC:1.64497e-08 y0:1.39936e-08 yy:8.50690e-01
-	   57) E:6.35000e+06 FC:1.52673e-08 y0:1.67581e-08 yy:1.09765e+00
-	   58) E:6.47000e+06 FC:1.40717e-08 y0:1.60741e-08 yy:1.14230e+00
-	   59) E:6.58000e+06 FC:1.30561e-08 y0:1.65871e-08 yy:1.27044e+00
-	   60) E:6.70000e+06 FC:1.20298e-08 y0:1.23976e-08 yy:1.03057e+00
-	   61) E:6.82000e+06 FC:1.10823e-08 y0:1.73851e-08 yy:1.56872e+00
-	   62) E:6.95000e+06 FC:1.01382e-08 y0:8.20806e-09 yy:8.09618e-01
-	   63) E:7.07000e+06 FC:9.33676e-09 y0:1.15141e-08 yy:1.23320e+00
-	   64) E:7.21000e+06 FC:8.47994e-09 y0:1.08016e-08 yy:1.27378e+00
-	   65) E:7.34000e+06 FC:7.75357e-09 y0:1.07446e-08 yy:1.38576e+00
-	   66) E:7.48000e+06 FC:7.03952e-09 y0:1.02316e-08 yy:1.45345e+00
-	   67) E:7.63000e+06 FC:6.34604e-09 y0:1.22266e-08 yy:1.92665e+00
-	   68) E:7.77000e+06 FC:5.75956e-09 y0:9.17706e-09 yy:1.59336e+00
-	   69) E:7.93000e+06 FC:5.15435e-09 y0:1.06021e-08 yy:2.05692e+00
-	   70) E:8.08000e+06 FC:4.64399e-09 y0:8.57856e-09 yy:1.84724e+00
-	   71) E:8.24000e+06 FC:4.15439e-09 y0:7.41005e-09 yy:1.78367e+00
-	   72) E:8.41000e+06 FC:3.68986e-09 y0:4.84503e-09 yy:1.31307e+00
-	   73) E:8.58000e+06 FC:3.27660e-09 y0:6.92555e-09 yy:2.11364e+00
-	   74) E:8.76000e+06 FC:2.88875e-09 y0:4.64553e-09 yy:1.60815e+00
-	   75) E:8.91000e+06 FC:2.60043e-09 y0:5.98504e-09 yy:2.30156e+00
-	   76) E:9.13000e+06 FC:2.22823e-09 y0:2.73602e-09 yy:1.22789e+00
-	   77) E:9.32000e+06 FC:1.94948e-09 y0:1.93801e-09 yy:9.94115e-01
-	   78) E:9.52000e+06 FC:1.69328e-09 y0:1.71001e-09 yy:1.00988e+00
-	   79) E:9.73000e+06 FC:1.46007e-09 y0:2.85002e-09 yy:1.95197e+00
+---getAbs2MxwFactor.Target: U-238  En: 8940000.0  Nubar: 3.682492599999991
+  PFNS re-normalisation to Maxwellian 0.2715551960647531 PC/FIS/MEV
+---dataset2mxwRatio---Target:[U-238] 1/FSP=3.6824925999999913
+	    0) E:6.1e+05     FC:3.6607e-07  y0:3.4786e-07  yy:0.95027    
+	    1) E:7e+05       FC:3.663e-07   y0:3.351e-07   yy:0.91482    
+	    2) E:8e+05       FC:3.6302e-07  y0:3.5927e-07  yy:0.98966    
+	    3) E:9e+05       FC:3.5695e-07  y0:3.4297e-07  yy:0.96085    
+	    4) E:1e+06       FC:3.4881e-07  y0:3.4949e-07  yy:1.002      
+	    5) E:1.1e+06     FC:3.3914e-07  y0:3.313e-07   yy:0.97688    
+	    6) E:1.2e+06     FC:3.2838e-07  y0:3.1202e-07  yy:0.95018    
+	    7) E:1.3e+06     FC:3.1685e-07  y0:3.0414e-07  yy:0.9599     
+	    8) E:1.4e+06     FC:3.0482e-07  y0:2.816e-07   yy:0.92383    
+	    9) E:1.5e+06     FC:2.925e-07   y0:2.8133e-07  yy:0.96182    
+	   10) E:1.6e+06     FC:2.8005e-07  y0:2.6064e-07  yy:0.93068    
+	   11) E:1.7e+06     FC:2.6761e-07  y0:2.5388e-07  yy:0.94869    
+	   12) E:1.8e+06     FC:2.5528e-07  y0:2.4983e-07  yy:0.97867    
+	   13) E:1.9e+06     FC:2.4314e-07  y0:2.1724e-07  yy:0.89351    
+	   14) E:2e+06       FC:2.3125e-07  y0:1.962e-07   yy:0.84842    
+	   15) E:2.1e+06     FC:2.1968e-07  y0:2.1711e-07  yy:0.98832    
+	   16) E:2.2e+06     FC:2.0844e-07  y0:1.9571e-07  yy:0.93893    
+	   17) E:2.3e+06     FC:1.9758e-07  y0:1.8927e-07  yy:0.95798    
+	   18) E:2.39e+06    FC:1.8813e-07  y0:1.779e-07   yy:0.9456     
+	   19) E:2.5e+06     FC:1.7703e-07  y0:1.5511e-07  yy:0.87621    
+	   20) E:2.59e+06    FC:1.6831e-07  y0:1.5862e-07  yy:0.94241    
+	   21) E:2.7e+06     FC:1.5811e-07  y0:1.4691e-07  yy:0.9292     
+	   22) E:2.81e+06    FC:1.484e-07   y0:1.4306e-07  yy:0.964      
+	   23) E:2.91e+06    FC:1.4e-07     y0:1.241e-07   yy:0.88645    
+	   24) E:3.01e+06    FC:1.3199e-07  y0:1.2073e-07  yy:0.91469    
+	   25) E:3.1e+06     FC:1.2512e-07  y0:1.1324e-07  yy:0.90501    
+	   26) E:3.2e+06     FC:1.1785e-07  y0:1.1365e-07  yy:0.96432    
+	   27) E:3.3e+06     FC:1.1095e-07  y0:1.0338e-07  yy:0.93181    
+	   28) E:3.39e+06    FC:1.0504e-07  y0:8.9342e-08  yy:0.85056    
+	   29) E:3.5e+06     FC:9.8195e-08  y0:8.9613e-08  yy:0.9126     
+	   30) E:3.61e+06    FC:9.1753e-08  y0:8.4725e-08  yy:0.92341    
+	   31) E:3.71e+06    FC:8.6228e-08  y0:8.2281e-08  yy:0.95422    
+	   32) E:3.81e+06    FC:8.1007e-08  y0:7.3591e-08  yy:0.90845    
+	   33) E:3.91e+06    FC:7.6076e-08  y0:6.816e-08   yy:0.89595    
+	   34) E:3.99e+06    FC:7.2331e-08  y0:7.4678e-08  yy:1.0324     
+	   35) E:4.08e+06    FC:6.8322e-08  y0:6.7074e-08  yy:0.98174    
+	   36) E:4.2e+06     FC:6.3295e-08  y0:5.9199e-08  yy:0.93528    
+	   37) E:4.32e+06    FC:5.8615e-08  y0:5.2139e-08  yy:0.88951    
+	   38) E:4.41e+06    FC:5.5319e-08  y0:4.8337e-08  yy:0.87378    
+	   39) E:4.51e+06    FC:5.1861e-08  y0:5.2139e-08  yy:1.0053     
+	   40) E:4.61e+06    FC:4.8608e-08  y0:4.9423e-08  yy:1.0168     
+	   41) E:4.71e+06    FC:4.5547e-08  y0:3.7746e-08  yy:0.82872    
+	   42) E:4.82e+06    FC:4.2392e-08  y0:3.8832e-08  yy:0.91603    
+	   43) E:4.89e+06    FC:4.0493e-08  y0:4.1005e-08  yy:1.0126     
+	   44) E:5.01e+06    FC:3.7426e-08  y0:3.8289e-08  yy:1.0231     
+	   45) E:5.13e+06    FC:3.458e-08   y0:3.8561e-08  yy:1.1151     
+	   46) E:5.21e+06    FC:3.2799e-08  y0:3.1229e-08  yy:0.95212    
+	   47) E:5.29e+06    FC:3.1107e-08  y0:3.1229e-08  yy:1.0039     
+	   48) E:5.38e+06    FC:2.9303e-08  y0:3.3673e-08  yy:1.1491     
+	   49) E:5.46e+06    FC:2.7784e-08  y0:3.2587e-08  yy:1.1729     
+	   50) E:5.6e+06     FC:2.5306e-08  y0:2.7427e-08  yy:1.0838     
+	   51) E:5.74e+06    FC:2.3042e-08  y0:2.2593e-08  yy:0.98052    
+	   52) E:5.83e+06    FC:2.1692e-08  y0:1.8194e-08  yy:0.83876    
+	   53) E:5.93e+06    FC:2.0281e-08  y0:1.852e-08   yy:0.91318    
+	   54) E:6.03e+06    FC:1.8959e-08  y0:2.1833e-08  yy:1.1516     
+	   55) E:6.14e+06    FC:1.7602e-08  y0:1.909e-08   yy:1.0846     
+	   56) E:6.24e+06    FC:1.645e-08   y0:1.3333e-08  yy:0.81055    
+	   57) E:6.35e+06    FC:1.5267e-08  y0:1.5967e-08  yy:1.0459     
+	   58) E:6.47e+06    FC:1.4072e-08  y0:1.5316e-08  yy:1.0884     
+	   59) E:6.58e+06    FC:1.3056e-08  y0:1.5805e-08  yy:1.2105     
+	   60) E:6.7e+06     FC:1.203e-08   y0:1.1813e-08  yy:0.98195    
+	   61) E:6.82e+06    FC:1.1082e-08  y0:1.6565e-08  yy:1.4947     
+	   62) E:6.95e+06    FC:1.0138e-08  y0:7.8208e-09  yy:0.77142    
+	   63) E:7.07e+06    FC:9.3368e-09  y0:1.0971e-08  yy:1.175      
+	   64) E:7.21e+06    FC:8.4799e-09  y0:1.0292e-08  yy:1.2137     
+	   65) E:7.34e+06    FC:7.7536e-09  y0:1.0238e-08  yy:1.3204     
+	   66) E:7.48e+06    FC:7.0395e-09  y0:9.7488e-09  yy:1.3849     
+	   67) E:7.63e+06    FC:6.346e-09   y0:1.165e-08   yy:1.8357     
+	   68) E:7.77e+06    FC:5.7596e-09  y0:8.7441e-09  yy:1.5182     
+	   69) E:7.93e+06    FC:5.1543e-09  y0:1.0102e-08  yy:1.9599     
+	   70) E:8.08e+06    FC:4.644e-09   y0:8.1738e-09  yy:1.7601     
+	   71) E:8.24e+06    FC:4.1544e-09  y0:7.0604e-09  yy:1.6995     
+	   72) E:8.41e+06    FC:3.6899e-09  y0:4.6164e-09  yy:1.2511     
+	   73) E:8.58e+06    FC:3.2766e-09  y0:6.5988e-09  yy:2.0139     
+	   74) E:8.76e+06    FC:2.8888e-09  y0:4.4263e-09  yy:1.5323     
+	   75) E:8.91e+06    FC:2.6004e-09  y0:5.7027e-09  yy:2.193      
+	   76) E:9.13e+06    FC:2.2282e-09  y0:2.6069e-09  yy:1.17       
+	   77) E:9.32e+06    FC:1.9495e-09  y0:1.8466e-09  yy:0.94721    
+	   78) E:9.52e+06    FC:1.6933e-09  y0:1.6293e-09  yy:0.96223    
+	   79) E:9.73e+06    FC:1.4601e-09  y0:2.7156e-09  yy:1.8599     
 
 ---Groupping datasets by Reaction-codes---
 ---getReacodes---Datasets: 1
@@ -287,7 +288,7 @@ datasets: 1
 ---Output EXFOR datasets to JSON file---
 Plot:1/1) #40631005 1980, N.V.Kornilov En=8.94MeV pt:80
 
-___webEndfDataForPlot_DADE: [U-238] [N,F] [&mf=5&mt=18&ei=8940000.0]
+___webEndfDataForPlot_DADE: [U-238] [N,F] [&mf=5&mt=18&ei=8940000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-238&Reaction=N,F&Quantity=*&json&mats
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
@@ -305,83 +306,99 @@ SelectedLib-Sect:4) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18,
 SelectedLib-Sect:5) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 57661, 'SectID': 2292450, 'PenSectID': 7665109, 'LibID': 75, 'LibName': 'ENDF/B-VII.1', 'DATE': '20111222', 'AUTH': 'Young,Chadwick,Derrien,Courcelle'}
 SelectedLib-Sect:12) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 226909, 'SectID': 14605442, 'PenSectID': 19241250, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20111206', 'AUTH': 'O.Iwamoto,N.Otuka,S.Chiba,+'}
 SelectedLib-Sect:18) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 118846, 'SectID': 6090633, 'PenSectID': 10752121, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'atyuk A.V.', 'AUTH': 'Nikolaev M.N., Koscheev V.N.'}
-___Required sections:5
+SelectedLib-Sect:38) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 175028, 'SectID': 11052462, 'PenSectID': 15684622, 'LibID': 52030, 'LibName': 'MINKS-ACT', 'DATE': '001', 'AUTH': '001'}
+___Required sections:6
 WebReq:1) EvalID:272577 PenSectID:24020655 Lib:INDEN-Aug2023 Color:0,80,255
-/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0
+/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:1/1)	92-U-238(N,F),DE	INDEN-Aug2023	EID:272577	SID:24020655	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
 Downloaded:DS:1/1)	92-U-238(N,F),DE	INDEN-Aug2023	EID:272577	SID:24020655	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
-WebReq:2) EvalID:149936 PenSectID:13662984 Lib:ENDF/B-VIII.0 Color:0,0,255
-/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0
+WebReq:2) EvalID:149936 PenSectID:13662984 Lib:ENDF/B-VIII.0 Color:0,0,255|dot
+/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:2/1)	92-U-238(N,F),DE	ENDF/B-VIII.0	EID:149936	SID:13662984	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
 Downloaded:DS:2/1)	92-U-238(N,F),DE	ENDF/B-VIII.0	EID:149936	SID:13662984	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
-WebReq:3) EvalID:57661 PenSectID:7665109 Lib:ENDF/B-VII.1 Color:80,0,255
-/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0
+WebReq:3) EvalID:57661 PenSectID:7665109 Lib:ENDF/B-VII.1 Color:80,0,255|dashdot
+/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:3/1)	92-U-238(N,F),DE	ENDF/B-VII.1	EID:57661	SID:7665109	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
 Downloaded:DS:3/1)	92-U-238(N,F),DE	ENDF/B-VII.1	EID:57661	SID:7665109	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
 WebReq:4) EvalID:226909 PenSectID:19241250 Lib:JENDL-5 Color:0,255,0
-/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0
+/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:4/1)	92-U-238(N,F),DE	JENDL-5	EID:226909	SID:19241250	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
 Downloaded:DS:4/1)	92-U-238(N,F),DE	JENDL-5	EID:226909	SID:19241250	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
 WebReq:5) EvalID:118846 PenSectID:10752121 Lib:BROND-3.1 Color:255,0,255
-/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0
+/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:5/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591
 Downloaded:DS:5/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591	idy=0
----e4datasets: 5
-Plot:1/5) 24020655	INDEN-Aug2023 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,80,255
-Plot:2/5) 13662984	ENDF/B-VIII.0 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,0,255
-Plot:3/5) 7665109	ENDF/B-VII.1 Ei8.94E+6 (T=1.32MeV)	pt:641	color:80,0,255
-Plot:4/5) 19241250	JENDL-5 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,255,0
-Plot:5/5) 10752121	BROND-3.1 Ei8.94E+6 (T=1.32MeV)	pt:591	color:255,0,255
+WebReq:6) EvalID:175028 PenSectID:15684622 Lib:MINKS-ACT Color:127,127,127
+/servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:6/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
+Downloaded:DS:6/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
+---e4datasets: 6
+Plot:1/6) 24020655	INDEN-Aug2023 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,80,255	dash:None
+Plot:2/6) 13662984	ENDF/B-VIII.0 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,0,255	dash:dot
+Plot:3/6) 7665109	ENDF/B-VII.1 Ei8.94E+6 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
+Plot:4/6) 19241250	JENDL-5 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,255,0	dash:None
+Plot:5/6) 10752121	BROND-3.1 Ei8.94E+6 (T=1.32MeV)	pt:591	color:255,0,255	dash:None
+Plot:6/6) 15684622	MINKS-ACT Ei8.94E+6 (T=1.32MeV)	pt:324	color:127,127,127	dash:None
 --0--getUnits--- EV 1000000.0
 --A--getUnits--- EV 1000000.0
 --1--getUnits--- EV 1000000.0  Category: E

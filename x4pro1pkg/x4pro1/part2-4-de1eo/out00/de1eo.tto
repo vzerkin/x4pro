@@ -2,7 +2,7 @@ Program: de1eo.py, ver. 2024-09-02
 Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2024
 Purpose: Retrieve and plot EXFOR/ENDF energy spectra of outgoing particles
 
-Running: 2026-09-10 19:05:06
+Running: 2026-09-13 17:45:12
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -333,12 +333,12 @@ Download...DS:3/2)	90-Th-232(N,X),DE	BROND-3.1	EID:118835	SID:10751069	f(x):DE(E
 Downloaded:DS:3/2)	90-Th-232(N,X),DE	BROND-3.1	EID:118835	SID:10751069	f(x):DE(Eo)	pts:7720	idy=0
 Download...DS:3/2)	90-Th-232(N,X),DE	BROND-3.1	EID:118835	SID:10751069	f(x):DE(Eo)	pts:7788
 Downloaded:DS:3/2)	90-Th-232(N,X),DE	BROND-3.1	EID:118835	SID:10751069	f(x):DE(Eo)	pts:7788	idy=0
-Plot:1/6) 13774942	JEFF-3.3 Ei1.40E+7	pt:40890	color:0,255,255
-Plot:2/6) 13774942	JEFF-3.3 Ei1.80E+7	pt:27120	color:0,255,255
-Plot:3/6) 19239458	JENDL-5 Ei1.40E+7	pt:7720	color:0,255,0
-Plot:4/6) 19239458	JENDL-5 Ei1.80E+7	pt:7786	color:0,255,0
-Plot:5/6) 10751069	BROND-3.1 Ei1.40E+7	pt:7720	color:255,0,255
-Plot:6/6) 10751069	BROND-3.1 Ei1.80E+7	pt:7788	color:255,0,255
+Plot:1/6) 13774942	JEFF-3.3 Ei1.40E+7	pt:40890	color:0,255,255	dash:None
+Plot:2/6) 13774942	JEFF-3.3 Ei1.80E+7	pt:27120	color:0,255,255	dash:None
+Plot:3/6) 19239458	JENDL-5 Ei1.40E+7	pt:7720	color:0,255,0	dash:None
+Plot:4/6) 19239458	JENDL-5 Ei1.80E+7	pt:7786	color:0,255,0	dash:None
+Plot:5/6) 10751069	BROND-3.1 Ei1.40E+7	pt:7720	color:255,0,255	dash:None
+Plot:6/6) 10751069	BROND-3.1 Ei1.80E+7	pt:7788	color:255,0,255	dash:None
 Will try---write_image: de1eo.html.png
 
 Program successfully completed

@@ -23,7 +23,7 @@ from endf2plot  import *
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac2pfns.py, ver.2026-09-06   |')
+    print('  | Program: reac2pfns.py, ver.2026-09-13   |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -74,6 +74,7 @@ def main():
     dsids=None
     aprod=None #product in SF4 or DATA(ELEM/MASS)
     oper=None
+    Tmxw=1.32e6
 
     def str2float(str1):
         if str1 is None: return None
@@ -127,6 +128,7 @@ def main():
         print('   '+str(ii).ljust(2)+" arg: "+arg)
         if arg=='-xlog': xtype='log';  continue
         if arg=='-ylog': ytype='log';  continue
+        if arg.startswith('-T:'):  Tmxw=str2float(arg[3:]);        continue
         if arg.startswith('-x1:'): x1max=x1min=str2float(arg[4:]); continue
         if arg.startswith('-x2:'): x2max=x2min=str2float(arg[4:]); continue
         if arg.startswith('-x3:'): x3max=x3min=str2float(arg[4:]); continue
@@ -211,8 +213,10 @@ def main():
     print_reacodes(dbConn,conn,reacodes,add2Where=x4where0)
 
     print("\n---Retrieve EXFOR data from SQL database---")
+    sys.stderr.write("---Retrieve EXFOR data from SQL database---\n")
     rows=getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,x4ei,usr2where=usr2where)
     print("   Retrieved rows: "+str(len(rows)))
+    sys.stderr.write("   Retrieved rows: "+str(len(rows))+"\n")
 
     print("\n---Extract EXFOR data from recordsets (rows)---")
     datasets=getDatasets4plot(rows,xn,fx=1/fx,fy=1/fy)
@@ -221,7 +225,7 @@ def main():
     if (ldata<=0):
         print("---No data found---")
         sys.exit(2)
-    #sys.exit(2)
+#   print(json.dumps(datasets[0],indent=2))
 
     if nPntMin>1:
         print("\n---filter only large datasets:"+str(len(datasets))+' nPntMin='+str(nPntMin))
@@ -253,15 +257,14 @@ def main():
 
 
 
-
     #_________________Retrieve ENDF_________________
     data2=[]
     e4datasets=[]
     reqLibs={
 #	'ENDF/B-VIII.1':"0,80,255",
-	'ENDF/B-VIII.0':"0,0,255",
+	'ENDF/B-VIII.0':"0,0,255|dot",	#dash | dot | dashdot
 #	'ENDF/B-VIII.1':"0,0,255",
-	'ENDF/B-VII.1':"80,0,255",
+	'ENDF/B-VII.1':"80,0,255|dashdot",
 	'INDEN-Aug2023':"0,80,255",
 	'JENDL-5':"0,255,0",
 #	'JEFF-4.0':"255,0,0",
@@ -270,8 +273,9 @@ def main():
 #	'JEF-2.2':"0,255,255",
 #	'CENDL-3.2':"255,0,0"
 #	'CENDL-2':"255,0,0"
-	'BROND-3.1':"255,0,255"
+	'BROND-3.1':"255,0,255",
 #	'ENDF/B-V':"127,127,127"
+	'MINKS-ACT':"127,127,127"
 	}
     if flagEndf:
         target=datasets[0]['Target']
@@ -279,18 +283,22 @@ def main():
         g0=datasets[0]['g0']
 #       e4webparam="&mf=5&mt=18&ei=0.0253"
         e4webparam="&mf=5&mt=18&ei="+str(g0)
-        add2title=" (T=1.32MeV)"
+#       add2title=" (T=1.32MeV)"
+        add2title=" (T="+format(Tmxw/1e6,"<.5g").strip()+"MeV)"
+        e4webparam+="&T="+str(Tmxw)
 
         if showSpectra:
             e4webparam+="&T=0"
             add2title=""
 
         #_________________Retrieve ENDF_________________
+        sys.stderr.write("---Retrieve data from remote ENDF server---\n")
 #       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1,quantPrexix="")
 #       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/10*2,quantPrexix="",add2title=add2title)
 #       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/2,quantPrexix="",add2title=add2title)
         e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/fy,quantPrexix="",add2title=add2title)
         print('---e4datasets:',len(e4datasets))
+        sys.stderr.write("   Retrieved ENDF datasets: "+str(len(e4datasets))+"\n")
         #_________________Preparing ENDF data for plot_________________
         data2=prepareEndfDataForPlot(e4datasets,'',True,lwidth=3,showAuth=True)
 
@@ -325,7 +333,7 @@ def main():
 
     myOfflinePlot(data1+data2
 	,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-02 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-13 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype

@@ -2,7 +2,7 @@ Program: nubar.py, ver. 2026-08-24
 Author:  V.Zerkin, Vienna, 2026
 Purpose: Retrieve and plot EXFOR and ENDF nu-bar data
 
-Running: 2026-09-10 19:08:01
+Running: 2026-09-13 17:48:06
 
 
 ---Arguments from command-line---
@@ -96,12 +96,26 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 format=WebEndfSectionsList-0.1
 ___Retrieved sections:45
+SelectedLib-Sect:3) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-238(N,nu_p),INFO', 'EvalID': 301562, 'SectID': 21470960, 'PenSectID': 26213711, 'LibID': 810, 'LibName': 'ENDF/B-VIII.1', 'DATE': '20240830', 'AUTH': 'Inden Consortium, Ornl, Lanl'}
 SelectedLib-Sect:4) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-238(N,nu_p),INFO', 'EvalID': 149936, 'SectID': 9025222, 'PenSectID': 13662975, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'IAEA Consortium'}
 SelectedLib-Sect:11) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-238(N,nu_p),INFO', 'EvalID': 23215, 'SectID': 559111, 'PenSectID': 7574924, 'LibID': 3100, 'LibName': 'JEFF-3.1', 'DATE': '090105', 'AUTH': 'Lopez-Jimenez, Morillon, Romain'}
 SelectedLib-Sect:18) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-238(N,nu_p),INFO', 'EvalID': 118846, 'SectID': 6090624, 'PenSectID': 10752112, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'atyuk A.V.', 'AUTH': 'Nikolaev M.N., Koscheev V.N.'}
-SelectedLib-Sect:37) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 456, 'MF': 1, 'R': 'N,nu_p', 'RC': 'U-238(N,nu_p),INFO', 'EvalID': 78568, 'SectID': 3093794, 'PenSectID': 6551485, 'LibID': 50, 'LibName': 'ENDF/B-V', 'DATE': '0', 'AUTH': 'E.Pennington,A.Smith,W.Poenitz'}
 ___Required sections:4
-WebReq:1) EvalID:149936 PenSectID:13662975 Lib:ENDF/B-VIII.0 Color:0,0,255
+WebReq:1) EvalID:301562 PenSectID:26213711 Lib:ENDF/B-VIII.1 Color:0,80,255
+/servlet/E4sGetSectData?EvalID=301562&PenSectID=26213711&json
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=301562&PenSectID=26213711&json
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=301562&PenSectID=26213711&json'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=301562&PenSectID=26213711&json
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:1/1)		ENDF/B-VIII.1	EID:301562	SID:26213711	f(x):Prompt nu-bar	pts:25
+Downloaded:DS:1/1)		ENDF/B-VIII.1	EID:301562	SID:26213711	f(x):Prompt nu-bar	pts:25	idy=25
+WebReq:2) EvalID:149936 PenSectID:13662975 Lib:ENDF/B-VIII.0 Color:0,0,255
 /servlet/E4sGetSectData?EvalID=149936&PenSectID=13662975&json
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662975&json
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -113,9 +127,9 @@ Connected to: [sqlite3]
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
-Download...DS:1/1)		ENDF/B-VIII.0	EID:149936	SID:13662975	f(x):Prompt nu-bar	pts:43
-Downloaded:DS:1/1)		ENDF/B-VIII.0	EID:149936	SID:13662975	f(x):Prompt nu-bar	pts:43	idy=43
-WebReq:2) EvalID:23215 PenSectID:7574924 Lib:JEFF-3.1 Color:0,255,255
+Download...DS:2/1)		ENDF/B-VIII.0	EID:149936	SID:13662975	f(x):Prompt nu-bar	pts:43
+Downloaded:DS:2/1)		ENDF/B-VIII.0	EID:149936	SID:13662975	f(x):Prompt nu-bar	pts:43	idy=43
+WebReq:3) EvalID:23215 PenSectID:7574924 Lib:JEFF-3.1 Color:0,255,255
 /servlet/E4sGetSectData?EvalID=23215&PenSectID=7574924&json
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=23215&PenSectID=7574924&json
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -127,9 +141,9 @@ Connected to: [sqlite3]
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
-Download...DS:2/1)		JEFF-3.1	EID:23215	SID:7574924	f(x):Prompt nu-bar	pts:111
-Downloaded:DS:2/1)		JEFF-3.1	EID:23215	SID:7574924	f(x):Prompt nu-bar	pts:111	idy=0
-WebReq:3) EvalID:118846 PenSectID:10752112 Lib:BROND-3.1 Color:255,0,255
+Download...DS:3/1)		JEFF-3.1	EID:23215	SID:7574924	f(x):Prompt nu-bar	pts:111
+Downloaded:DS:3/1)		JEFF-3.1	EID:23215	SID:7574924	f(x):Prompt nu-bar	pts:111	idy=0
+WebReq:4) EvalID:118846 PenSectID:10752112 Lib:BROND-3.1 Color:255,0,255
 /servlet/E4sGetSectData?EvalID=118846&PenSectID=10752112&json
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752112&json
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -141,27 +155,13 @@ Connected to: [sqlite3]
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
-Download...DS:3/1)		BROND-3.1	EID:118846	SID:10752112	f(x):Prompt nu-bar	pts:11
-Downloaded:DS:3/1)		BROND-3.1	EID:118846	SID:10752112	f(x):Prompt nu-bar	pts:11	idy=11
-WebReq:4) EvalID:78568 PenSectID:6551485 Lib:ENDF/B-V Color:127,127,127
-/servlet/E4sGetSectData?EvalID=78568&PenSectID=6551485&json
----wgetdb_get:/servlet/E4sGetSectData?EvalID=78568&PenSectID=6551485&json
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
-
----wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=78568&PenSectID=6551485&json'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=78568&PenSectID=6551485&json
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
-Download...DS:4/1)		ENDF/B-V	EID:78568	SID:6551485	f(x):Prompt nu-bar	pts:31
-Downloaded:DS:4/1)		ENDF/B-V	EID:78568	SID:6551485	f(x):Prompt nu-bar	pts:31	idy=31
+Download...DS:4/1)		BROND-3.1	EID:118846	SID:10752112	f(x):Prompt nu-bar	pts:11
+Downloaded:DS:4/1)		BROND-3.1	EID:118846	SID:10752112	f(x):Prompt nu-bar	pts:11	idy=11
 ---e4datasets: 4
-Plot:1/4) 13662975	ENDF/B-VIII.0	pt:43	color:0,0,255
-Plot:2/4) 7574924	JEFF-3.1	pt:111	color:0,255,255
-Plot:3/4) 10752112	BROND-3.1	pt:11	color:255,0,255
-Plot:4/4) 6551485	ENDF/B-V	pt:31	color:127,127,127
+Plot:1/4) 26213711	ENDF/B-VIII.1	pt:25	color:0,80,255	dash:None
+Plot:2/4) 13662975	ENDF/B-VIII.0	pt:43	color:0,0,255	dash:None
+Plot:3/4) 7574924	JEFF-3.1	pt:111	color:0,255,255	dash:None
+Plot:4/4) 10752112	BROND-3.1	pt:11	color:255,0,255	dash:None
 Plot:1/29) #330840031 2015, V.V.Desai pt:3
 Plot:2/29) #330840041 2015, V.V.Desai pt:3
 Plot:3/29) #14384002 2014, B.Laurent pt:21

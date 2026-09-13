@@ -2,7 +2,7 @@ Program: x13597002.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Apply experts corrections from database to EXFOR data
 
-Running: 2026-09-10 19:14:48
+Running: 2026-09-13 17:55:54
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -288,9 +288,9 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-09-10T19:14:39.000Z" 
+ ,"now":"2026-09-13T17:55:48.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":2535
+ ,"req":2757
 ,"sections":[
  { "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":301162,"SectID":21398231,"PenSectID":26232896,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"N.Iwamoto"}
 ,{ "Targ":"ZN-64","ZT":30,"AT":64,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"ZN-64(N,P)CU-64,SIG","EvalID":149537,"SectID":8958164,"PenSectID":13602409,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"N.Iwamoto"}
@@ -366,9 +366,9 @@ Connected to: [sqlite3]
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Downloaded:3)	ZN-64(N,P)CU-64,SIG	IAEA-Therapeutic	PenSectID:19523192	pts:69	idy=68
-Plot:1/3) 13602409	ENDF/B-VIII.0	pt:181	color:0,0,255
-Plot:2/3) 24042301	JENDL-5	pt:1580	color:0,255,0
-Plot:3/3) 19523192	IAEA-Therapeutic	pt:69	color:255,0,0
+Plot:1/3) 13602409	ENDF/B-VIII.0	pt:181	color:0,0,255	dash:None
+Plot:2/3) 24042301	JENDL-5	pt:1580	color:0,255,0	dash:None
+Plot:3/3) 19523192	IAEA-Therapeutic	pt:69	color:255,0,0	dash:None
 Will try---write_image: expert1.html.png
 
 Program successfully completed

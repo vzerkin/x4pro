@@ -198,7 +198,7 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
         Author1=Author1.replace("`","'")
         yy=row['YY'];   dyy=row['dYY']
         xx=row['XX'];   dxx=row['dXX']
-#       if DatasetID=='14430002' and xx==11.5e6: continue #remove data point from preliminary report
+        if DatasetID=='14430002' and xx==11.5e6: continue #remove data point from preliminary report
         ShortHelp=row['ShortHelp']
         if ShortHelp is None: ShortHelp=''
         xBasicUnits=row['xBasicUnits']
@@ -215,6 +215,7 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
         if yval=='2': grp=' /data-min/'
         if yval=='3': grp=' /data-max/'
         ig=0; g0=0; g1=0
+        paramIndVars={}
         for i in range(1,5+1):
             xi='x'+str(i)
             if xi==xn: continue
@@ -225,6 +226,7 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
             if ig==0: g0=xival
             if ig==1: g1=xival
             ig+=1
+            paramIndVars[xifam]=xival
             if xiunt=='EV':
 #                smev="{:.6e}".format(xival/1e6)
 #                smev="{:.4e}".format(xival/1e6)
@@ -278,8 +280,11 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
             nowDataset['yformula']=yformula
             nowDataset['DatasetSplit']=''
 #?          nowDataset['DatasetSplit']=nowDatasetSplit
+            if TNrm is not None: nowDataset['Tm']=TNrm
             nowDataset['g0']=g0
             nowDataset['g1']=g1
+            for vv in paramIndVars:
+                nowDataset[vv]=paramIndVars[vv]
             nowDataset['YearRef1']=YearRef1
             nowDataset['Author1Ini']=Author1Ini
             nowDataset['Author1']=Author1

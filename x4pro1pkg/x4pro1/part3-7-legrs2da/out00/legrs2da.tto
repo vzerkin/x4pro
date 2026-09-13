@@ -2,7 +2,7 @@ Program: da1an.py, ver. 2022-11-15
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Retrieve and plot EXFOR/ENDF angular distributions
 
-Running: 2026-09-10 19:15:29
+Running: 2026-09-13 17:56:35
 
 ---Preparing connection to EXFOR SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -231,12 +231,12 @@ Download...DS:3/2)	29-Cu-0(N,EL),DA	ENDF/B-V	EID:78337	SID:6544261	f(x):DA(A)	pt
 Downloaded:DS:3/2)	29-Cu-0(N,EL),DA	ENDF/B-V	EID:78337	SID:6544261	f(x):DA(A)	pts:9	idy=0
 Download...DS:3/2)	29-Cu-0(N,EL),DA	ENDF/B-V	EID:78337	SID:6544261	f(x):DA(A)	pts:36
 Downloaded:DS:3/2)	29-Cu-0(N,EL),DA	ENDF/B-V	EID:78337	SID:6544261	f(x):DA(A)	pts:36	idy=0
-Plot:1/6) 18851560	CENDL-3.2 Ei2.53E+5	pt:25	color:255,0,0
-Plot:2/6) 18851560	CENDL-3.2 Ei1.50E+6	pt:25	color:255,0,0
-Plot:3/6) 6641691	JENDL-3.2 Ei2.53E+5	pt:26	color:0,255,0
-Plot:4/6) 6641691	JENDL-3.2 Ei1.50E+6	pt:42	color:0,255,0
-Plot:5/6) 6544261	ENDF/B-V Ei2.53E+5	pt:9	color:0,0,255
-Plot:6/6) 6544261	ENDF/B-V Ei1.50E+6	pt:36	color:0,0,255
+Plot:1/6) 18851560	CENDL-3.2 Ei2.53E+5	pt:25	color:255,0,0	dash:None
+Plot:2/6) 18851560	CENDL-3.2 Ei1.50E+6	pt:25	color:255,0,0	dash:None
+Plot:3/6) 6641691	JENDL-3.2 Ei2.53E+5	pt:26	color:0,255,0	dash:None
+Plot:4/6) 6641691	JENDL-3.2 Ei1.50E+6	pt:42	color:0,255,0	dash:None
+Plot:5/6) 6544261	ENDF/B-V Ei2.53E+5	pt:9	color:0,0,255	dash:None
+Plot:6/6) 6544261	ENDF/B-V Ei1.50E+6	pt:36	color:0,0,255	dash:None
 Will try---write_image: Cu0nel_da.html.png
 
 Program successfully completed

@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-10T19:12:54"
+  "now":"2026-09-13T17:52:58"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -659,7 +659,7 @@
   }
   ,{
      "DatasetID":13664491
-    ,"myColor":"0,0,255"
+    ,"myColor":"0,0,255|dot"
     ,"TARGET":"PU-239"
     ,"MF":5
     ,"MT":18
@@ -1265,7 +1265,7 @@
   }
   ,{
      "DatasetID":7666460
-    ,"myColor":"80,0,255"
+    ,"myColor":"80,0,255|dashdot"
     ,"TARGET":"PU-239"
     ,"MF":5
     ,"MT":18

@@ -1,7 +1,7 @@
 Program: myplot.py, ver.2026-09-02
 Author:  V.Zerkin, Vienna, 2025-2026
 Purpose: Plot EXFOR/ENDF/MyData
-Running: 2026-09-10 19:10:36
+Running: 2026-09-13 17:50:34
 
 ---arg[0]:../myplot1.py
 ---arg[1]:Pu239-eta
@@ -43,8 +43,8 @@ Plot:18/21) #40639003 1961, N.N.Flerov pt:1
 Plot:19/21) #40385010 1958, V.N.Andreev pt:3
 Plot:20/21) #403500041 1956, P.E.Spivak pt:3
 Plot:21/21) #403500042 1956, P.E.Spivak pt:2
-Plot:1/2) 13664480	ENDF/B-VIII.0	pt:3168	color:0,0,255
-Plot:2/2) 26472261	JEFF-4.0	pt:3432	color:255,0,0
+Plot:1/2) 13664480	ENDF/B-VIII.0	pt:3168	color:0,0,255	dash:None
+Plot:2/2) 26472261	JEFF-4.0	pt:3432	color:255,0,0	dash:None
 Open Page:  file:///G:\projects\zerkin\pdev\x4pro7-dist\x4pro15\part2-A-eta/Pu239-eta-myplot.html
 
 Program successfully completed

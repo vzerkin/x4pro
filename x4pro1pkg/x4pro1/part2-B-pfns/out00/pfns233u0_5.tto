@@ -1,0 +1,399 @@
+  +-----------------------------------------+
+  | Program: reac2pfns.py, ver.2026-09-06   |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-09-13 17:50:56
+
+---Arguments from command-line---
+   1  arg: -o:pfns233u0_5
+   2  arg: -x:x2
+   3  arg: -x1:0.55e6
+   4  arg: -fx:1e6
+   5  arg: -xmin:0.002
+   6  arg: -xmax:50
+   7  arg: -ymin:0.55
+   8  arg: -ymax:1.4
+   9  arg: -xlog
+   10 arg: -lines
+   11 arg: -sym
+   12 arg: -annot:0.1,1.35,<sup>233</sup>U(n<sub>0.5MeV</sub>,f)PFNS
+   ---str2annot:[0.1,1.35,<sup>233</sup>U(n<sub>0.5MeV</sub>,f)PFNS] --> ('<sup>233</sup>U(n<sub>0.5MeV</sub>,f)PFNS', 0.1, 1.35)
+   13 arg: 92-U-233(N,F),PR,NU/DE
+   14 arg: 92-U-233(N,F),PR,NU/DE,,MXD
+   15 arg: 92-U-233(N,F),PR,NU/DE,,REL
+
+---Input:
+   Reaction:  ['92-U-233(N,F),PR,NU/DE', '92-U-233(N,F),PR,NU/DE,,MXD', '92-U-233(N,F),PR,NU/DE,,REL']
+   xn:        x2
+   x1range:   550000.0 - 550000.0
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        1
+   nPntMin:   1
+   xrange:    [0.002, 50.0]
+   yrange:    [0.55, 1.4]
+   Output:    pfns233u0_5
+   x4ei:       and x1>=550000.0 and x1<=550000.0
+   legendInside:  False
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 15
+----1.
+    fullCode       92-U-233(N,F),PR,NU/DE
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   PC/FIS/MEV Data: data                           ///particl. per 100 fissions per MeV
+    x1    SpE      EV         Incident energy: spectrum energy     ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+----2.
+    fullCode       92-U-233(N,F),PR,NU/DE,,MXD
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   NO-DIM     Data: data                           ///no Dimensions
+    x1    SpE      EV         Incident energy: spectrum energy     ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+----8.
+    fullCode       92-U-233(N,F),PR,NU/DE,,REL
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   ARB-UNITS  Data: data                           ///arbitrary Units
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+/Summary of Reaction-Codes
+Summary of Units 4
+---basicUnits:PC/FIS/MEV  category:FYDE
+   FYDE 1/3   PC/FIS/MEV  1e-08           particl. per 100 fissions per MeV
+   FYDE 2/3   PD/FIS/MEV  1e-06           products per fission per MeV
+   FYDE 3/3   PT/FIS/MEV  1e-06           particles per fission per MeV
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+---basicUnits:NO-DIM      category:NO
+   NO   1/1   NO-DIM      1.0             no Dimensions
+---basicUnits:ARB-UNITS   category:NO
+   NO   1/1   NO-DIM      1.0             no Dimensions
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['92-U-233(N,F),PR,NU/DE', '92-U-233(N,F),PR,NU/DE,,MXD', '92-U-233(N,F),PR,NU/DE,,REL']
+SQL:
+select distinct *                                          
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
+ ,y  as YY, dy  as dYY                                     
+ ,x2 as XX, dx2 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ ,json_extract(x4cdat.xdat,'$.KT-NRM') as KT_NRM           
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ inner join x4pro_x4cdat as x4cdat on x4cdat.DatasetID=uni2.DatasetID        
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x2'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+  (fullCode like '92-U-233(N,F),PR,NU/DE')
+ or (fullCode like '92-U-233(N,F),PR,NU/DE,,MXD')
+ or (fullCode like '92-U-233(N,F),PR,NU/DE,,REL')
+ ) 
+ and x1>=550000.0 and x1<=550000.0   order by fullCode,YearRef1 desc,DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 66
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:66 xn=x2  fx=1.0e-06 fy=1.0e+00
+
+-new-1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura y=DATA(EN,E2)
+   1/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:0.75        y:0.0011201   dy:3.5929e-05 dx:0.05
+   2/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:0.85        y:0.0010452   dy:2.2809e-05 dx:0.05
+   3/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:0.95        y:0.0010452   dy:1.9019e-05 dx:0.05
+   4/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.05        y:0.0011628   dy:1.9123e-05 dx:0.05
+   5/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.15        y:0.00097146  dy:1.5261e-05 dx:0.05
+   6/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.25        y:0.0010487   dy:1.5995e-05 dx:0.05
+   7/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.35        y:0.0010839   dy:1.642e-05 dx:0.05
+   8/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.45        y:0.00098546  dy:1.4907e-05 dx:0.05
+   9/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.55        y:0.00088211  dy:1.3291e-05 dx:0.05
+  10/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.65        y:0.00091748  dy:1.3923e-05 dx:0.05
+  11/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.75        y:0.00085103  dy:1.3033e-05 dx:0.05
+  12/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.85        y:0.00080115  dy:1.2483e-05 dx:0.05
+  13/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:1.95        y:0.00075244  dy:1.1893e-05 dx:0.05
+  14/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.05        y:0.00076763  dy:1.2267e-05 dx:0.05
+  15/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.15        y:0.00069816  dy:1.1341e-05 dx:0.05
+  16/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.25        y:0.00067333  dy:1.1227e-05 dx:0.05
+  17/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.35        y:0.00065234  dy:1.0983e-05 dx:0.05
+  18/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.45        y:0.00061036  dy:1.0544e-05 dx:0.05
+  19/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.55        y:0.00057043  dy:1.0148e-05 dx:0.05
+  20/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.65        y:0.00055229  dy:9.9731e-06 dx:0.05
+  21/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.75        y:0.00052515  dy:9.6902e-06 dx:0.05
+  22/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.85        y:0.00049247  dy:9.3453e-06 dx:0.05
+  23/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:2.95        y:0.00044832  dy:8.8703e-06 dx:0.05
+  24/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.05        y:0.00042503  dy:8.6273e-06 dx:0.05
+  25/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.15        y:0.00041258  dy:8.5098e-06 dx:0.05
+  26/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.25        y:0.0003963   dy:8.3491e-06 dx:0.05
+  27/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.35        y:0.00035016  dy:7.8418e-06 dx:0.05
+  28/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.45        y:0.00033809  dy:7.7251e-06 dx:0.05
+  29/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.55        y:0.00031969  dy:7.5216e-06 dx:0.05
+  30/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.65        y:0.00028837  dy:7.1476e-06 dx:0.05
+  31/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.75        y:0.00028368  dy:7.0942e-06 dx:0.05
+  32/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.85        y:0.00026101  dy:6.8179e-06 dx:0.05
+  33/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:3.95        y:0.00024481  dy:6.6181e-06 dx:0.05
+  34/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.05        y:0.00022285  dy:6.3442e-06 dx:0.05
+  35/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.15        y:0.00020626  dy:6.1384e-06 dx:0.05
+  36/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.25        y:0.00020529  dy:6.1386e-06 dx:0.05
+  37/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.35        y:0.00018958  dy:5.9397e-06 dx:0.05
+  38/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.45        y:0.00017712  dy:5.7812e-06 dx:0.05
+  39/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.55        y:0.00016362  dy:5.6056e-06 dx:0.05
+  40/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.65        y:0.00014822  dy:5.3985e-06 dx:0.05
+  41/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.75        y:0.00014438  dy:5.3581e-06 dx:0.05
+  42/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.85        y:0.00013524  dy:5.2373e-06 dx:0.05
+  43/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:4.95        y:0.00012435  dy:5.0865e-06 dx:0.05
+  44/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.05        y:0.00011633  dy:4.9718e-06 dx:0.05
+  45/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.15        y:0.0001085   dy:4.8522e-06 dx:0.05
+  46/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.25        y:9.9844e-05  dy:4.7158e-06 dx:0.05
+  47/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.35        y:9.7993e-05  dy:4.6917e-06 dx:0.05
+  48/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.45        y:8.9928e-05  dy:4.5606e-06 dx:0.05
+  49/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.55        y:8.6554e-05  dy:4.504e-06 dx:0.05
+  50/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.65        y:7.927e-05   dy:4.3713e-06 dx:0.05
+  51/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.75        y:6.5782e-05  dy:4.1177e-06 dx:0.05
+  52/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.85        y:6.1471e-05  dy:4.0314e-06 dx:0.05
+  53/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:5.95        y:6.525e-05   dy:4.1023e-06 dx:0.05
+  54/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:6.05        y:5.9582e-05  dy:3.9933e-06 dx:0.05
+  55/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:6.35        y:4.6511e-05  dy:1.7254e-06 dx:0.25
+  56/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:6.85        y:3.2358e-05  dy:1.574e-06 dx:0.25
+  57/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:7.35        y:2.2746e-05  dy:1.426e-06 dx:0.25
+  58/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:7.85        y:1.612e-05   dy:1.2938e-06 dx:0.25
+  59/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:8.35        y:1.1506e-05  dy:9.9986e-07 dx:0.25
+  60/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:8.85        y:8.4768e-06  dy:9.3189e-07 dx:0.25
+  61/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:9.35        y:5.4183e-06  dy:8.5846e-07 dx:0.25
+  62/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:9.85        y:4.4895e-06  dy:8.3448e-07 dx:0.25
+  63/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:10.35       y:3.77e-06    dy:8.1184e-07 dx:0.25
+  64/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:10.85       y:2.1192e-06  dy:7.601e-07 dx:0.25
+  65/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:11.35       y:1.5689e-06  dy:7.3836e-07 dx:0.25
+  66/66:1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 En=0.55MeV 2002 Miura x:11.85       y:1.1077e-06  dy:7.1917e-07 dx:0.25
+---outDatasets:1 datasets:1
+---ENTRY: 22688*;
+datasets: 1
+--0--treatDatasets: datasets:1 oper:None
+	Dataset:0/1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 Pt:66   2002, T.Miura En=0.55MeV
+  PFNS re-normalisation to Maxwellian 0.0003234249044325085 ARB-UNITS
+---dataset2mxwRatio---Target:[U-233] 1/FSP=3091.9078472161304
+	    0) E:7.5e+05     FC:3.6506e-07  y0:3.6227e-07  yy:0.99235    
+	    1) E:8.5e+05     FC:3.6028e-07  y0:3.3804e-07  yy:0.93827    
+	    2) E:9.5e+05     FC:3.531e-07   y0:3.3804e-07  yy:0.95736    
+	    3) E:1.05e+06    FC:3.4413e-07  y0:3.7608e-07  yy:1.0928     
+	    4) E:1.15e+06    FC:3.3387e-07  y0:3.1419e-07  yy:0.94106    
+	    5) E:1.25e+06    FC:3.2269e-07  y0:3.3918e-07  yy:1.0511     
+	    6) E:1.35e+06    FC:3.1088e-07  y0:3.5056e-07  yy:1.1276     
+	    7) E:1.45e+06    FC:2.9868e-07  y0:3.1872e-07  yy:1.0671     
+	    8) E:1.55e+06    FC:2.8628e-07  y0:2.853e-07   yy:0.99656    
+	    9) E:1.65e+06    FC:2.7382e-07  y0:2.9674e-07  yy:1.0837     
+	   10) E:1.75e+06    FC:2.6142e-07  y0:2.7524e-07  yy:1.0529     
+	   11) E:1.85e+06    FC:2.4918e-07  y0:2.5911e-07  yy:1.0399     
+	   12) E:1.95e+06    FC:2.3716e-07  y0:2.4336e-07  yy:1.0261     
+	   13) E:2.05e+06    FC:2.2542e-07  y0:2.4827e-07  yy:1.1014     
+	   14) E:2.15e+06    FC:2.1401e-07  y0:2.258e-07   yy:1.0551     
+	   15) E:2.25e+06    FC:2.0296e-07  y0:2.1777e-07  yy:1.073      
+	   16) E:2.35e+06    FC:1.9229e-07  y0:2.1098e-07  yy:1.0972     
+	   17) E:2.45e+06    FC:1.8201e-07  y0:1.9741e-07  yy:1.0846     
+	   18) E:2.55e+06    FC:1.7214e-07  y0:1.8449e-07  yy:1.0717     
+	   19) E:2.65e+06    FC:1.6268e-07  y0:1.7862e-07  yy:1.098      
+	   20) E:2.75e+06    FC:1.5363e-07  y0:1.6985e-07  yy:1.1056     
+	   21) E:2.85e+06    FC:1.4499e-07  y0:1.5928e-07  yy:1.0985     
+	   22) E:2.95e+06    FC:1.3675e-07  y0:1.45e-07    yy:1.0603     
+	   23) E:3.05e+06    FC:1.289e-07   y0:1.3747e-07  yy:1.0664     
+	   24) E:3.15e+06    FC:1.2144e-07  y0:1.3344e-07  yy:1.0988     
+	   25) E:3.25e+06    FC:1.1435e-07  y0:1.2817e-07  yy:1.1208     
+	   26) E:3.35e+06    FC:1.0763e-07  y0:1.1325e-07  yy:1.0522     
+	   27) E:3.45e+06    FC:1.0125e-07  y0:1.0935e-07  yy:1.0799     
+	   28) E:3.55e+06    FC:9.5218e-08  y0:1.034e-07   yy:1.0859     
+	   29) E:3.65e+06    FC:8.9506e-08  y0:9.3266e-08  yy:1.042      
+	   30) E:3.75e+06    FC:8.4104e-08  y0:9.1749e-08  yy:1.0909     
+	   31) E:3.85e+06    FC:7.9001e-08  y0:8.4417e-08  yy:1.0686     
+	   32) E:3.95e+06    FC:7.4182e-08  y0:7.9178e-08  yy:1.0673     
+	   33) E:4.05e+06    FC:6.9635e-08  y0:7.2075e-08  yy:1.035      
+	   34) E:4.15e+06    FC:6.5347e-08  y0:6.671e-08   yy:1.0209     
+	   35) E:4.25e+06    FC:6.1304e-08  y0:6.6396e-08  yy:1.0831     
+	   36) E:4.35e+06    FC:5.7496e-08  y0:6.1315e-08  yy:1.0664     
+	   37) E:4.45e+06    FC:5.3911e-08  y0:5.7285e-08  yy:1.0626     
+	   38) E:4.55e+06    FC:5.0536e-08  y0:5.2919e-08  yy:1.0472     
+	   39) E:4.65e+06    FC:4.7361e-08  y0:4.7938e-08  yy:1.0122     
+	   40) E:4.75e+06    FC:4.4375e-08  y0:4.6696e-08  yy:1.0523     
+	   41) E:4.85e+06    FC:4.1568e-08  y0:4.374e-08   yy:1.0522     
+	   42) E:4.95e+06    FC:3.8931e-08  y0:4.0218e-08  yy:1.0331     
+	   43) E:5.05e+06    FC:3.6453e-08  y0:3.7624e-08  yy:1.0321     
+	   44) E:5.15e+06    FC:3.4126e-08  y0:3.5092e-08  yy:1.0283     
+	   45) E:5.25e+06    FC:3.1942e-08  y0:3.2292e-08  yy:1.011      
+	   46) E:5.35e+06    FC:2.9893e-08  y0:3.1693e-08  yy:1.0602     
+	   47) E:5.45e+06    FC:2.7969e-08  y0:2.9085e-08  yy:1.0399     
+	   48) E:5.55e+06    FC:2.6166e-08  y0:2.7994e-08  yy:1.0699     
+	   49) E:5.65e+06    FC:2.4474e-08  y0:2.5638e-08  yy:1.0475     
+	   50) E:5.75e+06    FC:2.2888e-08  y0:2.1276e-08  yy:0.92954    
+	   51) E:5.85e+06    FC:2.1402e-08  y0:1.9881e-08  yy:0.92894    
+	   52) E:5.95e+06    FC:2.001e-08   y0:2.1103e-08  yy:1.0547     
+	   53) E:6.05e+06    FC:1.8705e-08  y0:1.927e-08   yy:1.0302     
+	   54) E:6.35e+06    FC:1.5267e-08  y0:1.5043e-08  yy:0.9853     
+	   55) E:6.85e+06    FC:1.0857e-08  y0:1.0465e-08  yy:0.96392    
+	   56) E:7.35e+06    FC:7.7003e-09  y0:7.3566e-09  yy:0.95537    
+	   57) E:7.85e+06    FC:5.4487e-09  y0:5.2136e-09  yy:0.95685    
+	   58) E:8.35e+06    FC:3.8477e-09  y0:3.7213e-09  yy:0.96717    
+	   59) E:8.85e+06    FC:2.7122e-09  y0:2.7416e-09  yy:1.0109     
+	   60) E:9.35e+06    FC:1.9087e-09  y0:1.7524e-09  yy:0.9181     
+	   61) E:9.85e+06    FC:1.3414e-09  y0:1.452e-09   yy:1.0825     
+	   62) E:1.035e+07   FC:9.4146e-10  y0:1.2193e-09  yy:1.2951     
+	   63) E:1.085e+07   FC:6.5999e-10  y0:6.854e-10   yy:1.0385     
+	   64) E:1.135e+07   FC:4.6219e-10  y0:5.0742e-10  yy:1.0979     
+	   65) E:1.185e+07   FC:3.2335e-10  y0:3.5826e-10  yy:1.108      
+
+---Groupping datasets by Reaction-codes---
+---getReacodes---Datasets: 1
+1) 92-U-233(N,F),PR,NU/DE,,REL
+	Dataset:1/1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 2002, T.Miura En=0.55MeV
+---reacodes: 1 
+
+
+---Output EXFOR datasets to JSON file---
+Plot:1/1) #22688002 2002, T.Miura En=0.55MeV pt:66
+
+___webEndfDataForPlot_DADE: [U-233] [N,F] [&mf=5&mt=18&ei=550000.0&T=1320000.0]
+---wgetdb_get:/servlet/E4sSearch2?Target=U-233&Reaction=N,F&Quantity=*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=U-233&Reaction=N,F&Quantity=*&json&mats'
+format=WebEndfSectionsList-0.1
+___Retrieved sections:37
+SelectedLib-Sect:1) {'Targ': 'U-233', 'ZT': 92, 'AT': 233, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-233(N,F),SIG', 'EvalID': 272575, 'SectID': 19172499, 'PenSectID': 24020110, 'LibID': 30003, 'LibName': 'INDEN-Aug2023', 'DATE': '', 'AUTH': ''}
+SelectedLib-Sect:4) {'Targ': 'U-233', 'ZT': 92, 'AT': 233, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-233(N,F),SIG', 'EvalID': 149931, 'SectID': 9024317, 'PenSectID': 13662070, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20100326', 'AUTH': 'O.Iwamoto,N.Otuka,S.Chiba,et al.'}
+SelectedLib-Sect:5) {'Targ': 'U-233', 'ZT': 92, 'AT': 233, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-233(N,F),SIG', 'EvalID': 57656, 'SectID': 2291838, 'PenSectID': 7664497, 'LibID': 75, 'LibName': 'ENDF/B-VII.1', 'DATE': '20111222', 'AUTH': 'Young,Chadwick,Talou,Leal,Derrien'}
+SelectedLib-Sect:12) {'Targ': 'U-233', 'ZT': 92, 'AT': 233, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-233(N,F),SIG', 'EvalID': 226904, 'SectID': 14604746, 'PenSectID': 19240549, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20111206', 'AUTH': 'O.Iwamoto,N.Otuka,S.Chiba,et al.'}
+SelectedLib-Sect:18) {'Targ': 'U-233', 'ZT': 92, 'AT': 233, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-233(N,F),SIG', 'EvalID': 118844, 'SectID': 6090432, 'PenSectID': 10751920, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'DEC06', 'AUTH': 'Nikolaev M.N.'}
+SelectedLib-Sect:30) {'Targ': 'U-233', 'ZT': 92, 'AT': 233, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-233(N,F),SIG', 'EvalID': 175026, 'SectID': 11052274, 'PenSectID': 15684434, 'LibID': 52030, 'LibName': 'MINKS-ACT', 'DATE': '03', 'AUTH': '03'}
+___Required sections:6
+WebReq:1) EvalID:272575 PenSectID:24020110 Lib:INDEN-Aug2023 Color:0,80,255
+/servlet/E4sGetSectData?EvalID=272575&PenSectID=24020110&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=272575&PenSectID=24020110&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=272575&PenSectID=24020110&json&mf=5&mt=18&ei=550000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272575&PenSectID=24020110&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:1/1)	92-U-233(N,F),DE	INDEN-Aug2023	EID:272575	SID:24020110	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
+Downloaded:DS:1/1)	92-U-233(N,F),DE	INDEN-Aug2023	EID:272575	SID:24020110	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
+WebReq:2) EvalID:149931 PenSectID:13662070 Lib:ENDF/B-VIII.0 Color:0,0,255|dot
+/servlet/E4sGetSectData?EvalID=149931&PenSectID=13662070&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149931&PenSectID=13662070&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149931&PenSectID=13662070&json&mf=5&mt=18&ei=550000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149931&PenSectID=13662070&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:2/1)	92-U-233(N,F),DE	ENDF/B-VIII.0	EID:149931	SID:13662070	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
+Downloaded:DS:2/1)	92-U-233(N,F),DE	ENDF/B-VIII.0	EID:149931	SID:13662070	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
+WebReq:3) EvalID:57656 PenSectID:7664497 Lib:ENDF/B-VII.1 Color:80,0,255|dashdot
+/servlet/E4sGetSectData?EvalID=57656&PenSectID=7664497&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=57656&PenSectID=7664497&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57656&PenSectID=7664497&json&mf=5&mt=18&ei=550000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57656&PenSectID=7664497&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:3/1)	92-U-233(N,F),DE	ENDF/B-VII.1	EID:57656	SID:7664497	f(x):Ratio to Mxw (T=1.32MeV)	pts:100
+Downloaded:DS:3/1)	92-U-233(N,F),DE	ENDF/B-VII.1	EID:57656	SID:7664497	f(x):Ratio to Mxw (T=1.32MeV)	pts:100	idy=0
+WebReq:4) EvalID:226904 PenSectID:19240549 Lib:JENDL-5 Color:0,255,0
+/servlet/E4sGetSectData?EvalID=226904&PenSectID=19240549&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=226904&PenSectID=19240549&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226904&PenSectID=19240549&json&mf=5&mt=18&ei=550000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226904&PenSectID=19240549&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:4/1)	92-U-233(N,F),DE	JENDL-5	EID:226904	SID:19240549	f(x):Ratio to Mxw (T=1.32MeV)	pts:162
+Downloaded:DS:4/1)	92-U-233(N,F),DE	JENDL-5	EID:226904	SID:19240549	f(x):Ratio to Mxw (T=1.32MeV)	pts:162	idy=0
+WebReq:5) EvalID:118844 PenSectID:10751920 Lib:BROND-3.1 Color:255,0,255
+/servlet/E4sGetSectData?EvalID=118844&PenSectID=10751920&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=118844&PenSectID=10751920&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118844&PenSectID=10751920&json&mf=5&mt=18&ei=550000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118844&PenSectID=10751920&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:5/1)	92-U-233(N,F),DE	BROND-3.1	EID:118844	SID:10751920	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
+Downloaded:DS:5/1)	92-U-233(N,F),DE	BROND-3.1	EID:118844	SID:10751920	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
+WebReq:6) EvalID:175026 PenSectID:15684434 Lib:MINKS-ACT Color:127,127,127
+/servlet/E4sGetSectData?EvalID=175026&PenSectID=15684434&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=175026&PenSectID=15684434&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=175026&PenSectID=15684434&json&mf=5&mt=18&ei=550000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=175026&PenSectID=15684434&json&mf=5&mt=18&ei=550000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:6/1)	92-U-233(N,F),DE	MINKS-ACT	EID:175026	SID:15684434	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
+Downloaded:DS:6/1)	92-U-233(N,F),DE	MINKS-ACT	EID:175026	SID:15684434	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
+---e4datasets: 6
+Plot:1/6) 24020110	INDEN-Aug2023 Ei5.50E+5 (T=1.32MeV)	pt:641	color:0,80,255	dash:None
+Plot:2/6) 13662070	ENDF/B-VIII.0 Ei5.50E+5 (T=1.32MeV)	pt:641	color:0,0,255	dash:dot
+Plot:3/6) 7664497	ENDF/B-VII.1 Ei5.50E+5 (T=1.32MeV)	pt:100	color:80,0,255	dash:dashdot
+Plot:4/6) 19240549	JENDL-5 Ei5.50E+5 (T=1.32MeV)	pt:162	color:0,255,0	dash:None
+Plot:5/6) 10751920	BROND-3.1 Ei5.50E+5 (T=1.32MeV)	pt:324	color:255,0,255	dash:None
+Plot:6/6) 15684434	MINKS-ACT Ei5.50E+5 (T=1.32MeV)	pt:324	color:127,127,127	dash:None
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- no-dim 1
+Will try---write_image: pfns233u0_5.html.png
+
+Program successfully completed

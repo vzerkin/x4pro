@@ -1,7 +1,7 @@
 Program: myplot.py, ver.2026-09-02
 Author:  V.Zerkin, Vienna, 2025-2026
 Purpose: Plot EXFOR/ENDF/MyData
-Running: 2026-09-10 19:10:35
+Running: 2026-09-13 17:50:33
 
 ---arg[0]:../myplot1.py
 ---arg[1]:U235-eta
@@ -44,8 +44,8 @@ Plot:19/22) #40385004 1958, V.N.Andreev pt:3
 Plot:20/22) #40806002 1958, N.N.Flerov pt:1
 Plot:21/22) #403500031 1956, P.E.Spivak pt:3
 Plot:22/22) #403500032 1956, P.E.Spivak pt:2
-Plot:1/2) 13662330	ENDF/B-VIII.0	pt:86	color:0,0,255
-Plot:2/2) 26469908	JEFF-4.0	pt:3351	color:255,0,0
+Plot:1/2) 13662330	ENDF/B-VIII.0	pt:86	color:0,0,255	dash:None
+Plot:2/2) 26469908	JEFF-4.0	pt:3351	color:255,0,0	dash:None
 Open Page:  file:///G:\projects\zerkin\pdev\x4pro7-dist\x4pro15\part2-A-eta/U235-eta-myplot.html
 
 Program successfully completed

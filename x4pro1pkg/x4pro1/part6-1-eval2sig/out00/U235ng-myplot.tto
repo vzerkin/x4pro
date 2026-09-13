@@ -1,7 +1,7 @@
 Program: myplot.py, ver.2025-01-22
 Author:  V.Zerkin, Vienna, 2025
 Purpose: Plot EXFOR/ENDF/MyData
-Running: 2026-09-10 19:17:15
+Running: 2026-09-13 17:58:23
 
 ---arg[0]:myplot.py
 ---arg[1]:U235ng
@@ -126,10 +126,10 @@ Plot:50/53) #40385006 1958, V.N.Andreev pt:3
 Plot:51/53) #40350007 1956, P.E.Spivak pt:4
 Plot:52/53) #40350015 1956, P.E.Spivak# pt:5
 Plot:53/53) #21457003 1955, P.A.Egelstaff# pt:1
-Plot:1/4) 26213280	ENDF/B-VIII.1	pt:49106	color:0,0,255
-Plot:2/4) 13776134	JEFF-3.3	pt:49826	color:0,127,63
-Plot:3/4) 10751692	BROND-3.1	pt:49357	color:255,0,255
-Plot:4/4) 18873045	CENDL-3.2	pt:49310	color:255,0,0
+Plot:1/4) 26213280	ENDF/B-VIII.1	pt:49106	color:0,0,255	dash:None
+Plot:2/4) 13776134	JEFF-3.3	pt:49826	color:0,127,63	dash:None
+Plot:3/4) 10751692	BROND-3.1	pt:49357	color:255,0,255	dash:None
+Plot:4/4) 18873045	CENDL-3.2	pt:49310	color:255,0,0	dash:None
 Open Page:  file:///G:\projects\zerkin\pdev\x4pro7-dist\x4pro15\part6-1-eval2sig/U235ng-myplot.html
 
 Program successfully completed

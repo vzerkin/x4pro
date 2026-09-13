@@ -14,6 +14,10 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
     for dataset in datasets:
         #if (len(dataset['x'])<=1): continue
         #plt.scatter(dataset['x'],dataset['y'], s=60, c='red', marker='^')
+        myColor=dataset['myColor']
+        myDash=None
+        strs=myColor.split("|")
+        if len(strs)>1: myColor=strs[0]; myDash=strs[1]
         mrk='.'
         mrk=' '
         lbl=str(ii+1)+') '+dataset['x4lbl']
@@ -23,9 +27,9 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
 
         if autocolor: mycolor=None
         else:
-            i3=[int(ii3) for ii3 in dataset['myColor'].split(',')]
+            i3=[int(ii3) for ii3 in myColor.split(',')]
             mycolor='#'+str("%02X"%i3[0])+str("%02X"%i3[1])+str("%02X"%i3[2])
-        #print('myColor:'+dataset['myColor']+' mycolor:',mycolor)
+        #print('myColor:'+myColor+' mycolor:',mycolor)
         if (dataset['idy']>0):
             x=dataset['x'];
             y=dataset['y'];

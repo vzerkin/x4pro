@@ -148,6 +148,7 @@ outX4Datasets(datasets,outhtml)
 #_________________Retrieve ENDF_________________
 data2=[]
 reqLibs={
+	'ENDF/B-VIII.1':"0,80,255",
 	'ENDF/B-VIII.0':"0,0,255",
 #	'JENDL-5':"0,255,0",
 #	'JEFF-3.3':"0,255,255"
@@ -156,10 +157,12 @@ reqLibs={
 #	,'CENDL-3.2':"255,0,0"
 #	,'CENDL-2':"255,0,0"
 	,'BROND-3.1':"255,0,255"
-	,'ENDF/B-V':"127,127,127"
+#	,'ENDF/B-V':"127,127,127"
 	}
+#reqLibs={'ENDF/B-VIII.1':"0,80,255"}
 if flagEndf:
     e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1e-6,1,quantPrexix="")
+#   e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1,1,quantPrexix="")
     print('---e4datasets:',len(e4datasets))
 #   data2=prepareEndfDataForPlot(e4datasets,'',True,autocolor=True,lwidth=3,showAuth=True)
     data2=prepareEndfDataForPlot(e4datasets,'',True,lwidth=3,showAuth=True)

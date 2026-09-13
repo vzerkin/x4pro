@@ -11,11 +11,15 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
     ldata=len(datasets)
     ii=0; data1=[]
     for dataset in datasets:
+        myColor=dataset['myColor']
+        myDash=None
+        strs=myColor.split("|")
+        if len(strs)>1: myColor=strs[0]; myDash=strs[1]
         name=str(ii+1)+') '+dataset['x4lbl']
         tr={
 	 "text":dataset['x4lbl']
 	,"name":name
-	,"color":dataset['myColor']
+	,"color":myColor
 	,"width":lwidth
 	,"mode":"lines"
 	}
@@ -30,6 +34,6 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
 
         data1.append(obj1)
         ii+=1
-        print('Plot:'+str(ii)+'/'+str(ldata)+') '+str(dataset['DatasetID'])+'\t'+str(dataset['x4lbl'])+'\tpt:'+str(len(dataset['x']))+'\tcolor:'+dataset['myColor'])
+        print('Plot:'+str(ii)+'/'+str(ldata)+') '+str(dataset['DatasetID'])+'\t'+str(dataset['x4lbl'])+'\tpt:'+str(len(dataset['x']))+'\tcolor:'+myColor+'\tdash:'+str(myDash))
 
     return data1

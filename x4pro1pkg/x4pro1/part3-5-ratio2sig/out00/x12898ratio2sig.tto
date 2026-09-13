@@ -2,7 +2,7 @@ Program: x12898ratio2sig.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Convert EXFOR data from ratios to cross sections
 
-Running: 2026-09-10 19:15:12
+Running: 2026-09-13 17:56:18
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -2624,9 +2624,9 @@ Connected to: [sqlite3]
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=V-51&Reaction=n,p&Quantity=SIG&json'
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-09-10T19:14:52.000Z" 
+ ,"now":"2026-09-13T17:56:01.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":2536
+ ,"req":2758
 ,"sections":[
  { "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":301136,"SectID":21390178,"PenSectID":26224817,"LibID":810,"LibName":"ENDF/B-VIII.1","DATE":"20240830","AUTH":"T.Kawano"}
 ,{ "Targ":"V-51","ZT":23,"AT":51,"NSUB":10,"MT":103,"MF":3,"R":"N,P","RC":"V-51(N,P)TI-51,SIG","EvalID":149511,"SectID":8952361,"PenSectID":13597604,"LibID":800,"LibName":"ENDF/B-VIII.0","DATE":"20111222","AUTH":"T.Kawano"}
@@ -2686,9 +2686,9 @@ Connected to: [sqlite3]
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Downloaded:3)	V-51(N,P)TI-51,SIG	BROND-3.1	PenSectID:10716431	pts:66	idy=0
-Plot:1/3) 13597604	ENDF/B-VIII.0	pt:50	color:0,0,255
-Plot:2/3) 19030396	JENDL-5	pt:91	color:0,255,0
-Plot:3/3) 10716431	BROND-3.1	pt:66	color:255,0,255
+Plot:1/3) 13597604	ENDF/B-VIII.0	pt:50	color:0,0,255	dash:None
+Plot:2/3) 19030396	JENDL-5	pt:91	color:0,255,0	dash:None
+Plot:3/3) 10716431	BROND-3.1	pt:66	color:255,0,255	dash:None
 Will try---write_image: ratio2cs.html.png
 
 Program successfully completed

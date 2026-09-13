@@ -3,7 +3,7 @@ Author:  V.Zerkin, Vienna, 2026
 Purpose: Retrieve and plot EXFOR and ENDF data
          Eta: neutron yield per nonelastic even
 
-Running: 2026-09-10 19:10:26
+Running: 2026-09-13 17:50:24
 
 
 ---Arguments from command-line---
@@ -88,8 +88,8 @@ Connected to: [sqlite3]
 Download...DS:2/1)		JEFF-4.0	EID:307115	SID:26472261	f(x):Eta(MT=2)	pts:3432
 Downloaded:DS:2/1)		JEFF-4.0	EID:307115	SID:26472261	f(x):Eta(MT=2)	pts:3432	idy=3432
 ---e4datasets: 2
-Plot:1/2) 13664480	ENDF/B-VIII.0	pt:3168	color:0,0,255
-Plot:2/2) 26472261	JEFF-4.0	pt:3432	color:255,0,0
+Plot:1/2) 13664480	ENDF/B-VIII.0	pt:3168	color:0,0,255	dash:None
+Plot:2/2) 26472261	JEFF-4.0	pt:3432	color:255,0,0	dash:None
 Will try---write_image: Pu239nel-eta.html.png
 
 Program successfully completed

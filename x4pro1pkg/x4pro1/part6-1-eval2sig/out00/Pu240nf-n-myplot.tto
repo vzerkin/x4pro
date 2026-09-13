@@ -1,7 +1,7 @@
 Program: myplot.py, ver.2025-01-22
 Author:  V.Zerkin, Vienna, 2025
 Purpose: Plot EXFOR/ENDF/MyData
-Running: 2026-09-10 19:17:15
+Running: 2026-09-13 17:58:23
 
 ---arg[0]:myplot.py
 ---arg[1]:Pu240nf-n
@@ -78,10 +78,10 @@ Plot:27/30) #211950082 1967, P.H.White pt:1
 Plot:28/30) #211950082 1967, P.H.White* pt:1
 Plot:29/30) #41675002 1959, V.G.Nesterov pt:1
 Plot:30/30) #12549002 1957, R.L.Henkel pt:4
-Plot:1/4) 26306913	ENDF/B-VIII.1	pt:83	color:0,0,255
-Plot:2/4) 13778005	JEFF-3.3	pt:104	color:0,127,63
-Plot:3/4) 10753190	BROND-3.1	pt:62	color:255,0,255
-Plot:4/4) 18874144	CENDL-3.2	pt:66	color:255,0,0
+Plot:1/4) 26306913	ENDF/B-VIII.1	pt:83	color:0,0,255	dash:None
+Plot:2/4) 13778005	JEFF-3.3	pt:104	color:0,127,63	dash:None
+Plot:3/4) 10753190	BROND-3.1	pt:62	color:255,0,255	dash:None
+Plot:4/4) 18874144	CENDL-3.2	pt:66	color:255,0,0	dash:None
 Open Page:  file:///G:\projects\zerkin\pdev\x4pro7-dist\x4pro15\part6-1-eval2sig/Pu240nf-n-myplot.html
 
 Program successfully completed
