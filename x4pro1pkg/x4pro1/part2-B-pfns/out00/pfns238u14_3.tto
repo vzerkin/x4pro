@@ -1,25 +1,26 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-06   |
+  | Program: reac2pfns.py, ver.2026-09-15   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-13 17:52:18
+Running: 2026-09-15 15:37:14
 
 ---Arguments from command-line---
    1  arg: -o:pfns238u14_3
    2  arg: -x:x2
    3  arg: -x1:14.3e6
-   4  arg: -fx:1e6
-   5  arg: -xmin:0.1
-   6  arg: -xmax:40
-   7  arg: -ymin:0.3
-   8  arg: -ymax:3.5
-   9  arg: -xlog
-   10 arg: -lines
-   11 arg: -sym
-   12 arg: 92-U-238(N,F),PR,NU/DE
-   13 arg: -annot:1,3.2,<sup>238</sup>U(n<sub>14.3MeV</sub>,f) PFNS
+   4  arg: -bw
+   5  arg: -fx:1e6
+   6  arg: -xmin:0.1
+   7  arg: -xmax:40
+   8  arg: -ymin:0.3
+   9  arg: -ymax:3.5
+   10 arg: -xlog
+   11 arg: -lines
+   12 arg: -sym
+   13 arg: 92-U-238(N,F),PR,NU/DE
+   14 arg: -annot:1,3.2,<sup>238</sup>U(n<sub>14.3MeV</sub>,f) PFNS
    ---str2annot:[1,3.2,<sup>238</sup>U(n<sub>14.3MeV</sub>,f) PFNS] --> ('<sup>238</sup>U(n<sub>14.3MeV</sub>,f) PFNS', 1.0, 3.2)
 
 ---Input:
@@ -174,83 +175,83 @@ select distinct *
 ---outDatasets:1 datasets:1
 ---ENTRY: 40740*;
 datasets: 1
---0--treatDatasets: datasets:1 oper:None
+--0--datasets2mxwRatio: datasets:1 oper:None Tm:1320000.0
 	Dataset:0/1) 92-U-238(N,F),PR,NU/DE 40740002 Pt:62   1979, V.Ya.Baryba En=14.3MeV
----getAbs2MxwFactor.Target: U-238  En: 14300000.0  Nubar: 4.4871466666666
-  PFNS re-normalisation to Maxwellian 0.22285877290988515 PC/FIS/MEV
----dataset2mxwRatio---Target:[U-238] 1/FSP=4.4871466666666
-	    0) E:6e+05       FC:3.6582e-07  y0:4.3235e-07  yy:1.1819     
-	    1) E:7e+05       FC:3.663e-07   y0:4.1675e-07  yy:1.1377     
-	    2) E:8e+05       FC:3.6302e-07  y0:3.7663e-07  yy:1.0375     
-	    3) E:9e+05       FC:3.5695e-07  y0:3.9e-07     yy:1.0926     
-	    4) E:1e+06       FC:3.4881e-07  y0:3.7886e-07  yy:1.0862     
-	    5) E:1.1e+06     FC:3.3914e-07  y0:3.6549e-07  yy:1.0777     
-	    6) E:1.2e+06     FC:3.2838e-07  y0:3.3206e-07  yy:1.0112     
-	    7) E:1.3e+06     FC:3.1685e-07  y0:3.2315e-07  yy:1.0199     
-	    8) E:1.38e+06    FC:3.0725e-07  y0:3.1423e-07  yy:1.0227     
-	    9) E:1.49e+06    FC:2.9374e-07  y0:3.2537e-07  yy:1.1077     
-	   10) E:1.59e+06    FC:2.813e-07   y0:2.8303e-07  yy:1.0062     
-	   11) E:1.7e+06     FC:2.6761e-07  y0:2.6743e-07  yy:0.99933    
-	   12) E:1.81e+06    FC:2.5405e-07  y0:2.5183e-07  yy:0.99125    
-	   13) E:1.9e+06     FC:2.4314e-07  y0:2.7189e-07  yy:1.1182     
-	   14) E:1.99e+06    FC:2.3243e-07  y0:2.5183e-07  yy:1.0835     
-	   15) E:2.09e+06    FC:2.2082e-07  y0:2.4069e-07  yy:1.09       
-	   16) E:2.2e+06     FC:2.0844e-07  y0:2.2509e-07  yy:1.0799     
-	   17) E:2.31e+06    FC:1.9651e-07  y0:1.9389e-07  yy:0.98665    
-	   18) E:2.41e+06    FC:1.8607e-07  y0:2.0057e-07  yy:1.0779     
-	   19) E:2.51e+06    FC:1.7604e-07  y0:1.9166e-07  yy:1.0887     
-	   20) E:2.62e+06    FC:1.6548e-07  y0:1.7606e-07  yy:1.0639     
-	   21) E:2.71e+06    FC:1.572e-07   y0:1.7606e-07  yy:1.12       
-	   22) E:2.8e+06     FC:1.4926e-07  y0:1.7383e-07  yy:1.1646     
-	   23) E:2.9e+06     FC:1.4082e-07  y0:1.56e-07    yy:1.1078     
-	   24) E:3e+06       FC:1.3278e-07  y0:1.5377e-07  yy:1.1581     
-	   25) E:3.11e+06    FC:1.2438e-07  y0:1.3594e-07  yy:1.093      
-	   26) E:3.18e+06    FC:1.1928e-07  y0:1.2257e-07  yy:1.0276     
-	   27) E:3.3e+06     FC:1.1095e-07  y0:1.2034e-07  yy:1.0847     
-	   28) E:3.43e+06    FC:1.025e-07   y0:1.2034e-07  yy:1.1741     
-	   29) E:3.52e+06    FC:9.6994e-08  y0:1.1143e-07  yy:1.1488     
-	   30) E:3.61e+06    FC:9.1753e-08  y0:1.0474e-07  yy:1.1416     
-	   31) E:3.7e+06     FC:8.6767e-08  y0:9.8058e-08  yy:1.1301     
-	   32) E:3.8e+06     FC:8.1516e-08  y0:9.5829e-08  yy:1.1756     
-	   33) E:3.9e+06     FC:7.6557e-08  y0:1.0029e-07  yy:1.31       
-	   34) E:4e+06       FC:7.1875e-08  y0:8.6915e-08  yy:1.2092     
-	   35) E:4.12e+06    FC:6.6607e-08  y0:8.4686e-08  yy:1.2714     
-	   36) E:4.23e+06    FC:6.2094e-08  y0:7.5772e-08  yy:1.2203     
-	   37) E:4.35e+06    FC:5.7496e-08  y0:6.9086e-08  yy:1.2016     
-	   38) E:4.48e+06    FC:5.2877e-08  y0:6.6858e-08  yy:1.2644     
-	   39) E:4.61e+06    FC:4.8608e-08  y0:6.4629e-08  yy:1.3296     
-	   40) E:4.75e+06    FC:4.4375e-08  y0:5.7943e-08  yy:1.3058     
-	   41) E:4.89e+06    FC:4.0493e-08  y0:5.5715e-08  yy:1.3759     
-	   42) E:5.04e+06    FC:3.6694e-08  y0:4.68e-08    yy:1.2754     
-	   43) E:5.19e+06    FC:3.3236e-08  y0:4.9029e-08  yy:1.4752     
-	   44) E:5.36e+06    FC:2.9695e-08  y0:4.0115e-08  yy:1.3509     
-	   45) E:5.53e+06    FC:2.6517e-08  y0:4.0115e-08  yy:1.5128     
-	   46) E:5.71e+06    FC:2.351e-08   y0:3.5657e-08  yy:1.5167     
-	   47) E:5.87e+06    FC:2.1116e-08  y0:3.0532e-08  yy:1.4459     
-	   48) E:6.1e+06     FC:1.8084e-08  y0:2.7634e-08  yy:1.5281     
-	   49) E:6.31e+06    FC:1.5687e-08  y0:3.0086e-08  yy:1.9179     
-	   50) E:6.53e+06    FC:1.3509e-08  y0:2.1172e-08  yy:1.5673     
-	   51) E:6.76e+06    FC:1.1547e-08  y0:2.028e-08   yy:1.7564     
-	   52) E:7e+06       FC:9.7964e-09  y0:1.6046e-08  yy:1.6379     
-	   53) E:7.26e+06    FC:8.193e-09   y0:1.9612e-08  yy:2.3937     
-	   54) E:7.53e+06    FC:6.8005e-09  y0:1.7383e-08  yy:2.5561     
-	   55) E:7.82e+06    FC:5.5633e-09  y0:1.248e-08   yy:2.2433     
-	   56) E:8.16e+06    FC:4.3925e-09  y0:1.0697e-08  yy:2.4354     
-	   57) E:8.45e+06    FC:3.5882e-09  y0:6.0172e-09  yy:1.6769     
-	   58) E:8.79e+06    FC:2.8287e-09  y0:8.0229e-09  yy:2.8363     
-	   59) E:9.16e+06    FC:2.1817e-09  y0:7.3543e-09  yy:3.3709     
-	   60) E:9.54e+06    FC:1.6696e-09  y0:5.5715e-09  yy:3.3371     
-	   61) E:9.96e+06    FC:1.241e-09   y0:4.68e-09    yy:3.7712     
+---getAbs2MxwFactor---Dataset in absNubarList: 40740002  [ 1979, V.Ya.Baryba En=14.3MeV] nubar=5.07
+  PFNS re-normalisation to Maxwellian 0.1972386587771203 PC/FIS/MEV
+---dataset2mxwRatio---Target:[U-238] 1/FSP=5.07
+	    0) E:6e+05       FC:3.6582e-07  y0:3.8264e-07  yy:1.046      
+	    1) E:7e+05       FC:3.663e-07   y0:3.6884e-07  yy:1.0069     
+	    2) E:8e+05       FC:3.6302e-07  y0:3.3333e-07  yy:0.91822    
+	    3) E:9e+05       FC:3.5695e-07  y0:3.4517e-07  yy:0.967      
+	    4) E:1e+06       FC:3.4881e-07  y0:3.3531e-07  yy:0.9613     
+	    5) E:1.1e+06     FC:3.3914e-07  y0:3.2347e-07  yy:0.9538     
+	    6) E:1.2e+06     FC:3.2838e-07  y0:2.9389e-07  yy:0.89497    
+	    7) E:1.3e+06     FC:3.1685e-07  y0:2.86e-07    yy:0.90263    
+	    8) E:1.38e+06    FC:3.0725e-07  y0:2.7811e-07  yy:0.90513    
+	    9) E:1.49e+06    FC:2.9374e-07  y0:2.8797e-07  yy:0.98036    
+	   10) E:1.59e+06    FC:2.813e-07   y0:2.5049e-07  yy:0.89049    
+	   11) E:1.7e+06     FC:2.6761e-07  y0:2.3669e-07  yy:0.88445    
+	   12) E:1.81e+06    FC:2.5405e-07  y0:2.2288e-07  yy:0.8773     
+	   13) E:1.9e+06     FC:2.4314e-07  y0:2.4063e-07  yy:0.9897     
+	   14) E:1.99e+06    FC:2.3243e-07  y0:2.2288e-07  yy:0.95892    
+	   15) E:2.09e+06    FC:2.2082e-07  y0:2.1302e-07  yy:0.96468    
+	   16) E:2.2e+06     FC:2.0844e-07  y0:1.9921e-07  yy:0.95572    
+	   17) E:2.31e+06    FC:1.9651e-07  y0:1.716e-07   yy:0.87323    
+	   18) E:2.41e+06    FC:1.8607e-07  y0:1.7751e-07  yy:0.954      
+	   19) E:2.51e+06    FC:1.7604e-07  y0:1.6963e-07  yy:0.96356    
+	   20) E:2.62e+06    FC:1.6548e-07  y0:1.5582e-07  yy:0.94164    
+	   21) E:2.71e+06    FC:1.572e-07   y0:1.5582e-07  yy:0.9912     
+	   22) E:2.8e+06     FC:1.4926e-07  y0:1.5385e-07  yy:1.0307     
+	   23) E:2.9e+06     FC:1.4082e-07  y0:1.3807e-07  yy:0.98046    
+	   24) E:3e+06       FC:1.3278e-07  y0:1.3609e-07  yy:1.025      
+	   25) E:3.11e+06    FC:1.2438e-07  y0:1.2032e-07  yy:0.96732    
+	   26) E:3.18e+06    FC:1.1928e-07  y0:1.0848e-07  yy:0.9095     
+	   27) E:3.3e+06     FC:1.1095e-07  y0:1.0651e-07  yy:0.96       
+	   28) E:3.43e+06    FC:1.025e-07   y0:1.0651e-07  yy:1.0391     
+	   29) E:3.52e+06    FC:9.6994e-08  y0:9.8619e-08  yy:1.0168     
+	   30) E:3.61e+06    FC:9.1753e-08  y0:9.2702e-08  yy:1.0104     
+	   31) E:3.7e+06     FC:8.6767e-08  y0:8.6785e-08  yy:1.0002     
+	   32) E:3.8e+06     FC:8.1516e-08  y0:8.4813e-08  yy:1.0404     
+	   33) E:3.9e+06     FC:7.6557e-08  y0:8.8757e-08  yy:1.1594     
+	   34) E:4e+06       FC:7.1875e-08  y0:7.6923e-08  yy:1.0702     
+	   35) E:4.12e+06    FC:6.6607e-08  y0:7.4951e-08  yy:1.1253     
+	   36) E:4.23e+06    FC:6.2094e-08  y0:6.7061e-08  yy:1.08       
+	   37) E:4.35e+06    FC:5.7496e-08  y0:6.1144e-08  yy:1.0634     
+	   38) E:4.48e+06    FC:5.2877e-08  y0:5.9172e-08  yy:1.1191     
+	   39) E:4.61e+06    FC:4.8608e-08  y0:5.7199e-08  yy:1.1767     
+	   40) E:4.75e+06    FC:4.4375e-08  y0:5.1282e-08  yy:1.1557     
+	   41) E:4.89e+06    FC:4.0493e-08  y0:4.931e-08   yy:1.2177     
+	   42) E:5.04e+06    FC:3.6694e-08  y0:4.142e-08   yy:1.1288     
+	   43) E:5.19e+06    FC:3.3236e-08  y0:4.3393e-08  yy:1.3056     
+	   44) E:5.36e+06    FC:2.9695e-08  y0:3.5503e-08  yy:1.1956     
+	   45) E:5.53e+06    FC:2.6517e-08  y0:3.5503e-08  yy:1.3389     
+	   46) E:5.71e+06    FC:2.351e-08   y0:3.1558e-08  yy:1.3423     
+	   47) E:5.87e+06    FC:2.1116e-08  y0:2.7022e-08  yy:1.2797     
+	   48) E:6.1e+06     FC:1.8084e-08  y0:2.4458e-08  yy:1.3524     
+	   49) E:6.31e+06    FC:1.5687e-08  y0:2.6627e-08  yy:1.6974     
+	   50) E:6.53e+06    FC:1.3509e-08  y0:1.8738e-08  yy:1.3871     
+	   51) E:6.76e+06    FC:1.1547e-08  y0:1.7949e-08  yy:1.5545     
+	   52) E:7e+06       FC:9.7964e-09  y0:1.4201e-08  yy:1.4496     
+	   53) E:7.26e+06    FC:8.193e-09   y0:1.7357e-08  yy:2.1185     
+	   54) E:7.53e+06    FC:6.8005e-09  y0:1.5385e-08  yy:2.2623     
+	   55) E:7.82e+06    FC:5.5633e-09  y0:1.1045e-08  yy:1.9854     
+	   56) E:8.16e+06    FC:4.3925e-09  y0:9.4675e-09  yy:2.1554     
+	   57) E:8.45e+06    FC:3.5882e-09  y0:5.3254e-09  yy:1.4841     
+	   58) E:8.79e+06    FC:2.8287e-09  y0:7.1006e-09  yy:2.5102     
+	   59) E:9.16e+06    FC:2.1817e-09  y0:6.5089e-09  yy:2.9834     
+	   60) E:9.54e+06    FC:1.6696e-09  y0:4.931e-09   yy:2.9534     
+	   61) E:9.96e+06    FC:1.241e-09   y0:4.142e-09   yy:3.3376     
 
 ---Groupping datasets by Reaction-codes---
 ---getReacodes---Datasets: 1
 1) 92-U-238(N,F),PR,NU/DE
-	Dataset:1/1) 92-U-238(N,F),PR,NU/DE 40740002 1979, V.Ya.Baryba En=14.3MeV
+	Dataset:1/1) 92-U-238(N,F),PR,NU/DE 40740002 1979, V.Ya.Baryba En=14.3MeV T:1.32MeV &#957;=5.07
 ---reacodes: 1 
 
 
 ---Output EXFOR datasets to JSON file---
-Plot:1/1) #40740002 1979, V.Ya.Baryba En=14.3MeV pt:62
+Plot:1/1) #40740002 1979, V.Ya.Baryba En=14.3MeV T:1.32MeV &#957;=5.07 pt:62
 
 ___webEndfDataForPlot_DADE: [U-238] [N,F] [&mf=5&mt=18&ei=14300000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-238&Reaction=N,F&Quantity=*&json&mats
@@ -310,7 +311,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:3/1)	92-U-238(N,F),DE	ENDF/B-VII.1	EID:57661	SID:7665109	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
 Downloaded:DS:3/1)	92-U-238(N,F),DE	ENDF/B-VII.1	EID:57661	SID:7665109	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
-WebReq:4) EvalID:226909 PenSectID:19241250 Lib:JENDL-5 Color:0,255,0
+WebReq:4) EvalID:226909 PenSectID:19241250 Lib:JENDL-5 Color:0,200,0
 /servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=14300000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=14300000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -338,7 +339,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:5/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591
 Downloaded:DS:5/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591	idy=0
-WebReq:6) EvalID:175028 PenSectID:15684622 Lib:MINKS-ACT Color:127,127,127
+WebReq:6) EvalID:175028 PenSectID:15684622 Lib:MINKS-ACT Color:255,80,80|dashdot
 /servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=14300000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=14300000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -353,12 +354,12 @@ Connected to: [sqlite3]
 Download...DS:6/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
 Downloaded:DS:6/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
 ---e4datasets: 6
-Plot:1/6) 24020655	INDEN-Aug2023 Ei1.43E+7 (T=1.32MeV)	pt:350	color:0,80,255	dash:None
-Plot:2/6) 13662984	ENDF/B-VIII.0 Ei1.43E+7 (T=1.32MeV)	pt:350	color:0,0,255	dash:dot
-Plot:3/6) 7665109	ENDF/B-VII.1 Ei1.43E+7 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
-Plot:4/6) 19241250	JENDL-5 Ei1.43E+7 (T=1.32MeV)	pt:350	color:0,255,0	dash:None
-Plot:5/6) 10752121	BROND-3.1 Ei1.43E+7 (T=1.32MeV)	pt:591	color:255,0,255	dash:None
-Plot:6/6) 15684622	MINKS-ACT Ei1.43E+7 (T=1.32MeV)	pt:324	color:127,127,127	dash:None
+Plot:1/6) 24020655	INDEN-Aug2023 Ei1.43e7 (T=1.32MeV)	pt:350	color:0,80,255	dash:None
+Plot:2/6) 13662984	ENDF/B-VIII.0 Ei1.43e7 (T=1.32MeV)	pt:350	color:0,0,255	dash:dot
+Plot:3/6) 7665109	ENDF/B-VII.1 Ei1.43e7 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
+Plot:4/6) 19241250	JENDL-5 Ei1.43e7 (T=1.32MeV)	pt:350	color:0,200,0	dash:None
+Plot:5/6) 10752121	BROND-3.1 Ei1.43e7 (T=1.32MeV)	pt:591	color:255,0,255	dash:None
+Plot:6/6) 15684622	MINKS-ACT Ei1.43e7 (T=1.32MeV)	pt:324	color:255,80,80	dash:dashdot
 --0--getUnits--- EV 1000000.0
 --A--getUnits--- EV 1000000.0
 --1--getUnits--- EV 1000000.0  Category: E

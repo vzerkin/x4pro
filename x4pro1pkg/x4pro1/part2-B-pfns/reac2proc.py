@@ -12,16 +12,19 @@ sys.path.append('./')
 sys.path.append('../')
 import json
 
+delBlackList={
+   "14682002"	:"94-PU-239(N,F),PR,NU/DE,,NPD En=14.5MeV 2020 Kelly",
+#  "14379002"	:"94-PU-239(N,F),PR,NU/DE Pt:28   2014, A.Chatillon En=14.2MeV",
+}
+
 stdNubar=None
 stdNubarFile='nubar-endf.json'
-absBlackList={
-   "41332002"	:"93-NP-237(N,F),PR,NU/DE Pt:44   2000, N.V.Kornilov En=0.52MeV"
-  ,"14379002"	:"94-PU-239(N,F),PR,NU/DE Pt:28   2014, A.Chatillon En=14.2MeV"
-  ,"14430002"	:"94-PU-239(N,F),PR,NU/DE Pt:11   2014, J.P.Lestone En=1.5MeV"
-}
-delBlackList={
-   "14682002"	:"94-PU-239(N,F),PR,NU/DE,,NPD En=14.5MeV 2020 Kelly"
-  ,"14379002"	:"94-PU-239(N,F),PR,NU/DE Pt:28   2014, A.Chatillon En=14.2MeV"
+absNubarList={
+    "41332002"	: 1	, #93-NP-237(N,F),PR,NU/DE Pt:44   2000, N.V.Kornilov En=0.52MeV
+    "14379002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:28   2014, A.Chatillon En=14.2MeV
+    "14430002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:11   2014, J.P.Lestone En=1.5MeV
+    "14854002"	: 1	, #92-U-235(N,F),PR,NU/DE  Pt:47   2025, B.Mauss En=7.4MeV
+    "40740002"	: 5.07	, #92-U-238(N,F),PR,NU/DE  Pt:62   1979, V.Ya.Baryba En=14.3MeV, see: 40740003:DATA=5.07(PRT/FIS)
 }
 
 def datasets2mxwRatio(datasets,oper,Tm=1.32e6):
@@ -48,7 +51,12 @@ def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
     dxx=dataset['dx']
     yy=dataset['y']
     dyy=dataset['dy']
+    nuTxt=None
+    FSP=None
     FSP=getAbs2MxwFactor(dataset)
+    if FSP is not None:
+        if FSP!=1: nuTxt=format(1/FSP,"<.3g").strip()
+        else: nuTxt='/1/'
     if FSP is None:
         FSP=getShape2MxwFactor(xx,yy,fx,fy,Tm)
     print ('  PFNS re-normalisation to Maxwellian',FSP,dataset['yBasicUnits'])
@@ -62,12 +70,13 @@ def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
         yy[ii]=yy[ii]/FC
         yy[ii]=float(format(yy[ii],".5e"))
         if dyy[ii] is not None: dyy[ii]=dyy[ii]/FC; dyy[ii]=float(format(dyy[ii],".5e"))
-#        yy[ii]=FC
-#        if dyy[ii] is not None: dyy[ii]=0
         print('\t'+format(ii,"5d")+') E:'+format(ee,"<11.5g")+' FC:'+format(FC,"<11.5g")+' y0:'+format(y00,"<11.5g")+' yy:'+format(yy[ii],"<11.5g"))
     dataset['Quantity']="PFNS Ratio to Maxwellian (T="+str(Tm/1e6)+'MeV)'
     dataset['yBasicUnits']='no-dim'
     dataset['fy']=1
+    dataset['x4lbl']+=" T:"+format(Tm/1e6,"<.5g").strip()+"MeV"
+    if nuTxt is not None:
+        dataset['x4lbl']+=" &#957;="+nuTxt
     return True
 
 def getMaxw(E,T):
@@ -76,6 +85,7 @@ def getMaxw(E,T):
     return fc
 
 def getShape2MxwFactor(xx,yy,fx,fy,Tm,getVal=getMaxw):
+    #---2026-09-15, ZV: doubtful, needs to be worked out
     FSP=1
     #---copy from LSTTAB.F (by A.Trkov:EndVer/Empire-codes)
     SSP=0 #---integral over points as given in the dataset
@@ -95,9 +105,12 @@ def getShape2MxwFactor(xx,yy,fx,fy,Tm,getVal=getMaxw):
 def getAbs2MxwFactor(dataset):
     FC=None
     if dataset['yBasicUnits']!='PC/FIS/MEV': return None
-    if dataset['DatasetID'] in absBlackList:
-        print('---getAbs2MxwFactor---Dataset in BlackList:',dataset['DatasetID'],' [',dataset['x4lbl']+']')
-        return None
+    if dataset['DatasetID'] in absNubarList:
+        nubar=absNubarList[dataset['DatasetID']]
+        print('---getAbs2MxwFactor---Dataset in absNubarList:',dataset['DatasetID'],' [',dataset['x4lbl']+'] nubar='+str(nubar))
+        if nubar<=0: return None
+        FC=1/nubar
+        return FC
     Target=dataset['Target']
     En=dataset.get('En')
     if En is None: En=dataset.get('Spe')

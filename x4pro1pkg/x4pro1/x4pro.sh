@@ -238,7 +238,8 @@ runExample1() {
 	fi
 	DR=${examples[$nn]}
 	act=${contents[$nn]}
-	printf "%3d) %-44s %s " $nn ${name} `date +%F,%T` >>times.log
+#	if [ -f ../voice.exe ]; then ../voice.exe "$act"; fi
+	printf "%3d) %-44s %s " $nn ${DR} `date +%F,%T` >>times.log
 	t0=`date +%s`
 	pushd "$DR" >/dev/null
 #	echo "--example #$nn  $act"
@@ -251,6 +252,10 @@ runExample1() {
 	./runme.sh $2
 #	source runme.sh $2
 	popd >/dev/null
+
+#	if [ -f ../voice.exe ]; then ../voice.exe "$act"; fi
+#	if [ -f ../voice.exe ]; then ../voice.exe -n "Microsoft Zira Desktop" "$act"; fi
+
 	t1=`date +%s`; dt=$(($t1-$t0))
 	printf ":: %s  t:%ds\n" $(date +%F,%T) $dt>>times.log
 #	echo -e "\x1b[45;97m--Finish example #$nn \x1b[0m ${dt}sec"

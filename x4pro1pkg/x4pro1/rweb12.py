@@ -76,7 +76,10 @@ def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="D
             lastDataset['fx']=1/fx
             lastDataset['fy']=1/fy
             #lastDataset['x4lbl']=ds['LIBRARY']#+' '+ds['REACTION'].lower()
-            lastDataset['x4lbl']=(ds['LIBRARY']+' '+ds['param']).strip()
+#           lastDataset['x4lbl']=(ds['LIBRARY']+' '+ds['param']).strip()
+            prm=ds['param']
+            if prm is not None: prm=prm.replace('0E','E').replace('E+','e').replace('E-','e-')
+            lastDataset['x4lbl']=(ds['LIBRARY']+' '+prm).strip()
 #           if ds['MF']==5 and ds['MT']: lastDataset['x4lbl']+=' (T=1.32MeV)'
             lastDataset['x4lbl']+=add2title
 #           lastDataset['AUTH']=sect1['AUTH']
@@ -97,9 +100,13 @@ def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="D
                 if "dy" in pt: dyy=pt['dy']
                 else: dyy=None
                 #print('\t'+str(ipt)+') '+str(xx)+': '+str(yy)+' '+str(dyy))
-                xx=float(xx)*fx; #xx=round(xx,10)
-                yy=float(yy)*fy; #yy=round(yy,7)
-                if dyy is not None: dyy=float(dyy)*fy; idy+=1; #dyy=round(dyy,7);
+#               xx=float(xx)*fx; #xx=round(xx,10)
+#               yy=float(yy)*fy; #yy=round(yy,7)
+#               if dyy is not None: dyy=float(dyy)*fy; idy+=1; #dyy=round(dyy,7);
+#               else: dyy=0
+                xx=float(format(xx*fx,".9e"))
+                yy=float(format(yy*fy,".9e"))
+                if dyy is not None: dyy=float(format(dyy*fy,".9e")); idy+=1
                 else: dyy=0
                 x.append(xx);
                 y.append(yy);

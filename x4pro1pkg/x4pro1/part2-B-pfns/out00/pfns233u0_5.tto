@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-06   |
+  | Program: reac2pfns.py, ver.2026-09-15   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-13 17:50:56
+Running: 2026-09-15 15:35:24
 
 ---Arguments from command-line---
    1  arg: -o:pfns233u0_5
@@ -18,11 +18,12 @@ Running: 2026-09-13 17:50:56
    9  arg: -xlog
    10 arg: -lines
    11 arg: -sym
-   12 arg: -annot:0.1,1.35,<sup>233</sup>U(n<sub>0.5MeV</sub>,f)PFNS
+   12 arg: -bw
+   13 arg: -annot:0.1,1.35,<sup>233</sup>U(n<sub>0.5MeV</sub>,f)PFNS
    ---str2annot:[0.1,1.35,<sup>233</sup>U(n<sub>0.5MeV</sub>,f)PFNS] --> ('<sup>233</sup>U(n<sub>0.5MeV</sub>,f)PFNS', 0.1, 1.35)
-   13 arg: 92-U-233(N,F),PR,NU/DE
-   14 arg: 92-U-233(N,F),PR,NU/DE,,MXD
-   15 arg: 92-U-233(N,F),PR,NU/DE,,REL
+   14 arg: 92-U-233(N,F),PR,NU/DE
+   15 arg: 92-U-233(N,F),PR,NU/DE,,MXD
+   16 arg: 92-U-233(N,F),PR,NU/DE,,REL
 
 ---Input:
    Reaction:  ['92-U-233(N,F),PR,NU/DE', '92-U-233(N,F),PR,NU/DE,,MXD', '92-U-233(N,F),PR,NU/DE,,REL']
@@ -202,7 +203,7 @@ select distinct *
 ---outDatasets:1 datasets:1
 ---ENTRY: 22688*;
 datasets: 1
---0--treatDatasets: datasets:1 oper:None
+--0--datasets2mxwRatio: datasets:1 oper:None Tm:1320000.0
 	Dataset:0/1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 Pt:66   2002, T.Miura En=0.55MeV
   PFNS re-normalisation to Maxwellian 0.0003234249044325085 ARB-UNITS
 ---dataset2mxwRatio---Target:[U-233] 1/FSP=3091.9078472161304
@@ -276,12 +277,12 @@ datasets: 1
 ---Groupping datasets by Reaction-codes---
 ---getReacodes---Datasets: 1
 1) 92-U-233(N,F),PR,NU/DE,,REL
-	Dataset:1/1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 2002, T.Miura En=0.55MeV
+	Dataset:1/1) 92-U-233(N,F),PR,NU/DE,,REL 22688002 2002, T.Miura En=0.55MeV T:1.32MeV
 ---reacodes: 1 
 
 
 ---Output EXFOR datasets to JSON file---
-Plot:1/1) #22688002 2002, T.Miura En=0.55MeV pt:66
+Plot:1/1) #22688002 2002, T.Miura En=0.55MeV T:1.32MeV pt:66
 
 ___webEndfDataForPlot_DADE: [U-233] [N,F] [&mf=5&mt=18&ei=550000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-233&Reaction=N,F&Quantity=*&json&mats
@@ -341,7 +342,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:3/1)	92-U-233(N,F),DE	ENDF/B-VII.1	EID:57656	SID:7664497	f(x):Ratio to Mxw (T=1.32MeV)	pts:100
 Downloaded:DS:3/1)	92-U-233(N,F),DE	ENDF/B-VII.1	EID:57656	SID:7664497	f(x):Ratio to Mxw (T=1.32MeV)	pts:100	idy=0
-WebReq:4) EvalID:226904 PenSectID:19240549 Lib:JENDL-5 Color:0,255,0
+WebReq:4) EvalID:226904 PenSectID:19240549 Lib:JENDL-5 Color:0,200,0
 /servlet/E4sGetSectData?EvalID=226904&PenSectID=19240549&json&mf=5&mt=18&ei=550000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226904&PenSectID=19240549&json&mf=5&mt=18&ei=550000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -369,7 +370,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:5/1)	92-U-233(N,F),DE	BROND-3.1	EID:118844	SID:10751920	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
 Downloaded:DS:5/1)	92-U-233(N,F),DE	BROND-3.1	EID:118844	SID:10751920	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
-WebReq:6) EvalID:175026 PenSectID:15684434 Lib:MINKS-ACT Color:127,127,127
+WebReq:6) EvalID:175026 PenSectID:15684434 Lib:MINKS-ACT Color:255,80,80|dashdot
 /servlet/E4sGetSectData?EvalID=175026&PenSectID=15684434&json&mf=5&mt=18&ei=550000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=175026&PenSectID=15684434&json&mf=5&mt=18&ei=550000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -384,12 +385,12 @@ Connected to: [sqlite3]
 Download...DS:6/1)	92-U-233(N,F),DE	MINKS-ACT	EID:175026	SID:15684434	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
 Downloaded:DS:6/1)	92-U-233(N,F),DE	MINKS-ACT	EID:175026	SID:15684434	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
 ---e4datasets: 6
-Plot:1/6) 24020110	INDEN-Aug2023 Ei5.50E+5 (T=1.32MeV)	pt:641	color:0,80,255	dash:None
-Plot:2/6) 13662070	ENDF/B-VIII.0 Ei5.50E+5 (T=1.32MeV)	pt:641	color:0,0,255	dash:dot
-Plot:3/6) 7664497	ENDF/B-VII.1 Ei5.50E+5 (T=1.32MeV)	pt:100	color:80,0,255	dash:dashdot
-Plot:4/6) 19240549	JENDL-5 Ei5.50E+5 (T=1.32MeV)	pt:162	color:0,255,0	dash:None
-Plot:5/6) 10751920	BROND-3.1 Ei5.50E+5 (T=1.32MeV)	pt:324	color:255,0,255	dash:None
-Plot:6/6) 15684434	MINKS-ACT Ei5.50E+5 (T=1.32MeV)	pt:324	color:127,127,127	dash:None
+Plot:1/6) 24020110	INDEN-Aug2023 Ei5.5e5 (T=1.32MeV)	pt:641	color:0,80,255	dash:None
+Plot:2/6) 13662070	ENDF/B-VIII.0 Ei5.5e5 (T=1.32MeV)	pt:641	color:0,0,255	dash:dot
+Plot:3/6) 7664497	ENDF/B-VII.1 Ei5.5e5 (T=1.32MeV)	pt:100	color:80,0,255	dash:dashdot
+Plot:4/6) 19240549	JENDL-5 Ei5.5e5 (T=1.32MeV)	pt:162	color:0,200,0	dash:None
+Plot:5/6) 10751920	BROND-3.1 Ei5.5e5 (T=1.32MeV)	pt:324	color:255,0,255	dash:None
+Plot:6/6) 15684434	MINKS-ACT Ei5.5e5 (T=1.32MeV)	pt:324	color:255,80,80	dash:dashdot
 --0--getUnits--- EV 1000000.0
 --A--getUnits--- EV 1000000.0
 --1--getUnits--- EV 1000000.0  Category: E

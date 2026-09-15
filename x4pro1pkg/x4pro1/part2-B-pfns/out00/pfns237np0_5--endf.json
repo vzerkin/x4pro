@@ -1,16 +1,16 @@
 {
-  "now":"2026-09-13T17:55:37"
+  "now":"2026-09-15T15:40:27"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":19241653
-    ,"myColor":"0,255,0"
+    ,"myColor":"0,200,0"
     ,"TARGET":"NP-237"
     ,"MF":5
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"JENDL-5 Ei5.20E+5 (T=1.32MeV)"
+    ,"x4lbl":"JENDL-5 Ei5.2e5 (T=1.32MeV)"
     ,"DATE":"2013"
     ,"AUTH":"2013 O.Iwamoto,T.Nakagawa,S.Chiba,+"
     ,"idy":0
@@ -369,13 +369,13 @@
   }
   ,{
      "DatasetID":15684714
-    ,"myColor":"127,127,127"
+    ,"myColor":"255,80,80|dashdot"
     ,"TARGET":"NP-237"
     ,"MF":5
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"MINKS-ACT Ei5.20E+5 (T=1.32MeV)"
+    ,"x4lbl":"MINKS-ACT Ei5.2e5 (T=1.32MeV)"
     ,"DATE":""
     ,"AUTH":"0"
     ,"idy":0

@@ -11,6 +11,7 @@ import time
 import datetime
 sys.path.append('./')
 sys.path.append('../')
+sys.path.append('../../')
 from endf2plot_js  import *
 from exfor2plot_js import *
 

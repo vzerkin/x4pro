@@ -3,7 +3,7 @@
  Purpose: get LEG/RS and SIG from X4Pro;
     calculate LEG(0) from SIG and DA from LEG(*),A;
     output to C4: SIG(E), LEG(num), DA(A:0,180,3)
- Running: 2026-09-13,17:43:14
+ Running: 2026-09-15,15:27:24
 
  Open database: ../../x4sqlite1.db ierr=           0
 

@@ -2,7 +2,7 @@ Program: nubar.py, ver. 2026-08-24
 Author:  V.Zerkin, Vienna, 2026
 Purpose: Retrieve and plot EXFOR and ENDF nu-bar data
 
-Running: 2026-09-13 17:47:17
+Running: 2026-09-15 15:31:35
 
 
 ---Arguments from command-line---
@@ -39,7 +39,7 @@ order by fullCode,YearRef1 desc,DatasetID
  ,En,iPoint                               
 
 
-EXFOR SQL executed: 0.007sec rows:535
+EXFOR SQL executed: 0.006sec rows:535
 
 datapoints: 535
 1) 14873002 2026 B.Mauss 92-U-235(N,F),PR,NU

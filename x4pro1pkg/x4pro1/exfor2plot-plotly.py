@@ -161,6 +161,7 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
 #       legend=dict(traceorder="grouped",xanchor='right',x=0.99,font=dict(family='Arial',size=11),bgcolor='rgba(255,255,255,0.8)')
 #       legend=dict(traceorder="grouped",xanchor='left',x=0.015,yanchor='top',y=0.98,bgcolor='rgba(255,255,255,0.8)',borderwidth=1)
         legend=dict(traceorder="grouped",xanchor='left',x=0.015,yanchor='top',y=0.93,bgcolor='rgba(255,255,255,0.8)',borderwidth=1)
+#   legend['font']=dict(family='Narrow Arial',size=13.5)
     plot1['layout']=Layout(title=ptitle
 	,xaxis=xaxis,yaxis=yaxis
 	,plot_bgcolor='white'

@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-13T17:44:56"
+  "now":"2026-09-15T15:29:09"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -10,7 +10,7 @@
     ,"MT":40002
     ,"fx":1000000.0
     ,"fy":0.001
-    ,"x4lbl":"JENDL-5 El0.00E+0 An130"
+    ,"x4lbl":"JENDL-5 El0.0e0 An130"
     ,"DATE":"2021"
     ,"AUTH":"2021 S.Nakayama"
     ,"idy":0
@@ -62,7 +62,7 @@
     ,"MT":40002
     ,"fx":1000000.0
     ,"fy":0.001
-    ,"x4lbl":"IBA-EVAL El0.00E+0 An130"
+    ,"x4lbl":"IBA-EVAL El0.0e0 An130"
     ,"DATE":""
     ,"AUTH":"A.Gurbich"
     ,"idy":0

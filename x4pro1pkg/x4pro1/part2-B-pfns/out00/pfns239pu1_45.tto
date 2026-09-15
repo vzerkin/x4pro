@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-06   |
+  | Program: reac2pfns.py, ver.2026-09-15   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-13 17:53:01
+Running: 2026-09-15 15:37:57
 
 ---Arguments from command-line---
    1  arg: -o:pfns239pu1_45
@@ -293,7 +293,7 @@ select distinct *
 ---outDatasets:4 datasets:4
 ---ENTRY: 14379*;14430*;14684*;
 datasets: 4
---0--treatDatasets: datasets:4 oper:None
+--0--datasets2mxwRatio: datasets:4 oper:None Tm:1320000.0
 	Dataset:0/4) 94-PU-239(N,F),PR,NU/DE 14684002 Pt:63   2020, P.Marini En=1.45MeV
 ---getAbs2MxwFactor.Target: Pu-239  En: 1450000.0  Nubar: 3.0878723333332814
   PFNS re-normalisation to Maxwellian 0.3238475856676772 PC/FIS/MEV
@@ -362,37 +362,69 @@ datasets: 4
 	   61) E:1.0686e+07  FC:7.4153e-10  y0:1.0697e-09  yy:1.4426     
 	   62) E:1.1317e+07  FC:4.7306e-10  y0:6.4767e-10  yy:1.3691     
 	Dataset:1/4) 94-PU-239(N,F),PR,NU/DE 14379002 Pt:28   2014, A.Chatillon En=1.5MeV
----Dataset in delBlackList: 14379002  [ 2014, A.Chatillon En=1.5MeV]
+---getAbs2MxwFactor---Dataset in absNubarList: 14379002  [ 2014, A.Chatillon En=1.5MeV] nubar=1
+  PFNS re-normalisation to Maxwellian 1.0 PC/FIS/MEV
+---dataset2mxwRatio---Target:[Pu-239] 1/FSP=1.0
+	    0) E:3e+05       FC:3.2468e-07  y0:2.4858e-07  yy:0.76561    
+	    1) E:5e+05       FC:3.6022e-07  y0:3.1933e-07  yy:0.88646    
+	    2) E:7e+05       FC:3.663e-07   y0:3.0948e-07  yy:0.84489    
+	    3) E:9e+05       FC:3.5695e-07  y0:3.3888e-07  yy:0.94938    
+	    4) E:1.1e+06     FC:3.3914e-07  y0:3.1453e-07  yy:0.92744    
+	    5) E:1.3e+06     FC:3.1685e-07  y0:2.9956e-07  yy:0.94544    
+	    6) E:1.5e+06     FC:2.925e-07   y0:3.0292e-07  yy:1.0356     
+	    7) E:1.7e+06     FC:2.6761e-07  y0:2.7539e-07  yy:1.0291     
+	    8) E:1.9e+06     FC:2.4314e-07  y0:2.5224e-07  yy:1.0375     
+	    9) E:2.1e+06     FC:2.1968e-07  y0:2.3233e-07  yy:1.0576     
+	   10) E:2.3e+06     FC:1.9758e-07  y0:2.1887e-07  yy:1.1078     
+	   11) E:2.5e+06     FC:1.7703e-07  y0:1.9997e-07  yy:1.1296     
+	   12) E:2.7e+06     FC:1.5811e-07  y0:1.9536e-07  yy:1.2356     
+	   13) E:2.9e+06     FC:1.4082e-07  y0:1.586e-07   yy:1.1263     
+	   14) E:3.125e+06   FC:1.2327e-07  y0:1.4958e-07  yy:1.2134     
+	   15) E:3.375e+06   FC:1.06e-07    y0:1.1942e-07  yy:1.1266     
+	   16) E:3.625e+06   FC:9.0904e-08  y0:1.0918e-07  yy:1.201      
+	   17) E:3.875e+06   FC:7.777e-08   y0:8.6276e-08  yy:1.1094     
+	   18) E:4.2e+06     FC:6.3295e-08  y0:7.1081e-08  yy:1.123      
+	   19) E:4.6e+06     FC:4.8924e-08  y0:5.3493e-08  yy:1.0934     
+	   20) E:5e+06       FC:3.7672e-08  y0:3.6598e-08  yy:0.97148    
+	   21) E:5.4e+06     FC:2.8916e-08  y0:3.506e-08   yy:1.2125     
+	   22) E:5.8e+06     FC:2.2133e-08  y0:2.4524e-08  yy:1.108      
+	   23) E:6.25e+06    FC:1.6339e-08  y0:1.6295e-08  yy:0.99733    
+	   24) E:6.75e+06    FC:1.1626e-08  y0:1.3736e-08  yy:1.1815     
+	   25) E:7.25e+06    FC:8.2496e-09  y0:8.31e-09    yy:1.0073     
+	   26) E:7.75e+06    FC:5.84e-09    y0:4.396e-09   yy:0.75274    
+	   27) E:8.25e+06    FC:4.1255e-09  y0:3.284e-09   yy:0.79602    
 	Dataset:2/4) 94-PU-239(N,F),PR,NU/DE 14430002 Pt:10   2014, J.P.Lestone En=1.5MeV
----getAbs2MxwFactor---Dataset in BlackList: 14430002  [ 2014, J.P.Lestone En=1.5MeV]
-  PFNS re-normalisation to Maxwellian 0.9974864089111625 PC/FIS/MEV
----dataset2mxwRatio---Target:[Pu-239] 1/FSP=1.0025199251502397
-	    0) E:1.5e+06     FC:2.925e-07   y0:2.8977e-07  yy:0.99067    
-	    1) E:2.5e+06     FC:1.7703e-07  y0:1.9401e-07  yy:1.0959     
-	    2) E:3.5e+06     FC:9.8195e-08  y0:1.1072e-07  yy:1.1276     
-	    3) E:4.5e+06     FC:5.2198e-08  y0:6.0547e-08  yy:1.16       
-	    4) E:5.5e+06     FC:2.7053e-08  y0:3.172e-08   yy:1.1725     
-	    5) E:6.5e+06     FC:1.3787e-08  y0:1.6558e-08  yy:1.201      
-	    6) E:7.5e+06     FC:6.9429e-09  y0:8.5086e-09  yy:1.2255     
-	    7) E:8.5e+06     FC:3.4651e-09  y0:4.1994e-09  yy:1.2119     
-	    8) E:9.5e+06     FC:1.7173e-09  y0:2.2344e-09  yy:1.3011     
-	    9) E:1.05e+07    FC:8.464e-10   y0:1.3466e-09  yy:1.591      
+---getAbs2MxwFactor---Dataset in absNubarList: 14430002  [ 2014, J.P.Lestone En=1.5MeV] nubar=1
+  PFNS re-normalisation to Maxwellian 1.0 PC/FIS/MEV
+---dataset2mxwRatio---Target:[Pu-239] 1/FSP=1.0
+	    0) E:1.5e+06     FC:2.925e-07   y0:2.905e-07   yy:0.99317    
+	    1) E:2.5e+06     FC:1.7703e-07  y0:1.945e-07   yy:1.0987     
+	    2) E:3.5e+06     FC:9.8195e-08  y0:1.11e-07    yy:1.1304     
+	    3) E:4.5e+06     FC:5.2198e-08  y0:6.07e-08    yy:1.1629     
+	    4) E:5.5e+06     FC:2.7053e-08  y0:3.18e-08    yy:1.1755     
+	    5) E:6.5e+06     FC:1.3787e-08  y0:1.66e-08    yy:1.204      
+	    6) E:7.5e+06     FC:6.9429e-09  y0:8.53e-09    yy:1.2286     
+	    7) E:8.5e+06     FC:3.4651e-09  y0:4.21e-09    yy:1.215      
+	    8) E:9.5e+06     FC:1.7173e-09  y0:2.24e-09    yy:1.3044     
+	    9) E:1.05e+07    FC:8.464e-10   y0:1.35e-09    yy:1.595      
 	Dataset:3/4) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 Pt:63   2020, P.Marini En=1.45MeV T=1.32MeV
 
 ---Groupping datasets by Reaction-codes---
----getReacodes---Datasets: 3
+---getReacodes---Datasets: 4
 1) 94-PU-239(N,F),PR,NU/DE
-	Dataset:1/3) 94-PU-239(N,F),PR,NU/DE 14684002 2020, P.Marini En=1.45MeV
-	Dataset:2/3) 94-PU-239(N,F),PR,NU/DE 14430002 2014, J.P.Lestone En=1.5MeV
+	Dataset:1/4) 94-PU-239(N,F),PR,NU/DE 14684002 2020, P.Marini En=1.45MeV T:1.32MeV &#957;=3.09
+	Dataset:2/4) 94-PU-239(N,F),PR,NU/DE 14379002 2014, A.Chatillon En=1.5MeV T:1.32MeV &#957;=/1/
+	Dataset:3/4) 94-PU-239(N,F),PR,NU/DE 14430002 2014, J.P.Lestone En=1.5MeV T:1.32MeV &#957;=/1/
 2) 94-PU-239(N,F),PR,NU/DE,,MXD
-	Dataset:3/3) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 2020, P.Marini En=1.45MeV T=1.32MeV
+	Dataset:4/4) 94-PU-239(N,F),PR,NU/DE,,MXD 14684003 2020, P.Marini En=1.45MeV T=1.32MeV
 ---reacodes: 2 
 
 
 ---Output EXFOR datasets to JSON file---
-Plot:1/3) #14684002 2020, P.Marini En=1.45MeV pt:63
-Plot:2/3) #14430002 2014, J.P.Lestone En=1.5MeV pt:10
-Plot:3/3) #14684003 2020, P.Marini En=1.45MeV T=1.32MeV pt:63
+Plot:1/4) #14684002 2020, P.Marini En=1.45MeV T:1.32MeV &#957;=3.09 pt:63
+Plot:2/4) #14379002 2014, A.Chatillon En=1.5MeV T:1.32MeV &#957;=/1/ pt:28
+Plot:3/4) #14430002 2014, J.P.Lestone En=1.5MeV T:1.32MeV &#957;=/1/ pt:10
+Plot:4/4) #14684003 2020, P.Marini En=1.45MeV T=1.32MeV pt:63
 
 ___webEndfDataForPlot_DADE: [Pu-239] [N,F] [&mf=5&mt=18&ei=1450000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Pu-239&Reaction=N,F&Quantity=*&json&mats
@@ -451,7 +483,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:3/1)	94-Pu-239(N,F),DE	ENDF/B-VII.1	EID:57674	SID:7666460	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
 Downloaded:DS:3/1)	94-Pu-239(N,F),DE	ENDF/B-VII.1	EID:57674	SID:7666460	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
-WebReq:4) EvalID:226920 PenSectID:19242334 Lib:JENDL-5 Color:0,255,0
+WebReq:4) EvalID:226920 PenSectID:19242334 Lib:JENDL-5 Color:0,200,0
 /servlet/E4sGetSectData?EvalID=226920&PenSectID=19242334&json&mf=5&mt=18&ei=1450000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226920&PenSectID=19242334&json&mf=5&mt=18&ei=1450000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -480,11 +512,11 @@ Connected to: [sqlite3]
 Download...DS:5/1)	94-Pu-239(N,F),DE	BROND-3.1	EID:118855	SID:10753082	f(x):Ratio to Mxw (T=1.32MeV)	pts:254
 Downloaded:DS:5/1)	94-Pu-239(N,F),DE	BROND-3.1	EID:118855	SID:10753082	f(x):Ratio to Mxw (T=1.32MeV)	pts:254	idy=0
 ---e4datasets: 5
-Plot:1/5) 24019133	INDEN-Aug2023 Ei1.45E+6 (T=1.32MeV)	pt:640	color:0,80,255	dash:None
-Plot:2/5) 13664491	ENDF/B-VIII.0 Ei1.45E+6 (T=1.32MeV)	pt:591	color:0,0,255	dash:dot
-Plot:3/5) 7666460	ENDF/B-VII.1 Ei1.45E+6 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
-Plot:4/5) 19242334	JENDL-5 Ei1.45E+6 (T=1.32MeV)	pt:162	color:0,255,0	dash:None
-Plot:5/5) 10753082	BROND-3.1 Ei1.45E+6 (T=1.32MeV)	pt:254	color:255,0,255	dash:None
+Plot:1/5) 24019133	INDEN-Aug2023 Ei1.45e6 (T=1.32MeV)	pt:640	color:0,80,255	dash:None
+Plot:2/5) 13664491	ENDF/B-VIII.0 Ei1.45e6 (T=1.32MeV)	pt:591	color:0,0,255	dash:dot
+Plot:3/5) 7666460	ENDF/B-VII.1 Ei1.45e6 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
+Plot:4/5) 19242334	JENDL-5 Ei1.45e6 (T=1.32MeV)	pt:162	color:0,200,0	dash:None
+Plot:5/5) 10753082	BROND-3.1 Ei1.45e6 (T=1.32MeV)	pt:254	color:255,0,255	dash:None
 --0--getUnits--- EV 1000000.0
 --A--getUnits--- EV 1000000.0
 --1--getUnits--- EV 1000000.0  Category: E

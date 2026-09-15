@@ -1,30 +1,32 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-06   |
+  | Program: reac2pfns.py, ver.2026-09-15   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-13 17:51:35
+Running: 2026-09-15 15:36:07
 
 ---Arguments from command-line---
    1  arg: -o:pfns235u0_5
-   2  arg: -x:x2
-   3  arg: -x1min:5e5
-   4  arg: -x1max:5.3e5
-   5  arg: -fx:1e6
-   6  arg: -xmin:0.01
-   7  arg: -xmax:30
-   8  arg: -ymin:0.3
-   9  arg: -ymax:1.6
-   10 arg: -xlog
-   11 arg: -lines
-   12 arg: -sym
-   13 arg: 92-U-235(N,F),PR,NU/DE,,REL
-   14 arg: -annot:0.2,1.5,<sup>235</sup>U(n<sub>0.5MeV</sub>,f) PFNS
+   2  arg: -rsp1:F51-18-3.txt
+   3  arg: -x:x2
+   4  arg: -x1min:5e5
+   5  arg: -x1max:5.3e5
+   6  arg: -fx:1e6
+   7  arg: -xmin:0.01
+   8  arg: -xmax:30
+   9  arg: -ymin:0.3
+   10 arg: -ymax:1.6
+   11 arg: -xlog
+   12 arg: -lines
+   13 arg: -sym
+   14 arg: 92-U-235(N,F),PR,NU/DE,,REL
+   15 arg: 92-U-235(N,F),PR,NU/DE,,NPD
+   16 arg: -annot:0.2,1.5,<sup>235</sup>U(n<sub>0.5MeV</sub>,f) PFNS
    ---str2annot:[0.2,1.5,<sup>235</sup>U(n<sub>0.5MeV</sub>,f) PFNS] --> ('<sup>235</sup>U(n<sub>0.5MeV</sub>,f) PFNS', 0.2, 1.5)
 
 ---Input:
-   Reaction:  ['92-U-235(N,F),PR,NU/DE,,REL']
+   Reaction:  ['92-U-235(N,F),PR,NU/DE,,REL', '92-U-235(N,F),PR,NU/DE,,NPD']
    xn:        x2
    x1range:   500000.0 - 530000.0
    x2range:   None - None
@@ -43,8 +45,16 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
    Connected to: [sqlite3]
 
 ---Print summary---
-Summary of Reaction-Codes 11
+Summary of Reaction-Codes 13
 ----1.
+    fullCode       92-U-235(N,F),PR,NU/DE,,NPD
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   1/EV       Data: data                           ///per eV
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+----3.
     fullCode       92-U-235(N,F),PR,NU/DE,,REL
     ReactionType   NUE        Neutron yield dep.on sec.particle energy
     WebQuantity1   MFQ        Differential fission neutron multiplicities
@@ -53,9 +63,12 @@ Summary of Reaction-Codes 11
     x1    EN       EV         Incident energy: energy              ///electron-Volts
     x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
 /Summary of Reaction-Codes
-Summary of Units 2
----basicUnits:ARB-UNITS   category:NO
-   NO   1/1   NO-DIM      1.0             no Dimensions
+Summary of Units 3
+---basicUnits:1/EV        category:1/E
+   1/E  1/4   1/MEV       1e-06           per MeV
+   1/E  2/4   1/KEV       0.001           per keV
+   1/E  3/4   1/EV        1.0             per eV
+   1/E  4/4   1/MILLI-EV  1000.0          per milli-eV
 ---basicUnits:EV          category:E
    E    1/8   NANO-EV     1e-09           nano-Electron-Volts
    E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
@@ -65,10 +78,12 @@ Summary of Units 2
    E    6/8   MEV         1000000.0       MeV
    E    7/8   GEV         1000000000.0    GeV
    E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+---basicUnits:ARB-UNITS   category:NO
+   NO   1/1   NO-DIM      1.0             no Dimensions
 /Summary of Units
 
 ---Retrieve EXFOR data from SQL database---
----getX4SqlSearch_Reacodes: xn= x2  reacodes: ['92-U-235(N,F),PR,NU/DE,,REL']
+---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['92-U-235(N,F),PR,NU/DE,,REL', '92-U-235(N,F),PR,NU/DE,,NPD']
 SQL:
 select distinct *                                          
  ,uni2.Author1 as a1                                       
@@ -97,168 +112,284 @@ select distinct *
  where 1=1 
  and (
   (fullCode like '92-U-235(N,F),PR,NU/DE,,REL')
+ or (fullCode like '92-U-235(N,F),PR,NU/DE,,NPD')
  ) 
  and x1>=500000.0 and x1<=530000.0   order by fullCode,YearRef1 desc,DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    
 
-   Retrieved rows: 144
+   Retrieved rows: 199
 
 ---Extract EXFOR data from recordsets (rows)---
 
----getDatasets4plot---datapoints:144 xn=x2  fx=1.0e-06 fy=1.0e+00
+---getDatasets4plot---datapoints:199 xn=x2  fx=1.0e-06 fy=1.0e+00
 
--new-1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson y=DATA(EN,E2)
-   1/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.625       y:1.872e+06   dy:187200.0 dx:None
-   2/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.675       y:1.83e+06    dy:183000.0 dx:None
-   3/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.725       y:1.771e+06   dy:177100.0 dx:None
-   4/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.775       y:1.73e+06    dy:173000.0 dx:None
-   5/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.825       y:1.731e+06   dy:173100.0 dx:None
-   6/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.875       y:1.754e+06   dy:175400.0 dx:None
-   7/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.925       y:1.761e+06   dy:88050.0 dx:None
-   8/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.975       y:1.751e+06   dy:87550.0 dx:None
-   9/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.025       y:1.71e+06    dy:85500.0 dx:None
-  10/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.075       y:1.709e+06   dy:85450.0 dx:None
-  11/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.125       y:1.696e+06   dy:50880.0 dx:None
-  12/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.175       y:1.697e+06   dy:50910.0 dx:None
-  13/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.24        y:1.66e+06    dy:49800.0 dx:None
-  14/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.32        y:1.608e+06   dy:48240.0 dx:None
-  15/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.4         y:1.562e+06   dy:46860.0 dx:None
-  16/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.48        y:1.527e+06   dy:45810.0 dx:None
-  17/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.56        y:1.495e+06   dy:44850.0 dx:None
-  18/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.64        y:1.441e+06   dy:43230.0 dx:None
-  19/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.72        y:1.395e+06   dy:41850.0 dx:None
-  20/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.8         y:1.358e+06   dy:40740.0 dx:None
-  21/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.88        y:1.309e+06   dy:39270.0 dx:None
-  22/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.96        y:1.269e+06   dy:38070.0 dx:None
-  23/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.074       y:1.198e+06   dy:35940.0 dx:None
-  24/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.224       y:1.115e+06   dy:33450.0 dx:None
-  25/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.374       y:1.039e+06   dy:31170.0 dx:None
-  26/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.524       y:9.644e+05   dy:28932.0 dx:None
-  27/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.674       y:8.911e+05   dy:26733.0 dx:None
-  28/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.824       y:8.168e+05   dy:24504.0 dx:None
-  29/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.974       y:7.352e+05   dy:22056.0 dx:None
-  30/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.123       y:6.733e+05   dy:20199.0 dx:None
-  31/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.274       y:6.058e+05   dy:18174.0 dx:None
-  32/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.424       y:5.519e+05   dy:16557.0 dx:None
-  33/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.621       y:4.836e+05   dy:14508.0 dx:None
-  34/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.871       y:4.133e+05   dy:12399.0 dx:None
-  35/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:4.122       y:3.541e+05   dy:10623.0 dx:None
-  36/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:4.372       y:3.026e+05   dy:9078.0 dx:None
-  37/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:4.621       y:2.584e+05   dy:7752.0 dx:None
-  38/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:4.871       y:2.173e+05   dy:6519.0 dx:None
-  39/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:5.194       y:1.752e+05   dy:5256.0 dx:None
-  40/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:5.592       y:1.339e+05   dy:4017.0 dx:None
-  41/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:5.989       y:1.02e+05    dy:3060.0 dx:None
-  42/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:6.39        y:76900       dy:2307.0 dx:None
-  43/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:6.792       y:59190       dy:2367.6 dx:None
-  44/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:7.187       y:44650       dy:1786.0 dx:None
-  45/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:7.591       y:33430       dy:1337.2 dx:None
-  46/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:7.992       y:25350       dy:1014.0 dx:None
-  47/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:8.386       y:18520       dy:1296.4 dx:None
-  48/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:8.791       y:13530       dy:947.1 dx:None
-  49/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:9.442       y:8148        dy:570.36 dx:None
-  50/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:10.43       y:3842        dy:1037.34 dx:None
-  51/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:11.43       y:1914        dy:516.78 dx:None
-  52/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:12.43       y:677         dy:182.79 dx:None
-  53/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:13.46       y:386         dy:104.22 dx:None
-  54/144:1) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:14.45       y:225         dy:60.75 dx:None
+-new-1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov y=DATA(EN,E2)
+   1/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.38        y:3.561e-07   dy:2.65294e-08 dx:None
+   2/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.43        y:3.876e-07   dy:2.3101e-08 dx:None
+   3/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.47        y:3.455e-07   dy:2.13519e-08 dx:None
+   4/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.52        y:3.382e-07   dy:1.89054e-08 dx:None
+   5/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.58        y:3.466e-07   dy:1.82658e-08 dx:None
+   6/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.63        y:3.734e-07   dy:1.69897e-08 dx:None
+   7/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.67        y:3.525e-07   dy:1.74487e-08 dx:None
+   8/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.72        y:3.796e-07   dy:1.79551e-08 dx:None
+   9/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.77        y:3.36e-07    dy:1.60272e-08 dx:None
+  10/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.82        y:3.46e-07    dy:1.78536e-08 dx:None
+  11/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.87        y:3.753e-07   dy:1.7489e-08 dx:None
+  12/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.92        y:3.533e-07   dy:1.76297e-08 dx:None
+  13/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:0.97        y:3.458e-07   dy:1.68059e-08 dx:None
+  14/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.02        y:3.529e-07   dy:1.94095e-08 dx:None
+  15/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.08        y:3.389e-07   dy:1.37593e-08 dx:None
+  16/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.13        y:3.503e-07   dy:1.72698e-08 dx:None
+  17/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.18        y:3.372e-07   dy:1.64216e-08 dx:None
+  18/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.22        y:3.268e-07   dy:1.4804e-08 dx:None
+  19/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.27        y:3.241e-07   dy:1.43576e-08 dx:None
+  20/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.32        y:3.095e-07   dy:1.65582e-08 dx:None
+  21/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.37        y:3.026e-07   dy:1.60075e-08 dx:None
+  22/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.42        y:3.103e-07   dy:1.70044e-08 dx:None
+  23/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.47        y:2.978e-07   dy:1.63194e-08 dx:None
+  24/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.53        y:3.006e-07   dy:2.29057e-08 dx:None
+  25/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.59        y:2.976e-07   dy:2.25581e-08 dx:None
+  26/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.63        y:2.839e-07   dy:1.33149e-08 dx:None
+  27/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.67        y:2.872e-07   dy:1.32686e-08 dx:None
+  28/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.71        y:2.728e-07   dy:1.26579e-08 dx:None
+  29/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.76        y:2.683e-07   dy:1.23418e-08 dx:None
+  30/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.81        y:2.562e-07   dy:1.16059e-08 dx:None
+  31/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.86        y:2.454e-07   dy:1.11657e-08 dx:None
+  32/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.91        y:2.414e-07   dy:1.09837e-08 dx:None
+  33/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:1.96        y:2.366e-07   dy:1.0789e-08 dx:None
+  34/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:2.02        y:2.36e-07    dy:1.09032e-08 dx:None
+  35/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:2.14        y:2.165e-07   dy:7.81565e-09 dx:None
+  36/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:2.34        y:1.879e-07   dy:6.70803e-09 dx:None
+  37/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:2.53        y:1.722e-07   dy:7.93842e-09 dx:None
+  38/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:2.74        y:1.522e-07   dy:5.75316e-09 dx:None
+  39/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:2.98        y:1.307e-07   dy:6.46965e-09 dx:None
+  40/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:3.14        y:1.2e-07     dy:6.024e-09 dx:None
+  41/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:3.32        y:1.085e-07   dy:5.5986e-09 dx:None
+  42/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:3.57        y:8.743e-08   dy:4.81739e-09 dx:None
+  43/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:3.78        y:8.243e-08   dy:4.59135e-09 dx:None
+  44/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:3.93        y:7.08e-08    dy:4.09932e-09 dx:None
+  45/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:4.27        y:5.94e-08    dy:2.70864e-09 dx:None
+  46/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:4.75        y:4.28e-08    dy:2.88472e-09 dx:None
+  47/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:5.19        y:3.437e-08   dy:2.52619e-09 dx:None
+  48/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:5.7         y:2.47e-08    dy:2.02293e-09 dx:None
+  49/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:6.29        y:1.643e-08   dy:1.59864e-09 dx:None
+  50/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:6.78        y:1.208e-08   dy:1.3288e-09 dx:None
+  51/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:7.15        y:8.361e-09   dy:1.12037e-09 dx:None
+  52/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:7.77        y:6.374e-09   dy:9.561e-10 dx:None
+  53/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:8.72        y:2.702e-09   dy:6.72798e-10 dx:None
+  54/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:9.55        y:2.153e-09   dy:5.72698e-10 dx:None
+  55/199:1) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 En=0.5MeV 1994 Trufanov x:10.51       y:1.179e-09   dy:4.43304e-10 dx:None
 
--new-2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams y=DATA(EN,E2)
-  55/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.625       y:1210.3      dy:30.67 dx:0.025
-  56/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.675       y:1189.9      dy:29.31 dx:0.025
-  57/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.725       y:1168.2      dy:27.84 dx:0.025
-  58/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.775       y:1148.3      dy:26.15 dx:0.025
-  59/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.825       y:1142.2      dy:24.4 dx:0.025
-  60/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.875       y:1137.4      dy:22.51 dx:0.025
-  61/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.925       y:1132.2      dy:20.22 dx:0.025
-  62/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.975       y:1102.5      dy:17.39 dx:0.026
-  63/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.025       y:1073.7      dy:16.14 dx:0.026
-  64/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.075       y:1057.5      dy:16.44 dx:0.026
-  65/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.125       y:1045.6      dy:16.83 dx:0.026
-  66/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.175       y:1034.4      dy:17.05 dx:0.026
-  67/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.225       y:1024.1      dy:17.18 dx:0.026
-  68/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.275       y:1007        dy:17.53 dx:0.026
-  69/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.325       y:979.57      dy:17.66 dx:0.026
-  70/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.375       y:966.78      dy:17.71 dx:0.026
-  71/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.425       y:945.08      dy:17.57 dx:0.027
-  72/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.475       y:942.18      dy:17.96 dx:0.027
-  73/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.525       y:927.32      dy:18.16 dx:0.027
-  74/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.575       y:910.81      dy:18.42 dx:0.027
-  75/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.625       y:891.81      dy:18.44 dx:0.027
-  76/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.675       y:877.51      dy:18.32 dx:0.027
-  77/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.725       y:852.11      dy:18.09 dx:0.028
-  78/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.775       y:846.56      dy:18.52 dx:0.028
-  79/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.825       y:835.28      dy:18.67 dx:0.028
-  80/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.875       y:823.7       dy:18.51 dx:0.028
-  81/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.925       y:806.37      dy:18.77 dx:0.029
-  82/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.975       y:784.15      dy:18.57 dx:0.029
-  83/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.05        y:768.32      dy:13.29 dx:0.053
-  84/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.15        y:726.7       dy:12.99 dx:0.053
-  85/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.25        y:698.57      dy:12.87 dx:0.053
-  86/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.349       y:667.44      dy:12.7 dx:0.054
-  87/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.45        y:635.79      dy:12.47 dx:0.054
-  88/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.549       y:608.6       dy:12.23 dx:0.055
-  89/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.649       y:573.5       dy:11.91 dx:0.055
-  90/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.75        y:545.18      dy:11.6 dx:0.055
-  91/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.849       y:512.86      dy:11.09 dx:0.056
-  92/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.949       y:478.34      dy:10.62 dx:0.057
-  93/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.049       y:453.74      dy:10.51 dx:0.058
-  94/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.15        y:434.63      dy:10.35 dx:0.058
-  95/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.25        y:406.93      dy:9.72 dx:0.059
-  96/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.349       y:384.5       dy:9.33 dx:0.06
-  97/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.449       y:357.64      dy:9.02 dx:0.06
-  98/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.55        y:333.17      dy:8.62 dx:0.062
-  99/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.649       y:311.91      dy:8.14 dx:0.062
- 100/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.75        y:293.41      dy:7.73 dx:0.063
- 101/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.849       y:276.43      dy:7.39 dx:0.064
- 102/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.949       y:259.9       dy:7.22 dx:0.065
- 103/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.05        y:243.14      dy:6.93 dx:0.067
- 104/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.15        y:225.21      dy:6.42 dx:0.068
- 105/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.249       y:211.04      dy:6.0 dx:0.069
- 106/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.348       y:198.64      dy:5.87 dx:0.07
- 107/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.45        y:185.76      dy:5.63 dx:0.071
- 108/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.549       y:172.88      dy:5.25 dx:0.072
- 109/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.65        y:164         dy:5.03 dx:0.074
- 110/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.747       y:152.21      dy:4.85 dx:0.075
- 111/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.85        y:141.55      dy:4.69 dx:0.076
- 112/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.95        y:132.31      dy:4.24 dx:0.078
- 113/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:5.121       y:117.29      dy:2.58 dx:0.14
- 114/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:5.37        y:97.19       dy:2.219 dx:0.142
- 115/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:5.621       y:79.386      dy:1.928 dx:0.145
- 116/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:5.872       y:65.366      dy:1.669 dx:0.147
- 117/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:6.119       y:53.64       dy:1.396 dx:0.15
- 118/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:6.369       y:45.11       dy:1.249 dx:0.153
- 119/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:6.623       y:38.197      dy:1.098 dx:0.156
- 120/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:6.868       y:32.228      dy:0.951 dx:0.159
- 121/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:7.121       y:26.172      dy:0.835 dx:0.163
- 122/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:7.372       y:21.947      dy:0.729 dx:0.167
- 123/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:7.619       y:18.794      dy:0.656 dx:0.171
- 124/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:7.872       y:14.825      dy:0.542 dx:0.175
- 125/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:8.12        y:12.173      dy:0.451 dx:0.179
- 126/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:8.37        y:9.97        dy:0.396 dx:0.183
- 127/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:8.617       y:8.264       dy:0.359 dx:0.188
- 128/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:8.873       y:6.395       dy:0.301 dx:0.193
- 129/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:9.125       y:5.827       dy:0.279 dx:0.198
- 130/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:9.366       y:4.818       dy:0.253 dx:0.203
- 131/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:9.621       y:4.192       dy:0.242 dx:0.208
- 132/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:9.873       y:3.473       dy:0.217 dx:0.213
- 133/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:10.237      y:2.819       dy:0.148 dx:0.31
- 134/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:10.73       y:1.884       dy:0.132 dx:0.319
- 135/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:11.251      y:1.185       dy:0.121 dx:0.328
- 136/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:11.714      y:1           dy:0.119 dx:0.337
- 137/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:12.212      y:0.537       dy:0.103 dx:0.348
- 138/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:12.749      y:0.451       dy:0.095 dx:0.358
- 139/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:13.291      y:0.369       dy:0.095 dx:0.372
- 140/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:13.69       y:0.194       dy:0.088 dx:0.383
- 141/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:14.244      y:0.14        dy:0.083 dx:0.394
- 142/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:14.823      y:0.14        dy:0.081 dx:0.413
- 143/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:15.225      y:0.108       dy:0.079 dx:0.42
- 144/144:2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:15.629      y:0.107       dy:0.077 dx:0.442
----outDatasets:2 datasets:2
----ENTRY: 20175*;20996*;
-datasets: 2
---0--treatDatasets: datasets:2 oper:None
-	Dataset:0/2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 Pt:54   1977, P.I.Johansson En=0.53MeV
+-new-2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson y=DATA(EN,E2)
+  56/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.625       y:1.872e+06   dy:187200.0 dx:None
+  57/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.675       y:1.83e+06    dy:183000.0 dx:None
+  58/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.725       y:1.771e+06   dy:177100.0 dx:None
+  59/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.775       y:1.73e+06    dy:173000.0 dx:None
+  60/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.825       y:1.731e+06   dy:173100.0 dx:None
+  61/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.875       y:1.754e+06   dy:175400.0 dx:None
+  62/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.925       y:1.761e+06   dy:88050.0 dx:None
+  63/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:0.975       y:1.751e+06   dy:87550.0 dx:None
+  64/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.025       y:1.71e+06    dy:85500.0 dx:None
+  65/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.075       y:1.709e+06   dy:85450.0 dx:None
+  66/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.125       y:1.696e+06   dy:50880.0 dx:None
+  67/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.175       y:1.697e+06   dy:50910.0 dx:None
+  68/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.24        y:1.66e+06    dy:49800.0 dx:None
+  69/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.32        y:1.608e+06   dy:48240.0 dx:None
+  70/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.4         y:1.562e+06   dy:46860.0 dx:None
+  71/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.48        y:1.527e+06   dy:45810.0 dx:None
+  72/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.56        y:1.495e+06   dy:44850.0 dx:None
+  73/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.64        y:1.441e+06   dy:43230.0 dx:None
+  74/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.72        y:1.395e+06   dy:41850.0 dx:None
+  75/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.8         y:1.358e+06   dy:40740.0 dx:None
+  76/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.88        y:1.309e+06   dy:39270.0 dx:None
+  77/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:1.96        y:1.269e+06   dy:38070.0 dx:None
+  78/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.074       y:1.198e+06   dy:35940.0 dx:None
+  79/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.224       y:1.115e+06   dy:33450.0 dx:None
+  80/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.374       y:1.039e+06   dy:31170.0 dx:None
+  81/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.524       y:9.644e+05   dy:28932.0 dx:None
+  82/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.674       y:8.911e+05   dy:26733.0 dx:None
+  83/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.824       y:8.168e+05   dy:24504.0 dx:None
+  84/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:2.974       y:7.352e+05   dy:22056.0 dx:None
+  85/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.123       y:6.733e+05   dy:20199.0 dx:None
+  86/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.274       y:6.058e+05   dy:18174.0 dx:None
+  87/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.424       y:5.519e+05   dy:16557.0 dx:None
+  88/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.621       y:4.836e+05   dy:14508.0 dx:None
+  89/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:3.871       y:4.133e+05   dy:12399.0 dx:None
+  90/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:4.122       y:3.541e+05   dy:10623.0 dx:None
+  91/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:4.372       y:3.026e+05   dy:9078.0 dx:None
+  92/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:4.621       y:2.584e+05   dy:7752.0 dx:None
+  93/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:4.871       y:2.173e+05   dy:6519.0 dx:None
+  94/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:5.194       y:1.752e+05   dy:5256.0 dx:None
+  95/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:5.592       y:1.339e+05   dy:4017.0 dx:None
+  96/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:5.989       y:1.02e+05    dy:3060.0 dx:None
+  97/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:6.39        y:76900       dy:2307.0 dx:None
+  98/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:6.792       y:59190       dy:2367.6 dx:None
+  99/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:7.187       y:44650       dy:1786.0 dx:None
+ 100/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:7.591       y:33430       dy:1337.2 dx:None
+ 101/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:7.992       y:25350       dy:1014.0 dx:None
+ 102/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:8.386       y:18520       dy:1296.4 dx:None
+ 103/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:8.791       y:13530       dy:947.1 dx:None
+ 104/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:9.442       y:8148        dy:570.36 dx:None
+ 105/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:10.43       y:3842        dy:1037.34 dx:None
+ 106/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:11.43       y:1914        dy:516.78 dx:None
+ 107/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:12.43       y:677         dy:182.79 dx:None
+ 108/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:13.46       y:386         dy:104.22 dx:None
+ 109/199:2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 En=0.53MeV 1977 Johansson x:14.45       y:225         dy:60.75 dx:None
+
+-new-3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams y=DATA(EN,E2)
+ 110/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.625       y:1210.3      dy:30.67 dx:0.025
+ 111/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.675       y:1189.9      dy:29.31 dx:0.025
+ 112/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.725       y:1168.2      dy:27.84 dx:0.025
+ 113/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.775       y:1148.3      dy:26.15 dx:0.025
+ 114/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.825       y:1142.2      dy:24.4 dx:0.025
+ 115/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.875       y:1137.4      dy:22.51 dx:0.025
+ 116/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.925       y:1132.2      dy:20.22 dx:0.025
+ 117/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:0.975       y:1102.5      dy:17.39 dx:0.026
+ 118/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.025       y:1073.7      dy:16.14 dx:0.026
+ 119/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.075       y:1057.5      dy:16.44 dx:0.026
+ 120/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.125       y:1045.6      dy:16.83 dx:0.026
+ 121/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.175       y:1034.4      dy:17.05 dx:0.026
+ 122/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.225       y:1024.1      dy:17.18 dx:0.026
+ 123/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.275       y:1007        dy:17.53 dx:0.026
+ 124/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.325       y:979.57      dy:17.66 dx:0.026
+ 125/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.375       y:966.78      dy:17.71 dx:0.026
+ 126/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.425       y:945.08      dy:17.57 dx:0.027
+ 127/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.475       y:942.18      dy:17.96 dx:0.027
+ 128/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.525       y:927.32      dy:18.16 dx:0.027
+ 129/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.575       y:910.81      dy:18.42 dx:0.027
+ 130/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.625       y:891.81      dy:18.44 dx:0.027
+ 131/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.675       y:877.51      dy:18.32 dx:0.027
+ 132/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.725       y:852.11      dy:18.09 dx:0.028
+ 133/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.775       y:846.56      dy:18.52 dx:0.028
+ 134/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.825       y:835.28      dy:18.67 dx:0.028
+ 135/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.875       y:823.7       dy:18.51 dx:0.028
+ 136/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.925       y:806.37      dy:18.77 dx:0.029
+ 137/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:1.975       y:784.15      dy:18.57 dx:0.029
+ 138/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.05        y:768.32      dy:13.29 dx:0.053
+ 139/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.15        y:726.7       dy:12.99 dx:0.053
+ 140/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.25        y:698.57      dy:12.87 dx:0.053
+ 141/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.349       y:667.44      dy:12.7 dx:0.054
+ 142/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.45        y:635.79      dy:12.47 dx:0.054
+ 143/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.549       y:608.6       dy:12.23 dx:0.055
+ 144/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.649       y:573.5       dy:11.91 dx:0.055
+ 145/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.75        y:545.18      dy:11.6 dx:0.055
+ 146/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.849       y:512.86      dy:11.09 dx:0.056
+ 147/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:2.949       y:478.34      dy:10.62 dx:0.057
+ 148/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.049       y:453.74      dy:10.51 dx:0.058
+ 149/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.15        y:434.63      dy:10.35 dx:0.058
+ 150/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.25        y:406.93      dy:9.72 dx:0.059
+ 151/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.349       y:384.5       dy:9.33 dx:0.06
+ 152/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.449       y:357.64      dy:9.02 dx:0.06
+ 153/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.55        y:333.17      dy:8.62 dx:0.062
+ 154/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.649       y:311.91      dy:8.14 dx:0.062
+ 155/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.75        y:293.41      dy:7.73 dx:0.063
+ 156/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.849       y:276.43      dy:7.39 dx:0.064
+ 157/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:3.949       y:259.9       dy:7.22 dx:0.065
+ 158/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.05        y:243.14      dy:6.93 dx:0.067
+ 159/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.15        y:225.21      dy:6.42 dx:0.068
+ 160/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.249       y:211.04      dy:6.0 dx:0.069
+ 161/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.348       y:198.64      dy:5.87 dx:0.07
+ 162/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.45        y:185.76      dy:5.63 dx:0.071
+ 163/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.549       y:172.88      dy:5.25 dx:0.072
+ 164/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.65        y:164         dy:5.03 dx:0.074
+ 165/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.747       y:152.21      dy:4.85 dx:0.075
+ 166/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.85        y:141.55      dy:4.69 dx:0.076
+ 167/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:4.95        y:132.31      dy:4.24 dx:0.078
+ 168/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:5.121       y:117.29      dy:2.58 dx:0.14
+ 169/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:5.37        y:97.19       dy:2.219 dx:0.142
+ 170/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:5.621       y:79.386      dy:1.928 dx:0.145
+ 171/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:5.872       y:65.366      dy:1.669 dx:0.147
+ 172/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:6.119       y:53.64       dy:1.396 dx:0.15
+ 173/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:6.369       y:45.11       dy:1.249 dx:0.153
+ 174/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:6.623       y:38.197      dy:1.098 dx:0.156
+ 175/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:6.868       y:32.228      dy:0.951 dx:0.159
+ 176/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:7.121       y:26.172      dy:0.835 dx:0.163
+ 177/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:7.372       y:21.947      dy:0.729 dx:0.167
+ 178/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:7.619       y:18.794      dy:0.656 dx:0.171
+ 179/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:7.872       y:14.825      dy:0.542 dx:0.175
+ 180/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:8.12        y:12.173      dy:0.451 dx:0.179
+ 181/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:8.37        y:9.97        dy:0.396 dx:0.183
+ 182/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:8.617       y:8.264       dy:0.359 dx:0.188
+ 183/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:8.873       y:6.395       dy:0.301 dx:0.193
+ 184/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:9.125       y:5.827       dy:0.279 dx:0.198
+ 185/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:9.366       y:4.818       dy:0.253 dx:0.203
+ 186/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:9.621       y:4.192       dy:0.242 dx:0.208
+ 187/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:9.873       y:3.473       dy:0.217 dx:0.213
+ 188/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:10.237      y:2.819       dy:0.148 dx:0.31
+ 189/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:10.73       y:1.884       dy:0.132 dx:0.319
+ 190/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:11.251      y:1.185       dy:0.121 dx:0.328
+ 191/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:11.714      y:1           dy:0.119 dx:0.337
+ 192/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:12.212      y:0.537       dy:0.103 dx:0.348
+ 193/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:12.749      y:0.451       dy:0.095 dx:0.358
+ 194/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:13.291      y:0.369       dy:0.095 dx:0.372
+ 195/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:13.69       y:0.194       dy:0.088 dx:0.383
+ 196/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:14.244      y:0.14        dy:0.083 dx:0.394
+ 197/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:14.823      y:0.14        dy:0.081 dx:0.413
+ 198/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:15.225      y:0.108       dy:0.079 dx:0.42
+ 199/199:3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 En=0.52MeV 1975 Adams x:15.629      y:0.107       dy:0.077 dx:0.442
+---outDatasets:3 datasets:3
+---ENTRY: 20175*;20996*;41162*;
+datasets: 3
+--0--datasets2mxwRatio: datasets:3 oper:None Tm:1320000.0
+	Dataset:0/3) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 Pt:55   1994, A.M.Trufanov En=0.5MeV
+  PFNS re-normalisation to Maxwellian 0.9725561079898504 1/EV
+---dataset2mxwRatio---Target:[U-235] 1/FSP=1.0282183123263424
+	    0) E:3.8e+05     FC:3.4392e-07  y0:3.4633e-07  yy:1.007      
+	    1) E:4.3e+05     FC:3.5225e-07  y0:3.7696e-07  yy:1.0701     
+	    2) E:4.7e+05     FC:3.5728e-07  y0:3.3602e-07  yy:0.94049    
+	    3) E:5.2e+05     FC:3.6183e-07  y0:3.2892e-07  yy:0.90903    
+	    4) E:5.8e+05     FC:3.6516e-07  y0:3.3709e-07  yy:0.92313    
+	    5) E:6.3e+05     FC:3.6643e-07  y0:3.6315e-07  yy:0.99106    
+	    6) E:6.7e+05     FC:3.666e-07   y0:3.4283e-07  yy:0.93515    
+	    7) E:7.2e+05     FC:3.6591e-07  y0:3.6918e-07  yy:1.009      
+	    8) E:7.7e+05     FC:3.6434e-07  y0:3.2678e-07  yy:0.89692    
+	    9) E:8.2e+05     FC:3.62e-07    y0:3.365e-07   yy:0.92956    
+	   10) E:8.7e+05     FC:3.5902e-07  y0:3.65e-07    yy:1.0167     
+	   11) E:9.2e+05     FC:3.5547e-07  y0:3.436e-07   yy:0.96663    
+	   12) E:9.7e+05     FC:3.5143e-07  y0:3.3631e-07  yy:0.95697    
+	   13) E:1.02e+06    FC:3.4698e-07  y0:3.4322e-07  yy:0.98915    
+	   14) E:1.08e+06    FC:3.4117e-07  y0:3.296e-07   yy:0.96608    
+	   15) E:1.13e+06    FC:3.3601e-07  y0:3.4069e-07  yy:1.0139     
+	   16) E:1.18e+06    FC:3.306e-07   y0:3.2795e-07  yy:0.99197    
+	   17) E:1.22e+06    FC:3.2612e-07  y0:3.1783e-07  yy:0.97458    
+	   18) E:1.27e+06    FC:3.2037e-07  y0:3.1521e-07  yy:0.98388    
+	   19) E:1.32e+06    FC:3.1448e-07  y0:3.0101e-07  yy:0.95717    
+	   20) E:1.37e+06    FC:3.0847e-07  y0:2.943e-07   yy:0.95406    
+	   21) E:1.42e+06    FC:3.0237e-07  y0:3.0178e-07  yy:0.99805    
+	   22) E:1.47e+06    FC:2.9621e-07  y0:2.8963e-07  yy:0.97776    
+	   23) E:1.53e+06    FC:2.8877e-07  y0:2.9235e-07  yy:1.0124     
+	   24) E:1.59e+06    FC:2.813e-07   y0:2.8943e-07  yy:1.0289     
+	   25) E:1.63e+06    FC:2.7631e-07  y0:2.7611e-07  yy:0.99926    
+	   26) E:1.67e+06    FC:2.7133e-07  y0:2.7932e-07  yy:1.0294     
+	   27) E:1.71e+06    FC:2.6637e-07  y0:2.6531e-07  yy:0.99604    
+	   28) E:1.76e+06    FC:2.6019e-07  y0:2.6094e-07  yy:1.0029     
+	   29) E:1.81e+06    FC:2.5405e-07  y0:2.4917e-07  yy:0.98078    
+	   30) E:1.86e+06    FC:2.4796e-07  y0:2.3867e-07  yy:0.9625     
+	   31) E:1.91e+06    FC:2.4194e-07  y0:2.3478e-07  yy:0.9704     
+	   32) E:1.96e+06    FC:2.3597e-07  y0:2.3011e-07  yy:0.97514    
+	   33) E:2.02e+06    FC:2.2891e-07  y0:2.2952e-07  yy:1.0027     
+	   34) E:2.14e+06    FC:2.1514e-07  y0:2.1056e-07  yy:0.97871    
+	   35) E:2.34e+06    FC:1.9334e-07  y0:1.8274e-07  yy:0.9452     
+	   36) E:2.53e+06    FC:1.7408e-07  y0:1.6747e-07  yy:0.96204    
+	   37) E:2.74e+06    FC:1.5452e-07  y0:1.4802e-07  yy:0.95797    
+	   38) E:2.98e+06    FC:1.3435e-07  y0:1.2711e-07  yy:0.94611    
+	   39) E:3.14e+06    FC:1.2217e-07  y0:1.1671e-07  yy:0.95528    
+	   40) E:3.32e+06    FC:1.0961e-07  y0:1.0552e-07  yy:0.96271    
+	   41) E:3.57e+06    FC:9.405e-08   y0:8.5031e-08  yy:0.9041     
+	   42) E:3.78e+06    FC:8.2543e-08  y0:8.0168e-08  yy:0.97123    
+	   43) E:3.93e+06    FC:7.5124e-08  y0:6.8857e-08  yy:0.91658    
+	   44) E:4.27e+06    FC:6.0525e-08  y0:5.777e-08   yy:0.95449    
+	   45) E:4.75e+06    FC:4.4375e-08  y0:4.1625e-08  yy:0.93804    
+	   46) E:5.19e+06    FC:3.3236e-08  y0:3.3427e-08  yy:1.0057     
+	   47) E:5.7e+06     FC:2.3668e-08  y0:2.4022e-08  yy:1.015      
+	   48) E:6.29e+06    FC:1.5902e-08  y0:1.5979e-08  yy:1.0049     
+	   49) E:6.78e+06    FC:1.139e-08   y0:1.1748e-08  yy:1.0315     
+	   50) E:7.15e+06    FC:8.8373e-09  y0:8.1315e-09  yy:0.92014    
+	   51) E:7.77e+06    FC:5.7596e-09  y0:6.1991e-09  yy:1.0763     
+	   52) E:8.72e+06    FC:2.9708e-09  y0:2.6278e-09  yy:0.88455    
+	   53) E:9.55e+06    FC:1.6578e-09  y0:2.0939e-09  yy:1.263      
+	   54) E:1.051e+07   FC:8.4041e-10  y0:1.1466e-09  yy:1.3644     
+	Dataset:1/3) 92-U-235(N,F),PR,NU/DE,,REL 20175003 Pt:54   1977, P.I.Johansson En=0.53MeV
   PFNS re-normalisation to Maxwellian 1.949066271251976e-13 ARB-UNITS
 ---dataset2mxwRatio---Target:[U-235] 1/FSP=5130661869992.001
 	    0) E:6.25e+05    FC:3.6636e-07  y0:3.6487e-07  yy:0.99593    
@@ -315,7 +446,7 @@ datasets: 2
 	   51) E:1.243e+07   FC:2.1341e-10  y0:1.3195e-10  yy:0.61829    
 	   52) E:1.346e+07   FC:1.0177e-10  y0:7.5234e-11  yy:0.73924    
 	   53) E:1.445e+07   FC:4.981e-11   y0:4.3854e-11  yy:0.88042    
-	Dataset:1/2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 Pt:90   1975, J.M.Adams En=0.52MeV
+	Dataset:2/3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 Pt:90   1975, J.M.Adams En=0.52MeV
   PFNS re-normalisation to Maxwellian 3.023179297189347e-10 ARB-UNITS
 ---dataset2mxwRatio---Target:[U-235] 1/FSP=3307776025.4897914
 	    0) E:6.25e+05    FC:3.6636e-07  y0:3.659e-07   yy:0.99874    
@@ -410,18 +541,21 @@ datasets: 2
 	   89) E:1.5629e+07  FC:2.1205e-11  y0:3.2348e-11  yy:1.5255     
 
 ---Groupping datasets by Reaction-codes---
----getReacodes---Datasets: 2
-1) 92-U-235(N,F),PR,NU/DE,,REL
-	Dataset:1/2) 92-U-235(N,F),PR,NU/DE,,REL 20175003 1977, P.I.Johansson En=0.53MeV
-	Dataset:2/2) 92-U-235(N,F),PR,NU/DE,,REL 20996003 1975, J.M.Adams En=0.52MeV
----reacodes: 1 
+---getReacodes---Datasets: 3
+1) 92-U-235(N,F),PR,NU/DE,,NPD
+	Dataset:1/3) 92-U-235(N,F),PR,NU/DE,,NPD 41162003 1994, A.M.Trufanov En=0.5MeV T:1.32MeV
+2) 92-U-235(N,F),PR,NU/DE,,REL
+	Dataset:2/3) 92-U-235(N,F),PR,NU/DE,,REL 20175003 1977, P.I.Johansson En=0.53MeV T:1.32MeV
+	Dataset:3/3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 1975, J.M.Adams En=0.52MeV T:1.32MeV
+---reacodes: 2 
 
 
 ---Output EXFOR datasets to JSON file---
-Plot:1/2) #20175003 1977, P.I.Johansson En=0.53MeV pt:54
-Plot:2/2) #20996003 1975, J.M.Adams En=0.52MeV pt:90
+Plot:1/3) #41162003 1994, A.M.Trufanov En=0.5MeV T:1.32MeV pt:55
+Plot:2/3) #20175003 1977, P.I.Johansson En=0.53MeV T:1.32MeV pt:54
+Plot:3/3) #20996003 1975, J.M.Adams En=0.52MeV T:1.32MeV pt:90
 
-___webEndfDataForPlot_DADE: [U-235] [N,F] [&mf=5&mt=18&ei=530000.0&T=1320000.0]
+___webEndfDataForPlot_DADE: [U-235] [N,F] [&mf=5&mt=18&ei=500000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-235&Reaction=N,F&Quantity=*&json&mats
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
@@ -437,81 +571,406 @@ SelectedLib-Sect:12) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18
 SelectedLib-Sect:18) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-235(N,F),SIG', 'EvalID': 118842, 'SectID': 6090165, 'PenSectID': 10751653, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'atyuk A.V.', 'AUTH': 'Nikolaev M.N.'}
 ___Required sections:5
 WebReq:1) EvalID:272576 PenSectID:24020202 Lib:INDEN-Aug2023 Color:0,80,255
-/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=530000.0&T=1320000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=500000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=530000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:1/1)	92-U-235(N,F),DE	INDEN-Aug2023	EID:272576	SID:24020202	f(x):Ratio to Mxw (T=1.32MeV)	pts:638
 Downloaded:DS:1/1)	92-U-235(N,F),DE	INDEN-Aug2023	EID:272576	SID:24020202	f(x):Ratio to Mxw (T=1.32MeV)	pts:638	idy=0
 WebReq:2) EvalID:149933 PenSectID:13662341 Lib:ENDF/B-VIII.0 Color:0,0,255|dot
-/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=530000.0&T=1320000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=500000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=530000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:2/1)	92-U-235(N,F),DE	ENDF/B-VIII.0	EID:149933	SID:13662341	f(x):Ratio to Mxw (T=1.32MeV)	pts:640
 Downloaded:DS:2/1)	92-U-235(N,F),DE	ENDF/B-VIII.0	EID:149933	SID:13662341	f(x):Ratio to Mxw (T=1.32MeV)	pts:640	idy=0
 WebReq:3) EvalID:57658 PenSectID:7664758 Lib:ENDF/B-VII.1 Color:80,0,255|dashdot
-/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=530000.0&T=1320000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=500000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=530000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:3/1)	92-U-235(N,F),DE	ENDF/B-VII.1	EID:57658	SID:7664758	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
 Downloaded:DS:3/1)	92-U-235(N,F),DE	ENDF/B-VII.1	EID:57658	SID:7664758	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
-WebReq:4) EvalID:226906 PenSectID:19240823 Lib:JENDL-5 Color:0,255,0
-/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=530000.0&T=1320000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+WebReq:4) EvalID:226906 PenSectID:19240823 Lib:JENDL-5 Color:0,200,0
+/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=500000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=530000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:4/1)	92-U-235(N,F),DE	JENDL-5	EID:226906	SID:19240823	f(x):Ratio to Mxw (T=1.32MeV)	pts:600
 Downloaded:DS:4/1)	92-U-235(N,F),DE	JENDL-5	EID:226906	SID:19240823	f(x):Ratio to Mxw (T=1.32MeV)	pts:600	idy=0
 WebReq:5) EvalID:118842 PenSectID:10751653 Lib:BROND-3.1 Color:255,0,255
-/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=530000.0&T=1320000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=500000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 0
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=530000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=530000.0&T=1320000.0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_put:http://localhost:5557/exfor2
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:5/1)	92-U-235(N,F),DE	BROND-3.1	EID:118842	SID:10751653	f(x):Ratio to Mxw (T=1.32MeV)	pts:561
 Downloaded:DS:5/1)	92-U-235(N,F),DE	BROND-3.1	EID:118842	SID:10751653	f(x):Ratio to Mxw (T=1.32MeV)	pts:561	idy=0
 ---e4datasets: 5
-Plot:1/5) 24020202	INDEN-Aug2023 Ei5.30E+5 (T=1.32MeV)	pt:638	color:0,80,255	dash:None
-Plot:2/5) 13662341	ENDF/B-VIII.0 Ei5.30E+5 (T=1.32MeV)	pt:640	color:0,0,255	dash:dot
-Plot:3/5) 7664758	ENDF/B-VII.1 Ei5.30E+5 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
-Plot:4/5) 19240823	JENDL-5 Ei5.30E+5 (T=1.32MeV)	pt:600	color:0,255,0	dash:None
-Plot:5/5) 10751653	BROND-3.1 Ei5.30E+5 (T=1.32MeV)	pt:561	color:255,0,255	dash:None
+##T1320000.0 ##E:0.01 ##FC:7.44036359655897e-11
+##T1320000.0 ##E:0.02 ##FC:1.0522263027526639e-10
+##T1320000.0 ##E:0.03 ##FC:1.2887087580767136e-10
+##T1320000.0 ##E:0.04 ##FC:1.48807268549196e-10
+##T1320000.0 ##E:0.049999999999999996 ##FC:1.663715827506436e-10
+##T1320000.0 ##E:0.06 ##FC:1.8225093622004086e-10
+##T1320000.0 ##E:0.07 ##FC:1.9685350845604456e-10
+##T1320000.0 ##E:0.08 ##FC:2.1044525098483937e-10
+##T1320000.0 ##E:0.09999999999999999 ##FC:2.352849398071293e-10
+##T1320000.0 ##E:0.15 ##FC:2.881640124291567e-10
+##T1320000.0 ##E:0.19999999999999998 ##FC:3.3274312768956597e-10
+##T1320000.0 ##E:0.25 ##FC:3.720181121882856e-10
+##T1320000.0 ##E:0.3 ##FC:4.075254082554544e-10
+##T1320000.0 ##E:0.35 ##FC:4.40177733146001e-10
+##T1320000.0 ##E:0.39999999999999997 ##FC:4.705697726665709e-10
+##T1320000.0 ##E:0.44999999999999996 ##FC:4.991145970050603e-10
+##T1320000.0 ##E:0.5 ##FC:5.261129600624936e-10
+##T1320000.0 ##E:0.55 ##FC:5.517919067493239e-10
+##T1320000.0 ##E:0.6 ##FC:5.763278283828838e-10
+##T1320000.0 ##E:0.6499999 ##FC:5.998609535802827e-10
+##T1320000.0 ##E:0.7 ##FC:6.225051550115127e-10
+##T1320000.0 ##E:0.75 ##FC:6.443540275724278e-10
+##T1320000.0 ##E:0.7999999999999999 ##FC:6.654859528854482e-10
+##T1320000.0 ##E:0.85 ##FC:6.859671930442739e-10
+##T1320000.0 ##E:0.8999999999999999 ##FC:7.058543916307179e-10
+##T1320000.0 ##E:0.95 ##FC:7.251964218346957e-10
+##T1320000.0 ##E:1.0 ##FC:7.440358016288366e-10
+##T1320000.0 ##E:1.5 ##FC:9.112536870047307e-10
+##T1320000.0 ##E:2.0 ##FC:1.0522247244143937e-09
+##T1320000.0 ##E:2.5 ##FC:1.176422560083593e-09
+##T1320000.0 ##E:3.0 ##FC:1.2887058584852701e-09
+##T1320000.0 ##E:3.5 ##FC:1.391960890302342e-09
+##T1320000.0 ##E:4.0 ##FC:1.4880682212805998e-09
+##T1320000.0 ##E:4.5 ##FC:1.5783340973496361e-09
+##T1320000.0 ##E:5.0 ##FC:1.6637095885837806e-09
+##T1320000.0 ##E:5.5 ##FC:1.7449126763402952e-09
+##T1320000.0 ##E:6.0 ##FC:1.8225011609267314e-09
+##T1320000.0 ##E:6.5 ##FC:1.8969186318144455e-09
+##T1320000.0 ##E:7.0 ##FC:1.9685247497783797e-09
+##T1320000.0 ##E:7.5 ##FC:2.0376159269782676e-09
+##T1320000.0 ##E:8.0 ##FC:2.1044398831712145e-09
+##T1320000.0 ##E:8.5 ##FC:2.169206158600197e-09
+##T1320000.0 ##E:9.0 ##FC:2.232093877003837e-09
+##T1320000.0 ##E:9.5 ##FC:2.2932575898989523e-09
+##T1320000.0 ##E:10.0 ##FC:2.3528317517669816e-09
+##T1320000.0 ##E:15.0 ##FC:2.8816077060225217e-09
+##T1320000.0 ##E:20.0 ##FC:3.3273813658008406e-09
+##T1320000.0 ##E:25.0 ##FC:3.720111369140755e-09
+##T1320000.0 ##E:30.0 ##FC:4.075162390369227e-09
+##T1320000.0 ##E:35.0 ##FC:4.401661786321596e-09
+##T1320000.0 ##E:40.0 ##FC:4.705556557851452e-09
+##T1320000.0 ##E:45.0 ##FC:4.990977521716696e-09
+##T1320000.0 ##E:50.0 ##FC:5.260932311964098e-09
+##T1320000.0 ##E:55.0 ##FC:5.517691458026182e-09
+##T1320000.0 ##E:60.0 ##FC:5.763018942141298e-09
+##T1320000.0 ##E:65.0 ##FC:5.9983175721244845e-09
+##T1320000.0 ##E:70.0 ##FC:6.224724743487496e-09
+##T1320000.0 ##E:75.0 ##FC:6.44317783677746e-09
+##T1320000.0 ##E:80.0 ##FC:6.654460249261259e-09
+##T1320000.0 ##E:85.0 ##FC:6.8592346402959455e-09
+##T1320000.0 ##E:90.0 ##FC:7.0580674806727135e-09
+##T1320000.0 ##E:95.0 ##FC:7.251447534303487e-09
+##T1320000.0 ##E:100.0 ##FC:7.4398000103626274e-09
+##T1320000.0 ##E:150.0 ##FC:9.111511767312538e-09
+##T1320000.0 ##E:200.0 ##FC:1.0520669025426679e-08
+##T1320000.0 ##E:250.0 ##FC:1.1762020015315877e-08
+##T1320000.0 ##E:300.0 ##FC:1.2884159322850316e-08
+##T1320000.0 ##E:350.0 ##FC:1.3915955485218444e-08
+##T1320000.0 ##E:400.0 ##FC:1.4876218677705897e-08
+##T1320000.0 ##E:450.0 ##FC:1.577801499472728e-08
+##T1320000.0 ##E:500.0 ##FC:1.6630858144530214e-08
+##T1320000.0 ##E:550.0 ##FC:1.7441930482947934e-08
+##T1320000.0 ##E:600.0 ##FC:1.8216812199048812e-08
+##T1320000.0 ##E:650.0 ##FC:1.8959941093520957e-08
+##T1320000.0 ##E:700.0 ##FC:1.9674915455245943e-08
+##T1320000.0 ##E:750.0 ##FC:2.0364700903161163e-08
+##T1320000.0 ##E:800.0 ##FC:2.1031775979647424e-08
+##T1320000.0 ##E:850.0 ##FC:2.1678237303699067e-08
+##T1320000.0 ##E:900.0 ##FC:2.230587722021353e-08
+##T1320000.0 ##E:950.0 ##FC:2.2916242258212008e-08
+##T1320000.0 ##E:1000.0 ##FC:2.351067789521684e-08
+##T1320000.0 ##E:1500.0 ##FC:2.878367720186996e-08
+##T1320000.0 ##E:2000.0 ##FC:3.322394035185225e-08
+##T1320000.0 ##E:2500.0 ##FC:3.713142695496761e-08
+##T1320000.0 ##E:3000.0 ##FC:4.066003582513606e-08
+##T1320000.0 ##E:3500.0 ##FC:4.3901225759721154e-08
+##T1320000.0 ##E:4000.0 ##FC:4.6914610420232754e-08
+##T1320000.0 ##E:4500.0 ##FC:4.9741613658062076e-08
+##T1320000.0 ##E:5000.0 ##FC:5.241240760529204e-08
+##T1320000.0 ##E:5500.0 ##FC:5.4949778597654014e-08
+##T1320000.0 ##E:6000.0 ##FC:5.737143620040979e-08
+##T1320000.0 ##E:6500.0 ##FC:5.96914693515949e-08
+##T1320000.0 ##E:7000.0 ##FC:6.192130573146033e-08
+##T1320000.0 ##E:7500.0 ##FC:6.407036703676385e-08
+##T1320000.0 ##E:8000.0 ##FC:6.61465302884852e-08
+##T1320000.0 ##E:8500.0 ##FC:6.8156461055406e-08
+##T1320000.0 ##E:9000.0 ##FC:7.01058595560655e-08
+##T1320000.0 ##E:9500.0 ##FC:7.199964596384687e-08
+##T1320000.0 ##E:10000.0 ##FC:7.384210232528625e-08
+##T1320000.0 ##E:15000.0 ##FC:9.009581691647387e-08
+##T1320000.0 ##E:20000.0 ##FC:1.0364036669559938e-07
+##T1320000.0 ##E:25000.0 ##FC:1.154353682081449e-07
+##T1320000.0 ##E:30000.0 ##FC:1.2597502718112956e-07
+##T1320000.0 ##E:35000.0 ##FC:1.355541445742532e-07
+##T1320000.0 ##E:40000.0 ##FC:1.4436559971870585e-07
+##T1320000.0 ##E:45000.0 ##FC:1.525439281519043e-07
+##T1320000.0 ##E:50000.0 ##FC:1.6018749726718366e-07
+##T1320000.0 ##E:55000.0 ##FC:1.6737088164939077e-07
+##T1320000.0 ##E:60000.0 ##FC:1.7415226589317156e-07
+##T1320000.0 ##E:65000.0 ##FC:1.8057812018190835e-07
+##T1320000.0 ##E:70000.0 ##FC:1.8668628546117684e-07
+##T1320000.0 ##E:75000.0 ##FC:1.9250808390905755e-07
+##T1320000.0 ##E:80000.0 ##FC:1.9806980695921059e-07
+##T1320000.0 ##E:85000.0 ##FC:2.0339379181125932e-07
+##T1320000.0 ##E:90000.0 ##FC:2.0849921770391166e-07
+##T1320000.0 ##E:95000.0 ##FC:2.1340270639689482e-07
+##T1320000.0 ##E:100000.0 ##FC:2.1811878276456119e-07
+##T1320000.0 ##E:150000.0 ##FC:2.5721017587618863e-07
+##T1320000.0 ##E:200000.0 ##FC:2.859611046910958e-07
+##T1320000.0 ##E:250000.0 ##FC:3.078303414525674e-07
+##T1320000.0 ##E:300000.0 ##FC:3.246769806170846e-07
+##T1320000.0 ##E:350000.0 ##FC:3.376559015989817e-07
+##T1320000.0 ##E:400000.0 ##FC:3.475519821549281e-07
+##T1320000.0 ##E:450000.0 ##FC:3.5493226650798136e-07
+##T1320000.0 ##E:500000.0 ##FC:3.6022485822739634e-07
+##T1320000.0 ##E:550000.0 ##FC:3.6376379591314553e-07
+##T1320000.0 ##E:600000.0 ##FC:3.6581642820353793e-07
+##T1320000.0 ##E:650000.0 ##FC:3.666010542858857e-07
+##T1320000.0 ##E:700000.0 ##FC:3.662988057404297e-07
+##T1320000.0 ##E:750000.0 ##FC:3.6506194711754317e-07
+##T1320000.0 ##E:800000.0 ##FC:3.630198550956663e-07
+##T1320000.0 ##E:850000.0 ##FC:3.6028343929113875e-07
+##T1320000.0 ##E:900000.0 ##FC:3.569484851518185e-07
+##T1320000.0 ##E:950000.0 ##FC:3.5309823164250927e-07
+##T1320000.0 ##E:1000000.0 ##FC:3.488053932254473e-07
+##T1320000.0 ##E:1100000.0 ##FC:3.3913954786218055e-07
+##T1320000.0 ##E:1200000.0 ##FC:3.283761601575995e-07
+##T1320000.0 ##E:1300000.0 ##FC:3.1684844215874556e-07
+##T1320000.0 ##E:1400000.0 ##FC:3.0481955220963056e-07
+##T1320000.0 ##E:1500000.0 ##FC:2.9249829260599384e-07
+##T1320000.0 ##E:1600000.0 ##FC:2.8005065967697296e-07
+##T1320000.0 ##E:1700000.0 ##FC:2.6760854222756483e-07
+##T1320000.0 ##E:1800000.0 ##FC:2.552764002109704e-07
+##T1320000.0 ##E:1900000.0 ##FC:2.431364760235689e-07
+##T1320000.0 ##E:2000000.0 ##FC:2.3125291618631083e-07
+##T1320000.0 ##E:2100000.0 ##FC:2.1967506849328162e-07
+##T1320000.0 ##E:2200000.0 ##FC:2.084401449063748e-07
+##T1320000.0 ##E:2300000.0 ##FC:1.9757538955352563e-07
+##T1320000.0 ##E:2400000.0 ##FC:1.8709985573380368e-07
+##T1320000.0 ##E:2500000.0 ##FC:1.770258706429217e-07
+##T1320000.0 ##E:2600000.0 ##FC:1.673602483055475e-07
+##T1320000.0 ##E:2700000.0 ##FC:1.581052977913267e-07
+##T1320000.0 ##E:2800000.0 ##FC:1.492596637765832e-07
+##T1320000.0 ##E:2900000.0 ##FC:1.4081902893052473e-07
+##T1320000.0 ##E:3000000.0 ##FC:1.3277670179050832e-07
+##T1320000.0 ##E:3100000.0 ##FC:1.2512410928149854e-07
+##T1320000.0 ##E:3200000.0 ##FC:1.1785120950054903e-07
+##T1320000.0 ##E:3300000.0 ##FC:1.109468375903522e-07
+##T1320000.0 ##E:3400000.0 ##FC:1.0439899529315478e-07
+##T1320000.0 ##E:3500000.0 ##FC:9.819509297944699e-08
+##T1320000.0 ##E:3600000.0 ##FC:9.232215148898347e-08
+##T1320000.0 ##E:3700000.0 ##FC:8.676696993251764e-08
+##T1320000.0 ##E:3800000.0 ##FC:8.15162646259091e-08
+##T1320000.0 ##E:3900000.0 ##FC:7.655678352148111e-08
+##T1320000.0 ##E:4000000.0 ##FC:7.187539983162886e-08
+##T1320000.0 ##E:4099999.9999999995 ##FC:6.745918798083841e-08
+##T1320000.0 ##E:4200000.0 ##FC:6.329548455404677e-08
+##T1320000.0 ##E:4300000.0 ##FC:5.937193651542132e-08
+##T1320000.0 ##E:4400000.0 ##FC:5.56765386391535e-08
+##T1320000.0 ##E:4500000.0 ##FC:5.219766181228144e-08
+##T1320000.0 ##E:4600000.0 ##FC:4.89240736303763e-08
+##T1320000.0 ##E:4700000.0 ##FC:4.5844952503231316e-08
+##T1320000.0 ##E:4800000.0 ##FC:4.2949896313799374e-08
+##T1320000.0 ##E:4900000.0 ##FC:4.0228926524860987e-08
+##T1320000.0 ##E:5000000.0 ##FC:3.7672488500397775e-08
+##T1320000.0 ##E:5100000.0 ##FC:3.527144869917798e-08
+##T1320000.0 ##E:5200000.0 ##FC:3.301708930394345e-08
+##T1320000.0 ##E:5300000.0 ##FC:3.0901100768569174e-08
+##T1320000.0 ##E:5400000.0 ##FC:2.891557269575094e-08
+##T1320000.0 ##E:5500000.0 ##FC:2.705298339756478e-08
+##T1320000.0 ##E:5600000.0 ##FC:2.5306188439279772e-08
+##T1320000.0 ##E:5700000.0 ##FC:2.366840842193888e-08
+##T1320000.0 ##E:5800000.0 ##FC:2.213321622047668e-08
+##T1320000.0 ##E:5900000.0 ##FC:2.0694523860673455e-08
+##T1320000.0 ##E:6000000.0 ##FC:1.934656918934296e-08
+##T1320000.0 ##E:6100000.0 ##FC:1.8083902467194972e-08
+##T1320000.0 ##E:6200000.0 ##FC:1.6901372992279662e-08
+##T1320000.0 ##E:6300000.0 ##FC:1.5794115843350646e-08
+##T1320000.0 ##E:6400000.0 ##FC:1.475753881648519e-08
+##T1320000.0 ##E:6500000.0 ##FC:1.3787309614534881e-08
+##T1320000.0 ##E:6600000.0 ##FC:1.2879343337152036e-08
+##T1320000.0 ##E:6700000.0 ##FC:1.2029790308993894e-08
+##T1320000.0 ##E:6800000.0 ##FC:1.123502427502503e-08
+##T1320000.0 ##E:6900000.0 ##FC:1.0491630984427808e-08
+##T1320000.0 ##E:7000000.0 ##FC:9.796397178323538e-09
+##T1320000.0 ##E:7100000.0 ##FC:9.146299991157586e-09
+##T1320000.0 ##E:7200000.0 ##FC:8.5384967710845e-09
+##T1320000.0 ##E:7300000.0 ##FC:7.970315320892525e-09
+##T1320000.0 ##E:7400000.0 ##FC:7.439244557836084e-09
+##T1320000.0 ##E:7500000.0 ##FC:6.9429255881143005e-09
+##T1320000.0 ##E:7600000.0 ##FC:6.47914318957192e-09
+##T1320000.0 ##E:7700000.0 ##FC:6.0458176944408126e-09
+##T1320000.0 ##E:7800000.0 ##FC:5.640997262530475e-09
+##T1320000.0 ##E:7900000.0 ##FC:5.262850534166184e-09
+##T1320000.0 ##E:8000000.0 ##FC:4.9096596513202875e-09
+##T1320000.0 ##E:8100000.0 ##FC:4.5798136347497935e-09
+##T1320000.0 ##E:8199999.999999999 ##FC:4.2718021045082914e-09
+##T1320000.0 ##E:8300000.000000001 ##FC:3.984209330915306e-09
+##T1320000.0 ##E:8400000.0 ##FC:3.715708602916301e-09
+##T1320000.0 ##E:8500000.0 ##FC:3.465056900730088e-09
+##T1320000.0 ##E:8600000.0 ##FC:3.231089859740201e-09
+##T1320000.0 ##E:8700000.0 ##FC:3.0127170127245514e-09
+##T1320000.0 ##E:8800000.0 ##FC:2.808917297721695e-09
+##T1320000.0 ##E:8900000.0 ##FC:2.6187348190885992e-09
+##T1320000.0 ##E:9000000.0 ##FC:2.441274849604125e-09
+##T1320000.0 ##E:9100000.0 ##FC:2.2757000618055907e-09
+##T1320000.0 ##E:9200000.0 ##FC:2.121226977104532e-09
+##T1320000.0 ##E:9300000.0 ##FC:1.9771226216060737e-09
+##T1320000.0 ##E:9400000.0 ##FC:1.8427013779478836e-09
+##T1320000.0 ##E:9500000.0 ##FC:1.7173220228751217e-09
+##T1320000.0 ##E:9600000.0 ##FC:1.600384940672773e-09
+##T1320000.0 ##E:9700000.0 ##FC:1.4913295029827385e-09
+##T1320000.0 ##E:9800000.0 ##FC:1.3896316059374302e-09
+##T1320000.0 ##E:9900000.0 ##FC:1.2948013559415324e-09
+##T1320000.0 ##E:10000000.0 ##FC:1.2063808958274944e-09
+##T1320000.0 ##E:10100000.0 ##FC:1.123942363496171e-09
+##T1320000.0 ##E:10200000.0 ##FC:1.0470859755308273e-09
+##T1320000.0 ##E:10300000.0 ##FC:9.754382286392286e-10
+##T1320000.0 ##E:10400000.0 ##FC:9.086502121340121e-10
+##T1320000.0 ##E:10500000.0 ##FC:8.463960250054477e-10
+##T1320000.0 ##E:10600000.0 ##FC:7.883712914724332e-10
+##T1320000.0 ##E:10700000.0 ##FC:7.342917692171146e-10
+##T1320000.0 ##E:10800000.0 ##FC:6.838920448154328e-10
+##T1320000.0 ##E:10900000.0 ##FC:6.369243111704495e-10
+##T1320000.0 ##E:11000000.0 ##FC:5.931572220371932e-10
+##T1320000.0 ##E:11100000.0 ##FC:5.52374818997476e-10
+##T1320000.0 ##E:11200000.0 ##FC:5.143755265005314e-10
+##T1320000.0 ##E:11300000.0 ##FC:4.789712108308936e-10
+##T1320000.0 ##E:11400000.0 ##FC:4.4598629909875326e-10
+##T1320000.0 ##E:11500000.0 ##FC:4.15256954570595e-10
+##T1320000.0 ##E:11600000.0 ##FC:3.866303048693962e-10
+##T1320000.0 ##E:11700000.0 ##FC:3.5996371977453155e-10
+##T1320000.0 ##E:11800000.0 ##FC:3.3512413554210464e-10
+##T1320000.0 ##E:11900000.0 ##FC:3.119874228470594e-10
+##T1320000.0 ##E:12000000.0 ##FC:2.904377956195815e-10
+##T1320000.0 ##E:12100000.0 ##FC:2.7036725821027425e-10
+##T1320000.0 ##E:12200000.0 ##FC:2.516750884718257e-10
+##T1320000.0 ##E:12300000.0 ##FC:2.3426735448975164e-10
+##T1320000.0 ##E:12400000.0 ##FC:2.1805646283162853e-10
+##T1320000.0 ##E:12500000.0 ##FC:2.0296073631347214e-10
+##T1320000.0 ##E:12600000.0 ##FC:1.8890401940384443e-10
+##T1320000.0 ##E:12700000.0 ##FC:1.7581530950130608e-10
+##T1320000.0 ##E:12800000.0 ##FC:1.6362841242925147e-10
+##T1320000.0 ##E:12900000.0 ##FC:1.522816205943639e-10
+##T1320000.0 ##E:13000000.0 ##FC:1.417174123511643e-10
+##T1320000.0 ##E:13100000.0 ##FC:1.318821712057497e-10
+##T1320000.0 ##E:13200000.0 ##FC:1.2272592357710787e-10
+##T1320000.0 ##E:13300000.0 ##FC:1.1420209391462095e-10
+##T1320000.0 ##E:13400000.0 ##FC:1.0626727604583951e-10
+##T1320000.0 ##E:13500000.0 ##FC:9.888101969954102e-11
+##T1320000.0 ##E:13600000.0 ##FC:9.200563121575908e-11
+##T1320000.0 ##E:13700000.0 ##FC:8.560598751710966e-11
+##T1320000.0 ##E:13800000.0 ##FC:7.964936247456603e-11
+##T1320000.0 ##E:13900000.0 ##FC:7.410526485607947e-11
+##T1320000.0 ##E:14000000.0 ##FC:6.894528709829317e-11
+##T1320000.0 ##E:14100000.0 ##FC:6.414296419025767e-11
+##T1320000.0 ##E:14200000.0 ##FC:5.967364200371361e-11
+##T1320000.0 ##E:14300000.0 ##FC:5.5514354447324325e-11
+##T1320000.0 ##E:14400000.0 ##FC:5.164370886240295e-11
+##T1320000.0 ##E:14500000.0 ##FC:4.8041779115321976e-11
+##T1320000.0 ##E:14600000.0 ##FC:4.4690005877085084e-11
+##T1320000.0 ##E:14700000.0 ##FC:4.1571103613606826e-11
+##T1320000.0 ##E:14800000.0 ##FC:3.866897384123299e-11
+##T1320000.0 ##E:14900000.0 ##FC:3.596862423105645e-11
+##T1320000.0 ##E:15000000.0 ##FC:3.3456093172766694e-11
+##T1320000.0 ##E:15100000.0 ##FC:3.1118379434226426e-11
+##T1320000.0 ##E:15200000.0 ##FC:2.8943376576796963e-11
+##T1320000.0 ##E:15300000.0 ##FC:2.691981180874381e-11
+##T1320000.0 ##E:15400000.0 ##FC:2.503718897992977e-11
+##T1320000.0 ##E:15500000.0 ##FC:2.3285735440539403e-11
+##T1320000.0 ##E:15600000.0 ##FC:2.1656352504857922e-11
+##T1320000.0 ##E:15700000.0 ##FC:2.0140569278224806e-11
+##T1320000.0 ##E:15800000.0 ##FC:1.873049962127715e-11
+##T1320000.0 ##E:15900000.0 ##FC:1.741880204055344e-11
+##T1320000.0 ##E:16000000.0 ##FC:1.619864230851477e-11
+##T1320000.0 ##E:16100000.000000002 ##FC:1.506365862911526e-11
+##T1320000.0 ##E:16200000.0 ##FC:1.4007929177278155e-11
+##T1320000.0 ##E:16300000.0 ##FC:1.3025941852057983e-11
+##T1320000.0 ##E:16399999.999999998 ##FC:1.2112566093948774e-11
+##T1320000.0 ##E:16500000.0 ##FC:1.1263026626774984e-11
+##T1320000.0 ##E:16600000.000000002 ##FC:1.047287899392653e-11
+##T1320000.0 ##E:16700000.0 ##FC:9.737986767408823e-12
+##T1320000.0 ##E:16800000.0 ##FC:9.05450031631643e-12
+##T1320000.0 ##E:16900000.0 ##FC:8.418837028939304e-12
+##T1320000.0 ##E:17000000.0 ##FC:7.82766288980871e-12
+##T1320000.0 ##E:17100000.0 ##FC:7.277875319619294e-12
+##T1320000.0 ##E:17200000.0 ##FC:6.766587192153905e-12
+##T1320000.0 ##E:17300000.0 ##FC:6.291111948117249e-12
+##T1320000.0 ##E:17400000.0 ##FC:5.848949731180123e-12
+##T1320000.0 ##E:17500000.0 ##FC:5.437774476573333e-12
+##T1320000.0 ##E:17600000.0 ##FC:5.0554218872716826e-12
+##T1320000.0 ##E:17700000.0 ##FC:4.699878237197113e-12
+##T1320000.0 ##E:17800000.0 ##FC:4.369269944965274e-12
+##T1320000.0 ##E:17900000.0 ##FC:4.06185386552193e-12
+##T1320000.0 ##E:18000000.0 ##FC:3.7760082505814425e-12
+##T1320000.0 ##E:18100000.0 ##FC:3.510224332107383e-12
+##T1320000.0 ##E:18200000.0 ##FC:3.263098486179444e-12
+##T1320000.0 ##E:18300000.0 ##FC:3.0333249374869665e-12
+##T1320000.0 ##E:18400000.0 ##FC:2.8196889673909876e-12
+##T1320000.0 ##E:18500000.0 ##FC:2.6210605910164095e-12
+##T1320000.0 ##E:18600000.0 ##FC:2.4363886711863584e-12
+##T1320000.0 ##E:18700000.0 ##FC:2.2646954392026083e-12
+##T1320000.0 ##E:18800000.0 ##FC:2.1050713945200876e-12
+##T1320000.0 ##E:18900000.0 ##FC:1.9566705572697195e-12
+##T1320000.0 ##E:19000000.0 ##FC:1.8187060493610726e-12
+##T1320000.0 ##E:19100000.0 ##FC:1.6904459815536547e-12
+##T1320000.0 ##E:19200000.0 ##FC:1.5712096254306423e-12
+##T1320000.0 ##E:19300000.0 ##FC:1.4603638506493082e-12
+##T1320000.0 ##E:19400000.0 ##FC:1.3573198091851056e-12
+##T1320000.0 ##E:19500000.0 ##FC:1.2615298495381189e-12
+##T1320000.0 ##E:19600000.0 ##FC:1.1724846450372509e-12
+##T1320000.0 ##E:19700000.0 ##FC:1.089710521464924e-12
+##T1320000.0 ##E:19800000.0 ##FC:1.0127669702386212e-12
+##T1320000.0 ##E:19900000.0 ##FC:9.412443343300133e-13
+Plot:1/6) 24020202	INDEN-Aug2023 Ei5.0e5 (T=1.32MeV)	pt:638	color:0,80,255	dash:None
+Plot:2/6) 13662341	ENDF/B-VIII.0 Ei5.0e5 (T=1.32MeV)	pt:640	color:0,0,255	dash:dot
+Plot:3/6) 7664758	ENDF/B-VII.1 Ei5.0e5 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
+Plot:4/6) 19240823	JENDL-5 Ei5.0e5 (T=1.32MeV)	pt:600	color:0,200,0	dash:None
+Plot:5/6) 10751653	BROND-3.1 Ei5.0e5 (T=1.32MeV)	pt:561	color:255,0,255	dash:None
+Plot:6/6) 999924020202	Minsk-Actinides Ei:0.5MeV (T=1.32MeV)	pt:324	color:255,0,0	dash:longdashdot
 --0--getUnits--- EV 1000000.0
 --A--getUnits--- EV 1000000.0
 --1--getUnits--- EV 1000000.0  Category: E

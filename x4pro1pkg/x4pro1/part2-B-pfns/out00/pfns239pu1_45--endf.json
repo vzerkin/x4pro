@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-13T17:53:56"
+  "now":"2026-09-15T15:38:47"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -10,7 +10,7 @@
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"INDEN-Aug2023 Ei1.45E+6 (T=1.32MeV)"
+    ,"x4lbl":"INDEN-Aug2023 Ei1.45e6 (T=1.32MeV)"
     ,"DATE":"2017"
     ,"AUTH":"2017 Lanl, Ornl, et al."
     ,"idy":0
@@ -665,7 +665,7 @@
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"ENDF/B-VIII.0 Ei1.45E+6 (T=1.32MeV)"
+    ,"x4lbl":"ENDF/B-VIII.0 Ei1.45e6 (T=1.32MeV)"
     ,"DATE":"2017"
     ,"AUTH":"2017 Lanl, Ornl, et al."
     ,"idy":0
@@ -1271,7 +1271,7 @@
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"ENDF/B-VII.1 Ei1.45E+6 (T=1.32MeV)"
+    ,"x4lbl":"ENDF/B-VII.1 Ei1.45e6 (T=1.32MeV)"
     ,"DATE":"2011"
     ,"AUTH":"2011 Young,Chadwick,Macfarlane,Derrien"
     ,"idy":0
@@ -1921,13 +1921,13 @@
   }
   ,{
      "DatasetID":19242334
-    ,"myColor":"0,255,0"
+    ,"myColor":"0,200,0"
     ,"TARGET":"PU-239"
     ,"MF":5
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"JENDL-5 Ei1.45E+6 (T=1.32MeV)"
+    ,"x4lbl":"JENDL-5 Ei1.45e6 (T=1.32MeV)"
     ,"DATE":"2011"
     ,"AUTH":"2011 O.Iwamoto,N.Otuka,S.Chiba,+"
     ,"idy":0
@@ -2104,7 +2104,7 @@
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"BROND-3.1 Ei1.45E+6 (T=1.32MeV)"
+    ,"x4lbl":"BROND-3.1 Ei1.45e6 (T=1.32MeV)"
     ,"DATE":""
     ,"AUTH":"Nikolaev M.N."
     ,"idy":0

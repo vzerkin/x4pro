@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-06   |
+  | Program: reac2pfns.py, ver.2026-09-15   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-13 17:51:52
+Running: 2026-09-15 15:36:49
 
 ---Arguments from command-line---
    1  arg: -o:pfns238u8_94
@@ -192,7 +192,7 @@ select distinct *
 ---outDatasets:1 datasets:1
 ---ENTRY: 40631*;
 datasets: 1
---0--treatDatasets: datasets:1 oper:None
+--0--datasets2mxwRatio: datasets:1 oper:None Tm:1320000.0
 	Dataset:0/1) 92-U-238(N,F),PR,NU/DE 40631005 Pt:80   1980, N.V.Kornilov En=8.94MeV
 ---getAbs2MxwFactor.Target: U-238  En: 8940000.0  Nubar: 3.682492599999991
   PFNS re-normalisation to Maxwellian 0.2715551960647531 PC/FIS/MEV
@@ -281,12 +281,12 @@ datasets: 1
 ---Groupping datasets by Reaction-codes---
 ---getReacodes---Datasets: 1
 1) 92-U-238(N,F),PR,NU/DE
-	Dataset:1/1) 92-U-238(N,F),PR,NU/DE 40631005 1980, N.V.Kornilov En=8.94MeV
+	Dataset:1/1) 92-U-238(N,F),PR,NU/DE 40631005 1980, N.V.Kornilov En=8.94MeV T:1.32MeV &#957;=3.68
 ---reacodes: 1 
 
 
 ---Output EXFOR datasets to JSON file---
-Plot:1/1) #40631005 1980, N.V.Kornilov En=8.94MeV pt:80
+Plot:1/1) #40631005 1980, N.V.Kornilov En=8.94MeV T:1.32MeV &#957;=3.68 pt:80
 
 ___webEndfDataForPlot_DADE: [U-238] [N,F] [&mf=5&mt=18&ei=8940000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-238&Reaction=N,F&Quantity=*&json&mats
@@ -350,7 +350,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:3/1)	92-U-238(N,F),DE	ENDF/B-VII.1	EID:57661	SID:7665109	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
 Downloaded:DS:3/1)	92-U-238(N,F),DE	ENDF/B-VII.1	EID:57661	SID:7665109	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
-WebReq:4) EvalID:226909 PenSectID:19241250 Lib:JENDL-5 Color:0,255,0
+WebReq:4) EvalID:226909 PenSectID:19241250 Lib:JENDL-5 Color:0,200,0
 /servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -378,7 +378,7 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:5/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591
 Downloaded:DS:5/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591	idy=0
-WebReq:6) EvalID:175028 PenSectID:15684622 Lib:MINKS-ACT Color:127,127,127
+WebReq:6) EvalID:175028 PenSectID:15684622 Lib:MINKS-ACT Color:255,80,80|dashdot
 /servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -393,12 +393,12 @@ Connected to: [sqlite3]
 Download...DS:6/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
 Downloaded:DS:6/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
 ---e4datasets: 6
-Plot:1/6) 24020655	INDEN-Aug2023 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,80,255	dash:None
-Plot:2/6) 13662984	ENDF/B-VIII.0 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,0,255	dash:dot
-Plot:3/6) 7665109	ENDF/B-VII.1 Ei8.94E+6 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
-Plot:4/6) 19241250	JENDL-5 Ei8.94E+6 (T=1.32MeV)	pt:350	color:0,255,0	dash:None
-Plot:5/6) 10752121	BROND-3.1 Ei8.94E+6 (T=1.32MeV)	pt:591	color:255,0,255	dash:None
-Plot:6/6) 15684622	MINKS-ACT Ei8.94E+6 (T=1.32MeV)	pt:324	color:127,127,127	dash:None
+Plot:1/6) 24020655	INDEN-Aug2023 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,80,255	dash:None
+Plot:2/6) 13662984	ENDF/B-VIII.0 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,0,255	dash:dot
+Plot:3/6) 7665109	ENDF/B-VII.1 Ei8.94e6 (T=1.32MeV)	pt:641	color:80,0,255	dash:dashdot
+Plot:4/6) 19241250	JENDL-5 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,200,0	dash:None
+Plot:5/6) 10752121	BROND-3.1 Ei8.94e6 (T=1.32MeV)	pt:591	color:255,0,255	dash:None
+Plot:6/6) 15684622	MINKS-ACT Ei8.94e6 (T=1.32MeV)	pt:324	color:255,80,80	dash:dashdot
 --0--getUnits--- EV 1000000.0
 --A--getUnits--- EV 1000000.0
 --1--getUnits--- EV 1000000.0  Category: E

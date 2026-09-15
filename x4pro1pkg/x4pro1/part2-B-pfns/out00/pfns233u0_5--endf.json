@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-13T17:51:12"
+  "now":"2026-09-15T15:35:40"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -10,7 +10,7 @@
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"INDEN-Aug2023 Ei5.50E+5 (T=1.32MeV)"
+    ,"x4lbl":"INDEN-Aug2023 Ei5.5e5 (T=1.32MeV)"
     ,"DATE":""
     ,"AUTH":""
     ,"idy":0
@@ -666,7 +666,7 @@
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"ENDF/B-VIII.0 Ei5.50E+5 (T=1.32MeV)"
+    ,"x4lbl":"ENDF/B-VIII.0 Ei5.5e5 (T=1.32MeV)"
     ,"DATE":"2010"
     ,"AUTH":"2010 O.Iwamoto,N.Otuka,S.Chiba,et al."
     ,"idy":0
@@ -1322,7 +1322,7 @@
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"ENDF/B-VII.1 Ei5.50E+5 (T=1.32MeV)"
+    ,"x4lbl":"ENDF/B-VII.1 Ei5.5e5 (T=1.32MeV)"
     ,"DATE":"2011"
     ,"AUTH":"2011 Young,Chadwick,Talou,Leal,Derrien"
     ,"idy":0
@@ -1431,13 +1431,13 @@
   }
   ,{
      "DatasetID":19240549
-    ,"myColor":"0,255,0"
+    ,"myColor":"0,200,0"
     ,"TARGET":"U-233"
     ,"MF":5
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"JENDL-5 Ei5.50E+5 (T=1.32MeV)"
+    ,"x4lbl":"JENDL-5 Ei5.5e5 (T=1.32MeV)"
     ,"DATE":"2011"
     ,"AUTH":"2011 O.Iwamoto,N.Otuka,S.Chiba,et al."
     ,"idy":0
@@ -1614,7 +1614,7 @@
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"BROND-3.1 Ei5.50E+5 (T=1.32MeV)"
+    ,"x4lbl":"BROND-3.1 Ei5.5e5 (T=1.32MeV)"
     ,"DATE":"2006"
     ,"AUTH":"2006 Nikolaev M.N."
     ,"idy":0
@@ -1947,13 +1947,13 @@
   }
   ,{
      "DatasetID":15684434
-    ,"myColor":"127,127,127"
+    ,"myColor":"255,80,80|dashdot"
     ,"TARGET":"U-233"
     ,"MF":5
     ,"MT":18
     ,"fx":1000000.0
     ,"fy":1.0
-    ,"x4lbl":"MINKS-ACT Ei5.50E+5 (T=1.32MeV)"
+    ,"x4lbl":"MINKS-ACT Ei5.5e5 (T=1.32MeV)"
     ,"DATE":"2003"
     ,"AUTH":"2003 03"
     ,"idy":0

@@ -112,8 +112,8 @@ def getUnits(dbConn,conn,basicUnits,factor=1,verbose=True):
 
 def getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,add2Where='',usr2where=''):
     sql=getX4SqlSearch_Reacodes(reacodes,xn,add2Where,usr2where)
-    rows=executeSql(dbConn,conn,sql)
 #   rows=execute1sql(dbConn,conn,sql,verbose=True,ttout=True)
+    rows=executeSql(dbConn,conn,sql)
 #---remove duplicates because of "inner join x4pro_x4cdat"
     rows1=[]
     prev_DatasetID=''; prev_iPoint=-1;
@@ -199,6 +199,7 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
         yy=row['YY'];   dyy=row['dYY']
         xx=row['XX'];   dxx=row['dXX']
         if DatasetID=='14430002' and xx==11.5e6: continue #remove data point from preliminary report
+#       if DatasetID=='32587002' and xx==15.35e6: continue #tst
         ShortHelp=row['ShortHelp']
         if ShortHelp is None: ShortHelp=''
         xBasicUnits=row['xBasicUnits']

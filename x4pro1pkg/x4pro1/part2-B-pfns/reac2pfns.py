@@ -11,19 +11,20 @@ import datetime
 sys.path.append('./')
 sys.path.append('../')
 import dbConn
-from reac2help  import *
+from reac1help  import *
 from reac2subr  import *
 from reac2proc  import *
 from x4out      import *
 from rweb12     import *
 from exfor2plot import * #plot by plotly/matplotlib
 from endf2plot  import *
+from readMaslovSp1 import *
 
 #-------------------------------------------------------------------------------
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac2pfns.py, ver.2026-09-13   |')
+    print('  | Program: reac2pfns.py, ver.2026-09-15   |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -60,6 +61,8 @@ def main():
     showSpectra=False
 #   fy=1e-6 #?default for spectra
     legendInside=False
+    bwColor=False
+    MaslovSp1file=None
 
     xrange=None; yrange=None;
     x1min=None; x1max=None
@@ -75,6 +78,7 @@ def main():
     aprod=None #product in SF4 or DATA(ELEM/MASS)
     oper=None
     Tmxw=1.32e6
+    Einc=None
 
     def str2float(str1):
         if str1 is None: return None
@@ -128,7 +132,9 @@ def main():
         print('   '+str(ii).ljust(2)+" arg: "+arg)
         if arg=='-xlog': xtype='log';  continue
         if arg=='-ylog': ytype='log';  continue
+        if arg=='-bw':   bwColor=True; continue
         if arg.startswith('-T:'):  Tmxw=str2float(arg[3:]);        continue
+        if arg.startswith('-Ei:'): Einc=str2float(arg[4:]);        continue
         if arg.startswith('-x1:'): x1max=x1min=str2float(arg[4:]); continue
         if arg.startswith('-x2:'): x2max=x2min=str2float(arg[4:]); continue
         if arg.startswith('-x3:'): x3max=x3min=str2float(arg[4:]); continue
@@ -163,6 +169,7 @@ def main():
         if arg.lower().startswith('-a1:'):  a1=arg[4:];            continue
         if arg.lower().startswith('-ds:'):  dsids=arg[4:];         continue
         if arg.startswith('-w:'):           usr2where=arg[3:];     continue
+        if arg.startswith('-rsp1:') and len(arg)>7: MaslovSp1file=arg[6:]; continue
         if arg.startswith('-'): continue
         reacodes.append(arg)
 
@@ -253,9 +260,12 @@ def main():
     print("\n---Output EXFOR datasets to JSON file---")
     outX4Datasets(datasets,outhtml)
 
-    data1=prepareExforDataForPlot(datasets,msize=msize,groupReac=groupReac,lines=lines,lwidth=lwidth,symBorder=symBorder)
+    data1=prepareExforDataForPlot(datasets,msize=msize,groupReac=groupReac,lines=lines
+	,lwidth=lwidth,symBorder=symBorder,bwColor=bwColor)
 
 
+#- One of the following dash styles: ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot']
+#- A string containing a dash length list in pixels or percentages (e.g. '5px 10px 2px 2px', '5, 10, 2, 2', '10% 20% 40%', etc.)
 
     #_________________Retrieve ENDF_________________
     data2=[]
@@ -266,7 +276,7 @@ def main():
 #	'ENDF/B-VIII.1':"0,0,255",
 	'ENDF/B-VII.1':"80,0,255|dashdot",
 	'INDEN-Aug2023':"0,80,255",
-	'JENDL-5':"0,255,0",
+	'JENDL-5':"0,200,0",
 #	'JEFF-4.0':"255,0,0",
 #	'JEFF-3.3':"0,255,255",
 #	'JEFF-3.1':"0,255,255",
@@ -275,14 +285,16 @@ def main():
 #	'CENDL-2':"255,0,0"
 	'BROND-3.1':"255,0,255",
 #	'ENDF/B-V':"127,127,127"
-	'MINKS-ACT':"127,127,127"
+	'MINKS-ACT':"255,80,80|dashdot"
 	}
     if flagEndf:
         target=datasets[0]['Target']
         e4reac=datasets[0]['Reaction']
         g0=datasets[0]['g0']
+        if Einc is None: Einc=g0
 #       e4webparam="&mf=5&mt=18&ei=0.0253"
-        e4webparam="&mf=5&mt=18&ei="+str(g0)
+#       e4webparam="&mf=5&mt=18&ei="+str(g0)
+        e4webparam="&mf=5&mt=18&ei="+str(Einc)
 #       add2title=" (T=1.32MeV)"
         add2title=" (T="+format(Tmxw/1e6,"<.5g").strip()+"MeV)"
         e4webparam+="&T="+str(Tmxw)
@@ -299,8 +311,16 @@ def main():
         e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/fy,quantPrexix="",add2title=add2title)
         print('---e4datasets:',len(e4datasets))
         sys.stderr.write("   Retrieved ENDF datasets: "+str(len(e4datasets))+"\n")
+#       print(json.dumps(e4datasets[0],indent=2))
+#       ds1=getMaslovSp1()
+        if MaslovSp1file is not None:
+            ds1=readMaslovSp1(MaslovSp1file)
+            if ds1 is not None: e4datasets.append(ds1)
         #_________________Preparing ENDF data for plot_________________
-        data2=prepareEndfDataForPlot(e4datasets,'',True,lwidth=3,showAuth=True)
+        grp1=''
+#       if len(reacodes)>1: grp1='grp1'
+        if groupReac: grp1='grp1'
+        data2=prepareEndfDataForPlot(e4datasets,grp1,True,lwidth=3,showAuth=True)
 
     if len(datasets)+len(e4datasets)<=0:
         print("---No data found---")
@@ -333,7 +353,7 @@ def main():
 
     myOfflinePlot(data1+data2
 	,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-13 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-15 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype

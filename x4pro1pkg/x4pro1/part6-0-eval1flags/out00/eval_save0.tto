@@ -9,14 +9,14 @@ Operations:
            extracting data (incl.JSON) from row to dict;
          - save result in JSON file and CSV file for EXCEL.
 
-Running: 2026-09-13 17:57:04
+Running: 2026-09-15 15:41:54
 
 ---getConnSQLite: file:../../x4sqlite1.db?mode=ro
 
 ---Execute SQL commands: 1
 
 
-===SQL executed: 0.001sec
+===SQL executed: 0.002sec
 ---Retrieved from the database cols:6 rows:8
 	cols:['fileID', 'srcFileName', 'myComment', 'srcFileDate', 'nDatasets', 'dbDate']
 	rows:[8]

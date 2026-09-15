@@ -8,7 +8,7 @@ Operations:
            extracting data (incl.JSON) from row to dict;
          - save result in JSON file and CSV file for EXCEL.
 
-Running: 2026-09-13 17:57:01
+Running: 2026-09-15 15:41:52
 
 ---getConnSQLite: file:../../x4sqlite1.db?mode=ro
 
@@ -17,7 +17,7 @@ FROM x4pro_c5dat
 inner join REACODE on REACODE.ReacodeID=x4pro_c5dat.DatasetID
 where fullCode like '%,PTY' and y=0
 
----SQL executed: 0.533sec
+---SQL executed: 0.548sec
 
 ---Retrieved from the database
 rows: 0

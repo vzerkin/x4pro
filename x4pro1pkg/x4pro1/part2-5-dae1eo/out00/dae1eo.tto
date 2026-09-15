@@ -2,7 +2,7 @@ Program: dae1eo.py, ver. 2024-09-02
 Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2024
 Purpose: Retrieve and plot EXFOR/ENDF double differential cross sections
 
-Running: 2026-09-13 17:46:07
+Running: 2026-09-15 15:30:24
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -89,9 +89,9 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 Download...DS:3/1)	9-F-19(N,X),DAE	ENDF/B-V	EID:78319	SID:6542583	f(x):DAE(Eo)	pts:752
 Downloaded:DS:3/1)	9-F-19(N,X),DAE	ENDF/B-V	EID:78319	SID:6542583	f(x):DAE(Eo)	pts:752	idy=0
-Plot:1/3) 13591338	ENDF/B-VIII.0 Ei1.42E+7 An 45	pt:928	color:0,0,255	dash:None
-Plot:2/3) 24021270	JENDL-5 Ei1.42E+7 An 45	pt:874	color:255,127,0	dash:None
-Plot:3/3) 6542583	ENDF/B-V Ei1.42E+7 An 45	pt:752	color:127,0,127	dash:None
+Plot:1/3) 13591338	ENDF/B-VIII.0 Ei1.42e7 An 45	pt:928	color:0,0,255	dash:None
+Plot:2/3) 24021270	JENDL-5 Ei1.42e7 An 45	pt:874	color:255,127,0	dash:None
+Plot:3/3) 6542583	ENDF/B-V Ei1.42e7 An 45	pt:752	color:127,0,127	dash:None
 Will try---write_image: dae1eo.html.png
 
 Program successfully completed
