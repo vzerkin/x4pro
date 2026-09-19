@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-15T15:37:32"
+  "now":"2026-09-19T21:23:49"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -13,6 +13,7 @@
     ,"x4lbl":"INDEN-Aug2023 Ei1.43e7 (T=1.32MeV)"
     ,"DATE":"2018"
     ,"AUTH":"2018 IAEA Consortium"
+    ,"Tmxw":1320000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-11        ,0.66246     ]
@@ -369,7 +370,7 @@
   }
   ,{
      "DatasetID":13662984
-    ,"myColor":"0,0,255|dot"
+    ,"myColor":"0,0,255|solid|2"
     ,"TARGET":"U-238"
     ,"MF":5
     ,"MT":18
@@ -378,6 +379,7 @@
     ,"x4lbl":"ENDF/B-VIII.0 Ei1.43e7 (T=1.32MeV)"
     ,"DATE":"2018"
     ,"AUTH":"2018 IAEA Consortium"
+    ,"Tmxw":1320000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-11        ,0.66245     ]
@@ -734,7 +736,7 @@
   }
   ,{
      "DatasetID":7665109
-    ,"myColor":"80,0,255|dashdot"
+    ,"myColor":"200,0,255|dashdot|2"
     ,"TARGET":"U-238"
     ,"MF":5
     ,"MT":18
@@ -743,6 +745,7 @@
     ,"x4lbl":"ENDF/B-VII.1 Ei1.43e7 (T=1.32MeV)"
     ,"DATE":"2011"
     ,"AUTH":"2011 Young,Chadwick,Derrien,Courcelle"
+    ,"Tmxw":1320000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-05        ,0.60839     ]
@@ -1399,6 +1402,7 @@
     ,"x4lbl":"JENDL-5 Ei1.43e7 (T=1.32MeV)"
     ,"DATE":"2011"
     ,"AUTH":"2011 O.Iwamoto,N.Otuka,S.Chiba,+"
+    ,"Tmxw":1320000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-11        ,0.66246     ]
@@ -1764,6 +1768,7 @@
     ,"x4lbl":"BROND-3.1 Ei1.43e7 (T=1.32MeV)"
     ,"DATE":""
     ,"AUTH":"Nikolaev M.N., Koscheev V.N."
+    ,"Tmxw":1320000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-05        ,0.60839     ]
@@ -2370,6 +2375,7 @@
     ,"x4lbl":"MINKS-ACT Ei1.43e7 (T=1.32MeV)"
     ,"DATE":"2001"
     ,"AUTH":"2001 001"
+    ,"Tmxw":1320000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-08        ,0.81824     ]

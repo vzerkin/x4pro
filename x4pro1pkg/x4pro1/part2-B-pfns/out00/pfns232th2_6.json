@@ -5,6 +5,7 @@
     "Target": "Th-232",
     "Reaction": "N,F",
     "Quantity": "PFNS Ratio to Maxwellian (T=1.32MeV)",
+    "SF8": "NPD",
     "xBasicUnits": "EV",
     "yBasicUnits": "no-dim",
     "xexpansion": "Secondary energy: particle energy",
@@ -20,7 +21,7 @@
     "YearRef1": 1991,
     "Author1Ini": "G.S.",
     "Author1": "Boikov",
-    "x4lbl": "1991, G.S.Boikov En=2.9MeV T:1.32MeV",
+    "x4lbl": "1991, G.S.Boikov En=2.9MeV /shape:npd/ T=1.32MeV",
     "fx": 1000000.0,
     "fy": 1,
     "x": [
@@ -334,6 +335,7 @@
     "Target": "Th-232",
     "Reaction": "N,F",
     "Quantity": "PFNS Ratio to Maxwellian (T=1.32MeV)",
+    "SF8": "REL",
     "xBasicUnits": "EV",
     "yBasicUnits": "no-dim",
     "xexpansion": "Secondary energy: particle energy",
@@ -349,7 +351,7 @@
     "YearRef1": 2022,
     "Author1Ini": "S.",
     "Author1": "De",
-    "x4lbl": "2022, S.De En=2.8MeV T:1.32MeV",
+    "x4lbl": "2022, S.De En=2.8MeV /shape:rel/ T=1.32MeV",
     "fx": 1000000.0,
     "fy": 1,
     "x": [

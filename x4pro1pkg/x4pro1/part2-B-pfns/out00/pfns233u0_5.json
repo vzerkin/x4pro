@@ -5,6 +5,7 @@
     "Target": "U-233",
     "Reaction": "N,F",
     "Quantity": "PFNS Ratio to Maxwellian (T=1.32MeV)",
+    "SF8": "REL",
     "xBasicUnits": "EV",
     "yBasicUnits": "no-dim",
     "xexpansion": "Secondary energy: particle energy",
@@ -20,7 +21,7 @@
     "YearRef1": 2002,
     "Author1Ini": "T.",
     "Author1": "Miura",
-    "x4lbl": "2002, T.Miura En=0.55MeV T:1.32MeV",
+    "x4lbl": "2002, T.Miura En=0.55MeV /shape:rel/ T=1.32MeV",
     "fx": 1000000.0,
     "fy": 1,
     "x": [

@@ -2,7 +2,7 @@ Program: pu239nf203.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Local user's corrections of EXFOR cross sections ratios
 
-Running: 2026-09-15 15:40:41
+Running: 2026-09-19 20:41:34
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw

@@ -79,7 +79,7 @@ def getAbs41611010():
     "Reacode": "92-U-233(N,F),PR,NU/DE",
     "Target": "U-233",
     "Reaction": "N,F",
-    "Quantity": "PFNS Ratio to Maxwellian (T=1.32MeV)",
+    "Quantity": "Energy spectrum of prompt fission neutrons",
     "xBasicUnits": "EV",
     "yBasicUnits": "PC/FIS/MEV",
     "xexpansion": "Secondary energy: particle energy",

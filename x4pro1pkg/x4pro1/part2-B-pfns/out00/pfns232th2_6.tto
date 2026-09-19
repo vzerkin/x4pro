@@ -1,27 +1,28 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-15   |
+  | Program: reac2pfns.py, ver.2026-09-16   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-15 15:39:45
+Running: 2026-09-19 21:07:43
 
 ---Arguments from command-line---
    1  arg: -o:pfns232th2_6
    2  arg: -x:x2
-   3  arg: -x1min:2.8e6
-   4  arg: -x1max:2.9e6
-   5  arg: -fx:1e6
-   6  arg: -xlog
-   7  arg: -xmin:2e-5
-   8  arg: -xmax:30
-   9  arg: -ymin:0.45
-   10 arg: -ymax:1.45
-   11 arg: -lines
-   12 arg: -sym
-   13 arg: 90-TH-232(N,F),PR,NU/DE,,NPD
-   14 arg: 90-TH-232(N,F),PR,NU/DE,,REL
-   15 arg: -annot:0.005,1.35,<sup>232</sup>Th(n<sub>2.9MeV</sub>,f) PFNS
+   3  arg: -zdat:th232nf-JENDL-4.0.zvd.dat
+   4  arg: -x1min:2.8e6
+   5  arg: -x1max:2.9e6
+   6  arg: -fx:1e6
+   7  arg: -xlog
+   8  arg: -xmin:2e-5
+   9  arg: -xmax:30
+   10 arg: -ymin:0.45
+   11 arg: -ymax:1.45
+   12 arg: -lines
+   13 arg: -sym
+   14 arg: 90-TH-232(N,F),PR,NU/DE,,NPD
+   15 arg: 90-TH-232(N,F),PR,NU/DE,,REL
+   16 arg: -annot:0.005,1.35,<sup>232</sup>Th(n<sub>2.9MeV</sub>,f) PFNS
    ---str2annot:[0.005,1.35,<sup>232</sup>Th(n<sub>2.9MeV</sub>,f) PFNS] --> ('<sup>232</sup>Th(n<sub>2.9MeV</sub>,f) PFNS', 0.005, 1.35)
 
 ---Input:
@@ -40,7 +41,7 @@ Running: 2026-09-15 15:39:45
    legendInside:  False
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
    Connected to: [sqlite3]
 
 ---Print summary---
@@ -84,9 +85,14 @@ Summary of Units 3
 ---Retrieve EXFOR data from SQL database---
 ---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['90-TH-232(N,F),PR,NU/DE,,NPD', '90-TH-232(N,F),PR,NU/DE,,REL']
 SQL:
-select distinct *                                          
+select distinct                                            
+ uni2.DatasetID,fullCode,iPoint                            
+ ,YearRef1,uni2.Author1Ini,uni2.Author1                    
+ ,Target,Reaction,Quant,SF8,uni2.MF,uni2.MT,yformula       
+ ,yval,ShortHelp,SF8                                       
  ,uni2.Author1 as a1                                       
  ,uni2.DatasetID as dsid                                   
+ ,x1,x2,x3,x4,x5,dx1,dx2,dx3,dx4,dx5                       
  ,y  as YY, dy  as dYY                                     
  ,x2 as XX, dx2 as dXX                             
  ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
@@ -113,7 +119,7 @@ select distinct *
   (fullCode like '90-TH-232(N,F),PR,NU/DE,,NPD')
  or (fullCode like '90-TH-232(N,F),PR,NU/DE,,REL')
  ) 
- and x1>=2800000.0 and x1<=2900000.0   order by fullCode,YearRef1 desc,DatasetID 
+ and x1>=2800000.0 and x1<=2900000.0   order by fullCode,YearRef1 desc,uni2.DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    
 
    Retrieved rows: 82
@@ -303,27 +309,23 @@ datasets: 2
 ---Groupping datasets by Reaction-codes---
 ---getReacodes---Datasets: 2
 1) 90-TH-232(N,F),PR,NU/DE,,NPD
-	Dataset:1/2) 90-TH-232(N,F),PR,NU/DE,,NPD 411100082 1991, G.S.Boikov En=2.9MeV T:1.32MeV
+	Dataset:1/2) 90-TH-232(N,F),PR,NU/DE,,NPD 411100082 1991, G.S.Boikov En=2.9MeV /shape:npd/ T=1.32MeV
 2) 90-TH-232(N,F),PR,NU/DE,,REL
-	Dataset:2/2) 90-TH-232(N,F),PR,NU/DE,,REL 33183008 2022, S.De En=2.8MeV T:1.32MeV
+	Dataset:2/2) 90-TH-232(N,F),PR,NU/DE,,REL 33183008 2022, S.De En=2.8MeV /shape:rel/ T=1.32MeV
 ---reacodes: 2 
 
 
 ---Output EXFOR datasets to JSON file---
-Plot:1/2) #411100082 1991, G.S.Boikov En=2.9MeV T:1.32MeV pt:74
-Plot:2/2) #33183008 2022, S.De En=2.8MeV T:1.32MeV pt:8
+Plot:1/2) #411100082 1991, G.S.Boikov En=2.9MeV /shape:npd/ T=1.32MeV pt:74
+Plot:2/2) #33183008 2022, S.De En=2.8MeV /shape:rel/ T=1.32MeV pt:8
 
 ___webEndfDataForPlot_DADE: [Th-232] [N,F] [&mf=5&mt=18&ei=2900000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Th-232&Reaction=N,F&Quantity=*&json&mats
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Th-232&Reaction=N,F&Quantity=*&json&mats'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=Th-232&Reaction=N,F&Quantity=*&json&mats
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 format=WebEndfSectionsList-0.1
 ___Retrieved sections:44
 SelectedLib-Sect:2) {'Targ': 'TH-232', 'ZT': 90, 'AT': 232, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'TH-232(N,F),SIG', 'EvalID': 149920, 'SectID': 9023141, 'PenSectID': 13660894, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20130202', 'AUTH': 'Crp/Th-U Co-Ordinator A. Trkov'}
@@ -332,80 +334,797 @@ SelectedLib-Sect:10) {'Targ': 'TH-232', 'ZT': 90, 'AT': 232, 'NSUB': 10, 'MT': 1
 SelectedLib-Sect:16) {'Targ': 'TH-232', 'ZT': 90, 'AT': 232, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'TH-232(N,F),SIG', 'EvalID': 118835, 'SectID': 6089548, 'PenSectID': 10751036, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': '.Manokhin', 'AUTH': 'O.Iwamoto,T.Nakagawa,et al.'}
 SelectedLib-Sect:34) {'Targ': 'TH-232', 'ZT': 90, 'AT': 232, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'TH-232(N,F),SIG', 'EvalID': 175022, 'SectID': 11051975, 'PenSectID': 15684135, 'LibID': 52030, 'LibName': 'MINKS-ACT', 'DATE': '01', 'AUTH': '01'}
 ___Required sections:5
-WebReq:1) EvalID:149920 PenSectID:13660894 Lib:ENDF/B-VIII.0 Color:0,0,255|dot
+WebReq:1) EvalID:149920 PenSectID:13660894 Lib:ENDF/B-VIII.0 Color:0,0,255|solid|2
 /servlet/E4sGetSectData?EvalID=149920&PenSectID=13660894&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=149920&PenSectID=13660894&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149920&PenSectID=13660894&json&mf=5&mt=18&ei=2900000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149920&PenSectID=13660894&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:1/1)	90-Th-232(N,F),DE	ENDF/B-VIII.0	EID:149920	SID:13660894	f(x):Ratio to Mxw (T=1.32MeV)	pts:5324
 Downloaded:DS:1/1)	90-Th-232(N,F),DE	ENDF/B-VIII.0	EID:149920	SID:13660894	f(x):Ratio to Mxw (T=1.32MeV)	pts:5324	idy=0
-WebReq:2) EvalID:57645 PenSectID:7663320 Lib:ENDF/B-VII.1 Color:80,0,255|dashdot
+WebReq:2) EvalID:57645 PenSectID:7663320 Lib:ENDF/B-VII.1 Color:200,0,255|dashdot|2
 /servlet/E4sGetSectData?EvalID=57645&PenSectID=7663320&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=57645&PenSectID=7663320&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57645&PenSectID=7663320&json&mf=5&mt=18&ei=2900000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57645&PenSectID=7663320&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 ___2___web-read-error:  Expecting value: line 17 column 15 (char 465)
 WebReq:3) EvalID:226892 PenSectID:19239424 Lib:JENDL-5 Color:0,200,0
 /servlet/E4sGetSectData?EvalID=226892&PenSectID=19239424&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226892&PenSectID=19239424&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226892&PenSectID=19239424&json&mf=5&mt=18&ei=2900000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226892&PenSectID=19239424&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:3/1)	90-Th-232(N,F),DE	JENDL-5	EID:226892	SID:19239424	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
 Downloaded:DS:3/1)	90-Th-232(N,F),DE	JENDL-5	EID:226892	SID:19239424	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
 WebReq:4) EvalID:118835 PenSectID:10751036 Lib:BROND-3.1 Color:255,0,255
 /servlet/E4sGetSectData?EvalID=118835&PenSectID=10751036&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=118835&PenSectID=10751036&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118835&PenSectID=10751036&json&mf=5&mt=18&ei=2900000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118835&PenSectID=10751036&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:4/1)	90-Th-232(N,F),DE	BROND-3.1	EID:118835	SID:10751036	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
 Downloaded:DS:4/1)	90-Th-232(N,F),DE	BROND-3.1	EID:118835	SID:10751036	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
 WebReq:5) EvalID:175022 PenSectID:15684135 Lib:MINKS-ACT Color:255,80,80|dashdot
 /servlet/E4sGetSectData?EvalID=175022&PenSectID=15684135&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=175022&PenSectID=15684135&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=175022&PenSectID=15684135&json&mf=5&mt=18&ei=2900000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=175022&PenSectID=15684135&json&mf=5&mt=18&ei=2900000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:5/1)	90-Th-232(N,F),DE	MINKS-ACT	EID:175022	SID:15684135	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
 Downloaded:DS:5/1)	90-Th-232(N,F),DE	MINKS-ACT	EID:175022	SID:15684135	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
 ---e4datasets: 4
-Plot:1/4) 13660894	ENDF/B-VIII.0 Ei2.9e6 (T=1.32MeV)	pt:5324	color:0,0,255	dash:dot
-Plot:2/4) 19239424	JENDL-5 Ei2.9e6 (T=1.32MeV)	pt:350	color:0,200,0	dash:None
-Plot:3/4) 10751036	BROND-3.1 Ei2.9e6 (T=1.32MeV)	pt:350	color:255,0,255	dash:None
-Plot:4/4) 15684135	MINKS-ACT Ei2.9e6 (T=1.32MeV)	pt:324	color:255,80,80	dash:dashdot
+---read-zvd.dat:dataset-0   --> Lib:JENDL-4.0 Target:TH-232 Ei:1e-11 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-1   --> Lib:JENDL-4.0 Target:TH-232 Ei:0.1 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-2   --> Lib:JENDL-4.0 Target:TH-232 Ei:0.2 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-3   --> Lib:JENDL-4.0 Target:TH-232 Ei:0.5 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-4   --> Lib:JENDL-4.0 Target:TH-232 Ei:1.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-5   --> Lib:JENDL-4.0 Target:TH-232 Ei:1.3 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-6   --> Lib:JENDL-4.0 Target:TH-232 Ei:1.6 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-7   --> Lib:JENDL-4.0 Target:TH-232 Ei:2.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-8   --> Lib:JENDL-4.0 Target:TH-232 Ei:2.5 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-9   --> Lib:JENDL-4.0 Target:TH-232 Ei:3.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-10  --> Lib:JENDL-4.0 Target:TH-232 Ei:3.5 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-11  --> Lib:JENDL-4.0 Target:TH-232 Ei:4.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-12  --> Lib:JENDL-4.0 Target:TH-232 Ei:4.5 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-13  --> Lib:JENDL-4.0 Target:TH-232 Ei:5.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-14  --> Lib:JENDL-4.0 Target:TH-232 Ei:5.5 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-15  --> Lib:JENDL-4.0 Target:TH-232 Ei:6.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-16  --> Lib:JENDL-4.0 Target:TH-232 Ei:6.5 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-17  --> Lib:JENDL-4.0 Target:TH-232 Ei:7.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-18  --> Lib:JENDL-4.0 Target:TH-232 Ei:8.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-19  --> Lib:JENDL-4.0 Target:TH-232 Ei:9.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-20  --> Lib:JENDL-4.0 Target:TH-232 Ei:10.0 x:351 fx:1000000.0 idy:351
+---read-zvd.dat:dataset-21  --> Lib:JENDL-4.0 Target:TH-232 Ei:11.0 x:511 fx:1000000.0 idy:511
+---read-zvd.dat:dataset-22  --> Lib:JENDL-4.0 Target:TH-232 Ei:12.0 x:481 fx:1000000.0 idy:481
+---read-zvd.dat:dataset-23  --> Lib:JENDL-4.0 Target:TH-232 Ei:13.0 x:456 fx:1000000.0 idy:456
+---read-zvd.dat:dataset-24  --> Lib:JENDL-4.0 Target:TH-232 Ei:14.0 x:434 fx:1000000.0 idy:434
+---read-zvd.dat:dataset-25  --> Lib:JENDL-4.0 Target:TH-232 Ei:15.0 x:416 fx:1000000.0 idy:416
+---read-zvd.dat:dataset-26  --> Lib:JENDL-4.0 Target:TH-232 Ei:16.0 x:400 fx:1000000.0 idy:400
+---read-zvd.dat:dataset-27  --> Lib:JENDL-4.0 Target:TH-232 Ei:17.0 x:385 fx:1000000.0 idy:385
+---read-zvd.dat:dataset-28  --> Lib:JENDL-4.0 Target:TH-232 Ei:18.0 x:373 fx:1000000.0 idy:373
+---read-zvd.dat:dataset-29  --> Lib:JENDL-4.0 Target:TH-232 Ei:19.0 x:361 fx:1000000.0 idy:361
+---read-zvd.dat:dataset-30  --> Lib:JENDL-4.0 Target:TH-232 Ei:20.0 x:449 fx:1000000.0 idy:449
+---readZvdatSp1--- th232nf-JENDL-4.0.zvd.dat  #Datasets: 31
+===interploateZvdat===Ei:2900000.0
+---interploateZvdat---Ei:2900000.0 E1:2500000.0 E2:3000000.0 w1:0.8
+///interploateZvdat---E:1e-11 y1:2.16975e-12 y2:2.15258e-12 w1:0.8 y=2.156014e-12
+///interploateZvdat---E:1.2e-11 y1:2.37684e-12 y2:2.35803e-12 w1:0.8 y=2.361792e-12
+///interploateZvdat---E:1.4e-11 y1:2.56728e-12 y2:2.54697e-12 w1:0.8 y=2.551032e-12
+///interploateZvdat---E:1.6e-11 y1:2.74454e-12 y2:2.72282e-12 w1:0.8 y=2.727164e-12
+///interploateZvdat---E:1.8e-11 y1:2.91102e-12 y2:2.88799e-12 w1:0.8 y=2.892596e-12
+///interploateZvdat---E:2.2e-11 y1:3.21826e-12 y2:3.19279e-12 w1:0.8 y=3.197884e-12
+///interploateZvdat---E:2.5e-11 y1:3.43067e-12 y2:3.40353e-12 w1:0.8 y=3.408958e-12
+///interploateZvdat---E:2.9e-11 y1:3.69495e-12 y2:3.66571e-12 w1:0.8 y=3.671558e-12
+///interploateZvdat---E:3.4e-11 y1:4.00082e-12 y2:3.96916e-12 w1:0.8 y=3.975492e-12
+///interploateZvdat---E:4e-11 y1:4.33949e-12 y2:4.30516e-12 w1:0.8 y=4.312026e-12
+///interploateZvdat---E:4.6e-11 y1:4.65359e-12 y2:4.61677e-12 w1:0.8 y=4.624134e-12
+///interploateZvdat---E:5.4e-11 y1:5.04204e-12 y2:5.00214e-12 w1:0.8 y=5.01012e-12
+///interploateZvdat---E:6.3e-11 y1:5.44602e-12 y2:5.40293e-12 w1:0.8 y=5.411548e-12
+///interploateZvdat---E:7.4e-11 y1:5.90235e-12 y2:5.85565e-12 w1:0.8 y=5.86499e-12
+///interploateZvdat---E:8.6e-11 y1:6.36295e-12 y2:6.3126e-12 w1:0.8 y=6.32267e-12
+///interploateZvdat---E:1e-10 y1:6.86134e-12 y2:6.80705e-12 w1:0.8 y=6.817908e-12
+///interploateZvdat---E:1.2e-10 y1:7.51622e-12 y2:7.45675e-12 w1:0.8 y=7.468644e-12
+///interploateZvdat---E:1.4e-10 y1:8.11845e-12 y2:8.05421e-12 w1:0.8 y=8.067058e-12
+///interploateZvdat---E:1.6e-10 y1:8.67899e-12 y2:8.61032e-12 w1:0.8 y=8.624054e-12
+///interploateZvdat---E:1.8e-10 y1:9.20546e-12 y2:9.13262e-12 w1:0.8 y=9.147188e-12
+///interploateZvdat---E:2.2e-10 y1:1.0177e-11 y2:1.00965e-11 w1:0.8 y=1.01126e-11
+///interploateZvdat---E:2.5e-10 y1:1.08487e-11 y2:1.07629e-11 w1:0.8 y=1.078006e-11
+///interploateZvdat---E:2.9e-10 y1:1.16844e-11 y2:1.1592e-11 w1:0.8 y=1.161048e-11
+///interploateZvdat---E:3.4e-10 y1:1.26517e-11 y2:1.25516e-11 w1:0.8 y=1.257162e-11
+///interploateZvdat---E:4e-10 y1:1.37227e-11 y2:1.36141e-11 w1:0.8 y=1.363582e-11
+///interploateZvdat---E:4.6e-10 y1:1.47159e-11 y2:1.45995e-11 w1:0.8 y=1.462278e-11
+///interploateZvdat---E:5.4e-10 y1:1.59443e-11 y2:1.58182e-11 w1:0.8 y=1.584342e-11
+///interploateZvdat---E:6.3e-10 y1:1.72218e-11 y2:1.70856e-11 w1:0.8 y=1.711284e-11
+///interploateZvdat---E:7.4e-10 y1:1.86649e-11 y2:1.85172e-11 w1:0.8 y=1.854674e-11
+///interploateZvdat---E:8.6e-10 y1:2.01214e-11 y2:1.99622e-11 w1:0.8 y=1.999404e-11
+///interploateZvdat---E:1e-09 y1:2.16975e-11 y2:2.15258e-11 w1:0.8 y=2.156014e-11
+///interploateZvdat---E:1.2e-09 y1:2.37684e-11 y2:2.35803e-11 w1:0.8 y=2.361792e-11
+///interploateZvdat---E:1.4e-09 y1:2.56728e-11 y2:2.54697e-11 w1:0.8 y=2.551032e-11
+///interploateZvdat---E:1.6e-09 y1:2.74454e-11 y2:2.72282e-11 w1:0.8 y=2.727164e-11
+///interploateZvdat---E:1.8e-09 y1:2.91102e-11 y2:2.88799e-11 w1:0.8 y=2.892596e-11
+///interploateZvdat---E:2.2e-09 y1:3.21825e-11 y2:3.19279e-11 w1:0.8 y=3.197882e-11
+///interploateZvdat---E:2.5e-09 y1:3.43067e-11 y2:3.40353e-11 w1:0.8 y=3.408958e-11
+///interploateZvdat---E:2.9e-09 y1:3.69494e-11 y2:3.66571e-11 w1:0.8 y=3.671556e-11
+///interploateZvdat---E:3.4e-09 y1:4.00081e-11 y2:3.96916e-11 w1:0.8 y=3.97549e-11
+///interploateZvdat---E:4e-09 y1:4.33949e-11 y2:4.30516e-11 w1:0.8 y=4.312026e-11
+///interploateZvdat---E:4.6e-09 y1:4.65359e-11 y2:4.61677e-11 w1:0.8 y=4.624134e-11
+///interploateZvdat---E:5.4e-09 y1:5.04203e-11 y2:5.00214e-11 w1:0.8 y=5.010118e-11
+///interploateZvdat---E:6.3e-09 y1:5.44602e-11 y2:5.40293e-11 w1:0.8 y=5.411548e-11
+///interploateZvdat---E:7.4e-09 y1:5.90235e-11 y2:5.85564e-11 w1:0.8 y=5.864982e-11
+///interploateZvdat---E:8.6e-09 y1:6.36294e-11 y2:6.3126e-11 w1:0.8 y=6.322668e-11
+///interploateZvdat---E:1e-08 y1:6.86134e-11 y2:6.80705e-11 w1:0.8 y=6.817908e-11
+///interploateZvdat---E:1.2e-08 y1:7.51622e-11 y2:7.45674e-11 w1:0.8 y=7.468636e-11
+///interploateZvdat---E:1.4e-08 y1:8.11844e-11 y2:8.0542e-11 w1:0.8 y=8.067048e-11
+///interploateZvdat---E:1.6e-08 y1:8.67898e-11 y2:8.61031e-11 w1:0.8 y=8.624044e-11
+///interploateZvdat---E:1.8e-08 y1:9.20545e-11 y2:9.13261e-11 w1:0.8 y=9.147178e-11
+///interploateZvdat---E:2.2e-08 y1:1.0177e-10 y2:1.00965e-10 w1:0.8 y=1.01126e-10
+///interploateZvdat---E:2.5e-08 y1:1.08487e-10 y2:1.07629e-10 w1:0.8 y=1.078006e-10
+///interploateZvdat---E:2.9e-08 y1:1.16844e-10 y2:1.1592e-10 w1:0.8 y=1.161048e-10
+///interploateZvdat---E:3.4e-08 y1:1.26517e-10 y2:1.25516e-10 w1:0.8 y=1.257162e-10
+///interploateZvdat---E:4e-08 y1:1.37227e-10 y2:1.36141e-10 w1:0.8 y=1.363582e-10
+///interploateZvdat---E:4.6e-08 y1:1.47159e-10 y2:1.45995e-10 w1:0.8 y=1.462278e-10
+///interploateZvdat---E:5.4e-08 y1:1.59443e-10 y2:1.58181e-10 w1:0.8 y=1.584334e-10
+///interploateZvdat---E:6.3e-08 y1:1.72218e-10 y2:1.70855e-10 w1:0.8 y=1.711276e-10
+///interploateZvdat---E:7.4e-08 y1:1.86648e-10 y2:1.85171e-10 w1:0.8 y=1.854664e-10
+///interploateZvdat---E:8.6e-08 y1:2.01213e-10 y2:1.99621e-10 w1:0.8 y=1.999394e-10
+///interploateZvdat---E:1e-07 y1:2.16974e-10 y2:2.15257e-10 w1:0.8 y=2.156004e-10
+///interploateZvdat---E:1.2e-07 y1:2.37683e-10 y2:2.35802e-10 w1:0.8 y=2.361782e-10
+///interploateZvdat---E:1.4e-07 y1:2.56727e-10 y2:2.54696e-10 w1:0.8 y=2.551022e-10
+///interploateZvdat---E:1.6e-07 y1:2.74453e-10 y2:2.72281e-10 w1:0.8 y=2.727154e-10
+///interploateZvdat---E:1.8e-07 y1:2.91101e-10 y2:2.88797e-10 w1:0.8 y=2.892578e-10
+///interploateZvdat---E:2.2e-07 y1:3.21824e-10 y2:3.19277e-10 w1:0.8 y=3.197864e-10
+///interploateZvdat---E:2.5e-07 y1:3.43065e-10 y2:3.40351e-10 w1:0.8 y=3.408938e-10
+///interploateZvdat---E:2.9e-07 y1:3.69492e-10 y2:3.66569e-10 w1:0.8 y=3.671536e-10
+///interploateZvdat---E:3.4e-07 y1:4.00079e-10 y2:3.96913e-10 w1:0.8 y=3.975462e-10
+///interploateZvdat---E:4e-07 y1:4.33946e-10 y2:4.30513e-10 w1:0.8 y=4.311996e-10
+///interploateZvdat---E:4.6e-07 y1:4.65355e-10 y2:4.61673e-10 w1:0.8 y=4.624094e-10
+///interploateZvdat---E:5.4e-07 y1:5.042e-10 y2:5.0021e-10 w1:0.8 y=5.01008e-10
+///interploateZvdat---E:6.3e-07 y1:5.44597e-10 y2:5.40288e-10 w1:0.8 y=5.411498e-10
+///interploateZvdat---E:7.4e-07 y1:5.90229e-10 y2:5.85559e-10 w1:0.8 y=5.86493e-10
+///interploateZvdat---E:8.6e-07 y1:6.36288e-10 y2:6.31254e-10 w1:0.8 y=6.322608e-10
+///interploateZvdat---E:1e-06 y1:6.86127e-10 y2:6.80698e-10 w1:0.8 y=6.817838e-10
+///interploateZvdat---E:1.2e-06 y1:7.51613e-10 y2:7.45666e-10 w1:0.8 y=7.468554e-10
+///interploateZvdat---E:1.4e-06 y1:8.11834e-10 y2:8.05412e-10 w1:0.8 y=8.066964e-10
+///interploateZvdat---E:1.6e-06 y1:8.67886e-10 y2:8.6102e-10 w1:0.8 y=8.623932e-10
+///interploateZvdat---E:1.8e-06 y1:9.20532e-10 y2:9.13248e-10 w1:0.8 y=9.147048e-10
+///interploateZvdat---E:2.2e-06 y1:1.01768e-09 y2:1.00963e-09 w1:0.8 y=1.01124e-09
+///interploateZvdat---E:2.5e-06 y1:1.08485e-09 y2:1.07627e-09 w1:0.8 y=1.077986e-09
+///interploateZvdat---E:2.9e-06 y1:1.16842e-09 y2:1.15918e-09 w1:0.8 y=1.161028e-09
+///interploateZvdat---E:3.4e-06 y1:1.26514e-09 y2:1.25513e-09 w1:0.8 y=1.257132e-09
+///interploateZvdat---E:4e-06 y1:1.37224e-09 y2:1.36138e-09 w1:0.8 y=1.363552e-09
+///interploateZvdat---E:4.6e-06 y1:1.47156e-09 y2:1.45991e-09 w1:0.8 y=1.46224e-09
+///interploateZvdat---E:5.4e-06 y1:1.59439e-09 y2:1.58177e-09 w1:0.8 y=1.584294e-09
+///interploateZvdat---E:6.3e-06 y1:1.72213e-09 y2:1.70851e-09 w1:0.8 y=1.711234e-09
+///interploateZvdat---E:7.4e-06 y1:1.86643e-09 y2:1.85166e-09 w1:0.8 y=1.854614e-09
+///interploateZvdat---E:8.6e-06 y1:2.01207e-09 y2:1.99615e-09 w1:0.8 y=1.999334e-09
+///interploateZvdat---E:1e-05 y1:2.16966e-09 y2:2.1525e-09 w1:0.8 y=2.155932e-09
+///interploateZvdat---E:1.2e-05 y1:2.37674e-09 y2:2.35793e-09 w1:0.8 y=2.361692e-09
+///interploateZvdat---E:1.4e-05 y1:2.56716e-09 y2:2.54685e-09 w1:0.8 y=2.550912e-09
+///interploateZvdat---E:1.6e-05 y1:2.7444e-09 y2:2.72269e-09 w1:0.8 y=2.727032e-09
+///interploateZvdat---E:1.8e-05 y1:2.91087e-09 y2:2.88784e-09 w1:0.8 y=2.892446e-09
+///interploateZvdat---E:2.2e-05 y1:3.21806e-09 y2:3.1926e-09 w1:0.8 y=3.197692e-09
+///interploateZvdat---E:2.5e-05 y1:3.43045e-09 y2:3.40331e-09 w1:0.8 y=3.408738e-09
+///interploateZvdat---E:2.9e-05 y1:3.69469e-09 y2:3.66546e-09 w1:0.8 y=3.671306e-09
+///interploateZvdat---E:3.4e-05 y1:4.00051e-09 y2:3.96886e-09 w1:0.8 y=3.97519e-09
+///interploateZvdat---E:4e-05 y1:4.33913e-09 y2:4.3048e-09 w1:0.8 y=4.311666e-09
+///interploateZvdat---E:4.6e-05 y1:4.65316e-09 y2:4.61635e-09 w1:0.8 y=4.623712e-09
+///interploateZvdat---E:5.4e-05 y1:5.04153e-09 y2:5.00164e-09 w1:0.8 y=5.009618e-09
+///interploateZvdat---E:6.3e-05 y1:5.44542e-09 y2:5.40234e-09 w1:0.8 y=5.410956e-09
+///interploateZvdat---E:7.4e-05 y1:5.90163e-09 y2:5.85494e-09 w1:0.8 y=5.864278e-09
+///interploateZvdat---E:8.6e-05 y1:6.36209e-09 y2:6.31176e-09 w1:0.8 y=6.321826e-09
+///interploateZvdat---E:0.0001 y1:6.86032e-09 y2:6.80606e-09 w1:0.8 y=6.816912e-09
+///interploateZvdat---E:0.00012 y1:7.51497e-09 y2:7.45552e-09 w1:0.8 y=7.46741e-09
+///interploateZvdat---E:0.00014 y1:8.11695e-09 y2:8.05274e-09 w1:0.8 y=8.065582e-09
+///interploateZvdat---E:0.00016 y1:8.67724e-09 y2:8.6086e-09 w1:0.8 y=8.622328e-09
+///interploateZvdat---E:0.00018 y1:9.20344e-09 y2:9.13065e-09 w1:0.8 y=9.145208e-09
+///interploateZvdat---E:0.00022 y1:1.01745e-08 y2:1.0094e-08 w1:0.8 y=1.01101e-08
+///interploateZvdat---E:0.00025 y1:1.08458e-08 y2:1.076e-08 w1:0.8 y=1.077716e-08
+///interploateZvdat---E:0.00029 y1:1.16809e-08 y2:1.15885e-08 w1:0.8 y=1.160698e-08
+///interploateZvdat---E:0.00034 y1:1.26474e-08 y2:1.25473e-08 w1:0.8 y=1.256732e-08
+///interploateZvdat---E:0.0004 y1:1.37174e-08 y2:1.36089e-08 w1:0.8 y=1.36306e-08
+///interploateZvdat---E:0.00046 y1:1.47097e-08 y2:1.45933e-08 w1:0.8 y=1.461658e-08
+///interploateZvdat---E:0.00054 y1:1.59367e-08 y2:1.58106e-08 w1:0.8 y=1.583582e-08
+///interploateZvdat---E:0.00063 y1:1.72125e-08 y2:1.70764e-08 w1:0.8 y=1.710362e-08
+///interploateZvdat---E:0.00074 y1:1.86534e-08 y2:1.85059e-08 w1:0.8 y=1.85354e-08
+///interploateZvdat---E:0.00086 y1:2.01075e-08 y2:1.99485e-08 w1:0.8 y=1.99803e-08
+///interploateZvdat---E:0.001 y1:2.16806e-08 y2:2.15092e-08 w1:0.8 y=2.154348e-08
+///interploateZvdat---E:0.0012 y1:2.3747e-08 y2:2.35592e-08 w1:0.8 y=2.359676e-08
+///interploateZvdat---E:0.0014 y1:2.56466e-08 y2:2.54438e-08 w1:0.8 y=2.548436e-08
+///interploateZvdat---E:0.0016 y1:2.74141e-08 y2:2.71973e-08 w1:0.8 y=2.724066e-08
+///interploateZvdat---E:0.0018 y1:2.90736e-08 y2:2.88437e-08 w1:0.8 y=2.888968e-08
+///interploateZvdat---E:0.0022 y1:3.21346e-08 y2:3.18805e-08 w1:0.8 y=3.193132e-08
+///interploateZvdat---E:0.0025 y1:3.42496e-08 y2:3.39788e-08 w1:0.8 y=3.403296e-08
+///interploateZvdat---E:0.0029 y1:3.68796e-08 y2:3.6588e-08 w1:0.8 y=3.664632e-08
+///interploateZvdat---E:0.0034 y1:3.99212e-08 y2:3.96055e-08 w1:0.8 y=3.966864e-08
+///interploateZvdat---E:0.004 y1:4.3286e-08 y2:4.29438e-08 w1:0.8 y=4.301224e-08
+///interploateZvdat---E:0.0046 y1:4.64036e-08 y2:4.60367e-08 w1:0.8 y=4.611008e-08
+///interploateZvdat---E:0.0054 y1:5.02548e-08 y2:4.98574e-08 w1:0.8 y=4.993688e-08
+///interploateZvdat---E:0.0063 y1:5.42546e-08 y2:5.38255e-08 w1:0.8 y=5.391132e-08
+///interploateZvdat---E:0.0074 y1:5.87653e-08 y2:5.83006e-08 w1:0.8 y=5.839354e-08
+///interploateZvdat---E:0.0086 y1:6.33099e-08 y2:6.28091e-08 w1:0.8 y=6.290926e-08
+///interploateZvdat---E:0.01 y1:6.82171e-08 y2:6.76775e-08 w1:0.8 y=6.778542e-08
+///interploateZvdat---E:0.012 y1:7.46476e-08 y2:7.4057e-08 w1:0.8 y=7.417512e-08
+///interploateZvdat---E:0.014 y1:8.0542e-08 y2:7.99047e-08 w1:0.8 y=8.003216e-08
+///interploateZvdat---E:0.016 y1:8.60108e-08 y2:8.533e-08 w1:0.8 y=8.546616e-08
+///interploateZvdat---E:0.018 y1:9.11307e-08 y2:9.04092e-08 w1:0.8 y=9.05535e-08
+///interploateZvdat---E:0.022 y1:1.00534e-07 y2:9.97374e-08 w1:0.8 y=9.989672e-08
+///interploateZvdat---E:0.025 y1:1.06998e-07 y2:1.0615e-07 w1:0.8 y=1.063196e-07
+///interploateZvdat---E:0.029 y1:1.14994e-07 y2:1.14083e-07 w1:0.8 y=1.142652e-07
+///interploateZvdat---E:0.034 y1:1.24182e-07 y2:1.23197e-07 w1:0.8 y=1.23394e-07
+///interploateZvdat---E:0.04 y1:1.34263e-07 y2:1.33197e-07 w1:0.8 y=1.334102e-07
+///interploateZvdat---E:0.046 y1:1.43519e-07 y2:1.42379e-07 w1:0.8 y=1.42607e-07
+///interploateZvdat---E:0.054 y1:1.54833e-07 y2:1.53602e-07 w1:0.8 y=1.538482e-07
+///interploateZvdat---E:0.063 y1:1.6643e-07 y2:1.65106e-07 w1:0.8 y=1.653708e-07
+///interploateZvdat---E:0.074 y1:1.79305e-07 y2:1.77878e-07 w1:0.8 y=1.781634e-07
+///interploateZvdat---E:0.086 y1:1.9204e-07 y2:1.9051e-07 w1:0.8 y=1.90816e-07
+///interploateZvdat---E:0.1 y1:2.05501e-07 y2:2.03862e-07 w1:0.8 y=2.041898e-07
+///interploateZvdat---E:0.2 y1:2.74696e-07 y2:2.72503e-07 w1:0.8 y=2.729416e-07
+///interploateZvdat---E:0.3 y1:3.17077e-07 y2:3.14569e-07 w1:0.8 y=3.150706e-07
+///interploateZvdat---E:0.4 y1:3.44081e-07 y2:3.41415e-07 w1:0.8 y=3.419482e-07
+///interploateZvdat---E:0.5 y1:3.60546e-07 y2:3.57837e-07 w1:0.8 y=3.583788e-07
+///interploateZvdat---E:0.6 y1:3.69511e-07 y2:3.66842e-07 w1:0.8 y=3.673758e-07
+///interploateZvdat---E:0.7 y1:3.72946e-07 y2:3.70371e-07 w1:0.8 y=3.70886e-07
+///interploateZvdat---E:0.8 y1:3.72169e-07 y2:3.69725e-07 w1:0.8 y=3.702138e-07
+///interploateZvdat---E:0.9 y1:3.68114e-07 y2:3.65829e-07 w1:0.8 y=3.66286e-07
+///interploateZvdat---E:1.0 y1:3.61466e-07 y2:3.59362e-07 w1:0.8 y=3.597828e-07
+///interploateZvdat---E:1.1 y1:3.52737e-07 y2:3.50829e-07 w1:0.8 y=3.512106e-07
+///interploateZvdat---E:1.2 y1:3.42333e-07 y2:3.40634e-07 w1:0.8 y=3.409738e-07
+///interploateZvdat---E:1.3 y1:3.30713e-07 y2:3.2923e-07 w1:0.8 y=3.295266e-07
+///interploateZvdat---E:1.4 y1:3.18268e-07 y2:3.16999e-07 w1:0.8 y=3.172528e-07
+///interploateZvdat---E:1.5 y1:3.05298e-07 y2:3.04239e-07 w1:0.8 y=3.044508e-07
+///interploateZvdat---E:1.6 y1:2.9204e-07 y2:2.91183e-07 w1:0.8 y=2.913544e-07
+///interploateZvdat---E:1.7 y1:2.78679e-07 y2:2.78014e-07 w1:0.8 y=2.78147e-07
+///interploateZvdat---E:1.8 y1:2.65363e-07 y2:2.64879e-07 w1:0.8 y=2.649758e-07
+///interploateZvdat---E:1.9 y1:2.52207e-07 y2:2.51892e-07 w1:0.8 y=2.51955e-07
+///interploateZvdat---E:2.0 y1:2.39301e-07 y2:2.39142e-07 w1:0.8 y=2.391738e-07
+///interploateZvdat---E:2.1 y1:2.26713e-07 y2:2.26697e-07 w1:0.8 y=2.267002e-07
+///interploateZvdat---E:2.2 y1:2.14496e-07 y2:2.14609e-07 w1:0.8 y=2.145864e-07
+///interploateZvdat---E:2.3 y1:2.02686e-07 y2:2.02917e-07 w1:0.8 y=2.028708e-07
+///interploateZvdat---E:2.4 y1:1.91312e-07 y2:1.91648e-07 w1:0.8 y=1.915808e-07
+///interploateZvdat---E:2.5 y1:1.8039e-07 y2:1.8082e-07 w1:0.8 y=1.80734e-07
+///interploateZvdat---E:2.6 y1:1.69931e-07 y2:1.70443e-07 w1:0.8 y=1.703406e-07
+///interploateZvdat---E:2.7 y1:1.59938e-07 y2:1.60522e-07 w1:0.8 y=1.604052e-07
+///interploateZvdat---E:2.8 y1:1.50412e-07 y2:1.51058e-07 w1:0.8 y=1.509288e-07
+///interploateZvdat---E:2.9 y1:1.41347e-07 y2:1.42046e-07 w1:0.8 y=1.419062e-07
+///interploateZvdat---E:3.0 y1:1.32735e-07 y2:1.33479e-07 w1:0.8 y=1.333302e-07
+///interploateZvdat---E:3.1 y1:1.24567e-07 y2:1.25347e-07 w1:0.8 y=1.25191e-07
+///interploateZvdat---E:3.2 y1:1.16829e-07 y2:1.17639e-07 w1:0.8 y=1.17477e-07
+///interploateZvdat---E:3.3 y1:1.0951e-07 y2:1.10342e-07 w1:0.8 y=1.101756e-07
+///interploateZvdat---E:3.4 y1:1.02593e-07 y2:1.03442e-07 w1:0.8 y=1.032722e-07
+///interploateZvdat---E:3.5 y1:9.60636e-08 y2:9.69244e-08 w1:0.8 y=9.675224e-08
+///interploateZvdat---E:3.6 y1:8.99064e-08 y2:9.07738e-08 w1:0.8 y=9.060032e-08
+///interploateZvdat---E:3.7 y1:8.41054e-08 y2:8.49748e-08 w1:0.8 y=8.480092e-08
+///interploateZvdat---E:3.8 y1:7.86443e-08 y2:7.9512e-08 w1:0.8 y=7.933846e-08
+///interploateZvdat---E:3.9 y1:7.35074e-08 y2:7.43698e-08 w1:0.8 y=7.419732e-08
+///interploateZvdat---E:4.0 y1:6.86789e-08 y2:6.95329e-08 w1:0.8 y=6.93621e-08
+///interploateZvdat---E:4.1 y1:6.41433e-08 y2:6.49864e-08 w1:0.8 y=6.481778e-08
+///interploateZvdat---E:4.2 y1:5.98858e-08 y2:6.07155e-08 w1:0.8 y=6.054956e-08
+///interploateZvdat---E:4.3 y1:5.58915e-08 y2:5.67059e-08 w1:0.8 y=5.654302e-08
+///interploateZvdat---E:4.4 y1:5.21464e-08 y2:5.29438e-08 w1:0.8 y=5.278432e-08
+///interploateZvdat---E:4.5 y1:4.86368e-08 y2:4.94157e-08 w1:0.8 y=4.925992e-08
+///interploateZvdat---E:4.6 y1:4.53496e-08 y2:4.61088e-08 w1:0.8 y=4.595696e-08
+///interploateZvdat---E:4.7 y1:4.22721e-08 y2:4.30107e-08 w1:0.8 y=4.286298e-08
+///interploateZvdat---E:4.8 y1:3.93924e-08 y2:4.01096e-08 w1:0.8 y=3.996616e-08
+///interploateZvdat---E:4.9 y1:3.66988e-08 y2:3.7394e-08 w1:0.8 y=3.725496e-08
+///interploateZvdat---E:5.0 y1:3.41804e-08 y2:3.48533e-08 w1:0.8 y=3.471872e-08
+///interploateZvdat---E:5.1 y1:3.18267e-08 y2:3.2477e-08 w1:0.8 y=3.234694e-08
+///interploateZvdat---E:5.2 y1:2.96278e-08 y2:3.02553e-08 w1:0.8 y=3.01298e-08
+///interploateZvdat---E:5.3 y1:2.75742e-08 y2:2.8179e-08 w1:0.8 y=2.805804e-08
+///interploateZvdat---E:5.4 y1:2.56571e-08 y2:2.62392e-08 w1:0.8 y=2.612278e-08
+///interploateZvdat---E:5.5 y1:2.38678e-08 y2:2.44275e-08 w1:0.8 y=2.431556e-08
+///interploateZvdat---E:5.6 y1:2.21986e-08 y2:2.2736e-08 w1:0.8 y=2.262852e-08
+///interploateZvdat---E:5.7 y1:2.06417e-08 y2:2.11573e-08 w1:0.8 y=2.105418e-08
+///interploateZvdat---E:5.8 y1:1.91901e-08 y2:1.96841e-08 w1:0.8 y=1.95853e-08
+///interploateZvdat---E:5.9 y1:1.7837e-08 y2:1.83099e-08 w1:0.8 y=1.821532e-08
+///interploateZvdat---E:6.0 y1:1.6576e-08 y2:1.70284e-08 w1:0.8 y=1.693792e-08
+///interploateZvdat---E:6.1 y1:1.54013e-08 y2:1.58337e-08 w1:0.8 y=1.574722e-08
+///interploateZvdat---E:6.2 y1:1.43072e-08 y2:1.472e-08 w1:0.8 y=1.463744e-08
+///interploateZvdat---E:6.3 y1:1.32884e-08 y2:1.36823e-08 w1:0.8 y=1.360352e-08
+///interploateZvdat---E:6.4 y1:1.234e-08 y2:1.27155e-08 w1:0.8 y=1.26404e-08
+///interploateZvdat---E:6.5 y1:1.14574e-08 y2:1.1815e-08 w1:0.8 y=1.174348e-08
+///interploateZvdat---E:6.6 y1:1.0636e-08 y2:1.09765e-08 w1:0.8 y=1.09084e-08
+///interploateZvdat---E:6.7 y1:9.87197e-09 y2:1.01958e-08 w1:0.8 y=1.013103e-08
+///interploateZvdat---E:6.8 y1:9.16133e-09 y2:9.46921e-09 w1:0.8 y=9.407634e-09
+///interploateZvdat---E:6.9 y1:8.5005e-09 y2:8.793e-09 w1:0.8 y=8.7345e-09
+///interploateZvdat---E:7.0 y1:7.88614e-09 y2:8.16384e-09 w1:0.8 y=8.1083e-09
+///interploateZvdat---E:7.1 y1:7.31507e-09 y2:7.57858e-09 w1:0.8 y=7.525878e-09
+///interploateZvdat---E:7.2 y1:6.78436e-09 y2:7.03426e-09 w1:0.8 y=6.98428e-09
+///interploateZvdat---E:7.3 y1:6.29124e-09 y2:6.5281e-09 w1:0.8 y=6.480728e-09
+///interploateZvdat---E:7.4 y1:5.83314e-09 y2:6.05752e-09 w1:0.8 y=6.012644e-09
+///interploateZvdat---E:7.5 y1:5.40764e-09 y2:5.62009e-09 w1:0.8 y=5.5776e-09
+///interploateZvdat---E:7.6 y1:5.0125e-09 y2:5.21355e-09 w1:0.8 y=5.17334e-09
+///interploateZvdat---E:7.7 y1:4.64561e-09 y2:4.83578e-09 w1:0.8 y=4.797746e-09
+///interploateZvdat---E:7.8 y1:4.30501e-09 y2:4.4848e-09 w1:0.8 y=4.448842e-09
+///interploateZvdat---E:7.9 y1:3.98887e-09 y2:4.15877e-09 w1:0.8 y=4.12479e-09
+///interploateZvdat---E:8.0 y1:3.69547e-09 y2:3.85595e-09 w1:0.8 y=3.823854e-09
+///interploateZvdat---E:8.1 y1:3.42323e-09 y2:3.57475e-09 w1:0.8 y=3.544446e-09
+///interploateZvdat---E:8.2 y1:3.17065e-09 y2:3.31366e-09 w1:0.8 y=3.285058e-09
+///interploateZvdat---E:8.3 y1:2.93636e-09 y2:3.07127e-09 w1:0.8 y=3.044288e-09
+///interploateZvdat---E:8.4 y1:2.71905e-09 y2:2.84628e-09 w1:0.8 y=2.820834e-09
+///interploateZvdat---E:8.5 y1:2.51754e-09 y2:2.63746e-09 w1:0.8 y=2.613476e-09
+///interploateZvdat---E:8.6 y1:2.33069e-09 y2:2.44369e-09 w1:0.8 y=2.42109e-09
+///interploateZvdat---E:8.7 y1:2.15746e-09 y2:2.26391e-09 w1:0.8 y=2.24262e-09
+///interploateZvdat---E:8.8 y1:1.99689e-09 y2:2.09712e-09 w1:0.8 y=2.077074e-09
+///interploateZvdat---E:8.9 y1:1.84807e-09 y2:1.94241e-09 w1:0.8 y=1.923542e-09
+///interploateZvdat---E:9.0 y1:1.71015e-09 y2:1.79892e-09 w1:0.8 y=1.781166e-09
+///interploateZvdat---E:9.1 y1:1.58235e-09 y2:1.66586e-09 w1:0.8 y=1.649158e-09
+///interploateZvdat---E:9.2 y1:1.46395e-09 y2:1.54248e-09 w1:0.8 y=1.526774e-09
+///interploateZvdat---E:9.3 y1:1.35428e-09 y2:1.42809e-09 w1:0.8 y=1.413328e-09
+///interploateZvdat---E:9.4 y1:1.25268e-09 y2:1.32205e-09 w1:0.8 y=1.308176e-09
+///interploateZvdat---E:9.5 y1:1.1586e-09 y2:1.22377e-09 w1:0.8 y=1.210736e-09
+///interploateZvdat---E:9.6 y1:1.07147e-09 y2:1.13268e-09 w1:0.8 y=1.120438e-09
+///interploateZvdat---E:9.7 y1:9.908e-10 y2:1.04827e-09 w1:0.8 y=1.036776e-09
+///interploateZvdat---E:9.8 y1:9.16113e-10 y2:9.70056e-10 w1:0.8 y=9.592674e-10
+///interploateZvdat---E:9.9 y1:8.46975e-10 y2:8.97595e-10 w1:0.8 y=8.87471e-10
+///interploateZvdat---E:10.0 y1:7.82982e-10 y2:8.3047e-10 w1:0.8 y=8.209724e-10
+///interploateZvdat---E:10.1 y1:7.23755e-10 y2:7.68294e-10 w1:0.8 y=7.593862e-10
+///interploateZvdat---E:10.2 y1:6.68947e-10 y2:7.10709e-10 w1:0.8 y=7.023566e-10
+///interploateZvdat---E:10.3 y1:6.18234e-10 y2:6.57381e-10 w1:0.8 y=6.495516e-10
+///interploateZvdat---E:10.4 y1:5.71314e-10 y2:6.08001e-10 w1:0.8 y=6.006636e-10
+///interploateZvdat---E:10.5 y1:5.27907e-10 y2:5.62281e-10 w1:0.8 y=5.554062e-10
+///interploateZvdat---E:10.6 y1:4.87756e-10 y2:5.19954e-10 w1:0.8 y=5.135144e-10
+///interploateZvdat---E:10.7 y1:4.5062e-10 y2:4.80773e-10 w1:0.8 y=4.747424e-10
+///interploateZvdat---E:10.8 y1:4.16275e-10 y2:4.44507e-10 w1:0.8 y=4.388606e-10
+///interploateZvdat---E:10.9 y1:3.84516e-10 y2:4.10942e-10 w1:0.8 y=4.056568e-10
+///interploateZvdat---E:11.0 y1:3.55149e-10 y2:3.7988e-10 w1:0.8 y=3.749338e-10
+///interploateZvdat---E:11.1 y1:3.27999e-10 y2:3.51138e-10 w1:0.8 y=3.465102e-10
+///interploateZvdat---E:11.2 y1:3.02899e-10 y2:3.24544e-10 w1:0.8 y=3.20215e-10
+///interploateZvdat---E:11.3 y1:2.79697e-10 y2:2.9994e-10 w1:0.8 y=2.958914e-10
+///interploateZvdat---E:11.4 y1:2.58252e-10 y2:2.7718e-10 w1:0.8 y=2.733944e-10
+///interploateZvdat---E:11.5 y1:2.38432e-10 y2:2.56127e-10 w1:0.8 y=2.52588e-10
+///interploateZvdat---E:11.6 y1:2.20116e-10 y2:2.36655e-10 w1:0.8 y=2.333472e-10
+///interploateZvdat---E:11.7 y1:2.03191e-10 y2:2.18646e-10 w1:0.8 y=2.15555e-10
+///interploateZvdat---E:11.8 y1:1.87553e-10 y2:2.01993e-10 w1:0.8 y=1.99105e-10
+///interploateZvdat---E:11.9 y1:1.73105e-10 y2:1.86594e-10 w1:0.8 y=1.838962e-10
+///interploateZvdat---E:12.0 y1:1.59759e-10 y2:1.72356e-10 w1:0.8 y=1.698366e-10
+///interploateZvdat---E:12.1 y1:1.4743e-10 y2:1.59193e-10 w1:0.8 y=1.568404e-10
+///interploateZvdat---E:12.2 y1:1.36043e-10 y2:1.47025e-10 w1:0.8 y=1.448286e-10
+///interploateZvdat---E:12.3 y1:1.25526e-10 y2:1.35777e-10 w1:0.8 y=1.337268e-10
+///interploateZvdat---E:12.4 y1:1.15813e-10 y2:1.2538e-10 w1:0.8 y=1.234666e-10
+///interploateZvdat---E:12.5 y1:1.06845e-10 y2:1.15772e-10 w1:0.8 y=1.139866e-10
+///interploateZvdat---E:12.6 y1:9.85639e-11 y2:1.06892e-10 w1:0.8 y=1.052264e-10
+///interploateZvdat---E:12.7 y1:9.09183e-11 y2:9.86866e-11 w1:0.8 y=9.713294e-11
+///interploateZvdat---E:12.8 y1:8.38599e-11 y2:9.11048e-11 w1:0.8 y=8.965582e-11
+///interploateZvdat---E:12.9 y1:7.73442e-11 y2:8.40998e-11 w1:0.8 y=8.274868e-11
+///interploateZvdat---E:13.0 y1:7.13298e-11 y2:7.76282e-11 w1:0.8 y=7.636852e-11
+///interploateZvdat---E:13.1 y1:6.57787e-11 y2:7.16498e-11 w1:0.8 y=7.047558e-11
+///interploateZvdat---E:13.2 y1:6.06554e-11 y2:6.61275e-11 w1:0.8 y=6.503308e-11
+///interploateZvdat---E:13.3 y1:5.59275e-11 y2:6.10268e-11 w1:0.8 y=6.000694e-11
+///interploateZvdat---E:13.4 y1:5.15647e-11 y2:5.63158e-11 w1:0.8 y=5.536558e-11
+///interploateZvdat---E:13.5 y1:4.75391e-11 y2:5.19652e-11 w1:0.8 y=5.107998e-11
+///interploateZvdat---E:13.6 y1:4.3825e-11 y2:4.79477e-11 w1:0.8 y=4.712316e-11
+///interploateZvdat---E:13.7 y1:4.03984e-11 y2:4.42379e-11 w1:0.8 y=4.347e-11
+///interploateZvdat---E:13.8 y1:3.72374e-11 y2:4.08126e-11 w1:0.8 y=4.009756e-11
+///interploateZvdat---E:13.9 y1:3.43215e-11 y2:3.76502e-11 w1:0.8 y=3.698446e-11
+///interploateZvdat---E:14.0 y1:3.1632e-11 y2:3.47307e-11 w1:0.8 y=3.411096e-11
+///interploateZvdat---E:14.1 y1:2.91514e-11 y2:3.20356e-11 w1:0.8 y=3.145876e-11
+///interploateZvdat---E:14.2 y1:2.68636e-11 y2:2.95479e-11 w1:0.8 y=2.901104e-11
+///interploateZvdat---E:14.3 y1:2.4754e-11 y2:2.72517e-11 w1:0.8 y=2.675216e-11
+///interploateZvdat---E:14.4 y1:2.28085e-11 y2:2.51325e-11 w1:0.8 y=2.46677e-11
+///interploateZvdat---E:14.5 y1:2.10148e-11 y2:2.31767e-11 w1:0.8 y=2.274432e-11
+///interploateZvdat---E:14.6 y1:1.93609e-11 y2:2.13718e-11 w1:0.8 y=2.096962e-11
+///interploateZvdat---E:14.7 y1:1.78361e-11 y2:1.97064e-11 w1:0.8 y=1.933234e-11
+///interploateZvdat---E:14.8 y1:1.64305e-11 y2:1.81696e-11 w1:0.8 y=1.782178e-11
+///interploateZvdat---E:14.9 y1:1.51347e-11 y2:1.67518e-11 w1:0.8 y=1.642838e-11
+///interploateZvdat---E:15.0 y1:1.39404e-11 y2:1.54437e-11 w1:0.8 y=1.514304e-11
+///interploateZvdat---E:15.1 y1:1.28395e-11 y2:1.4237e-11 w1:0.8 y=1.39575e-11
+///interploateZvdat---E:15.2 y1:1.18249e-11 y2:1.31238e-11 w1:0.8 y=1.286402e-11
+///interploateZvdat---E:15.3 y1:1.08899e-11 y2:1.2097e-11 w1:0.8 y=1.185558e-11
+///interploateZvdat---E:15.4 y1:1.00282e-11 y2:1.11499e-11 w1:0.8 y=1.092556e-11
+///interploateZvdat---E:15.5 y1:9.23421e-12 y2:1.02764e-11 w1:0.8 y=1.006796e-11
+///interploateZvdat---E:15.6 y1:8.50261e-12 y2:9.47077e-12 w1:0.8 y=9.277138e-12
+///interploateZvdat---E:15.7 y1:7.82854e-12 y2:8.72787e-12 w1:0.8 y=8.548004e-12
+///interploateZvdat---E:15.8 y1:7.20751e-12 y2:8.0428e-12 w1:0.8 y=7.875742e-12
+///interploateZvdat---E:15.9 y1:6.63539e-12 y2:7.41112e-12 w1:0.8 y=7.255974e-12
+///interploateZvdat---E:16.0 y1:6.10836e-12 y2:6.82869e-12 w1:0.8 y=6.684624e-12
+///interploateZvdat---E:16.1 y1:5.62289e-12 y2:6.2917e-12 w1:0.8 y=6.157938e-12
+///interploateZvdat---E:16.2 y1:5.17573e-12 y2:5.79664e-12 w1:0.8 y=5.672458e-12
+///interploateZvdat---E:16.3 y1:4.76387e-12 y2:5.34026e-12 w1:0.8 y=5.224982e-12
+///interploateZvdat---E:16.4 y1:4.38457e-12 y2:4.91955e-12 w1:0.8 y=4.812554e-12
+///interploateZvdat---E:16.5 y1:4.03525e-12 y2:4.53176e-12 w1:0.8 y=4.432458e-12
+///interploateZvdat---E:16.6 y1:3.71357e-12 y2:4.17433e-12 w1:0.8 y=4.082178e-12
+///interploateZvdat---E:16.7 y1:3.41736e-12 y2:3.84489e-12 w1:0.8 y=3.759384e-12
+///interploateZvdat---E:16.8 y1:3.14462e-12 y2:3.54128e-12 w1:0.8 y=3.461948e-12
+///interploateZvdat---E:16.9 y1:2.8935e-12 y2:3.26148e-12 w1:0.8 y=3.187884e-12
+///interploateZvdat---E:17.0 y1:2.6623e-12 y2:3.00364e-12 w1:0.8 y=2.935372e-12
+///interploateZvdat---E:17.1 y1:2.44945e-12 y2:2.76605e-12 w1:0.8 y=2.70273e-12
+///interploateZvdat---E:17.2 y1:2.25351e-12 y2:2.54713e-12 w1:0.8 y=2.488406e-12
+///interploateZvdat---E:17.3 y1:2.07314e-12 y2:2.34543e-12 w1:0.8 y=2.290972e-12
+///interploateZvdat---E:17.4 y1:1.90712e-12 y2:2.15959e-12 w1:0.8 y=2.109096e-12
+///interploateZvdat---E:17.5 y1:1.7543e-12 y2:1.98838e-12 w1:0.8 y=1.941564e-12
+///interploateZvdat---E:17.6 y1:1.61365e-12 y2:1.83066e-12 w1:0.8 y=1.787258e-12
+///interploateZvdat---E:17.7 y1:1.48421e-12 y2:1.68537e-12 w1:0.8 y=1.645138e-12
+///interploateZvdat---E:17.8 y1:1.36509e-12 y2:1.55154e-12 w1:0.8 y=1.51425e-12
+///interploateZvdat---E:17.9 y1:1.25547e-12 y2:1.42827e-12 w1:0.8 y=1.39371e-12
+///interploateZvdat---E:18.0 y1:1.15459e-12 y2:1.31474e-12 w1:0.8 y=1.28271e-12
+///interploateZvdat---E:18.1 y1:1.06178e-12 y2:1.21017e-12 w1:0.8 y=1.180492e-12
+///interploateZvdat---E:18.2 y1:9.76375e-13 y2:1.11387e-12 w1:0.8 y=1.086371e-12
+///interploateZvdat---E:18.3 y1:8.97802e-13 y2:1.02519e-12 w1:0.8 y=9.997124e-13
+///interploateZvdat---E:18.4 y1:8.25514e-13 y2:9.43521e-13 w1:0.8 y=9.199196e-13
+///interploateZvdat---E:18.5 y1:7.59012e-13 y2:8.68323e-13 w1:0.8 y=8.464608e-13
+///interploateZvdat---E:18.6 y1:6.97836e-13 y2:7.99082e-13 w1:0.8 y=7.788328e-13
+///interploateZvdat---E:18.7 y1:6.41562e-13 y2:7.35331e-13 w1:0.8 y=7.165772e-13
+///interploateZvdat---E:18.8 y1:5.89799e-13 y2:6.76636e-13 w1:0.8 y=6.592686e-13
+///interploateZvdat---E:18.9 y1:5.42189e-13 y2:6.22599e-13 w1:0.8 y=6.06517e-13
+///interploateZvdat---E:19.0 y1:4.98401e-13 y2:5.72853e-13 w1:0.8 y=5.579626e-13
+///interploateZvdat---E:19.1 y1:4.58128e-13 y2:5.27059e-13 w1:0.8 y=5.132728e-13
+///interploateZvdat---E:19.2 y1:4.21092e-13 y2:4.84905e-13 w1:0.8 y=4.721424e-13
+///interploateZvdat---E:19.3 y1:3.87033e-13 y2:4.46104e-13 w1:0.8 y=4.342898e-13
+///interploateZvdat---E:19.4 y1:3.55713e-13 y2:4.1039e-13 w1:0.8 y=3.994546e-13
+///interploateZvdat---E:19.5 y1:3.26914e-13 y2:3.7752e-13 w1:0.8 y=3.673988e-13
+///interploateZvdat---E:19.6 y1:3.00434e-13 y2:3.47268e-13 w1:0.8 y=3.379012e-13
+///interploateZvdat---E:19.7 y1:2.76087e-13 y2:3.19426e-13 w1:0.8 y=3.107582e-13
+///interploateZvdat---E:19.8 y1:2.53703e-13 y2:2.93805e-13 w1:0.8 y=2.857846e-13
+///interploateZvdat---E:19.9 y1:2.33124e-13 y2:2.70228e-13 w1:0.8 y=2.628072e-13
+///interploateZvdat---E:20.0 y1:2.14205e-13 y2:2.48533e-13 w1:0.8 y=2.416674e-13
+///interploateZvdat---E:20.2 y1:0.0 y2:0.0 w1:0.8 y=0.0
+$$T:1320000.0 ##E:1.00000e-05 ##Y:2.156e-12 ##dY:0 ##FC:2.353e-12
+$$T:1320000.0 ##E:1.20000e-05 ##Y:2.362e-12 ##dY:0 ##FC:2.577e-12
+$$T:1320000.0 ##E:1.40000e-05 ##Y:2.551e-12 ##dY:0 ##FC:2.784e-12
+$$T:1320000.0 ##E:1.60000e-05 ##Y:2.727e-12 ##dY:0 ##FC:2.976e-12
+$$T:1320000.0 ##E:1.80000e-05 ##Y:2.893e-12 ##dY:0 ##FC:3.157e-12
+$$T:1320000.0 ##E:2.20000e-05 ##Y:3.198e-12 ##dY:0 ##FC:3.49e-12
+$$T:1320000.0 ##E:2.50000e-05 ##Y:3.409e-12 ##dY:0 ##FC:3.72e-12
+$$T:1320000.0 ##E:2.90000e-05 ##Y:3.672e-12 ##dY:0 ##FC:4.007e-12
+$$T:1320000.0 ##E:3.40000e-05 ##Y:3.975e-12 ##dY:2.27e-13 ##FC:4.338e-12
+$$T:1320000.0 ##E:4.00000e-05 ##Y:4.312e-12 ##dY:2.462e-13 ##FC:4.706e-12
+$$T:1320000.0 ##E:4.60000e-05 ##Y:4.624e-12 ##dY:2.64e-13 ##FC:5.046e-12
+$$T:1320000.0 ##E:5.40000e-05 ##Y:5.01e-12 ##dY:2.86e-13 ##FC:5.468e-12
+$$T:1320000.0 ##E:6.30000e-05 ##Y:5.412e-12 ##dY:3.089e-13 ##FC:5.906e-12
+$$T:1320000.0 ##E:7.40000e-05 ##Y:5.865e-12 ##dY:3.348e-13 ##FC:6.4e-12
+$$T:1320000.0 ##E:8.60000e-05 ##Y:6.323e-12 ##dY:3.609e-13 ##FC:6.9e-12
+$$T:1320000.0 ##E:1.00000e-04 ##Y:6.818e-12 ##dY:4.549e-13 ##FC:7.44e-12
+$$T:1320000.0 ##E:1.20000e-04 ##Y:7.469e-12 ##dY:4.983e-13 ##FC:8.151e-12
+$$T:1320000.0 ##E:1.40000e-04 ##Y:8.067e-12 ##dY:5.383e-13 ##FC:8.804e-12
+$$T:1320000.0 ##E:1.60000e-04 ##Y:8.624e-12 ##dY:5.754e-13 ##FC:9.411e-12
+$$T:1320000.0 ##E:1.80000e-04 ##Y:9.147e-12 ##dY:6.103e-13 ##FC:9.982e-12
+$$T:1320000.0 ##E:2.20000e-04 ##Y:1.011e-11 ##dY:6.747e-13 ##FC:1.104e-11
+$$T:1320000.0 ##E:2.50000e-04 ##Y:1.078e-11 ##dY:7.193e-13 ##FC:1.176e-11
+$$T:1320000.0 ##E:2.90000e-04 ##Y:1.161e-11 ##dY:7.747e-13 ##FC:1.267e-11
+$$T:1320000.0 ##E:3.40000e-04 ##Y:1.257e-11 ##dY:8.317e-13 ##FC:1.372e-11
+$$T:1320000.0 ##E:4.00000e-04 ##Y:1.364e-11 ##dY:9.021e-13 ##FC:1.488e-11
+$$T:1320000.0 ##E:4.60000e-04 ##Y:1.462e-11 ##dY:9.674e-13 ##FC:1.596e-11
+$$T:1320000.0 ##E:5.40000e-04 ##Y:1.584e-11 ##dY:1.048e-12 ##FC:1.729e-11
+$$T:1320000.0 ##E:6.30000e-04 ##Y:1.711e-11 ##dY:1.132e-12 ##FC:1.868e-11
+$$T:1320000.0 ##E:7.40000e-04 ##Y:1.855e-11 ##dY:1.227e-12 ##FC:2.024e-11
+$$T:1320000.0 ##E:8.60000e-04 ##Y:1.999e-11 ##dY:1.323e-12 ##FC:2.182e-11
+$$T:1320000.0 ##E:1.00000e-03 ##Y:2.156e-11 ##dY:1.426e-12 ##FC:2.353e-11
+$$T:1320000.0 ##E:1.20000e-03 ##Y:2.362e-11 ##dY:1.576e-12 ##FC:2.577e-11
+$$T:1320000.0 ##E:1.40000e-03 ##Y:2.551e-11 ##dY:1.702e-12 ##FC:2.784e-11
+$$T:1320000.0 ##E:1.60000e-03 ##Y:2.727e-11 ##dY:1.82e-12 ##FC:2.976e-11
+$$T:1320000.0 ##E:1.80000e-03 ##Y:2.893e-11 ##dY:1.93e-12 ##FC:3.157e-11
+$$T:1320000.0 ##E:2.20000e-03 ##Y:3.198e-11 ##dY:2.134e-12 ##FC:3.49e-11
+$$T:1320000.0 ##E:2.50000e-03 ##Y:3.409e-11 ##dY:2.275e-12 ##FC:3.72e-11
+$$T:1320000.0 ##E:2.90000e-03 ##Y:3.672e-11 ##dY:2.45e-12 ##FC:4.007e-11
+$$T:1320000.0 ##E:3.40000e-03 ##Y:3.975e-11 ##dY:2.63e-12 ##FC:4.338e-11
+$$T:1320000.0 ##E:4.00000e-03 ##Y:4.312e-11 ##dY:2.853e-12 ##FC:4.706e-11
+$$T:1320000.0 ##E:4.60000e-03 ##Y:4.624e-11 ##dY:3.059e-12 ##FC:5.046e-11
+$$T:1320000.0 ##E:5.40000e-03 ##Y:5.01e-11 ##dY:3.314e-12 ##FC:5.468e-11
+$$T:1320000.0 ##E:6.30000e-03 ##Y:5.412e-11 ##dY:3.58e-12 ##FC:5.906e-11
+$$T:1320000.0 ##E:7.40000e-03 ##Y:5.865e-11 ##dY:3.88e-12 ##FC:6.4e-11
+$$T:1320000.0 ##E:8.60000e-03 ##Y:6.323e-11 ##dY:4.183e-12 ##FC:6.9e-11
+$$T:1320000.0 ##E:1.00000e-02 ##Y:6.818e-11 ##dY:4.549e-12 ##FC:7.44e-11
+$$T:1320000.0 ##E:1.20000e-02 ##Y:7.469e-11 ##dY:4.983e-12 ##FC:8.151e-11
+$$T:1320000.0 ##E:1.40000e-02 ##Y:8.067e-11 ##dY:5.383e-12 ##FC:8.804e-11
+$$T:1320000.0 ##E:1.60000e-02 ##Y:8.624e-11 ##dY:5.754e-12 ##FC:9.411e-11
+$$T:1320000.0 ##E:1.80000e-02 ##Y:9.147e-11 ##dY:6.103e-12 ##FC:9.982e-11
+$$T:1320000.0 ##E:2.20000e-02 ##Y:1.011e-10 ##dY:6.747e-12 ##FC:1.104e-10
+$$T:1320000.0 ##E:2.50000e-02 ##Y:1.078e-10 ##dY:7.193e-12 ##FC:1.176e-10
+$$T:1320000.0 ##E:2.90000e-02 ##Y:1.161e-10 ##dY:7.747e-12 ##FC:1.267e-10
+$$T:1320000.0 ##E:3.40000e-02 ##Y:1.257e-10 ##dY:8.317e-12 ##FC:1.372e-10
+$$T:1320000.0 ##E:4.00000e-02 ##Y:1.364e-10 ##dY:9.021e-12 ##FC:1.488e-10
+$$T:1320000.0 ##E:4.60000e-02 ##Y:1.462e-10 ##dY:9.674e-12 ##FC:1.596e-10
+$$T:1320000.0 ##E:5.40000e-02 ##Y:1.584e-10 ##dY:1.048e-11 ##FC:1.729e-10
+$$T:1320000.0 ##E:6.30000e-02 ##Y:1.711e-10 ##dY:1.132e-11 ##FC:1.868e-10
+$$T:1320000.0 ##E:7.40000e-02 ##Y:1.855e-10 ##dY:1.227e-11 ##FC:2.024e-10
+$$T:1320000.0 ##E:8.60000e-02 ##Y:1.999e-10 ##dY:1.323e-11 ##FC:2.182e-10
+$$T:1320000.0 ##E:1.00000e-01 ##Y:2.156e-10 ##dY:1.426e-11 ##FC:2.353e-10
+$$T:1320000.0 ##E:1.20000e-01 ##Y:2.362e-10 ##dY:1.576e-11 ##FC:2.577e-10
+$$T:1320000.0 ##E:1.40000e-01 ##Y:2.551e-10 ##dY:1.702e-11 ##FC:2.784e-10
+$$T:1320000.0 ##E:1.60000e-01 ##Y:2.727e-10 ##dY:1.82e-11 ##FC:2.976e-10
+$$T:1320000.0 ##E:1.80000e-01 ##Y:2.893e-10 ##dY:1.93e-11 ##FC:3.157e-10
+$$T:1320000.0 ##E:2.20000e-01 ##Y:3.198e-10 ##dY:2.134e-11 ##FC:3.49e-10
+$$T:1320000.0 ##E:2.50000e-01 ##Y:3.409e-10 ##dY:2.275e-11 ##FC:3.72e-10
+$$T:1320000.0 ##E:2.90000e-01 ##Y:3.672e-10 ##dY:2.45e-11 ##FC:4.007e-10
+$$T:1320000.0 ##E:3.40000e-01 ##Y:3.975e-10 ##dY:2.63e-11 ##FC:4.338e-10
+$$T:1320000.0 ##E:4.00000e-01 ##Y:4.312e-10 ##dY:2.853e-11 ##FC:4.706e-10
+$$T:1320000.0 ##E:4.60000e-01 ##Y:4.624e-10 ##dY:3.059e-11 ##FC:5.046e-10
+$$T:1320000.0 ##E:5.40000e-01 ##Y:5.01e-10 ##dY:3.314e-11 ##FC:5.468e-10
+$$T:1320000.0 ##E:6.30000e-01 ##Y:5.411e-10 ##dY:3.58e-11 ##FC:5.906e-10
+$$T:1320000.0 ##E:7.40000e-01 ##Y:5.865e-10 ##dY:3.88e-11 ##FC:6.4e-10
+$$T:1320000.0 ##E:8.60000e-01 ##Y:6.323e-10 ##dY:4.183e-11 ##FC:6.9e-10
+$$T:1320000.0 ##E:1.00000e+00 ##Y:6.818e-10 ##dY:4.51e-11 ##FC:7.44e-10
+$$T:1320000.0 ##E:1.20000e+00 ##Y:7.469e-10 ##dY:4.983e-11 ##FC:8.151e-10
+$$T:1320000.0 ##E:1.40000e+00 ##Y:8.067e-10 ##dY:5.383e-11 ##FC:8.804e-10
+$$T:1320000.0 ##E:1.60000e+00 ##Y:8.624e-10 ##dY:5.754e-11 ##FC:9.411e-10
+$$T:1320000.0 ##E:1.80000e+00 ##Y:9.147e-10 ##dY:6.103e-11 ##FC:9.982e-10
+$$T:1320000.0 ##E:2.20000e+00 ##Y:1.011e-09 ##dY:6.747e-11 ##FC:1.104e-09
+$$T:1320000.0 ##E:2.50000e+00 ##Y:1.078e-09 ##dY:7.193e-11 ##FC:1.176e-09
+$$T:1320000.0 ##E:2.90000e+00 ##Y:1.161e-09 ##dY:7.747e-11 ##FC:1.267e-09
+$$T:1320000.0 ##E:3.40000e+00 ##Y:1.257e-09 ##dY:8.317e-11 ##FC:1.372e-09
+$$T:1320000.0 ##E:4.00000e+00 ##Y:1.364e-09 ##dY:9.021e-11 ##FC:1.488e-09
+$$T:1320000.0 ##E:4.60000e+00 ##Y:1.462e-09 ##dY:9.674e-11 ##FC:1.596e-09
+$$T:1320000.0 ##E:5.40000e+00 ##Y:1.584e-09 ##dY:1.048e-10 ##FC:1.729e-09
+$$T:1320000.0 ##E:6.30000e+00 ##Y:1.711e-09 ##dY:1.132e-10 ##FC:1.868e-09
+$$T:1320000.0 ##E:7.40000e+00 ##Y:1.855e-09 ##dY:1.227e-10 ##FC:2.024e-09
+$$T:1320000.0 ##E:8.60000e+00 ##Y:1.999e-09 ##dY:1.323e-10 ##FC:2.182e-09
+$$T:1320000.0 ##E:1.00000e+01 ##Y:2.156e-09 ##dY:1.426e-10 ##FC:2.353e-09
+$$T:1320000.0 ##E:1.20000e+01 ##Y:2.362e-09 ##dY:1.576e-10 ##FC:2.577e-09
+$$T:1320000.0 ##E:1.40000e+01 ##Y:2.551e-09 ##dY:1.702e-10 ##FC:2.784e-09
+$$T:1320000.0 ##E:1.60000e+01 ##Y:2.727e-09 ##dY:1.82e-10 ##FC:2.976e-09
+$$T:1320000.0 ##E:1.80000e+01 ##Y:2.892e-09 ##dY:1.93e-10 ##FC:3.157e-09
+$$T:1320000.0 ##E:2.20000e+01 ##Y:3.198e-09 ##dY:2.134e-10 ##FC:3.49e-09
+$$T:1320000.0 ##E:2.50000e+01 ##Y:3.409e-09 ##dY:2.275e-10 ##FC:3.72e-09
+$$T:1320000.0 ##E:2.90000e+01 ##Y:3.671e-09 ##dY:2.45e-10 ##FC:4.007e-09
+$$T:1320000.0 ##E:3.40000e+01 ##Y:3.975e-09 ##dY:2.63e-10 ##FC:4.338e-09
+$$T:1320000.0 ##E:4.00000e+01 ##Y:4.312e-09 ##dY:2.852e-10 ##FC:4.706e-09
+$$T:1320000.0 ##E:4.60000e+01 ##Y:4.624e-09 ##dY:3.059e-10 ##FC:5.046e-09
+$$T:1320000.0 ##E:5.40000e+01 ##Y:5.01e-09 ##dY:3.314e-10 ##FC:5.467e-09
+$$T:1320000.0 ##E:6.30000e+01 ##Y:5.411e-09 ##dY:3.58e-10 ##FC:5.905e-09
+$$T:1320000.0 ##E:7.40000e+01 ##Y:5.864e-09 ##dY:3.88e-10 ##FC:6.4e-09
+$$T:1320000.0 ##E:8.60000e+01 ##Y:6.322e-09 ##dY:4.182e-10 ##FC:6.899e-09
+$$T:1320000.0 ##E:1.00000e+02 ##Y:6.817e-09 ##dY:4.51e-10 ##FC:7.44e-09
+$$T:1320000.0 ##E:1.20000e+02 ##Y:7.467e-09 ##dY:4.983e-10 ##FC:8.15e-09
+$$T:1320000.0 ##E:1.40000e+02 ##Y:8.066e-09 ##dY:5.382e-10 ##FC:8.803e-09
+$$T:1320000.0 ##E:1.60000e+02 ##Y:8.622e-09 ##dY:5.753e-10 ##FC:9.41e-09
+$$T:1320000.0 ##E:1.80000e+02 ##Y:9.145e-09 ##dY:6.102e-10 ##FC:9.981e-09
+$$T:1320000.0 ##E:2.20000e+02 ##Y:1.011e-08 ##dY:6.746e-10 ##FC:1.103e-08
+$$T:1320000.0 ##E:2.50000e+02 ##Y:1.078e-08 ##dY:7.191e-10 ##FC:1.176e-08
+$$T:1320000.0 ##E:2.90000e+02 ##Y:1.161e-08 ##dY:7.745e-10 ##FC:1.267e-08
+$$T:1320000.0 ##E:3.40000e+02 ##Y:1.257e-08 ##dY:8.315e-10 ##FC:1.372e-08
+$$T:1320000.0 ##E:4.00000e+02 ##Y:1.363e-08 ##dY:9.018e-10 ##FC:1.488e-08
+$$T:1320000.0 ##E:4.60000e+02 ##Y:1.462e-08 ##dY:9.671e-10 ##FC:1.595e-08
+$$T:1320000.0 ##E:5.40000e+02 ##Y:1.584e-08 ##dY:1.048e-09 ##FC:1.728e-08
+$$T:1320000.0 ##E:6.30000e+02 ##Y:1.71e-08 ##dY:1.132e-09 ##FC:1.867e-08
+$$T:1320000.0 ##E:7.40000e+02 ##Y:1.854e-08 ##dY:1.226e-09 ##FC:2.023e-08
+$$T:1320000.0 ##E:8.60000e+02 ##Y:1.998e-08 ##dY:1.322e-09 ##FC:2.181e-08
+$$T:1320000.0 ##E:1.00000e+03 ##Y:2.154e-08 ##dY:1.425e-09 ##FC:2.351e-08
+$$T:1320000.0 ##E:1.20000e+03 ##Y:2.36e-08 ##dY:1.573e-09 ##FC:2.575e-08
+$$T:1320000.0 ##E:1.40000e+03 ##Y:2.548e-08 ##dY:1.699e-09 ##FC:2.781e-08
+$$T:1320000.0 ##E:1.60000e+03 ##Y:2.724e-08 ##dY:1.816e-09 ##FC:2.973e-08
+$$T:1320000.0 ##E:1.80000e+03 ##Y:2.889e-08 ##dY:1.926e-09 ##FC:3.152e-08
+$$T:1320000.0 ##E:2.20000e+03 ##Y:3.193e-08 ##dY:2.129e-09 ##FC:3.484e-08
+$$T:1320000.0 ##E:2.50000e+03 ##Y:3.403e-08 ##dY:2.269e-09 ##FC:3.713e-08
+$$T:1320000.0 ##E:2.90000e+03 ##Y:3.665e-08 ##dY:2.443e-09 ##FC:3.998e-08
+$$T:1320000.0 ##E:3.40000e+03 ##Y:3.967e-08 ##dY:2.623e-09 ##FC:4.327e-08
+$$T:1320000.0 ##E:4.00000e+03 ##Y:4.301e-08 ##dY:2.844e-09 ##FC:4.691e-08
+$$T:1320000.0 ##E:4.60000e+03 ##Y:4.611e-08 ##dY:3.049e-09 ##FC:5.029e-08
+$$T:1320000.0 ##E:5.40000e+03 ##Y:4.994e-08 ##dY:3.302e-09 ##FC:5.445e-08
+$$T:1320000.0 ##E:6.30000e+03 ##Y:5.391e-08 ##dY:3.565e-09 ##FC:5.877e-08
+$$T:1320000.0 ##E:7.40000e+03 ##Y:5.839e-08 ##dY:3.861e-09 ##FC:6.365e-08
+$$T:1320000.0 ##E:8.60000e+03 ##Y:6.291e-08 ##dY:4.16e-09 ##FC:6.855e-08
+$$T:1320000.0 ##E:1.00000e+04 ##Y:6.779e-08 ##dY:4.482e-09 ##FC:7.384e-08
+$$T:1320000.0 ##E:1.20000e+04 ##Y:7.418e-08 ##dY:4.954e-09 ##FC:8.077e-08
+$$T:1320000.0 ##E:1.40000e+04 ##Y:8.003e-08 ##dY:5.345e-09 ##FC:8.711e-08
+$$T:1320000.0 ##E:1.60000e+04 ##Y:8.547e-08 ##dY:5.708e-09 ##FC:9.298e-08
+$$T:1320000.0 ##E:1.80000e+04 ##Y:9.055e-08 ##dY:6.047e-09 ##FC:9.847e-08
+$$T:1320000.0 ##E:2.20000e+04 ##Y:9.99e-08 ##dY:6.671e-09 ##FC:1.085e-07
+$$T:1320000.0 ##E:2.50000e+04 ##Y:1.063e-07 ##dY:7.1e-09 ##FC:1.154e-07
+$$T:1320000.0 ##E:2.90000e+04 ##Y:1.143e-07 ##dY:7.631e-09 ##FC:1.24e-07
+$$T:1320000.0 ##E:3.40000e+04 ##Y:1.234e-07 ##dY:8.216e-09 ##FC:1.337e-07
+$$T:1320000.0 ##E:4.00000e+04 ##Y:1.334e-07 ##dY:8.883e-09 ##FC:1.444e-07
+$$T:1320000.0 ##E:4.60000e+04 ##Y:1.426e-07 ##dY:9.495e-09 ##FC:1.541e-07
+$$T:1320000.0 ##E:5.40000e+04 ##Y:1.538e-07 ##dY:1.024e-08 ##FC:1.66e-07
+$$T:1320000.0 ##E:6.30000e+04 ##Y:1.654e-07 ##dY:1.101e-08 ##FC:1.78e-07
+$$T:1320000.0 ##E:7.40000e+04 ##Y:1.782e-07 ##dY:1.186e-08 ##FC:1.914e-07
+$$T:1320000.0 ##E:8.60000e+04 ##Y:1.908e-07 ##dY:1.271e-08 ##FC:2.044e-07
+$$T:1320000.0 ##E:1.00000e+05 ##Y:2.042e-07 ##dY:1.36e-08 ##FC:2.181e-07
+$$T:1320000.0 ##E:2.00000e+05 ##Y:2.729e-07 ##dY:1.868e-08 ##FC:2.86e-07
+$$T:1320000.0 ##E:3.00000e+05 ##Y:3.151e-07 ##dY:2.612e-08 ##FC:3.247e-07
+$$T:1320000.0 ##E:4.00000e+05 ##Y:3.419e-07 ##dY:2.835e-08 ##FC:3.476e-07
+$$T:1320000.0 ##E:5.00000e+05 ##Y:3.584e-07 ##dY:3.093e-08 ##FC:3.602e-07
+$$T:1320000.0 ##E:6.00000e+05 ##Y:3.674e-07 ##dY:3.171e-08 ##FC:3.658e-07
+$$T:1320000.0 ##E:7.00000e+05 ##Y:3.709e-07 ##dY:3.465e-08 ##FC:3.663e-07
+$$T:1320000.0 ##E:8.00000e+05 ##Y:3.702e-07 ##dY:3.459e-08 ##FC:3.63e-07
+$$T:1320000.0 ##E:9.00000e+05 ##Y:3.663e-07 ##dY:3.283e-08 ##FC:3.569e-07
+$$T:1320000.0 ##E:1.00000e+06 ##Y:3.598e-07 ##dY:3.224e-08 ##FC:3.488e-07
+$$T:1320000.0 ##E:1.10000e+06 ##Y:3.512e-07 ##dY:2.89e-08 ##FC:3.391e-07
+$$T:1320000.0 ##E:1.20000e+06 ##Y:3.41e-07 ##dY:2.806e-08 ##FC:3.284e-07
+$$T:1320000.0 ##E:1.30000e+06 ##Y:3.295e-07 ##dY:2.404e-08 ##FC:3.168e-07
+$$T:1320000.0 ##E:1.40000e+06 ##Y:3.173e-07 ##dY:2.315e-08 ##FC:3.048e-07
+$$T:1320000.0 ##E:1.50000e+06 ##Y:3.045e-07 ##dY:1.87e-08 ##FC:2.925e-07
+$$T:1320000.0 ##E:1.60000e+06 ##Y:2.914e-07 ##dY:1.79e-08 ##FC:2.801e-07
+$$T:1320000.0 ##E:1.70000e+06 ##Y:2.781e-07 ##dY:1.327e-08 ##FC:2.676e-07
+$$T:1320000.0 ##E:1.80000e+06 ##Y:2.65e-07 ##dY:1.265e-08 ##FC:2.553e-07
+$$T:1320000.0 ##E:1.90000e+06 ##Y:2.52e-07 ##dY:8.266e-09 ##FC:2.431e-07
+$$T:1320000.0 ##E:2.00000e+06 ##Y:2.392e-07 ##dY:7.847e-09 ##FC:2.313e-07
+$$T:1320000.0 ##E:2.10000e+06 ##Y:2.267e-07 ##dY:3.977e-09 ##FC:2.197e-07
+$$T:1320000.0 ##E:2.20000e+06 ##Y:2.146e-07 ##dY:3.764e-09 ##FC:2.084e-07
+$$T:1320000.0 ##E:2.30000e+06 ##Y:2.029e-07 ##dY:1.132e-09 ##FC:1.976e-07
+$$T:1320000.0 ##E:2.40000e+06 ##Y:1.916e-07 ##dY:1.069e-09 ##FC:1.871e-07
+$$T:1320000.0 ##E:2.50000e+06 ##Y:1.807e-07 ##dY:3.084e-09 ##FC:1.77e-07
+$$T:1320000.0 ##E:2.60000e+06 ##Y:1.703e-07 ##dY:2.906e-09 ##FC:1.674e-07
+$$T:1320000.0 ##E:2.70000e+06 ##Y:1.604e-07 ##dY:5.36e-09 ##FC:1.581e-07
+$$T:1320000.0 ##E:2.80000e+06 ##Y:1.509e-07 ##dY:5.043e-09 ##FC:1.493e-07
+$$T:1320000.0 ##E:2.90000e+06 ##Y:1.419e-07 ##dY:7.105e-09 ##FC:1.408e-07
+$$T:1320000.0 ##E:3.00000e+06 ##Y:1.333e-07 ##dY:6.675e-09 ##FC:1.328e-07
+$$T:1320000.0 ##E:3.10000e+06 ##Y:1.252e-07 ##dY:8.371e-09 ##FC:1.251e-07
+$$T:1320000.0 ##E:3.20000e+06 ##Y:1.175e-07 ##dY:7.855e-09 ##FC:1.179e-07
+$$T:1320000.0 ##E:3.30000e+06 ##Y:1.102e-07 ##dY:9.232e-09 ##FC:1.109e-07
+$$T:1320000.0 ##E:3.40000e+06 ##Y:1.033e-07 ##dY:8.654e-09 ##FC:1.044e-07
+$$T:1320000.0 ##E:3.50000e+06 ##Y:9.675e-08 ##dY:9.739e-09 ##FC:9.82e-08
+$$T:1320000.0 ##E:3.60000e+06 ##Y:9.06e-08 ##dY:9.12e-09 ##FC:9.232e-08
+$$T:1320000.0 ##E:3.70000e+06 ##Y:8.48e-08 ##dY:1e-08 ##FC:8.677e-08
+$$T:1320000.0 ##E:3.80000e+06 ##Y:7.934e-08 ##dY:9.358e-09 ##FC:8.152e-08
+$$T:1320000.0 ##E:3.90000e+06 ##Y:7.42e-08 ##dY:9.997e-09 ##FC:7.656e-08
+$$T:1320000.0 ##E:4.00000e+06 ##Y:6.936e-08 ##dY:9.346e-09 ##FC:7.188e-08
+$$T:1320000.0 ##E:4.10000e+06 ##Y:6.482e-08 ##dY:9.802e-09 ##FC:6.746e-08
+$$T:1320000.0 ##E:4.20000e+06 ##Y:6.055e-08 ##dY:9.157e-09 ##FC:6.33e-08
+$$T:1320000.0 ##E:4.30000e+06 ##Y:5.654e-08 ##dY:9.467e-09 ##FC:5.937e-08
+$$T:1320000.0 ##E:4.40000e+06 ##Y:5.278e-08 ##dY:8.838e-09 ##FC:5.568e-08
+$$T:1320000.0 ##E:4.50000e+06 ##Y:4.926e-08 ##dY:9.078e-09 ##FC:5.22e-08
+$$T:1320000.0 ##E:4.60000e+06 ##Y:4.596e-08 ##dY:8.469e-09 ##FC:4.892e-08
+$$T:1320000.0 ##E:4.70000e+06 ##Y:4.286e-08 ##dY:8.608e-09 ##FC:4.584e-08
+$$T:1320000.0 ##E:4.80000e+06 ##Y:3.997e-08 ##dY:8.026e-09 ##FC:4.295e-08
+$$T:1320000.0 ##E:4.90000e+06 ##Y:3.725e-08 ##dY:8.086e-09 ##FC:4.023e-08
+$$T:1320000.0 ##E:5.00000e+06 ##Y:3.472e-08 ##dY:7.535e-09 ##FC:3.767e-08
+$$T:1320000.0 ##E:5.10000e+06 ##Y:3.235e-08 ##dY:7.534e-09 ##FC:3.527e-08
+$$T:1320000.0 ##E:5.20000e+06 ##Y:3.013e-08 ##dY:7.018e-09 ##FC:3.302e-08
+$$T:1320000.0 ##E:5.30000e+06 ##Y:2.806e-08 ##dY:6.999e-09 ##FC:3.09e-08
+$$T:1320000.0 ##E:5.40000e+06 ##Y:2.612e-08 ##dY:6.516e-09 ##FC:2.892e-08
+$$T:1320000.0 ##E:5.50000e+06 ##Y:2.432e-08 ##dY:6.436e-09 ##FC:2.705e-08
+$$T:1320000.0 ##E:5.60000e+06 ##Y:2.263e-08 ##dY:5.989e-09 ##FC:2.531e-08
+$$T:1320000.0 ##E:5.70000e+06 ##Y:2.105e-08 ##dY:5.906e-09 ##FC:2.367e-08
+$$T:1320000.0 ##E:5.80000e+06 ##Y:1.959e-08 ##dY:5.494e-09 ##FC:2.213e-08
+$$T:1320000.0 ##E:5.90000e+06 ##Y:1.822e-08 ##dY:5.392e-09 ##FC:2.069e-08
+$$T:1320000.0 ##E:6.00000e+06 ##Y:1.694e-08 ##dY:5.014e-09 ##FC:1.935e-08
+$$T:1320000.0 ##E:6.10000e+06 ##Y:1.575e-08 ##dY:4.9e-09 ##FC:1.808e-08
+$$T:1320000.0 ##E:6.20000e+06 ##Y:1.464e-08 ##dY:4.555e-09 ##FC:1.69e-08
+$$T:1320000.0 ##E:6.30000e+06 ##Y:1.36e-08 ##dY:4.435e-09 ##FC:1.579e-08
+$$T:1320000.0 ##E:6.40000e+06 ##Y:1.264e-08 ##dY:4.121e-09 ##FC:1.476e-08
+$$T:1320000.0 ##E:6.50000e+06 ##Y:1.174e-08 ##dY:4.009e-09 ##FC:1.379e-08
+$$T:1320000.0 ##E:6.60000e+06 ##Y:1.091e-08 ##dY:3.724e-09 ##FC:1.288e-08
+$$T:1320000.0 ##E:6.70000e+06 ##Y:1.013e-08 ##dY:3.611e-09 ##FC:1.203e-08
+$$T:1320000.0 ##E:6.80000e+06 ##Y:9.408e-09 ##dY:3.353e-09 ##FC:1.124e-08
+$$T:1320000.0 ##E:6.90000e+06 ##Y:8.734e-09 ##dY:3.234e-09 ##FC:1.049e-08
+$$T:1320000.0 ##E:7.00000e+06 ##Y:8.108e-09 ##dY:3.002e-09 ##FC:9.796e-09
+$$T:1320000.0 ##E:7.10000e+06 ##Y:7.526e-09 ##dY:2.895e-09 ##FC:9.146e-09
+$$T:1320000.0 ##E:7.20000e+06 ##Y:6.984e-09 ##dY:2.686e-09 ##FC:8.538e-09
+$$T:1320000.0 ##E:7.30000e+06 ##Y:6.481e-09 ##dY:2.584e-09 ##FC:7.97e-09
+$$T:1320000.0 ##E:7.40000e+06 ##Y:6.013e-09 ##dY:2.397e-09 ##FC:7.439e-09
+$$T:1320000.0 ##E:7.50000e+06 ##Y:5.578e-09 ##dY:2.304e-09 ##FC:6.943e-09
+$$T:1320000.0 ##E:7.60000e+06 ##Y:5.173e-09 ##dY:2.137e-09 ##FC:6.479e-09
+$$T:1320000.0 ##E:7.70000e+06 ##Y:4.798e-09 ##dY:2.046e-09 ##FC:6.046e-09
+$$T:1320000.0 ##E:7.80000e+06 ##Y:4.449e-09 ##dY:1.897e-09 ##FC:5.641e-09
+$$T:1320000.0 ##E:7.90000e+06 ##Y:4.125e-09 ##dY:1.813e-09 ##FC:5.263e-09
+$$T:1320000.0 ##E:8.00000e+06 ##Y:3.824e-09 ##dY:1.681e-09 ##FC:4.91e-09
+$$T:1320000.0 ##E:8.10000e+06 ##Y:3.544e-09 ##dY:1.606e-09 ##FC:4.58e-09
+$$T:1320000.0 ##E:8.20000e+06 ##Y:3.285e-09 ##dY:1.488e-09 ##FC:4.272e-09
+$$T:1320000.0 ##E:8.30000e+06 ##Y:3.044e-09 ##dY:1.419e-09 ##FC:3.984e-09
+$$T:1320000.0 ##E:8.40000e+06 ##Y:2.821e-09 ##dY:1.315e-09 ##FC:3.716e-09
+$$T:1320000.0 ##E:8.50000e+06 ##Y:2.613e-09 ##dY:1.252e-09 ##FC:3.465e-09
+$$T:1320000.0 ##E:8.60000e+06 ##Y:2.421e-09 ##dY:1.16e-09 ##FC:3.231e-09
+$$T:1320000.0 ##E:8.70000e+06 ##Y:2.243e-09 ##dY:1.102e-09 ##FC:3.013e-09
+$$T:1320000.0 ##E:8.80000e+06 ##Y:2.077e-09 ##dY:1.021e-09 ##FC:2.809e-09
+$$T:1320000.0 ##E:8.90000e+06 ##Y:1.924e-09 ##dY:9.688e-10 ##FC:2.619e-09
+$$T:1320000.0 ##E:9.00000e+06 ##Y:1.781e-09 ##dY:8.971e-10 ##FC:2.441e-09
+$$T:1320000.0 ##E:9.10000e+06 ##Y:1.649e-09 ##dY:8.501e-10 ##FC:2.276e-09
+$$T:1320000.0 ##E:9.20000e+06 ##Y:1.527e-09 ##dY:7.87e-10 ##FC:2.121e-09
+$$T:1320000.0 ##E:9.30000e+06 ##Y:1.413e-09 ##dY:7.459e-10 ##FC:1.977e-09
+$$T:1320000.0 ##E:9.40000e+06 ##Y:1.308e-09 ##dY:6.904e-10 ##FC:1.843e-09
+$$T:1320000.0 ##E:9.50000e+06 ##Y:1.211e-09 ##dY:6.534e-10 ##FC:1.717e-09
+$$T:1320000.0 ##E:9.60000e+06 ##Y:1.12e-09 ##dY:6.047e-10 ##FC:1.6e-09
+$$T:1320000.0 ##E:9.70000e+06 ##Y:1.037e-09 ##dY:5.708e-10 ##FC:1.491e-09
+$$T:1320000.0 ##E:9.80000e+06 ##Y:9.593e-10 ##dY:5.281e-10 ##FC:1.39e-09
+$$T:1320000.0 ##E:9.90000e+06 ##Y:8.875e-10 ##dY:4.986e-10 ##FC:1.295e-09
+$$T:1320000.0 ##E:1.00000e+07 ##Y:8.21e-10 ##dY:4.613e-10 ##FC:1.206e-09
+$$T:1320000.0 ##E:1.01000e+07 ##Y:7.594e-10 ##dY:4.35e-10 ##FC:1.124e-09
+$$T:1320000.0 ##E:1.02000e+07 ##Y:7.024e-10 ##dY:4.023e-10 ##FC:1.047e-09
+$$T:1320000.0 ##E:1.03000e+07 ##Y:6.496e-10 ##dY:3.79e-10 ##FC:9.754e-10
+$$T:1320000.0 ##E:1.04000e+07 ##Y:6.007e-10 ##dY:3.505e-10 ##FC:9.087e-10
+$$T:1320000.0 ##E:1.05000e+07 ##Y:5.554e-10 ##dY:3.298e-10 ##FC:8.464e-10
+$$T:1320000.0 ##E:1.06000e+07 ##Y:5.135e-10 ##dY:3.049e-10 ##FC:7.884e-10
+$$T:1320000.0 ##E:1.07000e+07 ##Y:4.747e-10 ##dY:2.87e-10 ##FC:7.343e-10
+$$T:1320000.0 ##E:1.08000e+07 ##Y:4.389e-10 ##dY:2.653e-10 ##FC:6.839e-10
+$$T:1320000.0 ##E:1.09000e+07 ##Y:4.057e-10 ##dY:2.492e-10 ##FC:6.369e-10
+$$T:1320000.0 ##E:1.10000e+07 ##Y:3.749e-10 ##dY:2.303e-10 ##FC:5.932e-10
+$$T:1320000.0 ##E:1.11000e+07 ##Y:3.465e-10 ##dY:2.163e-10 ##FC:5.524e-10
+$$T:1320000.0 ##E:1.12000e+07 ##Y:3.202e-10 ##dY:1.999e-10 ##FC:5.144e-10
+$$T:1320000.0 ##E:1.13000e+07 ##Y:2.959e-10 ##dY:1.874e-10 ##FC:4.79e-10
+$$T:1320000.0 ##E:1.14000e+07 ##Y:2.734e-10 ##dY:1.732e-10 ##FC:4.46e-10
+$$T:1320000.0 ##E:1.15000e+07 ##Y:2.526e-10 ##dY:1.624e-10 ##FC:4.153e-10
+$$T:1320000.0 ##E:1.16000e+07 ##Y:2.333e-10 ##dY:1.5e-10 ##FC:3.866e-10
+$$T:1320000.0 ##E:1.17000e+07 ##Y:2.156e-10 ##dY:1.406e-10 ##FC:3.6e-10
+$$T:1320000.0 ##E:1.18000e+07 ##Y:1.991e-10 ##dY:1.298e-10 ##FC:3.351e-10
+$$T:1320000.0 ##E:1.19000e+07 ##Y:1.839e-10 ##dY:1.216e-10 ##FC:3.12e-10
+$$T:1320000.0 ##E:1.20000e+07 ##Y:1.698e-10 ##dY:1.123e-10 ##FC:2.904e-10
+$$T:1320000.0 ##E:1.21000e+07 ##Y:1.568e-10 ##dY:1.054e-10 ##FC:2.704e-10
+$$T:1320000.0 ##E:1.22000e+07 ##Y:1.448e-10 ##dY:9.735e-11 ##FC:2.517e-10
+$$T:1320000.0 ##E:1.23000e+07 ##Y:1.337e-10 ##dY:9.064e-11 ##FC:2.343e-10
+$$T:1320000.0 ##E:1.24000e+07 ##Y:1.235e-10 ##dY:8.369e-11 ##FC:2.181e-10
+$$T:1320000.0 ##E:1.25000e+07 ##Y:1.14e-10 ##dY:7.788e-11 ##FC:2.03e-10
+$$T:1320000.0 ##E:1.26000e+07 ##Y:1.052e-10 ##dY:7.19e-11 ##FC:1.889e-10
+$$T:1320000.0 ##E:1.27000e+07 ##Y:9.713e-11 ##dY:6.749e-11 ##FC:1.758e-10
+$$T:1320000.0 ##E:1.28000e+07 ##Y:8.966e-11 ##dY:6.229e-11 ##FC:1.636e-10
+$$T:1320000.0 ##E:1.29000e+07 ##Y:8.275e-11 ##dY:5.79e-11 ##FC:1.523e-10
+$$T:1320000.0 ##E:1.30000e+07 ##Y:7.637e-11 ##dY:5.344e-11 ##FC:1.417e-10
+$$T:1320000.0 ##E:1.31000e+07 ##Y:7.048e-11 ##dY:5.008e-11 ##FC:1.319e-10
+$$T:1320000.0 ##E:1.32000e+07 ##Y:6.503e-11 ##dY:4.621e-11 ##FC:1.227e-10
+$$T:1320000.0 ##E:1.33000e+07 ##Y:6.001e-11 ##dY:4.291e-11 ##FC:1.142e-10
+$$T:1320000.0 ##E:1.34000e+07 ##Y:5.537e-11 ##dY:3.959e-11 ##FC:1.063e-10
+$$T:1320000.0 ##E:1.35000e+07 ##Y:5.108e-11 ##dY:3.705e-11 ##FC:9.888e-11
+$$T:1320000.0 ##E:1.36000e+07 ##Y:4.712e-11 ##dY:3.418e-11 ##FC:9.201e-11
+$$T:1320000.0 ##E:1.37000e+07 ##Y:4.347e-11 ##dY:3.17e-11 ##FC:8.561e-11
+$$T:1320000.0 ##E:1.38000e+07 ##Y:4.01e-11 ##dY:2.924e-11 ##FC:7.965e-11
+$$T:1320000.0 ##E:1.39000e+07 ##Y:3.698e-11 ##dY:2.733e-11 ##FC:7.411e-11
+$$T:1320000.0 ##E:1.40000e+07 ##Y:3.411e-11 ##dY:2.52e-11 ##FC:6.895e-11
+$$T:1320000.0 ##E:1.41000e+07 ##Y:3.146e-11 ##dY:2.335e-11 ##FC:6.414e-11
+$$T:1320000.0 ##E:1.42000e+07 ##Y:2.901e-11 ##dY:2.153e-11 ##FC:5.967e-11
+$$T:1320000.0 ##E:1.43000e+07 ##Y:2.675e-11 ##dY:2.01e-11 ##FC:5.551e-11
+$$T:1320000.0 ##E:1.44000e+07 ##Y:2.467e-11 ##dY:1.853e-11 ##FC:5.164e-11
+$$T:1320000.0 ##E:1.45000e+07 ##Y:2.274e-11 ##dY:1.716e-11 ##FC:4.804e-11
+$$T:1320000.0 ##E:1.46000e+07 ##Y:2.097e-11 ##dY:1.582e-11 ##FC:4.469e-11
+$$T:1320000.0 ##E:1.47000e+07 ##Y:1.933e-11 ##dY:1.475e-11 ##FC:4.157e-11
+$$T:1320000.0 ##E:1.48000e+07 ##Y:1.782e-11 ##dY:1.36e-11 ##FC:3.867e-11
+$$T:1320000.0 ##E:1.49000e+07 ##Y:1.643e-11 ##dY:1.257e-11 ##FC:3.597e-11
+$$T:1320000.0 ##E:1.50000e+07 ##Y:1.514e-11 ##dY:1.159e-11 ##FC:3.346e-11
+$$T:1320000.0 ##E:1.51000e+07 ##Y:1.396e-11 ##dY:1.079e-11 ##FC:3.112e-11
+$$T:1320000.0 ##E:1.52000e+07 ##Y:1.286e-11 ##dY:9.948e-12 ##FC:2.894e-11
+$$T:1320000.0 ##E:1.53000e+07 ##Y:1.186e-11 ##dY:9.258e-12 ##FC:2.692e-11
+$$T:1320000.0 ##E:1.54000e+07 ##Y:1.093e-11 ##dY:8.532e-12 ##FC:2.504e-11
+$$T:1320000.0 ##E:1.55000e+07 ##Y:1.007e-11 ##dY:7.881e-12 ##FC:2.329e-11
+$$T:1320000.0 ##E:1.56000e+07 ##Y:9.277e-12 ##dY:7.262e-12 ##FC:2.166e-11
+$$T:1320000.0 ##E:1.57000e+07 ##Y:8.548e-12 ##dY:6.752e-12 ##FC:2.014e-11
+$$T:1320000.0 ##E:1.58000e+07 ##Y:7.876e-12 ##dY:6.221e-12 ##FC:1.873e-11
+$$T:1320000.0 ##E:1.59000e+07 ##Y:7.256e-12 ##dY:5.742e-12 ##FC:1.742e-11
+$$T:1320000.0 ##E:1.60000e+07 ##Y:6.685e-12 ##dY:5.29e-12 ##FC:1.62e-11
+$$T:1320000.0 ##E:1.61000e+07 ##Y:6.158e-12 ##dY:4.914e-12 ##FC:1.506e-11
+$$T:1320000.0 ##E:1.62000e+07 ##Y:5.672e-12 ##dY:4.526e-12 ##FC:1.401e-11
+$$T:1320000.0 ##E:1.63000e+07 ##Y:5.225e-12 ##dY:4.202e-12 ##FC:1.303e-11
+$$T:1320000.0 ##E:1.64000e+07 ##Y:4.813e-12 ##dY:3.871e-12 ##FC:1.211e-11
+$$T:1320000.0 ##E:1.65000e+07 ##Y:4.432e-12 ##dY:3.569e-12 ##FC:1.126e-11
+$$T:1320000.0 ##E:1.66000e+07 ##Y:4.082e-12 ##dY:3.287e-12 ##FC:1.047e-11
+$$T:1320000.0 ##E:1.67000e+07 ##Y:3.759e-12 ##dY:3.049e-12 ##FC:9.738e-12
+$$T:1320000.0 ##E:1.68000e+07 ##Y:3.462e-12 ##dY:2.807e-12 ##FC:9.055e-12
+$$T:1320000.0 ##E:1.69000e+07 ##Y:3.188e-12 ##dY:2.603e-12 ##FC:8.419e-12
+$$T:1320000.0 ##E:1.70000e+07 ##Y:2.935e-12 ##dY:2.397e-12 ##FC:7.828e-12
+$$T:1320000.0 ##E:1.71000e+07 ##Y:2.703e-12 ##dY:2.208e-12 ##FC:7.278e-12
+$$T:1320000.0 ##E:1.72000e+07 ##Y:2.488e-12 ##dY:2.033e-12 ##FC:6.767e-12
+$$T:1320000.0 ##E:1.73000e+07 ##Y:2.291e-12 ##dY:1.883e-12 ##FC:6.291e-12
+$$T:1320000.0 ##E:1.74000e+07 ##Y:2.109e-12 ##dY:1.733e-12 ##FC:5.849e-12
+$$T:1320000.0 ##E:1.75000e+07 ##Y:1.942e-12 ##dY:1.605e-12 ##FC:5.438e-12
+$$T:1320000.0 ##E:1.76000e+07 ##Y:1.787e-12 ##dY:1.478e-12 ##FC:5.055e-12
+$$T:1320000.0 ##E:1.77000e+07 ##Y:1.645e-12 ##dY:1.36e-12 ##FC:4.7e-12
+$$T:1320000.0 ##E:1.78000e+07 ##Y:1.514e-12 ##dY:1.252e-12 ##FC:4.369e-12
+$$T:1320000.0 ##E:1.79000e+07 ##Y:1.394e-12 ##dY:1.158e-12 ##FC:4.062e-12
+$$T:1320000.0 ##E:1.80000e+07 ##Y:1.283e-12 ##dY:1.066e-12 ##FC:3.776e-12
+$$T:1320000.0 ##E:1.81000e+07 ##Y:1.18e-12 ##dY:9.858e-13 ##FC:3.51e-12
+$$T:1320000.0 ##E:1.82000e+07 ##Y:1.086e-12 ##dY:9.072e-13 ##FC:3.263e-12
+$$T:1320000.0 ##E:1.83000e+07 ##Y:9.997e-13 ##dY:8.342e-13 ##FC:3.033e-12
+$$T:1320000.0 ##E:1.84000e+07 ##Y:9.199e-13 ##dY:7.676e-13 ##FC:2.82e-12
+$$T:1320000.0 ##E:1.85000e+07 ##Y:8.465e-13 ##dY:7.094e-13 ##FC:2.621e-12
+$$T:1320000.0 ##E:1.86000e+07 ##Y:7.788e-13 ##dY:6.527e-13 ##FC:2.436e-12
+$$T:1320000.0 ##E:1.87000e+07 ##Y:7.166e-13 ##dY:6.031e-13 ##FC:2.265e-12
+$$T:1320000.0 ##E:1.88000e+07 ##Y:6.593e-13 ##dY:5.549e-13 ##FC:2.105e-12
+$$T:1320000.0 ##E:1.89000e+07 ##Y:6.065e-13 ##dY:5.098e-13 ##FC:1.957e-12
+$$T:1320000.0 ##E:1.90000e+07 ##Y:5.58e-13 ##dY:4.69e-13 ##FC:1.819e-12
+$$T:1320000.0 ##E:1.91000e+07 ##Y:5.133e-13 ##dY:4.33e-13 ##FC:1.69e-12
+$$T:1320000.0 ##E:1.92000e+07 ##Y:4.721e-13 ##dY:3.983e-13 ##FC:1.571e-12
+$$T:1320000.0 ##E:1.93000e+07 ##Y:4.343e-13 ##dY:3.676e-13 ##FC:1.46e-12
+$$T:1320000.0 ##E:1.94000e+07 ##Y:3.995e-13 ##dY:3.381e-13 ##FC:1.357e-12
+$$T:1320000.0 ##E:1.95000e+07 ##Y:3.674e-13 ##dY:3.12e-13 ##FC:1.262e-12
+$$T:1320000.0 ##E:1.96000e+07 ##Y:3.379e-13 ##dY:2.869e-13 ##FC:1.172e-12
+$$T:1320000.0 ##E:1.97000e+07 ##Y:3.108e-13 ##dY:2.647e-13 ##FC:1.09e-12
+$$T:1320000.0 ##E:1.98000e+07 ##Y:2.858e-13 ##dY:2.434e-13 ##FC:1.013e-12
+$$T:1320000.0 ##E:1.99000e+07 ##Y:2.628e-13 ##dY:2.233e-13 ##FC:9.412e-13
+$$T:1320000.0 ##E:2.00000e+07 ##Y:2.417e-13 ##dY:2.054e-13 ##FC:8.748e-13
+$$T:1320000.0 ##E:2.02000e+07 ##Y:0 ##dY:0 ##FC:7.555e-13
+Plot:1/5) 13660894	ENDF/B-VIII.0 Ei2.9e6 (T=1.32MeV)	pt:5324	color:0,0,255	dash:solid
+Plot:2/5) 19239424	JENDL-5 Ei2.9e6 (T=1.32MeV)	pt:350	color:0,200,0	dash:None
+Plot:3/5) 10751036	BROND-3.1 Ei2.9e6 (T=1.32MeV)	pt:350	color:255,0,255	dash:None
+Plot:4/5) 15684135	MINKS-ACT Ei2.9e6 (T=1.32MeV)	pt:324	color:255,80,80	dash:dashdot
+Plot:5/5) 1111111	JENDL-4.0 Ei:2.9e+06 (T=1.32MeV)	pt:351	color:0,200,127	dash:dashdot
 --0--getUnits--- EV 1000000.0
 --A--getUnits--- EV 1000000.0
 --1--getUnits--- EV 1000000.0  Category: E

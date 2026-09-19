@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-15T15:37:32"
+  "now":"2026-09-19T21:23:49"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,7 @@
     ,"Target":"U-238"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":""
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -23,7 +24,7 @@
     ,"YearRef1":1979
     ,"Author1Ini":"V.Ya."
     ,"Author1":"Baryba"
-    ,"x4lbl":"1979, V.Ya.Baryba En=14.3MeV T:1.32MeV &#957;=5.07"
+    ,"x4lbl":"1979, V.Ya.Baryba En=14.3MeV /abs/ T=1.32MeV &#957;=5.07"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[

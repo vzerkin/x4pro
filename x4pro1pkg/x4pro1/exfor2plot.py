@@ -7,6 +7,7 @@
 """
 
 import sys
+import time
 import math
 import plotly
 from plotly.graph_objs import Scatter,Layout
@@ -169,6 +170,7 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
 	,annotations=annotations
 	)
 
+    sys.stderr.write("---Plotting and output to: "+filename+"\n")
     if how2plot==1:
         plotly.offline.plot(plot1,filename=filename)
     elif how2plot==2:
@@ -178,9 +180,13 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
 
     #needs: $ pip3 install -U kaleido
     print("Will try---write_image: "+filename+".png")
+    sys.stderr.write("---Writeing image to: "+filename+".png"+" "+str(wwPng)+"x"+str(hhPng)+"\n")
     try:
+        t0=time.perf_counter()
 #       plotly.io.write_image(plot1,filename+'.png',width=1300,height=830)
         plotly.io.write_image(plot1,filename+'.png',width=wwPng,height=hhPng)
+        dt=time.perf_counter()-t0
+        sys.stderr.write("---Writeing image finished "+str(round(dt,3))+"sec"+"\n")
     except Exception as ex:
         sys.stderr.write("---plotly.io.write_image---Exception-error: "+str(ex)+"\n")
         rows=[]

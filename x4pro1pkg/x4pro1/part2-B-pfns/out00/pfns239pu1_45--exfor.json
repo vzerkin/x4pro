@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-15T15:38:47"
+  "now":"2026-09-19T20:38:34"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,7 @@
     ,"Target":"Pu-239"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":""
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -23,7 +24,7 @@
     ,"YearRef1":2020
     ,"Author1Ini":"P."
     ,"Author1":"Marini"
-    ,"x4lbl":"2020, P.Marini En=1.45MeV T:1.32MeV &#957;=3.09"
+    ,"x4lbl":"2020, P.Marini En=1.45MeV /abs/ T=1.32MeV &#957;=3.09"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -98,6 +99,7 @@
     ,"Target":"Pu-239"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":""
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -113,7 +115,7 @@
     ,"YearRef1":2014
     ,"Author1Ini":"A."
     ,"Author1":"Chatillon"
-    ,"x4lbl":"2014, A.Chatillon En=1.5MeV T:1.32MeV &#957;=/1/"
+    ,"x4lbl":"2014, A.Chatillon En=1.5MeV /abs/ T=1.32MeV &#957;=/1/"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -153,6 +155,7 @@
     ,"Target":"Pu-239"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":""
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -168,7 +171,7 @@
     ,"YearRef1":2014
     ,"Author1Ini":"J.P."
     ,"Author1":"Lestone"
-    ,"x4lbl":"2014, J.P.Lestone En=1.5MeV T:1.32MeV &#957;=/1/"
+    ,"x4lbl":"2014, J.P.Lestone En=1.5MeV /abs/ T=1.32MeV &#957;=/1/"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -190,6 +193,7 @@
     ,"Target":"Pu-239"
     ,"Reaction":"N,F"
     ,"Quantity":"Prompt neut.spect.rel.to Maxw.distr.of giv.temp"
+    ,"SF8":"MXD"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"NO-DIM"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -206,7 +210,7 @@
     ,"YearRef1":2020
     ,"Author1Ini":"P."
     ,"Author1":"Marini"
-    ,"x4lbl":"2020, P.Marini En=1.45MeV T=1.32MeV"
+    ,"x4lbl":"2020, P.Marini En=1.45MeV T:1.32MeV /ratio/"
     ,"fx":1000000.0
     ,"fy":1.0
     ,"x_y_dy_dx_fc":[

@@ -25,6 +25,7 @@ absNubarList={
     "14430002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:11   2014, J.P.Lestone En=1.5MeV
     "14854002"	: 1	, #92-U-235(N,F),PR,NU/DE  Pt:47   2025, B.Mauss En=7.4MeV
     "40740002"	: 5.07	, #92-U-238(N,F),PR,NU/DE  Pt:62   1979, V.Ya.Baryba En=14.3MeV, see: 40740003:DATA=5.07(PRT/FIS)
+    "30426002"	: 0.1	, #???
 }
 
 def datasets2mxwRatio(datasets,oper,Tm=1.32e6):
@@ -44,7 +45,11 @@ def datasets2mxwRatio(datasets,oper,Tm=1.32e6):
     return dssout
 
 def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
-    if dataset['Reacode'].find('MXD')>0: return False
+    SF8=dataset['SF8']
+    if dataset['Reacode'].find('MXD')>0:
+        dataset['x4lbl']+=" /ratio/"
+        return False
+    typ=" /shape:"+dataset['SF8'].lower()+"/"
     fx=dataset['fx']
     fy=dataset['fy']
     xx=dataset['x']
@@ -55,12 +60,15 @@ def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
     FSP=None
     FSP=getAbs2MxwFactor(dataset)
     if FSP is not None:
+        typ=" /abs/"
+        if SF8!='': typ=" /abs:"+dataset['SF8'].lower()+"/"
         if FSP!=1: nuTxt=format(1/FSP,"<.3g").strip()
         else: nuTxt='/1/'
     if FSP is None:
         FSP=getShape2MxwFactor(xx,yy,fx,fy,Tm)
     print ('  PFNS re-normalisation to Maxwellian',FSP,dataset['yBasicUnits'])
     print('---dataset2mxwRatio---Target:['+dataset['Target']+'] 1/FSP='+str(1/FSP))
+    if dataset['DatasetID']=="32587002": FSP/=1.1
     for ii,x in enumerate(xx):
         ee=xx[ii]*fx
         yy[ii]*=FSP
@@ -74,7 +82,8 @@ def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
     dataset['Quantity']="PFNS Ratio to Maxwellian (T="+str(Tm/1e6)+'MeV)'
     dataset['yBasicUnits']='no-dim'
     dataset['fy']=1
-    dataset['x4lbl']+=" T:"+format(Tm/1e6,"<.5g").strip()+"MeV"
+    dataset['x4lbl']+=typ
+    dataset['x4lbl']+=" T="+format(Tm/1e6,"<.5g").strip()+"MeV"
     if nuTxt is not None:
         dataset['x4lbl']+=" &#957;="+nuTxt
     return True
@@ -85,7 +94,7 @@ def getMaxw(E,T):
     return fc
 
 def getShape2MxwFactor(xx,yy,fx,fy,Tm,getVal=getMaxw):
-    #---2026-09-15, ZV: doubtful, needs to be worked out
+    #---2026-09-15, ZV: needs to be worked out
     FSP=1
     #---copy from LSTTAB.F (by A.Trkov:EndVer/Empire-codes)
     SSP=0 #---integral over points as given in the dataset

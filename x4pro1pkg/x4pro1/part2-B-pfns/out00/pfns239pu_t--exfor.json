@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-15T15:37:54"
+  "now":"2026-09-19T20:37:39"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,7 @@
     ,"Target":"Pu-239"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":"MXW"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -23,7 +24,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"V.N."
     ,"Author1":"Nefedov"
-    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV T:1.32MeV &#957;=2.86"
+    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.32MeV &#957;=2.86"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -61,6 +62,7 @@
     ,"Target":"Pu-239"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":"MXW"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -76,7 +78,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"V.N."
     ,"Author1":"Nefedov"
-    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV T:1.32MeV &#957;=2.86"
+    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.32MeV &#957;=2.86"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -128,6 +130,7 @@
     ,"Target":"Pu-239"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":"MXW"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -143,7 +146,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"B.I."
     ,"Author1":"Starostov"
-    ,"x4lbl":"1983, B.I.Starostov Spe=2.53e-8MeV T:1.32MeV &#957;=2.86"
+    ,"x4lbl":"1983, B.I.Starostov Spe=2.53e-8MeV /abs:mxw/ T=1.32MeV &#957;=2.86"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[

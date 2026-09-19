@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-15T15:40:27"
+  "now":"2026-09-19T21:11:20"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,7 @@
     ,"Target":"Np-237"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":""
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -23,7 +24,7 @@
     ,"YearRef1":2000
     ,"Author1Ini":"N.V."
     ,"Author1":"Kornilov"
-    ,"x4lbl":"2000, N.V.Kornilov En=0.52MeV T:1.32MeV &#957;=/1/"
+    ,"x4lbl":"2000, N.V.Kornilov En=0.52MeV /abs/ T=1.32MeV &#957;=/1/"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[

@@ -1,5 +1,5 @@
 # X4Pro - universal, fully relational EXFOR database.<br>Professional edition.
-by V.Zerkin, 2026-09-15
+by V.Zerkin, 2026-09-19
 
 ## Content
 

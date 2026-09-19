@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-15T15:35:22"
+  "now":"2026-09-19T20:33:22"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -13,6 +13,7 @@
     ,"x4lbl":"INDEN-Aug2023 Ei2.53e-2 (T=1.34MeV)"
     ,"DATE":""
     ,"AUTH":""
+    ,"Tmxw":1340000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-11        ,0.91829     ]
@@ -1660,7 +1661,7 @@
   }
   ,{
      "DatasetID":13662070
-    ,"myColor":"0,0,255|dot"
+    ,"myColor":"0,0,255|solid|2"
     ,"TARGET":"U-233"
     ,"MF":5
     ,"MT":18
@@ -1669,6 +1670,7 @@
     ,"x4lbl":"ENDF/B-VIII.0 Ei2.53e-2 (T=1.34MeV)"
     ,"DATE":"2010"
     ,"AUTH":"2010 O.Iwamoto,N.Otuka,S.Chiba,et al."
+    ,"Tmxw":1340000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-08        ,0.78854     ]
@@ -2369,6 +2371,7 @@
     ,"x4lbl":"JENDL-5 Ei2.53e-2 (T=1.34MeV)"
     ,"DATE":"2011"
     ,"AUTH":"2011 O.Iwamoto,N.Otuka,S.Chiba,et al."
+    ,"Tmxw":1340000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-08        ,0.7898      ]
@@ -2546,6 +2549,7 @@
     ,"x4lbl":"BROND-3.1 Ei2.53e-2 (T=1.34MeV)"
     ,"DATE":"2006"
     ,"AUTH":"2006 Nikolaev M.N."
+    ,"Tmxw":1340000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-08        ,0.95175     ]
@@ -2885,6 +2889,7 @@
     ,"x4lbl":"MINKS-ACT Ei2.53e-2 (T=1.34MeV)"
     ,"DATE":"2003"
     ,"AUTH":"2003 03"
+    ,"Tmxw":1340000.0
     ,"idy":0
     ,"x_y_dy_dx_fc":[
 	 [ 1e-08        ,0.95175     ]

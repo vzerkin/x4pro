@@ -131,9 +131,15 @@ def getX4SqlSearch_Reacodes(reacodes,xn,add2Where='',usr2where=''):
     where+=addArrToWhere('fullCode',reacodes)
 #   where=" where uni2.DatasetID='22754004'"
     sql=str(""
-	+"select distinct *                                          \n"
+#	+"select distinct *                                          \n"
+	+"select distinct                                            \n"
+	+" uni2.DatasetID,fullCode,iPoint                            \n"
+	+" ,YearRef1,uni2.Author1Ini,uni2.Author1                    \n"
+	+" ,Target,Reaction,Quant,SF8,uni2.MF,uni2.MT,yformula       \n"
+	+" ,yval,ShortHelp,SF8                                       \n"
 	+" ,uni2.Author1 as a1                                       \n"
 	+" ,uni2.DatasetID as dsid                                   \n"
+	+" ,x1,x2,x3,x4,x5,dx1,dx2,dx3,dx4,dx5                       \n"
 	+" ,y  as YY, dy  as dYY                                     \n"
 	+" ,"+xn+" as XX, d"+xn+" as dXX                             \n"
 	+" ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion \n"
@@ -171,13 +177,14 @@ def getX4SqlSearch_Reacodes(reacodes,xn,add2Where='',usr2where=''):
 #+" and uni2.prod='40-Zr-97'"
 #+" and (uni2.prod='40-Zr-97' or fullCode like '%)40-ZR-97,%')"
 #+" and (prod like '40-Zr-97' or outParticles like '%zr-97%')"
-	+" order by fullCode,YearRef1 desc,DatasetID \n"
+	+" order by fullCode,YearRef1 desc,uni2.DatasetID \n"
 	+" ,x1,x2,x2,x4,x5,iPoint                    \n"
 	)
     print("SQL:\n"+sql)
+    sys.stdout.flush()
     return sql
 
-def getDatasets4plot(rows,xn,fx=1,fy=1):
+def getDatasets4plot(dbConn,conn,rows,xn,fx=1,fy=1):
     lx=len(rows)
     datasets=[]
     ii=0; lastDatasetSplit=''; lastDataset={}
@@ -189,10 +196,13 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
         Target=row['Target']
         Reaction=row['Reaction']
         Quant=row['Quant']
+        SF8=row['SF8']
         MF=row['MF']; MT=row['MT']
         yformula=row['yformula']
         TNrm=row['KT_NRM']
-        yformula=row['yformula']
+#       sql=str("select distinct json_extract(x4cdat.xdat,'$.KT-NRM') as KT_NRM "
+#	+" from x4pro_x4cdat as x4cdat where x4cdat.DatasetID='"+DatasetID+"'")
+#       TNrm=getStrFromSQL(dbConn,conn,sql,verbose=False)
         yval=row['yval']  #2:DATA-MIN 3:DATA-MAX
         if DatasetID=='41109007': continue #Mistake in EXFOR: "DATA" --> "DATA-MAX"
         Author1=Author1.replace("`","'")
@@ -255,7 +265,7 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
                 else: grp+=xiunt.title()
                 if grp.endswith('.0'): grp=grp[:-2]
         if TNrm is not None:
-            grp+=" T="+"{:.2e}".format(TNrm/1e6)
+            grp+=" T:"+"{:.2e}".format(TNrm/1e6)
             if grp.endswith('e+00'): grp=grp[:-4]
             grp+='MeV'
         grp=grp.replace('e+0','e').replace('e-0','e-')
@@ -271,6 +281,7 @@ def getDatasets4plot(rows,xn,fx=1,fy=1):
             nowDataset['Target']=Target
             nowDataset['Reaction']=Reaction
             nowDataset['Quantity']=ShortHelp
+            nowDataset['SF8']=SF8
             nowDataset['xBasicUnits']=xBasicUnits
             nowDataset['yBasicUnits']=yBasicUnits
             nowDataset['xexpansion']=xexpansion

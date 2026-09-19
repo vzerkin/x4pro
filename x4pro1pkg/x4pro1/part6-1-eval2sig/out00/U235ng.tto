@@ -6,7 +6,7 @@ Purpose: Retrieve EXFOR cross sections, ratios
          renormalize cross sections to new monitors,
          search and download ENDF data from Web,
          plot evaluated and experimental data.
-Running: 2026-09-15 15:42:41
+Running: 2026-09-19 20:48:47
 
 ---arg[0]:sig1r.py
 ---arg[1]:U-235
@@ -296,9 +296,9 @@ ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 txt={
  "format":"WebEndfSectionsList-0.1" 
- ,"now":"2026-09-15T15:42:41.000Z" 
+ ,"now":"2026-09-19T20:48:47.000Z" 
  ,"program":"E4sSearch2, by V.Zerkin, IAEA-NDS, ver.2020-03-04" 
- ,"req":3067
+ ,"req":3138
 ,"sections":[
  { "Targ":"U-235","ZT":92,"AT":235,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"U-235(N,G)U-236,SIG","EvalID":272576,"SectID":19172632,"PenSectID":24020251,"LibID":30003,"LibName":"INDEN-Aug2023","DATE":"2023_Feb","AUTH":"Lanl/Inden Collaboration"}
 ,{ "Targ":"U-235","ZT":92,"AT":235,"NSUB":10,"MT":102,"MF":3,"R":"N,G","RC":"U-235(N,G)U-236,SIG","EvalID":272552,"SectID":19166598,"PenSectID":24014142,"LibID":30002,"LibName":"INDEN-Oct2022","DATE":"2020_Apr","AUTH":"IAEA Cielo Collaboration"}
@@ -402,7 +402,7 @@ Connected to: [sqlite3]
 Downloaded:4)	U-235(N,G)U-236,SIG	CENDL-3.2	PenSectID:18873045	pts:49310	idy=0
 
 EXFOR SQL executed:  0.028sec
-ENDF Web downloaded: 16.085sec
+ENDF Web downloaded: 15.88sec
 Plot:1/4) 26213280	ENDF/B-VIII.1	pt:49106	color:0,0,255	dash:None
 Plot:2/4) 13776134	JEFF-3.3	pt:49826	color:0,127,63	dash:None
 Plot:3/4) 10751692	BROND-3.1	pt:49357	color:255,0,255	dash:None

@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-15T15:35:22"
+  "now":"2026-09-19T20:33:22"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,7 @@
     ,"Target":"U-233"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.34MeV)"
+    ,"SF8":""
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -23,7 +24,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"B.I."
     ,"Author1":"Starostov"
-    ,"x4lbl":"1983, B.I.Starostov Spe=2.53e-8MeV T:1.34MeV &#957;=2.48"
+    ,"x4lbl":"1983, B.I.Starostov Spe=2.53e-8MeV /abs/ T=1.34MeV &#957;=2.48"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -51,6 +52,7 @@
     ,"Target":"U-233"
     ,"Reaction":"N,F"
     ,"Quantity":"Prompt neut.spect.rel.to Maxw.distr.of giv.temp"
+    ,"SF8":"MXD"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"NO-DIM"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -67,7 +69,7 @@
     ,"YearRef1":2016
     ,"Author1Ini":"A.S."
     ,"Author1":"Vorobyev"
-    ,"x4lbl":"2016, A.S.Vorobyev En=3.63e-8MeV T=1.34MeV"
+    ,"x4lbl":"2016, A.S.Vorobyev En=3.63e-8MeV T:1.34MeV /ratio/"
     ,"fx":1000000.0
     ,"fy":1.0
     ,"x_y_dy_dx_fc":[
@@ -128,6 +130,7 @@
     ,"Target":"U-233"
     ,"Reaction":"N,F"
     ,"Quantity":"Prompt neut.spect.rel.to Maxw.distr.of giv.temp"
+    ,"SF8":"MXD"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"NO-DIM"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -144,7 +147,7 @@
     ,"YearRef1":1985
     ,"Author1Ini":"B.I."
     ,"Author1":"Starostov"
-    ,"x4lbl":"1985, B.I.Starostov Spe=2.53e-8MeV T=1.34MeV"
+    ,"x4lbl":"1985, B.I.Starostov Spe=2.53e-8MeV T:1.34MeV /ratio/"
     ,"fx":1000000.0
     ,"fy":1.0
     ,"x_y_dy_dx_fc":[
@@ -188,6 +191,7 @@
     ,"Target":"U-233"
     ,"Reaction":"N,F"
     ,"Quantity":"Prompt neut.spect.rel.to Maxw.distr.of giv.temp"
+    ,"SF8":"MXD"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"NO-DIM"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -204,7 +208,7 @@
     ,"YearRef1":1985
     ,"Author1Ini":"B.I."
     ,"Author1":"Starostov"
-    ,"x4lbl":"1985, B.I.Starostov Spe=2.53e-8MeV T=1.34MeV"
+    ,"x4lbl":"1985, B.I.Starostov Spe=2.53e-8MeV T:1.34MeV /ratio/"
     ,"fx":1000000.0
     ,"fy":1.0
     ,"x_y_dy_dx_fc":[
@@ -232,6 +236,7 @@
     ,"Target":"U-233"
     ,"Reaction":"N,F"
     ,"Quantity":"Prompt neut.spect.rel.to Maxw.distr.of giv.temp"
+    ,"SF8":"MXD"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"NO-DIM"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -248,7 +253,7 @@
     ,"YearRef1":1985
     ,"Author1Ini":"B.I."
     ,"Author1":"Starostov"
-    ,"x4lbl":"1985, B.I.Starostov Spe=2.53e-8MeV T=1.34MeV"
+    ,"x4lbl":"1985, B.I.Starostov Spe=2.53e-8MeV T:1.34MeV /ratio/"
     ,"fx":1000000.0
     ,"fy":1.0
     ,"x_y_dy_dx_fc":[
@@ -277,6 +282,7 @@
     ,"Target":"U-233"
     ,"Reaction":"N,F"
     ,"Quantity":"Prompt neut.spect.rel.to Maxw.distr.of giv.temp"
+    ,"SF8":"MXD"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"NO-DIM"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -293,7 +299,7 @@
     ,"YearRef1":1985
     ,"Author1Ini":"B.I."
     ,"Author1":"Starostov"
-    ,"x4lbl":"1985, B.I.Starostov Spe=2.53e-8MeV T=1.34MeV"
+    ,"x4lbl":"1985, B.I.Starostov Spe=2.53e-8MeV T:1.34MeV /ratio/"
     ,"fx":1000000.0
     ,"fy":1.0
     ,"x_y_dy_dx_fc":[
@@ -338,6 +344,7 @@
     ,"Target":"U-233"
     ,"Reaction":"N,F"
     ,"Quantity":"Prompt neut.spect.rel.to Maxw.distr.of giv.temp"
+    ,"SF8":"MXD"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"NO-DIM"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -354,7 +361,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"A.A."
     ,"Author1":"Boytsov"
-    ,"x4lbl":"1983, A.A.Boytsov Spe=2.53e-8MeV T=1.34MeV"
+    ,"x4lbl":"1983, A.A.Boytsov Spe=2.53e-8MeV T:1.34MeV /ratio/"
     ,"fx":1000000.0
     ,"fy":1.0
     ,"x_y_dy_dx_fc":[

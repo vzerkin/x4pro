@@ -15,7 +15,9 @@ import json
 web0prog='/servlet/E4sSearch2?'
 web1prog='/servlet/E4sGetSectData?'
 
-def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="DA",add2title=""):
+def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="DA",add2title=""
+	,add2json=None
+	):
     datasets=[]
     print('\n___webEndfDataForPlot_DADE: ['+target+'] ['+react+'] ['+strPar+']')
     web0par='Target='+target+'&Reaction='+react+'&Quantity='+quantPrexix+'*&json&mats'
@@ -85,6 +87,9 @@ def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="D
 #           lastDataset['AUTH']=sect1['AUTH']
             lastDataset['DATE']=getEndfDate(sect1.get('DATE')).strip()
             lastDataset['AUTH']=getEndfDate(sect1.get('DATE'))+sect1['AUTH']
+            if add2json is not None:
+                for prm in add2json:
+                    lastDataset[prm]=add2json[prm]
             x=[];     lastDataset['x']=x
             y=[];     lastDataset['y']=y
             dy=[];    lastDataset['dy']=dy

@@ -5,6 +5,7 @@
     "Target": "U-235",
     "Reaction": "N,F",
     "Quantity": "PFNS Ratio to Maxwellian (T=1.32MeV)",
+    "SF8": "",
     "xBasicUnits": "EV",
     "yBasicUnits": "no-dim",
     "xexpansion": "Secondary energy: particle energy",
@@ -20,7 +21,7 @@
     "YearRef1": 2025,
     "Author1Ini": "B.",
     "Author1": "Mauss",
-    "x4lbl": "2025, B.Mauss En=7.4MeV T:1.32MeV &#957;=/1/",
+    "x4lbl": "2025, B.Mauss En=7.4MeV /abs/ T=1.32MeV &#957;=/1/",
     "fx": 1000000.0,
     "fy": 1,
     "x": [

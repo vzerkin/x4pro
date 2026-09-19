@@ -5,6 +5,7 @@
     "Target": "U-238",
     "Reaction": "N,F",
     "Quantity": "PFNS Ratio to Maxwellian (T=1.32MeV)",
+    "SF8": "",
     "xBasicUnits": "EV",
     "yBasicUnits": "no-dim",
     "xexpansion": "Secondary energy: particle energy",
@@ -20,7 +21,7 @@
     "YearRef1": 1980,
     "Author1Ini": "N.V.",
     "Author1": "Kornilov",
-    "x4lbl": "1980, N.V.Kornilov En=8.94MeV T:1.32MeV &#957;=3.68",
+    "x4lbl": "1980, N.V.Kornilov En=8.94MeV /abs/ T=1.32MeV &#957;=3.68",
     "fx": 1000000.0,
     "fy": 1,
     "x": [

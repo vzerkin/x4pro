@@ -19,12 +19,13 @@ from rweb12     import *
 from exfor2plot import * #plot by plotly/matplotlib
 from endf2plot  import *
 from readMaslovSp1 import *
+from readZvdat import *
 
 #-------------------------------------------------------------------------------
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac2pfns.py, ver.2026-09-15   |')
+    print('  | Program: reac2pfns.py, ver.2026-09-16   |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -62,7 +63,9 @@ def main():
 #   fy=1e-6 #?default for spectra
     legendInside=False
     bwColor=False
-    MaslovSp1file=None
+    myCurveFiles=[]
+    zvdatCurFiles=[]
+#   showSpectra=True
 
     xrange=None; yrange=None;
     x1min=None; x1max=None
@@ -169,7 +172,8 @@ def main():
         if arg.lower().startswith('-a1:'):  a1=arg[4:];            continue
         if arg.lower().startswith('-ds:'):  dsids=arg[4:];         continue
         if arg.startswith('-w:'):           usr2where=arg[3:];     continue
-        if arg.startswith('-rsp1:') and len(arg)>7: MaslovSp1file=arg[6:]; continue
+        if arg.startswith('-rsp1:') and len(arg)>7: myCurveFiles.append(arg[6:]); continue
+        if arg.startswith('-zdat:') and len(arg)>7: zvdatCurFiles.append(arg[6:]); continue
         if arg.startswith('-'): continue
         reacodes.append(arg)
 
@@ -226,13 +230,14 @@ def main():
     sys.stderr.write("   Retrieved rows: "+str(len(rows))+"\n")
 
     print("\n---Extract EXFOR data from recordsets (rows)---")
-    datasets=getDatasets4plot(rows,xn,fx=1/fx,fy=1/fy)
+    datasets=getDatasets4plot(dbConn,conn,rows,xn,fx=1/fx,fy=1/fy)
     print('datasets:',len(datasets))
     ldata=len(datasets)
     if (ldata<=0):
         print("---No data found---")
         sys.exit(2)
 #   print(json.dumps(datasets[0],indent=2))
+#   print(json.dumps(datasets,indent=2))
 
     if nPntMin>1:
         print("\n---filter only large datasets:"+str(len(datasets))+' nPntMin='+str(nPntMin))
@@ -272,9 +277,9 @@ def main():
     e4datasets=[]
     reqLibs={
 #	'ENDF/B-VIII.1':"0,80,255",
-	'ENDF/B-VIII.0':"0,0,255|dot",	#dash | dot | dashdot
+	'ENDF/B-VIII.0':"0,0,255|solid|2",	#dash | dot | dashdot
 #	'ENDF/B-VIII.1':"0,0,255",
-	'ENDF/B-VII.1':"80,0,255|dashdot",
+	'ENDF/B-VII.1':"200,0,255|dashdot|2",
 	'INDEN-Aug2023':"0,80,255",
 	'JENDL-5':"0,200,0",
 #	'JEFF-4.0':"255,0,0",
@@ -296,26 +301,35 @@ def main():
 #       e4webparam="&mf=5&mt=18&ei="+str(g0)
         e4webparam="&mf=5&mt=18&ei="+str(Einc)
 #       add2title=" (T=1.32MeV)"
-        add2title=" (T="+format(Tmxw/1e6,"<.5g").strip()+"MeV)"
-        e4webparam+="&T="+str(Tmxw)
 
-        if showSpectra:
-            e4webparam+="&T=0"
-            add2title=""
+        if not showSpectra:
+            add2title=" (T="+format(Tmxw/1e6,"<.5g").strip()+"MeV)"
+        else:
+            Tmxw=0
+            add2title=" /spectrum/"
+        add2json=dict(Tmxw=Tmxw)
+        e4webparam+="&T="+str(Tmxw)
 
         #_________________Retrieve ENDF_________________
         sys.stderr.write("---Retrieve data from remote ENDF server---\n")
+        sys.stderr.write("   e4webparam:"+e4webparam+"\n")
 #       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1,quantPrexix="")
 #       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/10*2,quantPrexix="",add2title=add2title)
 #       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/2,quantPrexix="",add2title=add2title)
-        e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/fy,quantPrexix="",add2title=add2title)
+#?sp    e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/fy*1e-3,quantPrexix="",add2title=add2title,add2json=add2json)
+        e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/fy,quantPrexix="",add2title=add2title,add2json=add2json)
         print('---e4datasets:',len(e4datasets))
         sys.stderr.write("   Retrieved ENDF datasets: "+str(len(e4datasets))+"\n")
 #       print(json.dumps(e4datasets[0],indent=2))
 #       ds1=getMaslovSp1()
-        if MaslovSp1file is not None:
-            ds1=readMaslovSp1(MaslovSp1file)
-            if ds1 is not None: e4datasets.append(ds1)
+        iCurve=0
+        for ii,zvdatCurFile in enumerate(zvdatCurFiles):
+            ds1=readZvdatSp1(zvdatCurFile,iCurve,Einc,T=Tmxw)
+            if ds1 is not None: e4datasets.append(ds1); iCurve+=1
+        for ii,myCurveFile in enumerate(myCurveFiles):
+#           ds1=readMaslovSp1(myCurveFile,iCurve,T=Tmxw)
+            ds1=readMaslovSp1(myCurveFile,ii+1,T=Tmxw)
+            if ds1 is not None: e4datasets.append(ds1); iCurve+=1
         #_________________Preparing ENDF data for plot_________________
         grp1=''
 #       if len(reacodes)>1: grp1='grp1'
@@ -353,7 +367,7 @@ def main():
 
     myOfflinePlot(data1+data2
 	,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-15 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-16 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype

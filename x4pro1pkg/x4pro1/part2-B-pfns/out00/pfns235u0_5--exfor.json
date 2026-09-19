@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-15T15:36:21"
+  "now":"2026-09-19T20:35:32"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -8,6 +8,7 @@
     ,"Target":"U-235"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":"NPD"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -23,7 +24,7 @@
     ,"YearRef1":1994
     ,"Author1Ini":"A.M."
     ,"Author1":"Trufanov"
-    ,"x4lbl":"1994, A.M.Trufanov En=0.5MeV T:1.32MeV"
+    ,"x4lbl":"1994, A.M.Trufanov En=0.5MeV /shape:npd/ T=1.32MeV"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -90,6 +91,7 @@
     ,"Target":"U-235"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":"REL"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -105,7 +107,7 @@
     ,"YearRef1":1977
     ,"Author1Ini":"P.I."
     ,"Author1":"Johansson"
-    ,"x4lbl":"1977, P.I.Johansson En=0.53MeV T:1.32MeV"
+    ,"x4lbl":"1977, P.I.Johansson En=0.53MeV /shape:rel/ T=1.32MeV"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -171,6 +173,7 @@
     ,"Target":"U-235"
     ,"Reaction":"N,F"
     ,"Quantity":"PFNS Ratio to Maxwellian (T=1.32MeV)"
+    ,"SF8":"REL"
     ,"xBasicUnits":"EV"
     ,"yBasicUnits":"no-dim"
     ,"xexpansion":"Secondary energy: particle energy"
@@ -186,7 +189,7 @@
     ,"YearRef1":1975
     ,"Author1Ini":"J.M."
     ,"Author1":"Adams"
-    ,"x4lbl":"1975, J.M.Adams En=0.52MeV T:1.32MeV"
+    ,"x4lbl":"1975, J.M.Adams En=0.52MeV /shape:rel/ T=1.32MeV"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[

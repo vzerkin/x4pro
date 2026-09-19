@@ -12,12 +12,19 @@ from plotly.graph_objs import Scatter, Layout
 def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lwidth=4,showAuth=False):
     ldata=len(datasets)
     ii=0; data1=[]
+    lwidth0=lwidth
+    def str2int(str0,default):
+        try: nn=int(str0.strip())
+        except ValueError: nn=default
+        return nn
     for dataset in datasets:
         #if (len(dataset['x'])<=1): continue
         myColor=dataset['myColor']
+        lwidth=lwidth0
         myDash=None
         strs=myColor.split("|")
         if len(strs)>1: myColor=strs[0]; myDash=strs[1]
+        if len(strs)>2: lwidth=str2int(strs[2],lwidth)
         trErr=None
         if (dataset['idy']>0):
             x=dataset['x'];
@@ -61,6 +68,10 @@ def prepareEndfDataForPlot(datasets,legendgroup,dy_showlegend,autocolor=False,lw
 #,legendgrouptitle_text="Evaluated data"
 #,legendrank=ii
 		)
+#        print("===x4lbl==="+str(dataset['x4lbl'])+"\n")
+#        if dataset['AUTH'].find('Maslov')>=0:
+#            tr['fill']='tozeroy'
+#            tr['fillcolor']='rgba('+myColor+',0.2)'
         try: tr['legendrank']=ii
         except Exception as ex: print('Plotly version: '+plotly.__version__)
         if myDash is not None: tr['line']['dash']=myDash # dash | dot | dashdot
