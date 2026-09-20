@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-16   |
+  | Program: reac2pfns.py, ver.2026-09-20   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-19 21:23:43
+Running: 2026-09-20 23:47:09
 
 ---Arguments from command-line---
    1  arg: -o:pfns238u14_3

@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-16   |
+  | Program: reac2pfns.py, ver.2026-09-20   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-19 21:07:43
+Running: 2026-09-20 23:47:31
 
 ---Arguments from command-line---
    1  arg: -o:pfns232th2_6
@@ -295,16 +295,16 @@ datasets: 2
 	   72) E:1.1026e+07  FC:5.8228e-10  y0:3.7923e-10  yy:0.65129    
 	   73) E:1.1885e+07  FC:3.1535e-10  y0:3.2933e-10  yy:1.0443     
 	Dataset:1/2) 90-TH-232(N,F),PR,NU/DE,,REL 33183008 Pt:8    2022, S.De En=2.8MeV
-  PFNS re-normalisation to Maxwellian 6.164675790896107e-13 ARB-UNITS
----dataset2mxwRatio---Target:[Th-232] 1/FSP=1622145322673.3896
-	    0) E:7.78e+05    FC:3.6401e-07  y0:3.7138e-07  yy:1.0203     
-	    1) E:9.6e+05     FC:3.5227e-07  y0:3.3729e-07  yy:0.95748    
-	    2) E:1.203e+06   FC:3.2804e-07  y0:3.1753e-07  yy:0.96795    
-	    3) E:1.536e+06   FC:2.8802e-07  y0:2.8152e-07  yy:0.97741    
-	    4) E:2.007e+06   FC:2.3043e-07  y0:2.3446e-07  yy:1.0175     
-	    5) E:2.696e+06   FC:1.5847e-07  y0:1.5618e-07  yy:0.98556    
-	    6) E:3.756e+06   FC:8.379e-08   y0:5.9775e-08  yy:0.7134     
-	    7) E:5.477e+06   FC:2.7471e-08  y0:2.6033e-08  yy:0.94767    
+  PFNS re-normalisation to Maxwellian 6.163706549060997e-13 ARB-UNITS
+---dataset2mxwRatio---Target:[Th-232] 1/FSP=1622400404757.0107
+	    0) E:7.78e+05    FC:3.6401e-07  y0:3.7132e-07  yy:1.0201     
+	    1) E:9.6e+05     FC:3.5227e-07  y0:3.3724e-07  yy:0.95733    
+	    2) E:1.203e+06   FC:3.2804e-07  y0:3.1748e-07  yy:0.96779    
+	    3) E:1.536e+06   FC:2.8802e-07  y0:2.8147e-07  yy:0.97726    
+	    4) E:2.007e+06   FC:2.3043e-07  y0:2.3442e-07  yy:1.0173     
+	    5) E:2.696e+06   FC:1.5847e-07  y0:1.5615e-07  yy:0.9854     
+	    6) E:3.756e+06   FC:8.379e-08   y0:5.9766e-08  yy:0.71328    
+	    7) E:5.477e+06   FC:2.7471e-08  y0:2.6029e-08  yy:0.94752    
 
 ---Groupping datasets by Reaction-codes---
 ---getReacodes---Datasets: 2

@@ -1,0 +1,896 @@
+  +-----------------------------------------+
+  | Program: reac2pfns.py, ver.2026-09-16   |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-09-20 23:00:49
+
+---Arguments from command-line---
+   1  arg: -o:pfns235u15
+   2  arg: -x:x2
+   3  arg: -Ei:15e6
+   4  arg: -x1min:14.6e6
+   5  arg: -x1max:14.99e6
+   6  arg: -zdat:u235nf-Minsk-Actinides.zvd.dat
+   7  arg: -fx:1e6
+   8  arg: -nogrp
+   9  arg: -xmin:0.1
+   10 arg: -xmax:20
+   11 arg: -ymin:0.2
+   12 arg: -ymax:2.5
+   13 arg: -xlog
+   14 arg: -lines
+   15 arg: -sym
+   16 arg: -annot:0.02,1.9,<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS
+   ---str2annot:[0.02,1.9,<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS] --> ('<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS', 0.02, 1.9)
+   17 arg: 92-U-235(N,F),PR,NU/DE
+   18 arg: 92-U-235(N,F),PR,NU/DE,,NPD
+   19 arg: 92-U-235(N,F),PR,NU/DE,,REL
+
+---Input:
+   Reaction:  ['92-U-235(N,F),PR,NU/DE', '92-U-235(N,F),PR,NU/DE,,NPD', '92-U-235(N,F),PR,NU/DE,,REL']
+   xn:        x2
+   x1range:   14600000.0 - 14990000.0
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        1
+   nPntMin:   1
+   xrange:    [0.1, 20.0]
+   yrange:    [0.2, 2.5]
+   Output:    pfns235u15
+   x4ei:       and x1>=14600000.0 and x1<=14990000.0
+   legendInside:  False
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 16
+----1.
+    fullCode       92-U-235(N,F),PR,NU/DE
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   PC/FIS/MEV Data: data                           ///particl. per 100 fissions per MeV
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+----4.
+    fullCode       92-U-235(N,F),PR,NU/DE,,NPD
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   1/EV       Data: data                           ///per eV
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+----6.
+    fullCode       92-U-235(N,F),PR,NU/DE,,REL
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   ARB-UNITS  Data: data                           ///arbitrary Units
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+/Summary of Reaction-Codes
+Summary of Units 4
+---basicUnits:PC/FIS/MEV  category:FYDE
+   FYDE 1/3   PC/FIS/MEV  1e-08           particl. per 100 fissions per MeV
+   FYDE 2/3   PD/FIS/MEV  1e-06           products per fission per MeV
+   FYDE 3/3   PT/FIS/MEV  1e-06           particles per fission per MeV
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+---basicUnits:1/EV        category:1/E
+   1/E  1/4   1/MEV       1e-06           per MeV
+   1/E  2/4   1/KEV       0.001           per keV
+   1/E  3/4   1/EV        1.0             per eV
+   1/E  4/4   1/MILLI-EV  1000.0          per milli-eV
+---basicUnits:ARB-UNITS   category:NO
+   NO   1/1   NO-DIM      1.0             no Dimensions
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['92-U-235(N,F),PR,NU/DE', '92-U-235(N,F),PR,NU/DE,,NPD', '92-U-235(N,F),PR,NU/DE,,REL']
+SQL:
+select distinct                                            
+ uni2.DatasetID,fullCode,iPoint                            
+ ,YearRef1,uni2.Author1Ini,uni2.Author1                    
+ ,Target,Reaction,Quant,SF8,uni2.MF,uni2.MT,yformula       
+ ,yval,ShortHelp,SF8                                       
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
+ ,x1,x2,x3,x4,x5,dx1,dx2,dx3,dx4,dx5                       
+ ,y  as YY, dy  as dYY                                     
+ ,x2 as XX, dx2 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ ,json_extract(x4cdat.xdat,'$.KT-NRM') as KT_NRM           
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ inner join x4pro_x4cdat as x4cdat on x4cdat.DatasetID=uni2.DatasetID        
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x2'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+  (fullCode like '92-U-235(N,F),PR,NU/DE')
+ or (fullCode like '92-U-235(N,F),PR,NU/DE,,NPD')
+ or (fullCode like '92-U-235(N,F),PR,NU/DE,,REL')
+ ) 
+ and x1>=14600000.0 and x1<=14990000.0   order by fullCode,YearRef1 desc,uni2.DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 121
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:121 xn=x2  fx=1.0e-06 fy=1.0e+00
+
+-new-1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss y=DATA(EN,E2)
+   1/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.175       y:3.14e-07    dy:8.07277e-08 dx:0.025
+   2/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.225       y:2.9881e-07  dy:2.94105e-08 dx:0.025
+   3/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.275       y:2.9956e-07  dy:1.80223e-08 dx:0.025
+   4/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.325       y:3.2184e-07  dy:1.40844e-08 dx:0.025
+   5/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.375       y:3.3585e-07  dy:1.18504e-08 dx:0.025
+   6/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.425       y:3.2855e-07  dy:1.02916e-08 dx:0.025
+   7/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.475       y:3.5125e-07  dy:9.55273e-09 dx:0.025
+   8/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.525       y:3.4454e-07  dy:8.68657e-09 dx:0.025
+   9/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.575       y:3.4177e-07  dy:8.06506e-09 dx:0.025
+  10/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.625       y:3.5184e-07  dy:7.76002e-09 dx:0.025
+  11/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.675       y:3.6647e-07  dy:7.50573e-09 dx:0.025
+  12/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.725       y:3.6347e-07  dy:7.25981e-09 dx:0.025
+  13/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.775       y:3.7118e-07  dy:7.11572e-09 dx:0.025
+  14/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.825       y:3.7287e-07  dy:6.94639e-09 dx:0.025
+  15/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.875       y:3.6115e-07  dy:6.65473e-09 dx:0.025
+  16/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.925       y:3.5836e-07  dy:6.51013e-09 dx:0.025
+  17/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:0.975       y:3.4874e-07  dy:6.30502e-09 dx:0.025
+  18/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.05        y:3.5648e-07  dy:4.42735e-09 dx:0.05
+  19/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.15        y:3.4167e-07  dy:4.25259e-09 dx:0.05
+  20/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.25        y:3.2793e-07  dy:4.12793e-09 dx:0.05
+  21/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.35        y:3.1872e-07  dy:4.03583e-09 dx:0.05
+  22/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.45        y:2.936e-07   dy:3.86625e-09 dx:0.05
+  23/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.55        y:2.8421e-07  dy:3.81442e-09 dx:0.05
+  24/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.65        y:2.6786e-07  dy:3.6957e-09 dx:0.05
+  25/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.75        y:2.5169e-07  dy:3.59401e-09 dx:0.05
+  26/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.85        y:2.3454e-07  dy:3.47419e-09 dx:0.05
+  27/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:1.95        y:2.2674e-07  dy:3.45979e-09 dx:0.05
+  28/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:2.125       y:2.0635e-07  dy:2.11219e-09 dx:0.125
+  29/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:2.375       y:1.7695e-07  dy:1.98802e-09 dx:0.125
+  30/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:2.625       y:1.5275e-07  dy:1.88091e-09 dx:0.125
+  31/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:2.875       y:1.32e-07    dy:1.77515e-09 dx:0.125
+  32/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:3.125       y:1.1093e-07  dy:1.66248e-09 dx:0.125
+  33/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:3.375       y:9.7562e-08  dy:1.59033e-09 dx:0.125
+  34/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:3.625       y:9.1007e-08  dy:1.55893e-09 dx:0.125
+  35/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:3.875       y:7.6988e-08  dy:1.46247e-09 dx:0.125
+  36/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:4.25        y:5.9813e-08  dy:9.50563e-10 dx:0.25
+  37/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:4.75        y:4.404e-08   dy:8.5069e-10 dx:0.25
+  38/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:5.25        y:3.2654e-08  dy:7.62907e-10 dx:0.25
+  39/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:5.75        y:2.4693e-08  dy:7.04839e-10 dx:0.25
+  40/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:6.25        y:1.9622e-08  dy:6.48854e-10 dx:0.25
+  41/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:6.75        y:1.5421e-08  dy:6.00279e-10 dx:0.25
+  42/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:7.25        y:1.1905e-08  dy:5.45347e-10 dx:0.25
+  43/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:7.75        y:7.9195e-09  dy:4.86802e-10 dx:0.25
+  44/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:8.5         y:6.7571e-09  dy:3.3667e-10 dx:0.5
+  45/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:9.5         y:3.1336e-09  dy:3.02721e-10 dx:0.5
+  46/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:10.5        y:8.6561e-10  dy:2.51869e-10 dx:0.5
+  47/121:1) 92-U-235(N,F),PR,NU/DE 14854002 En=14.9MeV 2025 Mauss x:11.5        y:6.8974e-10  dy:2.47149e-10 dx:0.5
+
+-new-2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov y=DATA(EN,E2)
+  48/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.225       y:3.0052e-07  dy:4.31246e-08 dx:None
+  49/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.275       y:3.6688e-07  dy:3.01208e-08 dx:None
+  50/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.32        y:3.4794e-07  dy:2.26509e-08 dx:None
+  51/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.355       y:3.4364e-07  dy:2.01029e-08 dx:None
+  52/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.39        y:3.4466e-07  dy:1.49582e-08 dx:None
+  53/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.43        y:3.6101e-07  dy:1.32852e-08 dx:None
+  54/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.465       y:3.5517e-07  dy:1.20758e-08 dx:None
+  55/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.495       y:3.4598e-07  dy:1.17633e-08 dx:None
+  56/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.53        y:3.5687e-07  dy:1.04206e-08 dx:None
+  57/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.565       y:3.5955e-07  dy:1.1182e-08 dx:None
+  58/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.595       y:3.7056e-07  dy:1.04868e-08 dx:None
+  59/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.625       y:3.6348e-07  dy:9.59587e-09 dx:None
+  60/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.655       y:3.7874e-07  dy:9.27913e-09 dx:None
+  61/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.685       y:3.8689e-07  dy:1.0949e-08 dx:None
+  62/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.715       y:3.7853e-07  dy:1.03339e-08 dx:None
+  63/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.745       y:3.692e-07   dy:9.74688e-09 dx:None
+  64/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.775       y:3.6665e-07  dy:9.34957e-09 dx:None
+  65/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.805       y:3.6723e-07  dy:8.99714e-09 dx:None
+  66/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.835       y:3.6488e-07  dy:8.61117e-09 dx:None
+  67/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.87        y:3.5997e-07  dy:8.49529e-09 dx:None
+  68/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.91        y:3.6293e-07  dy:7.87558e-09 dx:None
+  69/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.95        y:3.5256e-07  dy:7.65055e-09 dx:None
+  70/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:0.99        y:3.5634e-07  dy:7.37624e-09 dx:None
+  71/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.035       y:3.5006e-07  dy:6.93119e-09 dx:None
+  72/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.085       y:3.3698e-07  dy:6.6722e-09 dx:None
+  73/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.135       y:3.293e-07   dy:6.38842e-09 dx:None
+  74/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.19        y:3.162e-07   dy:6.03942e-09 dx:None
+  75/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.25        y:3.0889e-07  dy:5.80713e-09 dx:None
+  76/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.315       y:3.0445e-07  dy:5.44966e-09 dx:None
+  77/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.385       y:2.9606e-07  dy:5.18105e-09 dx:None
+  78/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.46        y:2.826e-07   dy:4.83246e-09 dx:None
+  79/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.54        y:2.741e-07   dy:4.60488e-09 dx:None
+  80/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.625       y:2.6721e-07  dy:4.38224e-09 dx:None
+  81/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.72        y:2.5343e-07  dy:4.05488e-09 dx:None
+  82/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.825       y:2.4095e-07  dy:3.80701e-09 dx:None
+  83/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:1.94        y:2.2967e-07  dy:3.55988e-09 dx:None
+  84/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.03        y:2.1824e-07  dy:3.1863e-09 dx:None
+  85/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.095       y:2.0859e-07  dy:3.06627e-09 dx:None
+  86/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.165       y:2.0405e-07  dy:2.95872e-09 dx:None
+  87/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.235       y:1.9801e-07  dy:2.87115e-09 dx:None
+  88/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.31        y:1.8889e-07  dy:2.75779e-09 dx:None
+  89/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.39        y:1.7909e-07  dy:2.63262e-09 dx:None
+  90/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.475       y:1.6974e-07  dy:2.4782e-09 dx:None
+  91/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.565       y:1.6053e-07  dy:2.35979e-09 dx:None
+  92/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.66        y:1.495e-07   dy:2.25745e-09 dx:None
+  93/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.76        y:1.4108e-07  dy:2.13031e-09 dx:None
+  94/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.865       y:1.3381e-07  dy:2.03391e-09 dx:None
+  95/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:2.975       y:1.2625e-07  dy:1.93162e-09 dx:None
+  96/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:3.09        y:1.1922e-07  dy:1.82407e-09 dx:None
+  97/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:3.215       y:1.1093e-07  dy:1.73051e-09 dx:None
+  98/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:3.345       y:1.0369e-07  dy:1.6383e-09 dx:None
+  99/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:3.485       y:9.551e-08   dy:1.54726e-09 dx:None
+ 100/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:3.635       y:8.734e-08   dy:1.44984e-09 dx:None
+ 101/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:3.79        y:8.074e-08   dy:1.36451e-09 dx:None
+ 102/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:3.96        y:7.291e-08   dy:1.26134e-09 dx:None
+ 103/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:4.14        y:6.523e-08   dy:1.16762e-09 dx:None
+ 104/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:4.33        y:5.677e-08   dy:1.06728e-09 dx:None
+ 105/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:4.54        y:5.157e-08   dy:1.00046e-09 dx:None
+ 106/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:4.756       y:4.57e-08    dy:9.2771e-10 dx:None
+ 107/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:5.005       y:4.08e-08    dy:8.6088e-10 dx:None
+ 108/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:5.26        y:3.503e-08   dy:7.81169e-10 dx:None
+ 109/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:5.535       y:2.84e-08    dy:7.0148e-10 dx:None
+ 110/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:5.84        y:2.467e-08   dy:6.38953e-10 dx:None
+ 111/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:6.17        y:2.035e-08   dy:5.55555e-10 dx:None
+ 112/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:6.52        y:1.705e-08   dy:4.9786e-10 dx:None
+ 113/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:6.9         y:1.357e-08   dy:4.35597e-10 dx:None
+ 114/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:7.325       y:1.093e-08   dy:3.91294e-10 dx:None
+ 115/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:7.79        y:8.86e-09    dy:3.50856e-10 dx:None
+ 116/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:8.295       y:5.8e-09     dy:2.7898e-10 dx:None
+ 117/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:8.855       y:2.88e-09    dy:2.09376e-10 dx:None
+ 118/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:9.47        y:2.16e-09    dy:1.91592e-10 dx:None
+ 119/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:10.15       y:1.44e-09    dy:1.67184e-10 dx:None
+ 120/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:10.915      y:7.6e-10     dy:1.0336e-10 dx:None
+ 121/121:2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 En=14.7MeV 1991 Boikov x:11.77       y:3.3e-10     dy:7.7847e-11 dx:None
+---outDatasets:2 datasets:2
+---ENTRY: 14854*;41110*;
+datasets: 2
+--0--datasets2mxwRatio: datasets:2 oper:None Tm:1320000.0
+	Dataset:0/2) 92-U-235(N,F),PR,NU/DE 14854002 Pt:47   2025, B.Mauss En=14.9MeV
+---getAbs2MxwFactor---Dataset in absNubarList: 14854002  [ 2025, B.Mauss En=14.9MeV] nubar=1
+  PFNS re-normalisation to Maxwellian 1.0 PC/FIS/MEV
+---dataset2mxwRatio---Target:[U-235] 1/FSP=1.0
+	    0) E:1.75e+05    FC:2.7261e-07  y0:3.14e-07    yy:1.1519     
+	    1) E:2.25e+05    FC:2.9762e-07  y0:2.9881e-07  yy:1.004      
+	    2) E:2.75e+05    FC:3.168e-07   y0:2.9956e-07  yy:0.94559    
+	    3) E:3.25e+05    FC:3.3159e-07  y0:3.2184e-07  yy:0.97059    
+	    4) E:3.75e+05    FC:3.4295e-07  y0:3.3585e-07  yy:0.97931    
+	    5) E:4.25e+05    FC:3.5153e-07  y0:3.2855e-07  yy:0.93463    
+	    6) E:4.75e+05    FC:3.5782e-07  y0:3.5125e-07  yy:0.98164    
+	    7) E:5.25e+05    FC:3.622e-07   y0:3.4454e-07  yy:0.95127    
+	    8) E:5.75e+05    FC:3.6496e-07  y0:3.4177e-07  yy:0.93645    
+	    9) E:6.25e+05    FC:3.6636e-07  y0:3.5184e-07  yy:0.96039    
+	   10) E:6.75e+05    FC:3.6658e-07  y0:3.6647e-07  yy:0.99971    
+	   11) E:7.25e+05    FC:3.6579e-07  y0:3.6347e-07  yy:0.99365    
+	   12) E:7.75e+05    FC:3.6413e-07  y0:3.7118e-07  yy:1.0193     
+	   13) E:8.25e+05    FC:3.6173e-07  y0:3.7287e-07  yy:1.0308     
+	   14) E:8.75e+05    FC:3.5869e-07  y0:3.6115e-07  yy:1.0069     
+	   15) E:9.25e+05    FC:3.5508e-07  y0:3.5836e-07  yy:1.0092     
+	   16) E:9.75e+05    FC:3.51e-07    y0:3.4874e-07  yy:0.99355    
+	   17) E:1.05e+06    FC:3.4413e-07  y0:3.5648e-07  yy:1.0359     
+	   18) E:1.15e+06    FC:3.3387e-07  y0:3.4167e-07  yy:1.0233     
+	   19) E:1.25e+06    FC:3.2269e-07  y0:3.2793e-07  yy:1.0163     
+	   20) E:1.35e+06    FC:3.1088e-07  y0:3.1872e-07  yy:1.0252     
+	   21) E:1.45e+06    FC:2.9868e-07  y0:2.936e-07   yy:0.98296    
+	   22) E:1.55e+06    FC:2.8628e-07  y0:2.8421e-07  yy:0.99275    
+	   23) E:1.65e+06    FC:2.7382e-07  y0:2.6786e-07  yy:0.97824    
+	   24) E:1.75e+06    FC:2.6142e-07  y0:2.5169e-07  yy:0.96277    
+	   25) E:1.85e+06    FC:2.4918e-07  y0:2.3454e-07  yy:0.94125    
+	   26) E:1.95e+06    FC:2.3716e-07  y0:2.2674e-07  yy:0.95606    
+	   27) E:2.125e+06   FC:2.1683e-07  y0:2.0635e-07  yy:0.95164    
+	   28) E:2.375e+06   FC:1.8968e-07  y0:1.7695e-07  yy:0.93286    
+	   29) E:2.625e+06   FC:1.6501e-07  y0:1.5275e-07  yy:0.92571    
+	   30) E:2.875e+06   FC:1.4289e-07  y0:1.32e-07    yy:0.92381    
+	   31) E:3.125e+06   FC:1.2327e-07  y0:1.1093e-07  yy:0.89987    
+	   32) E:3.375e+06   FC:1.06e-07    y0:9.7562e-08  yy:0.92037    
+	   33) E:3.625e+06   FC:9.0904e-08  y0:9.1007e-08  yy:1.0011     
+	   34) E:3.875e+06   FC:7.777e-08   y0:7.6988e-08  yy:0.98994    
+	   35) E:4.25e+06    FC:6.1304e-08  y0:5.9813e-08  yy:0.97567    
+	   36) E:4.75e+06    FC:4.4375e-08  y0:4.404e-08   yy:0.99244    
+	   37) E:5.25e+06    FC:3.1942e-08  y0:3.2654e-08  yy:1.0223     
+	   38) E:5.75e+06    FC:2.2888e-08  y0:2.4693e-08  yy:1.0788     
+	   39) E:6.25e+06    FC:1.6339e-08  y0:1.9622e-08  yy:1.201      
+	   40) E:6.75e+06    FC:1.1626e-08  y0:1.5421e-08  yy:1.3264     
+	   41) E:7.25e+06    FC:8.2496e-09  y0:1.1905e-08  yy:1.4431     
+	   42) E:7.75e+06    FC:5.84e-09    y0:7.9195e-09  yy:1.3561     
+	   43) E:8.5e+06     FC:3.4651e-09  y0:6.7571e-09  yy:1.9501     
+	   44) E:9.5e+06     FC:1.7173e-09  y0:3.1336e-09  yy:1.8247     
+	   45) E:1.05e+07    FC:8.464e-10   y0:8.6561e-10  yy:1.0227     
+	   46) E:1.15e+07    FC:4.1526e-10  y0:6.8974e-10  yy:1.661      
+	Dataset:1/2) 92-U-235(N,F),PR,NU/DE,,NPD 411100092 Pt:74   1991, G.S.Boikov En=14.7MeV
+  PFNS re-normalisation to Maxwellian 0.9957696772387751 1/EV
+---dataset2mxwRatio---Target:[U-235] 1/FSP=1.0042482944177968
+	    0) E:2.25e+05    FC:2.9762e-07  y0:2.9925e-07  yy:1.0055     
+	    1) E:2.75e+05    FC:3.168e-07   y0:3.6533e-07  yy:1.1532     
+	    2) E:3.2e+05     FC:3.3028e-07  y0:3.4647e-07  yy:1.049      
+	    3) E:3.55e+05    FC:3.3877e-07  y0:3.4219e-07  yy:1.0101     
+	    4) E:3.9e+05     FC:3.4579e-07  y0:3.432e-07   yy:0.99252    
+	    5) E:4.3e+05     FC:3.5225e-07  y0:3.5948e-07  yy:1.0205     
+	    6) E:4.65e+05    FC:3.5672e-07  y0:3.5367e-07  yy:0.99144    
+	    7) E:4.95e+05    FC:3.5978e-07  y0:3.4452e-07  yy:0.95758    
+	    8) E:5.3e+05     FC:3.6254e-07  y0:3.5536e-07  yy:0.9802     
+	    9) E:5.65e+05    FC:3.6452e-07  y0:3.5803e-07  yy:0.98218    
+	   10) E:5.95e+05    FC:3.6567e-07  y0:3.6899e-07  yy:1.0091     
+	   11) E:6.25e+05    FC:3.6636e-07  y0:3.6194e-07  yy:0.98796    
+	   12) E:6.55e+05    FC:3.6662e-07  y0:3.7714e-07  yy:1.0287     
+	   13) E:6.85e+05    FC:3.6649e-07  y0:3.8525e-07  yy:1.0512     
+	   14) E:7.15e+05    FC:3.6602e-07  y0:3.7693e-07  yy:1.0298     
+	   15) E:7.45e+05    FC:3.6522e-07  y0:3.6764e-07  yy:1.0066     
+	   16) E:7.75e+05    FC:3.6413e-07  y0:3.651e-07   yy:1.0027     
+	   17) E:8.05e+05    FC:3.6278e-07  y0:3.6568e-07  yy:1.008      
+	   18) E:8.35e+05    FC:3.6117e-07  y0:3.6334e-07  yy:1.006      
+	   19) E:8.7e+05     FC:3.5902e-07  y0:3.5845e-07  yy:0.99842    
+	   20) E:9.1e+05     FC:3.5622e-07  y0:3.6139e-07  yy:1.0145     
+	   21) E:9.5e+05     FC:3.531e-07   y0:3.5107e-07  yy:0.99425    
+	   22) E:9.9e+05     FC:3.497e-07   y0:3.5483e-07  yy:1.0147     
+	   23) E:1.035e+06   FC:3.4557e-07  y0:3.4858e-07  yy:1.0087     
+	   24) E:1.085e+06   FC:3.4067e-07  y0:3.3555e-07  yy:0.98499    
+	   25) E:1.135e+06   FC:3.3548e-07  y0:3.2791e-07  yy:0.97743    
+	   26) E:1.19e+06    FC:3.2949e-07  y0:3.1486e-07  yy:0.9556     
+	   27) E:1.25e+06    FC:3.2269e-07  y0:3.0758e-07  yy:0.95318    
+	   28) E:1.315e+06   FC:3.1507e-07  y0:3.0316e-07  yy:0.9622     
+	   29) E:1.385e+06   FC:3.0665e-07  y0:2.9481e-07  yy:0.96139    
+	   30) E:1.46e+06    FC:2.9745e-07  y0:2.814e-07   yy:0.94605    
+	   31) E:1.54e+06    FC:2.8753e-07  y0:2.7294e-07  yy:0.94927    
+	   32) E:1.625e+06   FC:2.7694e-07  y0:2.6608e-07  yy:0.9608     
+	   33) E:1.72e+06    FC:2.6513e-07  y0:2.5236e-07  yy:0.95183    
+	   34) E:1.825e+06   FC:2.5222e-07  y0:2.3993e-07  yy:0.95127    
+	   35) E:1.94e+06    FC:2.3835e-07  y0:2.287e-07   yy:0.95951    
+	   36) E:2.03e+06    FC:2.2775e-07  y0:2.1732e-07  yy:0.95421    
+	   37) E:2.095e+06   FC:2.2025e-07  y0:2.0771e-07  yy:0.94307    
+	   38) E:2.165e+06   FC:2.1233e-07  y0:2.0319e-07  yy:0.95693    
+	   39) E:2.235e+06   FC:2.0459e-07  y0:1.9717e-07  yy:0.96372    
+	   40) E:2.31e+06    FC:1.9651e-07  y0:1.8809e-07  yy:0.95716    
+	   41) E:2.39e+06    FC:1.8813e-07  y0:1.7833e-07  yy:0.94792    
+	   42) E:2.475e+06   FC:1.7951e-07  y0:1.6902e-07  yy:0.94159    
+	   43) E:2.565e+06   FC:1.707e-07   y0:1.5985e-07  yy:0.93646    
+	   44) E:2.66e+06    FC:1.6176e-07  y0:1.4887e-07  yy:0.92031    
+	   45) E:2.76e+06    FC:1.5275e-07  y0:1.4048e-07  yy:0.9197     
+	   46) E:2.865e+06   FC:1.4373e-07  y0:1.3324e-07  yy:0.92706    
+	   47) E:2.975e+06   FC:1.3475e-07  y0:1.2572e-07  yy:0.93295    
+	   48) E:3.09e+06    FC:1.2587e-07  y0:1.1872e-07  yy:0.94315    
+	   49) E:3.215e+06   FC:1.1679e-07  y0:1.1046e-07  yy:0.94579    
+	   50) E:3.345e+06   FC:1.0796e-07  y0:1.0325e-07  yy:0.95641    
+	   51) E:3.485e+06   FC:9.9104e-08  y0:9.5106e-08  yy:0.95966    
+	   52) E:3.635e+06   FC:9.0342e-08  y0:8.6971e-08  yy:0.96268    
+	   53) E:3.79e+06    FC:8.2028e-08  y0:8.0398e-08  yy:0.98013    
+	   54) E:3.96e+06    FC:7.3715e-08  y0:7.2602e-08  yy:0.98489    
+	   55) E:4.14e+06    FC:6.5764e-08  y0:6.4954e-08  yy:0.98768    
+	   56) E:4.33e+06    FC:5.824e-08   y0:5.653e-08   yy:0.97064    
+	   57) E:4.54e+06    FC:5.0864e-08  y0:5.1352e-08  yy:1.0096     
+	   58) E:4.756e+06   FC:4.4202e-08  y0:4.5507e-08  yy:1.0295     
+	   59) E:5.005e+06   FC:3.7549e-08  y0:4.0627e-08  yy:1.082      
+	   60) E:5.26e+06    FC:3.1731e-08  y0:3.4882e-08  yy:1.0993     
+	   61) E:5.535e+06   FC:2.6429e-08  y0:2.828e-08   yy:1.07       
+	   62) E:5.84e+06    FC:2.1546e-08  y0:2.4566e-08  yy:1.1401     
+	   63) E:6.17e+06    FC:1.7248e-08  y0:2.0264e-08  yy:1.1748     
+	   64) E:6.52e+06    FC:1.3601e-08  y0:1.6978e-08  yy:1.2483     
+	   65) E:6.9e+06     FC:1.0492e-08  y0:1.3513e-08  yy:1.2879     
+	   66) E:7.325e+06   FC:7.8342e-09  y0:1.0884e-08  yy:1.3893     
+	   67) E:7.79e+06    FC:5.6802e-09  y0:8.8225e-09  yy:1.5532     
+	   68) E:8.295e+06   FC:3.9981e-09  y0:5.7755e-09  yy:1.4445     
+	   69) E:8.855e+06   FC:2.7027e-09  y0:2.8678e-09  yy:1.0611     
+	   70) E:9.47e+06    FC:1.754e-09   y0:2.1509e-09  yy:1.2263     
+	   71) E:1.015e+07   FC:1.0848e-09  y0:1.4339e-09  yy:1.3218     
+	   72) E:1.0915e+07  FC:6.3016e-10  y0:7.5678e-10  yy:1.2009     
+	   73) E:1.177e+07   FC:3.4239e-10  y0:3.286e-10   yy:0.95973    
+
+---Output EXFOR datasets to JSON file---
+Plot:1/2) #14854002 2025, B.Mauss En=14.9MeV /abs/ T=1.32MeV &#957;=/1/ pt:47
+Plot:2/2) #411100092 1991, G.S.Boikov En=14.7MeV /shape:npd/ T=1.32MeV pt:74
+
+___webEndfDataForPlot_DADE: [U-235] [N,F] [&mf=5&mt=18&ei=15000000.0&T=1320000.0]
+---wgetdb_get:/servlet/E4sSearch2?Target=U-235&Reaction=N,F&Quantity=*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=U-235&Reaction=N,F&Quantity=*&json&mats'
+format=WebEndfSectionsList-0.1
+___Retrieved sections:56
+SelectedLib-Sect:1) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-235(N,F),SIG', 'EvalID': 272576, 'SectID': 19172591, 'PenSectID': 24020202, 'LibID': 30003, 'LibName': 'INDEN-Aug2023', 'DATE': '2023_Feb', 'AUTH': 'Lanl/Inden Collaboration'}
+SelectedLib-Sect:3) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-235(N,F),SIG', 'EvalID': 301559, 'SectID': 21470176, 'PenSectID': 26213239, 'LibID': 810, 'LibName': 'ENDF/B-VIII.1', 'DATE': '20240830', 'AUTH': 'Lanl/Inden Collaboration'}
+SelectedLib-Sect:4) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-235(N,F),SIG', 'EvalID': 149933, 'SectID': 9024588, 'PenSectID': 13662341, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'IAEA Cielo Collaboration'}
+SelectedLib-Sect:5) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-235(N,F),SIG', 'EvalID': 57658, 'SectID': 2292099, 'PenSectID': 7664758, 'LibID': 75, 'LibName': 'ENDF/B-VII.1', 'DATE': '20111222', 'AUTH': 'Young,Chadwick,Talou,Madland,Leal'}
+SelectedLib-Sect:8) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-235(N,F),SIG', 'EvalID': 150950, 'SectID': 9138526, 'PenSectID': 13776085, 'LibID': 3300, 'LibName': 'JEFF-3.3', 'DATE': '20171231', 'AUTH': 'Irsn-Cea Dam/Den Collab.'}
+SelectedLib-Sect:12) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-235(N,F),SIG', 'EvalID': 226906, 'SectID': 14605018, 'PenSectID': 19240823, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20111206', 'AUTH': 'O.Iwamoto,N.Otuka,S.Chiba,+'}
+SelectedLib-Sect:18) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-235(N,F),SIG', 'EvalID': 118842, 'SectID': 6090165, 'PenSectID': 10751653, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'atyuk A.V.', 'AUTH': 'Nikolaev M.N.'}
+___Required sections:7
+WebReq:1) EvalID:272576 PenSectID:24020202 Lib:INDEN-Aug2023 Color:0,80,255
+/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=15000000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:1/1)	92-U-235(N,F),DE	INDEN-Aug2023	EID:272576	SID:24020202	f(x):Ratio to Mxw (T=1.32MeV)	pts:638
+Downloaded:DS:1/1)	92-U-235(N,F),DE	INDEN-Aug2023	EID:272576	SID:24020202	f(x):Ratio to Mxw (T=1.32MeV)	pts:638	idy=0
+WebReq:2) EvalID:301559 PenSectID:26213239 Lib:ENDF/B-VIII.1 Color:0,0,255|dash
+/servlet/E4sGetSectData?EvalID=301559&PenSectID=26213239&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=301559&PenSectID=26213239&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=301559&PenSectID=26213239&json&mf=5&mt=18&ei=15000000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=301559&PenSectID=26213239&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:2/1)	92-U-235(N,F),DE	ENDF/B-VIII.1	EID:301559	SID:26213239	f(x):Ratio to Mxw (T=1.32MeV)	pts:638
+Downloaded:DS:2/1)	92-U-235(N,F),DE	ENDF/B-VIII.1	EID:301559	SID:26213239	f(x):Ratio to Mxw (T=1.32MeV)	pts:638	idy=0
+WebReq:3) EvalID:149933 PenSectID:13662341 Lib:ENDF/B-VIII.0 Color:0,0,255|solid|2
+/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=15000000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:3/1)	92-U-235(N,F),DE	ENDF/B-VIII.0	EID:149933	SID:13662341	f(x):Ratio to Mxw (T=1.32MeV)	pts:640
+Downloaded:DS:3/1)	92-U-235(N,F),DE	ENDF/B-VIII.0	EID:149933	SID:13662341	f(x):Ratio to Mxw (T=1.32MeV)	pts:640	idy=0
+WebReq:4) EvalID:57658 PenSectID:7664758 Lib:ENDF/B-VII.1 Color:200,0,255|dashdot|2
+/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=15000000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:4/1)	92-U-235(N,F),DE	ENDF/B-VII.1	EID:57658	SID:7664758	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
+Downloaded:DS:4/1)	92-U-235(N,F),DE	ENDF/B-VII.1	EID:57658	SID:7664758	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
+WebReq:5) EvalID:150950 PenSectID:13776085 Lib:JEFF-3.3 Color:255,0,0|solid
+/servlet/E4sGetSectData?EvalID=150950&PenSectID=13776085&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=150950&PenSectID=13776085&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=150950&PenSectID=13776085&json&mf=5&mt=18&ei=15000000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=150950&PenSectID=13776085&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:5/1)	92-U-235(N,F),DE	JEFF-3.3	EID:150950	SID:13776085	f(x):Ratio to Mxw (T=1.32MeV)	pts:303
+Downloaded:DS:5/1)	92-U-235(N,F),DE	JEFF-3.3	EID:150950	SID:13776085	f(x):Ratio to Mxw (T=1.32MeV)	pts:303	idy=0
+WebReq:6) EvalID:226906 PenSectID:19240823 Lib:JENDL-5 Color:0,200,0
+/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=15000000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:6/1)	92-U-235(N,F),DE	JENDL-5	EID:226906	SID:19240823	f(x):Ratio to Mxw (T=1.32MeV)	pts:415
+Downloaded:DS:6/1)	92-U-235(N,F),DE	JENDL-5	EID:226906	SID:19240823	f(x):Ratio to Mxw (T=1.32MeV)	pts:415	idy=0
+WebReq:7) EvalID:118842 PenSectID:10751653 Lib:BROND-3.1 Color:255,0,255
+/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=15000000.0&T=1320000.0'
+...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=15000000.0&T=1320000.0
+---wgetdb_put:http://localhost:5557/exfor2
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+Download...DS:7/1)	92-U-235(N,F),DE	BROND-3.1	EID:118842	SID:10751653	f(x):Ratio to Mxw (T=1.32MeV)	pts:561
+Downloaded:DS:7/1)	92-U-235(N,F),DE	BROND-3.1	EID:118842	SID:10751653	f(x):Ratio to Mxw (T=1.32MeV)	pts:561	idy=0
+---e4datasets: 7
+---read-zvd.dat:dataset-0   --> Lib:Minsk-Actinides Target:U-235 Ei:1e-11 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-1   --> Lib:Minsk-Actinides Target:U-235 Ei:0.05 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-2   --> Lib:Minsk-Actinides Target:U-235 Ei:0.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-3   --> Lib:Minsk-Actinides Target:U-235 Ei:1.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-4   --> Lib:Minsk-Actinides Target:U-235 Ei:1.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-5   --> Lib:Minsk-Actinides Target:U-235 Ei:2.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-6   --> Lib:Minsk-Actinides Target:U-235 Ei:2.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-7   --> Lib:Minsk-Actinides Target:U-235 Ei:2.9 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-8   --> Lib:Minsk-Actinides Target:U-235 Ei:3.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-9   --> Lib:Minsk-Actinides Target:U-235 Ei:4.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-10  --> Lib:Minsk-Actinides Target:U-235 Ei:5.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-11  --> Lib:Minsk-Actinides Target:U-235 Ei:6.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-12  --> Lib:Minsk-Actinides Target:U-235 Ei:6.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-13  --> Lib:Minsk-Actinides Target:U-235 Ei:7.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-14  --> Lib:Minsk-Actinides Target:U-235 Ei:7.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-15  --> Lib:Minsk-Actinides Target:U-235 Ei:8.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-16  --> Lib:Minsk-Actinides Target:U-235 Ei:8.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-17  --> Lib:Minsk-Actinides Target:U-235 Ei:9.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-18  --> Lib:Minsk-Actinides Target:U-235 Ei:9.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-19  --> Lib:Minsk-Actinides Target:U-235 Ei:10.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-20  --> Lib:Minsk-Actinides Target:U-235 Ei:11.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-21  --> Lib:Minsk-Actinides Target:U-235 Ei:12.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-22  --> Lib:Minsk-Actinides Target:U-235 Ei:13.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-23  --> Lib:Minsk-Actinides Target:U-235 Ei:14.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-24  --> Lib:Minsk-Actinides Target:U-235 Ei:14.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-25  --> Lib:Minsk-Actinides Target:U-235 Ei:15.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-26  --> Lib:Minsk-Actinides Target:U-235 Ei:15.5 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-27  --> Lib:Minsk-Actinides Target:U-235 Ei:16.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-28  --> Lib:Minsk-Actinides Target:U-235 Ei:17.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-29  --> Lib:Minsk-Actinides Target:U-235 Ei:18.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-30  --> Lib:Minsk-Actinides Target:U-235 Ei:19.0 x:324 fx:1000000.0 idy:0
+---read-zvd.dat:dataset-31  --> Lib:Minsk-Actinides Target:U-235 Ei:20.0 x:324 fx:1000000.0 idy:0
+---readZvdatSp1--- u235nf-Minsk-Actinides.zvd.dat  #Datasets: 32
+===interploateZvdat===Ei:15000000.0
+$$T:1320000.0 ##E:1.00000e-02 ##Y:5.954e-11 ##FC:7.44e-11
+$$T:1320000.0 ##E:2.00000e-02 ##Y:8.421e-11 ##FC:1.052e-10
+$$T:1320000.0 ##E:3.00000e-02 ##Y:1.031e-10 ##FC:1.289e-10
+$$T:1320000.0 ##E:4.00000e-02 ##Y:1.191e-10 ##FC:1.488e-10
+$$T:1320000.0 ##E:5.00000e-02 ##Y:1.332e-10 ##FC:1.664e-10
+$$T:1320000.0 ##E:6.00000e-02 ##Y:1.459e-10 ##FC:1.823e-10
+$$T:1320000.0 ##E:7.00000e-02 ##Y:1.576e-10 ##FC:1.969e-10
+$$T:1320000.0 ##E:8.00000e-02 ##Y:1.684e-10 ##FC:2.104e-10
+$$T:1320000.0 ##E:1.00000e-01 ##Y:1.883e-10 ##FC:2.353e-10
+$$T:1320000.0 ##E:1.50000e-01 ##Y:2.307e-10 ##FC:2.882e-10
+$$T:1320000.0 ##E:2.00000e-01 ##Y:2.663e-10 ##FC:3.327e-10
+$$T:1320000.0 ##E:2.50000e-01 ##Y:2.978e-10 ##FC:3.72e-10
+$$T:1320000.0 ##E:3.00000e-01 ##Y:3.262e-10 ##FC:4.075e-10
+$$T:1320000.0 ##E:3.50000e-01 ##Y:3.524e-10 ##FC:4.402e-10
+$$T:1320000.0 ##E:4.00000e-01 ##Y:3.767e-10 ##FC:4.706e-10
+$$T:1320000.0 ##E:4.50000e-01 ##Y:3.996e-10 ##FC:4.991e-10
+$$T:1320000.0 ##E:5.00000e-01 ##Y:4.212e-10 ##FC:5.261e-10
+$$T:1320000.0 ##E:5.50000e-01 ##Y:4.418e-10 ##FC:5.518e-10
+$$T:1320000.0 ##E:6.00000e-01 ##Y:4.614e-10 ##FC:5.763e-10
+$$T:1320000.0 ##E:6.50000e-01 ##Y:4.803e-10 ##FC:5.999e-10
+$$T:1320000.0 ##E:7.00000e-01 ##Y:4.984e-10 ##FC:6.225e-10
+$$T:1320000.0 ##E:7.50000e-01 ##Y:5.159e-10 ##FC:6.444e-10
+$$T:1320000.0 ##E:8.00000e-01 ##Y:5.328e-10 ##FC:6.655e-10
+$$T:1320000.0 ##E:8.50000e-01 ##Y:5.492e-10 ##FC:6.86e-10
+$$T:1320000.0 ##E:9.00000e-01 ##Y:5.652e-10 ##FC:7.059e-10
+$$T:1320000.0 ##E:9.50000e-01 ##Y:5.807e-10 ##FC:7.252e-10
+$$T:1320000.0 ##E:1.00000e+00 ##Y:5.958e-10 ##FC:7.44e-10
+$$T:1320000.0 ##E:1.50000e+00 ##Y:7.297e-10 ##FC:9.113e-10
+$$T:1320000.0 ##E:2.00000e+00 ##Y:8.427e-10 ##FC:1.052e-09
+$$T:1320000.0 ##E:2.50000e+00 ##Y:9.423e-10 ##FC:1.176e-09
+$$T:1320000.0 ##E:3.00000e+00 ##Y:1.032e-09 ##FC:1.289e-09
+$$T:1320000.0 ##E:3.50000e+00 ##Y:1.115e-09 ##FC:1.392e-09
+$$T:1320000.0 ##E:4.00000e+00 ##Y:1.192e-09 ##FC:1.488e-09
+$$T:1320000.0 ##E:4.50000e+00 ##Y:1.265e-09 ##FC:1.578e-09
+$$T:1320000.0 ##E:5.00000e+00 ##Y:1.333e-09 ##FC:1.664e-09
+$$T:1320000.0 ##E:5.50000e+00 ##Y:1.398e-09 ##FC:1.745e-09
+$$T:1320000.0 ##E:6.00000e+00 ##Y:1.461e-09 ##FC:1.823e-09
+$$T:1320000.0 ##E:6.50000e+00 ##Y:1.52e-09 ##FC:1.897e-09
+$$T:1320000.0 ##E:7.00000e+00 ##Y:1.578e-09 ##FC:1.969e-09
+$$T:1320000.0 ##E:7.50000e+00 ##Y:1.633e-09 ##FC:2.038e-09
+$$T:1320000.0 ##E:8.00000e+00 ##Y:1.687e-09 ##FC:2.104e-09
+$$T:1320000.0 ##E:8.50000e+00 ##Y:1.739e-09 ##FC:2.169e-09
+$$T:1320000.0 ##E:9.00000e+00 ##Y:1.789e-09 ##FC:2.232e-09
+$$T:1320000.0 ##E:9.50000e+00 ##Y:1.838e-09 ##FC:2.293e-09
+$$T:1320000.0 ##E:1.00000e+01 ##Y:1.886e-09 ##FC:2.353e-09
+$$T:1320000.0 ##E:1.50000e+01 ##Y:2.311e-09 ##FC:2.882e-09
+$$T:1320000.0 ##E:2.00000e+01 ##Y:2.67e-09 ##FC:3.327e-09
+$$T:1320000.0 ##E:2.50000e+01 ##Y:2.986e-09 ##FC:3.72e-09
+$$T:1320000.0 ##E:3.00000e+01 ##Y:3.271e-09 ##FC:4.075e-09
+$$T:1320000.0 ##E:3.50000e+01 ##Y:3.534e-09 ##FC:4.402e-09
+$$T:1320000.0 ##E:4.00000e+01 ##Y:3.779e-09 ##FC:4.706e-09
+$$T:1320000.0 ##E:4.50000e+01 ##Y:4.01e-09 ##FC:4.991e-09
+$$T:1320000.0 ##E:5.00000e+01 ##Y:4.227e-09 ##FC:5.261e-09
+$$T:1320000.0 ##E:5.50000e+01 ##Y:4.434e-09 ##FC:5.518e-09
+$$T:1320000.0 ##E:6.00000e+01 ##Y:4.632e-09 ##FC:5.763e-09
+$$T:1320000.0 ##E:6.50000e+01 ##Y:4.823e-09 ##FC:5.998e-09
+$$T:1320000.0 ##E:7.00000e+01 ##Y:5.005e-09 ##FC:6.225e-09
+$$T:1320000.0 ##E:7.50000e+01 ##Y:5.182e-09 ##FC:6.443e-09
+$$T:1320000.0 ##E:8.00000e+01 ##Y:5.353e-09 ##FC:6.654e-09
+$$T:1320000.0 ##E:8.50000e+01 ##Y:5.518e-09 ##FC:6.859e-09
+$$T:1320000.0 ##E:9.00000e+01 ##Y:5.679e-09 ##FC:7.058e-09
+$$T:1320000.0 ##E:9.50000e+01 ##Y:5.836e-09 ##FC:7.251e-09
+$$T:1320000.0 ##E:1.00000e+02 ##Y:5.988e-09 ##FC:7.44e-09
+$$T:1320000.0 ##E:1.50000e+02 ##Y:7.343e-09 ##FC:9.112e-09
+$$T:1320000.0 ##E:2.00000e+02 ##Y:8.488e-09 ##FC:1.052e-08
+$$T:1320000.0 ##E:2.50000e+02 ##Y:9.499e-09 ##FC:1.176e-08
+$$T:1320000.0 ##E:3.00000e+02 ##Y:1.041e-08 ##FC:1.288e-08
+$$T:1320000.0 ##E:3.50000e+02 ##Y:1.126e-08 ##FC:1.392e-08
+$$T:1320000.0 ##E:4.00000e+02 ##Y:1.204e-08 ##FC:1.488e-08
+$$T:1320000.0 ##E:4.50000e+02 ##Y:1.278e-08 ##FC:1.578e-08
+$$T:1320000.0 ##E:5.00000e+02 ##Y:1.348e-08 ##FC:1.663e-08
+$$T:1320000.0 ##E:5.50000e+02 ##Y:1.415e-08 ##FC:1.744e-08
+$$T:1320000.0 ##E:6.00000e+02 ##Y:1.478e-08 ##FC:1.822e-08
+$$T:1320000.0 ##E:6.50000e+02 ##Y:1.54e-08 ##FC:1.896e-08
+$$T:1320000.0 ##E:7.00000e+02 ##Y:1.599e-08 ##FC:1.967e-08
+$$T:1320000.0 ##E:7.50000e+02 ##Y:1.656e-08 ##FC:2.036e-08
+$$T:1320000.0 ##E:8.00000e+02 ##Y:1.711e-08 ##FC:2.103e-08
+$$T:1320000.0 ##E:8.50000e+02 ##Y:1.764e-08 ##FC:2.168e-08
+$$T:1320000.0 ##E:9.00000e+02 ##Y:1.816e-08 ##FC:2.231e-08
+$$T:1320000.0 ##E:9.50000e+02 ##Y:1.867e-08 ##FC:2.292e-08
+$$T:1320000.0 ##E:1.00000e+03 ##Y:1.916e-08 ##FC:2.351e-08
+$$T:1320000.0 ##E:1.50000e+03 ##Y:2.355e-08 ##FC:2.878e-08
+$$T:1320000.0 ##E:2.00000e+03 ##Y:2.728e-08 ##FC:3.322e-08
+$$T:1320000.0 ##E:2.50000e+03 ##Y:3.058e-08 ##FC:3.713e-08
+$$T:1320000.0 ##E:3.00000e+03 ##Y:3.357e-08 ##FC:4.066e-08
+$$T:1320000.0 ##E:3.50000e+03 ##Y:3.634e-08 ##FC:4.39e-08
+$$T:1320000.0 ##E:4.00000e+03 ##Y:3.892e-08 ##FC:4.691e-08
+$$T:1320000.0 ##E:4.50000e+03 ##Y:4.136e-08 ##FC:4.974e-08
+$$T:1320000.0 ##E:5.00000e+03 ##Y:4.367e-08 ##FC:5.241e-08
+$$T:1320000.0 ##E:5.50000e+03 ##Y:4.587e-08 ##FC:5.495e-08
+$$T:1320000.0 ##E:6.00000e+03 ##Y:4.799e-08 ##FC:5.737e-08
+$$T:1320000.0 ##E:6.50000e+03 ##Y:5.001e-08 ##FC:5.969e-08
+$$T:1320000.0 ##E:7.00000e+03 ##Y:5.197e-08 ##FC:6.192e-08
+$$T:1320000.0 ##E:7.50000e+03 ##Y:5.387e-08 ##FC:6.407e-08
+$$T:1320000.0 ##E:8.00000e+03 ##Y:5.57e-08 ##FC:6.615e-08
+$$T:1320000.0 ##E:8.50000e+03 ##Y:5.748e-08 ##FC:6.816e-08
+$$T:1320000.0 ##E:9.00000e+03 ##Y:5.922e-08 ##FC:7.011e-08
+$$T:1320000.0 ##E:9.50000e+03 ##Y:6.09e-08 ##FC:7.2e-08
+$$T:1320000.0 ##E:1.00000e+04 ##Y:6.255e-08 ##FC:7.384e-08
+$$T:1320000.0 ##E:1.50000e+04 ##Y:7.73e-08 ##FC:9.01e-08
+$$T:1320000.0 ##E:2.00000e+04 ##Y:8.987e-08 ##FC:1.036e-07
+$$T:1320000.0 ##E:2.50000e+04 ##Y:1.011e-07 ##FC:1.154e-07
+$$T:1320000.0 ##E:3.00000e+04 ##Y:1.112e-07 ##FC:1.26e-07
+$$T:1320000.0 ##E:3.50000e+04 ##Y:1.2e-07 ##FC:1.356e-07
+$$T:1320000.0 ##E:4.00000e+04 ##Y:1.281e-07 ##FC:1.444e-07
+$$T:1320000.0 ##E:4.50000e+04 ##Y:1.357e-07 ##FC:1.525e-07
+$$T:1320000.0 ##E:5.00000e+04 ##Y:1.429e-07 ##FC:1.602e-07
+$$T:1320000.0 ##E:5.50000e+04 ##Y:1.497e-07 ##FC:1.674e-07
+$$T:1320000.0 ##E:6.00000e+04 ##Y:1.562e-07 ##FC:1.742e-07
+$$T:1320000.0 ##E:6.50000e+04 ##Y:1.624e-07 ##FC:1.806e-07
+$$T:1320000.0 ##E:7.00000e+04 ##Y:1.684e-07 ##FC:1.867e-07
+$$T:1320000.0 ##E:7.50000e+04 ##Y:1.741e-07 ##FC:1.925e-07
+$$T:1320000.0 ##E:8.00000e+04 ##Y:1.797e-07 ##FC:1.981e-07
+$$T:1320000.0 ##E:8.50000e+04 ##Y:1.85e-07 ##FC:2.034e-07
+$$T:1320000.0 ##E:9.00000e+04 ##Y:1.902e-07 ##FC:2.085e-07
+$$T:1320000.0 ##E:9.50000e+04 ##Y:1.951e-07 ##FC:2.134e-07
+$$T:1320000.0 ##E:1.00000e+05 ##Y:1.998e-07 ##FC:2.181e-07
+$$T:1320000.0 ##E:1.50000e+05 ##Y:2.409e-07 ##FC:2.572e-07
+$$T:1320000.0 ##E:2.00000e+05 ##Y:2.719e-07 ##FC:2.86e-07
+$$T:1320000.0 ##E:2.50000e+05 ##Y:2.96e-07 ##FC:3.078e-07
+$$T:1320000.0 ##E:3.00000e+05 ##Y:3.15e-07 ##FC:3.247e-07
+$$T:1320000.0 ##E:3.50000e+05 ##Y:3.298e-07 ##FC:3.377e-07
+$$T:1320000.0 ##E:4.00000e+05 ##Y:3.412e-07 ##FC:3.476e-07
+$$T:1320000.0 ##E:4.50000e+05 ##Y:3.498e-07 ##FC:3.549e-07
+$$T:1320000.0 ##E:5.00000e+05 ##Y:3.559e-07 ##FC:3.602e-07
+$$T:1320000.0 ##E:5.50000e+05 ##Y:3.6e-07 ##FC:3.638e-07
+$$T:1320000.0 ##E:6.00000e+05 ##Y:3.625e-07 ##FC:3.658e-07
+$$T:1320000.0 ##E:6.50000e+05 ##Y:3.635e-07 ##FC:3.666e-07
+$$T:1320000.0 ##E:7.00000e+05 ##Y:3.634e-07 ##FC:3.663e-07
+$$T:1320000.0 ##E:7.50000e+05 ##Y:3.622e-07 ##FC:3.651e-07
+$$T:1320000.0 ##E:8.00000e+05 ##Y:3.601e-07 ##FC:3.63e-07
+$$T:1320000.0 ##E:8.50000e+05 ##Y:3.572e-07 ##FC:3.603e-07
+$$T:1320000.0 ##E:9.00000e+05 ##Y:3.538e-07 ##FC:3.569e-07
+$$T:1320000.0 ##E:9.50000e+05 ##Y:3.498e-07 ##FC:3.531e-07
+$$T:1320000.0 ##E:1.00000e+06 ##Y:3.454e-07 ##FC:3.488e-07
+$$T:1320000.0 ##E:1.10000e+06 ##Y:3.356e-07 ##FC:3.391e-07
+$$T:1320000.0 ##E:1.20000e+06 ##Y:3.247e-07 ##FC:3.284e-07
+$$T:1320000.0 ##E:1.30000e+06 ##Y:3.132e-07 ##FC:3.168e-07
+$$T:1320000.0 ##E:1.40000e+06 ##Y:3.012e-07 ##FC:3.048e-07
+$$T:1320000.0 ##E:1.50000e+06 ##Y:2.889e-07 ##FC:2.925e-07
+$$T:1320000.0 ##E:1.60000e+06 ##Y:2.764e-07 ##FC:2.801e-07
+$$T:1320000.0 ##E:1.70000e+06 ##Y:2.639e-07 ##FC:2.676e-07
+$$T:1320000.0 ##E:1.80000e+06 ##Y:2.515e-07 ##FC:2.553e-07
+$$T:1320000.0 ##E:1.90000e+06 ##Y:2.394e-07 ##FC:2.431e-07
+$$T:1320000.0 ##E:2.00000e+06 ##Y:2.276e-07 ##FC:2.313e-07
+$$T:1320000.0 ##E:2.10000e+06 ##Y:2.161e-07 ##FC:2.197e-07
+$$T:1320000.0 ##E:2.20000e+06 ##Y:2.05e-07 ##FC:2.084e-07
+$$T:1320000.0 ##E:2.30000e+06 ##Y:1.942e-07 ##FC:1.976e-07
+$$T:1320000.0 ##E:2.40000e+06 ##Y:1.838e-07 ##FC:1.871e-07
+$$T:1320000.0 ##E:2.50000e+06 ##Y:1.739e-07 ##FC:1.77e-07
+$$T:1320000.0 ##E:2.60000e+06 ##Y:1.648e-07 ##FC:1.674e-07
+$$T:1320000.0 ##E:2.70000e+06 ##Y:1.565e-07 ##FC:1.581e-07
+$$T:1320000.0 ##E:2.80000e+06 ##Y:1.481e-07 ##FC:1.493e-07
+$$T:1320000.0 ##E:2.90000e+06 ##Y:1.397e-07 ##FC:1.408e-07
+$$T:1320000.0 ##E:3.00000e+06 ##Y:1.318e-07 ##FC:1.328e-07
+$$T:1320000.0 ##E:3.10000e+06 ##Y:1.244e-07 ##FC:1.251e-07
+$$T:1320000.0 ##E:3.20000e+06 ##Y:1.173e-07 ##FC:1.179e-07
+$$T:1320000.0 ##E:3.30000e+06 ##Y:1.107e-07 ##FC:1.109e-07
+$$T:1320000.0 ##E:3.40000e+06 ##Y:1.043e-07 ##FC:1.044e-07
+$$T:1320000.0 ##E:3.50000e+06 ##Y:9.824e-08 ##FC:9.82e-08
+$$T:1320000.0 ##E:3.60000e+06 ##Y:9.234e-08 ##FC:9.232e-08
+$$T:1320000.0 ##E:3.70000e+06 ##Y:8.66e-08 ##FC:8.677e-08
+$$T:1320000.0 ##E:3.80000e+06 ##Y:8.106e-08 ##FC:8.152e-08
+$$T:1320000.0 ##E:3.90000e+06 ##Y:7.583e-08 ##FC:7.656e-08
+$$T:1320000.0 ##E:4.00000e+06 ##Y:7.102e-08 ##FC:7.188e-08
+$$T:1320000.0 ##E:4.10000e+06 ##Y:6.668e-08 ##FC:6.746e-08
+$$T:1320000.0 ##E:4.20000e+06 ##Y:6.274e-08 ##FC:6.33e-08
+$$T:1320000.0 ##E:4.30000e+06 ##Y:5.912e-08 ##FC:5.937e-08
+$$T:1320000.0 ##E:4.40000e+06 ##Y:5.576e-08 ##FC:5.568e-08
+$$T:1320000.0 ##E:4.50000e+06 ##Y:5.262e-08 ##FC:5.22e-08
+$$T:1320000.0 ##E:4.60000e+06 ##Y:4.967e-08 ##FC:4.892e-08
+$$T:1320000.0 ##E:4.70000e+06 ##Y:4.689e-08 ##FC:4.584e-08
+$$T:1320000.0 ##E:4.80000e+06 ##Y:4.428e-08 ##FC:4.295e-08
+$$T:1320000.0 ##E:4.90000e+06 ##Y:4.181e-08 ##FC:4.023e-08
+$$T:1320000.0 ##E:5.00000e+06 ##Y:3.948e-08 ##FC:3.767e-08
+$$T:1320000.0 ##E:5.10000e+06 ##Y:3.729e-08 ##FC:3.527e-08
+$$T:1320000.0 ##E:5.20000e+06 ##Y:3.522e-08 ##FC:3.302e-08
+$$T:1320000.0 ##E:5.30000e+06 ##Y:3.327e-08 ##FC:3.09e-08
+$$T:1320000.0 ##E:5.40000e+06 ##Y:3.143e-08 ##FC:2.892e-08
+$$T:1320000.0 ##E:5.50000e+06 ##Y:2.97e-08 ##FC:2.705e-08
+$$T:1320000.0 ##E:5.60000e+06 ##Y:2.806e-08 ##FC:2.531e-08
+$$T:1320000.0 ##E:5.70000e+06 ##Y:2.651e-08 ##FC:2.367e-08
+$$T:1320000.0 ##E:5.80000e+06 ##Y:2.505e-08 ##FC:2.213e-08
+$$T:1320000.0 ##E:5.90000e+06 ##Y:2.367e-08 ##FC:2.069e-08
+$$T:1320000.0 ##E:6.00000e+06 ##Y:2.237e-08 ##FC:1.935e-08
+$$T:1320000.0 ##E:6.10000e+06 ##Y:2.114e-08 ##FC:1.808e-08
+$$T:1320000.0 ##E:6.20000e+06 ##Y:1.998e-08 ##FC:1.69e-08
+$$T:1320000.0 ##E:6.30000e+06 ##Y:1.889e-08 ##FC:1.579e-08
+$$T:1320000.0 ##E:6.40000e+06 ##Y:1.787e-08 ##FC:1.476e-08
+$$T:1320000.0 ##E:6.50000e+06 ##Y:1.691e-08 ##FC:1.379e-08
+$$T:1320000.0 ##E:6.60000e+06 ##Y:1.601e-08 ##FC:1.288e-08
+$$T:1320000.0 ##E:6.70000e+06 ##Y:1.518e-08 ##FC:1.203e-08
+$$T:1320000.0 ##E:6.80000e+06 ##Y:1.441e-08 ##FC:1.124e-08
+$$T:1320000.0 ##E:6.90000e+06 ##Y:1.369e-08 ##FC:1.049e-08
+$$T:1320000.0 ##E:7.00000e+06 ##Y:1.302e-08 ##FC:9.796e-09
+$$T:1320000.0 ##E:7.10000e+06 ##Y:1.236e-08 ##FC:9.146e-09
+$$T:1320000.0 ##E:7.20000e+06 ##Y:1.172e-08 ##FC:8.538e-09
+$$T:1320000.0 ##E:7.30000e+06 ##Y:1.112e-08 ##FC:7.97e-09
+$$T:1320000.0 ##E:7.40000e+06 ##Y:1.057e-08 ##FC:7.439e-09
+$$T:1320000.0 ##E:7.50000e+06 ##Y:1.009e-08 ##FC:6.943e-09
+$$T:1320000.0 ##E:7.60000e+06 ##Y:9.68e-09 ##FC:6.479e-09
+$$T:1320000.0 ##E:7.70000e+06 ##Y:9.355e-09 ##FC:6.046e-09
+$$T:1320000.0 ##E:7.80000e+06 ##Y:9.122e-09 ##FC:5.641e-09
+$$T:1320000.0 ##E:7.90000e+06 ##Y:8.951e-09 ##FC:5.263e-09
+$$T:1320000.0 ##E:8.00000e+06 ##Y:8.794e-09 ##FC:4.91e-09
+$$T:1320000.0 ##E:8.10000e+06 ##Y:8.592e-09 ##FC:4.58e-09
+$$T:1320000.0 ##E:8.20000e+06 ##Y:8.335e-09 ##FC:4.272e-09
+$$T:1320000.0 ##E:8.30000e+06 ##Y:8.042e-09 ##FC:3.984e-09
+$$T:1320000.0 ##E:8.40000e+06 ##Y:7.739e-09 ##FC:3.716e-09
+$$T:1320000.0 ##E:8.50000e+06 ##Y:7.417e-09 ##FC:3.465e-09
+$$T:1320000.0 ##E:8.60000e+06 ##Y:7.056e-09 ##FC:3.231e-09
+$$T:1320000.0 ##E:8.70000e+06 ##Y:6.627e-09 ##FC:3.013e-09
+$$T:1320000.0 ##E:8.80000e+06 ##Y:6.097e-09 ##FC:2.809e-09
+$$T:1320000.0 ##E:8.90000e+06 ##Y:5.403e-09 ##FC:2.619e-09
+$$T:1320000.0 ##E:9.00000e+06 ##Y:4.529e-09 ##FC:2.441e-09
+$$T:1320000.0 ##E:9.10000e+06 ##Y:3.622e-09 ##FC:2.276e-09
+$$T:1320000.0 ##E:9.20000e+06 ##Y:2.913e-09 ##FC:2.121e-09
+$$T:1320000.0 ##E:9.30000e+06 ##Y:2.463e-09 ##FC:1.977e-09
+$$T:1320000.0 ##E:9.40000e+06 ##Y:2.177e-09 ##FC:1.843e-09
+$$T:1320000.0 ##E:9.50000e+06 ##Y:1.981e-09 ##FC:1.717e-09
+$$T:1320000.0 ##E:9.60000e+06 ##Y:1.831e-09 ##FC:1.6e-09
+$$T:1320000.0 ##E:9.70000e+06 ##Y:1.705e-09 ##FC:1.491e-09
+$$T:1320000.0 ##E:9.80000e+06 ##Y:1.594e-09 ##FC:1.39e-09
+$$T:1320000.0 ##E:9.90000e+06 ##Y:1.492e-09 ##FC:1.295e-09
+$$T:1320000.0 ##E:1.00000e+07 ##Y:1.397e-09 ##FC:1.206e-09
+$$T:1320000.0 ##E:1.01000e+07 ##Y:1.309e-09 ##FC:1.124e-09
+$$T:1320000.0 ##E:1.02000e+07 ##Y:1.226e-09 ##FC:1.047e-09
+$$T:1320000.0 ##E:1.03000e+07 ##Y:1.149e-09 ##FC:9.754e-10
+$$T:1320000.0 ##E:1.04000e+07 ##Y:1.076e-09 ##FC:9.087e-10
+$$T:1320000.0 ##E:1.05000e+07 ##Y:1.008e-09 ##FC:8.464e-10
+$$T:1320000.0 ##E:1.06000e+07 ##Y:9.444e-10 ##FC:7.884e-10
+$$T:1320000.0 ##E:1.07000e+07 ##Y:8.847e-10 ##FC:7.343e-10
+$$T:1320000.0 ##E:1.08000e+07 ##Y:8.287e-10 ##FC:6.839e-10
+$$T:1320000.0 ##E:1.09000e+07 ##Y:7.762e-10 ##FC:6.369e-10
+$$T:1320000.0 ##E:1.10000e+07 ##Y:7.27e-10 ##FC:5.932e-10
+$$T:1320000.0 ##E:1.11000e+07 ##Y:6.809e-10 ##FC:5.524e-10
+$$T:1320000.0 ##E:1.12000e+07 ##Y:6.378e-10 ##FC:5.144e-10
+$$T:1320000.0 ##E:1.13000e+07 ##Y:5.973e-10 ##FC:4.79e-10
+$$T:1320000.0 ##E:1.14000e+07 ##Y:5.594e-10 ##FC:4.46e-10
+$$T:1320000.0 ##E:1.15000e+07 ##Y:5.239e-10 ##FC:4.153e-10
+$$T:1320000.0 ##E:1.16000e+07 ##Y:4.907e-10 ##FC:3.866e-10
+$$T:1320000.0 ##E:1.17000e+07 ##Y:4.595e-10 ##FC:3.6e-10
+$$T:1320000.0 ##E:1.18000e+07 ##Y:4.303e-10 ##FC:3.351e-10
+$$T:1320000.0 ##E:1.19000e+07 ##Y:4.03e-10 ##FC:3.12e-10
+$$T:1320000.0 ##E:1.20000e+07 ##Y:3.774e-10 ##FC:2.904e-10
+$$T:1320000.0 ##E:1.21000e+07 ##Y:3.534e-10 ##FC:2.704e-10
+$$T:1320000.0 ##E:1.22000e+07 ##Y:3.309e-10 ##FC:2.517e-10
+$$T:1320000.0 ##E:1.23000e+07 ##Y:3.098e-10 ##FC:2.343e-10
+$$T:1320000.0 ##E:1.24000e+07 ##Y:2.901e-10 ##FC:2.181e-10
+$$T:1320000.0 ##E:1.25000e+07 ##Y:2.716e-10 ##FC:2.03e-10
+$$T:1320000.0 ##E:1.26000e+07 ##Y:2.543e-10 ##FC:1.889e-10
+$$T:1320000.0 ##E:1.27000e+07 ##Y:2.381e-10 ##FC:1.758e-10
+$$T:1320000.0 ##E:1.28000e+07 ##Y:2.229e-10 ##FC:1.636e-10
+$$T:1320000.0 ##E:1.29000e+07 ##Y:2.087e-10 ##FC:1.523e-10
+$$T:1320000.0 ##E:1.30000e+07 ##Y:1.954e-10 ##FC:1.417e-10
+$$T:1320000.0 ##E:1.31000e+07 ##Y:1.83e-10 ##FC:1.319e-10
+$$T:1320000.0 ##E:1.32000e+07 ##Y:1.713e-10 ##FC:1.227e-10
+$$T:1320000.0 ##E:1.33000e+07 ##Y:1.603e-10 ##FC:1.142e-10
+$$T:1320000.0 ##E:1.34000e+07 ##Y:1.501e-10 ##FC:1.063e-10
+$$T:1320000.0 ##E:1.35000e+07 ##Y:1.405e-10 ##FC:9.888e-11
+$$T:1320000.0 ##E:1.36000e+07 ##Y:1.315e-10 ##FC:9.201e-11
+$$T:1320000.0 ##E:1.37000e+07 ##Y:1.231e-10 ##FC:8.561e-11
+$$T:1320000.0 ##E:1.38000e+07 ##Y:1.153e-10 ##FC:7.965e-11
+$$T:1320000.0 ##E:1.39000e+07 ##Y:1.079e-10 ##FC:7.411e-11
+$$T:1320000.0 ##E:1.40000e+07 ##Y:1.01e-10 ##FC:6.895e-11
+$$T:1320000.0 ##E:1.41000e+07 ##Y:9.452e-11 ##FC:6.414e-11
+$$T:1320000.0 ##E:1.42000e+07 ##Y:8.847e-11 ##FC:5.967e-11
+$$T:1320000.0 ##E:1.43000e+07 ##Y:8.281e-11 ##FC:5.551e-11
+$$T:1320000.0 ##E:1.44000e+07 ##Y:7.75e-11 ##FC:5.164e-11
+$$T:1320000.0 ##E:1.45000e+07 ##Y:7.254e-11 ##FC:4.804e-11
+$$T:1320000.0 ##E:1.46000e+07 ##Y:6.789e-11 ##FC:4.469e-11
+$$T:1320000.0 ##E:1.47000e+07 ##Y:6.354e-11 ##FC:4.157e-11
+$$T:1320000.0 ##E:1.48000e+07 ##Y:5.946e-11 ##FC:3.867e-11
+$$T:1320000.0 ##E:1.49000e+07 ##Y:5.565e-11 ##FC:3.597e-11
+$$T:1320000.0 ##E:1.50000e+07 ##Y:5.208e-11 ##FC:3.346e-11
+$$T:1320000.0 ##E:1.51000e+07 ##Y:4.873e-11 ##FC:3.112e-11
+$$T:1320000.0 ##E:1.52000e+07 ##Y:4.56e-11 ##FC:2.894e-11
+$$T:1320000.0 ##E:1.53000e+07 ##Y:4.268e-11 ##FC:2.692e-11
+$$T:1320000.0 ##E:1.54000e+07 ##Y:3.993e-11 ##FC:2.504e-11
+$$T:1320000.0 ##E:1.55000e+07 ##Y:3.737e-11 ##FC:2.329e-11
+$$T:1320000.0 ##E:1.56000e+07 ##Y:3.497e-11 ##FC:2.166e-11
+$$T:1320000.0 ##E:1.57000e+07 ##Y:3.272e-11 ##FC:2.014e-11
+$$T:1320000.0 ##E:1.58000e+07 ##Y:3.061e-11 ##FC:1.873e-11
+$$T:1320000.0 ##E:1.59000e+07 ##Y:2.864e-11 ##FC:1.742e-11
+$$T:1320000.0 ##E:1.60000e+07 ##Y:2.68e-11 ##FC:1.62e-11
+$$T:1320000.0 ##E:1.61000e+07 ##Y:2.507e-11 ##FC:1.506e-11
+$$T:1320000.0 ##E:1.62000e+07 ##Y:2.346e-11 ##FC:1.401e-11
+$$T:1320000.0 ##E:1.63000e+07 ##Y:2.195e-11 ##FC:1.303e-11
+$$T:1320000.0 ##E:1.64000e+07 ##Y:2.053e-11 ##FC:1.211e-11
+$$T:1320000.0 ##E:1.65000e+07 ##Y:1.921e-11 ##FC:1.126e-11
+$$T:1320000.0 ##E:1.66000e+07 ##Y:1.797e-11 ##FC:1.047e-11
+$$T:1320000.0 ##E:1.67000e+07 ##Y:1.681e-11 ##FC:9.738e-12
+$$T:1320000.0 ##E:1.68000e+07 ##Y:1.573e-11 ##FC:9.055e-12
+$$T:1320000.0 ##E:1.69000e+07 ##Y:1.471e-11 ##FC:8.419e-12
+$$T:1320000.0 ##E:1.70000e+07 ##Y:1.376e-11 ##FC:7.828e-12
+$$T:1320000.0 ##E:1.71000e+07 ##Y:1.288e-11 ##FC:7.278e-12
+$$T:1320000.0 ##E:1.72000e+07 ##Y:1.204e-11 ##FC:6.767e-12
+$$T:1320000.0 ##E:1.73000e+07 ##Y:1.127e-11 ##FC:6.291e-12
+$$T:1320000.0 ##E:1.74000e+07 ##Y:1.054e-11 ##FC:5.849e-12
+$$T:1320000.0 ##E:1.75000e+07 ##Y:9.857e-12 ##FC:5.438e-12
+$$T:1320000.0 ##E:1.76000e+07 ##Y:9.22e-12 ##FC:5.055e-12
+$$T:1320000.0 ##E:1.77000e+07 ##Y:8.623e-12 ##FC:4.7e-12
+$$T:1320000.0 ##E:1.78000e+07 ##Y:8.066e-12 ##FC:4.369e-12
+$$T:1320000.0 ##E:1.79000e+07 ##Y:7.544e-12 ##FC:4.062e-12
+$$T:1320000.0 ##E:1.80000e+07 ##Y:7.055e-12 ##FC:3.776e-12
+$$T:1320000.0 ##E:1.81000e+07 ##Y:6.599e-12 ##FC:3.51e-12
+$$T:1320000.0 ##E:1.82000e+07 ##Y:6.171e-12 ##FC:3.263e-12
+$$T:1320000.0 ##E:1.83000e+07 ##Y:5.771e-12 ##FC:3.033e-12
+$$T:1320000.0 ##E:1.84000e+07 ##Y:5.397e-12 ##FC:2.82e-12
+$$T:1320000.0 ##E:1.85000e+07 ##Y:5.048e-12 ##FC:2.621e-12
+$$T:1320000.0 ##E:1.86000e+07 ##Y:4.72e-12 ##FC:2.436e-12
+$$T:1320000.0 ##E:1.87000e+07 ##Y:4.414e-12 ##FC:2.265e-12
+$$T:1320000.0 ##E:1.88000e+07 ##Y:4.128e-12 ##FC:2.105e-12
+$$T:1320000.0 ##E:1.89000e+07 ##Y:3.86e-12 ##FC:1.957e-12
+$$T:1320000.0 ##E:1.90000e+07 ##Y:3.609e-12 ##FC:1.819e-12
+$$T:1320000.0 ##E:1.91000e+07 ##Y:3.375e-12 ##FC:1.69e-12
+$$T:1320000.0 ##E:1.92000e+07 ##Y:3.156e-12 ##FC:1.571e-12
+$$T:1320000.0 ##E:1.93000e+07 ##Y:2.951e-12 ##FC:1.46e-12
+$$T:1320000.0 ##E:1.94000e+07 ##Y:2.759e-12 ##FC:1.357e-12
+$$T:1320000.0 ##E:1.95000e+07 ##Y:2.58e-12 ##FC:1.262e-12
+$$T:1320000.0 ##E:1.96000e+07 ##Y:2.412e-12 ##FC:1.172e-12
+$$T:1320000.0 ##E:1.97000e+07 ##Y:2.255e-12 ##FC:1.09e-12
+$$T:1320000.0 ##E:1.98000e+07 ##Y:2.109e-12 ##FC:1.013e-12
+$$T:1320000.0 ##E:1.99000e+07 ##Y:1.971e-12 ##FC:9.412e-13
+Plot:1/8) 24020202	INDEN-Aug2023 Ei1.5e7 (T=1.32MeV)	pt:638	color:0,80,255	dash:None
+Plot:2/8) 26213239	ENDF/B-VIII.1 Ei1.5e7 (T=1.32MeV)	pt:638	color:0,0,255	dash:dash
+Plot:3/8) 13662341	ENDF/B-VIII.0 Ei1.5e7 (T=1.32MeV)	pt:640	color:0,0,255	dash:solid
+Plot:4/8) 7664758	ENDF/B-VII.1 Ei1.5e7 (T=1.32MeV)	pt:641	color:200,0,255	dash:dashdot
+Plot:5/8) 13776085	JEFF-3.3 Ei1.5e7 (T=1.32MeV)	pt:303	color:255,0,0	dash:solid
+Plot:6/8) 19240823	JENDL-5 Ei1.5e7 (T=1.32MeV)	pt:415	color:0,200,0	dash:None
+Plot:7/8) 10751653	BROND-3.1 Ei1.5e7 (T=1.32MeV)	pt:561	color:255,0,255	dash:None
+Plot:8/8) 1111111	Minsk-Actinides Ei:1.5e+07 (T=1.32MeV)	pt:324	color:255,40,127	dash:solid
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- no-dim 1
+Will try---write_image: pfns235u15.html.png
+
+Program successfully completed

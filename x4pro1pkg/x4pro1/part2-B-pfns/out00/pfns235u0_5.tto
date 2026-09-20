@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-16   |
+  | Program: reac2pfns.py, ver.2026-09-20   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-19 20:35:18
+Running: 2026-09-20 23:46:58
 
 ---Arguments from command-line---
    1  arg: -o:pfns235u0_5
@@ -41,7 +41,7 @@ Running: 2026-09-19 20:35:18
    legendInside:  False
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
    Connected to: [sqlite3]
 
 ---Print summary---
@@ -452,8 +452,8 @@ datasets: 3
 	   52) E:1.346e+07   FC:1.0177e-10  y0:7.5234e-11  yy:0.73924    
 	   53) E:1.445e+07   FC:4.981e-11   y0:4.3854e-11  yy:0.88042    
 	Dataset:2/3) 92-U-235(N,F),PR,NU/DE,,REL 20996003 Pt:90   1975, J.M.Adams En=0.52MeV
-  PFNS re-normalisation to Maxwellian 3.023179297189347e-10 ARB-UNITS
----dataset2mxwRatio---Target:[U-235] 1/FSP=3307776025.4897914
+  PFNS re-normalisation to Maxwellian 3.023179726439466e-10 ARB-UNITS
+---dataset2mxwRatio---Target:[U-235] 1/FSP=3307775555.830896
 	    0) E:6.25e+05    FC:3.6636e-07  y0:3.659e-07   yy:0.99874    
 	    1) E:6.75e+05    FC:3.6658e-07  y0:3.5973e-07  yy:0.98132    
 	    2) E:7.25e+05    FC:3.6579e-07  y0:3.5317e-07  yy:0.9655     
@@ -471,7 +471,7 @@ datasets: 3
 	   14) E:1.325e+06   FC:3.1388e-07  y0:2.9614e-07  yy:0.94349    
 	   15) E:1.375e+06   FC:3.0786e-07  y0:2.9227e-07  yy:0.94937    
 	   16) E:1.425e+06   FC:3.0176e-07  y0:2.8571e-07  yy:0.94683    
-	   17) E:1.475e+06   FC:2.956e-07   y0:2.8484e-07  yy:0.9636     
+	   17) E:1.475e+06   FC:2.956e-07   y0:2.8484e-07  yy:0.96361    
 	   18) E:1.525e+06   FC:2.8939e-07  y0:2.8035e-07  yy:0.96874    
 	   19) E:1.575e+06   FC:2.8317e-07  y0:2.7535e-07  yy:0.97241    
 	   20) E:1.625e+06   FC:2.7694e-07  y0:2.6961e-07  yy:0.97355    
@@ -562,7 +562,7 @@ Plot:3/3) #20996003 1975, J.M.Adams En=0.52MeV /shape:rel/ T=1.32MeV pt:90
 
 ___webEndfDataForPlot_DADE: [U-235] [N,F] [&mf=5&mt=18&ei=500000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-235&Reaction=N,F&Quantity=*&json&mats
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
@@ -578,71 +578,51 @@ ___Required sections:5
 WebReq:1) EvalID:272576 PenSectID:24020202 Lib:INDEN-Aug2023 Color:0,80,255
 /servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=500000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=272576&PenSectID=24020202&json&mf=5&mt=18&ei=500000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:1/1)	92-U-235(N,F),DE	INDEN-Aug2023	EID:272576	SID:24020202	f(x):Ratio to Mxw (T=1.32MeV)	pts:638
 Downloaded:DS:1/1)	92-U-235(N,F),DE	INDEN-Aug2023	EID:272576	SID:24020202	f(x):Ratio to Mxw (T=1.32MeV)	pts:638	idy=0
 WebReq:2) EvalID:149933 PenSectID:13662341 Lib:ENDF/B-VIII.0 Color:0,0,255|solid|2
 /servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=500000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662341&json&mf=5&mt=18&ei=500000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:2/1)	92-U-235(N,F),DE	ENDF/B-VIII.0	EID:149933	SID:13662341	f(x):Ratio to Mxw (T=1.32MeV)	pts:640
 Downloaded:DS:2/1)	92-U-235(N,F),DE	ENDF/B-VIII.0	EID:149933	SID:13662341	f(x):Ratio to Mxw (T=1.32MeV)	pts:640	idy=0
 WebReq:3) EvalID:57658 PenSectID:7664758 Lib:ENDF/B-VII.1 Color:200,0,255|dashdot|2
 /servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=500000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=57658&PenSectID=7664758&json&mf=5&mt=18&ei=500000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:3/1)	92-U-235(N,F),DE	ENDF/B-VII.1	EID:57658	SID:7664758	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
 Downloaded:DS:3/1)	92-U-235(N,F),DE	ENDF/B-VII.1	EID:57658	SID:7664758	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
 WebReq:4) EvalID:226906 PenSectID:19240823 Lib:JENDL-5 Color:0,200,0
 /servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=500000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=226906&PenSectID=19240823&json&mf=5&mt=18&ei=500000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:4/1)	92-U-235(N,F),DE	JENDL-5	EID:226906	SID:19240823	f(x):Ratio to Mxw (T=1.32MeV)	pts:600
 Downloaded:DS:4/1)	92-U-235(N,F),DE	JENDL-5	EID:226906	SID:19240823	f(x):Ratio to Mxw (T=1.32MeV)	pts:600	idy=0
 WebReq:5) EvalID:118842 PenSectID:10751653 Lib:BROND-3.1 Color:255,0,255
 /servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=500000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=500000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=500000.0&T=1320000.0'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=118842&PenSectID=10751653&json&mf=5&mt=18&ei=500000.0&T=1320000.0
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:5/1)	92-U-235(N,F),DE	BROND-3.1	EID:118842	SID:10751653	f(x):Ratio to Mxw (T=1.32MeV)	pts:561
 Downloaded:DS:5/1)	92-U-235(N,F),DE	BROND-3.1	EID:118842	SID:10751653	f(x):Ratio to Mxw (T=1.32MeV)	pts:561	idy=0
 ---e4datasets: 5

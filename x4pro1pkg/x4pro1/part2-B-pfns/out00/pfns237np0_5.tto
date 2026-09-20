@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-16   |
+  | Program: reac2pfns.py, ver.2026-09-20   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-19 21:11:20
+Running: 2026-09-20 23:47:33
 
 ---Arguments from command-line---
    1  arg: -o:pfns237np0_5
@@ -12,14 +12,16 @@ Running: 2026-09-19 21:11:20
    3  arg: -zdat:np237nf-JENDL-4.0.zvd.dat
    4  arg: -x1:5.2e5
    5  arg: -fx:1e6
-   6  arg: -xmin:0.001
+   6  arg: -xmin:0.02
    7  arg: -xmax:30
-   8  arg: -xlog
-   9  arg: -lines
-   10 arg: -sym
-   11 arg: 93-NP-237(N,F),PR,NU/DE
-   12 arg: -annot:0.02,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS
-   ---str2annot:[0.02,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS] --> ('<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS', 0.02, 1.5)
+   8  arg: -ymin:0.2
+   9  arg: -ymax:1.6
+   10 arg: -xlog
+   11 arg: -lines
+   12 arg: -sym
+   13 arg: 93-NP-237(N,F),PR,NU/DE
+   14 arg: -annot:0.2,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS
+   ---str2annot:[0.2,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS] --> ('<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS', 0.2, 1.5)
 
 ---Input:
    Reaction:  ['93-NP-237(N,F),PR,NU/DE']
@@ -30,8 +32,8 @@ Running: 2026-09-19 21:11:20
    fx:        1000000.0
    fy:        1
    nPntMin:   1
-   xrange:    [0.001, 30.0]
-   yrange:    None
+   xrange:    [0.02, 30.0]
+   yrange:    [0.2, 1.6]
    Output:    pfns237np0_5
    x4ei:       and x1>=520000.0 and x1<=520000.0
    legendInside:  False
