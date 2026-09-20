@@ -25,7 +25,7 @@ from readZvdat import *
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac2pfns.py, ver.2026-09-16   |')
+    print('  | Program: reac2pfns.py, ver.2026-09-20   |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -279,11 +279,13 @@ def main():
 #	'ENDF/B-VIII.1':"0,80,255",
 	'ENDF/B-VIII.0':"0,0,255|solid|2",	#dash | dot | dashdot
 #	'ENDF/B-VIII.1':"0,0,255",
+#??	'ENDF/B-VIII.1':"0,0,255|dash",
 	'ENDF/B-VII.1':"200,0,255|dashdot|2",
 	'INDEN-Aug2023':"0,80,255",
 	'JENDL-5':"0,200,0",
 #	'JEFF-4.0':"255,0,0",
 #	'JEFF-3.3':"0,255,255",
+#?? 'JEFF-3.3':"255,0,0|solid",
 #	'JEFF-3.1':"0,255,255",
 #	'JEF-2.2':"0,255,255",
 #	'CENDL-3.2':"255,0,0"
@@ -367,7 +369,7 @@ def main():
 
     myOfflinePlot(data1+data2
 	,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-16 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-20 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype

@@ -24,6 +24,8 @@ get1db=True #get from database-cache before wget
 
 def wget_nds(prog,params,debug=False):
     #print('---wget_nds---')
+#   sys.stderr.write("---wget_nds---"+api0url+prog+params+"\n")
+    sys.stderr.write("---wget_nds---"+api0url+prog+"..."+"\n")
     txt=None
     txtFromWeb=False
     if get1db:

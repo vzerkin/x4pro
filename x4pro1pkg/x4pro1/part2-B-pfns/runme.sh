@@ -1,6 +1,7 @@
 source ../mypython3.sh
 set -x
 
+
 #if [ 1 = 0 ] ; then
 #---U-233
  ${mypython3} -B reac2pfns.py -o:pfns233u_t -x:x2 -T:1.34e6 -x1min:0.0253 -x1max:0.0363 -fx:1e6 -xmin:0.002 -xmax:30 -ymin:0.7 -ymax:1.2 -xlog -lines -sym "92-U-233(N,F),PR,NU/DE,,MXD" "92-U-233(N,F),PR,NU/DE" -annot:"0.04,1.17,<sup>233</sup>U(n<sub>thermal</sub>,f) PFNS">pfns233u_t.tto
@@ -64,6 +65,29 @@ args=(
 )
 ${mypython3} -B reac2pfns.py -o:${out} "${args[@]}" >${out}.tto
 
+out="pfns235u6_6"
+args=(
+#---x1: Ein; x2: Eout
+   -x:x2					# xAxis:=x2, i.e. Eout
+   -Ei:6.5e6					# Ei for evaluated curves
+#  -x1:6.6e6					# range on x1, i.e. Ein.exp
+   -x1min:6.2e6 -x1max:7e6			# range on x1, i.e. Ein.exp
+#  -zdat:u235nf-JENDL-5.zvd.dat			# add zvd.dat from u235nf-JENDL-5 MF5+MF35
+#  -zdat:u235nf-JEFF-4.0.zvd.dat		# commented option
+   -zdat:u235nf-Minsk-Actinides.zvd.dat		# add my curve from zvd.dat file having many Ein-datasets using interpolation
+   -fx:1e6					# multiplyer for data on xAxis 1e6: eV to MeV
+#---plotting options
+   -xmin:0.001 -xmax:60 -ymin:0.6 -ymax:2.1	# initial display window
+   -xlog					# xAxis: log
+   -lines					# connect points by lines
+   -sym 					# draw symbols with border
+#---annotation: (x,y) position in plot-units and (text)
+   -annot:"0.02,1.9,<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS"
+#---reaction-code to retrieve:
+   "92-U-235(N,F),PR,NU/DE"			#absolute units
+)
+${mypython3} -B reac2pfns.py -o:${out} "${args[@]}" >${out}.tto
+
 
 #---U-238
  ${mypython3} -B reac2pfns.py -o:pfns238u8_94 -x:x2 -x1:8.94e6 -fx:1e6 -xmin:0.005 -xmax:50 -ymin:0.3 -ymax:2.5 -xlog -lines -sym "92-U-238(N,F),PR,NU/DE" -annot:"0.1,2.3,<sup>238</sup>U(n<sub>8.94MeV</sub>,f) PFNS" >pfns238u8_94.tto
@@ -83,6 +107,37 @@ ${mypython3} -B reac2pfns.py -o:${out} "${args[@]}" >${out}.tto
 
 #---Np-237
 #${mypython3} -B reac2pfns.py -o:pfns237np0_5 -x:x2 -x1:5.2e5 -fx:1e6 -xmin:0.001 -xmax:30 -xlog -lines -sym "93-NP-237(N,F),PR,NU/DE" -annot:"0.02,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS">pfns237np0_5.tto
- ${mypython3} -B reac2pfns.py -o:pfns237np0_5 -x:x2 -zdat:np237nf-JENDL-4.0.zvd.dat -x1:5.2e5 -fx:1e6 -xmin:0.001 -xmax:30 -xlog -lines -sym "93-NP-237(N,F),PR,NU/DE" -annot:"0.02,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS">pfns237np0_5.tto
+ ${mypython3} -B reac2pfns.py -o:pfns237np0_5 -x:x2 -zdat:np237nf-JENDL-4.0.zvd.dat -x1:5.2e5 -fx:1e6 -xmin:0.02 -xmax:30 -ymin:0.2 -ymax:1.6 -xlog -lines -sym "93-NP-237(N,F),PR,NU/DE" -annot:"0.2,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS">pfns237np0_5.tto
+
+exit
+
+
+
+#---------test: comparison with data presented in the Article "2025, B.Mouss"
+out="pfns235u15"
+args=(
+#---x1: Ein; x2: Eout
+   -x:x2					# xAxis:=x2, i.e. Eout
+   -Ei:15e6					# Ei for evaluated curves
+#  -x1min:14.7e6 -x1max:14.9e6			# range on x1, i.e. Ein.exp
+   -x1min:14.6e6 -x1max:14.99e6			# range on x1, i.e. Ein.exp
+#  -zdat:u235nf-JENDL-5.zvd.dat			# add zvd.dat from u235nf-JENDL-5 MF5+MF35
+#  -zdat:u235nf-JEFF-4.0.zvd.dat		# commented option
+   -zdat:u235nf-Minsk-Actinides.zvd.dat		# add my curve from zvd.dat file having many Ein-datasets using interpolation
+   -fx:1e6					# multiplyer for data on xAxis 1e6: eV to MeV
+   -nogrp
+#---plotting options
+   -xmin:0.1 -xmax:20 -ymin:0.2 -ymax:2.5	# initial display window
+   -xlog					# xAxis: log
+   -lines					# connect points by lines
+   -sym 					# draw symbols with border
+#---annotation: (x,y) position in plot-units and (text)
+   -annot:"0.02,1.9,<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS"
+#---reaction-code to retrieve:
+   "92-U-235(N,F),PR,NU/DE"			#absolute units
+   "92-U-235(N,F),PR,NU/DE,,NPD"
+   "92-U-235(N,F),PR,NU/DE,,REL"
+)
+${mypython3} -B reac2pfns.py -o:${out} "${args[@]}" >${out}.tto
 
 exit

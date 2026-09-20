@@ -20,12 +20,13 @@ delBlackList={
 stdNubar=None
 stdNubarFile='nubar-endf.json'
 absNubarList={
-    "41332002"	: 1	, #93-NP-237(N,F),PR,NU/DE Pt:44   2000, N.V.Kornilov En=0.52MeV
-    "14379002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:28   2014, A.Chatillon En=14.2MeV
-    "14430002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:11   2014, J.P.Lestone En=1.5MeV
-    "14854002"	: 1	, #92-U-235(N,F),PR,NU/DE  Pt:47   2025, B.Mauss En=7.4MeV
-    "40740002"	: 5.07	, #92-U-238(N,F),PR,NU/DE  Pt:62   1979, V.Ya.Baryba En=14.3MeV, see: 40740003:DATA=5.07(PRT/FIS)
-    "30426002"	: 0.1	, #???
+	"41332002"	: 1	, #93-NP-237(N,F),PR,NU/DE Pt:44   2000, N.V.Kornilov En=0.52MeV
+	"14379002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:28   2014, A.Chatillon En=14.2MeV
+	"14430002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:11   2014, J.P.Lestone En=1.5MeV
+	"14854002"	: 1	, #92-U-235(N,F),PR,NU/DE  Pt:47   2025, B.Mauss En=7.4MeV
+#?	"14854002"	: 1.041	, #92-U-235(N,F),PR,NU/DE  Pt:47   2025, B.Mauss En=7.4MeV  "1.041" makes it compatible with LSTTAB-code
+	"40740002"	: 5.07	, #92-U-238(N,F),PR,NU/DE  Pt:62   1979, V.Ya.Baryba En=14.3MeV, see: 40740003:DATA=5.07(PRT/FIS)
+	"30426002"	: 0.1	, #???
 }
 
 def datasets2mxwRatio(datasets,oper,Tm=1.32e6):
@@ -65,7 +66,8 @@ def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
         if FSP!=1: nuTxt=format(1/FSP,"<.3g").strip()
         else: nuTxt='/1/'
     if FSP is None:
-        FSP=getShape2MxwFactor(xx,yy,fx,fy,Tm)
+#       FSP=getShape2MxwFactor_00(xx,yy,fx,fy,Tm)
+        FSP=getShape2MxwFactor(xx,dxx,yy,fx,fy,Tm)
     print ('  PFNS re-normalisation to Maxwellian',FSP,dataset['yBasicUnits'])
     print('---dataset2mxwRatio---Target:['+dataset['Target']+'] 1/FSP='+str(1/FSP))
     if dataset['DatasetID']=="32587002": FSP/=1.1
@@ -93,7 +95,43 @@ def getMaxw(E,T):
 #   fc=2/math.sqrt(math.pi*T*T*T)*math.sqrt(E)*math.exp(-E/T)
     return fc
 
-def getShape2MxwFactor(xx,yy,fx,fy,Tm,getVal=getMaxw):
+def getShape2MxwFactor(xx,dxx,yy,fx,fy,Tm,getVal=getMaxw):
+    FSP=1
+    if len(xx)<=0: return FSP
+    SSP=0 #---integral over points as given in the dataset
+    SSG=0 #---integral of Maxwellian on the same E-grid
+    for ii,x in enumerate(xx):
+        e2=xx[ii]*fx
+        f2=yy[ii]*fy
+        g2=getVal(e2,Tm)
+        if ii==0:
+            e1=e2; f1=f2; g1=g2
+        else:
+            SSP+=(e2-e1)*(f2+f1)/2
+            SSG+=(e2-e1)*(g2+g1)/2
+    if SSP>0: FSP=SSG/SSP
+    if dxx is None: return FSP
+
+    if dxx[0] is not None:
+        xl0=dxx[0]*fx
+        e1=xx[0]*fx
+        f1=yy[0]*fy
+        g1=getVal(e1,Tm)
+        SSP+=xl0*f1
+        SSG+=xl0*g1
+
+    if dxx[len(xx)-1] is not None:
+        xl2=dxx[len(xx)-1]*fx
+        e2=xx[len(xx)-1]*fx
+        f2=yy[len(xx)-1]*fy
+        g2=getVal(e2,Tm)
+        SSP+=xl0*f2
+        SSG+=xl0*g2
+
+    if SSP>0: FSP=SSG/SSP
+    return FSP
+
+def getShape2MxwFactor_00(xx,yy,fx,fy,Tm,getVal=getMaxw):
     #---2026-09-15, ZV: needs to be worked out
     FSP=1
     #---copy from LSTTAB.F (by A.Trkov:EndVer/Empire-codes)
