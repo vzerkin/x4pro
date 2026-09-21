@@ -4,7 +4,7 @@
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-20 23:47:03
+Running: 2026-09-21 13:03:18
 
 ---Arguments from command-line---
    1  arg: -o:pfns235u6_6
@@ -21,8 +21,8 @@ Running: 2026-09-20 23:47:03
    12 arg: -xlog
    13 arg: -lines
    14 arg: -sym
-   15 arg: -annot:0.02,1.9,<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS
-   ---str2annot:[0.02,1.9,<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS] --> ('<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS', 0.02, 1.9)
+   15 arg: -annot:0.02,1.9,<sup>235</sup>U(n<sub>6.5MeV</sub>,f) PFNS
+   ---str2annot:[0.02,1.9,<sup>235</sup>U(n<sub>6.5MeV</sub>,f) PFNS] --> ('<sup>235</sup>U(n<sub>6.5MeV</sub>,f) PFNS', 0.02, 1.9)
    16 arg: 92-U-235(N,F),PR,NU/DE
 
 ---Input:

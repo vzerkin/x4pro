@@ -1,7 +1,6 @@
 source ../mypython3.sh
 set -x
 
-
 #if [ 1 = 0 ] ; then
 #---U-233
  ${mypython3} -B reac2pfns.py -o:pfns233u_t -x:x2 -T:1.34e6 -x1min:0.0253 -x1max:0.0363 -fx:1e6 -xmin:0.002 -xmax:30 -ymin:0.7 -ymax:1.2 -xlog -lines -sym "92-U-233(N,F),PR,NU/DE,,MXD" "92-U-233(N,F),PR,NU/DE" -annot:"0.04,1.17,<sup>233</sup>U(n<sub>thermal</sub>,f) PFNS">pfns233u_t.tto
@@ -82,7 +81,7 @@ args=(
    -lines					# connect points by lines
    -sym 					# draw symbols with border
 #---annotation: (x,y) position in plot-units and (text)
-   -annot:"0.02,1.9,<sup>235</sup>U(n<sub>7.4MeV</sub>,f) PFNS"
+   -annot:"0.02,1.9,<sup>235</sup>U(n<sub>6.5MeV</sub>,f) PFNS"
 #---reaction-code to retrieve:
    "92-U-235(N,F),PR,NU/DE"			#absolute units
 )
