@@ -6,11 +6,14 @@
  **********************************************************************
 """
 
-import math
 import sys
+import math
+import json
 sys.path.append('./')
 sys.path.append('../')
-import json
+from fort2pfns import *
+
+MxwCur=None #Maxwellian distribution
 
 delBlackList={
    "14682002"	:"94-PU-239(N,F),PR,NU/DE,,NPD En=14.5MeV 2020 Kelly",
@@ -24,12 +27,13 @@ absNubarList={
 	"14379002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:28   2014, A.Chatillon En=14.2MeV
 	"14430002"	: 1	, #94-PU-239(N,F),PR,NU/DE Pt:11   2014, J.P.Lestone En=1.5MeV
 	"14854002"	: 1	, #92-U-235(N,F),PR,NU/DE  Pt:47   2025, B.Mauss En=7.4MeV
-#?	"14854002"	: 1.041	, #92-U-235(N,F),PR,NU/DE  Pt:47   2025, B.Mauss En=7.4MeV  "1.041" makes it compatible with LSTTAB-code
+#??	"14854002"	: 1.041	, #92-U-235(N,F),PR,NU/DE  Pt:47   2025, B.Mauss En=7.4MeV  "1.041" makes it compatible with LSTTAB-code
 	"40740002"	: 5.07	, #92-U-238(N,F),PR,NU/DE  Pt:62   1979, V.Ya.Baryba En=14.3MeV, see: 40740003:DATA=5.07(PRT/FIS)
 	"30426002"	: 0.1	, #???
+	"41611010z"	: 2.49	, #test, see in EXFOR: MONIT(PRT/FIS)=2.49
 }
 
-def datasets2mxwRatio(datasets,oper,Tm=1.32e6):
+def datasets2mxwRatio(datasets,oper,renorm2shapeOnly=False,Tm=1.32e6):
     print('--0--datasets2mxwRatio: datasets:'+str(len(datasets))+' oper:'+str(oper)+' Tm:'+str(Tm))
     lx=len(datasets)
     dssout=[]
@@ -40,14 +44,13 @@ def datasets2mxwRatio(datasets,oper,Tm=1.32e6):
         if dataset['DatasetID'] in delBlackList:
             print('---Dataset in delBlackList:',dataset['DatasetID'],' [',dataset['x4lbl']+']')
             continue
-#       dataset2mxwRatio(dataset)
-        dataset2mxwRatio(dataset,renorm2maxw=False,Tm=Tm)
+        dataset2mxwRatio(dataset,renorm2shapeOnly=renorm2shapeOnly,Tm=Tm)
         dssout.append(dataset)
     return dssout
 
-def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
+def dataset2mxwRatio(dataset,renorm2shapeOnly=False,Tm=1.32e6):
     SF8=dataset['SF8']
-    if dataset['Reacode'].find('MXD')>0:
+    if dataset['Reacode'].find('MXD')>0: #Mxw ratio already given in EXFOR: keep it
         dataset['x4lbl']+=" /ratio/"
         return False
     typ=" /shape:"+dataset['SF8'].lower()+"/"
@@ -58,16 +61,19 @@ def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
     yy=dataset['y']
     dyy=dataset['dy']
     nuTxt=None
-    FSP=None
-    FSP=getAbs2MxwFactor(dataset)
-    if FSP is not None:
-        typ=" /abs/"
-        if SF8!='': typ=" /abs:"+dataset['SF8'].lower()+"/"
-        if FSP!=1: nuTxt=format(1/FSP,"<.3g").strip()
-        else: nuTxt='/1/'
+    FSP=None #apply only shape re-normalisation
+    if not renorm2shapeOnly:
+        FSP=getAbs2MxwFactor(dataset)  #try to get Abs2Mxw Factor
+        if FSP is not None:
+            typ=" /abs/"
+            if SF8!='': typ=" /abs:"+dataset['SF8'].lower()+"/"
+            if FSP!=1: nuTxt=format(1/FSP,"<.3g").strip()
+            else: nuTxt='/1/'
     if FSP is None:
 #       FSP=getShape2MxwFactor_00(xx,yy,fx,fy,Tm)
+#       FSP=getShape2MxwFactor_01(xx,dxx,yy,fx,fy,Tm)
         FSP=getShape2MxwFactor(xx,dxx,yy,fx,fy,Tm)
+#       FSP=getShape2MxwFactor_00log(xx,yy,fx,fy,Tm)
     print ('  PFNS re-normalisation to Maxwellian',FSP,dataset['yBasicUnits'])
     print('---dataset2mxwRatio---Target:['+dataset['Target']+'] 1/FSP='+str(1/FSP))
     if dataset['DatasetID']=="32587002": FSP/=1.1
@@ -93,61 +99,8 @@ def dataset2mxwRatio(dataset,renorm2maxw=True,Tm=1.32e6):
 def getMaxw(E,T):
     fc=(2/T)*math.sqrt(E/(math.pi*T))*math.exp(-E/T)
 #   fc=2/math.sqrt(math.pi*T*T*T)*math.sqrt(E)*math.exp(-E/T)
+#   print('---getMaxw\t'+' E:'+format(E,"<11.5g")+' fc:'+format(fc,"<11.5g"))
     return fc
-
-def getShape2MxwFactor(xx,dxx,yy,fx,fy,Tm,getVal=getMaxw):
-    FSP=1
-    if len(xx)<=0: return FSP
-    SSP=0 #---integral over points as given in the dataset
-    SSG=0 #---integral of Maxwellian on the same E-grid
-    for ii,x in enumerate(xx):
-        e2=xx[ii]*fx
-        f2=yy[ii]*fy
-        g2=getVal(e2,Tm)
-        if ii==0:
-            e1=e2; f1=f2; g1=g2
-        else:
-            SSP+=(e2-e1)*(f2+f1)/2
-            SSG+=(e2-e1)*(g2+g1)/2
-    if SSP>0: FSP=SSG/SSP
-    if dxx is None: return FSP
-
-    if dxx[0] is not None:
-        xl0=dxx[0]*fx
-        e1=xx[0]*fx
-        f1=yy[0]*fy
-        g1=getVal(e1,Tm)
-        SSP+=xl0*f1
-        SSG+=xl0*g1
-
-    if dxx[len(xx)-1] is not None:
-        xl2=dxx[len(xx)-1]*fx
-        e2=xx[len(xx)-1]*fx
-        f2=yy[len(xx)-1]*fy
-        g2=getVal(e2,Tm)
-        SSP+=xl0*f2
-        SSG+=xl0*g2
-
-    if SSP>0: FSP=SSG/SSP
-    return FSP
-
-def getShape2MxwFactor_00(xx,yy,fx,fy,Tm,getVal=getMaxw):
-    #---2026-09-15, ZV: needs to be worked out
-    FSP=1
-    #---copy from LSTTAB.F (by A.Trkov:EndVer/Empire-codes)
-    SSP=0 #---integral over points as given in the dataset
-    SSG=0 #---integral of Maxwellian on the same E-grid
-    for ii,x in enumerate(xx):
-        e2=xx[ii]*fx
-        f2=yy[ii]*fy
-        g2=getVal(e2,Tm)
-        if ii==0:
-            e1=e2; f1=f2; g1=g2
-        else:
-            SSP+=(e2-e1)*(f2+f1)/2
-            SSG+=(e2-e1)*(g2+g1)/2
-    if SSP>0: FSP=SSG/SSP
-    return FSP
 
 def getAbs2MxwFactor(dataset):
     FC=None
@@ -191,3 +144,45 @@ def getNubar(Target,En):
                 y=y1+(y2-y1)*(En-e1)/(e2-e1)
                 return y
     return None
+
+def getShape2MxwFactor(xx,dxx,yy,fx,fy,Tm):
+    global MxwCur
+    FSP=1
+    if len(xx)<=0: return FSP
+#-- Energy: MeV --> eV
+#-- Calculate the ratio to Maxwellian
+    ii=0; EP=[]; FP=[]
+    while ii<len(xx):
+        ee=xx[ii]*fx
+        ff=getMaxw(ee,Tm)
+        EP.append(ee)
+        FP.append(yy[ii]/ff)
+        ii+=1
+#-- test output
+#   for ii,ee in enumerate(EP): print('-0-',ii,EP[ii],FP[ii])
+#-- Prepare Maxwellian spectrum
+    if MxwCur is None:
+        MxwCur=generateMxwCur(TMXW=Tm)
+        #-- test output
+        with open("mxwCurve.json","w") as FF: json.dump(MxwCur,FF,indent=1)
+#-- Adopt parameters preparing interpolation and integration
+    KP=len(EP)
+    EA=EP[0]
+    EB=EP[KP-1]
+    ES=MxwCur['ENR']
+    SG=MxwCur['XSP']
+    NP=len(ES)
+#-- Integrate Maxwellian in the range of experim. data
+    SC=YTGPNT(NP,ES,SG,EA,EB)
+    print('-1-',NP,EA,EB,'SC:',SC)
+#-- Interpolate the ratio to the function grid
+    RWO=FITGRD(KP,EP,FP,NP,ES)
+#-- Restore the function values
+    for ii,ee in enumerate(ES):
+        ff=getMaxw(ee,Tm)
+        RWO[ii]*=ff
+#-- Integrate the function in the range of experim. data
+    SP=YTGPNT(NP,ES,RWO,EA,EB)
+    print('-1-','NP:',NP,'EA:',EA,'EB:',EB,'SP:',SP,'SC/SP:',SC/SP)
+    if SP>0: FSP=SC/SP
+    return FSP

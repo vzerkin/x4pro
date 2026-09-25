@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-20T23:46:46"
+  "now":"2026-09-24T19:33:11"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -1661,7 +1661,7 @@
   }
   ,{
      "DatasetID":13662070
-    ,"myColor":"0,0,255|solid|2"
+    ,"myColor":"0,0,255|dashdot|2"
     ,"TARGET":"U-233"
     ,"MF":5
     ,"MT":18

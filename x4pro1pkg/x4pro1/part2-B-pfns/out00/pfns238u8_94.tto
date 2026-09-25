@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-20   |
+  | Program: reac2pfns.py, ver.2026-09-24   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-20 23:47:06
+Running: 2026-09-24 19:33:28
 
 ---Arguments from command-line---
    1  arg: -o:pfns238u8_94
@@ -38,7 +38,7 @@ Running: 2026-09-20 23:47:06
    legendInside:  False
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
    Connected to: [sqlite3]
 
 ---Print summary---
@@ -104,7 +104,7 @@ select distinct
  and (
   (fullCode like '92-U-238(N,F),PR,NU/DE')
  ) 
- and x1>=8940000.0 and x1<=8940000.0   order by fullCode,YearRef1 desc,uni2.DatasetID 
+ and x1>=8940000.0 and x1<=8940000.0   and YY>0  order by fullCode,YearRef1 desc,uni2.DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    
 
    Retrieved rows: 80
@@ -295,7 +295,7 @@ Plot:1/1) #40631005 1980, N.V.Kornilov En=8.94MeV /abs/ T=1.32MeV &#957;=3.68 pt
 
 ___webEndfDataForPlot_DADE: [U-238] [N,F] [&mf=5&mt=18&ei=8940000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=U-238&Reaction=N,F&Quantity=*&json&mats
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
@@ -304,78 +304,66 @@ format=WebEndfSectionsList-0.1
 ___Retrieved sections:57
 SelectedLib-Sect:1) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 272577, 'SectID': 19173035, 'PenSectID': 24020655, 'LibID': 30003, 'LibName': 'INDEN-Aug2023', 'DATE': 'FEB18', 'AUTH': 'IAEA Consortium'}
 SelectedLib-Sect:4) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 149936, 'SectID': 9025231, 'PenSectID': 13662984, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'IAEA Consortium'}
-SelectedLib-Sect:5) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 57661, 'SectID': 2292450, 'PenSectID': 7665109, 'LibID': 75, 'LibName': 'ENDF/B-VII.1', 'DATE': '20111222', 'AUTH': 'Young,Chadwick,Derrien,Courcelle'}
 SelectedLib-Sect:12) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 226909, 'SectID': 14605442, 'PenSectID': 19241250, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20111206', 'AUTH': 'O.Iwamoto,N.Otuka,S.Chiba,+'}
 SelectedLib-Sect:18) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 118846, 'SectID': 6090633, 'PenSectID': 10752121, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'atyuk A.V.', 'AUTH': 'Nikolaev M.N., Koscheev V.N.'}
 SelectedLib-Sect:38) {'Targ': 'U-238', 'ZT': 92, 'AT': 238, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'U-238(N,F),SIG', 'EvalID': 175028, 'SectID': 11052462, 'PenSectID': 15684622, 'LibID': 52030, 'LibName': 'MINKS-ACT', 'DATE': '001', 'AUTH': '001'}
-___Required sections:6
+___Required sections:5
 WebReq:1) EvalID:272577 PenSectID:24020655 Lib:INDEN-Aug2023 Color:0,80,255
 /servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=272577&PenSectID=24020655&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
 Download...DS:1/1)	92-U-238(N,F),DE	INDEN-Aug2023	EID:272577	SID:24020655	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
 Downloaded:DS:1/1)	92-U-238(N,F),DE	INDEN-Aug2023	EID:272577	SID:24020655	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
-WebReq:2) EvalID:149936 PenSectID:13662984 Lib:ENDF/B-VIII.0 Color:0,0,255|solid|2
+WebReq:2) EvalID:149936 PenSectID:13662984 Lib:ENDF/B-VIII.0 Color:0,0,255|dashdot|2
 /servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149936&PenSectID=13662984&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
 Download...DS:2/1)	92-U-238(N,F),DE	ENDF/B-VIII.0	EID:149936	SID:13662984	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
 Downloaded:DS:2/1)	92-U-238(N,F),DE	ENDF/B-VIII.0	EID:149936	SID:13662984	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
-WebReq:3) EvalID:57661 PenSectID:7665109 Lib:ENDF/B-VII.1 Color:200,0,255|dashdot|2
-/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
-Connected to: [sqlite3]
-
----wgetdb_get---retrieved from wget_cache rows: 1
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57661&PenSectID=7665109&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
-Download...DS:3/1)	92-U-238(N,F),DE	ENDF/B-VII.1	EID:57661	SID:7665109	f(x):Ratio to Mxw (T=1.32MeV)	pts:641
-Downloaded:DS:3/1)	92-U-238(N,F),DE	ENDF/B-VII.1	EID:57661	SID:7665109	f(x):Ratio to Mxw (T=1.32MeV)	pts:641	idy=0
-WebReq:4) EvalID:226909 PenSectID:19241250 Lib:JENDL-5 Color:0,200,0
+WebReq:3) EvalID:226909 PenSectID:19241250 Lib:JENDL-5 Color:0,200,0
 /servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226909&PenSectID=19241250&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
-Download...DS:4/1)	92-U-238(N,F),DE	JENDL-5	EID:226909	SID:19241250	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
-Downloaded:DS:4/1)	92-U-238(N,F),DE	JENDL-5	EID:226909	SID:19241250	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
-WebReq:5) EvalID:118846 PenSectID:10752121 Lib:BROND-3.1 Color:255,0,255
+Download...DS:3/1)	92-U-238(N,F),DE	JENDL-5	EID:226909	SID:19241250	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
+Downloaded:DS:3/1)	92-U-238(N,F),DE	JENDL-5	EID:226909	SID:19241250	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
+WebReq:4) EvalID:118846 PenSectID:10752121 Lib:BROND-3.1 Color:255,0,255
 /servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118846&PenSectID=10752121&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
-Download...DS:5/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591
-Downloaded:DS:5/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591	idy=0
-WebReq:6) EvalID:175028 PenSectID:15684622 Lib:MINKS-ACT Color:255,80,80|dashdot
+Download...DS:4/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591
+Downloaded:DS:4/1)	92-U-238(N,F),DE	BROND-3.1	EID:118846	SID:10752121	f(x):Ratio to Mxw (T=1.32MeV)	pts:591	idy=0
+WebReq:5) EvalID:175028 PenSectID:15684622 Lib:MINKS-ACT Color:255,80,80|dashdot
 /servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=175028&PenSectID=15684622&json&mf=5&mt=18&ei=8940000.0&T=1320000.0'
-Download...DS:6/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
-Downloaded:DS:6/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
----e4datasets: 6
-Plot:1/6) 24020655	INDEN-Aug2023 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,80,255	dash:None
-Plot:2/6) 13662984	ENDF/B-VIII.0 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,0,255	dash:solid
-Plot:3/6) 7665109	ENDF/B-VII.1 Ei8.94e6 (T=1.32MeV)	pt:641	color:200,0,255	dash:dashdot
-Plot:4/6) 19241250	JENDL-5 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,200,0	dash:None
-Plot:5/6) 10752121	BROND-3.1 Ei8.94e6 (T=1.32MeV)	pt:591	color:255,0,255	dash:None
-Plot:6/6) 15684622	MINKS-ACT Ei8.94e6 (T=1.32MeV)	pt:324	color:255,80,80	dash:dashdot
+Download...DS:5/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
+Downloaded:DS:5/1)	92-U-238(N,F),DE	MINKS-ACT	EID:175028	SID:15684622	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
+---e4datasets: 5
+Plot:1/5) 24020655	INDEN-Aug2023 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,80,255	dash:None
+Plot:2/5) 13662984	ENDF/B-VIII.0 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,0,255	dash:dashdot
+Plot:3/5) 19241250	JENDL-5 Ei8.94e6 (T=1.32MeV)	pt:350	color:0,200,0	dash:None
+Plot:4/5) 10752121	BROND-3.1 Ei8.94e6 (T=1.32MeV)	pt:591	color:255,0,255	dash:None
+Plot:5/5) 15684622	MINKS-ACT Ei8.94e6 (T=1.32MeV)	pt:324	color:255,80,80	dash:dashdot
 --0--getUnits--- EV 1000000.0
 --A--getUnits--- EV 1000000.0
 --1--getUnits--- EV 1000000.0  Category: E

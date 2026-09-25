@@ -1,0 +1,99 @@
+<html>
+<head>
+<style>
+a { text-decoration: none;}
+</style>
+<style type="text/css" media="print">
+@page {
+  @bottom-right {
+    content: counter(page) " of " counter(pages);
+  }
+}
+</style>
+<script language=javascript>
+var dirMap=new Map([
+	['out00',"EXFOR/ENDF PFNS - energy spectrum of prompt fission neutrons"]
+    ]);
+</script>
+<script language=javascript>
+var pngMap=new Map([
+	 ["out00/pfns233u_t.html.png"	,"<sup>233</sup>U(n<sub>thermal</sub>,f) PFNS-ratio to Mxw. (T=1.34MeV)"]
+	,["out00/pfns239pu_t.html.png"	,"<sup>233</sup>Pu(n<sub>thermal</sub>,f) PFNS-ratio to Mxw.distr. (T=1.32MeV)"]
+	,["out00/pfns238u14_3.html.png"	,"<sup>238</sup>U(n<sub>14.3MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
+	,["out00/pfns239pu1_45.html.png","<sup>239</sup>Pu(n<sub>1.45MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
+	,["out00/fig12-vs-x4pro.png"	,"<sup>235</sup>U(n<sub>15MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
+	,["out00/zabs2mxw233u_t.html.png","Converting of abs.[PR,NU/DE] to Mxw.ratio in EXFOR"]
+    ]);
+</script>
+<script language=javascript>
+var num=0;
+var prevDir='';
+    function out1(filename,comment) {
+	var ii,nowDir='',shortHelp='',str1='',shortHelpPng;
+	var str=filename.replace(/ /g,'');
+	var hh=600;
+	if (typeof comment=='undefined') comment='';
+	shortHelpPng=pngMap.get(str);
+	if (typeof shortHelpPng!='undefined') comment=' &nbsp; <i>'+shortHelpPng+'</i>';
+//	comment=' &nbsp; <i>['+filename+']</i>';
+	if (filename.indexOf('couchdb')>=0) hh=760;
+	num++;
+	ii=filename.lastIndexOf('/');
+	if (ii>0) nowDir=filename.substring(0,ii);
+	ii=nowDir.lastIndexOf('/');
+	if (ii>0) nowDir=nowDir.substring(0,ii);
+	document.write('<div style="page-break-inside:avoid;">');
+	if (nowDir!=prevDir) {
+	    str1=nowDir+'/';
+	    shortHelp=dirMap.get(nowDir);
+	    if (typeof shortHelp!='undefined') str1+=' &nbsp; <i>'+shortHelp+'</i>';
+	    document.write('<div style="font-size:16pt;color:#fff;background-color:#44f;padding-left:10px;margin-bottom:4px;">'+str1+'</div>');
+	    prevDir=nowDir;
+	}
+        document.write('<div style="padding-top:3px">');
+        document.write('<span style="font-size:20pt;font-family:calibry;color:#a0a;'
+	+'border:1px solid #aaa;border-bottom:none;border-radius:6px 6px 0 0;margin-bottom:-1px;margin-left:10px;position:relative;'
+	+'padding-left:9px;padding-right:2px;background-color:#fff;">'
+	+num+') '+str+'</span><span style="font-size:14pt;margin-left:4px;color:blue;">'+comment+'</span>');
+        document.write('</div>');
+        document.write('<div style="border:1px solid #aaa;display:table;">');
+        document.write('<img src="'+str+'" height='+hh+'>');
+        document.write('</div><br>');
+	document.write('</div>');
+    }
+</script>
+</head>
+<body bgcolor="#ddddff">
+<big><big><b>X4Pro. Plotting PFNS - EXFOR versus ENDF.</b></big></big>
+<br>Generated: 2026-09-25,13:49:09<br>
+<script language="javascript">
+    out1("out00/pfns232th2_6.html.png                 ");
+    out1("out00/pfns233u0_5.html.png                  ");
+    out1("out00/pfns233u_t.html.png                   ");
+    out1("out00/pfns235u0_5.html.png                  ");
+    out1("out00/pfns235u15.html.png                   ");
+    out1("out00/pfns235u6_6.html.png                  ");
+    out1("out00/pfns235u7_4.html.png                  ");
+    out1("out00/pfns235u_t.html.png                   ");
+    out1("out00/pfns237np0_5.html.png                 ");
+    out1("out00/pfns238u14_3.html.png                 ");
+    out1("out00/pfns238u14_7.html.png                 ");
+    out1("out00/pfns238u8_94.html.png                 ");
+    out1("out00/pfns239pu14.html.png                  ");
+    out1("out00/pfns239pu1_45.html.png                ");
+    out1("out00/pfns239pu_t.html.png                  ");
+    out1("out00/pfns239pu_t2.html.png                 ");
+    out1("out00/pfns239pu_t_abs.html.png              ");
+    out1("out00/pfns239pu_t_shp.html.png              ");
+    out1("out00/zabs2mxw233u_t.html.png               ");
+    out1("out00/fig12-vs-x4pro.png","Interactive plot: EXFOR:ETA + ENDF:MT452,18,102,MF1,3,31,33");
+</script>
+
+<hr>
+<font face="helvetica" size="1">
+  Created by <a HREF="mailto:v.zerkin@gmail.org">V.Zerkin</a>, 09-Aug-2026<br>
+  <script language="javascript">  document.write(" Last updated: "+document.lastModified) </script>
+</font>
+
+</body>
+</html>

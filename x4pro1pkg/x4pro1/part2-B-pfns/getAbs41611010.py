@@ -70,6 +70,8 @@ def getAbs41611010():
         yy=float(format(yy,".5e"))
         dyy=yy*arr[2]/100
         dyy=float(format(dyy,".5e"))
+#        yy=arr[1]
+#        dyy=arr[2]
         x.append(xx)
         y.append(yy)
         dy.append(dyy)
@@ -85,6 +87,7 @@ def getAbs41611010():
     "xexpansion": "Secondary energy: particle energy",
     "yexpansion": "Data: data",
     "Quant": "MFQ",
+    "SF8": "",
     "MF": 5,
     "MT": 18,
     "yformula": "y=DATA(EN,E2)",
@@ -95,7 +98,7 @@ def getAbs41611010():
     "YearRef1": 2016,
     "Author1Ini": "A.S.",
     "Author1": "Vorobyev",
-    "x4lbl": "2016, A.S.Vorobyev En=3.63e-8MeV T=1.34MeV",
+    "x4lbl": "2016, A.S.Vorobyev Einc:0.0363eV T=1.34MeV",
     "fx": 1000000.0,
     "fy": 1.0,
     }
@@ -106,4 +109,9 @@ def getAbs41611010():
     ds['y']=y
     ds['dy']=dy
     ds['dx']=dx
+    if False:
+        print('---reprint data---')
+        for ii,xx in enumerate(x):
+            yy=y[ii]; dyy=dy[ii]
+            print(format(xx,"6.3f")+'     '+format(yy,"<11.5g")+'     '+format(dyy,"3.1f"))
     return ds

@@ -25,7 +25,7 @@ from readZvdat import *
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac2pfns.py, ver.2026-09-20   |')
+    print('  | Program: reac2pfns.py, ver.2026-09-25   |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -57,6 +57,7 @@ def main():
     zeroline=True
 #   showgrid=False;    zeroline=False
     flagEndf=True
+#   flagEndf=False
     e4webparam=""
     add2title=""
     showSpectra=False
@@ -66,6 +67,7 @@ def main():
     myCurveFiles=[]
     zvdatCurFiles=[]
 #   showSpectra=True
+    renorm2shapeOnly=False
 
     xrange=None; yrange=None;
     x1min=None; x1max=None
@@ -166,6 +168,7 @@ def main():
         if arg=='-lines':              lines=True;                 continue
         if arg=='-nogrp':              groupReactions=False;       continue
 #       if arg=='-sp':                 showSpectra=True;           continue	#not implemented
+        if arg=='-shape':              renorm2shapeOnly=True;      continue	#apply shape-renorm even for abs.units
         if arg.startswith('-o:') and len(arg)>4: outhtml=arg[3:];  continue
         if arg.startswith('-annot:'):  annot=str2annot(arg[7:]);   continue
         if arg.startswith('-leg'):     str2legend(arg[4:]);        continue
@@ -238,6 +241,11 @@ def main():
         sys.exit(2)
 #   print(json.dumps(datasets[0],indent=2))
 #   print(json.dumps(datasets,indent=2))
+#   outX4Datasets(datasets,outhtml+"--exfor",frmArray=2)
+#   mxwCurve=generateMxwCur(TMXW=Tmxw)
+#   with open("mxwCurve.json","w") as FF: json.dump(mxwCurve,FF,indent=1)
+#   sys.exit(2)
+
 
     if nPntMin>1:
         print("\n---filter only large datasets:"+str(len(datasets))+' nPntMin='+str(nPntMin))
@@ -247,7 +255,7 @@ def main():
             print("---No data after filtering by #DataPoints:",nPntMin)
             sys.exit(2)
     if not showSpectra:
-        datasets=datasets2mxwRatio(datasets,oper,Tm=Tmxw)
+        datasets=datasets2mxwRatio(datasets,oper,renorm2shapeOnly=renorm2shapeOnly,Tm=Tmxw)
 
     groupReac=False
     if groupReactions:
@@ -277,23 +285,25 @@ def main():
     e4datasets=[]
     reqLibs={
 #	'ENDF/B-VIII.1':"0,80,255",
-	'ENDF/B-VIII.0':"0,0,255|solid|2",	#dash | dot | dashdot
+#	'ENDF/B-VIII.0':"0,0,255|solid|2",	#dash | dot | dashdot
+	'ENDF/B-VIII.0':"0,0,255|dashdot|2",	#dash | dot | dashdot
 #	'ENDF/B-VIII.1':"0,0,255",
 #??	'ENDF/B-VIII.1':"0,0,255|dash",
-	'ENDF/B-VII.1':"200,0,255|dashdot|2",
+	#'ENDF/B-VII.1':"200,0,255|dashdot|2",
 	'INDEN-Aug2023':"0,80,255",
 	'JENDL-5':"0,200,0",
-#	'JEFF-4.0':"255,0,0",
+#	'JEFF-4.0':"0,127,255",
 #	'JEFF-3.3':"0,255,255",
 #?? 'JEFF-3.3':"255,0,0|solid",
 #	'JEFF-3.1':"0,255,255",
 #	'JEF-2.2':"0,255,255",
-#	'CENDL-3.2':"255,0,0"
-#	'CENDL-2':"255,0,0"
+#	'CENDL-3.2':"255,0,0",
+#	'CENDL-2':"255,0,0",
 	'BROND-3.1':"255,0,255",
 #	'ENDF/B-V':"127,127,127"
 	'MINKS-ACT':"255,80,80|dashdot"
 	}
+#   reqLibs={'ENDF/B-VIII.1':"0,80,255",'JEFF-3.3':"255,0,0|solid",}
     if flagEndf:
         target=datasets[0]['Target']
         e4reac=datasets[0]['Reaction']
@@ -369,7 +379,7 @@ def main():
 
     myOfflinePlot(data1+data2
 	,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-20 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-25 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype
@@ -379,7 +389,7 @@ def main():
 	,showgrid=showgrid
 	,zeroline=zeroline
 	,legendInside=legendInside
-#	,wwPng=1200
+#	,hhPng=770,wwPng=900
 	)
     return
 

@@ -1,10 +1,10 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-20   |
+  | Program: reac2pfns.py, ver.2026-09-24   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-20 23:47:33
+Running: 2026-09-24 19:33:54
 
 ---Arguments from command-line---
    1  arg: -o:pfns237np0_5
@@ -39,7 +39,7 @@ Running: 2026-09-20 23:47:33
    legendInside:  False
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
    Connected to: [sqlite3]
 
 ---Print summary---
@@ -105,7 +105,7 @@ select distinct
  and (
   (fullCode like '93-NP-237(N,F),PR,NU/DE')
  ) 
- and x1>=520000.0 and x1<=520000.0   order by fullCode,YearRef1 desc,uni2.DatasetID 
+ and x1>=520000.0 and x1<=520000.0   and YY>0  order by fullCode,YearRef1 desc,uni2.DatasetID 
  ,x1,x2,x2,x4,x5,iPoint                    
 
    Retrieved rows: 44
@@ -224,7 +224,7 @@ Plot:1/1) #41332002 2000, N.V.Kornilov En=0.52MeV /abs/ T=1.32MeV &#957;=/1/ pt:
 
 ___webEndfDataForPlot_DADE: [Np-237] [N,F] [&mf=5&mt=18&ei=520000.0&T=1320000.0]
 ---wgetdb_get:/servlet/E4sSearch2?Target=Np-237&Reaction=N,F&Quantity=*&json&mats
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
@@ -232,58 +232,48 @@ Connected to: [sqlite3]
 format=WebEndfSectionsList-0.1
 ___Retrieved sections:44
 SelectedLib-Sect:2) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 149944, 'SectID': 9026017, 'PenSectID': 13663770, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20111222', 'AUTH': 'P.Young,E.Arthur,F.Mann,T.Kawano'}
-SelectedLib-Sect:3) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 57668, 'SectID': 2293079, 'PenSectID': 7665738, 'LibID': 75, 'LibName': 'ENDF/B-VII.1', 'DATE': '20111222', 'AUTH': 'P.Young,E.Arthur,F.Mann,T.Kawano'}
 SelectedLib-Sect:10) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 226914, 'SectID': 14605840, 'PenSectID': 19241653, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20130704', 'AUTH': 'O.Iwamoto,T.Nakagawa,S.Chiba,+'}
 SelectedLib-Sect:16) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 118849, 'SectID': 6091036, 'PenSectID': 10752524, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'DEC01', 'AUTH': 'Ignatyuk A.V. et al.'}
 SelectedLib-Sect:35) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 175029, 'SectID': 11052554, 'PenSectID': 15684714, 'LibID': 52030, 'LibName': 'MINKS-ACT', 'DATE': '', 'AUTH': '0'}
-___Required sections:5
-WebReq:1) EvalID:149944 PenSectID:13663770 Lib:ENDF/B-VIII.0 Color:0,0,255|solid|2
+___Required sections:4
+WebReq:1) EvalID:149944 PenSectID:13663770 Lib:ENDF/B-VIII.0 Color:0,0,255|dashdot|2
 /servlet/E4sGetSectData?EvalID=149944&PenSectID=13663770&json&mf=5&mt=18&ei=520000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=149944&PenSectID=13663770&json&mf=5&mt=18&ei=520000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149944&PenSectID=13663770&json&mf=5&mt=18&ei=520000.0&T=1320000.0'
 ___2___web-read-error:  Expecting value: line 17 column 15 (char 467)
-WebReq:2) EvalID:57668 PenSectID:7665738 Lib:ENDF/B-VII.1 Color:200,0,255|dashdot|2
-/servlet/E4sGetSectData?EvalID=57668&PenSectID=7665738&json&mf=5&mt=18&ei=520000.0&T=1320000.0
----wgetdb_get:/servlet/E4sGetSectData?EvalID=57668&PenSectID=7665738&json&mf=5&mt=18&ei=520000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
-Connected to: [sqlite3]
-
----wgetdb_get---retrieved from wget_cache rows: 1
----wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57668&PenSectID=7665738&json&mf=5&mt=18&ei=520000.0&T=1320000.0'
-___2___web-read-error:  Expecting value: line 17 column 15 (char 465)
-WebReq:3) EvalID:226914 PenSectID:19241653 Lib:JENDL-5 Color:0,200,0
+WebReq:2) EvalID:226914 PenSectID:19241653 Lib:JENDL-5 Color:0,200,0
 /servlet/E4sGetSectData?EvalID=226914&PenSectID=19241653&json&mf=5&mt=18&ei=520000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226914&PenSectID=19241653&json&mf=5&mt=18&ei=520000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226914&PenSectID=19241653&json&mf=5&mt=18&ei=520000.0&T=1320000.0'
-Download...DS:3/1)	93-Np-237(N,F),DE	JENDL-5	EID:226914	SID:19241653	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
-Downloaded:DS:3/1)	93-Np-237(N,F),DE	JENDL-5	EID:226914	SID:19241653	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
-WebReq:4) EvalID:118849 PenSectID:10752524 Lib:BROND-3.1 Color:255,0,255
+Download...DS:2/1)	93-Np-237(N,F),DE	JENDL-5	EID:226914	SID:19241653	f(x):Ratio to Mxw (T=1.32MeV)	pts:350
+Downloaded:DS:2/1)	93-Np-237(N,F),DE	JENDL-5	EID:226914	SID:19241653	f(x):Ratio to Mxw (T=1.32MeV)	pts:350	idy=0
+WebReq:3) EvalID:118849 PenSectID:10752524 Lib:BROND-3.1 Color:255,0,255
 /servlet/E4sGetSectData?EvalID=118849&PenSectID=10752524&json&mf=5&mt=18&ei=520000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=118849&PenSectID=10752524&json&mf=5&mt=18&ei=520000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118849&PenSectID=10752524&json&mf=5&mt=18&ei=520000.0&T=1320000.0'
 ___2___web-read-error:  Expecting value: line 17 column 15 (char 463)
-WebReq:5) EvalID:175029 PenSectID:15684714 Lib:MINKS-ACT Color:255,80,80|dashdot
+WebReq:4) EvalID:175029 PenSectID:15684714 Lib:MINKS-ACT Color:255,80,80|dashdot
 /servlet/E4sGetSectData?EvalID=175029&PenSectID=15684714&json&mf=5&mt=18&ei=520000.0&T=1320000.0
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=175029&PenSectID=15684714&json&mf=5&mt=18&ei=520000.0&T=1320000.0
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=175029&PenSectID=15684714&json&mf=5&mt=18&ei=520000.0&T=1320000.0'
-Download...DS:5/1)	93-Np-237(N,F),DE	MINKS-ACT	EID:175029	SID:15684714	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
-Downloaded:DS:5/1)	93-Np-237(N,F),DE	MINKS-ACT	EID:175029	SID:15684714	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
+Download...DS:4/1)	93-Np-237(N,F),DE	MINKS-ACT	EID:175029	SID:15684714	f(x):Ratio to Mxw (T=1.32MeV)	pts:324
+Downloaded:DS:4/1)	93-Np-237(N,F),DE	MINKS-ACT	EID:175029	SID:15684714	f(x):Ratio to Mxw (T=1.32MeV)	pts:324	idy=0
 ---e4datasets: 2
 ---read-zvd.dat:dataset-0   --> Lib:JENDL-4.0 Target:NP-237 Ei:1e-11 x:351 fx:1000000.0 idy:351
 ---read-zvd.dat:dataset-1   --> Lib:JENDL-4.0 Target:NP-237 Ei:0.1 x:351 fx:1000000.0 idy:351

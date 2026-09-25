@@ -165,6 +165,7 @@ def getX4SqlSearch_Reacodes(reacodes,xn,add2Where='',usr2where=''):
 	+where+" \n"
 	+add2Where+" "
 	+usr2where+" "
++" and YY>0 "
 #+" and uni2.DatasetID='40230006'"
 #+" and uni2.DatasetID='40017010'"
 #+" and uni2.DatasetID like '4%'"

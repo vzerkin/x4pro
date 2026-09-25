@@ -62,8 +62,9 @@ def readMaslovSp1(fileName,iCurve,T=1.32e6):
     if T<=0:
         ds['x4lbl']="Minsk-Actinides Ei:"+str(Einc)+"MeV /spectrum/"
 #   if iCurve==1: ds['myColor']="255,100,100|longdashdot"
-#    if iCurve==1: ds['myColor']="255,63,63|dot|5"
-    if iCurve==1: ds['myColor']="255,0,0|solid|7"
+#   if iCurve==1: ds['myColor']="255,63,63|dot|5"
+#?  if iCurve==1: ds['myColor']="255,0,0|solid|7"
+    if iCurve==1: ds['myColor']="255,0,0|dot|5"
     if iCurve==2: ds['myColor']="255,63,63|dash|4"
     ds['idy']=0
     ds['x']=x
