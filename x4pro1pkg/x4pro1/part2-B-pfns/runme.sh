@@ -1,15 +1,6 @@
 source ../mypython3.sh
 set -x
 
-#---2026-09-25 Testing the applicability of algorithms translating EXFOR.DATA --> PFNS Ratio.
-#              Option: "-shape" - use "shape re-normalization" even for absolute data,
-#                      given in units, like "PT/FIS/MEV" - particles per fission per MeV
-#              Note:   by default shape re-normalization is used only for "relative" EXFOR data,
-#                      for example, for quantities coded ",PR,NU/DE,,NPD" and ",PR,NU/DE,,REL"
-#                      and given in units, like "NO-DIM", "ARB-UNITS", "1/MEV"
- ${mypython3} -B reac2pfns.py -o:pfns239pu_t_abs        -x:x2 -rsp1:F51-18-1PU.txt -x1:0.0253 -fx:1e6 -xmin:0.01 -xmax:30 -ymin:0.65 -ymax:1.28 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE,,MXW" -annot:"0.5,1.23,<sup>239</sup>Pu(n<sub>thermal</sub>,f)PFNS:abs2ratio" >pfns239pu_t_abs.tto
- ${mypython3} -B reac2pfns.py -o:pfns239pu_t_shp -shape -x:x2 -rsp1:F51-18-1PU.txt -x1:0.0253 -fx:1e6 -xmin:0.01 -xmax:30 -ymin:0.65 -ymax:1.28 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE,,MXW" -annot:"0.5,1.23,<sup>239</sup>Pu(n<sub>thermal</sub>,f)PFNS:shape2ratio" >pfns239pu_t_shp.tto
-#exit
 
 #if [ 1 = 0 ] ; then
 #---U-233
@@ -39,6 +30,7 @@ set -x
 	-annot:"0.1,1.15,<sup>235</sup>U(n<sub>thermal</sub>,f)PFNS" \
 	"92-U-235(N,F),PR,NU/DE,,MXD" \
 	"92-U-235(N,F),PR,NU/DE,,MXW" \
+	"92-U-235(N,F),PR,NU/DE,,MXW/REL" \
     >pfns235u_t.tto
 #	-zdat:u235nf-ENDF_B-VIII.1.zvd.dat \
 #	-zdat:u235nf-Minsk-Actinides.zvd.dat \
@@ -105,7 +97,8 @@ ${mypython3} -B reac2pfns.py -o:${out} "${args[@]}" >${out}.tto
 
 
 #---Pu-239
- ${mypython3} -B reac2pfns.py -o:pfns239pu_t   -x:x2 -zdat:pu239nf-JENDL-5.zvd.dat       -rsp1:F51-18-1PU.txt -x1:0.0253 -fx:1e6 -xmin:0.01 -xmax:30 -ymin:0.65 -ymax:1.28 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE,,MXW" -annot:"0.1,1.23,<sup>239</sup>Pu(n<sub>thermal</sub>,f) PFNS" >pfns239pu_t.tto
+ ${mypython3} -B reac2pfns.py -o:pfns239pu_t   -x:x2 -zdat:pu239nf-JENDL-5.zvd.dat       -rsp1:F51-18-1PU.txt -x1:0.0253 -fx:1e6 -xmin:0.01 -xmax:30 -ymin:0.65 -ymax:1.28 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE,,MXW" -annot:"0.3,1.23,<sup>239</sup>Pu(n<sub>th</sub>,f)pfns T=1.32MeV" >pfns239pu_t.tto
+ ${mypython3} -B reac2pfns.py -o:pfns239pu_t138 -nogrp -T:1.382e6 -zdat:pu239nf-JENDL-5.zvd.dat -rsp1:F51-18-1PU.txt -x1:0.0253 -fx:1e6 -xmin:0.01 -xmax:30 -ymin:0.65 -ymax:1.28 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE,,MXW" "94-PU-239(N,F),PR,NU/DE,,MXD" -annot:"0.3,1.23,<sup>239</sup>Pu(n<sub>th</sub>,f)pfns T=1.382MeV" >pfns239pu_t138.tto
  ${mypython3} -B reac2pfns.py -o:pfns239pu1_45 -x:x2 -zdat:pu239nf-INDEN-Aug2023.zvd.dat -rsp1:F51-18-7.txt -nogrp -x1min:1.45e6 -x1max:1.5e6 -fx:1e6 -xmin:0.02 -xmax:45 -ymin:0.55 -ymax:1.8 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE" "94-PU-239(N,F),PR,NU/DE,,MXD" -annot:"0.25,1.7,<sup>239</sup>Pu(n<sub>1.45MeV</sub>,f) PFNS" >pfns239pu1_45.tto
  ${mypython3} -B reac2pfns.py -o:pfns239pu14   -x:x2 -zdat:pu239nf-INDEN-Aug2023.zvd.dat -rsp1:F51-1846.txt -nogrp -Ei:14e6 -x1min:13.9e6 -x1max:14.5e6 -fx:1e6 -xlog -xmin:0.02 -xmax:35 -ymin:0.1 -ymax:3.3 -lines -sym -annot:"0.4,2.7,<sup>239</sup>Pu(n<sub>14MeV</sub>,f) PFNS" "94-PU-239(N,F),PR,NU/DE" "94-PU-239(N,F),PR,NU/DE,,MXD" "94-PU-239(N,F),PR,NU/DE,,NPD" "94-PU-239(N,F),PR,NU/DE,,REL" >pfns239pu14.tto
 
@@ -119,11 +112,26 @@ ${mypython3} -B reac2pfns.py -o:${out} "${args[@]}" >${out}.tto
 #${mypython3} -B reac2pfns.py -o:pfns237np0_5 -x:x2 -x1:5.2e5 -fx:1e6 -xmin:0.001 -xmax:30 -xlog -lines -sym "93-NP-237(N,F),PR,NU/DE" -annot:"0.02,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS">pfns237np0_5.tto
  ${mypython3} -B reac2pfns.py -o:pfns237np0_5 -x:x2 -zdat:np237nf-JENDL-4.0.zvd.dat -x1:5.2e5 -fx:1e6 -xmin:0.02 -xmax:30 -ymin:0.2 -ymax:1.6 -xlog -lines -sym "93-NP-237(N,F),PR,NU/DE" -annot:"0.2,1.5,<sup>237</sup>Np(n<sub>0.5MeV</sub>,f) PFNS">pfns237np0_5.tto
 
+#---2026-09-25 Testing the applicability of algorithms translating EXFOR.DATA --> PFNS Ratio.
+#              Option: "-shape" - use "shape re-normalization" even for absolute data,
+#                      given in units, like "PT/FIS/MEV" - particles per fission per MeV
+#              Note:   by default shape re-normalization is used only for "relative" EXFOR data,
+#                      for example, for quantities coded ",PR,NU/DE,,NPD" and ",PR,NU/DE,,REL"
+#                      and given in units, like "NO-DIM", "ARB-UNITS", "1/MEV"
+ ${mypython3} -B reac2pfns.py -o:pfns239pu_t_abs        -x:x2 -rsp1:F51-18-1PU.txt -x1:0.0253 -fx:1e6 -xmin:0.01 -xmax:30 -ymin:0.65 -ymax:1.28 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE,,MXW" -annot:"0.5,1.23,<sup>239</sup>Pu(n<sub>thermal</sub>,f)PFNS:abs2ratio" >pfns239pu_t_abs.tto
+ ${mypython3} -B reac2pfns.py -o:pfns239pu_t_shp -shape -x:x2 -rsp1:F51-18-1PU.txt -x1:0.0253 -fx:1e6 -xmin:0.01 -xmax:30 -ymin:0.65 -ymax:1.28 -xlog -lines -sym "94-PU-239(N,F),PR,NU/DE,,MXW" -annot:"0.5,1.23,<sup>239</sup>Pu(n<sub>thermal</sub>,f)PFNS:shape2ratio" >pfns239pu_t_shp.tto
+
+#---2026-09-26 Testing cases when no experimental data exist
+#---U-242: only evaluated data (no experimental data)
+ ${mypython3} -B reac2pfns.py -o:pfns242pu_t   -target:Pu-242 -Ei:0.0253 -T:1.32e6 -zdat:pu242nf-ENDF_B-VIII.1.zvd.dat -fx:1e6 -xmin:0.1 -xmax:30 -xlog -annot:"1,2.3,<sup>242</sup>Pu(n<sub>thermal</sub>,f)PFNS">pfns242pu_t.tto
+#${mypython3} -B reac2pfns.py -o:pfns242pu5_0  -target:Pu-242 -Ei:5e6    -T:1.32e6 -zdat:pu242nf-ENDF_B-VIII.1.zvd.dat -fx:1e6 -xmin:0.1 -xmax:30 -xlog -annot:"1,3.3,<sup>242</sup>Pu(n<sub>5MeV</sub>,f)PFNS">pfns242pu5_0.tto
+ ${mypython3} -B reac2pfns.py -o:pfns242pu14_7 -target:Pu-242 -Ei:14.7e6 -T:1.32e6 -zdat:pu242nf-ENDF_B-VIII.1.zvd.dat -fx:1e6 -xmin:0.1 -xmax:30 -xlog -annot:"1,6.4,<sup>242</sup>Pu(n<sub>14.7MeV</sub>,f)PFNS">pfns242pu14_7.tto
+
 exit
 
 
 
-#---------test: comparison with data presented in the Article "2025, B.Mouss"
+#---------test: comparison with data presented in the Article "2025, B.Mouss" Fig.12
 out="pfns235u15"
 args=(
 #---x1: Ein; x2: Eout

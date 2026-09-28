@@ -25,7 +25,7 @@ from readZvdat import *
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac2pfns.py, ver.2026-09-25   |')
+    print('  | Program: reac2pfns.py, ver.2026-09-27   |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -40,14 +40,17 @@ def main():
     x4where0=''
     usr2where=''
     fx=1; fy=1
-    nPntMin=1
+    nPntMin=1; nPnt=0
     plotTitle=''
     outhtml='reac1'
-    xn='x1'
+#   xn='x1'
+    xn='x2' #default x for PFNS: Eout.
     reacode1=''
+    datasets=[]
     reacodes=[]
     xtype='linear';ytype='linear'
     lines=False
+    groupReac=False
     groupReactions=True
     msize=8
     lwidth=0.9
@@ -68,6 +71,10 @@ def main():
     zvdatCurFiles=[]
 #   showSpectra=True
     renorm2shapeOnly=False
+
+#---default for ENDF if EXFOR is not found
+    target=None
+    e4reac='n,f'
 
     xrange=None; yrange=None;
     x1min=None; x1max=None
@@ -112,6 +119,21 @@ def main():
         print("   ---str2annot:["+str0+"] --> "+str(annot1))
         return annot1
 
+    def str2option(str0):
+        nam=''; val=''
+        if str0 is None: return (nam,val)
+        if str0.startswith('-'): str0=str0[1:]
+        nam=str0
+        i1=str0.find(':')
+        i2=str0.find('=')
+        print(str0+' \ti1='+str(i1)+'\ti2='+str(i2))
+        if i1<0: i1=i2
+        if i2>=0 and i1>0 and i2<i1: i1=i2
+        if i1<0: return (nam,val)
+        nam=str0[:i1]
+        val=str0[i1+1:]
+        return (nam,val)
+
     def str2legend(str0):
         nonlocal legendInside
         legendInside=True
@@ -130,6 +152,9 @@ def main():
     print('\n---Arguments from command-line---')
     for ii,arg in enumerate(sys.argv):
         if (ii==0): continue
+        opt,par=str2option(arg) #todo:2026-09-27
+#       print('   '+str(ii).ljust(2)+" arg:"+arg.ljust(15)+" opt:["+opt+"] par:["+par+"]")
+#tst    continue
         if arg=='-h':		print(getHelp());	sys.exit(0)
         if arg=='-help':	print(getHelp());	sys.exit(0)
         if arg=='--h':		print(getHelp());	sys.exit(0)
@@ -164,6 +189,7 @@ def main():
         if arg.startswith('-x4fam:'):  x4fam=arg[7:];              continue
         if arg.startswith('-x5fam:'):  x5fam=arg[7:];              continue
         if arg.startswith('-prod:'):   aprod=arg[6:];              continue
+        if arg.startswith('-target:'): target=arg[8:];             continue
         if arg=='-sym':                symBorder=True;             continue
         if arg=='-lines':              lines=True;                 continue
         if arg=='-nogrp':              groupReactions=False;       continue
@@ -179,6 +205,7 @@ def main():
         if arg.startswith('-zdat:') and len(arg)>7: zvdatCurFiles.append(arg[6:]); continue
         if arg.startswith('-'): continue
         reacodes.append(arg)
+#    sys.exit(1)
 
     x4ei=''
     if x1min is not None: x4ei+=' and x1>='+str(x1min)
@@ -223,69 +250,66 @@ def main():
         sys.exit(1)
     print("   Connected to: ["+dbConn.dbType+"]")
 
-    print("\n---Print summary---")
-    print_reacodes(dbConn,conn,reacodes,add2Where=x4where0)
+    data1=[]
+    if len(reacodes)>0:
+        print("\n---Print summary---")
+        print_reacodes(dbConn,conn,reacodes,add2Where=x4where0)
 
-    print("\n---Retrieve EXFOR data from SQL database---")
-    sys.stderr.write("---Retrieve EXFOR data from SQL database---\n")
-    rows=getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,x4ei,usr2where=usr2where)
-    print("   Retrieved rows: "+str(len(rows)))
-    sys.stderr.write("   Retrieved rows: "+str(len(rows))+"\n")
+        print("\n---Retrieve EXFOR data from SQL database---")
+        sys.stderr.write("---Retrieve EXFOR data from SQL database---\n")
+        rows=getRows_sqlSearch_reacodes(dbConn,conn,reacodes,xn,x4ei,usr2where=usr2where)
+        print("   Retrieved rows: "+str(len(rows)))
+        sys.stderr.write("   Retrieved rows: "+str(len(rows))+"\n")
 
-    print("\n---Extract EXFOR data from recordsets (rows)---")
-    datasets=getDatasets4plot(dbConn,conn,rows,xn,fx=1/fx,fy=1/fy)
-    print('datasets:',len(datasets))
-    ldata=len(datasets)
-    if (ldata<=0):
-        print("---No data found---")
-        sys.exit(2)
-#   print(json.dumps(datasets[0],indent=2))
-#   print(json.dumps(datasets,indent=2))
-#   outX4Datasets(datasets,outhtml+"--exfor",frmArray=2)
-#   mxwCurve=generateMxwCur(TMXW=Tmxw)
-#   with open("mxwCurve.json","w") as FF: json.dump(mxwCurve,FF,indent=1)
-#   sys.exit(2)
+        print("\n---Extract EXFOR data from recordsets (rows)---")
+        datasets=getDatasets4plot(dbConn,conn,rows,xn,fx=1/fx,fy=1/fy)
+        print('datasets:',len(datasets))
+        ldata=len(datasets)
+        if (ldata<=0):
+            print("---No data found---")
+#?          sys.exit(2)
+#       print(json.dumps(datasets[0],indent=2))
+#       print(json.dumps(datasets,indent=2))
+#       outX4Datasets(datasets,outhtml+"--exfor",frmArray=2)
+#       mxwCurve=generateMxwCur(TMXW=Tmxw)
+#       with open("mxwCurve.json","w") as FF: json.dump(mxwCurve,FF,indent=1)
+#       sys.exit(2)
 
+        if nPntMin>1:
+            print("\n---filter only large datasets:"+str(len(datasets))+' nPntMin='+str(nPntMin))
+            datasets=getDatasets_nPointsMin(datasets,nPntMin) #filter only large datasets
+            print('---datasets:',len(datasets),'\n')
+            if (len(datasets)<=0):
+                print("---No data after filtering by #DataPoints:",nPntMin)
+#?              sys.exit(2)
+        if not showSpectra:
+            datasets=datasets2mxwRatio(datasets,oper,renorm2shapeOnly=renorm2shapeOnly,Tm=Tmxw)
 
-    if nPntMin>1:
-        print("\n---filter only large datasets:"+str(len(datasets))+' nPntMin='+str(nPntMin))
-        datasets=getDatasets_nPointsMin(datasets,nPntMin) #filter only large datasets
-        print('---datasets:',len(datasets),'\n')
-        if (len(datasets)<=0):
-            print("---No data after filtering by #DataPoints:",nPntMin)
-            sys.exit(2)
-    if not showSpectra:
-        datasets=datasets2mxwRatio(datasets,oper,renorm2shapeOnly=renorm2shapeOnly,Tm=Tmxw)
+        if groupReactions:
+            print("\n---Groupping datasets by Reaction-codes---")
+            reacodes=getReacodes(datasets)
+            print('---reacodes:',len(reacodes),'\n')
+            if (len(reacodes)<=0):
+                print("---No data after filtering by #DataPoints:",nPntMin)
+#?              sys.exit(2)
+            groupReac=len(reacodes)>1
+            datasets=getReacodes2Datasets(reacodes)
 
-    groupReac=False
-    if groupReactions:
-        print("\n---Groupping datasets by Reaction-codes---")
-        reacodes=getReacodes(datasets)
-        print('---reacodes:',len(reacodes),'\n')
-        if (len(reacodes)<=0):
-            print("---No data after filtering by #DataPoints:",nPntMin)
-            sys.exit(2)
-        groupReac=len(reacodes)>1
-        datasets=getReacodes2Datasets(reacodes)
+        nPnt=getNDataPoints(datasets)
 
-    nPnt=getNDataPoints(datasets)
+        print("\n---Output EXFOR datasets to JSON file---")
+        outX4Datasets(datasets,outhtml)
 
-    print("\n---Output EXFOR datasets to JSON file---")
-    outX4Datasets(datasets,outhtml)
-
-    data1=prepareExforDataForPlot(datasets,msize=msize,groupReac=groupReac,lines=lines
+        data1=prepareExforDataForPlot(datasets,msize=msize,groupReac=groupReac,lines=lines
 	,lwidth=lwidth,symBorder=symBorder,bwColor=bwColor)
 
-
-#- One of the following dash styles: ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot']
-#- A string containing a dash length list in pixels or percentages (e.g. '5px 10px 2px 2px', '5, 10, 2, 2', '10% 20% 40%', etc.)
 
     #_________________Retrieve ENDF_________________
     data2=[]
     e4datasets=[]
     reqLibs={
 #	'ENDF/B-VIII.1':"0,80,255",
-#	'ENDF/B-VIII.0':"0,0,255|solid|2",	#dash | dot | dashdot
+#	'ENDF/B-VIII.0':"0,0,255|solid|2",	#dash | dot | dashdot | longdash |  longdashdot
 	'ENDF/B-VIII.0':"0,0,255|dashdot|2",	#dash | dot | dashdot
 #	'ENDF/B-VIII.1':"0,0,255",
 #??	'ENDF/B-VIII.1':"0,0,255|dash",
@@ -300,19 +324,23 @@ def main():
 #	'CENDL-3.2':"255,0,0",
 #	'CENDL-2':"255,0,0",
 	'BROND-3.1':"255,0,255",
-#	'ENDF/B-V':"127,127,127"
-	'MINKS-ACT':"255,80,80|dashdot"
+#	'ENDF/B-V':"127,127,127",
+	'MINKS-ACT':"255,80,80|dashdot",
 	}
 #   reqLibs={'ENDF/B-VIII.1':"0,80,255",'JEFF-3.3':"255,0,0|solid",}
+#   reqLibs={}
+
     if flagEndf:
-        target=datasets[0]['Target']
-        e4reac=datasets[0]['Reaction']
-        g0=datasets[0]['g0']
-        if Einc is None: Einc=g0
-#       e4webparam="&mf=5&mt=18&ei=0.0253"
-#       e4webparam="&mf=5&mt=18&ei="+str(g0)
+        if len(datasets)>0:
+            target=datasets[0]['Target']
+            e4reac=datasets[0]['Reaction']
+            g0=datasets[0]['g0']
+            if Einc is None: Einc=g0
+        if target is None:
+            print("---No target given---")
+            sys.stderr.write("---No target given---\n")
+            sys.exit(1)
         e4webparam="&mf=5&mt=18&ei="+str(Einc)
-#       add2title=" (T=1.32MeV)"
 
         if not showSpectra:
             add2title=" (T="+format(Tmxw/1e6,"<.5g").strip()+"MeV)"
@@ -325,15 +353,11 @@ def main():
         #_________________Retrieve ENDF_________________
         sys.stderr.write("---Retrieve data from remote ENDF server---\n")
         sys.stderr.write("   e4webparam:"+e4webparam+"\n")
-#       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1,quantPrexix="")
-#       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/10*2,quantPrexix="",add2title=add2title)
-#       e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/2,quantPrexix="",add2title=add2title)
 #?sp    e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/fy*1e-3,quantPrexix="",add2title=add2title,add2json=add2json)
         e4datasets=webEndfDataForPlot_DADE(target,e4reac,e4webparam,reqLibs,1/fx,1/fy,quantPrexix="",add2title=add2title,add2json=add2json)
         print('---e4datasets:',len(e4datasets))
         sys.stderr.write("   Retrieved ENDF datasets: "+str(len(e4datasets))+"\n")
 #       print(json.dumps(e4datasets[0],indent=2))
-#       ds1=getMaslovSp1()
         iCurve=0
         for ii,zvdatCurFile in enumerate(zvdatCurFiles):
             ds1=readZvdatSp1(zvdatCurFile,iCurve,Einc,T=Tmxw)
@@ -344,7 +368,6 @@ def main():
             if ds1 is not None: e4datasets.append(ds1); iCurve+=1
         #_________________Preparing ENDF data for plot_________________
         grp1=''
-#       if len(reacodes)>1: grp1='grp1'
         if groupReac: grp1='grp1'
         data2=prepareEndfDataForPlot(e4datasets,grp1,True,lwidth=3,showAuth=True)
 
@@ -357,11 +380,17 @@ def main():
     outX4Datasets(e4datasets,outhtml+"--endf",frmArray=2)
 
 
-
-
-    xtitle='XX'
-    ytitle='YY'
+    xtitle='Energy of outgoing particle'
+    if fx==1e6: xtitle+=' (MeV)'
+    else: xtitle+=', eV&times;'+str(fx)
+    ytitle="PFNS Ratio to Maxwellian (T="+str(Tmxw/1e6)+'MeV)'
     yformula=''
+    plotTitle=' '+target+'('+e4reac+'),pfns  ENDF: MF=5, MT=18'
+    if Einc is not None:
+        if Einc==0.0253: plotTitle+=", thermal"
+        elif Einc<1e5:   plotTitle+=", Einc="+format(Einc,"<11.5g").strip()+'eV'
+        else:            plotTitle+=", Einc="+format(Einc/1e6,"<11.5g").strip()+'MeV'
+    if Tmxw is not None: plotTitle+=", T="+str(Tmxw/1e6)+'MeV'
     if len(datasets)>0:
         xtitle=datasets[0]['xexpansion']+', '+getUnits(dbConn,conn,datasets[0]['xBasicUnits'],fx)
         ytitle=datasets[0]['Quantity']  +', '+getUnits(dbConn,conn,datasets[0]['yBasicUnits'],fy)
@@ -371,7 +400,6 @@ def main():
         plotTitle+='  Quantity:'+Quant+':'+yformula
         plotTitle+='  Datasets:'+str(len(datasets))
         if len(datasets)!=ldata: plotTitle+='/'+str(ldata)
-    #   plotTitle+='  datapoints:'+str(len(rows))
         plotTitle+='  Points:'+str(nPnt)
         if len(rows)!=nPnt: plotTitle+='/'+str(len(rows))
 
@@ -379,7 +407,7 @@ def main():
 
     myOfflinePlot(data1+data2
 	,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-25 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-27 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype

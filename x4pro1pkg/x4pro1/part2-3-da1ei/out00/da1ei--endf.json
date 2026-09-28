@@ -1,10 +1,10 @@
 {
-  "now":"2026-09-19T20:25:10"
+  "now":"2026-09-28T00:53:13"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":19432646
-    ,"myColor":"255,127,0"
+    ,"myColor":"255,0,0|solid"
     ,"TARGET":"C-12"
     ,"MF":4
     ,"MT":40002

@@ -1,1 +1,1 @@
-EXFOR/ENDF PFNS - energy spectrum of prompt fission neutrons
+PFNS - energy spectrum of prompt fission neutrons

@@ -46,6 +46,7 @@ def generateMxwCur(TMXW=1.32e6,E0=0.01,EL=1e-5,EH=30e6,verbose=False):
 
 def FITGRD(NEP1,EN1,XS1,NEP2,EN2,verbose=False):
     #---adopted from LSTTAB.F (A.Trkov:EndVer/Empire-codes)
+#   verbose=True
     if verbose: print('---FITGRD---'+' NEP1='+str(NEP1)+"  NEP2="+str(NEP2))
     XS2=[0]*NEP2
     j1=0; j2=0

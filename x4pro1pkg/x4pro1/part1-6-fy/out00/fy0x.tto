@@ -2,7 +2,7 @@ Program: fy0x.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Retrieve and plot EXFOR fission yield (mass distribution)
 
-Running: 2026-09-19 20:22:45
+Running: 2026-09-27 21:39:29
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=rw
@@ -21,7 +21,7 @@ order by fullCode,YearRef1 desc,DatasetID
  ,En,iPoint                               
 
 
-EXFOR SQL executed: 0.002sec
+EXFOR SQL executed: 0.003sec
 
 datapoints: 143
 1) 14414002 2015 N.Gharibyan 92-U-238(N,F)MASS,CHN,FY Ei:14.0MeV

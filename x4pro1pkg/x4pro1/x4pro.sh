@@ -239,10 +239,15 @@ runExample1() {
 	DR=${examples[$nn]}
 	act=${contents[$nn]}
 #	if [ -f ../voice.exe ]; then ../voice.exe "$act"; fi
+#	if [ -f ../voice.bat ]; then ../voice.bat "$act"; fi
 	printf "%3d) %-44s %s " $nn ${DR} `date +%F,%T` >>times.log
 	t0=`date +%s`
 	pushd "$DR" >/dev/null
 #	echo "--example #$nn  $act"
+
+	if [ -f ../../voice.bat ]; then ../../voice.bat content.txt; fi
+	#echo -n "Are you sure (Y/n): "; read aaa
+
 #	printf "\x1b[41;97m--Start  example #%s \x1b[0m %s\n" "$nn" "$act"
 #	printf "\x1b[42;97m--Start  example #%s \x1b[0m %s\n" "$nn" "$act"
 	printf "\x1b[42;97m--Start  example #%s \x1b[0m \x1b[36m%s\x1b[0m\n" "$nn" "$act" #white on green

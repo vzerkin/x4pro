@@ -138,7 +138,7 @@ def interploateZvdat(xObj,Ei,verbose=False):
         E2=dataset['Ei']; ds2=dataset
         if Ei>=E1 and Ei<=E2:
             w1=(Ei-E1)/(E2-E1); w2=1-w1
-            print("---interploateZvdat---Ei:"+str(Ei)+" E1:"+str(E1)+" E2:"+str(E2)+" w1:"+str(w1))
+            print("---interploateZvdat---Ei:"+str(Ei)+" E1:"+format(E1,"<.6e")+" E2:"+format(E2,"<.6e")+" w1:"+format(w1,"<.6e"))
             if cmpGrid(ds1['x'],ds2['x']):
                 ds=ds1.copy()
                 for iii,y1 in enumerate(ds1['y']):
@@ -146,7 +146,7 @@ def interploateZvdat(xObj,Ei,verbose=False):
                     y=y1+w1*(y2-y1)
                     y=float(format(y,"<.6e"))
                     ds['y'][iii]=y
-                    print("///interploateZvdat---E:"+str(ds1['x'][iii])+" y1:"+str(y1)+" y2:"+str(y2)+" w1:"+str(w1)+" y="+str(y))
+                    print("///interploateZvdat---E:"+format(ds1['x'][iii],"<11.5g")+" y1:"+str(y1)+" y2:"+str(y2)+" w1:"+format(w1,"<.6e")+" y="+str(y))
                     dy1=ds1['dy'][iii]
                     dy2=ds2['dy'][iii]
                     if dy1 is None: continue

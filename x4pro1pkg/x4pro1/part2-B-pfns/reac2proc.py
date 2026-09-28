@@ -76,17 +76,22 @@ def dataset2mxwRatio(dataset,renorm2shapeOnly=False,Tm=1.32e6):
 #       FSP=getShape2MxwFactor_00log(xx,yy,fx,fy,Tm)
     print ('  PFNS re-normalisation to Maxwellian',FSP,dataset['yBasicUnits'])
     print('---dataset2mxwRatio---Target:['+dataset['Target']+'] 1/FSP='+str(1/FSP))
-    if dataset['DatasetID']=="32587002": FSP/=1.1
     for ii,x in enumerate(xx):
         ee=xx[ii]*fx
-        yy[ii]*=FSP
         y00=yy[ii]
+        yy[ii]*=FSP
+        y01=yy[ii]
         if dyy[ii] is not None: dyy[ii]*=FSP
         FC=getMaxw(ee,Tm)
         yy[ii]=yy[ii]/FC
         yy[ii]=float(format(yy[ii],".5e"))
         if dyy[ii] is not None: dyy[ii]=dyy[ii]/FC; dyy[ii]=float(format(dyy[ii],".5e"))
-        print('\t'+format(ii,"5d")+') E:'+format(ee,"<11.5g")+' FC:'+format(FC,"<11.5g")+' y0:'+format(y00,"<11.5g")+' yy:'+format(yy[ii],"<11.5g"))
+        print('\t'+format(ii,"5d")+') E:'+format(ee,"<11.5g")
+	+' y0:'+format(y00,"<11.5g")
+	+' *FSP:'+format(FSP,"<11.5g")
+	+' y1:'+format(y01,"<11.5g")
+	+' /FC:'+format(FC,"<11.5g")
+	+' yy:'+format(yy[ii],"<11.5g"))
     dataset['Quantity']="PFNS Ratio to Maxwellian (T="+str(Tm/1e6)+'MeV)'
     dataset['yBasicUnits']='no-dim'
     dataset['fy']=1

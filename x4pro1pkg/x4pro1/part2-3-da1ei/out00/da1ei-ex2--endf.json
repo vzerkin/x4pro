@@ -1,10 +1,10 @@
 {
-  "now":"2026-09-19T20:25:22"
+  "now":"2026-09-28T00:53:20"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
      "DatasetID":13599599
-    ,"myColor":"0,127,127"
+    ,"myColor":"0,0,0|solid|2"
     ,"TARGET":"FE-56"
     ,"MF":4
     ,"MT":40002
@@ -49673,7 +49673,7 @@
   }
   ,{
      "DatasetID":24030872
-    ,"myColor":"255,127,0"
+    ,"myColor":"255,0,0|solid"
     ,"TARGET":"FE-56"
     ,"MF":4
     ,"MT":40002

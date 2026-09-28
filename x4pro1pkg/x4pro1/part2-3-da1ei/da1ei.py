@@ -55,6 +55,8 @@ print('___sys___nexample:['+nexample+']'+str(sys.argv))
 xtype=None; xrange=None; ytype=None; yrange=None
 outhtml='da1ei'
 
+annot=None
+
 target="C-12";react="a,el";e4react="a,*"
 x4sqlparam=" and (An>=127 and An<=134) and (En<=9e6)"
 e4webparam="&an=130&mf=4&mt=40002&zap=2004"
@@ -62,7 +64,9 @@ xtype='log'; xrange=[math.log10(1.25),math.log10(11.04)]
 xtype='linear'; xrange=[1,9.015]
 ytype='log'; yrange=[0.3,1020]
 #ytype='log'; yrange=[math.log10(0.5),math.log10(507)]
-at=' \u03B8=130\u00B0'
+#at=' \u03B8=130\u00B0'
+at=' &#952;=130&#176;'
+annot=('<sup>12</sup>C(a,a<sub>0</sub>),da &#952;=130&#176;',4,700)
 
 if nexample=='ex1':
     target="O-16";react="p,el";e4react="p,*"
@@ -73,7 +77,9 @@ if nexample=='ex1':
     xtype='log'; xrange=[0.5,7]
     ytype='log'; yrange=[20,507]
     outhtml='da1ei-ex1'
-    at=' \u03B8=140\u00B0'
+#   at=' \u03B8=140\u00B0'
+    at=' &#952;=140&#176;'
+    annot=('<sup>16</sup>O(p,p<sub>0</sub>),da &#952;=140&#176;',1.5,450)
 
 if nexample=='ex2':  #by Oscar Cabellos, 2022-11-07
     target="Fe-56";react="n,el";e4react="n,*"
@@ -82,7 +88,9 @@ if nexample=='ex2':  #by Oscar Cabellos, 2022-11-07
     xtype='log'; xrange=[0.01,1]
     ytype='log'; yrange=[0.1,100000]
     outhtml='da1ei-ex2'
-    at=' \u03B8=39\u00B0'
+#   at=' \u03B8=39\u00B0'
+    at=' &#952;=39&#176;'
+    annot=('<sup>56</sup>Fe(n,el),da &#952;=39&#176;',0.1,30e3)
 
 print("---Retrieve EXFOR data from SQL database---")
 conn=dbConn.getConnSQLx4db()
@@ -128,15 +136,17 @@ data1=prepareExforDataForPlot(datasets,msize=8,groupReac=len(reacodes)>1,lines=T
 data2=[]
 reqLibs={
 #	'ENDF/B-VIII.1':"0,0,255"
-	'ENDF/B-VIII.0':"0,127,127"
-	,'JENDL-5':"255,127,0"
+	'ENDF/B-VIII.0':"0,0,0|solid|2"
+	,'JENDL-5':"255,0,0|solid"
 #	,'JEFF-3.3':"0,255,255"
 #	,'CENDL-3.2':"255,0,0"
 #	,'BROND-3.1':"255,0,255"
 #	,'ENDF/B-V':"0,127,127"
 #	,'TENDL-2019':"127,127,127"
+#	,'TENDL-2023':"127,127,127"
 	,'IBA-EVAL':"0,0,192"
 	}
+
 #data2=getSigmacalcDataForPlot('sc1c12aa130.json')
 e4datasets=webEndfDataForPlot_DADE(target,e4react,e4webparam,reqLibs,1e-6,1e3)
 
@@ -148,13 +158,15 @@ outX4Datasets(datasets,outhtml+"--exfor",frmArray=2)
 outX4Datasets(e4datasets,outhtml+"--endf",frmArray=2)
 
 #_________________Plot data from EXFOR and ENDF_________________
-myOfflinePlot(data1+data2,'EXFOR/ENDF angular distributions d\u03c3/d\u03a9(E,\u03B8): '+plotTitle
+#myOfflinePlot(data1+data2,'EXFOR/ENDF angular distributions d\u03c3/d\u03a9(E,\u03B8): '+plotTitle
+myOfflinePlot(data1+data2,'EXFOR/ENDF angular distributions d&#963;/d&#937;(E,&#952;): '+plotTitle
 	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2021-2025, ver.2025-07-10 //run:'+ct+'</i>'
 	,'Incident energy (MeV)'
 	,'Cross section (mb/sr)'
 	,xtype=xtype,ytype=ytype
 	,xrange=xrange,yrange=yrange
 #	,legendInside=False
+	,annot1=annot
 	,filename=outhtml
 	)
 print('\nProgram successfully completed')
