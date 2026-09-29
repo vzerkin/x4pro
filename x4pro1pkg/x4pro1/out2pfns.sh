@@ -61,13 +61,13 @@ EOF
 cat >>out1.html <<EOF
 <script language=javascript>
 var pngMap=new Map([
-	 ["out00/pfns233u_t.html.png"	,"<sup>233</sup>U(n<sub>thermal</sub>,f) PFNS-ratio to Mxw. (T=1.34MeV)"]
-	,["out00/pfns239pu_t.html.png"	,"<sup>239</sup>Pu(n<sub>thermal</sub>,f) PFNS-ratio to Mxw.distr. (T=1.32MeV)"]
-	,["out00/pfns239pu_t138.html.png","<sup>239</sup>Pu(n<sub>thermal</sub>,f) PFNS-ratio to Mxw.distr. (T=1.382MeV)"]
-	,["out00/pfns238u14_3.html.png"	,"<sup>238</sup>U(n<sub>14.3MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
-	,["out00/pfns239pu1_45.html.png","<sup>239</sup>Pu(n<sub>1.45MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
-	,["out00/fig12-vs-x4pro.png"	,"<sup>235</sup>U(n<sub>15MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
-	,["out00/zabs2mxw233u_t.html.png","Converting of abs.[PR,NU/DE] to Mxw.ratio in EXFOR"]
+	 ["out00/pfns233u00_0th.html.png"	,"<sup>233</sup>U(n<sub>thermal</sub>,f) PFNS-ratio to Mxw. (T=1.34MeV)"]
+	,["out00/pfns239pu00_0th.html.png"	,"<sup>239</sup>Pu(n<sub>thermal</sub>,f) PFNS-ratio to Mxw.distr. (T=1.32MeV)"]
+	,["out00/pfns239pu00_0th138.html.png"	,"<sup>239</sup>Pu(n<sub>thermal</sub>,f) PFNS-ratio to Mxw.distr. (T=1.382MeV)"]
+	,["out00/pfns238u14_3.html.png"		,"<sup>238</sup>U(n<sub>14.3MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
+	,["out00/pfns239pu01_45.html.png"	,"<sup>239</sup>Pu(n<sub>1.45MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
+	,["out00/fig12-vs-x4pro.png"		,"<sup>235</sup>U(n<sub>15MeV</sub>,f) PFNS-ratio to Mxw. (T=1.32MeV)"]
+	,["out00/zabs2mxw233u_t.html.png"	,"Converting of abs.[PR,NU/DE] to Mxw.ratio in EXFOR"]
 EOF
 
 cat >>out1.html <<EOF
@@ -159,3 +159,4 @@ echo "Move line down"
 echo "16) part2-3-da1ei/out00/da1ei-ex2.png"
 echo "to make"
 echo "17) part2-3-da1ei/out00/da1ei-ex2.png"
+rm qq0 qq1 qq01

@@ -1,41 +1,26 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-27   |
+  | Program: reac2pfns.py, ver.2026-09-29   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-28 13:45:47
+Running: 2026-09-29 18:26:34
 
 ---Arguments from command-line---
-o:pfns239pu_t_abs 	i1=1	i2=-1
-   1  arg: -o:pfns239pu_t_abs
-x:x2 	i1=1	i2=-1
-   2  arg: -x:x2
-rsp1:F51-18-1PU.txt 	i1=4	i2=-1
-   3  arg: -rsp1:F51-18-1PU.txt
-x1:0.0253 	i1=2	i2=-1
-   4  arg: -x1:0.0253
-fx:1e6 	i1=2	i2=-1
-   5  arg: -fx:1e6
-xmin:0.01 	i1=4	i2=-1
-   6  arg: -xmin:0.01
-xmax:30 	i1=4	i2=-1
-   7  arg: -xmax:30
-ymin:0.65 	i1=4	i2=-1
-   8  arg: -ymin:0.65
-ymax:1.28 	i1=4	i2=-1
-   9  arg: -ymax:1.28
-xlog 	i1=-1	i2=-1
-   10 arg: -xlog
-lines 	i1=-1	i2=-1
-   11 arg: -lines
-sym 	i1=-1	i2=-1
-   12 arg: -sym
-94-PU-239(N,F),PR,NU/DE,,MXW 	i1=-1	i2=-1
-   13 arg: 94-PU-239(N,F),PR,NU/DE,,MXW
-annot:0.5,1.23,<sup>239</sup>Pu(n<sub>thermal</sub>,f)PFNS:abs2ratio 	i1=5	i2=-1
-   14 arg: -annot:0.5,1.23,<sup>239</sup>Pu(n<sub>thermal</sub>,f)PFNS:abs2ratio
-   ---str2annot:[0.5,1.23,<sup>239</sup>Pu(n<sub>thermal</sub>,f)PFNS:abs2ratio] --> ('<sup>239</sup>Pu(n<sub>thermal</sub>,f)PFNS:abs2ratio', 0.5, 1.23)
+   1  arg: -o:pfns239pu_t_abs   opt:[o]      par:[pfns239pu_t_abs]
+   2  arg: -rsp1:F51-18-1PU.txt opt:[rsp1]   par:[F51-18-1PU.txt]
+   3  arg: -x1:0.0253           opt:[x1]     par:[0.0253]
+   4  arg: -fx:1e6              opt:[fx]     par:[1e6]
+   5  arg: -xmin:0.01           opt:[xmin]   par:[0.01]
+   6  arg: -xmax:30             opt:[xmax]   par:[30]
+   7  arg: -ymin:0.65           opt:[ymin]   par:[0.65]
+   8  arg: -ymax:1.28           opt:[ymax]   par:[1.28]
+   9  arg: -xlog                opt:[xlog]   par:[]
+   10 arg: -lines               opt:[lines]  par:[]
+   11 arg: -sym                 opt:[sym]    par:[]
+   12 arg: 94-PU-239(N,F),PR,NU/DE,,MXW opt:[94-PU-239(N,F),PR,NU/DE,,MXW] par:[]
+   13 arg: -annot:0.5,1.23,<sup>239</sup>Pu(n<sub>th</sub>,f)PFNS:abs2ratio opt:[annot]  par:[0.5,1.23,<sup>239</sup>Pu(n<sub>th</sub>,f)PFNS:abs2ratio]
+   ---str2annot:[0.5,1.23,<sup>239</sup>Pu(n<sub>th</sub>,f)PFNS:abs2ratio] --> ('<sup>239</sup>Pu(n<sub>th</sub>,f)PFNS:abs2ratio', 0.5, 1.23)
 
 ---Input:
    Reaction:  ['94-PU-239(N,F),PR,NU/DE,,MXW']

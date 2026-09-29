@@ -1,55 +1,33 @@
   +-----------------------------------------+
-  | Program: reac2pfns.py, ver.2026-09-27   |
+  | Program: reac2pfns.py, ver.2026-09-29   |
   | Author:  V.Zerkin, Vienna, 2021-2026    |
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-28 13:45:36
+Running: 2026-09-29 18:26:17
 
 ---Arguments from command-line---
-o:pfns239pu14 	i1=1	i2=-1
-   1  arg: -o:pfns239pu14
-x:x2 	i1=1	i2=-1
-   2  arg: -x:x2
-zdat:pu239nf-INDEN-Aug2023.zvd.dat 	i1=4	i2=-1
-   3  arg: -zdat:pu239nf-INDEN-Aug2023.zvd.dat
-rsp1:F51-1846.txt 	i1=4	i2=-1
-   4  arg: -rsp1:F51-1846.txt
-nogrp 	i1=-1	i2=-1
-   5  arg: -nogrp
-Ei:14e6 	i1=2	i2=-1
-   6  arg: -Ei:14e6
-x1min:13.9e6 	i1=5	i2=-1
-   7  arg: -x1min:13.9e6
-x1max:14.5e6 	i1=5	i2=-1
-   8  arg: -x1max:14.5e6
-fx:1e6 	i1=2	i2=-1
-   9  arg: -fx:1e6
-xlog 	i1=-1	i2=-1
-   10 arg: -xlog
-xmin:0.02 	i1=4	i2=-1
-   11 arg: -xmin:0.02
-xmax:35 	i1=4	i2=-1
-   12 arg: -xmax:35
-ymin:0.1 	i1=4	i2=-1
-   13 arg: -ymin:0.1
-ymax:3.3 	i1=4	i2=-1
-   14 arg: -ymax:3.3
-lines 	i1=-1	i2=-1
-   15 arg: -lines
-sym 	i1=-1	i2=-1
-   16 arg: -sym
-annot:0.4,2.7,<sup>239</sup>Pu(n<sub>14MeV</sub>,f) PFNS 	i1=5	i2=-1
-   17 arg: -annot:0.4,2.7,<sup>239</sup>Pu(n<sub>14MeV</sub>,f) PFNS
+   1  arg: -o:pfns239pu14       opt:[o]      par:[pfns239pu14]
+   2  arg: -zdat:pu239nf-INDEN-Aug2023.zvd.dat opt:[zdat]   par:[pu239nf-INDEN-Aug2023.zvd.dat]
+   3  arg: -rsp1:F51-1846.txt   opt:[rsp1]   par:[F51-1846.txt]
+   4  arg: -nogrp               opt:[nogrp]  par:[]
+   5  arg: -Ei:14e6             opt:[Ei]     par:[14e6]
+   6  arg: -x1min:13.9e6        opt:[x1min]  par:[13.9e6]
+   7  arg: -x1max:14.5e6        opt:[x1max]  par:[14.5e6]
+   8  arg: -fx:1e6              opt:[fx]     par:[1e6]
+   9  arg: -xlog                opt:[xlog]   par:[]
+   10 arg: -xmin:0.02           opt:[xmin]   par:[0.02]
+   11 arg: -xmax:35             opt:[xmax]   par:[35]
+   12 arg: -ymin:0              opt:[ymin]   par:[0]
+   13 arg: -ymax:3              opt:[ymax]   par:[3]
+   14 arg: -lines               opt:[lines]  par:[]
+   15 arg: -sym                 opt:[sym]    par:[]
+   16 arg: -annot:0.4,2.7,<sup>239</sup>Pu(n<sub>14MeV</sub>,f) PFNS opt:[annot]  par:[0.4,2.7,<sup>239</sup>Pu(n<sub>14MeV</sub>,f) PFNS]
    ---str2annot:[0.4,2.7,<sup>239</sup>Pu(n<sub>14MeV</sub>,f) PFNS] --> ('<sup>239</sup>Pu(n<sub>14MeV</sub>,f) PFNS', 0.4, 2.7)
-94-PU-239(N,F),PR,NU/DE 	i1=-1	i2=-1
-   18 arg: 94-PU-239(N,F),PR,NU/DE
-94-PU-239(N,F),PR,NU/DE,,MXD 	i1=-1	i2=-1
-   19 arg: 94-PU-239(N,F),PR,NU/DE,,MXD
-94-PU-239(N,F),PR,NU/DE,,NPD 	i1=-1	i2=-1
-   20 arg: 94-PU-239(N,F),PR,NU/DE,,NPD
-94-PU-239(N,F),PR,NU/DE,,REL 	i1=-1	i2=-1
-   21 arg: 94-PU-239(N,F),PR,NU/DE,,REL
+   17 arg: 94-PU-239(N,F),PR,NU/DE opt:[94-PU-239(N,F),PR,NU/DE] par:[]
+   18 arg: 94-PU-239(N,F),PR,NU/DE,,MXD opt:[94-PU-239(N,F),PR,NU/DE,,MXD] par:[]
+   19 arg: 94-PU-239(N,F),PR,NU/DE,,NPD opt:[94-PU-239(N,F),PR,NU/DE,,NPD] par:[]
+   20 arg: 94-PU-239(N,F),PR,NU/DE,,REL opt:[94-PU-239(N,F),PR,NU/DE,,REL] par:[]
 
 ---Input:
    Reaction:  ['94-PU-239(N,F),PR,NU/DE', '94-PU-239(N,F),PR,NU/DE,,MXD', '94-PU-239(N,F),PR,NU/DE,,NPD', '94-PU-239(N,F),PR,NU/DE,,REL']
@@ -61,7 +39,7 @@ annot:0.4,2.7,<sup>239</sup>Pu(n<sub>14MeV</sub>,f) PFNS 	i1=5	i2=-1
    fy:        1
    nPntMin:   1
    xrange:    [0.02, 35.0]
-   yrange:    [0.1, 3.3]
+   yrange:    [0.0, 3.0]
    Output:    pfns239pu14
    x4ei:       and x1>=13900000.0 and x1<=14500000.0
    legendInside:  False

@@ -25,7 +25,7 @@ from readZvdat import *
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac2pfns.py, ver.2026-09-27   |')
+    print('  | Program: reac2pfns.py, ver.2026-09-29   |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -126,7 +126,7 @@ def main():
         nam=str0
         i1=str0.find(':')
         i2=str0.find('=')
-        print(str0+' \ti1='+str(i1)+'\ti2='+str(i2))
+#       print(str0+' \ti1='+str(i1)+'\ti2='+str(i2))
         if i1<0: i1=i2
         if i2>=0 and i1>0 and i2<i1: i1=i2
         if i1<0: return (nam,val)
@@ -152,57 +152,58 @@ def main():
     print('\n---Arguments from command-line---')
     for ii,arg in enumerate(sys.argv):
         if (ii==0): continue
-        opt,par=str2option(arg) #todo:2026-09-27
+        opt,par=str2option(arg) #todo:2026-09-29
 #       print('   '+str(ii).ljust(2)+" arg:"+arg.ljust(15)+" opt:["+opt+"] par:["+par+"]")
 #tst    continue
         if arg=='-h':		print(getHelp());	sys.exit(0)
         if arg=='-help':	print(getHelp());	sys.exit(0)
         if arg=='--h':		print(getHelp());	sys.exit(0)
         if arg=='--help':	print(getHelp());	sys.exit(0)
-        print('   '+str(ii).ljust(2)+" arg: "+arg)
-        if arg=='-xlog': xtype='log';  continue
-        if arg=='-ylog': ytype='log';  continue
-        if arg=='-bw':   bwColor=True; continue
-        if arg.startswith('-T:'):  Tmxw=str2float(arg[3:]);        continue
-        if arg.startswith('-Ei:'): Einc=str2float(arg[4:]);        continue
-        if arg.startswith('-x1:'): x1max=x1min=str2float(arg[4:]); continue
-        if arg.startswith('-x2:'): x2max=x2min=str2float(arg[4:]); continue
-        if arg.startswith('-x3:'): x3max=x3min=str2float(arg[4:]); continue
-        if arg.startswith('-x1min:'):  x1min=str2float(arg[7:]);   continue
-        if arg.startswith('-x1max:'):  x1max=str2float(arg[7:]);   continue
-        if arg.startswith('-x2min:'):  x2min=str2float(arg[7:]);   continue
-        if arg.startswith('-x2max:'):  x2max=str2float(arg[7:]);   continue
-        if arg.startswith('-x3min:'):  x3min=str2float(arg[7:]);   continue
-        if arg.startswith('-x3max:'):  x3max=str2float(arg[7:]);   continue
-        if arg.startswith('-symw:'):   msize=str2int(arg[6:],msize); continue
-        if arg.startswith('-nmin:'):   nPntMin=str2int(arg[6:],1); continue
-        if arg.startswith('-xmin:'):   xmin=str2float(arg[6:]);    continue
-        if arg.startswith('-xmax:'):   xmax=str2float(arg[6:]);    continue
-        if arg.startswith('-ymin:'):   ymin=str2float(arg[6:]);    continue
-        if arg.startswith('-ymax:'):   ymax=str2float(arg[6:]);    continue
-        if arg.startswith('-fx:'):     fx=str2float(arg[4:]);      continue
-        if arg.startswith('-fy:'):     fy=str2float(arg[4:]);      continue
-        if arg.startswith('-x:'):      xn=arg[3:];                 continue
-        if arg.startswith('-x1fam:'):  x1fam=arg[7:];              continue
-        if arg.startswith('-x2fam:'):  x2fam=arg[7:];              continue
-        if arg.startswith('-x3fam:'):  x3fam=arg[7:];              continue
-        if arg.startswith('-x4fam:'):  x4fam=arg[7:];              continue
-        if arg.startswith('-x5fam:'):  x5fam=arg[7:];              continue
-        if arg.startswith('-prod:'):   aprod=arg[6:];              continue
-        if arg.startswith('-target:'): target=arg[8:];             continue
-        if arg=='-sym':                symBorder=True;             continue
-        if arg=='-lines':              lines=True;                 continue
-        if arg=='-nogrp':              groupReactions=False;       continue
-#       if arg=='-sp':                 showSpectra=True;           continue	#not implemented
-        if arg=='-shape':              renorm2shapeOnly=True;      continue	#apply shape-renorm even for abs.units
-        if arg.startswith('-o:') and len(arg)>4: outhtml=arg[3:];  continue
-        if arg.startswith('-annot:'):  annot=str2annot(arg[7:]);   continue
-        if arg.startswith('-leg'):     str2legend(arg[4:]);        continue
-        if arg.lower().startswith('-a1:'):  a1=arg[4:];            continue
-        if arg.lower().startswith('-ds:'):  dsids=arg[4:];         continue
-        if arg.startswith('-w:'):           usr2where=arg[3:];     continue
-        if arg.startswith('-rsp1:') and len(arg)>7: myCurveFiles.append(arg[6:]); continue
-        if arg.startswith('-zdat:') and len(arg)>7: zvdatCurFiles.append(arg[6:]); continue
+#       print('   '+str(ii).ljust(2)+" arg: "+arg)
+        print('   '+str(ii).ljust(2)+" arg: "+arg.ljust(20)+" opt:"+("["+opt+"]").ljust(8)+" par:["+par+"]")
+        if opt=='xlog':   xtype='log';                continue
+        if opt=='ylog':   ytype='log';                continue
+        if opt=='bw':     bwColor=True;               continue
+        if opt=='T':      Tmxw=str2float(par);        continue
+        if opt=='Ei':     Einc=str2float(par);        continue
+        if opt=='x1':     x1max=x1min=str2float(par); continue
+        if opt=='x2':     x2max=x2min=str2float(par); continue
+        if opt=='x3':     x3max=x3min=str2float(par); continue
+        if opt=='x1min':  x1min=str2float(par);       continue
+        if opt=='x1max':  x1max=str2float(par);       continue
+        if opt=='x2min':  x2min=str2float(par);       continue
+        if opt=='x2max':  x2max=str2float(par);       continue
+        if opt=='x3min':  x3min=str2float(par);       continue
+        if opt=='x3max':  x3max=str2float(par);       continue
+        if opt=='symw':   msize=str2int(par,msize);   continue
+        if opt=='nmin':   nPntMin=str2int(par,1);     continue
+        if opt=='xmin':   xmin=str2float(par);        continue
+        if opt=='xmax':   xmax=str2float(par);        continue
+        if opt=='ymin':   ymin=str2float(par);        continue
+        if opt=='ymax':   ymax=str2float(par);        continue
+        if opt=='fx':     fx=str2float(par);          continue
+        if opt=='fy':     fy=str2float(par);          continue
+        if opt=='x':      xn=par;                     continue
+        if opt=='x1fam':  x1fam=par;                  continue
+        if opt=='x2fam':  x2fam=par;                  continue
+        if opt=='x3fam':  x3fam=par;                  continue
+        if opt=='x4fam':  x4fam=par;                  continue
+        if opt=='x5fam':  x5fam=par;                  continue
+        if opt=='prod':   aprod=par;                  continue
+        if opt=='target': target=par;                 continue
+        if opt=='sym':    symBorder=True;             continue
+        if opt=='lines':  lines=True;                 continue
+        if opt=='nogrp':  groupReactions=False;       continue
+#       if opt=='sp':     showSpectra=True;           continue	#not implemented
+        if opt=='shape':  renorm2shapeOnly=True;      continue	#apply shape-renorm even for abs.units
+        if opt=='w':      usr2where=par;              continue
+        if opt=='annot':  annot=str2annot(par);       continue
+        if opt=='leg':    str2legend(par);            continue
+        if opt.lower()=='a1':       a1=par;           continue
+        if opt.lower()=='ds':       dsids=par;        continue
+        if opt=='o' and par!='':    outhtml=par;      continue
+        if opt=='rsp1' and par!='': myCurveFiles.append(par);  continue
+        if opt=='zdat' and par!='': zvdatCurFiles.append(par); continue
         if arg.startswith('-'): continue
         reacodes.append(arg)
 #    sys.exit(1)
@@ -275,6 +276,10 @@ def main():
 #       with open("mxwCurve.json","w") as FF: json.dump(mxwCurve,FF,indent=1)
 #       sys.exit(2)
 
+#       ds1=getExp41171004()
+#       print(json.dumps(ds1,indent=2))
+#       datasets.append(ds1)
+
         if nPntMin>1:
             print("\n---filter only large datasets:"+str(len(datasets))+' nPntMin='+str(nPntMin))
             datasets=getDatasets_nPointsMin(datasets,nPntMin) #filter only large datasets
@@ -326,6 +331,8 @@ def main():
 	'BROND-3.1':"255,0,255",
 #	'ENDF/B-V':"127,127,127",
 	'MINKS-ACT':"255,80,80|dashdot",
+#	'JENDL/AC-2008':"0,80,255",
+#	'ADS-HE':"127,127,127",
 	}
 #   reqLibs={'ENDF/B-VIII.1':"0,80,255",'JEFF-3.3':"255,0,0|solid",}
 #   reqLibs={}
@@ -407,7 +414,7 @@ def main():
 
     myOfflinePlot(data1+data2
 	,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-27 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-29 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype
