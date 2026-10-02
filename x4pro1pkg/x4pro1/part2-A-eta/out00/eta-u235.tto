@@ -3,7 +3,7 @@ Author:  V.Zerkin, Vienna, 2026
 Purpose: Retrieve and plot EXFOR and ENDF data
          Eta: neutron yield per nonelastic even
 
-Running: 2026-09-27 21:53:59
+Running: 2026-10-02 13:54:06
 
 
 ---Arguments from command-line---
@@ -23,7 +23,7 @@ Running: 2026-09-27 21:53:59
    y-axis:  log     range: None
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 ---getX4SqlSearch_NUBAR: u-235 n,abs;n,non ,eta  and sf8='' 
 SQL:
@@ -41,7 +41,7 @@ order by fullCode,YearRef1 desc,DatasetID
  ,En,iPoint                               
 
 
-EXFOR SQL executed: 0.015sec rows:2732
+EXFOR SQL executed: 0.016sec rows:2732
 
 datapoints: 2732
 1) 22194002 1990 H.Weigmann 92-U-235(N,ABS),,ETA
@@ -93,15 +93,11 @@ Plot:22/22) #403500032 1956, P.E.Spivak pt:2
 
 ___webEndfDataForPlot_DADE: [u-235] [n,nu_tot] [&eta=18]
 ---wgetdb_get:/servlet/E4sSearch2?Target=u-235&Reaction=n,nu_tot&Quantity=*&json&mats
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=u-235&Reaction=n,nu_tot&Quantity=*&json&mats'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sSearch2?Target=u-235&Reaction=n,nu_tot&Quantity=*&json&mats
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 format=WebEndfSectionsList-0.1
 ___Retrieved sections:44
 SelectedLib-Sect:4) {'Targ': 'U-235', 'ZT': 92, 'AT': 235, 'NSUB': 10, 'MT': 452, 'MF': 1, 'R': 'N,nu_tot', 'RC': 'U-235(N,nu_tot),INFO', 'EvalID': 149933, 'SectID': 9024577, 'PenSectID': 13662330, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': 'FEB18', 'AUTH': 'IAEA Cielo Collaboration'}
@@ -110,29 +106,21 @@ ___Required sections:2
 WebReq:1) EvalID:149933 PenSectID:13662330 Lib:ENDF/B-VIII.0 Color:0,0,255
 /servlet/E4sGetSectData?EvalID=149933&PenSectID=13662330&json&eta=18
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662330&json&eta=18
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662330&json&eta=18'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149933&PenSectID=13662330&json&eta=18
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:1/1)		ENDF/B-VIII.0	EID:149933	SID:13662330	f(x):Eta(MT=18)	pts:86
 Downloaded:DS:1/1)		ENDF/B-VIII.0	EID:149933	SID:13662330	f(x):Eta(MT=18)	pts:86	idy=86
 WebReq:2) EvalID:307100 PenSectID:26469908 Lib:JEFF-4.0 Color:255,0,0
 /servlet/E4sGetSectData?EvalID=307100&PenSectID=26469908&json&eta=18
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=307100&PenSectID=26469908&json&eta=18
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=307100&PenSectID=26469908&json&eta=18'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=307100&PenSectID=26469908&json&eta=18
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:2/1)		JEFF-4.0	EID:307100	SID:26469908	f(x):Eta(MT=18)	pts:3351
 Downloaded:DS:2/1)		JEFF-4.0	EID:307100	SID:26469908	f(x):Eta(MT=18)	pts:3351	idy=3351
 ---e4datasets: 2

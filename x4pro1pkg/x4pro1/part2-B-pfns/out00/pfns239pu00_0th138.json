@@ -900,7 +900,7 @@
     "YearRef1": 1983,
     "Author1Ini": "V.N.",
     "Author1": "Nefedov",
-    "x4lbl": "1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.382MeV &#957;=2.86",
+    "x4lbl": "1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.382MeV v=2.86",
     "fx": 1000000.0,
     "fy": 1,
     "x": [
@@ -1038,7 +1038,7 @@
     "YearRef1": 1983,
     "Author1Ini": "V.N.",
     "Author1": "Nefedov",
-    "x4lbl": "1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.382MeV &#957;=2.86",
+    "x4lbl": "1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.382MeV v=2.86",
     "fx": 1000000.0,
     "fy": 1,
     "x": [
@@ -1232,7 +1232,7 @@
     "YearRef1": 1983,
     "Author1Ini": "B.I.",
     "Author1": "Starostov",
-    "x4lbl": "1983, B.I.Starostov Spe=2.53e-8MeV /abs:mxw/ T=1.382MeV &#957;=2.86",
+    "x4lbl": "1983, B.I.Starostov Spe=2.53e-8MeV /abs:mxw/ T=1.382MeV v=2.86",
     "fx": 1000000.0,
     "fy": 1,
     "x": [

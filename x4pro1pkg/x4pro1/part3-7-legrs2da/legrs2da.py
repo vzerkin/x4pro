@@ -148,7 +148,7 @@ e4datasets=webEndfDataForPlot_DADE(target,react,e4ei,reqLibs)
 data2=prepareEndfDataForPlot(e4datasets,'',True)
 
 #_________________Plot data from EXFOR and ENDF_________________
-myOfflinePlot(data1+data2,'Calculate angular distributions d\u03c3/d\u03a9(E,\u03B8) from LEG/RS: '+plotTitle
+myOfflinePlot(data1+data2,'Calculate angular distributions d&#963;/d&#937;(E,&#952;) from LEG/RS: '+plotTitle
 	+"<br>(Legendre coefficient L[0] is absent and cross section should be found in the same Entry)"
 	+'<br><i>X4Pro, by V.Zerkin, IAEA-NDS, 2021-2022, ver.2022-11-15 //running:'+ct+'</i>'
 	,'Angle (deg)'

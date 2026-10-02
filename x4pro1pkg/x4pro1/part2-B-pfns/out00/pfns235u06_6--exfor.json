@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-29T18:25:50"
+  "now":"2026-10-02T13:55:17"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -24,7 +24,7 @@
     ,"YearRef1":2025
     ,"Author1Ini":"B."
     ,"Author1":"Mauss"
-    ,"x4lbl":"2025, B.Mauss En=6.6MeV /abs/ T=1.32MeV &#957;=/1/"
+    ,"x4lbl":"2025, B.Mauss En=6.6MeV /abs/ T=1.32MeV v=/1/"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[

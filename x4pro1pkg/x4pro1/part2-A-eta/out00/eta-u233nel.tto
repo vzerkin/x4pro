@@ -3,7 +3,7 @@ Author:  V.Zerkin, Vienna, 2026
 Purpose: Retrieve and plot EXFOR and ENDF data
          Eta: neutron yield per nonelastic even
 
-Running: 2026-09-27 21:57:36
+Running: 2026-10-02 13:54:25
 
 
 ---Arguments from command-line---
@@ -22,7 +22,7 @@ Running: 2026-09-27 21:57:36
    y-axis:  log     range: None
 
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 ---getX4SqlSearch_NUBAR: u-233 n,el ,eta  and sf8='' 
 SQL:
@@ -49,7 +49,7 @@ datasets: 0
 
 ___webEndfDataForPlot_DADE: [u-233] [n,nu_tot] [&eta=2]
 ---wgetdb_get:/servlet/E4sSearch2?Target=u-233&Reaction=n,nu_tot&Quantity=*&json&mats
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
@@ -62,29 +62,21 @@ ___Required sections:2
 WebReq:1) EvalID:149931 PenSectID:13662060 Lib:ENDF/B-VIII.0 Color:0,0,255
 /servlet/E4sGetSectData?EvalID=149931&PenSectID=13662060&json&eta=2
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=149931&PenSectID=13662060&json&eta=2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149931&PenSectID=13662060&json&eta=2'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=149931&PenSectID=13662060&json&eta=2
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:1/1)		ENDF/B-VIII.0	EID:149931	SID:13662060	f(x):Eta(MT=2)	pts:15
 Downloaded:DS:1/1)		ENDF/B-VIII.0	EID:149931	SID:13662060	f(x):Eta(MT=2)	pts:15	idy=15
 WebReq:2) EvalID:307098 PenSectID:26469644 Lib:JEFF-4.0 Color:255,0,0
 /servlet/E4sGetSectData?EvalID=307098&PenSectID=26469644&json&eta=2
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=307098&PenSectID=26469644&json&eta=2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
 Connected to: [sqlite3]
 
----wgetdb_get---retrieved from wget_cache rows: 0
+---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=307098&PenSectID=26469644&json&eta=2'
-...wget_nds:URL:http://localhost:5557/exfor2/servlet/E4sGetSectData?EvalID=307098&PenSectID=26469644&json&eta=2
----wgetdb_put:http://localhost:5557/exfor2
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
-Connected to: [sqlite3]
 Download...DS:2/1)		JEFF-4.0	EID:307098	SID:26469644	f(x):Eta(MT=2)	pts:98
 Downloaded:DS:2/1)		JEFF-4.0	EID:307098	SID:26469644	f(x):Eta(MT=2)	pts:98	idy=98
 ---e4datasets: 2

@@ -215,7 +215,7 @@ yaxis={'title':'Cross section (mb)','showline':True,'linecolor':'black'#,'type':
 	,'showgrid':True, 'gridcolor':'#aaaaaa','ticks':'outside','type':ytype
 	,'zeroline':True, 'zerolinecolor':'#dddddd'#, 'zerolinewidth':0.1
 }
-plot1['layout']=Layout(title='EXFOR cross sections \u03c3(E): '+plotTitle
+plot1['layout']=Layout(title='EXFOR cross sections &#963;(E): '+plotTitle
 	+'<br><i>X4Pro, by V.Zerkin, IAEA-NDS, 2021-2022, ver.2022-11-09 //running:'+ct+'</i>'
 	,xaxis=xaxis,yaxis=yaxis
 	,plot_bgcolor='white'

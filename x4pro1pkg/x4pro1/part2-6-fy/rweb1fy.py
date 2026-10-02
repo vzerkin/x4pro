@@ -47,7 +47,7 @@ def webEndfDataForPlot_FYA(target,react,reqLibs,EiMin,EiMax,fx=1,fy=1):
         myColor=reqLibs.get(LibName)
         web1param='SectID='+str(SectID)
         print('WebReq:'+str(ii)+')'+' SectID:'+str(SectID)+' Lib:'+LibName+' Color:'+myColor+'\n'+web1prog+web1param)
-        txt=wget_nds(web1prog,web1param)
+        txt=wget_nds(web1prog,web1param,showtxt=LibName)
         if txt is None: continue
         #print('___webEndfDataForPlot_FYA::txt='+txt)
         try:

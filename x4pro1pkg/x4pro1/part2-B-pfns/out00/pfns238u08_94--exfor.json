@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-29T18:25:57"
+  "now":"2026-10-02T13:55:24"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -24,7 +24,7 @@
     ,"YearRef1":1980
     ,"Author1Ini":"N.V."
     ,"Author1":"Kornilov"
-    ,"x4lbl":"1980, N.V.Kornilov En=8.94MeV /abs/ T=1.32MeV &#957;=3.68"
+    ,"x4lbl":"1980, N.V.Kornilov En=8.94MeV /abs/ T=1.32MeV v=3.68"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[

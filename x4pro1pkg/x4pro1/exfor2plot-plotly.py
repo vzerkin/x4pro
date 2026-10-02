@@ -180,13 +180,13 @@ def myOfflinePlot(data1,ptitle,xtitle,ytitle
 
     #needs: $ pip3 install -U kaleido
     print("Will try---write_image: "+filename+".png")
-    sys.stderr.write("---Writeing image to: "+filename+".png"+" "+str(wwPng)+"x"+str(hhPng)+"\n")
+    sys.stderr.write("---Writing image to: "+filename+".png"+" "+str(wwPng)+"x"+str(hhPng)+"\n")
     try:
         t0=time.perf_counter()
 #       plotly.io.write_image(plot1,filename+'.png',width=1300,height=830)
         plotly.io.write_image(plot1,filename+'.png',width=wwPng,height=hhPng)
         dt=time.perf_counter()-t0
-        sys.stderr.write("---Writeing image finished "+str(round(dt,3))+"sec"+"\n")
+        sys.stderr.write("---Writing image finished "+str(round(dt,3))+"sec"+"\n")
     except Exception as ex:
         sys.stderr.write("---plotly.io.write_image---Exception-error: "+str(ex)+"\n")
         rows=[]

@@ -94,7 +94,7 @@ outX4Datasets(datasets,outhtml)
 
 data1=prepareExforDataForPlot(datasets,msize=10,groupReac=len(reacodes)>1,lines=True,lwidth=0.5)
 
-myOfflinePlot(data1,'Plot EXFOR angular distributions d\u03c3/d\u03a9(E,\u03B8): '+plotTitle
+myOfflinePlot(data1,'Plot EXFOR angular distributions d&#963;/d&#937;(E,&#952;): '+plotTitle
 	+'<br><i>X4Pro, by V.Zerkin, IAEA-NDS, 2021-2022, ver.2022-11-09 //running:'+ct+'</i>'
 	,'Incident energy (MeV)'
 	,'Cross section (mb/sr)'

@@ -29,11 +29,11 @@ def get_elist_fy(Target,Reaction,debug=False):
     return datasets
 
 
-def get_e4fy(SectID):
+def get_e4fy(SectID,LibName=''):
 #    print('---get_e4fy---'+str(SectID))
     params='SectID='+str(SectID)
     params+='&json'
-    txt=wget_nds(eweb1prog,params)
+    txt=wget_nds(eweb1prog,params,showtxt=LibName)
     #print('\n\n\n---txt::\n'+txt)
     return txt
 

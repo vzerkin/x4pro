@@ -10,7 +10,7 @@ import json
 import datetime
 
 #_________________Output EXFOR datasets ver.2025-01-23_________________
-def outX4Datasets(datasets,filename='temp',frmArray=1):
+def outX4Datasets(datasets,filename='temp',frmArray=1,outProg=True):
     if frmArray==1:
         save1obj2file(datasets,filename)
         return
@@ -19,7 +19,7 @@ def outX4Datasets(datasets,filename='temp',frmArray=1):
     ff=open(filename,'w')
     ff.write('{\n')
     ff.write('  "now":"'+ts.replace(' ','T')+'"'+'\n')
-    ff.write(' ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"\n')
+    if outProg: ff.write(' ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"\n')
     ii=0
     ff.write(' ,"datasets":[\n')
     for ds in datasets:

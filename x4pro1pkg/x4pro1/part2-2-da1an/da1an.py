@@ -166,7 +166,7 @@ my_file.close()
 
 
 #_________________Plot data from EXFOR and ENDF_________________
-myOfflinePlot(data1+data2,'EXFOR/ENDF angular distributions d\u03c3/d\u03a9(E,\u03B8): '+plotTitle
+myOfflinePlot(data1+data2,'EXFOR/ENDF angular distributions d&#963;/d&#937;(E,&#952;): '+plotTitle
 	+'  EXFOR-datasets:'+str(len(datasets))
 	+'<br><i>X4Pro, by V.Zerkin, IAEA-NRDC, 2021-2025, ver.2025-01-24 //run:'+ct+'</i>'
 	,'Angle (deg)'

@@ -21,7 +21,7 @@
     "YearRef1": 2020,
     "Author1Ini": "P.",
     "Author1": "Marini",
-    "x4lbl": "2020, P.Marini En=1.45MeV /abs/ T=1.32MeV &#957;=3.09",
+    "x4lbl": "2020, P.Marini En=1.45MeV /abs/ T=1.32MeV v=3.09",
     "fx": 1000000.0,
     "fy": 1,
     "x": [
@@ -307,7 +307,7 @@
     "YearRef1": 2014,
     "Author1Ini": "A.",
     "Author1": "Chatillon",
-    "x4lbl": "2014, A.Chatillon En=1.5MeV /abs/ T=1.32MeV &#957;=/1/",
+    "x4lbl": "2014, A.Chatillon En=1.5MeV /abs/ T=1.32MeV v=/1/",
     "fx": 1000000.0,
     "fy": 1,
     "x": [
@@ -453,7 +453,7 @@
     "YearRef1": 2014,
     "Author1Ini": "J.P.",
     "Author1": "Lestone",
-    "x4lbl": "2014, J.P.Lestone En=1.5MeV /abs/ T=1.32MeV &#957;=/1/",
+    "x4lbl": "2014, J.P.Lestone En=1.5MeV /abs/ T=1.32MeV v=/1/",
     "fx": 1000000.0,
     "fy": 1,
     "x": [

@@ -164,7 +164,7 @@ data2=prepareEndfDataForPlot(e4datasets,'',True,lwidth=2.8)
 #_________________Plot data from EXFOR and ENDF_________________
 #myOfflinePlot(data2+data1
 myOfflinePlot(data1+data2
-	,'Plot EXFOR/ENDF angular distributions d\u03c3/d\u03a9(E,\u03B8): '+plotTitle
+	,'Plot EXFOR/ENDF angular distributions d&#963;/d&#937;(E,&#952;): '+plotTitle
 	+'<br><i>X4Pro, by V.Zerkin, IAEA-NDS, 2021-2022, ver.2022-12-07 //running:'+ct+'</i>'
 	,'Incident energy (keV)'
 	,'Cross section (mb/sr)'

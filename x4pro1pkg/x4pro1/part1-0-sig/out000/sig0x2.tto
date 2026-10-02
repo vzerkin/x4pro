@@ -1,8 +1,8 @@
-Program: sig0x.py, ver. 2022-11-09
+Program: sig0x2.py, ver. 2022-11-09
 Author:  V.Zerkin, IAEA-NDS, Vienna, 2021-2022
 Purpose: Retrieve and plot EXFOR cross sections
 
-Running: 2026-09-27 21:39:09
+Running: 2026-10-02 13:40:02
 
 ---Retrieve EXFOR data from SQL database---
 ___getConnSQLite: file:../../x4sqlite1.db?mode=ro
@@ -16,7 +16,7 @@ where (Target like 'Al-27')
   and (Reaction like 'n,a') 
 
 
-EXFOR SQL executed: 0.01sec
+EXFOR SQL executed: 0.007sec
 
 ___getDatasets from datapoints: 699
 DS:1) 13-AL-27(N,A)11-NA-24,,SIG #31842017 2022,J.Jarosik
@@ -812,6 +812,12 @@ DS:92) 13-AL-27(N,A)11-NA-24-L,,SIG #10186002 1971,G.N.Salaita
 DS:93) 13-AL-27(N,A)11-NA-24-L,,SIG #40784004 1959,V.L.Glagolev
  pt:699/699) 13-AL-27(N,A)11-NA-24-L,,SIG 40784004 1959 V.L.Glagolev x:14.5 y:40.0 dy:18.0 dx:None
 datasets: 93
+
+Datasets: 93
+1) 13-AL-27(N,A)11-NA-24,,SIG
+2) 13-AL-27(N,A)11-NA-24-L,,SIG
+Reaction codes: 2 
+
 Plot:1/93) #31842017 2022, J.Jarosik pt:3
 Plot:2/93) #31834002 2020, D.Kral pt:1
 Plot:3/93) #33025010 2009, B.Lalremruata pt:1

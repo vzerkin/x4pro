@@ -116,7 +116,7 @@ if flagEndf:
 
 
 #_________________Plot data from EXFOR and ENDF_________________
-myOfflinePlot(data1+data2,'EXFOR/ENDF emission spectra d\u03c3/dEout: '+plotTitle
+myOfflinePlot(data1+data2,'EXFOR/ENDF emission spectra d&#963;/dEout: '+plotTitle
 	+'<br><i>X4Pro, by V.Zerkin, IAEA-NRDC, 2021-2024, ver.2024-09-02 //run:'+ct+'</i>'
 	,'Outgoing energy (MeV)'
 	,'Cross section (mb/MeV)'

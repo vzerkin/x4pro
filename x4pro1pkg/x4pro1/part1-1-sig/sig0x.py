@@ -85,7 +85,7 @@ outX4Datasets(datasets,outhtml)
 
 data1=prepareExforDataForPlot(datasets)
 
-myOfflinePlot(data1,'EXFOR cross sections \u03c3(E): '+plotTitle
+myOfflinePlot(data1,'EXFOR cross sections &#963;(E): '+plotTitle
 	+'<br><i>X4Pro, by V.Zerkin, IAEA-NDS, 2021-2022, ver.2022-11-09 //running:'+ct+'</i>'
 	,'Incident energy (MeV)'
 	,'Cross section (mb)'

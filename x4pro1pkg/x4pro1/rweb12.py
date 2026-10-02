@@ -21,7 +21,7 @@ def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="D
     datasets=[]
     print('\n___webEndfDataForPlot_DADE: ['+target+'] ['+react+'] ['+strPar+']')
     web0par='Target='+target+'&Reaction='+react+'&Quantity='+quantPrexix+'*&json&mats'
-    txt=wget_nds(web0prog,web0par)
+    txt=wget_nds(web0prog,web0par,showtxt="search")
     if txt is None: return datasets
 #    print('___1___txt='+txt)
 
@@ -55,7 +55,7 @@ def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="D
         web1param+=strPar
         print('WebReq:'+str(ii)+')'+' EvalID:'+str(EvalID)+' PenSectID:'+str(PenSectID)+' Lib:'+LibName+' Color:'+myColor+'\n'
 	+web1prog+web1param)
-        txt=wget_nds(web1prog,web1param)
+        txt=wget_nds(web1prog,web1param,showtxt=LibName)
         if txt is None: continue
         #print('___webEndfDataForPlot_DADE::txt='+txt)
 
@@ -63,9 +63,16 @@ def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="D
             obj2=json.loads(txt)
         except Exception as ex:
             print("___2___web-read-error: ",ex)
-            continue
+            txt=txt.replace('":inf','":0') #java servlet generates: "y":inf
+            try:
+                obj2=json.loads(txt)
+            except Exception as ex:
+                sys.stderr.write('___22___web-read-error: '+str(ex)+'\n')
+                print(txt)
+                continue
         dss=obj2['datasets']
         if (len(dss)<=0): continue
+#       sys.stderr.write('   downloaded datasets: '+str(len(dss))+' from '+LibName+'\n')
         for ds in dss:
             pts=ds['pts']
             print('Download...DS:'+str(ii)+'/'+str(len(dss))+')\t'+ds['REACTION']+'\t'+ds['LIBRARY']+'\tEID:'+str(EvalID)+'\tSID:'+str(PenSectID)+'\tf(x):'+ds['f(x)']+'\tpts:'+str(len(pts)))
@@ -121,6 +128,7 @@ def webEndfDataForPlot_DADE(target,react,strPar,reqLibs,fx=1,fy=1,quantPrexix="D
 #            if y[lx-1]==0 and y[lx-2]==0: del x[-1];del y[-1];del x[-1];del y[-1]
             if y[lx-1]==0 and y[lx-2]==0: del x[-1];del y[-1]
             print('Downloaded:DS:'+str(ii)+'/'+str(len(dss))+')\t'+ds['REACTION']+'\t'+ds['LIBRARY']+'\tEID:'+str(EvalID)+'\tSID:'+str(PenSectID)+'\tf(x):'+ds['f(x)']+'\tpts:'+str(len(pts))+'\tidy='+str(idy))
+#           sys.stderr.write('Downloaded dataset:'+ds['REACTION']+'\t'+ds['LIBRARY']+'\tf(x):'+ds['f(x)']+'\tpts:'+str(len(pts))+'\n')
     return datasets
 
 def getEndfDate(str0):

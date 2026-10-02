@@ -19,13 +19,15 @@ myVerify=True
 #web0='https://www-nds.atomstandard.ru/exfor'
 #myVerify=False
 
-put2db=True #save to database-cache
-get1db=True #get from database-cache before wget
+put2db=True	#save to database-cache
+get1db=True	#get from database-cache before wget
+#get1db=False	#always get data from remote Web-system via Web-API
+#put2db=False	#do not try to save downloaded data to database-cache
 
-def wget_nds(prog,params,debug=False):
+def wget_nds(prog,params,showtxt="",debug=False):
     #print('---wget_nds---')
 #   sys.stderr.write("---wget_nds---"+api0url+prog+params+"\n")
-    sys.stderr.write("---wget_nds---"+api0url+prog+"..."+"\n")
+    sys.stderr.write("---wget_nds---"+api0url+prog+"..."+showtxt+"\n")
     txt=None
     txtFromWeb=False
     if get1db:

@@ -1,5 +1,5 @@
 {
-  "now":"2026-09-29T18:25:40"
+  "now":"2026-10-02T13:55:05"
  ,"program":"X4Pro, by V.Zerkin, Vienna, ver.2025-01-23"
  ,"datasets":[
    {
@@ -410,7 +410,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"V.N."
     ,"Author1":"Nefedov"
-    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.31MeV &#957;=2.43"
+    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.31MeV v=2.43"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -469,7 +469,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"V.N."
     ,"Author1":"Nefedov"
-    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.31MeV &#957;=2.43"
+    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.31MeV v=2.43"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -542,7 +542,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"V.N."
     ,"Author1":"Nefedov"
-    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.31MeV &#957;=2.43"
+    ,"x4lbl":"1983, V.N.Nefedov Spe=2.53e-8MeV /abs:mxw/ T=1.31MeV v=2.43"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[
@@ -615,7 +615,7 @@
     ,"YearRef1":1983
     ,"Author1Ini":"B.I."
     ,"Author1":"Starostov"
-    ,"x4lbl":"1983, B.I.Starostov Spe=2.53e-8MeV /abs:mxw/ T=1.31MeV &#957;=2.43"
+    ,"x4lbl":"1983, B.I.Starostov Spe=2.53e-8MeV /abs:mxw/ T=1.31MeV v=2.43"
     ,"fx":1000000.0
     ,"fy":1
     ,"x_y_dy_dx_fc":[

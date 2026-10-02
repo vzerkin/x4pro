@@ -56,7 +56,7 @@ def webEndfDataForPlot_SIG(target,react,strPar,reqLibs,fx=1,fy=1,eMinEv=None,eMa
         PenSectID=sect1['PenSectID']
         myColor=reqLibs.get(LibName)
         web1param='PenSectID='+str(PenSectID)+'&json'
-        txt=wget_nds(web1prog,web1param)
+        txt=wget_nds(web1prog,web1param,showtxt=LibName)
         if txt is None: continue
 
         try:

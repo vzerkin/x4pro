@@ -88,7 +88,7 @@ outX4Datasets(datasets,outhtml)
 
 data1=prepareExforDataForPlot(datasets,msize=8,groupReac=len(reacodes)>1,lines=True,lwidth=0.5)
 
-myOfflinePlot(data1,'Plot EXFOR emission spectra d\u03c3/dEout: '+plotTitle
+myOfflinePlot(data1,'Plot EXFOR emission spectra d&#963;/dEout: '+plotTitle
 	+'<br><i>X4Pro, by V.Zerkin, IAEA-NDS, 2021-2022, ver.2022-12-20 //running:'+ct+'</i>'
 	,'Outgoing energy (MeV)'
 	,'Cross section (mb/MeV)'

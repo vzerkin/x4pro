@@ -4,7 +4,7 @@
   | Purpose: Retrieve and plot any type of  |
   |          data from local EXFOR database |
   +-----------------------------------------+
-Running: 2026-09-27 21:39:51
+Running: 2026-10-02 13:52:30
 
 ---Arguments from command-line---
    1  arg: -o:sig1p
@@ -32,7 +32,7 @@ Running: 2026-09-27 21:39:51
    x4ei:       and x1<=10000000.0 and x2>=478000.0 and x2<=478000.0
 
 ---Connect to SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
    Connected to: [sqlite3]
 
 ---Print summary---

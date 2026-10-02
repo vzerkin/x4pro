@@ -20,12 +20,13 @@ from exfor2plot import * #plot by plotly/matplotlib
 from endf2plot  import *
 from readMaslovSp1 import *
 from readZvdat import *
+from readExpData import *
 
 #-------------------------------------------------------------------------------
 def main():
 
     print('  +-----------------------------------------+')
-    print('  | Program: reac2pfns.py, ver.2026-09-29   |')
+    print('  | Program: reac2pfns.py, ver.2026-10-01   |')
     print('  | Author:  V.Zerkin, Vienna, 2021-2026    |')
     print('  | Purpose: Retrieve and plot any type of  |')
     print('  |          data from local EXFOR database |')
@@ -53,6 +54,7 @@ def main():
     groupReac=False
     groupReactions=True
     msize=8
+    msize=9
     lwidth=0.9
     symBorder=False
     annot=None
@@ -69,8 +71,10 @@ def main():
     bwColor=False
     myCurveFiles=[]
     zvdatCurFiles=[]
+    myExpFiles=[]
 #   showSpectra=True
     renorm2shapeOnly=False
+    allLibs=True
 
 #---default for ENDF if EXFOR is not found
     target=None
@@ -152,9 +156,8 @@ def main():
     print('\n---Arguments from command-line---')
     for ii,arg in enumerate(sys.argv):
         if (ii==0): continue
-        opt,par=str2option(arg) #todo:2026-09-29
+        opt,par=str2option(arg) #todo:2026-10-01
 #       print('   '+str(ii).ljust(2)+" arg:"+arg.ljust(15)+" opt:["+opt+"] par:["+par+"]")
-#tst    continue
         if arg=='-h':		print(getHelp());	sys.exit(0)
         if arg=='-help':	print(getHelp());	sys.exit(0)
         if arg=='--h':		print(getHelp());	sys.exit(0)
@@ -204,6 +207,7 @@ def main():
         if opt=='o' and par!='':    outhtml=par;      continue
         if opt=='rsp1' and par!='': myCurveFiles.append(par);  continue
         if opt=='zdat' and par!='': zvdatCurFiles.append(par); continue
+        if opt=='exp1' and par!='': myExpFiles.append(par);  continue
         if arg.startswith('-'): continue
         reacodes.append(arg)
 #    sys.exit(1)
@@ -276,9 +280,10 @@ def main():
 #       with open("mxwCurve.json","w") as FF: json.dump(mxwCurve,FF,indent=1)
 #       sys.exit(2)
 
-#       ds1=getExp41171004()
-#       print(json.dumps(ds1,indent=2))
-#       datasets.append(ds1)
+        for ii,myExpFile in enumerate(myExpFiles):
+            sys.stderr.write("---Read EXFOR data from external file "+myExpFile+"\n")
+            dss=readFileExpData(myExpFile,fx0=fx,fy0=fy)
+            if dss is not None: datasets+=dss
 
         if nPntMin>1:
             print("\n---filter only large datasets:"+str(len(datasets))+' nPntMin='+str(nPntMin))
@@ -336,6 +341,29 @@ def main():
 	}
 #   reqLibs={'ENDF/B-VIII.1':"0,80,255",'JEFF-3.3':"255,0,0|solid",}
 #   reqLibs={}
+
+    if allLibs:
+        reqLibs={
+	'ENDF/B-VIII.1':"0,80,255|longdashdot",
+	'ENDF/B-VIII.0':"0,0,255|dashdot|2",	#dash | dot | dashdot
+	'ENDF/B-VII.1':"200,0,255|dashdot|2",
+	'INDEN-Aug2023':"0,80,255",
+	'JENDL-5':"0,200,0",
+	'JEFF-4.0':"0,127,255",
+	'JEFF-3.3':"0,255,127|dot|2",
+	'JEFF-3.1':"0,255,255|dashdot|2",
+	'JEF-2.2':"80,255,255|dot|2",
+	'CENDL-3.2':"255,0,0",
+	'BROND-3.1':"255,0,255",
+	'ENDF/B-V':"127,127,127|dash|2",
+#	'MINKS-ACT':"255,80,80|dashdot",
+#	'MINKS-ACT':"0,127,0|solid|6",
+#	'MINKS-ACT':"0,0,192|solid|6",
+#	'MINKS-ACT':"192,0,32|solid|6",
+	'MINKS-ACT':"255,0,80|solid|6",
+	'JENDL/AC-2008':"0,80,255|dot",
+	'ADS-HE':"127,127,255|dot",
+	}
 
     if flagEndf:
         if len(datasets)>0:
@@ -414,7 +442,7 @@ def main():
 
     myOfflinePlot(data1+data2
 	,'Reaction:'+plotTitle
-	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-09-29 //running:'+ct+'</i>'
+	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2026, ver.2026-10-01 //running:'+ct+'</i>'
 	,xtitle
 	,ytitle
 	,xtype=xtype,ytype=ytype

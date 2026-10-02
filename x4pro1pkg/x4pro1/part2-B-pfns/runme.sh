@@ -1,6 +1,20 @@
 source ../mypython3.sh
 set -x
 
+bash run-u233.sh
+bash run-u235.sh
+
+ bash run-u233.sh
+ bash run-u235.sh
+ bash run-u238.sh
+ bash run-pu239.sh
+ bash run-th232.sh
+ bash run-np237.sh
+ bash run-pu242.sh
+ bash run-test-abs.sh
+
+exit
+
 #---U-233
 #if [ 1 = 0 ] ; then
 

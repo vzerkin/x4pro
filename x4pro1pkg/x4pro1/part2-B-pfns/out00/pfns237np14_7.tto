@@ -1,0 +1,363 @@
+  +-----------------------------------------+
+  | Program: reac2pfns.py, ver.2026-10-01   |
+  | Author:  V.Zerkin, Vienna, 2021-2026    |
+  | Purpose: Retrieve and plot any type of  |
+  |          data from local EXFOR database |
+  +-----------------------------------------+
+Running: 2026-10-02 13:56:04
+
+---Arguments from command-line---
+   1  arg: -o:pfns237np14_7     opt:[o]      par:[pfns237np14_7]
+   2  arg: target:Np-237        opt:[target] par:[Np-237]
+   3  arg: -exp1:exp41171004.txt opt:[exp1]   par:[exp41171004.txt]
+   4  arg: -leg                 opt:[leg]    par:[]
+   5  arg: -Ei:14.7e6           opt:[Ei]     par:[14.7e6]
+   6  arg: -T:1.369e6           opt:[T]      par:[1.369e6]
+   7  arg: -nogrp               opt:[nogrp]  par:[]
+   8  arg: -x1min:14e6          opt:[x1min]  par:[14e6]
+   9  arg: -x1max:15e6          opt:[x1max]  par:[15e6]
+   10 arg: -xlog                opt:[xlog]   par:[]
+   11 arg: -fx:1e6              opt:[fx]     par:[1e6]
+   12 arg: -xmin:0.03           opt:[xmin]   par:[0.03]
+   13 arg: -xmax:30             opt:[xmax]   par:[30]
+   14 arg: -ymin:0.2            opt:[ymin]   par:[0.2]
+   15 arg: -ymax:2.8            opt:[ymax]   par:[2.8]
+   16 arg: -sym                 opt:[sym]    par:[]
+   17 arg: -symw=10             opt:[symw]   par:[10]
+   18 arg: 93-NP-237(N,F),PR,NU/DE* opt:[93-NP-237(N,F),PR,NU/DE*] par:[]
+   19 arg: -annot:0.2,2.7,<sup>237</sup>Np(n<sub>14.7MeV</sub>,f)PFNS (T=1.369MeV) opt:[annot]  par:[0.2,2.7,<sup>237</sup>Np(n<sub>14.7MeV</sub>,f)PFNS (T=1.369MeV)]
+   ---str2annot:[0.2,2.7,<sup>237</sup>Np(n<sub>14.7MeV</sub>,f)PFNS (T=1.369MeV)] --> ('<sup>237</sup>Np(n<sub>14.7MeV</sub>,f)PFNS (T=1.369MeV)', 0.2, 2.7)
+
+---Input:
+   Reaction:  ['93-NP-237(N,F),PR,NU/DE*']
+   xn:        x2
+   x1range:   14000000.0 - 15000000.0
+   x2range:   None - None
+   x3range:   None - None
+   fx:        1000000.0
+   fy:        1
+   nPntMin:   1
+   xrange:    [0.03, 30.0]
+   yrange:    [0.2, 2.8]
+   Output:    pfns237np14_7
+   x4ei:       and x1>=14000000.0 and x1<=15000000.0
+   legendInside:  True
+
+---Connect to SQL database---
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+   Connected to: [sqlite3]
+
+---Print summary---
+Summary of Reaction-Codes 1
+----1.
+    fullCode       93-NP-237(N,F),PR,NU/DE
+    ReactionType   NUE        Neutron yield dep.on sec.particle energy
+    WebQuantity1   MFQ        Differential fission neutron multiplicities
+    nx             2          Number of x (independent variables)
+    y     c5data   PC/FIS/MEV Data: data                           ///particl. per 100 fissions per MeV
+    x1    EN       EV         Incident energy: energy              ///electron-Volts
+    x2    E2       EV         Secondary energy: particle energy    ///electron-Volts
+/Summary of Reaction-Codes
+Summary of Units 2
+---basicUnits:PC/FIS/MEV  category:FYDE
+   FYDE 1/3   PC/FIS/MEV  1e-08           particl. per 100 fissions per MeV
+   FYDE 2/3   PD/FIS/MEV  1e-06           products per fission per MeV
+   FYDE 3/3   PT/FIS/MEV  1e-06           particles per fission per MeV
+---basicUnits:EV          category:E
+   E    1/8   NANO-EV     1e-09           nano-Electron-Volts
+   E    2/8   MICRO-EV    1e-06           micro-Electron-Volts
+   E    3/8   MILLI-EV    0.001           milli-Electron-Volts
+   E    4/8   EV          1.0             electron-Volts
+   E    5/8   KEV         1000.0          keV
+   E    6/8   MEV         1000000.0       MeV
+   E    7/8   GEV         1000000000.0    GeV
+   E    8/8   TEV         1000000000000.0 tera-Electron-Volts
+/Summary of Units
+
+---Retrieve EXFOR data from SQL database---
+---getX4SqlSearch_Reacodes: xn= x2  reacodes: ['93-NP-237(N,F),PR,NU/DE*']
+SQL:
+select distinct                                            
+ uni2.DatasetID,fullCode,iPoint                            
+ ,YearRef1,uni2.Author1Ini,uni2.Author1                    
+ ,Target,Reaction,Quant,SF8,uni2.MF,uni2.MT,yformula       
+ ,yval,ShortHelp,SF8                                       
+ ,uni2.Author1 as a1                                       
+ ,uni2.DatasetID as dsid                                   
+ ,x1,x2,x3,x4,x5,dx1,dx2,dx3,dx4,dx5                       
+ ,y  as YY, dy  as dYY                                     
+ ,x2 as XX, dx2 as dXX                             
+ ,hy.BasicUnits as yBasicUnits, hy.expansion as yexpansion 
+ ,hx.BasicUnits as xBasicUnits, hx.expansion as xexpansion 
+ ,hx1.BasicUnits as x1BasicUnits, hx1.famCode as x1family  
+ ,hx2.BasicUnits as x2BasicUnits, hx2.famCode as x2family  
+ ,hx3.BasicUnits as x3BasicUnits, hx3.famCode as x3family  
+ ,hx4.BasicUnits as x4BasicUnits, hx4.famCode as x4family  
+ ,hx5.BasicUnits as x5BasicUnits, hx5.famCode as x5family  
+ ,json_extract(x4cdat.xdat,'$.KT-NRM') as KT_NRM           
+ from uni2                                                 
+ left join DICT036 on DICT036.Code=uni2.SF58               
+ join x4pro_ds  as ds on ds.DatasetID=uni2.DatasetID       
+ inner join x4pro_x4cdat as x4cdat on x4cdat.DatasetID=uni2.DatasetID        
+ join x4pro_hdr as hy on hy.DatasetID=uni2.DatasetID and hy.hdr='y'          
+ join x4pro_hdr as hx on hx.DatasetID=uni2.DatasetID and hx.hdr='x2'     
+ left join x4pro_hdr as hx1 on hx1.DatasetID=uni2.DatasetID and hx1.hdr='x1' 
+ left join x4pro_hdr as hx2 on hx2.DatasetID=uni2.DatasetID and hx2.hdr='x2' 
+ left join x4pro_hdr as hx3 on hx3.DatasetID=uni2.DatasetID and hx3.hdr='x3' 
+ left join x4pro_hdr as hx4 on hx4.DatasetID=uni2.DatasetID and hx4.hdr='x4' 
+ left join x4pro_hdr as hx5 on hx5.DatasetID=uni2.DatasetID and hx5.hdr='x5' 
+ where 1=1 
+ and (
+  (fullCode like '93-NP-237(N,F),PR,NU/DE%')
+ ) 
+ and x1>=14000000.0 and x1<=15000000.0   and YY>0  order by fullCode,YearRef1 desc,uni2.DatasetID 
+ ,x1,x2,x2,x4,x5,iPoint                    
+
+   Retrieved rows: 0
+
+---Extract EXFOR data from recordsets (rows)---
+
+---getDatasets4plot---datapoints:0 xn=x2  fx=1.0e-06 fy=1.0e+00
+---outDatasets:0 datasets:0
+---ENTRY: 
+datasets: 0
+---No data found---
+---readFileExpData/json: exp41171004.txt
+---readFileExpData:  1
+--0--datasets2mxwRatio: datasets:1 oper:None Tm:1369000.0
+	Dataset:0/1) 93-NP-237(N,F),PR,NU/DE 41171004-todo Pt:35   1994, G.S.Boykov Einc:14.7MeV
+---getAbs2MxwFactor.Target: Np-237  En: 14700000.0  Nubar: 4.760974299999617
+  PFNS re-normalisation to Maxwellian 0.21004104138938123 PC/FIS/MEV
+---dataset2mxwRatio---Target:[Np-237] 1/FSP=4.760974299999617
+	    0) E:4.2e+05     y0:1.5242e-06  *FSP:0.21004     y1:3.2014e-07  /FC:3.3592e-07  yy:0.95301    
+	    1) E:4.6e+05     y0:1.4678e-06  *FSP:0.21004     y1:3.0829e-07  /FC:3.4143e-07  yy:0.90294    
+	    2) E:5.1e+05     y0:1.5241e-06  *FSP:0.21004     y1:3.2012e-07  /FC:3.4661e-07  yy:0.92356    
+	    3) E:5.6e+05     y0:1.6622e-06  *FSP:0.21004     y1:3.4913e-07  /FC:3.5018e-07  yy:0.99699    
+	    4) E:6.2e+05     y0:1.6507e-06  *FSP:0.21004     y1:3.4671e-07  /FC:3.5266e-07  yy:0.98313    
+	    5) E:6.7e+05     y0:1.6445e-06  *FSP:0.21004     y1:3.454e-07   /FC:3.5346e-07  yy:0.97721    
+	    6) E:7.5e+05     y0:1.5743e-06  *FSP:0.21004     y1:3.3067e-07  /FC:3.5274e-07  yy:0.93744    
+	    7) E:8.2e+05     y0:1.5556e-06  *FSP:0.21004     y1:3.2674e-07  /FC:3.5045e-07  yy:0.93235    
+	    8) E:9.1e+05     y0:1.5273e-06  *FSP:0.21004     y1:3.2079e-07  /FC:3.4569e-07  yy:0.92797    
+	    9) E:9.9e+05     y0:1.4948e-06  *FSP:0.21004     y1:3.1396e-07  /FC:3.401e-07   yy:0.92315    
+	   10) E:1.11e+06    y0:1.4304e-06  *FSP:0.21004     y1:3.0045e-07  /FC:3.299e-07   yy:0.91073    
+	   11) E:1.22e+06    y0:1.3501e-06  *FSP:0.21004     y1:2.8357e-07  /FC:3.1916e-07  yy:0.88849    
+	   12) E:1.33e+06    y0:1.3212e-06  *FSP:0.21004     y1:2.7751e-07  /FC:3.0751e-07  yy:0.90246    
+	   13) E:1.48e+06    y0:1.2453e-06  *FSP:0.21004     y1:2.6156e-07  /FC:2.9072e-07  yy:0.89972    
+	   14) E:1.62e+06    y0:1.1831e-06  *FSP:0.21004     y1:2.4849e-07  /FC:2.7459e-07  yy:0.90494    
+	   15) E:1.8e+06     y0:1.0792e-06  *FSP:0.21004     y1:2.2667e-07  /FC:2.5378e-07  yy:0.89318    
+	   16) E:1.97e+06    y0:1.0033e-06  *FSP:0.21004     y1:2.1074e-07  /FC:2.3449e-07  yy:0.89869    
+	   17) E:2.17e+06    y0:9.0697e-07  *FSP:0.21004     y1:1.905e-07   /FC:2.1266e-07  yy:0.89581    
+	   18) E:2.39e+06    y0:8.1595e-07  *FSP:0.21004     y1:1.7138e-07  /FC:1.9005e-07  yy:0.9018     
+	   19) E:2.63e+06    y0:7.1561e-07  *FSP:0.21004     y1:1.5031e-07  /FC:1.673e-07   yy:0.89842    
+	   20) E:2.9e+06     y0:6.3434e-07  *FSP:0.21004     y1:1.3324e-07  /FC:1.4423e-07  yy:0.92375    
+	   21) E:3.21e+06    y0:5.4109e-07  *FSP:0.21004     y1:1.1365e-07  /FC:1.21e-07    yy:0.93927    
+	   22) E:3.53e+06    y0:4.563e-07   *FSP:0.21004     y1:9.5843e-08  /FC:1.0044e-07  yy:0.95425    
+	   23) E:3.88e+06    y0:3.6828e-07  *FSP:0.21004     y1:7.7355e-08  /FC:8.1544e-08  yy:0.94862    
+	   24) E:4.29e+06    y0:2.9113e-07  *FSP:0.21004     y1:6.115e-08   /FC:6.3554e-08  yy:0.96217    
+	   25) E:4.72e+06    y0:2.2587e-07  *FSP:0.21004     y1:4.7442e-08  /FC:4.8694e-08  yy:0.97429    
+	   26) E:5.2e+06     y0:1.723e-07   *FSP:0.21004     y1:3.6189e-08  /FC:3.5994e-08  yy:1.0054     
+	   27) E:5.73e+06    y0:1.24e-07    *FSP:0.21004     y1:2.6046e-08  /FC:2.5655e-08  yy:1.0152     
+	   28) E:6.29e+06    y0:9.2178e-08  *FSP:0.21004     y1:1.9361e-08  /FC:1.7855e-08  yy:1.0843     
+	   29) E:6.94e+06    y0:6.5102e-08  *FSP:0.21004     y1:1.3674e-08  /FC:1.1666e-08  yy:1.1721     
+	   30) E:7.67e+06    y0:4.3834e-08  *FSP:0.21004     y1:9.207e-09   /FC:7.1954e-09  yy:1.2796     
+	   31) E:8.46e+06    y0:2.8266e-08  *FSP:0.21004     y1:5.9371e-09  /FC:4.2435e-09  yy:1.3991     
+	   32) E:9.33e+06    y0:1.0627e-08  *FSP:0.21004     y1:2.2322e-09  /FC:2.3604e-09  yy:0.94566    
+	   33) E:1.029e+07   y0:4.5833e-09  *FSP:0.21004     y1:9.6267e-10  /FC:1.2295e-09  yy:0.78301    
+	   34) E:1.135e+07   y0:2.8838e-09  *FSP:0.21004     y1:6.0572e-10  /FC:5.953e-10   yy:1.0175     
+
+---Output EXFOR datasets to JSON file---
+Plot:1/1) #41171004-todo 1994, G.S.Boykov Einc:14.7MeV /abs/ T=1.369MeV v=4.76 pt:35
+
+___webEndfDataForPlot_DADE: [Np-237] [N,F] [&mf=5&mt=18&ei=14700000.0&T=1369000.0]
+---wgetdb_get:/servlet/E4sSearch2?Target=Np-237&Reaction=N,F&Quantity=*&json&mats
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=Np-237&Reaction=N,F&Quantity=*&json&mats'
+format=WebEndfSectionsList-0.1
+___Retrieved sections:44
+SelectedLib-Sect:1) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 301570, 'SectID': 21471755, 'PenSectID': 26306028, 'LibID': 810, 'LibName': 'ENDF/B-VIII.1', 'DATE': '20240830', 'AUTH': 'P.Young,E.Arthur,F.Mann,T.Kawano'}
+SelectedLib-Sect:2) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 149944, 'SectID': 9026017, 'PenSectID': 13663770, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20111222', 'AUTH': 'P.Young,E.Arthur,F.Mann,T.Kawano'}
+SelectedLib-Sect:3) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 57668, 'SectID': 2293079, 'PenSectID': 7665738, 'LibID': 75, 'LibName': 'ENDF/B-VII.1', 'DATE': '20111222', 'AUTH': 'P.Young,E.Arthur,F.Mann,T.Kawano'}
+SelectedLib-Sect:5) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 307109, 'SectID': 21644610, 'PenSectID': 26471381, 'LibID': 3400, 'LibName': 'JEFF-4.0', 'DATE': 'DEC17', 'AUTH': 'P.Young,E.Arthur,F.Mann,T.Kawano'}
+SelectedLib-Sect:6) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 150959, 'SectID': 9139708, 'PenSectID': 13777267, 'LibID': 3300, 'LibName': 'JEFF-3.3', 'DATE': '20171231', 'AUTH': 'P.Young,E.Arthur,F.Mann,T.Kawano'}
+SelectedLib-Sect:9) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 23218, 'SectID': 559321, 'PenSectID': 7575134, 'LibID': 3100, 'LibName': 'JEFF-3.1', 'DATE': '090105', 'AUTH': 'P.Young, E.Arthur, F.Mann'}
+SelectedLib-Sect:10) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 226914, 'SectID': 14605840, 'PenSectID': 19241653, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': '20130704', 'AUTH': 'O.Iwamoto,T.Nakagawa,S.Chiba,+'}
+SelectedLib-Sect:16) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 118849, 'SectID': 6091036, 'PenSectID': 10752524, 'LibID': 41031, 'LibName': 'BROND-3.1', 'DATE': 'DEC01', 'AUTH': 'Ignatyuk A.V. et al.'}
+SelectedLib-Sect:19) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 199298, 'SectID': 14200157, 'PenSectID': 18873606, 'LibID': 5040, 'LibName': 'CENDL-3.2', 'DATE': 'SEP03', 'AUTH': 'G.C.Chen,G.Y.Tang,C.H.Cai+'}
+SelectedLib-Sect:28) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 7245, 'SectID': 60016, 'PenSectID': 7550174, 'LibID': 2220, 'LibName': 'JEF-2.2', 'DATE': '920101', 'AUTH': 'Scientific Co-Ordination Group'}
+SelectedLib-Sect:32) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 19906, 'SectID': 424503, 'PenSectID': 6476058, 'LibID': 6037, 'LibName': 'JENDL/AC-2008', 'DATE': '20080301', 'AUTH': 'O.Iwamoto,T.Nakagawa,S.Chiba,+'}
+SelectedLib-Sect:35) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 175029, 'SectID': 11052554, 'PenSectID': 15684714, 'LibID': 52030, 'LibName': 'MINKS-ACT', 'DATE': '', 'AUTH': '0'}
+SelectedLib-Sect:41) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 78569, 'SectID': 3093915, 'PenSectID': 6551606, 'LibID': 50, 'LibName': 'ENDF/B-V', 'DATE': '0', 'AUTH': 'Mann,Benjamin,Smith,Stein,Reich,+'}
+SelectedLib-Sect:42) {'Targ': 'NP-237', 'ZT': 93, 'AT': 237, 'NSUB': 10, 'MT': 18, 'MF': 3, 'R': 'N,F', 'RC': 'NP-237(N,F),SIG', 'EvalID': 199875, 'SectID': 14224986, 'PenSectID': 19346406, 'LibID': 39031, 'LibName': 'ADS-HE', 'DATE': 'SEP13', 'AUTH': 'IAEA/Nds'}
+___Required sections:14
+WebReq:1) EvalID:301570 PenSectID:26306028 Lib:ENDF/B-VIII.1 Color:0,80,255|longdashdot
+/servlet/E4sGetSectData?EvalID=301570&PenSectID=26306028&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=301570&PenSectID=26306028&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=301570&PenSectID=26306028&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+___2___web-read-error:  Expecting value: line 18 column 15 (char 491)
+Download...DS:1/1)	93-Np-237(N,F),DE	ENDF/B-VIII.1	EID:301570	SID:26306028	f(x):Ratio to Mxw (T=1.369MeV)	pts:249
+Downloaded:DS:1/1)	93-Np-237(N,F),DE	ENDF/B-VIII.1	EID:301570	SID:26306028	f(x):Ratio to Mxw (T=1.369MeV)	pts:249	idy=0
+WebReq:2) EvalID:149944 PenSectID:13663770 Lib:ENDF/B-VIII.0 Color:0,0,255|dashdot|2
+/servlet/E4sGetSectData?EvalID=149944&PenSectID=13663770&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=149944&PenSectID=13663770&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=149944&PenSectID=13663770&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+___2___web-read-error:  Expecting value: line 18 column 15 (char 491)
+Download...DS:2/1)	93-Np-237(N,F),DE	ENDF/B-VIII.0	EID:149944	SID:13663770	f(x):Ratio to Mxw (T=1.369MeV)	pts:249
+Downloaded:DS:2/1)	93-Np-237(N,F),DE	ENDF/B-VIII.0	EID:149944	SID:13663770	f(x):Ratio to Mxw (T=1.369MeV)	pts:249	idy=0
+WebReq:3) EvalID:57668 PenSectID:7665738 Lib:ENDF/B-VII.1 Color:200,0,255|dashdot|2
+/servlet/E4sGetSectData?EvalID=57668&PenSectID=7665738&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=57668&PenSectID=7665738&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=57668&PenSectID=7665738&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+___2___web-read-error:  Expecting value: line 18 column 15 (char 489)
+Download...DS:3/1)	93-Np-237(N,F),DE	ENDF/B-VII.1	EID:57668	SID:7665738	f(x):Ratio to Mxw (T=1.369MeV)	pts:249
+Downloaded:DS:3/1)	93-Np-237(N,F),DE	ENDF/B-VII.1	EID:57668	SID:7665738	f(x):Ratio to Mxw (T=1.369MeV)	pts:249	idy=0
+WebReq:4) EvalID:307109 PenSectID:26471381 Lib:JEFF-4.0 Color:0,127,255
+/servlet/E4sGetSectData?EvalID=307109&PenSectID=26471381&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=307109&PenSectID=26471381&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=307109&PenSectID=26471381&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+___2___web-read-error:  Expecting value: line 18 column 15 (char 486)
+Download...DS:4/1)	93-Np-237(N,F),DE	JEFF-4.0	EID:307109	SID:26471381	f(x):Ratio to Mxw (T=1.369MeV)	pts:249
+Downloaded:DS:4/1)	93-Np-237(N,F),DE	JEFF-4.0	EID:307109	SID:26471381	f(x):Ratio to Mxw (T=1.369MeV)	pts:249	idy=0
+WebReq:5) EvalID:150959 PenSectID:13777267 Lib:JEFF-3.3 Color:0,255,127|dot|2
+/servlet/E4sGetSectData?EvalID=150959&PenSectID=13777267&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=150959&PenSectID=13777267&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=150959&PenSectID=13777267&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+___2___web-read-error:  Expecting value: line 18 column 15 (char 486)
+Download...DS:5/1)	93-Np-237(N,F),DE	JEFF-3.3	EID:150959	SID:13777267	f(x):Ratio to Mxw (T=1.369MeV)	pts:249
+Downloaded:DS:5/1)	93-Np-237(N,F),DE	JEFF-3.3	EID:150959	SID:13777267	f(x):Ratio to Mxw (T=1.369MeV)	pts:249	idy=0
+WebReq:6) EvalID:23218 PenSectID:7575134 Lib:JEFF-3.1 Color:0,255,255|dashdot|2
+/servlet/E4sGetSectData?EvalID=23218&PenSectID=7575134&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=23218&PenSectID=7575134&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=23218&PenSectID=7575134&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+___2___web-read-error:  Expecting value: line 18 column 15 (char 485)
+Download...DS:6/1)	93-Np-237(N,F),DE	JEFF-3.1	EID:23218	SID:7575134	f(x):Ratio to Mxw (T=1.369MeV)	pts:249
+Downloaded:DS:6/1)	93-Np-237(N,F),DE	JEFF-3.1	EID:23218	SID:7575134	f(x):Ratio to Mxw (T=1.369MeV)	pts:249	idy=0
+WebReq:7) EvalID:226914 PenSectID:19241653 Lib:JENDL-5 Color:0,200,0
+/servlet/E4sGetSectData?EvalID=226914&PenSectID=19241653&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=226914&PenSectID=19241653&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226914&PenSectID=19241653&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+Download...DS:7/1)	93-Np-237(N,F),DE	JENDL-5	EID:226914	SID:19241653	f(x):Ratio to Mxw (T=1.369MeV)	pts:681
+Downloaded:DS:7/1)	93-Np-237(N,F),DE	JENDL-5	EID:226914	SID:19241653	f(x):Ratio to Mxw (T=1.369MeV)	pts:681	idy=0
+WebReq:8) EvalID:118849 PenSectID:10752524 Lib:BROND-3.1 Color:255,0,255
+/servlet/E4sGetSectData?EvalID=118849&PenSectID=10752524&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=118849&PenSectID=10752524&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=118849&PenSectID=10752524&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+___2___web-read-error:  Expecting value: line 18 column 15 (char 487)
+Download...DS:8/1)	93-Np-237(N,F),DE	BROND-3.1	EID:118849	SID:10752524	f(x):Ratio to Mxw (T=1.369MeV)	pts:249
+Downloaded:DS:8/1)	93-Np-237(N,F),DE	BROND-3.1	EID:118849	SID:10752524	f(x):Ratio to Mxw (T=1.369MeV)	pts:249	idy=0
+WebReq:9) EvalID:199298 PenSectID:18873606 Lib:CENDL-3.2 Color:255,0,0
+/servlet/E4sGetSectData?EvalID=199298&PenSectID=18873606&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=199298&PenSectID=18873606&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=199298&PenSectID=18873606&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+Download...DS:9/1)	93-Np-237(N,F),DE	CENDL-3.2	EID:199298	SID:18873606	f(x):Ratio to Mxw (T=1.369MeV)	pts:248
+Downloaded:DS:9/1)	93-Np-237(N,F),DE	CENDL-3.2	EID:199298	SID:18873606	f(x):Ratio to Mxw (T=1.369MeV)	pts:248	idy=0
+WebReq:10) EvalID:7245 PenSectID:7550174 Lib:JEF-2.2 Color:80,255,255|dot|2
+/servlet/E4sGetSectData?EvalID=7245&PenSectID=7550174&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=7245&PenSectID=7550174&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=7245&PenSectID=7550174&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+Download...DS:10/1)	93-Np-237(N,F),DE	JEF-2.2	EID:7245	SID:7550174	f(x):Ratio to Mxw (T=1.369MeV)	pts:1000
+Downloaded:DS:10/1)	93-Np-237(N,F),DE	JEF-2.2	EID:7245	SID:7550174	f(x):Ratio to Mxw (T=1.369MeV)	pts:1000	idy=0
+WebReq:11) EvalID:19906 PenSectID:6476058 Lib:JENDL/AC-2008 Color:0,80,255|dot
+/servlet/E4sGetSectData?EvalID=19906&PenSectID=6476058&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=19906&PenSectID=6476058&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=19906&PenSectID=6476058&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+Download...DS:11/1)	93-Np-237(N,F),DE	JENDL/AC-2008	EID:19906	SID:6476058	f(x):Ratio to Mxw (T=1.369MeV)	pts:682
+Downloaded:DS:11/1)	93-Np-237(N,F),DE	JENDL/AC-2008	EID:19906	SID:6476058	f(x):Ratio to Mxw (T=1.369MeV)	pts:682	idy=0
+WebReq:12) EvalID:175029 PenSectID:15684714 Lib:MINKS-ACT Color:255,0,80|solid|6
+/servlet/E4sGetSectData?EvalID=175029&PenSectID=15684714&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=175029&PenSectID=15684714&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=175029&PenSectID=15684714&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+Download...DS:12/1)	93-Np-237(N,F),DE	MINKS-ACT	EID:175029	SID:15684714	f(x):Ratio to Mxw (T=1.369MeV)	pts:324
+Downloaded:DS:12/1)	93-Np-237(N,F),DE	MINKS-ACT	EID:175029	SID:15684714	f(x):Ratio to Mxw (T=1.369MeV)	pts:324	idy=0
+WebReq:13) EvalID:78569 PenSectID:6551606 Lib:ENDF/B-V Color:127,127,127|dash|2
+/servlet/E4sGetSectData?EvalID=78569&PenSectID=6551606&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=78569&PenSectID=6551606&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=78569&PenSectID=6551606&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+Download...DS:13/1)	93-Np-237(N,F),DE	ENDF/B-V	EID:78569	SID:6551606	f(x):Ratio to Mxw (T=1.369MeV)	pts:1000
+Downloaded:DS:13/1)	93-Np-237(N,F),DE	ENDF/B-V	EID:78569	SID:6551606	f(x):Ratio to Mxw (T=1.369MeV)	pts:1000	idy=0
+WebReq:14) EvalID:199875 PenSectID:19346406 Lib:ADS-HE Color:127,127,255|dot
+/servlet/E4sGetSectData?EvalID=199875&PenSectID=19346406&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=199875&PenSectID=19346406&json&mf=5&mt=18&ei=14700000.0&T=1369000.0
+___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=199875&PenSectID=19346406&json&mf=5&mt=18&ei=14700000.0&T=1369000.0'
+Download...DS:14/1)	93-Np-237(N,F),DE	ADS-HE	EID:199875	SID:19346406	f(x):Ratio to Mxw (T=1.369MeV)	pts:1620
+Downloaded:DS:14/1)	93-Np-237(N,F),DE	ADS-HE	EID:199875	SID:19346406	f(x):Ratio to Mxw (T=1.369MeV)	pts:1620	idy=0
+---e4datasets: 14
+Plot:1/14) 26306028	ENDF/B-VIII.1 Ei1.47e7 (T=1.369MeV)	pt:249	color:0,80,255	dash:longdashdot
+Plot:2/14) 13663770	ENDF/B-VIII.0 Ei1.47e7 (T=1.369MeV)	pt:249	color:0,0,255	dash:dashdot
+Plot:3/14) 7665738	ENDF/B-VII.1 Ei1.47e7 (T=1.369MeV)	pt:249	color:200,0,255	dash:dashdot
+Plot:4/14) 26471381	JEFF-4.0 Ei1.47e7 (T=1.369MeV)	pt:249	color:0,127,255	dash:None
+Plot:5/14) 13777267	JEFF-3.3 Ei1.47e7 (T=1.369MeV)	pt:249	color:0,255,127	dash:dot
+Plot:6/14) 7575134	JEFF-3.1 Ei1.47e7 (T=1.369MeV)	pt:249	color:0,255,255	dash:dashdot
+Plot:7/14) 19241653	JENDL-5 Ei1.47e7 (T=1.369MeV)	pt:681	color:0,200,0	dash:None
+Plot:8/14) 10752524	BROND-3.1 Ei1.47e7 (T=1.369MeV)	pt:249	color:255,0,255	dash:None
+Plot:9/14) 18873606	CENDL-3.2 Ei1.47e7 (T=1.369MeV)	pt:248	color:255,0,0	dash:None
+Plot:10/14) 7550174	JEF-2.2 Ei1.47e7 (T=1.369MeV)	pt:1000	color:80,255,255	dash:dot
+Plot:11/14) 6476058	JENDL/AC-2008 Ei1.47e7 (T=1.369MeV)	pt:682	color:0,80,255	dash:dot
+Plot:12/14) 15684714	MINKS-ACT Ei1.47e7 (T=1.369MeV)	pt:324	color:255,0,80	dash:solid
+Plot:13/14) 6551606	ENDF/B-V Ei1.47e7 (T=1.369MeV)	pt:1000	color:127,127,127	dash:dash
+Plot:14/14) 19346406	ADS-HE Ei1.47e7 (T=1.369MeV)	pt:1620	color:127,127,255	dash:dot
+--0--getUnits--- EV 1000000.0
+--A--getUnits--- EV 1000000.0
+--1--getUnits--- EV 1000000.0  Category: E
+--0--getUnits--- no-dim 1
+Will try---write_image: pfns237np14_7.html.png
+
+Program successfully completed

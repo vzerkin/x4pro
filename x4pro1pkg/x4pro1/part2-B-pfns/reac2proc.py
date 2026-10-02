@@ -31,6 +31,9 @@ absNubarList={
 	"40740002"	: 5.07	, #92-U-238(N,F),PR,NU/DE  Pt:62   1979, V.Ya.Baryba En=14.3MeV, see: 40740003:DATA=5.07(PRT/FIS)
 	"30426002"	: 0.1	, #???
 	"41611010z"	: 2.49	, #test, see in EXFOR: MONIT(PRT/FIS)=2.49
+#	"41171004"	: 4.45	, #test
+#	"41171004"	: 4.52	, #test
+#	"41171004"	: 4.829	, #test
 }
 
 def datasets2mxwRatio(datasets,oper,renorm2shapeOnly=False,Tm=1.32e6):
@@ -98,7 +101,9 @@ def dataset2mxwRatio(dataset,renorm2shapeOnly=False,Tm=1.32e6):
     dataset['x4lbl']+=typ
     dataset['x4lbl']+=" T="+format(Tm/1e6,"<.5g").strip()+"MeV"
     if nuTxt is not None:
-        dataset['x4lbl']+=" &#957;="+nuTxt
+#       dataset['x4lbl']+=" &#957;="+nuTxt
+#       dataset['x4lbl']+=" nu="+nuTxt
+        dataset['x4lbl']+=" v="+nuTxt
     return True
 
 def getMaxw(E,T):

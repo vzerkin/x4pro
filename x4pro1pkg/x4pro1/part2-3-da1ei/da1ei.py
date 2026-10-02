@@ -158,7 +158,6 @@ outX4Datasets(datasets,outhtml+"--exfor",frmArray=2)
 outX4Datasets(e4datasets,outhtml+"--endf",frmArray=2)
 
 #_________________Plot data from EXFOR and ENDF_________________
-#myOfflinePlot(data1+data2,'EXFOR/ENDF angular distributions d\u03c3/d\u03a9(E,\u03B8): '+plotTitle
 myOfflinePlot(data1+data2,'EXFOR/ENDF angular distributions d&#963;/d&#937;(E,&#952;): '+plotTitle
 	+'<br><i>X4Pro, by V.Zerkin, Vienna, 2021-2025, ver.2025-07-10 //run:'+ct+'</i>'
 	,'Incident energy (MeV)'

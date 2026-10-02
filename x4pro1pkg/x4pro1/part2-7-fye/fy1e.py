@@ -146,7 +146,7 @@ if flagEndf:
         print("   section:"+str(ii)+"/"+str(len(list1))+"/ok:"+str(iok)
 		+" SectID:"+str(sect1['SectID'])+' '+sect1['Targ']
 		+" Lib:"+sect1['LibName']+' AUTH:['+sect1['AUTH']+']')
-        txt=get_e4fy(sect1['SectID'])
+        txt=get_e4fy(sect1['SectID'],LibName=LibName)
 #        with open('endf-'+str(iok)+'.fy.json','w') as wfile: wfile.write(txt)
         with open('endf-'+str(sect1['SectID'])+'.fy.json','w') as wfile: wfile.write(txt)
         ds=e4fy2json(txt)
