@@ -1,1 +1,1 @@
-EXFOR/ENDF angular distributions (Ei:fixed)
+Angular distributions with fixed incident energy

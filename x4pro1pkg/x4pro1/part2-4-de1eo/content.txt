@@ -1,1 +1,1 @@
-EXFOR/ENDF energy spectra of outgoing particles
+Energy spectra of outgoing particles

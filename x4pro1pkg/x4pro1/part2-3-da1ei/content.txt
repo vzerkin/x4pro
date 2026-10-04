@@ -1,1 +1,1 @@
-EXFOR/ENDF angular distributions (angle:fixed)
+Angular distributions with fixed angle

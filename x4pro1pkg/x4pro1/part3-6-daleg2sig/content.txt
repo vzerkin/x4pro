@@ -1,1 +1,1 @@
-Retrieve from EXFOR: Legendre coefficient L[0], calculate cross sections and errors
+Retrieve Legendre coefficient L[0] from EXFOR, calculate cross sections and errors

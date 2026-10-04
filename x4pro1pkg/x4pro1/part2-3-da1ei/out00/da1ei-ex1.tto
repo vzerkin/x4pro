@@ -2,11 +2,11 @@ Program: da1ei.py, ver. 2025-07-10
 Author:  V.Zerkin, IAEA-NRDC, Vienna, 2021-2025
 Purpose: Retrieve and plot EXFOR/ENDF angular distributions
 
-Running: 2026-10-02 13:53:19
+Running: 2026-10-04 14:10:26
 
 ___sys___nexample:[ex1]['da1ei.py', 'ex1']
 ---Retrieve EXFOR data from SQL database---
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 ___getX4SqlSearchDA_a: O-16 p,el
 SQL:
@@ -136,50 +136,62 @@ Plot:7/7) #O0445002 1960, S.Kobayashi pt:20
 
 ___webEndfDataForPlot_DADE: [O-16] [p,*] [&an=140&mf=4&mt=40002&zap=1001]
 ---wgetdb_get:/servlet/E4sSearch2?Target=O-16&Reaction=p,*&Quantity=DA*&json&mats
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sSearch2?Target=O-16&Reaction=p,*&Quantity=DA*&json&mats'
 format=WebEndfSectionsList-0.1
 ___Retrieved sections:17
+SelectedLib-Sect:1) {'Targ': 'O-16', 'ZT': 8, 'AT': 16, 'NSUB': 10010, 'MT': 2, 'MF': 6, 'R': 'P,EL', 'RC': 'O-16(P,EL)O-16-L0,DA/DE', 'EvalID': 301667, 'SectID': 21476411, 'PenSectID': 26315016, 'LibID': 810, 'LibName': 'ENDF/B-VIII.1', 'DATE': '20240830', 'AUTH': 'M.B.Chadwick and P.G.Young'}
 SelectedLib-Sect:2) {'Targ': 'O-16', 'ZT': 8, 'AT': 16, 'NSUB': 10010, 'MT': 2, 'MF': 6, 'R': 'P,EL', 'RC': 'O-16(P,EL)O-16-L0,DA/DE', 'EvalID': 150141, 'SectID': 9033468, 'PenSectID': 13669344, 'LibID': 800, 'LibName': 'ENDF/B-VIII.0', 'DATE': '20111222', 'AUTH': 'M.B.Chadwick and P.G.Young'}
 SelectedLib-Sect:6) {'Targ': 'O-16', 'ZT': 8, 'AT': 16, 'NSUB': 10010, 'MT': 2, 'MF': 6, 'R': 'P,EL', 'RC': 'O-16(P,EL)O-16-L0,DA/DE', 'EvalID': 226979, 'SectID': 14611231, 'PenSectID': 19247110, 'LibID': 51, 'LibName': 'JENDL-5', 'DATE': 'Dec21', 'AUTH': 'T.Murata, K.Kosako and T.Fukahori'}
 SelectedLib-Sect:11) {'Targ': 'O-16', 'ZT': 8, 'AT': 16, 'NSUB': 10010, 'MT': 2, 'MF': 6, 'R': 'P,EL', 'RC': 'O-16(P,EL)O-16-L0,DA/DE', 'EvalID': 116881, 'SectID': 5914473, 'PenSectID': 6458793, 'LibID': 56001, 'LibName': 'IBA-EVAL', 'DATE': '', 'AUTH': 'A.Gurbich'}
-___Required sections:3
-WebReq:1) EvalID:150141 PenSectID:13669344 Lib:ENDF/B-VIII.0 Color:0,0,0|solid|2
+___Required sections:4
+WebReq:1) EvalID:301667 PenSectID:26315016 Lib:ENDF/B-VIII.1 Color:0,0,255|dot|3
+/servlet/E4sGetSectData?EvalID=301667&PenSectID=26315016&json&an=140&mf=4&mt=40002&zap=1001
+---wgetdb_get:/servlet/E4sGetSectData?EvalID=301667&PenSectID=26315016&json&an=140&mf=4&mt=40002&zap=1001
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
+Connected to: [sqlite3]
+
+---wgetdb_get---retrieved from wget_cache rows: 1
+---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=301667&PenSectID=26315016&json&an=140&mf=4&mt=40002&zap=1001'
+Download...DS:1/1)	8-O-16(P,EL),DA	ENDF/B-VIII.1	EID:301667	SID:26315016	f(x):DA(Ei)	pts:74
+Downloaded:DS:1/1)	8-O-16(P,EL),DA	ENDF/B-VIII.1	EID:301667	SID:26315016	f(x):DA(Ei)	pts:74	idy=0
+WebReq:2) EvalID:150141 PenSectID:13669344 Lib:ENDF/B-VIII.0 Color:0,0,0|solid|2
 /servlet/E4sGetSectData?EvalID=150141&PenSectID=13669344&json&an=140&mf=4&mt=40002&zap=1001
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=150141&PenSectID=13669344&json&an=140&mf=4&mt=40002&zap=1001
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=150141&PenSectID=13669344&json&an=140&mf=4&mt=40002&zap=1001'
-Download...DS:1/1)	8-O-16(P,EL),DA	ENDF/B-VIII.0	EID:150141	SID:13669344	f(x):DA(Ei)	pts:73
-Downloaded:DS:1/1)	8-O-16(P,EL),DA	ENDF/B-VIII.0	EID:150141	SID:13669344	f(x):DA(Ei)	pts:73	idy=0
-WebReq:2) EvalID:226979 PenSectID:19247110 Lib:JENDL-5 Color:255,0,0|solid
+Download...DS:2/1)	8-O-16(P,EL),DA	ENDF/B-VIII.0	EID:150141	SID:13669344	f(x):DA(Ei)	pts:73
+Downloaded:DS:2/1)	8-O-16(P,EL),DA	ENDF/B-VIII.0	EID:150141	SID:13669344	f(x):DA(Ei)	pts:73	idy=0
+WebReq:3) EvalID:226979 PenSectID:19247110 Lib:JENDL-5 Color:255,0,0|solid
 /servlet/E4sGetSectData?EvalID=226979&PenSectID=19247110&json&an=140&mf=4&mt=40002&zap=1001
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=226979&PenSectID=19247110&json&an=140&mf=4&mt=40002&zap=1001
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=226979&PenSectID=19247110&json&an=140&mf=4&mt=40002&zap=1001'
-Download...DS:2/1)	8-O-16(P,EL),DA	JENDL-5	EID:226979	SID:19247110	f(x):DA(Ei)	pts:32
-Downloaded:DS:2/1)	8-O-16(P,EL),DA	JENDL-5	EID:226979	SID:19247110	f(x):DA(Ei)	pts:32	idy=0
-WebReq:3) EvalID:116881 PenSectID:6458793 Lib:IBA-EVAL Color:0,0,192
+Download...DS:3/1)	8-O-16(P,EL),DA	JENDL-5	EID:226979	SID:19247110	f(x):DA(Ei)	pts:32
+Downloaded:DS:3/1)	8-O-16(P,EL),DA	JENDL-5	EID:226979	SID:19247110	f(x):DA(Ei)	pts:32	idy=0
+WebReq:4) EvalID:116881 PenSectID:6458793 Lib:IBA-EVAL Color:0,0,192
 /servlet/E4sGetSectData?EvalID=116881&PenSectID=6458793&json&an=140&mf=4&mt=40002&zap=1001
 ---wgetdb_get:/servlet/E4sGetSectData?EvalID=116881&PenSectID=6458793&json&an=140&mf=4&mt=40002&zap=1001
-___getConnSQLite: file:../../x4sqlite1.db?mode=ro
+___getConnSQLite: file:../../x4sqlite1.db?mode=rw
 Connected to: [sqlite3]
 
 ---wgetdb_get---retrieved from wget_cache rows: 1
 ---wgetdb_get---sql: select * from wget_cache where cmd='/servlet/E4sGetSectData?EvalID=116881&PenSectID=6458793&json&an=140&mf=4&mt=40002&zap=1001'
-Download...DS:3/1)	8-O-16(P,EL),DA	IBA-EVAL	EID:116881	SID:6458793	f(x):DA(Ei)	pts:233
-Downloaded:DS:3/1)	8-O-16(P,EL),DA	IBA-EVAL	EID:116881	SID:6458793	f(x):DA(Ei)	pts:233	idy=0
-Plot:1/3) 13669344	ENDF/B-VIII.0 El0.0e0 An140	pt:73	color:0,0,0	dash:solid
-Plot:2/3) 19247110	JENDL-5 El0.0e0 An140	pt:32	color:255,0,0	dash:solid
-Plot:3/3) 6458793	IBA-EVAL El0.0e0 An140	pt:233	color:0,0,192	dash:None
+Download...DS:4/1)	8-O-16(P,EL),DA	IBA-EVAL	EID:116881	SID:6458793	f(x):DA(Ei)	pts:233
+Downloaded:DS:4/1)	8-O-16(P,EL),DA	IBA-EVAL	EID:116881	SID:6458793	f(x):DA(Ei)	pts:233	idy=0
+Plot:1/4) 26315016	ENDF/B-VIII.1 El0.0e0 An140	pt:74	color:0,0,255	dash:dot
+Plot:2/4) 13669344	ENDF/B-VIII.0 El0.0e0 An140	pt:73	color:0,0,0	dash:solid
+Plot:3/4) 19247110	JENDL-5 El0.0e0 An140	pt:32	color:255,0,0	dash:solid
+Plot:4/4) 6458793	IBA-EVAL El0.0e0 An140	pt:233	color:0,0,192	dash:None
 Will try---write_image: da1ei-ex1.html.png
 
 Program successfully completed

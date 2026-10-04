@@ -67,6 +67,8 @@ ytype='log'; yrange=[0.3,1020]
 #at=' \u03B8=130\u00B0'
 at=' &#952;=130&#176;'
 annot=('<sup>12</sup>C(a,a<sub>0</sub>),da &#952;=130&#176;',4,700)
+lines=True
+symBorder=False
 
 if nexample=='ex1':
     target="O-16";react="p,el";e4react="p,*"
@@ -80,6 +82,7 @@ if nexample=='ex1':
 #   at=' \u03B8=140\u00B0'
     at=' &#952;=140&#176;'
     annot=('<sup>16</sup>O(p,p<sub>0</sub>),da &#952;=140&#176;',1.5,450)
+    symBorder=False
 
 if nexample=='ex2':  #by Oscar Cabellos, 2022-11-07
     target="Fe-56";react="n,el";e4react="n,*"
@@ -91,6 +94,8 @@ if nexample=='ex2':  #by Oscar Cabellos, 2022-11-07
 #   at=' \u03B8=39\u00B0'
     at=' &#952;=39&#176;'
     annot=('<sup>56</sup>Fe(n,el),da &#952;=39&#176;',0.1,30e3)
+    symBorder=False
+#   lines=False
 
 print("---Retrieve EXFOR data from SQL database---")
 conn=dbConn.getConnSQLx4db()
@@ -130,18 +135,18 @@ datasets=getReacodes2Datasets(reacodes) #filter only large datasets
 outX4Datasets(datasets,outhtml)
 
 #_________________Preparing EXFOR data for plot_________________
-data1=prepareExforDataForPlot(datasets,msize=8,groupReac=len(reacodes)>1,lines=True,lwidth=0.9)
+data1=prepareExforDataForPlot(datasets,msize=8,groupReac=len(reacodes)>1,lines=lines,lwidth=0.9,symBorder=symBorder)
 
 #_________________Retrieve ENDF_________________
 data2=[]
 reqLibs={
-#	'ENDF/B-VIII.1':"0,0,255"
+ 	'ENDF/B-VIII.1':"0,0,255|dot|3",
 	'ENDF/B-VIII.0':"0,0,0|solid|2"
 	,'JENDL-5':"255,0,0|solid"
+#	,'JEFF-4.0':"0,127,255"
 #	,'JEFF-3.3':"0,255,255"
 #	,'CENDL-3.2':"255,0,0"
 #	,'BROND-3.1':"255,0,255"
-#	,'ENDF/B-V':"0,127,127"
 #	,'TENDL-2019':"127,127,127"
 #	,'TENDL-2023':"127,127,127"
 	,'IBA-EVAL':"0,0,192"

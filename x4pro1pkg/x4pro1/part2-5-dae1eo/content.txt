@@ -1,1 +1,1 @@
-EXFOR/ENDF double differential cross sections
+Double differential cross sections

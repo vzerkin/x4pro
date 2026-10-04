@@ -1,1 +1,1 @@
-EXFOR/ENDF fission yeild (energy distribution)
+Fission yeild (energy distribution)

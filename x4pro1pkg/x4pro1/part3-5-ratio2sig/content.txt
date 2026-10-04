@@ -1,1 +1,1 @@
-Retrieve ratios, calculate CS and uncertainties using latest standards
+Retrieve ratios, calculate cross sections and uncertainties using latest standards
