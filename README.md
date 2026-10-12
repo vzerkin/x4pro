@@ -40,3 +40,4 @@ by V.Zerkin, 2026-10-04
 * [EXFOR](https://nds.iaea.org/exfor/) IAEA-NDS Web-Retrieval System 
 * [X4Pro](https://nds.iaea.org/cdroms/#x4pro1) Download previous versions of the package from IAEA-NDS site
 * ND2022 - Nuclear-Data Conference: X4Pro [reference paper](https://doi.org/10.1051/epjconf/202328414015), [presentation](https://indico.frib.msu.edu/event/52/contributions/875/attachments/487/2289/nd2022-zerkin1.pdf)
+* :red_circle: Youtube [Video](https://www.youtube.com/watch?v=AO99jhOLA7w)-2026: Example 19: PFNS - Prompt Fission Neutron Spectra
